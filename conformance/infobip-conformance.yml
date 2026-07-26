@@ -1,0 +1,111 @@
+generated: '2026-07-25'
+method: searched
+source: https://www.infobip.com/certificates, https://www.infobip.com/security-trust-center, https://cloudsecurityalliance.org/star/registry/infobip-ltd,
+  live /.well-known probes, and openapi/infobip-platform-full-openapi.json
+compliance_page: https://www.infobip.com/certificates
+oidc_issuer: https://auth.infobip.com/realms/infobip
+standards:
+- id: openapi-3.1
+  conforms: true
+  evidence: '48 harvested specs declare openapi: 3.1.0; the provider publishes the full document at https://api.infobip.com/platform/1/openapi'
+- id: openapi-webhooks
+  conforms: true
+  evidence: openapi/infobip-platform-full-openapi.json declares 102 entries under the OpenAPI 3.1 webhooks object
+- id: oauth2
+  conforms: true
+  evidence: components.securitySchemes.OAuth2 in the platform spec; authorization server https://auth.infobip.com/realms/infobip
+    advertises RFC 8414 metadata (well-known/infobip-oauth-authorization-server.json)
+- id: oidc
+  conforms: true
+  evidence: well-known/infobip-openid-configuration.json served at https://auth.infobip.com/realms/infobip/.well-known/openid-configuration
+- id: rfc8414-oauth-authorization-server-metadata
+  conforms: true
+  evidence: well-known/infobip-oauth-authorization-server.json (status 200)
+- id: rfc9728-oauth-protected-resource-metadata
+  conforms: true
+  evidence: https://mcp.infobip.com/.well-known/oauth-protected-resource/{server} returned 200 for 13 MCP servers
+    (well-known/infobip-oauth-protected-resource.json)
+- id: rfc9116-security-txt
+  conforms: true
+  evidence: well-known/infobip-security.txt (status 200) with Contact, Expires, Policy
+- id: rfc9727-api-catalog
+  conforms: true
+  evidence: https://www.infobip.com/.well-known/api-catalog returned 200 (well-known/infobip-api-catalog.json)
+- id: model-context-protocol
+  conforms: true
+  evidence: Fleet of remote MCP servers at https://mcp.infobip.com/{product} with streamable HTTP + SSE transports
+    and OAuth 2.1 scope discovery (mcp/infobip-mcp.yml)
+- id: camara
+  conforms: true
+  evidence: openapi/infobip-camara-openapi.json implements CAMARA Number Verification v0/v2, Device Location Verification
+    v0, SIM Swap v0 and KYC Match v0.3 under /camara/*, including the CAMARA x-correlator header
+- id: gsma-open-gateway
+  conforms: true
+  evidence: GSMA Open Connectivity certification listed at https://www.infobip.com/certificates; CAMARA network
+    APIs exposed under /camara/*
+- id: gsma-mobile-connect
+  conforms: true
+  evidence: GSMA Mobile Connect Certified listed at https://www.infobip.com/certificates
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: No application/problem+json response content anywhere in the corpus; errors use the Infobip requestError/serviceException
+    and ApiError envelopes (errors/infobip-problem-types.yml)
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: Sunset dates are published in the OpenAPI as x-deprecationInformation.sunset rather than as an HTTP
+    Sunset header; no Sunset/Deprecation response headers found in the corpus
+- id: idempotency-key
+  conforms: false
+  evidence: No Idempotency-Key header, parameter, or documented request-replay contract anywhere in the 1,886-operation
+    corpus
+- id: json-api
+  conforms: false
+  evidence: Plain JSON resource representations; no application/vnd.api+json media types
+- id: odata
+  conforms: false
+  evidence: No OData metadata or $-query conventions
+- id: scim2
+  conforms: false
+  evidence: No /scim/v2 endpoints
+- id: fhir-r4
+  conforms: false
+  evidence: Not a healthcare API
+- id: fapi
+  conforms: false
+  evidence: No FAPI security profile claims; API key and Basic remain first-class auth types
+- id: pagination
+  conforms: true
+  evidence: Page/size (offset) pagination with a PagingResponse envelope {page,size,totalPages,totalResults}; cursor
+    pagination on newer endpoints via cursor/useCursor query parameters
+- id: iso-27001
+  conforms: true
+  evidence: https://www.infobip.com/certificates — ISO 27001 certificate PDF published
+- id: iso-27017
+  conforms: true
+  evidence: https://www.infobip.com/certificates — ISO 27017 certificate PDF published
+- id: iso-27018
+  conforms: true
+  evidence: https://www.infobip.com/certificates — ISO 27018 certificate PDF published
+- id: iso-22301
+  conforms: true
+  evidence: https://www.infobip.com/certificates — ISO 22301 certificate PDF published
+- id: iso-9001
+  conforms: true
+  evidence: https://www.infobip.com/certificates — ISO 9001 certificate PDF published
+- id: soc2-type2
+  conforms: true
+  evidence: SOC 2 Type 2 listed at https://www.infobip.com/certificates
+- id: pci-dss
+  conforms: true
+  evidence: Infobip states the platform is PCI DSS compliant (https://www.infobip.com/glossary/pci-dss, security
+    trust center)
+- id: csa-star-level-1
+  conforms: true
+  evidence: CSA STAR Level 1 registry entry https://cloudsecurityalliance.org/star/registry/infobip-ltd
+- id: gdpr
+  conforms: true
+  evidence: EU-headquartered processor; privacy notice at https://www.infobip.com/policies/privacy-notice and ISO
+    27018 (PII in public cloud) certification
+- id: ens-basic
+  conforms: true
+  evidence: ENS Category Basic declaration of conformity published at https://www.infobip.com/certificates

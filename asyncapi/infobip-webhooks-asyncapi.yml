@@ -1,0 +1,2444 @@
+asyncapi: 3.0.0
+info:
+  title: Infobip platform webhooks
+  version: 3.210.0
+  description: AsyncAPI projection of the 102 webhooks published in the Infobip platform OpenAPI 3.1 document (the "webhooks"
+    object). Each channel is an Infobip-originated HTTP callback delivered to a customer-configured URL — delivery reports,
+    inbound messages, conversation/calls events, tracking notifications and platform events. Derived by API Evangelist from
+    the provider spec; message payloads $ref the schemas in that same document.
+  contact:
+    name: Infobip support
+    email: support@infobip.com
+    url: https://www.infobip.com/contact
+  externalDocs:
+    url: https://www.infobip.com/docs/api
+defaultContentType: application/json
+channels:
+  receive-test-message:
+    address: null
+    title: Receive testing message
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-test-message-message:
+        $ref: '#/components/messages/receive-test-message-message'
+  cdp-event-webhook:
+    address: null
+    title: People Webhook
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      cdp-event-webhook-message:
+        $ref: '#/components/messages/cdp-event-webhook-message'
+  conversation-event-webhook:
+    address: null
+    title: Conversations Webhook
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      conversation-event-webhook-message:
+        $ref: '#/components/messages/conversation-event-webhook-message'
+  receive-inbound-sms-messages:
+    address: null
+    title: Receive inbound SMS messages
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-inbound-sms-messages-message:
+        $ref: '#/components/messages/receive-inbound-sms-messages-message'
+  receive-outbound-sms-message-reports-v3:
+    address: null
+    title: Receive outbound SMS message reports
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-outbound-sms-message-reports-v3-message:
+        $ref: '#/components/messages/receive-outbound-sms-message-reports-v3-message'
+  receive-sms-tracking-notification:
+    address: null
+    title: Receive SMS tracking notifications
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-sms-tracking-notification-message:
+        $ref: '#/components/messages/receive-sms-tracking-notification-message'
+  receive-outbound-sms-message-reports:
+    address: null
+    title: Receive outbound SMS message report
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-outbound-sms-message-reports-message:
+        $ref: '#/components/messages/receive-outbound-sms-message-reports-message'
+  receive-inbound-mms-messages:
+    address: null
+    title: Receive inbound MMS messages
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-inbound-mms-messages-message:
+        $ref: '#/components/messages/receive-inbound-mms-messages-message'
+  receive-outbound-mms-message-delivery-reports:
+    address: null
+    title: Receive MMS delivery reports
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-outbound-mms-message-delivery-reports-message:
+        $ref: '#/components/messages/receive-outbound-mms-message-delivery-reports-message'
+  receive-outbound-mms-message-reports:
+    address: null
+    title: Receive outbound MMS message report
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-outbound-mms-message-reports-message:
+        $ref: '#/components/messages/receive-outbound-mms-message-reports-message'
+  receive-mms-tracking-notification:
+    address: null
+    title: Receive MMS tracking notifications
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-mms-tracking-notification-message:
+        $ref: '#/components/messages/receive-mms-tracking-notification-message'
+  calls-event-webhook:
+    address: null
+    title: Event Webhook
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      calls-event-webhook-message:
+        $ref: '#/components/messages/calls-event-webhook-message'
+  receive-markup-language-instructions:
+    address: null
+    title: Markup callback API
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-markup-language-instructions-message:
+        $ref: '#/components/messages/receive-markup-language-instructions-message'
+  receive-markup-language-error:
+    address: null
+    title: Error callback API
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-markup-language-error-message:
+        $ref: '#/components/messages/receive-markup-language-error-message'
+  receive-markup-language-record:
+    address: null
+    title: Record callback API
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-markup-language-record-message:
+        $ref: '#/components/messages/receive-markup-language-record-message'
+  receive-markup-language-capture-dtmf:
+    address: null
+    title: Capture DTMF callback API
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-markup-language-capture-dtmf-message:
+        $ref: '#/components/messages/receive-markup-language-capture-dtmf-message'
+  fetch-markup-language:
+    address: null
+    title: Fetch callback API
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      fetch-markup-language-message:
+        $ref: '#/components/messages/fetch-markup-language-message'
+  send-machine-detection-callback:
+    address: null
+    title: Machine detection callback API
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      send-machine-detection-callback-message:
+        $ref: '#/components/messages/send-machine-detection-callback-message'
+  dial-callback:
+    address: null
+    title: Dial callback API
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      dial-callback-message:
+        $ref: '#/components/messages/dial-callback-message'
+  send-machine-detection-async-callback:
+    address: null
+    title: Machine detection async callback API
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      send-machine-detection-async-callback-message:
+        $ref: '#/components/messages/send-machine-detection-async-callback-message'
+  send-machine-message-detection-async-callback:
+    address: null
+    title: Machine message detection callback API
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      send-machine-message-detection-async-callback-message:
+        $ref: '#/components/messages/send-machine-message-detection-async-callback-message'
+  send-recording-status-callback:
+    address: null
+    title: Recording status callback API
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      send-recording-status-callback-message:
+        $ref: '#/components/messages/send-recording-status-callback-message'
+  receive-voice-delivery-reports:
+    address: null
+    title: Receive Voice Delivery Reports
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-voice-delivery-reports-message:
+        $ref: '#/components/messages/receive-voice-delivery-reports-message'
+  deprecated-receive-voice-delivery-reports:
+    address: null
+    title: Receive Voice Delivery Reports
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      deprecated-receive-voice-delivery-reports-message:
+        $ref: '#/components/messages/deprecated-receive-voice-delivery-reports-message'
+  receive-number-masking-target:
+    address: null
+    title: Number Masking callback API
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-number-masking-target-message:
+        $ref: '#/components/messages/receive-number-masking-target-message'
+  receive-masked-call-report:
+    address: null
+    title: Number Masking status API
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-masked-call-report-message:
+        $ref: '#/components/messages/receive-masked-call-report-message'
+  receive-url-destination-request:
+    address: null
+    title: URL destination webhook
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-url-destination-request-message:
+        $ref: '#/components/messages/receive-url-destination-request-message'
+  call-link-status-webhook:
+    address: null
+    title: Call Link Webhook
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      call-link-status-webhook-message:
+        $ref: '#/components/messages/call-link-status-webhook-message'
+  receive-inbound-email:
+    address: null
+    title: Receive parsed emails
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-inbound-email-message:
+        $ref: '#/components/messages/receive-inbound-email-message'
+  receive-email-delivery-reports:
+    address: null
+    title: Receive email delivery reports
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-email-delivery-reports-message:
+        $ref: '#/components/messages/receive-email-delivery-reports-message'
+  receive-email-tracking-reports:
+    address: null
+    title: Receive user events
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-email-tracking-reports-message:
+        $ref: '#/components/messages/receive-email-tracking-reports-message'
+  receive-email-platform-events:
+    address: null
+    title: Receive email platform events
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-email-platform-events-message:
+        $ref: '#/components/messages/receive-email-platform-events-message'
+  receive-inbound-whatsapp-messages:
+    address: null
+    title: Receive WhatsApp inbound message
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-inbound-whatsapp-messages-message:
+        $ref: '#/components/messages/receive-inbound-whatsapp-messages-message'
+  receive-whatsapp-delivery-reports:
+    address: null
+    title: Receive delivery reports
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-whatsapp-delivery-reports-message:
+        $ref: '#/components/messages/receive-whatsapp-delivery-reports-message'
+  receive-whatsapp-seen-reports:
+    address: null
+    title: Receive seen reports
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-whatsapp-seen-reports-message:
+        $ref: '#/components/messages/receive-whatsapp-seen-reports-message'
+  receive-whatsapp-payment-notification:
+    address: null
+    title: Receive WhatsApp Payment Notification
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-whatsapp-payment-notification-message:
+        $ref: '#/components/messages/receive-whatsapp-payment-notification-message'
+  receive-whatsapp-marketing-update-notification:
+    address: null
+    title: Receive WhatsApp Marketing Update Notification
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-whatsapp-marketing-update-notification-message:
+        $ref: '#/components/messages/receive-whatsapp-marketing-update-notification-message'
+  receive-whatsapp-message-template-update-events:
+    address: null
+    title: Receive WhatsApp template update
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-whatsapp-message-template-update-events-message:
+        $ref: '#/components/messages/receive-whatsapp-message-template-update-events-message'
+  receive-whatsapp-identity-change-notification:
+    address: null
+    title: Receive WhatsApp Identity Change Notification
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-whatsapp-identity-change-notification-message:
+        $ref: '#/components/messages/receive-whatsapp-identity-change-notification-message'
+  receive-inbound-viber-messages:
+    address: null
+    title: Receive Viber inbound message
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-inbound-viber-messages-message:
+        $ref: '#/components/messages/receive-inbound-viber-messages-message'
+  receive-outbound-viber-message-delivery-reports:
+    address: null
+    title: Receive Viber delivery reports
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-outbound-viber-message-delivery-reports-message:
+        $ref: '#/components/messages/receive-outbound-viber-message-delivery-reports-message'
+  receive-viber-seen-reports:
+    address: null
+    title: Receive seen reports
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-viber-seen-reports-message:
+        $ref: '#/components/messages/receive-viber-seen-reports-message'
+  receive-outbound-viber-bot-message-delivery-reports:
+    address: null
+    title: Receive Viber Bot delivery reports
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-outbound-viber-bot-message-delivery-reports-message:
+        $ref: '#/components/messages/receive-outbound-viber-bot-message-delivery-reports-message'
+  receive-viber-bot-api-incoming-messages:
+    address: null
+    title: Receive incoming message
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-viber-bot-api-incoming-messages-message:
+        $ref: '#/components/messages/receive-viber-bot-api-incoming-messages-message'
+  receive-outbound-line-message-delivery-reports:
+    address: null
+    title: Receive LON delivery reports
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-outbound-line-message-delivery-reports-message:
+        $ref: '#/components/messages/receive-outbound-line-message-delivery-reports-message'
+  receive-zalo-incoming-messages:
+    address: null
+    title: Receive incoming message
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-zalo-incoming-messages-message:
+        $ref: '#/components/messages/receive-zalo-incoming-messages-message'
+  receive-outbound-zalo-delivery-reports:
+    address: null
+    title: Receive delivery reports
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-outbound-zalo-delivery-reports-message:
+        $ref: '#/components/messages/receive-outbound-zalo-delivery-reports-message'
+  receive-outbound-push-message-delivery-reports:
+    address: null
+    title: Receive Push delivery reports
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-outbound-push-message-delivery-reports-message:
+        $ref: '#/components/messages/receive-outbound-push-message-delivery-reports-message'
+  receive-inbound-rcs-messages:
+    address: null
+    title: Receive RCS inbound message
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-inbound-rcs-messages-message:
+        $ref: '#/components/messages/receive-inbound-rcs-messages-message'
+  inbound-events-receive-inbound-rcs-events:
+    address: null
+    title: Receive RCS user action event
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      inbound-events-receive-inbound-rcs-events-message:
+        $ref: '#/components/messages/inbound-events-receive-inbound-rcs-events-message'
+  receive-rcs-typing-indicator-events:
+    address: null
+    title: Receive RCS typing indicator event
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-rcs-typing-indicator-events-message:
+        $ref: '#/components/messages/receive-rcs-typing-indicator-events-message'
+  receive-outbound-rcs-message-delivery-reports:
+    address: null
+    title: Receive RCS delivery reports
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-outbound-rcs-message-delivery-reports-message:
+        $ref: '#/components/messages/receive-outbound-rcs-message-delivery-reports-message'
+  receive-rcs-seen-reports:
+    address: null
+    title: Receive seen reports
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-rcs-seen-reports-message:
+        $ref: '#/components/messages/receive-rcs-seen-reports-message'
+  receive-rcs-conversation-started-events:
+    address: null
+    title: Receive RCS conversation started event
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-rcs-conversation-started-events-message:
+        $ref: '#/components/messages/receive-rcs-conversation-started-events-message'
+  receive-capability-check-result:
+    address: null
+    title: Receive Capability Check result
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-capability-check-result-message:
+        $ref: '#/components/messages/receive-capability-check-result-message'
+  receive-rcs-sender-update-events:
+    address: null
+    title: Receive an RCS sender update event
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-rcs-sender-update-events-message:
+        $ref: '#/components/messages/receive-rcs-sender-update-events-message'
+  receive-rcs-sender-launch-update-events:
+    address: null
+    title: Receive an RCS sender launch update event
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-rcs-sender-launch-update-events-message:
+        $ref: '#/components/messages/receive-rcs-sender-launch-update-events-message'
+  receive-rcs-test-number-update-events:
+    address: null
+    title: Receive an RCS test number update event
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-rcs-test-number-update-events-message:
+        $ref: '#/components/messages/receive-rcs-test-number-update-events-message'
+  receive-rcs-message-template-update-events:
+    address: null
+    title: Receive an RCS template update
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-rcs-message-template-update-events-message:
+        $ref: '#/components/messages/receive-rcs-message-template-update-events-message'
+  receive-omni-failover-message-delivery-reports:
+    address: null
+    title: Receive delivery status report
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-omni-failover-message-delivery-reports-message:
+        $ref: '#/components/messages/receive-omni-failover-message-delivery-reports-message'
+  receive-omni-failover-message-seen-reports:
+    address: null
+    title: Receive seen reports
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-omni-failover-message-seen-reports-message:
+        $ref: '#/components/messages/receive-omni-failover-message-seen-reports-message'
+  receive-omni-failover-inbound-messages:
+    address: null
+    title: Receive incoming message
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-omni-failover-inbound-messages-message:
+        $ref: '#/components/messages/receive-omni-failover-inbound-messages-message'
+  receive-inbound-livechat-messages:
+    address: null
+    title: Receive Livechat inbound messages
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-inbound-livechat-messages-message:
+        $ref: '#/components/messages/receive-inbound-livechat-messages-message'
+  receive-outbound-apple-mfb-message-delivery-reports:
+    address: null
+    title: Receive Apple Messages for Business delivery reports
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-outbound-apple-mfb-message-delivery-reports-message:
+        $ref: '#/components/messages/receive-outbound-apple-mfb-message-delivery-reports-message'
+  receive-messages-apple-mfb-incoming-messages:
+    address: null
+    title: Receive incoming message
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-messages-apple-mfb-incoming-messages-message:
+        $ref: '#/components/messages/receive-messages-apple-mfb-incoming-messages-message'
+  receive-outbound-instagram-message-delivery-reports:
+    address: null
+    title: Receive Instagram delivery reports
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-outbound-instagram-message-delivery-reports-message:
+        $ref: '#/components/messages/receive-outbound-instagram-message-delivery-reports-message'
+  receive-instagram-api-incoming-messages:
+    address: null
+    title: Receive incoming message
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-instagram-api-incoming-messages-message:
+        $ref: '#/components/messages/receive-instagram-api-incoming-messages-message'
+  receive-outbound-messenger-message-delivery-reports:
+    address: null
+    title: Receive Messenger delivery reports
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-outbound-messenger-message-delivery-reports-message:
+        $ref: '#/components/messages/receive-outbound-messenger-message-delivery-reports-message'
+  receive-messenger-seen-reports:
+    address: null
+    title: Receive seen reports
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-messenger-seen-reports-message:
+        $ref: '#/components/messages/receive-messenger-seen-reports-message'
+  receive-messenger-marketing-click:
+    address: null
+    title: Receive Messenger Marketing Click event
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-messenger-marketing-click-message:
+        $ref: '#/components/messages/receive-messenger-marketing-click-message'
+  receive-messenger-api-incoming-messages:
+    address: null
+    title: Receive incoming message
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-messenger-api-incoming-messages-message:
+        $ref: '#/components/messages/receive-messenger-api-incoming-messages-message'
+  receive-messenger-consent-update:
+    address: null
+    title: Receive Messenger consent update event
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-messenger-consent-update-message:
+        $ref: '#/components/messages/receive-messenger-consent-update-message'
+  receive-outbound-kakao-alim-message-delivery-reports:
+    address: null
+    title: Receive Kakao Alim delivery reports
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-outbound-kakao-alim-message-delivery-reports-message:
+        $ref: '#/components/messages/receive-outbound-kakao-alim-message-delivery-reports-message'
+  receive-outbound-kakao-sangdam-message-delivery-reports:
+    address: null
+    title: Receive Kakao Sangdam delivery reports
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-outbound-kakao-sangdam-message-delivery-reports-message:
+        $ref: '#/components/messages/receive-outbound-kakao-sangdam-message-delivery-reports-message'
+  receive-kakao-sangdam-api-incoming-messages:
+    address: null
+    title: Receive incoming message
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-kakao-sangdam-api-incoming-messages-message:
+        $ref: '#/components/messages/receive-kakao-sangdam-api-incoming-messages-message'
+  receive-outbound-kakao-chingu-message-delivery-reports:
+    address: null
+    title: Receive brand message delivery reports
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-outbound-kakao-chingu-message-delivery-reports-message:
+        $ref: '#/components/messages/receive-outbound-kakao-chingu-message-delivery-reports-message'
+  receive-open-channel-outbound-message:
+    address: null
+    title: Receive Open Channel outbound Message
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-open-channel-outbound-message-message:
+        $ref: '#/components/messages/receive-open-channel-outbound-message-message'
+  receive-outbound-tiktok-message-delivery-reports:
+    address: null
+    title: Receive TikTok delivery reports
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-outbound-tiktok-message-delivery-reports-message:
+        $ref: '#/components/messages/receive-outbound-tiktok-message-delivery-reports-message'
+  receive-tiktok-seen-reports:
+    address: null
+    title: Receive TikTok seen reports
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-tiktok-seen-reports-message:
+        $ref: '#/components/messages/receive-tiktok-seen-reports-message'
+  receive-inbound-tiktok-messages:
+    address: null
+    title: Receive an inbound TikTok message
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-inbound-tiktok-messages-message:
+        $ref: '#/components/messages/receive-inbound-tiktok-messages-message'
+  brand-registration-status-change-notification:
+    address: null
+    title: Receive Brand Status Update
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      brand-registration-status-change-notification-message:
+        $ref: '#/components/messages/brand-registration-status-change-notification-message'
+  brand-auth-2fa-update-notification:
+    address: null
+    title: Receive Brand Auth 2FA Update
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      brand-auth-2fa-update-notification-message:
+        $ref: '#/components/messages/brand-auth-2fa-update-notification-message'
+  brand-vet-notification:
+    address: null
+    title: Receive Brand Vet Update
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      brand-vet-notification-message:
+        $ref: '#/components/messages/brand-vet-notification-message'
+  campaign-network-status-notification:
+    address: null
+    title: Receive Campaign Network Status Update
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      campaign-network-status-notification-message:
+        $ref: '#/components/messages/campaign-network-status-notification-message'
+  campaign-status-change-notification:
+    address: null
+    title: Receive Campaign Status Update
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      campaign-status-change-notification-message:
+        $ref: '#/components/messages/campaign-status-change-notification-message'
+  campaign-ai-feedback-notification:
+    address: null
+    title: Receive AI Campaign Feedback
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      campaign-ai-feedback-notification-message:
+        $ref: '#/components/messages/campaign-ai-feedback-notification-message'
+  campaign-ai-builder-notification:
+    address: null
+    title: Receive AI Campaign Builder Completion Notification
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      campaign-ai-builder-notification-message:
+        $ref: '#/components/messages/campaign-ai-builder-notification-message'
+  receive-aggregate-data-result:
+    address: null
+    title: Receive aggregated data result
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-aggregate-data-result-message:
+        $ref: '#/components/messages/receive-aggregate-data-result-message'
+  receive-billing-usage-result:
+    address: null
+    title: Receive billing usage result
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-billing-usage-result-message:
+        $ref: '#/components/messages/receive-billing-usage-result-message'
+  receive-blocklist-event:
+    address: null
+    title: Receive blocklist event
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-blocklist-event-message:
+        $ref: '#/components/messages/receive-blocklist-event-message'
+  receive-messages-api-delivery-reports:
+    address: null
+    title: Receive delivery reports
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-messages-api-delivery-reports-message:
+        $ref: '#/components/messages/receive-messages-api-delivery-reports-message'
+  receive-messages-api-seen-reports:
+    address: null
+    title: Receive Seen reports
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-messages-api-seen-reports-message:
+        $ref: '#/components/messages/receive-messages-api-seen-reports-message'
+  receive-messages-api-incoming-messages:
+    address: null
+    title: Receive inbound messages
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-messages-api-incoming-messages-message:
+        $ref: '#/components/messages/receive-messages-api-incoming-messages-message'
+  resource-request-status-change-notification:
+    address: null
+    title: Receive resource request status update
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      resource-request-status-change-notification-message:
+        $ref: '#/components/messages/resource-request-status-change-notification-message'
+  resource-request-reminder-notification:
+    address: null
+    title: Receive resource request reminder
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      resource-request-reminder-notification-message:
+        $ref: '#/components/messages/resource-request-reminder-notification-message'
+  receive-silent-mobile-verification-result:
+    address: null
+    title: Receive silent mobile verification result
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-silent-mobile-verification-result-message:
+        $ref: '#/components/messages/receive-silent-mobile-verification-result-message'
+  receive-advanced-silent-mobile-verification-result:
+    address: null
+    title: Receive advanced silent mobile verification result
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-advanced-silent-mobile-verification-result-message:
+        $ref: '#/components/messages/receive-advanced-silent-mobile-verification-result-message'
+  receive-number-intelligence-query-results:
+    address: null
+    title: Receive number intelligence query results
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-number-intelligence-query-results-message:
+        $ref: '#/components/messages/receive-number-intelligence-query-results-message'
+  receive-extraction-session-results:
+    address: null
+    title: Receive Extraction Session Results
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-extraction-session-results-message:
+        $ref: '#/components/messages/receive-extraction-session-results-message'
+  receive-kyc-session-results:
+    address: null
+    title: Receive KYC Session Results
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-kyc-session-results-message:
+        $ref: '#/components/messages/receive-kyc-session-results-message'
+  receive-enrollment-session-results:
+    address: null
+    title: Receive Enrollment Session Results
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-enrollment-session-results-message:
+        $ref: '#/components/messages/receive-enrollment-session-results-message'
+  receive-verification-session-results:
+    address: null
+    title: Receive Verification Session Results
+    description: Delivered by Infobip to the customer-configured webhook URL (notifyUrl / subscription endpoint) via HTTP
+      POST.
+    messages:
+      receive-verification-session-results-message:
+        $ref: '#/components/messages/receive-verification-session-results-message'
+operations:
+  receive-receive-test-message:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-test-message'
+    title: Receive testing message
+    messages:
+    - $ref: '#/channels/receive-test-message/messages/receive-test-message-message'
+  receive-cdp-event-webhook:
+    action: receive
+    channel:
+      $ref: '#/channels/cdp-event-webhook'
+    title: People Webhook
+    messages:
+    - $ref: '#/channels/cdp-event-webhook/messages/cdp-event-webhook-message'
+  receive-conversation-event-webhook:
+    action: receive
+    channel:
+      $ref: '#/channels/conversation-event-webhook'
+    title: Conversations Webhook
+    messages:
+    - $ref: '#/channels/conversation-event-webhook/messages/conversation-event-webhook-message'
+  receive-receive-inbound-sms-messages:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-inbound-sms-messages'
+    title: Receive inbound SMS messages
+    messages:
+    - $ref: '#/channels/receive-inbound-sms-messages/messages/receive-inbound-sms-messages-message'
+  receive-receive-outbound-sms-message-reports-v3:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-outbound-sms-message-reports-v3'
+    title: Receive outbound SMS message reports
+    messages:
+    - $ref: '#/channels/receive-outbound-sms-message-reports-v3/messages/receive-outbound-sms-message-reports-v3-message'
+  receive-receive-sms-tracking-notification:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-sms-tracking-notification'
+    title: Receive SMS tracking notifications
+    messages:
+    - $ref: '#/channels/receive-sms-tracking-notification/messages/receive-sms-tracking-notification-message'
+  receive-receive-outbound-sms-message-reports:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-outbound-sms-message-reports'
+    title: Receive outbound SMS message report
+    messages:
+    - $ref: '#/channels/receive-outbound-sms-message-reports/messages/receive-outbound-sms-message-reports-message'
+  receive-receive-inbound-mms-messages:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-inbound-mms-messages'
+    title: Receive inbound MMS messages
+    messages:
+    - $ref: '#/channels/receive-inbound-mms-messages/messages/receive-inbound-mms-messages-message'
+  receive-receive-outbound-mms-message-delivery-reports:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-outbound-mms-message-delivery-reports'
+    title: Receive MMS delivery reports
+    messages:
+    - $ref: '#/channels/receive-outbound-mms-message-delivery-reports/messages/receive-outbound-mms-message-delivery-reports-message'
+  receive-receive-outbound-mms-message-reports:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-outbound-mms-message-reports'
+    title: Receive outbound MMS message report
+    messages:
+    - $ref: '#/channels/receive-outbound-mms-message-reports/messages/receive-outbound-mms-message-reports-message'
+  receive-receive-mms-tracking-notification:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-mms-tracking-notification'
+    title: Receive MMS tracking notifications
+    messages:
+    - $ref: '#/channels/receive-mms-tracking-notification/messages/receive-mms-tracking-notification-message'
+  receive-calls-event-webhook:
+    action: receive
+    channel:
+      $ref: '#/channels/calls-event-webhook'
+    title: Event Webhook
+    messages:
+    - $ref: '#/channels/calls-event-webhook/messages/calls-event-webhook-message'
+  receive-receive-markup-language-instructions:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-markup-language-instructions'
+    title: Markup callback API
+    messages:
+    - $ref: '#/channels/receive-markup-language-instructions/messages/receive-markup-language-instructions-message'
+  receive-receive-markup-language-error:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-markup-language-error'
+    title: Error callback API
+    messages:
+    - $ref: '#/channels/receive-markup-language-error/messages/receive-markup-language-error-message'
+  receive-receive-markup-language-record:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-markup-language-record'
+    title: Record callback API
+    messages:
+    - $ref: '#/channels/receive-markup-language-record/messages/receive-markup-language-record-message'
+  receive-receive-markup-language-capture-dtmf:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-markup-language-capture-dtmf'
+    title: Capture DTMF callback API
+    messages:
+    - $ref: '#/channels/receive-markup-language-capture-dtmf/messages/receive-markup-language-capture-dtmf-message'
+  receive-fetch-markup-language:
+    action: receive
+    channel:
+      $ref: '#/channels/fetch-markup-language'
+    title: Fetch callback API
+    messages:
+    - $ref: '#/channels/fetch-markup-language/messages/fetch-markup-language-message'
+  receive-send-machine-detection-callback:
+    action: receive
+    channel:
+      $ref: '#/channels/send-machine-detection-callback'
+    title: Machine detection callback API
+    messages:
+    - $ref: '#/channels/send-machine-detection-callback/messages/send-machine-detection-callback-message'
+  receive-dial-callback:
+    action: receive
+    channel:
+      $ref: '#/channels/dial-callback'
+    title: Dial callback API
+    messages:
+    - $ref: '#/channels/dial-callback/messages/dial-callback-message'
+  receive-send-machine-detection-async-callback:
+    action: receive
+    channel:
+      $ref: '#/channels/send-machine-detection-async-callback'
+    title: Machine detection async callback API
+    messages:
+    - $ref: '#/channels/send-machine-detection-async-callback/messages/send-machine-detection-async-callback-message'
+  receive-send-machine-message-detection-async-callback:
+    action: receive
+    channel:
+      $ref: '#/channels/send-machine-message-detection-async-callback'
+    title: Machine message detection callback API
+    messages:
+    - $ref: '#/channels/send-machine-message-detection-async-callback/messages/send-machine-message-detection-async-callback-message'
+  receive-send-recording-status-callback:
+    action: receive
+    channel:
+      $ref: '#/channels/send-recording-status-callback'
+    title: Recording status callback API
+    messages:
+    - $ref: '#/channels/send-recording-status-callback/messages/send-recording-status-callback-message'
+  receive-receive-voice-delivery-reports:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-voice-delivery-reports'
+    title: Receive Voice Delivery Reports
+    messages:
+    - $ref: '#/channels/receive-voice-delivery-reports/messages/receive-voice-delivery-reports-message'
+  receive-deprecated-receive-voice-delivery-reports:
+    action: receive
+    channel:
+      $ref: '#/channels/deprecated-receive-voice-delivery-reports'
+    title: Receive Voice Delivery Reports
+    messages:
+    - $ref: '#/channels/deprecated-receive-voice-delivery-reports/messages/deprecated-receive-voice-delivery-reports-message'
+  receive-receive-number-masking-target:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-number-masking-target'
+    title: Number Masking callback API
+    messages:
+    - $ref: '#/channels/receive-number-masking-target/messages/receive-number-masking-target-message'
+  receive-receive-masked-call-report:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-masked-call-report'
+    title: Number Masking status API
+    messages:
+    - $ref: '#/channels/receive-masked-call-report/messages/receive-masked-call-report-message'
+  receive-receive-url-destination-request:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-url-destination-request'
+    title: URL destination webhook
+    messages:
+    - $ref: '#/channels/receive-url-destination-request/messages/receive-url-destination-request-message'
+  receive-call-link-status-webhook:
+    action: receive
+    channel:
+      $ref: '#/channels/call-link-status-webhook'
+    title: Call Link Webhook
+    messages:
+    - $ref: '#/channels/call-link-status-webhook/messages/call-link-status-webhook-message'
+  receive-receive-inbound-email:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-inbound-email'
+    title: Receive parsed emails
+    messages:
+    - $ref: '#/channels/receive-inbound-email/messages/receive-inbound-email-message'
+  receive-receive-email-delivery-reports:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-email-delivery-reports'
+    title: Receive email delivery reports
+    messages:
+    - $ref: '#/channels/receive-email-delivery-reports/messages/receive-email-delivery-reports-message'
+  receive-receive-email-tracking-reports:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-email-tracking-reports'
+    title: Receive user events
+    messages:
+    - $ref: '#/channels/receive-email-tracking-reports/messages/receive-email-tracking-reports-message'
+  receive-receive-email-platform-events:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-email-platform-events'
+    title: Receive email platform events
+    messages:
+    - $ref: '#/channels/receive-email-platform-events/messages/receive-email-platform-events-message'
+  receive-receive-inbound-whatsapp-messages:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-inbound-whatsapp-messages'
+    title: Receive WhatsApp inbound message
+    messages:
+    - $ref: '#/channels/receive-inbound-whatsapp-messages/messages/receive-inbound-whatsapp-messages-message'
+  receive-receive-whatsapp-delivery-reports:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-whatsapp-delivery-reports'
+    title: Receive delivery reports
+    messages:
+    - $ref: '#/channels/receive-whatsapp-delivery-reports/messages/receive-whatsapp-delivery-reports-message'
+  receive-receive-whatsapp-seen-reports:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-whatsapp-seen-reports'
+    title: Receive seen reports
+    messages:
+    - $ref: '#/channels/receive-whatsapp-seen-reports/messages/receive-whatsapp-seen-reports-message'
+  receive-receive-whatsapp-payment-notification:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-whatsapp-payment-notification'
+    title: Receive WhatsApp Payment Notification
+    messages:
+    - $ref: '#/channels/receive-whatsapp-payment-notification/messages/receive-whatsapp-payment-notification-message'
+  receive-receive-whatsapp-marketing-update-notification:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-whatsapp-marketing-update-notification'
+    title: Receive WhatsApp Marketing Update Notification
+    messages:
+    - $ref: '#/channels/receive-whatsapp-marketing-update-notification/messages/receive-whatsapp-marketing-update-notification-message'
+  receive-receive-whatsapp-message-template-update-events:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-whatsapp-message-template-update-events'
+    title: Receive WhatsApp template update
+    messages:
+    - $ref: '#/channels/receive-whatsapp-message-template-update-events/messages/receive-whatsapp-message-template-update-events-message'
+  receive-receive-whatsapp-identity-change-notification:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-whatsapp-identity-change-notification'
+    title: Receive WhatsApp Identity Change Notification
+    messages:
+    - $ref: '#/channels/receive-whatsapp-identity-change-notification/messages/receive-whatsapp-identity-change-notification-message'
+  receive-receive-inbound-viber-messages:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-inbound-viber-messages'
+    title: Receive Viber inbound message
+    messages:
+    - $ref: '#/channels/receive-inbound-viber-messages/messages/receive-inbound-viber-messages-message'
+  receive-receive-outbound-viber-message-delivery-reports:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-outbound-viber-message-delivery-reports'
+    title: Receive Viber delivery reports
+    messages:
+    - $ref: '#/channels/receive-outbound-viber-message-delivery-reports/messages/receive-outbound-viber-message-delivery-reports-message'
+  receive-receive-viber-seen-reports:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-viber-seen-reports'
+    title: Receive seen reports
+    messages:
+    - $ref: '#/channels/receive-viber-seen-reports/messages/receive-viber-seen-reports-message'
+  receive-receive-outbound-viber-bot-message-delivery-reports:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-outbound-viber-bot-message-delivery-reports'
+    title: Receive Viber Bot delivery reports
+    messages:
+    - $ref: '#/channels/receive-outbound-viber-bot-message-delivery-reports/messages/receive-outbound-viber-bot-message-delivery-reports-message'
+  receive-receive-viber-bot-api-incoming-messages:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-viber-bot-api-incoming-messages'
+    title: Receive incoming message
+    messages:
+    - $ref: '#/channels/receive-viber-bot-api-incoming-messages/messages/receive-viber-bot-api-incoming-messages-message'
+  receive-receive-outbound-line-message-delivery-reports:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-outbound-line-message-delivery-reports'
+    title: Receive LON delivery reports
+    messages:
+    - $ref: '#/channels/receive-outbound-line-message-delivery-reports/messages/receive-outbound-line-message-delivery-reports-message'
+  receive-receive-zalo-incoming-messages:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-zalo-incoming-messages'
+    title: Receive incoming message
+    messages:
+    - $ref: '#/channels/receive-zalo-incoming-messages/messages/receive-zalo-incoming-messages-message'
+  receive-receive-outbound-zalo-delivery-reports:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-outbound-zalo-delivery-reports'
+    title: Receive delivery reports
+    messages:
+    - $ref: '#/channels/receive-outbound-zalo-delivery-reports/messages/receive-outbound-zalo-delivery-reports-message'
+  receive-receive-outbound-push-message-delivery-reports:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-outbound-push-message-delivery-reports'
+    title: Receive Push delivery reports
+    messages:
+    - $ref: '#/channels/receive-outbound-push-message-delivery-reports/messages/receive-outbound-push-message-delivery-reports-message'
+  receive-receive-inbound-rcs-messages:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-inbound-rcs-messages'
+    title: Receive RCS inbound message
+    messages:
+    - $ref: '#/channels/receive-inbound-rcs-messages/messages/receive-inbound-rcs-messages-message'
+  receive-inbound-events-receive-inbound-rcs-events:
+    action: receive
+    channel:
+      $ref: '#/channels/inbound-events-receive-inbound-rcs-events'
+    title: Receive RCS user action event
+    messages:
+    - $ref: '#/channels/inbound-events-receive-inbound-rcs-events/messages/inbound-events-receive-inbound-rcs-events-message'
+  receive-receive-rcs-typing-indicator-events:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-rcs-typing-indicator-events'
+    title: Receive RCS typing indicator event
+    messages:
+    - $ref: '#/channels/receive-rcs-typing-indicator-events/messages/receive-rcs-typing-indicator-events-message'
+  receive-receive-outbound-rcs-message-delivery-reports:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-outbound-rcs-message-delivery-reports'
+    title: Receive RCS delivery reports
+    messages:
+    - $ref: '#/channels/receive-outbound-rcs-message-delivery-reports/messages/receive-outbound-rcs-message-delivery-reports-message'
+  receive-receive-rcs-seen-reports:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-rcs-seen-reports'
+    title: Receive seen reports
+    messages:
+    - $ref: '#/channels/receive-rcs-seen-reports/messages/receive-rcs-seen-reports-message'
+  receive-receive-rcs-conversation-started-events:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-rcs-conversation-started-events'
+    title: Receive RCS conversation started event
+    messages:
+    - $ref: '#/channels/receive-rcs-conversation-started-events/messages/receive-rcs-conversation-started-events-message'
+  receive-receive-capability-check-result:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-capability-check-result'
+    title: Receive Capability Check result
+    messages:
+    - $ref: '#/channels/receive-capability-check-result/messages/receive-capability-check-result-message'
+  receive-receive-rcs-sender-update-events:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-rcs-sender-update-events'
+    title: Receive an RCS sender update event
+    messages:
+    - $ref: '#/channels/receive-rcs-sender-update-events/messages/receive-rcs-sender-update-events-message'
+  receive-receive-rcs-sender-launch-update-events:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-rcs-sender-launch-update-events'
+    title: Receive an RCS sender launch update event
+    messages:
+    - $ref: '#/channels/receive-rcs-sender-launch-update-events/messages/receive-rcs-sender-launch-update-events-message'
+  receive-receive-rcs-test-number-update-events:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-rcs-test-number-update-events'
+    title: Receive an RCS test number update event
+    messages:
+    - $ref: '#/channels/receive-rcs-test-number-update-events/messages/receive-rcs-test-number-update-events-message'
+  receive-receive-rcs-message-template-update-events:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-rcs-message-template-update-events'
+    title: Receive an RCS template update
+    messages:
+    - $ref: '#/channels/receive-rcs-message-template-update-events/messages/receive-rcs-message-template-update-events-message'
+  receive-receive-omni-failover-message-delivery-reports:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-omni-failover-message-delivery-reports'
+    title: Receive delivery status report
+    messages:
+    - $ref: '#/channels/receive-omni-failover-message-delivery-reports/messages/receive-omni-failover-message-delivery-reports-message'
+  receive-receive-omni-failover-message-seen-reports:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-omni-failover-message-seen-reports'
+    title: Receive seen reports
+    messages:
+    - $ref: '#/channels/receive-omni-failover-message-seen-reports/messages/receive-omni-failover-message-seen-reports-message'
+  receive-receive-omni-failover-inbound-messages:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-omni-failover-inbound-messages'
+    title: Receive incoming message
+    messages:
+    - $ref: '#/channels/receive-omni-failover-inbound-messages/messages/receive-omni-failover-inbound-messages-message'
+  receive-receive-inbound-livechat-messages:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-inbound-livechat-messages'
+    title: Receive Livechat inbound messages
+    messages:
+    - $ref: '#/channels/receive-inbound-livechat-messages/messages/receive-inbound-livechat-messages-message'
+  receive-receive-outbound-apple-mfb-message-delivery-reports:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-outbound-apple-mfb-message-delivery-reports'
+    title: Receive Apple Messages for Business delivery reports
+    messages:
+    - $ref: '#/channels/receive-outbound-apple-mfb-message-delivery-reports/messages/receive-outbound-apple-mfb-message-delivery-reports-message'
+  receive-receive-messages-apple-mfb-incoming-messages:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-messages-apple-mfb-incoming-messages'
+    title: Receive incoming message
+    messages:
+    - $ref: '#/channels/receive-messages-apple-mfb-incoming-messages/messages/receive-messages-apple-mfb-incoming-messages-message'
+  receive-receive-outbound-instagram-message-delivery-reports:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-outbound-instagram-message-delivery-reports'
+    title: Receive Instagram delivery reports
+    messages:
+    - $ref: '#/channels/receive-outbound-instagram-message-delivery-reports/messages/receive-outbound-instagram-message-delivery-reports-message'
+  receive-receive-instagram-api-incoming-messages:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-instagram-api-incoming-messages'
+    title: Receive incoming message
+    messages:
+    - $ref: '#/channels/receive-instagram-api-incoming-messages/messages/receive-instagram-api-incoming-messages-message'
+  receive-receive-outbound-messenger-message-delivery-reports:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-outbound-messenger-message-delivery-reports'
+    title: Receive Messenger delivery reports
+    messages:
+    - $ref: '#/channels/receive-outbound-messenger-message-delivery-reports/messages/receive-outbound-messenger-message-delivery-reports-message'
+  receive-receive-messenger-seen-reports:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-messenger-seen-reports'
+    title: Receive seen reports
+    messages:
+    - $ref: '#/channels/receive-messenger-seen-reports/messages/receive-messenger-seen-reports-message'
+  receive-receive-messenger-marketing-click:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-messenger-marketing-click'
+    title: Receive Messenger Marketing Click event
+    messages:
+    - $ref: '#/channels/receive-messenger-marketing-click/messages/receive-messenger-marketing-click-message'
+  receive-receive-messenger-api-incoming-messages:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-messenger-api-incoming-messages'
+    title: Receive incoming message
+    messages:
+    - $ref: '#/channels/receive-messenger-api-incoming-messages/messages/receive-messenger-api-incoming-messages-message'
+  receive-receive-messenger-consent-update:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-messenger-consent-update'
+    title: Receive Messenger consent update event
+    messages:
+    - $ref: '#/channels/receive-messenger-consent-update/messages/receive-messenger-consent-update-message'
+  receive-receive-outbound-kakao-alim-message-delivery-reports:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-outbound-kakao-alim-message-delivery-reports'
+    title: Receive Kakao Alim delivery reports
+    messages:
+    - $ref: '#/channels/receive-outbound-kakao-alim-message-delivery-reports/messages/receive-outbound-kakao-alim-message-delivery-reports-message'
+  receive-receive-outbound-kakao-sangdam-message-delivery-reports:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-outbound-kakao-sangdam-message-delivery-reports'
+    title: Receive Kakao Sangdam delivery reports
+    messages:
+    - $ref: '#/channels/receive-outbound-kakao-sangdam-message-delivery-reports/messages/receive-outbound-kakao-sangdam-message-delivery-reports-message'
+  receive-receive-kakao-sangdam-api-incoming-messages:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-kakao-sangdam-api-incoming-messages'
+    title: Receive incoming message
+    messages:
+    - $ref: '#/channels/receive-kakao-sangdam-api-incoming-messages/messages/receive-kakao-sangdam-api-incoming-messages-message'
+  receive-receive-outbound-kakao-chingu-message-delivery-reports:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-outbound-kakao-chingu-message-delivery-reports'
+    title: Receive brand message delivery reports
+    messages:
+    - $ref: '#/channels/receive-outbound-kakao-chingu-message-delivery-reports/messages/receive-outbound-kakao-chingu-message-delivery-reports-message'
+  receive-receive-open-channel-outbound-message:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-open-channel-outbound-message'
+    title: Receive Open Channel outbound Message
+    messages:
+    - $ref: '#/channels/receive-open-channel-outbound-message/messages/receive-open-channel-outbound-message-message'
+  receive-receive-outbound-tiktok-message-delivery-reports:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-outbound-tiktok-message-delivery-reports'
+    title: Receive TikTok delivery reports
+    messages:
+    - $ref: '#/channels/receive-outbound-tiktok-message-delivery-reports/messages/receive-outbound-tiktok-message-delivery-reports-message'
+  receive-receive-tiktok-seen-reports:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-tiktok-seen-reports'
+    title: Receive TikTok seen reports
+    messages:
+    - $ref: '#/channels/receive-tiktok-seen-reports/messages/receive-tiktok-seen-reports-message'
+  receive-receive-inbound-tiktok-messages:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-inbound-tiktok-messages'
+    title: Receive an inbound TikTok message
+    messages:
+    - $ref: '#/channels/receive-inbound-tiktok-messages/messages/receive-inbound-tiktok-messages-message'
+  receive-brand-registration-status-change-notification:
+    action: receive
+    channel:
+      $ref: '#/channels/brand-registration-status-change-notification'
+    title: Receive Brand Status Update
+    messages:
+    - $ref: '#/channels/brand-registration-status-change-notification/messages/brand-registration-status-change-notification-message'
+  receive-brand-auth-2fa-update-notification:
+    action: receive
+    channel:
+      $ref: '#/channels/brand-auth-2fa-update-notification'
+    title: Receive Brand Auth 2FA Update
+    messages:
+    - $ref: '#/channels/brand-auth-2fa-update-notification/messages/brand-auth-2fa-update-notification-message'
+  receive-brand-vet-notification:
+    action: receive
+    channel:
+      $ref: '#/channels/brand-vet-notification'
+    title: Receive Brand Vet Update
+    messages:
+    - $ref: '#/channels/brand-vet-notification/messages/brand-vet-notification-message'
+  receive-campaign-network-status-notification:
+    action: receive
+    channel:
+      $ref: '#/channels/campaign-network-status-notification'
+    title: Receive Campaign Network Status Update
+    messages:
+    - $ref: '#/channels/campaign-network-status-notification/messages/campaign-network-status-notification-message'
+  receive-campaign-status-change-notification:
+    action: receive
+    channel:
+      $ref: '#/channels/campaign-status-change-notification'
+    title: Receive Campaign Status Update
+    messages:
+    - $ref: '#/channels/campaign-status-change-notification/messages/campaign-status-change-notification-message'
+  receive-campaign-ai-feedback-notification:
+    action: receive
+    channel:
+      $ref: '#/channels/campaign-ai-feedback-notification'
+    title: Receive AI Campaign Feedback
+    messages:
+    - $ref: '#/channels/campaign-ai-feedback-notification/messages/campaign-ai-feedback-notification-message'
+  receive-campaign-ai-builder-notification:
+    action: receive
+    channel:
+      $ref: '#/channels/campaign-ai-builder-notification'
+    title: Receive AI Campaign Builder Completion Notification
+    messages:
+    - $ref: '#/channels/campaign-ai-builder-notification/messages/campaign-ai-builder-notification-message'
+  receive-receive-aggregate-data-result:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-aggregate-data-result'
+    title: Receive aggregated data result
+    messages:
+    - $ref: '#/channels/receive-aggregate-data-result/messages/receive-aggregate-data-result-message'
+  receive-receive-billing-usage-result:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-billing-usage-result'
+    title: Receive billing usage result
+    messages:
+    - $ref: '#/channels/receive-billing-usage-result/messages/receive-billing-usage-result-message'
+  receive-receive-blocklist-event:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-blocklist-event'
+    title: Receive blocklist event
+    messages:
+    - $ref: '#/channels/receive-blocklist-event/messages/receive-blocklist-event-message'
+  receive-receive-messages-api-delivery-reports:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-messages-api-delivery-reports'
+    title: Receive delivery reports
+    messages:
+    - $ref: '#/channels/receive-messages-api-delivery-reports/messages/receive-messages-api-delivery-reports-message'
+  receive-receive-messages-api-seen-reports:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-messages-api-seen-reports'
+    title: Receive Seen reports
+    messages:
+    - $ref: '#/channels/receive-messages-api-seen-reports/messages/receive-messages-api-seen-reports-message'
+  receive-receive-messages-api-incoming-messages:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-messages-api-incoming-messages'
+    title: Receive inbound messages
+    messages:
+    - $ref: '#/channels/receive-messages-api-incoming-messages/messages/receive-messages-api-incoming-messages-message'
+  receive-resource-request-status-change-notification:
+    action: receive
+    channel:
+      $ref: '#/channels/resource-request-status-change-notification'
+    title: Receive resource request status update
+    messages:
+    - $ref: '#/channels/resource-request-status-change-notification/messages/resource-request-status-change-notification-message'
+  receive-resource-request-reminder-notification:
+    action: receive
+    channel:
+      $ref: '#/channels/resource-request-reminder-notification'
+    title: Receive resource request reminder
+    messages:
+    - $ref: '#/channels/resource-request-reminder-notification/messages/resource-request-reminder-notification-message'
+  receive-receive-silent-mobile-verification-result:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-silent-mobile-verification-result'
+    title: Receive silent mobile verification result
+    messages:
+    - $ref: '#/channels/receive-silent-mobile-verification-result/messages/receive-silent-mobile-verification-result-message'
+  receive-receive-advanced-silent-mobile-verification-result:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-advanced-silent-mobile-verification-result'
+    title: Receive advanced silent mobile verification result
+    messages:
+    - $ref: '#/channels/receive-advanced-silent-mobile-verification-result/messages/receive-advanced-silent-mobile-verification-result-message'
+  receive-receive-number-intelligence-query-results:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-number-intelligence-query-results'
+    title: Receive number intelligence query results
+    messages:
+    - $ref: '#/channels/receive-number-intelligence-query-results/messages/receive-number-intelligence-query-results-message'
+  receive-receive-extraction-session-results:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-extraction-session-results'
+    title: Receive Extraction Session Results
+    messages:
+    - $ref: '#/channels/receive-extraction-session-results/messages/receive-extraction-session-results-message'
+  receive-receive-kyc-session-results:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-kyc-session-results'
+    title: Receive KYC Session Results
+    messages:
+    - $ref: '#/channels/receive-kyc-session-results/messages/receive-kyc-session-results-message'
+  receive-receive-enrollment-session-results:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-enrollment-session-results'
+    title: Receive Enrollment Session Results
+    messages:
+    - $ref: '#/channels/receive-enrollment-session-results/messages/receive-enrollment-session-results-message'
+  receive-receive-verification-session-results:
+    action: receive
+    channel:
+      $ref: '#/channels/receive-verification-session-results'
+    title: Receive Verification Session Results
+    messages:
+    - $ref: '#/channels/receive-verification-session-results/messages/receive-verification-session-results-message'
+components:
+  messages:
+    receive-test-message-message:
+      name: receive-test-message
+      title: Receive testing message
+      summary: Incoming test messages will be forwarded to this endpoint. For now supported channels are WhatsApp, Live Chat
+        and Calls.
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/781c309206ee4e50226d2695a75a47d5a1a01fb64cb954c3d350b69d70b039a2.PublicAnswersEventExample
+    cdp-event-webhook-message:
+      name: cdp-event-webhook
+      title: People Webhook
+      summary: Webhook triggered when there is any new event on platform that your application should handle.
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.CDPWebhookReport
+    conversation-event-webhook-message:
+      name: conversation-event-webhook
+      title: Conversations Webhook
+      summary: '
+
+        Webhooks are automated notifications sent between applications when specific events occur. They enable real-time communication
+        by transmitting data through HTTP requests.
+
+
+        Conversations webhooks provide instant access to conversation details and the latest message information, a'
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationWebhookReport
+    receive-inbound-sms-messages-message:
+      name: receive-inbound-sms-messages
+      title: Receive inbound SMS messages
+      summary: Receive SMS messages from your subscribers and have them delivered to you in real-time. To use this method,
+        you’d need to:<ol><li><a href="https://www.infobip.com/docs/api/platform/numbers/phone-numbers/purchase-number">Buy
+        a number</a> capable of receiving SMS traffic.</li><li>S
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/cd5e571e477c0b81ca50ad592cf9f67cc32feded2012ec26d7fae09c0c2d5108.SmsMoReportResponse
+    receive-outbound-sms-message-reports-v3-message:
+      name: receive-outbound-sms-message-reports-v3
+      title: Receive outbound SMS message reports
+      summary: For every message you send, we offer the option to receive a delivery report. To use this feature, you should
+        set up an endpoint to receive these reports. You can specify the endpoint URL using the webhooks > delivery > url
+        parameter. Alternatively, you can set the endpoint URL t
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.DeliveryReports
+    receive-sms-tracking-notification-message:
+      name: receive-sms-tracking-notification
+      title: Receive SMS tracking notifications
+      summary: For every message you send, we offer the option to send you clicked events. To enable this feature, you need
+        to specify your endpoint URL either in the [tracking](https://www.infobip.com/docs/api/channels/sms/outbound-sms/send-sms-messages)
+        or [urlOptions](https://www.infobip.com
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.UrlTrackingWebhook
+    receive-outbound-sms-message-reports-message:
+      name: receive-outbound-sms-message-reports
+      title: Receive outbound SMS message report
+      summary: For every message you send, we offer the option to receive a delivery report. To use this feature, you should
+        set up an endpoint to receive these reports. You can specify the endpoint [when sending SMS](#programmable-communications/sms/send-sms-message).
+        Alternatively, you can se
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/1705572441d20bbbfe49765ca2bed87cd314f9c5c501048d5a9494385ff9f223.SMSReportResponse
+    receive-inbound-mms-messages-message:
+      name: receive-inbound-mms-messages
+      title: Receive inbound MMS messages
+      summary: If you want to receive MMS messages from your subscribers we can have them delivered to you in real time. [Set
+        the inbound configuration](/docs/api/platform/numbers/my-numbers/resource-management/manage-inbound-configuration)
+        for the number by specifying your endpoint and we will
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/62b589527d7474f21f086ddb07e8698e9fcfbbe16400c91718f1ab58d998c3f1.MMSMoWebhookRequest
+    receive-outbound-mms-message-delivery-reports-message:
+      name: receive-outbound-mms-message-delivery-reports
+      title: Receive MMS delivery reports
+      summary: For each message that you send out, we can send you a delivery report. For this to work you need to have an
+        endpoint to forward the reports to. Please specify the endpoint per each message via the `webhooks > delivery > url`
+        parameter. Alternatively, you can provide the endpoint’
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.DeliveryReports
+    receive-outbound-mms-message-reports-message:
+      name: receive-outbound-mms-message-reports
+      title: Receive outbound MMS message report
+      summary: For each MMS that you send out, we can send you a message delivery report. All you need to do is specify your
+        endpoint [when sending MMS](#programmable-communications/mms/send-sms-message) and we will deliver a [status](https://www.infobip.com/docs/essentials/response-status-and-
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/243664b2993460e9e9a3aa6c63ab422a58e22db15efe4cb007ed315aff543dd9.MmsReportRequest
+    receive-mms-tracking-notification-message:
+      name: receive-mms-tracking-notification
+      title: Receive MMS tracking notifications
+      summary: For every message you send, we offer the option to send you clicked events. To enable this feature, you need
+        to specify your endpoint URL in [tracking](https://www.infobip.com/docs/api/channels/mms/send-mms-messages) parameters
+        when sending the MMS, or alternatively, configure it
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.UrlTrackingWebhook
+    calls-event-webhook-message:
+      name: calls-event-webhook
+      title: Event Webhook
+      summary: Webhook triggered when there is any new event on platform that your application should handle.
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.Event
+    receive-markup-language-instructions-message:
+      name: receive-markup-language-instructions
+      title: Markup callback API
+      summary: "Upon receiving a call to the Calls Markup Language, the Infobip platform generates a request to the **markupUrl**\
+        \ you set up \nin the Markup Language configuration. This request will contain Markup Language instructions which\
+        \ dictates call flow."
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/60d0e6d5cbcf8382b5a6bad1f38781f71991c7ea63dad2e6ec22ddc8893af51c.WebhookCallbackRequest
+    receive-markup-language-error-message:
+      name: receive-markup-language-error
+      title: Error callback API
+      summary: "When the Infobip platform fails to retrieve or execute Markup Language instructions, it generates a request\
+        \ to the \n**errorUrl** you set up in the Markup Language configuration. The request carries the call context together\
+        \ with the \nerror code and details that describe the failu"
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/60d0e6d5cbcf8382b5a6bad1f38781f71991c7ea63dad2e6ec22ddc8893af51c.ErrorCallbackRequest
+    receive-markup-language-record-message:
+      name: receive-markup-language-record
+      title: Record callback API
+      summary: "When the Infobip platform stops a call recording produced by a Record instruction, \nit generates a request\
+        \ to the callback URL configured on that Record instruction. The request carries the call context \ntogether with\
+        \ the recorded file identifier and the current recording status."
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/60d0e6d5cbcf8382b5a6bad1f38781f71991c7ea63dad2e6ec22ddc8893af51c.RecordCallbackRequest
+    receive-markup-language-capture-dtmf-message:
+      name: receive-markup-language-capture-dtmf
+      title: Capture DTMF callback API
+      summary: "When the Infobip platform finishes collecting DTMF input requested by a CaptureDtmf instruction, it generates\
+        \ a request \nto the callback URL configured on that CaptureDtmf instruction. The request carries the call context\
+        \ together with the \ncaptured DTMF sequence."
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/60d0e6d5cbcf8382b5a6bad1f38781f71991c7ea63dad2e6ec22ddc8893af51c.CaptureDtmfCallbackRequest
+    fetch-markup-language-message:
+      name: fetch-markup-language
+      title: Fetch callback API
+      summary: "When the Infobip platform executes a Fetch instruction, it generates a request to the **url** you set up in\
+        \ the \nFetch instruction. The request carries the call context together with the fetch instruction details."
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/60d0e6d5cbcf8382b5a6bad1f38781f71991c7ea63dad2e6ec22ddc8893af51c.WebhookCallbackRequest
+    send-machine-detection-callback-message:
+      name: send-machine-detection-callback
+      title: Machine detection callback API
+      summary: "When the Infobip platform finishes machine detection requested by a MachineDetection instruction, it generates\
+        \ a request \nto the callback URL configured on Markup Language configuration (markupUrl). The request carries the\
+        \ call context together with the \nmachine detection result."
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/60d0e6d5cbcf8382b5a6bad1f38781f71991c7ea63dad2e6ec22ddc8893af51c.MachineDetectionCallbackRequest
+    dial-callback-message:
+      name: dial-callback
+      title: Dial callback API
+      summary: "When the Infobip platform finishes processing a dial endpoint requested by a Dial instruction, it generates\
+        \ a request \nto the callback URL configured on that Dial instruction. The request carries the call context together\
+        \ with the \ndial endpoint result."
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/60d0e6d5cbcf8382b5a6bad1f38781f71991c7ea63dad2e6ec22ddc8893af51c.DialCallbackRequest
+    send-machine-detection-async-callback-message:
+      name: send-machine-detection-async-callback
+      title: Machine detection async callback API
+      summary: "When the Infobip platform finishes machine detection requested by a MachineDetection instruction, it generates\
+        \ a request \nto the callback URL configured on Markup Language configuration (markupUrl). The request carries the\
+        \ call context together with the \nmachine detection result."
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/60d0e6d5cbcf8382b5a6bad1f38781f71991c7ea63dad2e6ec22ddc8893af51c.MachineDetectionCallbackRequest
+    send-machine-message-detection-async-callback-message:
+      name: send-machine-message-detection-async-callback
+      title: Machine message detection callback API
+      summary: "When the Infobip platform finishes machine message detection requested by a MachineMessageDetection instruction,\
+        \ it generates a request \nto the callback URL configured on Markup Language configuration (markupUrl) The request\
+        \ carries the call context together with the \nmachine mes"
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/60d0e6d5cbcf8382b5a6bad1f38781f71991c7ea63dad2e6ec22ddc8893af51c.MachineMessageDetectionCallbackRequest
+    send-recording-status-callback-message:
+      name: send-recording-status-callback
+      title: Recording status callback API
+      summary: "When the Infobip platform finishes processing a recording requested by a Record instruction, it generates\
+        \ a request \nto the callback URL configured on Record or StartRecording instruction. The request carries the call\
+        \ context together with the \nrecording status."
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/60d0e6d5cbcf8382b5a6bad1f38781f71991c7ea63dad2e6ec22ddc8893af51c.RecordingStatusCallbackRequest
+    receive-voice-delivery-reports-message:
+      name: receive-voice-delivery-reports
+      title: Receive Voice Delivery Reports
+      summary: We can send you delivery reports for Voice messages, outbound IVR, Click-to-call or Markup Language in real
+        time. All you need to do is specify notifyUrl in your endpoint when using some of these features and we will deliver
+        a [status](https://www.infobip.com/docs/essentials/resp
+      contentType: text/plain
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/b5f674fb4d8d190ed269baf3b9aaf29827a4d03ec2de31bb6b608809be9a182b.VoiceReportsResponse
+    deprecated-receive-voice-delivery-reports-message:
+      name: deprecated-receive-voice-delivery-reports
+      title: Receive Voice Delivery Reports
+      summary: This version is deprecated as of July 1st 2020, meaning no fixes/updates will be provided and no new parameters
+        will be added.<br/><br/>We strongly advise you to update to new [delivery report method](#programmable-communications/voice/receive-voice-delivery-reports).
+      contentType: text/plain
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/42b3068683a04f02f0303cd880adeb4415571c6aad33d9a3c6850123c94c9889.VoiceReportsResponse
+    receive-number-masking-target-message:
+      name: receive-number-masking-target
+      title: Number Masking callback API
+      summary: "Upon receiving a call to the Number Masking number, Infobip platform generates a request to the **callbackUrl**\
+        \ you set up \nin the NM configuration. This request will contain the callee number and the Voice number that's called.\
+        \ We also provide \n**correlationID** and **nmCorrelat"
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/59ad711434aad6c39708ffc0bab084b409f8c1de0ab1fd0cfa66aa965f740ee4.CallbackRequest
+    receive-masked-call-report-message:
+      name: receive-masked-call-report
+      title: Number Masking status API
+      summary: "After a received call to the Number Masking number has finished, Infobip platform generates a request to your\
+        \ **statusURL** \nset up in the NM configuration. This request contains report details of the call. We also provide\
+        \ the **correlationID** and \n**nmCorrelationID** to be used"
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/9ddf5548c4806a579a37575477f73704a9d1f23ccda5d683f70483437522f25d.StatusRequest
+    receive-url-destination-request-message:
+      name: receive-url-destination-request
+      title: URL destination webhook
+      summary: The client-defined API is triggered with information about the current call whenever the URL destination is
+        reached in route resolution. The expected response is a valid endpoint destination.
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.UrlDestinationHttpRequest
+    call-link-status-webhook-message:
+      name: call-link-status-webhook
+      title: Call Link Webhook
+      summary: Webhook event payload that will be delivered on the url defined in the call link configuration.
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/0e82c38c2cac57841ec8a3a6ca825965cdf7afbcdea80ae147c9d99f5ab3a8c3.WebhookEventPayload
+    receive-inbound-email-message:
+      name: receive-inbound-email
+      title: Receive parsed emails
+      summary: 'To enable the receipt of incoming emails using Infobip, please contact your Account Manager for detailed instructions
+        on activating this feature. Once enabled, follow the steps outlined in our [Get Started guide](https://www.infobip.com/docs/email/get-started#inbound-parsing)
+        to '
+      contentType: multipart/form-data
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/61cea6785aa06882a92b0d6cc8c922ce1d44b92bfbdfd6cde0df0f73fb2499d6.WebhookPayload
+    receive-email-delivery-reports-message:
+      name: receive-email-delivery-reports
+      title: Receive email delivery reports
+      summary: Here you can configure an endpoint via the `notifyUrl` parameter that will receive a delivery report each time
+        an email is sent out. Alternatively, you can also provide the endpoint’s URL to Customer support and they will set
+        it up for you.
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/34438aa163eb13a2a06ad96ae98170e41cc2ee8902e8b7655aba73ceb0bb23f1.WebhookDLRPayload
+    receive-email-tracking-reports-message:
+      name: receive-email-tracking-reports
+      title: Receive user events
+      summary: For each email that you send out, we can send you a tracking report for opened, clicked, complained, late bounce
+        and unsubscribed. All you need to do is specify your endpoint [when sending email](https://www.infobip.com/docs/api/channels/email/send-fully-featured-email)
+        and we wi
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/49bee00604d221bf98890cc8ca36403a588d28255383650998e0c4df2f9a5b4f.WebhookTrackingPayload
+    receive-email-platform-events-message:
+      name: receive-email-platform-events
+      title: Receive email platform events
+      summary: Receive platform-level events related to your email sending configuration. Events are delivered as they occur,
+        with the `type` field inside `eventDetails` indicating the specific event. Learn more about [bounce rates](https://www.infobip.com/docs/email/email-deliverability#bounce
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/ff7f7515e81995b140ab1c879b88d9d297a14922c035a187e237cd81e7c216a0.Payload
+    receive-inbound-whatsapp-messages-message:
+      name: receive-inbound-whatsapp-messages
+      title: Receive WhatsApp inbound message
+      summary: Set up logic for processing incoming messages to customize two-way communication. Inbound messages are forwarded
+        in real time to the endpoint. [Set the inbound configuration](/docs/api/platform/numbers/my-numbers/resource-management/manage-inbound-configuration)
+        for the number by
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/f30d78c250ad1209aef755ddde02bb131e1749b705985f0e9f1b007c900b98e2.WhatsAppInboundMessages
+    receive-whatsapp-delivery-reports-message:
+      name: receive-whatsapp-delivery-reports
+      title: Receive delivery reports
+      summary: For each message that you send out, we can send you a delivery report. For this to work you need to have an
+        endpoint to forward the reports to. Please provide the endpoint’s URL to Customer Support and they will set it up
+        for you. Once the setup is complete, we will be able to de
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/0b5f1ca361e90fa0a3f8b907dc53fa34f06ccd85fde4d07f80394e60f5f23c99.DeliveryResult
+    receive-whatsapp-seen-reports-message:
+      name: receive-whatsapp-seen-reports
+      title: Receive seen reports
+      summary: For each message that you send out, we can send you a seen report. For this to work you need to have an endpoint
+        to forward the reports to. Please provide the endpoint’s URL to Customer Support and they will set it up for you.
+        Once the setup is complete, we will be able to delive
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/0b5f1ca361e90fa0a3f8b907dc53fa34f06ccd85fde4d07f80394e60f5f23c99.SeenResult
+    receive-whatsapp-payment-notification-message:
+      name: receive-whatsapp-payment-notification
+      title: Receive WhatsApp Payment Notification
+      summary: Receive notification about payment transaction updates.
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/0b5f1ca361e90fa0a3f8b907dc53fa34f06ccd85fde4d07f80394e60f5f23c99.PaymentNotificationResponse
+    receive-whatsapp-marketing-update-notification-message:
+      name: receive-whatsapp-marketing-update-notification
+      title: Receive WhatsApp Marketing Update Notification
+      summary: Receive notification about user preferences for marketing template messages.
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/0b5f1ca361e90fa0a3f8b907dc53fa34f06ccd85fde4d07f80394e60f5f23c99.MarketingUpdateNotificationResponse
+    receive-whatsapp-message-template-update-events-message:
+      name: receive-whatsapp-message-template-update-events
+      title: Receive WhatsApp template update
+      summary: For each message template you create, we can send you updates. For this to work you need to configure subscriptions.
+        Refer to [Subscriptions Management](https://www.infobip.com/docs/cpaas-x/subscriptions-management) for additional
+        info.
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/f9ccb6cb799d6a02d85ff0940902b67433383f1a3c972733a815fa9a18d16bea.TemplateUpdatePushEvent
+    receive-whatsapp-identity-change-notification-message:
+      name: receive-whatsapp-identity-change-notification
+      title: Receive WhatsApp Identity Change Notification
+      summary: Receive notification about end user's identity change. Feature is not enabled by default.
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/d1778b306237beb41d9922fd3fd38c085ddcf463c618d1f8ceed148892c3020d.SystemEventResponse
+    receive-inbound-viber-messages-message:
+      name: receive-inbound-viber-messages
+      title: Receive Viber inbound message
+      summary: Set up logic for processing incoming messages to customize two-way communication. Inbound messages are forwarded
+        in real time to the endpoint provided during the account setup.
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/9389c24e0e9ed01ee6b8f8356a2a69457800d0649274de6f0e7a1954857d6488.ViberInboundMessages
+    receive-outbound-viber-message-delivery-reports-message:
+      name: receive-outbound-viber-message-delivery-reports
+      title: Receive Viber delivery reports
+      summary: For each message that you send out, we can send you a delivery report. For this to work you need to have an
+        endpoint to forward the reports to. Please specify the endpoint per each message via the `webhooks > delivery > url`
+        parameter. Alternatively, you can provide the endpoint’
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/9389c24e0e9ed01ee6b8f8356a2a69457800d0649274de6f0e7a1954857d6488.DeliveryReports
+    receive-viber-seen-reports-message:
+      name: receive-viber-seen-reports
+      title: Receive seen reports
+      summary: 'For each message that you send out, we can send you a seen report. For this to work you need to have an endpoint
+        to forward the reports to. Please provide the endpoint’s URL to Customer support and they will set it up for you.
+        Alternatively, you can specify the endpoint per each '
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/9389c24e0e9ed01ee6b8f8356a2a69457800d0649274de6f0e7a1954857d6488.SeenReports
+    receive-outbound-viber-bot-message-delivery-reports-message:
+      name: receive-outbound-viber-bot-message-delivery-reports
+      title: Receive Viber Bot delivery reports
+      summary: For each message that you send out, we can send you a delivery report. For this to work you need to have an
+        endpoint to forward the reports to. Please specify the endpoint per each message via the `webhooks > delivery > url`
+        parameter. Alternatively, you can provide the endpoint’
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/14dcd0f25fe0ff2584924b9f91668496573ab31a7e8cac75f9f81e79874514cb.DeliveryReports
+    receive-viber-bot-api-incoming-messages-message:
+      name: receive-viber-bot-api-incoming-messages
+      title: Receive incoming message
+      summary: 'Incoming messages will be forwarded to this endpoint. Please provide the endpoint’s URL to your Account Manager
+        and they will set it up for you. Alternatively you can specify the endpoint per each message via the `webhooks > delivery
+        > url` parameter. Contact support@infobip.com '
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/14dcd0f25fe0ff2584924b9f91668496573ab31a7e8cac75f9f81e79874514cb.ViberBotInboundResponse
+    receive-outbound-line-message-delivery-reports-message:
+      name: receive-outbound-line-message-delivery-reports
+      title: Receive LON delivery reports
+      summary: For each message that you send out, we can send you a delivery report. For this to work you need to have an
+        endpoint to forward the reports to. Please specify the endpoint per each message via the `webhooks > delivery > url`
+        parameter. Alternatively, you can provide the endpoint’
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.DeliveryReports
+    receive-zalo-incoming-messages-message:
+      name: receive-zalo-incoming-messages
+      title: Receive incoming message
+      summary: 'Incoming messages will be forwarded to this endpoint. Please provide the endpoint’s URL to your Account Manager
+        and they will set it up for you. Alternatively you can specify the endpoint per each message via the `webhooks > delivery
+        > url` parameter. Contact support@infobip.com '
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundResponse
+    receive-outbound-zalo-delivery-reports-message:
+      name: receive-outbound-zalo-delivery-reports
+      title: Receive delivery reports
+      summary: Incoming Reports will be forwarded to this endpoint. Please specify the endpoint’s URL for each message via
+        the webhooks > delivery > url parameter. Alternatively you can provide the endpoint’s URL to [Customer Support](support@infobip.com)
+        and they will set it up for you. Contac
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloReportRequest
+    receive-outbound-push-message-delivery-reports-message:
+      name: receive-outbound-push-message-delivery-reports
+      title: Receive Push delivery reports
+      summary: For each message that you send out, we can send you a delivery report. For this to work you need to have an
+        endpoint to forward the reports to. Please specify the endpoint per each message via the `webhooks > delivery > url`
+        parameter. Alternatively, you can provide the endpoint’
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.DeliveryReports
+    receive-inbound-rcs-messages-message:
+      name: receive-inbound-rcs-messages
+      title: Receive RCS inbound message
+      summary: Set up logic for processing incoming messages to customize two-way communication. Inbound messages are forwarded
+        in real time to the endpoint provided during the account setup.
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.RcsInboundMessages
+    inbound-events-receive-inbound-rcs-events-message:
+      name: inbound-events-receive-inbound-rcs-events
+      title: Receive RCS user action event
+      summary: Set up logic for processing incoming events to customize two-way communication. Inbound events are forwarded
+        in real time to the endpoint provided during the account setup.
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.RcsInboundEvents
+    receive-rcs-typing-indicator-events-message:
+      name: receive-rcs-typing-indicator-events
+      title: Receive RCS typing indicator event
+      summary: Set up logic for processing incoming typing indicator events to customize two-way communication. Inbound events
+        are forwarded in real time to the endpoint provided during the account setup.
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.RcsIsTypingEvents
+    receive-outbound-rcs-message-delivery-reports-message:
+      name: receive-outbound-rcs-message-delivery-reports
+      title: Receive RCS delivery reports
+      summary: For each message that you send out, we can send you a delivery report. For this to work you need to have an
+        endpoint to forward the reports to. Please specify the endpoint per each message via the `webhooks > delivery > url`
+        parameter. Alternatively, you can provide the endpoint’
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.RcsWebhookDeliveryReports
+    receive-rcs-seen-reports-message:
+      name: receive-rcs-seen-reports
+      title: Receive seen reports
+      summary: 'For each message that you send out, we can send you a seen report. For this to work you need to have an endpoint
+        to forward the reports to. Please provide the endpoint’s URL to Customer support and they will set it up for you.
+        Alternatively, you can specify the endpoint per each '
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.SeenReports
+    receive-rcs-conversation-started-events-message:
+      name: receive-rcs-conversation-started-events
+      title: Receive RCS conversation started event
+      summary: Webhook notifying that a message's billing model changed from non-conversational to conversational.
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.RcsConversationStartedEvents
+    receive-capability-check-result-message:
+      name: receive-capability-check-result
+      title: Receive Capability Check result
+      summary: 'Receive the results requested by [Check RCS capability (async)](#channels/rcs/capability-check-rcs-destinations-notify).
+        This callback will be invoked once per each phone number with POST method. '
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.CapabilityCheckAsyncResult
+    receive-rcs-sender-update-events-message:
+      name: receive-rcs-sender-update-events
+      title: Receive an RCS sender update event
+      summary: "Any time you request some operation to be executed for RCS sender, that operation will be\n              \
+        \  executed asynchronously. After operation is executed, an event is sent. Also, some operations for RCS sender\n\
+        \                can be executed by Infobip team (e.g. launching a"
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.RcsSenderUpdateWebhookResponse
+    receive-rcs-sender-launch-update-events-message:
+      name: receive-rcs-sender-launch-update-events
+      title: Receive an RCS sender launch update event
+      summary: "When a launch request is submitted for a given RCS sender, the launch status is updated\n                individually\
+        \ for each provider within the selected country. This webhook delivers real-time updates\n                whenever\
+        \ the launch status changes for any provider in any c"
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.RcsSenderLaunchStatusWebhookResponse
+    receive-rcs-test-number-update-events-message:
+      name: receive-rcs-test-number-update-events
+      title: Receive an RCS test number update event
+      summary: "Any time you request some operation to be executed for RCS test number, that operation will be\n         \
+        \       executed asynchronously. After operation is executed, an event is sent. Also, status of test number could\
+        \ be\n                changed as a result of end user action (e.g."
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.RcsTestNumberUpdateWebhookResponse
+    receive-rcs-message-template-update-events-message:
+      name: receive-rcs-message-template-update-events
+      title: Receive an RCS template update
+      summary: "For each message template you create, we can send you updates.\n            For this to work you need to configure\
+        \ subscriptions.\n            Refer to [Subscriptions Management](https://www.infobip.com/docs/cpaas-x/subscriptions-management)\n\
+        \            for additional info. Availab"
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.TemplateUpdateEvent
+    receive-omni-failover-message-delivery-reports-message:
+      name: receive-omni-failover-message-delivery-reports
+      title: Receive delivery status report
+      summary: For each message that you send out, we can send you a delivery report. For this to work you need to have an
+        endpoint to forward the reports to. Please provide the endpoint’s URL to your Account Manager and they will set it
+        up for you. Once the setup is complete, we will be able t
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/8a2ea8872469b182f7474a94d4bf931da42a6e2a1d1ba07898b1bc7dcdc85cd2.DeliveryReports
+    receive-omni-failover-message-seen-reports-message:
+      name: receive-omni-failover-message-seen-reports
+      title: Receive seen reports
+      summary: For each message that you send out, we can send you a seen report. For this to work you need to have an endpoint
+        to forward the reports to. Please provide the endpoint’s URL to your Account Manager and they will set it up for you.
+        Once the setup is complete, we will be able to de
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/8a2ea8872469b182f7474a94d4bf931da42a6e2a1d1ba07898b1bc7dcdc85cd2.SeenReports
+    receive-omni-failover-inbound-messages-message:
+      name: receive-omni-failover-inbound-messages
+      title: Receive incoming message
+      summary: Incoming messages will be forwarded in real time to the end-point client provided during the setup. This way,
+        2-way communication will be established, and the enterprise is enabled to create a certain logic for processing incoming
+        messages.
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/46339420b556d1893a150250c0e3220eb8057cd2fc4110e601753f705fc1f8c4.ottReportResponse
+    receive-inbound-livechat-messages-message:
+      name: receive-inbound-livechat-messages
+      title: Receive Livechat inbound messages
+      summary: Set up the logic for processing incoming messages to enable customized two-way communication. Inbound messages
+        will be forwarded in real-time to the specified endpoint. [Set the inbound configuration](/docs/api/platform/numbers/my-numbers/resource-management/manage-inbound-config
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/245a74e48cd7ce0a3e2f108689f6fc8d5a08a4d75c5aeb1883fc983443d62958.LivechatInboundMessages
+    receive-outbound-apple-mfb-message-delivery-reports-message:
+      name: receive-outbound-apple-mfb-message-delivery-reports
+      title: Receive Apple Messages for Business delivery reports
+      summary: For each message that you send out, we can send you a delivery report. For this to work you need to have an
+        endpoint to forward the reports to. Please specify the endpoint per each message via the `webhooks > delivery > url`
+        parameter. Alternatively, you can provide the endpoint’
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.DeliveryReports
+    receive-messages-apple-mfb-incoming-messages-message:
+      name: receive-messages-apple-mfb-incoming-messages
+      title: Receive incoming message
+      summary: 'Incoming messages will be forwarded to this endpoint. Please provide the endpoint’s URL to your Account Manager
+        and they will set it up for you. Alternatively you can specify the endpoint per each message via the `webhooks > delivery
+        > url` parameter. Contact support@infobip.com '
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundResponse
+    receive-outbound-instagram-message-delivery-reports-message:
+      name: receive-outbound-instagram-message-delivery-reports
+      title: Receive Instagram delivery reports
+      summary: For each message that you send out, we can send you a delivery report. For this to work you need to have an
+        endpoint to forward the reports to. Please specify the endpoint per each message via the `webhooks > delivery > url`
+        parameter. Alternatively, you can provide the endpoint’
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/8bb20f43a591755a249613f66cc72e7e0fcc9b313d81a59f9ca0e0ff261ac181.DeliveryReports
+    receive-instagram-api-incoming-messages-message:
+      name: receive-instagram-api-incoming-messages
+      title: Receive incoming message
+      summary: 'Incoming messages will be forwarded to this endpoint. Please provide the endpoint’s URL to your Account Manager
+        and they will set it up for you. Alternatively you can specify the endpoint per each message via the `webhooks > delivery
+        > url` parameter. Contact support@infobip.com '
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/8bb20f43a591755a249613f66cc72e7e0fcc9b313d81a59f9ca0e0ff261ac181.InstagramDmInboundResponse
+    receive-outbound-messenger-message-delivery-reports-message:
+      name: receive-outbound-messenger-message-delivery-reports
+      title: Receive Messenger delivery reports
+      summary: For each message that you send out, we can send you a delivery report. For this to work you need to have an
+        endpoint to forward the reports to. Please specify the endpoint per each message via the `webhooks > delivery > url`
+        parameter. Alternatively, you can provide the endpoint’
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/747c7e4c0b03b254cdcbef02225bbd858a3bba6d956caa5ac2689fea92b213b0.DeliveryReports
+    receive-messenger-seen-reports-message:
+      name: receive-messenger-seen-reports
+      title: Receive seen reports
+      summary: 'For each message that you send out, we can send you a seen report. For this to work you need to have an endpoint
+        to forward the reports to. Please provide the endpoint’s URL to Customer support and they will set it up for you.
+        Alternatively, you can specify the endpoint per each '
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/747c7e4c0b03b254cdcbef02225bbd858a3bba6d956caa5ac2689fea92b213b0.SeenReports
+    receive-messenger-marketing-click-message:
+      name: receive-messenger-marketing-click
+      title: Receive Messenger Marketing Click event
+      summary: Event is sent when a person clicks a Marketing Message. For this to work you need to configure subscriptions.
+        Refer to [Subscriptions Management](https://www.infobip.com/docs/cpaas-x/subscriptions-management) for additional
+        info.
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/cc99cb7b0e48638be90df2dee94fb1aaadb95bcd09a6944a79bd00ca6a59df77.MarketingMessageClick
+    receive-messenger-api-incoming-messages-message:
+      name: receive-messenger-api-incoming-messages
+      title: Receive incoming message
+      summary: 'Incoming messages will be forwarded to this endpoint. Please provide the endpoint’s URL to your Account Manager
+        and they will set it up for you. Alternatively you can specify the endpoint per each message via the `webhooks > delivery
+        > url` parameter. Contact support@infobip.com '
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/747c7e4c0b03b254cdcbef02225bbd858a3bba6d956caa5ac2689fea92b213b0.FacebookInboundRequest
+    receive-messenger-consent-update-message:
+      name: receive-messenger-consent-update
+      title: Receive Messenger consent update event
+      summary: 'Event is sent when the person opts in or opts out of Marketing Messages. The `event` field indicates the type:
+        `SUBSCRIBE` for opt-in, `UNSUBSCRIBE` for opt-out. For this to work you need to configure subscriptions. Refer to
+        [Subscriptions Management](https://www.infobip.com/docs'
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/cc99cb7b0e48638be90df2dee94fb1aaadb95bcd09a6944a79bd00ca6a59df77.MessengerConsentUpdate
+    receive-outbound-kakao-alim-message-delivery-reports-message:
+      name: receive-outbound-kakao-alim-message-delivery-reports
+      title: Receive Kakao Alim delivery reports
+      summary: For each message that you send out, we can send you a delivery report. For this to work you need to have an
+        endpoint to forward the reports to. Please specify the endpoint per each message via the `webhooks > delivery > url`
+        parameter. Alternatively, you can provide the endpoint’
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/382231ebb2fc250c93965563ed41f4ba8228460e52f6052a582e69b931876454.DeliveryReports
+    receive-outbound-kakao-sangdam-message-delivery-reports-message:
+      name: receive-outbound-kakao-sangdam-message-delivery-reports
+      title: Receive Kakao Sangdam delivery reports
+      summary: For each message that you send out, we can send you a delivery report. For this to work you need to have an
+        endpoint to forward the reports to. Please specify the endpoint per each message via the `webhooks > delivery > url`
+        parameter. Alternatively, you can provide the endpoint’
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/1907be504c1be9d07aa876a6a409d4bd97224dac497dfecd7d8092e77aac7215.DeliveryReports
+    receive-kakao-sangdam-api-incoming-messages-message:
+      name: receive-kakao-sangdam-api-incoming-messages
+      title: Receive incoming message
+      summary: 'Incoming messages will be forwarded to this endpoint. Please provide the endpoint’s URL to your Account Manager
+        and they will set it up for you. Alternatively you can specify the endpoint per each message via the `webhooks > delivery
+        > url` parameter. Contact support@infobip.com '
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/1907be504c1be9d07aa876a6a409d4bd97224dac497dfecd7d8092e77aac7215.KakaoSangdamInboundResponse
+    receive-outbound-kakao-chingu-message-delivery-reports-message:
+      name: receive-outbound-kakao-chingu-message-delivery-reports
+      title: Receive brand message delivery reports
+      summary: For each message that you send out, we can send you a delivery report. For this to work you need to have an
+        endpoint to forward the reports to. Please specify the endpoint per each message via the `webhooks > delivery > url`
+        parameter. Alternatively, you can provide the endpoint’
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/3995f10686be3e5fc42bb37b4419fd7fe2425eaa12f76cbe136803640cfabe2c.DeliveryReports
+    receive-open-channel-outbound-message-message:
+      name: receive-open-channel-outbound-message
+      title: Receive Open Channel outbound Message
+      summary: Set up logic for processing outbound messages to customize two-way communication. Outbound messages are forwarded
+        in real time to the endpoint provided during the account setup.
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.WebhookRequest
+    receive-outbound-tiktok-message-delivery-reports-message:
+      name: receive-outbound-tiktok-message-delivery-reports
+      title: Receive TikTok delivery reports
+      summary: Use this webhook to receive delivery reports for outbound TikTok messages. To receive delivery reports, configure
+        the webhook URL for each message by using the `webhooks > delivery > url` parameter. Alternatively, contact [Support](mailto:support@infobip.com)
+        to configure the web
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.DeliveryReports
+    receive-tiktok-seen-reports-message:
+      name: receive-tiktok-seen-reports
+      title: Receive TikTok seen reports
+      summary: Use this webhook to receive seen reports for outbound TikTok messages. To receive seen reports, configure the
+        webhook URL for each message by using the `webhooks > seen > url` parameter. Alternatively, contact [Support](mailto:support@infobip.com)
+        to configure the webhook URL for
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.SeenReports
+    receive-inbound-tiktok-messages-message:
+      name: receive-inbound-tiktok-messages
+      title: Receive an inbound TikTok message
+      summary: Use this webhook to receive inbound TikTok messages in real time. Infobip forwards messages to the webhook
+        URL configured during account setup, so you can process them and continue two-way conversations. The default format
+        for inbound TikTok messages is `MO_OTT_MSISDN`.
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokInboundMessage
+    brand-registration-status-change-notification-message:
+      name: brand-registration-status-change-notification
+      title: Receive Brand Status Update
+      summary: 'Any time brand registration is completed or failed, an event is sent.
+
+        You need to subscribe to this event over ''REGISTRATION'' channel, and specify the ''BRAND_STATUS_UPDATE'' event.'
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.BrandRegistrationWebhookResponse
+    brand-auth-2fa-update-notification-message:
+      name: brand-auth-2fa-update-notification
+      title: Receive Brand Auth 2FA Update
+      summary: 'Any time brand 2FA email is sent or authentication is completed, an event is sent.
+
+        You need to subscribe to this event over ''REGISTRATION'' channel, and specify the ''BRAND_AUTH_UPDATE'' event.'
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.BrandAuthUpdateWebhookResponse
+    brand-vet-notification-message:
+      name: brand-vet-notification
+      title: Receive Brand Vet Update
+      summary: 'Any time a brand vet is completed or failed, an event is sent.
+
+        You need to subscribe to this event over ''REGISTRATION'' channel, and specify the ''BRAND_VET_UPDATE'' event.'
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.BrandVetStatusWebhookResponse
+    campaign-network-status-notification-message:
+      name: campaign-network-status-notification
+      title: Receive Campaign Network Status Update
+      summary: 'Any time a campaign changes status on carrier side, an event is sent.
+
+        You need to subscribe to this event over ''REGISTRATION'' channel, and specify the ''CAMPAIGN_NETWORK_STATUS_UPDATE''
+        event.'
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.CampaignNetworkStatusWebhookResponse
+    campaign-status-change-notification-message:
+      name: campaign-status-change-notification
+      title: Receive Campaign Status Update
+      summary: 'Any time campaign status is changed, an event is sent.
+
+        You need to subscribe to this event over ''REGISTRATION'' channel, and specify the ''CAMPAIGN_STATUS_UPDATE'' event.'
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.CampaignStatusWebhookResponse
+    campaign-ai-feedback-notification-message:
+      name: campaign-ai-feedback-notification
+      title: Receive AI Campaign Feedback
+      summary: 'Any time a campaign AI review is finished and ready for the results to be fetched, an event is sent.
+
+        You need to subscribe to this event over ''REGISTRATION'' channel, and specify the ''AI_CAMPAIGN_FEEDBACK'' event.'
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.CampaignAiFeedbackWebhookResponse
+    campaign-ai-builder-notification-message:
+      name: campaign-ai-builder-notification
+      title: Receive AI Campaign Builder Completion Notification
+      summary: 'Any time a campaign AI builder job is finished and ready for the results to be fetched, an event is sent.
+
+        You need to subscribe to this event over ''REGISTRATION'' channel, and specify the ''AI_CAMPAIGN_BUILDER'' event.'
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.CampaignAiBuilderWebhookResponse
+    receive-aggregate-data-result-message:
+      name: receive-aggregate-data-result
+      title: Receive aggregated data result
+      summary: Receive data response, requested by [Query aggregate traffic data](#platform/metrics-api/query-aggregate-data).
+        This callback will be invoked only once with POST method.
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.QueryAggregateDataResult
+    receive-billing-usage-result-message:
+      name: receive-billing-usage-result
+      title: Receive billing usage result
+      summary: Receives data response requested by the [Query billing usage data](#platform/billing-usage/query-billing-usage)
+        endpoint. This webhook is called once via POST when the query completes.
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.BillingUsageResult
+    receive-blocklist-event-message:
+      name: receive-blocklist-event
+      title: Receive blocklist event
+      summary: Anytime a blocklist is added or removed by an end-user action or within the campaign, an event is sent. You
+        need to subscribe to this event using the 'BLOCKLIST' channel, and specify the 'BLOCK' and 'UNBLOCK' events. For more
+        details, see [documentation](https://www.infobip.com/d
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.BlocklistEventRequest
+    receive-messages-api-delivery-reports-message:
+      name: receive-messages-api-delivery-reports
+      title: Receive delivery reports
+      summary: Incoming Reports will be forwarded to this endpoint. Please provide the endpoint’s URL to your Account Manager
+        and they will set it up for you. Alternatively you can specify the endpoint per each message via the `webhooks > delivery
+        > url` parameter. Contact support@infobip.com i
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiDeliveryReportResponse
+    receive-messages-api-seen-reports-message:
+      name: receive-messages-api-seen-reports
+      title: Receive Seen reports
+      summary: 'Incoming Seen Reports will be forwarded to this endpoint. Please provide the endpoint’s URL to your Account
+        Manager and they will set it up for you. Alternatively you can specify the endpoint per each message via the `webhooks
+        > seen > url` parameter. Contact support@infobip.com '
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiSeenReport
+    receive-messages-api-incoming-messages-message:
+      name: receive-messages-api-incoming-messages
+      title: Receive inbound messages
+      summary: Incoming messages will be forwarded to this endpoint. [Set the inbound configuration](/docs/api/platform/numbers/my-numbers/resource-management/manage-inbound-configuration)
+        for the number or resource by specifying your endpoint and we will send inbound messages to you as soon as
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiIncomingMessage
+    resource-request-status-change-notification-message:
+      name: resource-request-status-change-notification
+      title: Receive resource request status update
+      summary: 'Any time resource request status is changed, an event is sent.
+
+        You need to subscribe to this event over ''REGISTRATION'' channel, and specify the ''RESOURCE_REQUEST_STATUS_UPDATE''
+        event.'
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.WebhookStatusNotifApiDocRequestBody
+    resource-request-reminder-notification-message:
+      name: resource-request-reminder-notification
+      title: Receive resource request reminder
+      summary: 'When a resource request requires an update and remains inactive, reminder events are sent at 3, 15 and 27
+        days of inactivity. After 30 days, the request is automatically rejected.
+
+        You need to subscribe to this event over ''REGISTRATION'' channel, and specify the ''RESOURCE_REQUEST_R'
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.WebhookReminderNotifApiDocRequestBody
+    receive-silent-mobile-verification-result-message:
+      name: receive-silent-mobile-verification-result
+      title: Receive silent mobile verification result
+      summary: Silent mobile verification request will be processed asynchronously after the request is made to silent mobile
+        verification API. After processing of the request is done, results will be delivered to the URL provided in silent
+        mobile verification request.
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/acc54cffc2fdf57be1405002c65f11d7bb0b2506a15f7e1c75bb3cbcc41d6219.ResultResponse
+    receive-advanced-silent-mobile-verification-result-message:
+      name: receive-advanced-silent-mobile-verification-result
+      title: Receive advanced silent mobile verification result
+      summary: Advanced silent mobile verification request will be processed asynchronously after the request is made to advanced
+        silent mobile verification API. After processing of the request is done, results will be delivered to the URL provided
+        in advanced silent mobile verification request
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/aaab91bc67ad6fdd15298ef61b480f76a93a7cae8c7684c83b1e909cda7f154f.ResultResponse
+    receive-number-intelligence-query-results-message:
+      name: receive-number-intelligence-query-results
+      title: Receive number intelligence query results
+      summary: Number intelligence query request will be processed asynchronously after the request is made to number intelligence
+        API. After processing of the request is done, results will be delivered to the URL provided in number intelligence
+        request.
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/c33580c9fc909cbe636f10f5fddd71adf658d961011f6b0e7df8bbb45e9ab4cb.QueryResultResponse
+    receive-extraction-session-results-message:
+      name: receive-extraction-session-results
+      title: Receive Extraction Session Results
+      summary: Webhook that will be called with information about the Extraction Session status and results. The webhook URL
+        provided in the [Create Extraction Session](#platform-connectivity/biometrics/create-biometrics-extraction-session)
+        request will be called with the POST method that conta
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/eb583710b0e1739c1b6da279daf56e71bef92e0a50c90d88ff2c7fea69527204.ExtractionWebhookRequest
+    receive-kyc-session-results-message:
+      name: receive-kyc-session-results
+      title: Receive KYC Session Results
+      summary: 'Webhook which will be called with information about the KYC session status and results. The webhook URL provided
+        in the [Create KYC Session](#platform-connectivity/biometrics/create-biometrics-kyc-session) request will be called
+        with the POST method that contains all the info in '
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/eb583710b0e1739c1b6da279daf56e71bef92e0a50c90d88ff2c7fea69527204.KycWebhookRequest
+    receive-enrollment-session-results-message:
+      name: receive-enrollment-session-results
+      title: Receive Enrollment Session Results
+      summary: Webhook that will be called with information about the Enrollment Session status and results. The webhook URL
+        provided in the [Create Enrollment Session](#platform-connectivity/biometrics/create-biometrics-enrollment-session)
+        request will be called with the POST method that conta
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/eb583710b0e1739c1b6da279daf56e71bef92e0a50c90d88ff2c7fea69527204.EnrollmentWebhookRequest
+    receive-verification-session-results-message:
+      name: receive-verification-session-results
+      title: Receive Verification Session Results
+      summary: Webhook which will be called with information about the Verification session status and results. The webhook
+        URL provided in the [Create Verification Session](#platform-connectivity/biometrics/create-biometrics-verification-session)
+        request will be called with the POST method tha
+      contentType: application/json
+      payload:
+        $ref: ../openapi/infobip-platform-full-openapi.json#/components/schemas/eb583710b0e1739c1b6da279daf56e71bef92e0a50c90d88ff2c7fea69527204.VerificationWebhookRequest

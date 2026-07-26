@@ -1,0 +1,605 @@
+generated: '2026-07-25'
+method: derived
+source: openapi/infobip-platform-full-openapi.json (x-throttling-info on 652 operations) + https://www.infobip.com/docs/essentials/api-essentials/integration-best-practices
+docs: https://www.infobip.com/docs/essentials/api-essentials/integration-best-practices
+summary:
+  mechanisms:
+  - time-window
+  - token-bucket
+  operations_with_published_limits: 652
+  distinct_limit_profiles: 44
+  exceeded_status: 429
+  exceeded_status_name: TOO_MANY_REQUESTS
+  retry_guidance: Exponential backoff with a retry cap; honor the Retry-After header on 429 when present.
+  retry_after_header: Retry-After
+  notes: Infobip publishes per-operation throttling in the OpenAPI as x-throttling-info. Time limits are
+    "N requests per time unit"; token limits are a token bucket with burst capacity and replenish rate.
+    Custom/enterprise throttling is negotiated per account for high-volume send endpoints (email/3/send,
+    email/4/mime).
+rate_limits:
+- type: time-window
+  limit_count: 10
+  window: 1s
+  description: 10 requests per 1 s
+  operation_count: 111
+  areas:
+  - account-management
+  - email
+  - knowledge-base
+  - messages-api
+  - mobile-app-messaging
+  - moments
+  - numbers
+  - people
+  - rcs
+  - resources
+  - viber
+  - whatsapp
+  example_operations:
+  - create-a-new-person
+  - get-list-items
+  - get-lists
+  - deprecated-get-list-items
+  - deprecated-get-lists
+  - get-segment
+- type: time-window
+  limit_count: 100
+  window: 1s
+  description: 100 requests per 1 s
+  operation_count: 110
+  areas:
+  - ai-assistants
+  - email
+  - rcs
+  - signals
+  - voice
+  - webrtc-calls
+  example_operations:
+  - query-ai-assistant
+  - retrieve-ai-assistant-context
+  - get-calls-configurations
+  - get-calls-configuration
+  - update-calls-configuration
+  - delete-calls-configuration
+- type: time-window
+  limit_count: 5
+  window: 1s
+  description: 5 requests per 1 s
+  operation_count: 84
+  areas:
+  - catalogs-api
+  - knowledge-base
+  - messenger
+  - numbers
+  - people
+  example_operations:
+  - get-a-single-person-or-a-list-of-people
+  - update-a-person
+  - delete-a-person
+  - partial-person-update
+  - set-person-contact-information
+  - delete-person-contact-information
+- type: time-window
+  limit_count: 1
+  window: 1s
+  description: 1 requests per 1 s
+  operation_count: 80
+  areas:
+  - application-entity
+  - blocklist
+  - email
+  - number-activation-state
+  - numbers
+  - rcs
+  - resources
+  - sending-strategy
+  example_operations:
+  - get-validations
+  - request-validations
+  - commission-ip
+  - decommission-ip
+  - create-email-template
+  - update-email-template
+- type: token-bucket
+  limit_count: 10
+  burst_capacity: 20
+  replenish_rate_per_second: 10
+  requested_tokens: 1
+  description: 'token bucket: burst 20, refill 10/s'
+  operation_count: 30
+  areas:
+  - conversations
+  example_operations:
+  - get-conversations-agent-config
+  - get-conversations-waiting-strategies
+  - create-conversations-waiting-strategy
+  - get-conversations-waiting-strategy
+  - update-conversations-waiting-strategy
+  - get-conversations-account-recording-config
+- type: time-window
+  limit_count: 100
+  window: 1m
+  description: 100 requests per 1 m
+  operation_count: 26
+  areas:
+  - email
+  - subscriptions-api
+  - voice
+  - webrtc-calls
+  example_operations:
+  - create-calls-configuration
+  - create-sip-trunk
+  - update-sip-trunk
+  - get-sip-trunk-status
+  - set-sip-trunk-status
+  - create-sip-trunk-service-address
+- type: time-window
+  limit_count: 4000
+  window: 1s
+  description: 4000 requests per 1 s
+  operation_count: 26
+  areas:
+  - email
+  - whatsapp
+  example_operations:
+  - send-email-messages-api
+  - send-fully-featured-email
+  - send-mime-email
+  - send-whatsapp-template-message
+  - send-whatsapp-text-message
+  - send-whatsapp-document-message
+- type: time-window
+  limit_count: 50
+  window: 1s
+  description: 50 requests per 1 s
+  operation_count: 24
+  areas:
+  - knowledge-base
+  - people
+  - webrtc-calls
+  example_operations:
+  - get-push-device-registration
+  - update-push-device-registration
+  - depersonalize-push-instance
+  - personalize-push-instance
+  - get-attachment-details
+  - get-call-links
+- type: time-window
+  limit_count: 120
+  window: 1m
+  description: 120 requests per 1 m
+  operation_count: 19
+  areas:
+  - apple-mfb
+  - email
+  - instagram
+  - kakao
+  - messenger
+  - mms
+  - mobile-app-messaging
+  - omni-failover
+  - rcs
+  - sms
+  - tiktok
+  - viber
+  example_operations:
+  - get-outbound-sms-message-logs-v3
+  - get-outbound-sms-message-logs
+  - get-outbound-mms-message-logs
+  - deprecated-get-outbound-mms-message-logs
+  - get-sent-voice-logs
+  - get-email-message-logs
+- type: time-window
+  limit_count: 3
+  window: 1s
+  description: 3 requests per 1 s
+  operation_count: 14
+  areas:
+  - people
+  example_operations:
+  - append-list-items
+  - delete-list-items
+  - replace-list-item
+  - update-list-item
+  - delete-lists
+  - replace-list
+- type: time-window
+  limit_count: 50
+  window: 1m
+  description: 50 requests per 1 m
+  operation_count: 13
+  areas:
+  - voice
+  example_operations:
+  - create-markup-language-call
+  - get-markup-language-config-list
+  - create-markup-language-config
+  - get-markup-language-config
+  - update-markup-language-config
+  - delete-markup-language-config
+- type: time-window
+  limit_count: 100
+  window: 1s
+  description: 100 requests per 1 s
+  operation_count: 10
+  areas:
+  - vocalize
+  example_operations:
+  - vocalize-get-my-campaigns
+  - vocalize-create-campaign
+  - vocalize-get-campaign
+  - vocalize-delete-campaign
+  - vocalize-update-campaign-settings
+  - vocalize-get-campaign-leaderboard
+- type: time-window
+  limit_count: 10
+  window: 1m
+  description: 10 requests per 1 m
+  operation_count: 10
+  areas:
+  - kakao
+  - viber
+  - voice
+  - webrtc-calls
+  - zalo
+  example_operations:
+  - search-call-routing-recording
+  - delete-by-correlation-id
+  - recording-file-download
+  - get-webrtc-recordings
+  - delete-webrtc-recording-by-id
+  - download-webrtc-recording-by-id
+- type: token-bucket
+  limit_count: 1
+  burst_capacity: 5
+  replenish_rate_per_second: 1
+  requested_tokens: 1
+  description: 'token bucket: burst 5, refill 1/s'
+  operation_count: 9
+  areas:
+  - email
+  - people
+  example_operations:
+  - create-events-export-request
+  - get-events-export-request-status
+  - get-events-definitions-for-export
+  - get-all-domains
+  - add-domain
+  - get-domain-details
+- type: time-window
+  limit_count: 2500
+  window: 1s
+  description: 2500 requests per 1 s
+  operation_count: 9
+  areas:
+  - mobile-app-messaging
+  - viber
+  - whatsapp
+  example_operations:
+  - send-whatsapp-events
+  - get-whatsapp-templates
+  - get-whatsapp-template
+  - send-viber-text-message
+  - send-viber-image-message
+  - send-viber-file-message
+- type: time-window
+  limit_count: 100
+  window: 1h
+  description: 100 requests per 1 h
+  operation_count: 9
+  areas:
+  - whatsapp
+  example_operations:
+  - edit-whatsapp-template
+  - create-whatsapp-flow
+  - delete-whatsapp-flow
+  - update-whatsapp-flow
+  - publish-whatsapp-flow
+  - add-whatsapp-flow-json
+- type: time-window
+  limit_count: 15
+  window: 1s
+  description: 15 requests per 1 s
+  operation_count: 8
+  areas:
+  - people
+  - whatsapp
+  example_operations:
+  - match-people-ids
+  - download-whatsapp-inbound-media
+  - get-whatsapp-media-metadata
+  - deprecated-get-whatsapp-templates
+  - get-account-whatsapp-templates
+  - add-whatsapp-sender
+- type: time-window
+  limit_count: 20
+  window: 1s
+  description: 20 requests per 1 s
+  operation_count: 7
+  areas:
+  - openapi
+  - resources
+  - voice
+  example_operations:
+  - create-conference
+  - create-dialog
+  - create-dialog-with-existing-calls
+  - delete-document
+  - get-openapi
+  - get-product-level-openapi
+- type: token-bucket
+  limit_count: 2
+  burst_capacity: 10
+  replenish_rate_per_second: 2
+  requested_tokens: 1
+  description: 'token bucket: burst 10, refill 2/s'
+  operation_count: 6
+  areas:
+  - numbers
+  - resources
+  example_operations:
+  - modify-sms-configurations
+  - create-new-configuration
+  - create-mms-configuration
+  - update-mms-configuration
+  - delete-mms-configuration
+  - manage-inbound-configuration
+- type: time-window
+  limit_count: 2000
+  window: 1s
+  description: 2000 requests per 1 s
+  operation_count: 5
+  areas:
+  - voice
+  example_operations:
+  - create-bulk
+  - send-single-voice-tts
+  - send-multiple-voice-tts
+  - send-advanced-voice-tts
+  - send-click-to-call-message
+- type: time-window
+  limit_count: 6
+  window: 1s
+  description: 6 requests per 1 s
+  operation_count: 4
+  areas:
+  - voice
+  example_operations:
+  - create-call
+  - connect-with-new-call
+  - add-new-conference-call
+  - dialog-transfer-accept
+- type: time-window
+  limit_count: 60
+  window: 1m
+  description: 60 requests per 1 m
+  operation_count: 3
+  areas:
+  - email
+  - number-lookup
+  example_operations:
+  - get-email-logs
+  - get-email-delivery-reports
+  - get-number-context-logs
+- type: time-window
+  limit_count: 1000
+  window: 1h
+  description: 1000 requests per 1 h
+  operation_count: 3
+  areas:
+  - whatsapp
+  example_operations:
+  - create-whatsapp-template
+  - get-whatsapp-flows
+  - get-whatsapp-flow-json
+- type: time-window
+  limit_count: 20
+  window: 10m
+  description: 20 requests per 10 m
+  operation_count: 3
+  areas:
+  - 2fa
+  - omni-failover
+  example_operations:
+  - create-omni-failover-scenario
+  - create-2fa-application
+  - create-2fa-email-message-template
+- type: time-window
+  limit_count: 40
+  window: 10m
+  description: 40 requests per 10 m
+  operation_count: 3
+  areas:
+  - 2fa
+  - omni-failover
+  example_operations:
+  - update-omni-failover-scenario
+  - update-2fa-application
+  - update-2fa-email-message-template
+- type: time-window
+  limit_count: 40
+  window: 1d
+  description: 40 requests per 1 d
+  operation_count: 3
+  areas:
+  - account-management
+  example_operations:
+  - create-api-key-deprecated
+  - create-api-key
+  - update-api-key
+- type: time-window
+  limit_count: 60
+  window: 1s
+  description: 60 requests per 1 s
+  operation_count: 3
+  areas:
+  - billing-usage-api
+  - metrics-api
+  example_operations:
+  - query-aggregate-data
+  - get-aggregate-request-status
+  - query-billing-usage
+- type: token-bucket
+  limit_count: 10
+  burst_capacity: 100
+  replenish_rate_per_second: 10
+  requested_tokens: 1
+  description: 'token bucket: burst 100, refill 10/s'
+  operation_count: 2
+  areas:
+  - conversations
+  example_operations:
+  - delete-conversations-waiting-strategy
+  - get-transfer-queues
+- type: time-window
+  limit_count: 200
+  window: 1h
+  description: 200 requests per 1 h
+  operation_count: 2
+  areas:
+  - whatsapp
+  example_operations:
+  - delete-whatsapp-template
+  - deprecated-create-whatsapp-template
+- type: token-bucket
+  limit_count: 1
+  burst_capacity: 2
+  replenish_rate_per_second: 1
+  requested_tokens: 1
+  description: 'token bucket: burst 2, refill 1/s'
+  operation_count: 2
+  areas:
+  - numbers
+  example_operations:
+  - get-available-numbers
+  - list-owned-numbers
+- type: time-window
+  limit_count: 250
+  window: 1s
+  description: 250 requests per 1 s
+  operation_count: 1
+  areas:
+  - people
+  example_operations:
+  - send-custom-event
+- type: token-bucket
+  limit_count: 1
+  burst_capacity: 1
+  replenish_rate_per_second: 1
+  requested_tokens: 1
+  description: 'token bucket: burst 1, refill 1/s'
+  operation_count: 1
+  areas:
+  - people
+  example_operations:
+  - cancel-events-export-request
+- type: time-window
+  limit_count: 500
+  window: 1m
+  description: 500 requests per 1 m
+  operation_count: 1
+  areas:
+  - conversations
+  example_operations:
+  - get-messages
+- type: token-bucket
+  limit_count: 100
+  burst_capacity: 100
+  replenish_rate_per_second: 100
+  requested_tokens: 1
+  description: 'token bucket: burst 100, refill 100/s'
+  operation_count: 1
+  areas:
+  - conversations
+  example_operations:
+  - download-call-recording
+- type: time-window
+  limit_count: 5
+  window: 1m
+  description: 5 requests per 1 m
+  operation_count: 1
+  areas:
+  - voice
+  example_operations:
+  - simulate-route-selection
+- type: time-window
+  limit_count: 200
+  window: 1s
+  description: 200 requests per 1 s
+  operation_count: 1
+  areas:
+  - webrtc-calls
+  example_operations:
+  - create-call-link
+- type: time-window
+  limit_count: 500
+  window: 1s
+  description: 500 requests per 1 s
+  operation_count: 1
+  areas:
+  - email
+  example_operations:
+  - upload-binary-content
+- type: time-window
+  limit_count: 150
+  window: 1s
+  description: 150 requests per 1 s
+  operation_count: 1
+  areas:
+  - email
+  example_operations:
+  - validate-email-addresses
+- type: time-window
+  limit_count: 30
+  window: 1m
+  description: 30 requests per 1 m
+  operation_count: 1
+  areas:
+  - whatsapp
+  example_operations:
+  - delete-whatsapp-media
+- type: time-window
+  limit_count: 25
+  window: 1s
+  description: 25 requests per 1 s
+  operation_count: 1
+  areas:
+  - viber
+  example_operations:
+  - create-viber-template
+- type: time-window
+  limit_count: 2
+  window: 1m
+  description: 2 requests per 1 m
+  operation_count: 1
+  areas:
+  - mobile-app-messaging
+  example_operations:
+  - delete-push-inbox-messages
+- type: time-window
+  limit_count: 50
+  window: 10m
+  description: 50 requests per 10 m
+  operation_count: 1
+  areas:
+  - 2fa
+  example_operations:
+  - get-2fa-applications
+- type: time-window
+  limit_count: 100
+  window: 10m
+  description: 100 requests per 10 m
+  operation_count: 1
+  areas:
+  - 2fa
+  example_operations:
+  - get-2fa-application
+- type: time-window
+  limit_count: 2
+  window: 1s
+  description: 2 requests per 1 s
+  operation_count: 1
+  areas:
+  - resources
+  example_operations:
+  - get-inbound-configurations

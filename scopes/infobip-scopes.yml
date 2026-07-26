@@ -1,0 +1,884 @@
+generated: '2026-07-25'
+method: searched
+source: https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+docs: https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+notes: Infobip applies one scope model across ALL authentication types (API key, Basic, IBSSO token, OAuth
+  2.0) - a scope is attached to the API key or OAuth client, not just to an OAuth grant. The OpenAPI oauth2
+  scheme declares a clientCredentials flow with an EMPTY scopes map, so the scope catalog below was searched
+  from the published API authorization reference rather than derived from the spec. MCP scope assignments
+  come from the RFC 9728 protected-resource metadata at https://mcp.infobip.com/.well-known/oauth-protected-resource/{server}.
+schemes:
+- name: OAuth2
+  type: oauth2
+  source: openapi/infobip-platform-full-openapi.json
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.infobip.com/auth/1/oauth2/token
+    scopes_declared_in_spec: 0
+- name: Infobip OAuth 2.1 (MCP)
+  type: oauth2
+  authorization_server: https://auth.infobip.com/realms/infobip
+  metadata: well-known/infobip-oauth-authorization-server.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://auth.infobip.com/realms/infobip/protocol/openid-connect/auth
+    tokenUrl: https://auth.infobip.com/realms/infobip/protocol/openid-connect/token
+  - flow: clientCredentials
+    tokenUrl: https://auth.infobip.com/realms/infobip/protocol/openid-connect/token
+- name: APIKeyHeader
+  type: apiKey
+  in: header
+  parameter: Authorization
+  note: API keys carry the same scope set; scopes are chosen at key-creation time.
+scope_types:
+- pattern: message:send
+  meaning: Send mobile-terminated messages on any channel; superset of all channel:message:send scopes
+- pattern: inbound-message:read
+  meaning: Read mobile-originated messages on any channel
+- pattern: <product|channel>:manage
+  meaning: All endpoints for one product or channel
+- pattern: <product>:read
+  meaning: Read-only access to that product
+- pattern: <product>:<resource>:<action>
+  meaning: Fine-grained action on one resource
+- pattern: web:sdk / mobile-app-messaging:sdk / 2fa:sdk
+  meaning: Client-side SDK access to a narrow endpoint subset
+oauth_identity_scopes:
+- scope: profile
+  description: OpenID Connect profile claim; requested by every Infobip MCP server
+- scope: offline_access
+  description: Refresh-token issuance; requested by every Infobip MCP server
+scopes:
+- scope: 2fa:manage
+  description: Enables access to all two-factor authentication API end-points
+  group: 2fa
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+  mcp_servers:
+  - 2fa
+- scope: 2fa:pin:manage
+  description: Allows configuration and management of one-time PIN settings for two-factor authentication
+  group: 2fa
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+  mcp_servers:
+  - 2fa
+- scope: 2fa:pin:send
+  description: Enables sending of one-time PINs as part of two-factor authentication
+  group: 2fa
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: 2fa:sdk
+  description: Provides access to two-factor authentication (2FA) API endpoints accessed from the client-side
+    SDK
+  group: 2fa
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: account-management:manage
+  description: Grants control over account settings and information
+  group: account-management
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+  mcp_servers:
+  - account-management
+- scope: ai:agents:manage
+  description: Full management access to AI agents and their configurations
+  group: ai
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: ai:agents:query
+  description: Send queries to AI agents and receive responses for interactive communication and question
+    answering
+  group: ai
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: ai:agents:view
+  description: View access to AI agents and their configurations
+  group: ai
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: ai:read
+  description: Used to read relevant information about AI tools
+  group: ai
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: answers:manage
+  description: Enables access to all Answers API end-points
+  group: answers
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: answers:testing
+  description: Enables access to Chatbot testing APIs
+  group: answers
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: apple-mfb:logs:read
+  description: Allows reading of logs related to Apple Messages for Business
+  group: apple-mfb
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: apple-mfb:manage
+  description: Enables access to all Apple Messages for Business API end-points
+  group: apple-mfb
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: apple-mfb:message:send
+  description: Enables sending of Apple Messages for Business
+  group: apple-mfb
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: application-entity:manage
+  description: Grants access to manage application-specific entities and settings
+  group: application-entity
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+  mcp_servers:
+  - application-entity
+- scope: audit-logs:read
+  description: Allows reading and exporting of audit logs
+  group: audit-logs
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: billing:usage:view
+  description: Allows access to view expenses using Billing Usage API
+  group: billing
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: biometrics:manage
+  description: Enables access to all Biometrics API end-points
+  group: biometrics
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: blocklist:manage
+  description: Enables access to all Blocklist API end-points
+  group: blocklist
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: branded-domains:manage
+  description: Used for managing branded domains for url shortener
+  group: branded-domains
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: calllink:configuration:manage
+  description: Enables management of configuration for call links
+  group: calllink
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: calllink:link:manage
+  description: Enables management of links related to call links
+  group: calllink
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: calllink:manage
+  description: Enables access to all Call link API end-points
+  group: calllink
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: callrouting:manage
+  description: Enables access to all Call routing API end-points
+  group: callrouting
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: calls:bulk:manage
+  description: Enables management of bulk calls
+  group: calls
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: calls:configuration:manage
+  description: Enables management of all calls API settings
+  group: calls
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: calls:logs:read
+  description: Enables access to logs related to calls API
+  group: calls
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: calls:manage
+  description: Enables access to all Calls API end-points
+  group: calls
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: calls:media:manage
+  description: Enables management of media related to calls API
+  group: calls
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: calls:read
+  description: Enables access to calls API logs
+  group: calls
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: calls:recording:delete
+  description: Enables deletion of Calls recordings
+  group: calls
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: calls:recording:read
+  description: Enables reading of Calls recordings
+  group: calls
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: calls:traffic:receive
+  description: Enables management of incoming calls
+  group: calls
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: calls:traffic:record
+  description: Enables recording of calls
+  group: calls
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: calls:traffic:send
+  description: Enables sending of calls and actions in calls
+  group: calls
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: campaign-tags:manage
+  description: Provides manage access to the list of campaign tags in general and as a list of assigned
+    tags
+  group: campaign-tags
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: campaign-tags:view
+  description: Provides view access to the list of campaign tags in general and as a list of assigned
+    tags
+  group: campaign-tags
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: catalogs:manage
+  description: Enables access to all Catalogs API end-points
+  group: catalogs
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: catalogs:read
+  description: Allows fetching of existing catalogs, and catalogs metadata
+  group: catalogs
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: catalogs:use
+  description: Allows access to fetch items, add items, delete items and update items in catalog
+  group: catalogs
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: clicktocall:manage
+  description: Enables access to all Click-to-call API end-points
+  group: clicktocall
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: content-messages:manage
+  description: Allows access to all Content messages API end-points
+  group: content-messages
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: content-messages:read
+  description: Allows access to existing content messages, their details and analytics
+  group: content-messages
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: conversations:manage
+  description: Enables access to all Conversations API end-points
+  group: conversations
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: conversations:read
+  description: Provides read-only access to conversations and their details
+  group: conversations
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: email:logs:read
+  description: Allows reading of logs related to email messages
+  group: email
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: email:manage
+  description: Enables access to all Email API end-points
+  group: email
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+  mcp_servers:
+  - email
+- scope: email:message:send
+  description: Enables sending email messages
+  group: email
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: email:templates:manage
+  description: Enables access to Email Templates api endpoints
+  group: email
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: error-codes:read
+  description: Enables access to platform error code details to troubleshoot message sending APIs
+  group: error-codes
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: flow:control
+  description: Allows users to launch, stop and cancel flows
+  group: flow
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: flow:manage
+  description: Allows management of flows in Moments
+  group: flow
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: flow:read
+  description: Allows fetching of existing flows, flow details, participants and analytics
+  group: flow
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: flow:use
+  description: Allows adding participants to existing flows
+  group: flow
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: forms:manage
+  description: Allows access to all Forms API end-points
+  group: forms
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: forms:read
+  description: Allows seeing information about forms including submitted data and events
+  group: forms
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: forms:use
+  description: Allows submitting data or events to a form
+  group: forms
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: google-bm:logs:read
+  description: Allows reading of logs related to Google Business Messages
+  group: google-bm
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: google-bm:manage
+  description: Enables access to all Google Business Messages API end-points
+  group: google-bm
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: google-bm:message:send
+  description: Enables sending of Google Business Messages
+  group: google-bm
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: inbound-message:read
+  description: Enables getting various types of incoming messages, encompassing all channels
+  group: inbound-message
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: insights:read
+  description: Allows fetching of existing insights and recommendations
+  group: insights
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: instagram:logs:read
+  description: Allows reading of logs related to Instagram messages
+  group: instagram
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: instagram:manage
+  description: Enables access to all Instagram messages API end-points
+  group: instagram
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: instagram:message:send
+  description: Enables sending of Instagram messages
+  group: instagram
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: ivr:configuration:manage
+  description: Enables management of the IVR configuration
+  group: ivr
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: ivr:manage
+  description: Enables access to all IVR settings and configurations API end-points
+  group: ivr
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: ivr:message:send
+  description: Enables sending of IVR messages
+  group: ivr
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: kakao:logs:read
+  description: Allows reading of logs related to Kakao messages
+  group: kakao
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: kakao:manage
+  description: Enables access to all Kakao messages API end-points
+  group: kakao
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: kakao:message:send
+  description: Enables sending of Kakao messages
+  group: kakao
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: knowledge-base:manage
+  description: Allows management of Knowledge Base resources
+  group: knowledge-base
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: knowledge-base:read
+  description: Provides read-only access to Knowledge Base articles and data
+  group: knowledge-base
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: line:manage
+  description: Enables access to all LINE messages API end-points
+  group: line
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: line:message:send
+  description: Enables sending of LINE messages
+  group: line
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: live-chat:manage
+  description: Allows management of Live Chat functionalities and settings
+  group: live-chat
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: markuplanguage:manage
+  description: Enables access to all Markup language API end-points
+  group: markuplanguage
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: mcp:provision
+  description: Allows provisioning and compliance setup for numbers in multiple regions using AI agents
+    connected to Provision MCP server
+  group: mcp
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+  mcp_servers:
+  - provision
+- scope: message:send
+  description: Enables sending various types of messages, encompassing all messaging-related endpoints
+  group: message
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+  mcp_servers:
+  - voice
+- scope: messages-api:manage
+  description: Enables access to all Messages API end-points
+  group: messages-api
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+  mcp_servers:
+  - message
+- scope: messages-api:message:send
+  description: Enables sending various types of messages using Messages API
+  group: messages-api
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: messenger:logs:read
+  description: Enables reading of logs of Messenger messages
+  group: messenger
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: messenger:manage
+  description: Enables access to all Messenger API end-points
+  group: messenger
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: messenger:message:send
+  description: Enables sending of Messenger messages
+  group: messenger
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: metrics:manage
+  description: Allows access and management of metrics and analytics data using Metrics API
+  group: metrics
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: mms:inbound-message:read
+  description: Allows access to read inbound MMS messages
+  group: mms
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: mms:logs:read
+  description: Allows reading of logs related to MMS messages
+  group: mms
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: mms:manage
+  description: Enables access to all MMS API end-points
+  group: mms
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: mms:message:send
+  description: Enables sending of MMS messages
+  group: mms
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: mobile-app-messaging:inbound-message:read
+  description: Allows reading of inbound Mobile app messages
+  group: mobile-app-messaging
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: mobile-app-messaging:logs:read
+  description: Allows reading of logs related to Mobile app messages
+  group: mobile-app-messaging
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: mobile-app-messaging:manage
+  description: Enables sending and managing of Mobile app messages
+  group: mobile-app-messaging
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+  mcp_servers:
+  - mobile-app-messaging
+- scope: mobile-app-messaging:send
+  description: Enables sending of Mobile app messages
+  group: mobile-app-messaging
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: mobile-identity:manage
+  description: Allows for the management and usage of Mobile Identity
+  group: mobile-identity
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+  mcp_servers:
+  - camara
+- scope: number-activation-state:read
+  description: Allows to read data from Deact API
+  group: number-activation-state
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: number-lookup:logs:read
+  description: Allows reading of logs related to phone number lookup
+  group: number-lookup
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: number-lookup:manage
+  description: Enables access to all number lookup API end-points
+  group: number-lookup
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: number-lookup:send
+  description: Enables phone number lookup
+  group: number-lookup
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: number-risk-score:manage
+  description: Enables access to all Number Risk Score API end-points
+  group: number-risk-score
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: numbermasking:manage
+  description: Enables access to all Number masking API end-points
+  group: numbermasking
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: numbers:manage
+  description: Enables access to all Numbers API end-points
+  group: numbers
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: numbers:recording:manage
+  description: Enables management of recording setting on numbers
+  group: numbers
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: omni-failover:logs:read
+  description: Allows reading of logs related to OMNI-channel failover events
+  group: omni-failover
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: omni-failover:manage
+  description: Enables access to all  OMNI-channel failover API end-points
+  group: omni-failover
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: omni-failover:message:send
+  description: Enables sending messages via OMNI-channel failover mechanisms
+  group: omni-failover
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: onboarding:manage
+  description: Enables the use of embedded version of Answers in integrations
+  group: onboarding
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: people:manage
+  description: Enables access to all People API end-points
+  group: people
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+  mcp_servers:
+  - people
+- scope: people:read
+  description: Provides read-only access to data and profiles in People
+  group: people
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: people:use
+  description: Provides access to ingesting events in People
+  group: people
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: rbm-maap:manage
+  description: Enables access to all RBM MaaP API end-points
+  group: rbm-maap
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: rbm-maap:message:send
+  description: Allows sending of RBM MaaP-related messages
+  group: rbm-maap
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: rcs:logs:read
+  description: Enables reading of logs of RCS messages
+  group: rcs
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: rcs:manage
+  description: Enables access to all RCS API end-points
+  group: rcs
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+  mcp_servers:
+  - rcs
+- scope: rcs:message:send
+  description: Enables sending of RCS messages
+  group: rcs
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: rcs:provision
+  description: Enables access to provisioning API of RCS
+  group: rcs
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: resource-request-hub:manage
+  description: Allows creation of request for a resource, updating existing request and checking the status
+    of existing request
+  group: resource-request-hub
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: resource-request-hub:read
+  description: Allows checking the status of existing request
+  group: resource-request-hub
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: saas:integrations:manage
+  description: Enables access to SaaS Integrations API end-points
+  group: saas
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: saas:tiktok-ads:manage
+  description: Enables access to TikTok Ads (click-to) API end-points
+  group: saas
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: sending-strategy:manage
+  description: Enables configuration of message sending strategies and rules
+  group: sending-strategy
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: signals:manage
+  description: Enables access to all Signals API end-points
+  group: signals
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: sms:inbound-message:read
+  description: Grants access to read inbound SMS messages
+  group: sms
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: sms:logs:read
+  description: Allows reading of logs related to SMS messages
+  group: sms
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: sms:manage
+  description: Enables access to all SMS API end-points
+  group: sms
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+  mcp_servers:
+  - sms
+- scope: sms:message:send
+  description: Enables sending of SMS messages
+  group: sms
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: subscriptions:manage
+  description: Enables access to all Subscriptions API end-points
+  group: subscriptions
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: tiktok:logs:read
+  description: Allows reading of logs related to TikTok BM messages
+  group: tiktok
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: tiktok:manage
+  description: Enables access to all TikTok BM end-points
+  group: tiktok
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: tiktok:message:send
+  description: Enables sending TikTok BM messages
+  group: tiktok
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: viber-bm:logs:read
+  description: Allows reading of logs related to Viber Business Messages
+  group: viber-bm
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: viber-bm:manage
+  description: Enables access to all Viber Business Messages API end-points
+  group: viber-bm
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+  mcp_servers:
+  - viber
+- scope: viber-bm:message:send
+  description: Enables sending of Viber Business Messages
+  group: viber-bm
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: viber-bot:logs:read
+  description: Allows reading of logs related to Viber Bot Messages
+  group: viber-bot
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: viber-bot:manage
+  description: Enables access to all Viber Bot Messages API end-points
+  group: viber-bot
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: viber-bot:message:send
+  description: Enables sending of Viber Bot Messages
+  group: viber-bot
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: voice-message:logs:read
+  description: Enables access to logs of sent voice messages
+  group: voice-message
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: voice-message:manage
+  description: Enables management of all voice messages
+  group: voice-message
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: voice-message:message:send
+  description: Enables sendings of voice messages
+  group: voice-message
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: voice-reports:read
+  description: Enables access to voice reports
+  group: voice-reports
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: voice:logs:read
+  description: Enables reading of voice delivery reports
+  group: voice
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: voice:recording:delete
+  description: Enables deleting of voice recordings
+  group: voice
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: voice:recording:manage
+  description: Enables management of voice recordings
+  group: voice
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: voice:recording:read
+  description: Enables reading of voice recordings
+  group: voice
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: web-push:manage
+  description: Allows management of web push notifications
+  group: web-push
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: web-push:send
+  description: Enables sending of web push notifications
+  group: web-push
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: web:sdk
+  description: Provides access to People and People events API endpoints accessed from client-side SDK
+  group: web
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: web:tracking:sdk
+  description: Enables tracking of website visitors through the Infobip Web SDK
+  group: web
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: webrtc:configuration:manage
+  description: Enables management of WebRTC configuration
+  group: webrtc
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: webrtc:identity:manage
+  description: Enables management of WebRTC identity configuration
+  group: webrtc
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: webrtc:manage
+  description: Enables access to all WebRTC API end-points
+  group: webrtc
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: webrtc:media:manage
+  description: Enables management of media related to WebRTC
+  group: webrtc
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: whatsapp:conversions
+  description: Enables access to WhatsApp Conversions
+  group: whatsapp
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: whatsapp:inbound-message:read
+  description: Enables reading of inbound WhatsApp messages
+  group: whatsapp
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: whatsapp:logs:read
+  description: Allows reading of logs related to WhatsApp messages
+  group: whatsapp
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: whatsapp:manage
+  description: Enables access to all WhatsApp API end-points
+  group: whatsapp
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+  mcp_servers:
+  - whatsapp
+  - whatsapp-flow
+- scope: whatsapp:message:send
+  description: Enables sending of WhatsApp messages
+  group: whatsapp
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: zalo:logs:read
+  description: Allows reading of logs related to Zalo messages
+  group: zalo
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: zalo:manage
+  description: Enables access to all Zalo API end-points
+  group: zalo
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+- scope: zalo:message:send
+  description: Enables sending Zalo messages
+  group: zalo
+  sources:
+  - https://www.infobip.com/docs/essentials/api-essentials/api-authorization
+scope_count: 159

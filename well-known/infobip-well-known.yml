@@ -1,0 +1,59 @@
+generated: '2026-07-25'
+method: searched
+source: live probes of /.well-known/* on the Infobip website, API, MCP, and identity hosts
+hosts:
+- https://www.infobip.com
+- https://api.infobip.com
+- https://mcp.infobip.com
+- https://auth.infobip.com/realms/infobip
+documents:
+- host: https://www.infobip.com
+  path: /.well-known/security.txt          # RFC 9116
+  status: 200
+  file: infobip-security.txt
+- host: https://www.infobip.com
+  path: /.well-known/api-catalog            # RFC 9727 API catalog (linkset)
+  status: 200
+  file: infobip-api-catalog.json
+  note: linkset points at https://www.infobip.com/docs/api and https://www.infobip.com/docs/mcp
+- host: https://www.infobip.com
+  path: /.well-known/openid-configuration
+  status: 404
+- host: https://api.infobip.com
+  path: /.well-known/security.txt
+  status: 404
+- host: https://api.infobip.com
+  path: /.well-known/openid-configuration
+  status: 404
+- host: https://api.infobip.com
+  path: /.well-known/oauth-authorization-server
+  status: 404
+- host: https://api.infobip.com
+  path: /.well-known/api-catalog
+  status: 404
+- host: https://api.infobip.com
+  path: /.well-known/ai-plugin.json
+  status: 404
+- host: https://auth.infobip.com/realms/infobip
+  path: /.well-known/openid-configuration   # OIDC discovery (Keycloak realm "infobip")
+  status: 200
+  file: infobip-openid-configuration.json
+- host: https://auth.infobip.com/realms/infobip
+  path: /.well-known/oauth-authorization-server   # RFC 8414
+  status: 200
+  file: infobip-oauth-authorization-server.json
+- host: https://mcp.infobip.com
+  path: /.well-known/oauth-protected-resource/{server}   # RFC 9728, one per MCP server
+  status: 200
+  file: infobip-oauth-protected-resource.json
+  note: |
+    Collected for 15 MCP server identifiers. 13 returned 200 with resource metadata
+    (sms, whatsapp, whatsapp-flow, viber, rcs, email, voice, mobile-app-messaging,
+    message, provision, 2fa, camara, people, account-management, application-entity);
+    the anonymous docs servers (search, deep-research) return 404 because they are
+    not OAuth-protected resources.
+- host: https://mcp.infobip.com
+  path: /.well-known/oauth-authorization-server
+  status: 404
+  note: served per-server at https://mcp.infobip.com/{server}/.well-known/oauth-authorization-server
+authorization_server: https://auth.infobip.com/realms/infobip

@@ -1,0 +1,2699 @@
+generated: '2026-07-25'
+method: searched
+source: https://www.infobip.com/docs/essentials/api-essentials/response-status-and-error-codes
+docs: https://www.infobip.com/docs/essentials/api-essentials/response-status-and-error-codes
+notes: 'Infobip separates HTTP-level errors (errors/infobip-problem-types.yml) from message-level STATUS and ERROR
+  registries. Both are returned as objects on send responses, delivery reports, logs and webhooks: status {groupId,
+  groupName, id, name, description} and error {groupId, groupName, id, name, description, permanent}. Status groups:
+  0 OK, 1 PENDING, 2 UNDELIVERABLE, 3 DELIVERED, 4 EXPIRED, 5 REJECTED. Error groups: 0 OK, 1 handset/registration/client/dropped,
+  2 user/provider/bounced, 3 operator/cloud/system. The permanent flag tells a caller whether a retry can ever succeed.'
+envelope:
+  status_object:
+  - groupId
+  - groupName
+  - id
+  - name
+  - description
+  error_object:
+  - groupId
+  - groupName
+  - id
+  - name
+  - description
+  - permanent
+status_groups:
+- group_id: 0
+  group_name: OK
+- group_id: 1
+  group_name: PENDING
+- group_id: 2
+  group_name: UNDELIVERABLE
+- group_id: 3
+  group_name: DELIVERED
+- group_id: 4
+  group_name: EXPIRED
+- group_id: 5
+  group_name: REJECTED
+code_count: 541
+families:
+- family: General status codes
+  groups:
+  - group: Pending
+    group_id: 1
+    kind: status
+    code_count: 3
+    codes:
+    - id: 3
+      name: PENDING_WAITING_DELIVERY
+      description: Message has been successfully sent from the platform to the operator's end, but we are awaiting
+        a delivery report from their end. In case the delivery itself is impacted, the causes can be the availability
+        of the destination, network issues, congestion, or additional setup requirements.
+    - id: 7
+      name: PENDING_ENROUTE
+      description: Message has been successfully accepted and processed by the platform and forwarded to the next
+        instance, which specifically involves the mobile operator.
+    - id: 26
+      name: PENDING_ACCEPTED
+      description: Message is pending after being accepted by the system and waiting for further processing or delivery
+        confirmation from the operator.
+  - group: Undeliverable
+    group_id: 2
+    kind: status
+    code_count: 6
+    codes:
+    - id: 4
+      name: UNDELIVERABLE_REJECTED_OPERATOR
+      description: Message was rejected by the operator and deemed undeliverable, possibly due to a network glitch
+        or restrictions imposed by the operator. Resolution steps include contacting Support for further clarification
+        or resolution.
+    - id: 9
+      name: UNDELIVERABLE_NOT_DELIVERED
+      description: Message was not delivered to the intended recipient and considered undeliverable, typically due
+        to factors such as an invalid or unreachable destination number. Resolution steps involve verifying the
+        accuracy of the recipient's number. If the issue persists, contact Support for assistance.
+    - id: 31
+      name: UNDELIVERABLE_NOT_SENT
+      description: The message has not been sent.
+    - id: 96
+      name: NO_ANSWER
+      description: The call was successfully delivered to the end user device; however, it was not answered by the
+        end user.
+    - id: 97
+      name: BUSY
+      description: The call has been successfully delivered to the end user's device, but the end user's device
+        indicates that they are currently busy and unable to answer the incoming call.
+    - id: 98
+      name: CANCELLED
+      description: The call was canceled at the origination end before it could be successfully routed to the end
+        user.
+  - group: Delivered
+    group_id: 3
+    kind: status
+    code_count: 2
+    codes:
+    - id: 2
+      name: DELIVERED_TO_OPERATOR
+      description: Message has been successfully delivered to the operator's system and awaits further processing
+        or delivery to the recipient's handset.
+    - id: 5
+      name: DELIVERED_TO_HANDSET
+      description: Message has been successfully delivered to the recipient's handset.
+  - group: Expired
+    group_id: 4
+    kind: status
+    code_count: 3
+    codes:
+    - id: 15
+      name: EXPIRED_EXPIRED
+      description: Message was received and sent to the operator. However, it has been pending until the validity
+        period has expired or the operator returns the EXPIRED status. Resolution steps include contacting Support
+        for further clarification or resolution.
+    - id: 29
+      name: EXPIRED_DLR_UNKNOWN
+      description: Message has expired, and the delivery status is unknown, indicating that the delivery report
+        or confirmation was not received or could not be determined. Resolution steps involve contacting Support
+        to resolve the unknown delivery status.
+    - id: 87
+      name: SIGNALS_BLOCKED
+      description: Message has been rejected due to an anti-fraud mechanism. The message is charged to the customer.
+  - group: Rejected
+    group_id: 5
+    kind: status
+    code_count: 20
+    codes:
+    - id: 6
+      name: REJECTED_NETWORK
+      description: Message has been received, but the network is either out of our coverage or is not set up on
+        your account. Your account manager can inform you about the coverage status or set up the network in question.
+        Otherwise, reach out to Support.
+    - id: 8
+      name: REJECTED_PREFIX_MISSING
+      description: Message has been received but rejected as the number is not recognized due to an incorrect number
+        prefix or length. This information is different for each network and is regularly updated.
+    - id: 10
+      name: REJECTED_DND
+      description: Message has been received and rejected because the user is subscribed to DND (Do Not Disturb)
+        services, disabling any service traffic to their number.
+    - id: 11
+      name: REJECTED_SOURCE
+      description: Your account is set to accept only registered sender IDs, and the sender ID defined in the request
+        has not been registered on your account.
+    - id: 12
+      name: REJECTED_NOT_ENOUGH_CREDITS
+      description: Your account is out of credits for further submission. Top up your account. For assistance in
+        topping up or applying for an online account top-up service, contact your account manager or Support.
+    - id: 13
+      name: REJECTED_SENDER
+      description: The sender ID has been blocklisted on your account through the web interface. Remove the blocklist
+        on your account or contact Support for further assistance.
+    - id: 14
+      name: REJECTED_DESTINATION_BLOCKLISTED
+      description: The destination address has been blocklisted either at the operator's request or on your account
+        through the web interface. Remove the blocklist on your account through the web interface or contact Support
+        for more information.
+    - id: 17
+      name: REJECTED_PREPAID_PACKAGE_EXPIRED
+      description: Account credits are past their validity period. Top up your subaccount with credits to extend
+        the validity period.
+    - id: 18
+      name: REJECTED_DESTINATION_NOT_REGISTERED
+      description: Your account has been set up for submission only to a single number for testing purposes. Contact
+        your account manager or reach out to Support to remove the limitation.
+    - id: 19
+      name: REJECTED_ROUTE_NOT_AVAILABLE
+      description: Message has been received on the system. However, your account has not been set up to send messages,
+        that is, no routes on your account are available for further submission. Your account manager can set up
+        your account based on your preference. Otherwise, reach out to Support for more information.
+    - id: 20
+      name: REJECTED_FLOODING_FILTER
+      description: Message has been rejected due to an anti-flooding mechanism. By default, a single number can
+        only receive 20 varied and 6 identical messages per hour. If a requirement exists, the limitation can be
+        extended per account on request to your account manager or Support.
+    - id: 21
+      name: REJECTED_SYSTEM_ERROR
+      description: The request has been rejected due to an expected system error. Retry the submission or contact
+        Support for more details.
+    - id: 23
+      name: REJECTED_DUPLICATE_MESSAGE_ID
+      description: The request has been rejected due to a duplicate message ID specified in the submit request;
+        the message IDs should be a unique value. For more information, see the SMS section on the Infobip API Developer
+        Hub.
+    - id: 24
+      name: REJECTED_INVALID_UDH
+      description: Message has been received and our system detected the message was formatted incorrectly because
+        of either an invalid ESM class parameter or an inaccurate amount of characters when using esmclass:64 (UDH).
+        For more information, see User Data Header and Concatenated SMS or contact Support for clarification.
+    - id: 25
+      name: REJECTED_MESSAGE_TOO_LONG
+      description: Message has been received, but the total message length is more than 25 parts, or the message
+        text exceeds 4000 bytes as per our system limitation.
+    - id: 51
+      name: MISSING_TO
+      description: The request has been received, but the to parameter has not been set, or it is empty, that is,
+        there must be a valid recipient to send the message to.
+    - id: 52
+      name: REJECTED_DESTINATION
+      description: The request has been received, but the destination is invalid—the number prefix is incorrect
+        as it does not match a valid number prefix by any mobile operator. Number length is also taken into consideration
+        when verifying number validity.
+    - id: 87
+      name: SIGNALS_BLOCKED
+      description: Message has been rejected due to an anti-fraud mechanism. If the message is deemed fraudulent,
+        it will not be charged.
+    - id: 99
+      name: REJECTED
+      description: The call was rejected/declined by the end user at the receiving end.
+    - id: 100
+      name: UNDELIVERABLE_REJECTED_PLATFORM
+      description: The request was rejected due to being invalid, malformed, or because the service is temporarily
+        unavailable. Review the request parameters and structure, and try again when the service is accessible.
+- family: Voice status codes
+  groups:
+  - group: Rejected
+    group_id: 5
+    kind: status
+    code_count: 15
+    codes:
+    - id: 53
+      name: REJECTED_INVALID_AUDIO_FILE_URL
+      description: The URL of the audio file is invalid and could not be read properly.
+    - id: 54
+      name: REJECTED_UNSUPPORTED_LANGUAGE
+      description: The language submitted within the request is not supported and the request could not be processed
+        correctly.
+    - id: 55
+      name: REJECTED_MESSAGE_IS_EMPTY
+      description: Native to Voice services, this status is returned when no text is sent in your Voice message
+        request.
+    - id: 56
+      name: REJECTED_INVALID_NOTIFY_URL
+      description: Native to Voice services, this status is returned when the notifyUrl parameter is not formatted
+        properly. For more information, see Voice messages over API.
+    - id: 57
+      name: REJECTED_INVALID_NOTIFY_CONTENT_TYPE
+      description: Native to Voice services, this status is returned when the notifyContentType parameter is not
+        formatted properly. For more information, see Voice messages over API.
+    - id: 58
+      name: REJECTED_INVALID_DTMF_SIGN
+      description: Defined value for repeating the message is invalid and must be a positive number.
+    - id: 59
+      name: REJECTED_INVALID_DTMF_TIMEOUT
+      description: Defined value for the waiting period is invalid and must be a positive number.
+    - id: 60
+      name: REJECTED_INVALID_RING_TIMEOUT
+      description: Defined value for the duration of the call is invalid and must be a positive number.
+    - id: 61
+      name: REJECTED_INVALID_CALL_TIMEOUT
+      description: Defined value for the total period of the call is invalid and must be a positive number.
+    - id: 62
+      name: REJECTED_INVALID_MACHINE_DETECTION
+      description: The action which attempts to detect answering machines at the beginning of the call is invalid.
+    - id: 63
+      name: REJECTED_INVALID_ACTIONS
+      description: Actions submitted in HTTP API request are invalid.
+    - id: 64
+      name: REJECTED_INVALID_ACTION_GROUPS
+      description: Action groups submitted in HTTP API request are invalid.
+    - id: 83
+      name: REJECTED_MACHINE_DETECTION_DISABLED
+      description: Machine detection is not enabled. Contact your dedicated account manager or reach out to Support.
+    - id: 87
+      name: REJECTED_INVALID_DELIVERY_TIME_WINDOW
+      description: Invalid deliveryTimeWindow. The time gap between from and to cannot be less than 1 hour.
+    - id: 91
+      name: REJECTED_INVALID_SSML
+      description: Submitted message text contains invalid SSML.
+- family: MMS status codes
+  groups:
+  - group: Rejected
+    group_id: 5
+    kind: status
+    code_count: 2
+    codes:
+    - id: 56
+      name: REJECTED_INVALID_NOTIFY_URL
+      description: Status is returned when the notifyUrl parameter is not formatted properly.
+    - id: 77
+      name: REJECTED_MESSAGE_TEXT_TOO_LONG
+      description: Message has been received, but the textual part of the message length exceeds 1600 characters,
+        which is the system limitation.
+- family: Email status codes
+  groups:
+  - group: Rejected
+    group_id: 5
+    kind: status
+    code_count: 4
+    codes:
+    - id: 75
+      name: REJECTED_FREE_TRIAL_EXCEEDED
+      description: This status code is returned by the API when a user's free trial has been exceeded. It means
+        the user has exceeded the allowed number of messages or usage limits and must upgrade to continue using
+        the service.
+    - id: 88
+      name: REJECTED_DATA_TRANSFORMATION_FAILED
+      description: This status code is returned by the API when there is an error in the data transformation process
+        while creating the data needed to proceed with sending a mail. Errors can include placeholder size exceeding
+        limits or data failing to parse (for example, custom headers).
+    - id: 89
+      name: REJECTED_INTERNAL_ERROR
+      description: This status code is returned by the API when there is an internal error with the system processing
+        a message. This occurs when a message exceeds retry limits or when internal data fails to parse.
+    - id: 90
+      name: REJECTED_VALIDATION_FAILED
+      description: This status code is returned by the API when a validation check fails during message processing.
+        Errors can be caused by issues such as an invalid sender, an invalid landing page, invalid preserved recipients,
+        a missing template, and so on.
+- family: Push notifications status codes
+  groups:
+  - group: Undeliverable
+    group_id: 2
+    kind: status
+    code_count: 1
+    codes:
+    - id: 66
+      name: UNDELIVERABLE_NO_DESTINATION
+      description: 'The status occurs when a TO object in a Push API call defines a filter that does not resolve
+        any pushRegistrationIds as destinations for Push delivery. The to field is used to query the message recipient
+        segment. For example, you can target a tag that does not exist in any instance of the requested ApplicationCode.
+        In this case, no destinations are found. Alternatively, you can target all application instances (devices)
+        that use Android OS. Here CloudType: GCM resolves all destinations and sends'
+  - group: Rejected
+    group_id: 5
+    kind: status
+    code_count: 7
+    codes:
+    - id: 65
+      name: REJECTED_NO_APPLICATION
+      description: The status occurs when an invalid or non-existent ApplicationCode is used in the from field of
+        a Push API call. Each application profile has a unique ApplicationCode, which is used in the SDK as a key
+        identifier for the application installed on an end user's device and enables communication with the platform.
+        For each paired device and installed application, a pushRegistrationId is issued and uniquely linked to
+        the ApplicationCode. You can get all available applications or check the configuratio
+    - id: 68
+      name: REJECTED_PAYLOAD_TOO_BIG
+      description: The total serialized message payload in a Push API request exceeds the maximum allowed size of
+        4000 characters. The payload size is calculated across all message fields combined, including the message
+        text, custom payload data, notification options, and any other content included in the request. To resolve
+        this, reduce the overall content of the message to ensure the combined serialized size does not exceed 4000
+        characters.
+    - id: 69
+      name: REJECTED_NO_CONTENT
+      description: The Push API request contains neither a text field nor a localization textKey. Every push notification
+        must have some form of message content — either a plain text string in the text field, or a localization
+        key in textKey that maps to a localized string defined in the application. To resolve this, include either
+        a text value with the message content or a textKey if your application uses localized strings.
+    - id: 70
+      name: REJECTED_INVALID_VALIDITY_PERIOD
+      description: The validityPeriod specified in a Push API request is shorter than the minimum allowed duration
+        of 30 seconds. The validity period defines how long the platform will attempt to deliver the message before
+        it expires and delivery is abandoned. To resolve this, set the validityPeriod to a value of 30 seconds or
+        longer.
+    - id: 71
+      name: REJECTED_INVALID_QUERY
+      description: The destination query in the to field of a Push API request cannot be parsed or is structurally
+        invalid. The to field defines the recipient segment for message delivery and must follow the supported query
+        format. Common causes include unsupported field names, invalid operators, or a malformed query object. To
+        resolve this, review the to field in your request and ensure the query is correctly structured. For more
+        information about targeting recipients, refer to the Push API documentation.
+    - id: 73
+      name: REJECTED_INVALID_INBOX_TOPIC
+      description: The inboxTopic specified in a Push API request does not exist for the account. Inbox topics are
+        used to route push notifications into a persistent in-app inbox on the user's device, and must be created
+        and configured for your account before they can be referenced in a send request. To resolve this, verify
+        that the inbox topic exists for your account in the Infobip web interface, or omit the inboxTopic field
+        if inbox message storage is not required for this notification.
+    - id: 74
+      name: REJECTED_INVALID_PRIMARY_BUTTON_ACTION
+      description: The primaryButtonAction object in a Push API request is configured inconsistently. The primaryButtonAction
+        defines the action triggered when the user taps the primary button on an interactive push notification.
+        It requires both a type (the kind of action to perform) and a resource (the target of that action, such
+        as a URL or deeplink). Providing one without the other is not valid. To resolve this, ensure that the primaryButtonAction
+        object includes both a type and a resource, or remove the objec
+- family: Moments status codes
+  groups:
+  - group: Pending
+    group_id: null
+    kind: status
+    code_count: 1
+    codes:
+    - id: 200
+      name: PENDING_ACCEPTED
+      description: A person has been accepted and is going to be processed by Flow.
+- family: General error codes
+  groups:
+  - group: OK
+    group_id: 0
+    kind: error
+    code_count: 1
+    codes:
+    - id: 0
+      name: NO_ERROR
+      permanent: false
+      description: There is no error description provided. Mostly, it is returned for successful delivery or when
+        the operator did not return any error code.
+  - group: Handset errors
+    group_id: 1
+    kind: error
+    code_count: 76
+    codes:
+    - id: 1
+      name: EC_UNKNOWN_SUBSCRIBER
+      permanent: true
+      description: Typically, this indicates that the subscriber or recipient of the message is unknown or not recognized
+        by the network. Verify the subscriber details by dialing the number. If correct, contact Support.
+    - id: 2
+      name: EC_UNKNOWN_BASE_STATION
+      permanent: false
+      description: Suggests an error involving an unidentified or unrecognized base station, often in the context
+        of network or communication systems. This could be due to a missing or inaccessible base station.
+    - id: 5
+      name: EC_UNIDENTIFIED_SUBSCRIBER
+      permanent: false
+      description: This can occur for reasons such as an invalid or unregistered number, incomplete or incorrect
+        subscriber information, or technical issues. Verify and correct subscriber information. If correct, contact
+        Support.
+    - id: 6
+      name: EC_ABSENT_SUBSCRIBER_SM
+      permanent: false
+      description: Indicates the destination numbers were unreachable, powered off, or in an area with limited coverage.
+        Ensure the subscriber's device is turned on and has a stable network connection.
+    - id: 7
+      name: EC_UNKNOWN_EQUIPMENT
+      permanent: false
+      description: The mobile device has not been recognized by EIR (Equipment Identity Register) during device
+        verification on the MAP protocol level at the operator’s infrastructure.
+    - id: 8
+      name: EC_ROAMING_NOT_ALLOWED
+      permanent: false
+      description: The subscriber is roaming in another country or operator’s infrastructure. Delivery is not guaranteed
+        due to a lack of roaming agreements between operators.
+    - id: 9
+      name: EC_ILLEGAL_SUBSCRIBER
+      permanent: true
+      description: Indicates the mobile station failed authentication, often due to the subscriber's number being
+        blocklisted. Investigate and address the issue with the network operator, or contact Support.
+    - id: 11
+      name: EC_TELESERVICE_NOT_PROVISIONED
+      permanent: true
+      description: The mobile subscription does not support the requested service (for example, SMS). Contact the
+        service provider or network operator to activate the required teleservice.
+    - id: 12
+      name: EC_ILLEGAL_EQUIPMENT
+      permanent: true
+      description: Indicates the IMEI check on the handset failed due to the IMEI being blocklisted or unauthorized.
+        Use authorized equipment to resolve this issue.
+    - id: 13
+      name: EC_CALL_BARRED
+      permanent: false
+      description: The operator suspended the subscriber’s service, usually for unpaid invoices. Check the subscriber's
+        account status and ensure sufficient balance or contact the network operator to resolve.
+    - id: 21
+      name: EC_FACILITY_NOT_SUPPORTED
+      permanent: false
+      description: The requested service is not supported by the handset or network. Verify the supported facilities
+        and ensure compatibility. Restart the device and apply the latest software/firmware updates.
+    - id: 27
+      name: EC_ABSENT_SUBSCRIBER
+      permanent: false
+      description: Indicates the destination numbers were unreachable, powered off, or in an area with limited coverage.
+        Ensure the subscriber's device is turned on and has a stable network connection.
+    - id: 31
+      name: EC_SUBSCRIBER_BUSY_FOR_MT_SMS
+      permanent: false
+      description: Indicates that the subscriber is busy for MT SMS.
+    - id: 32
+      name: EC_SM_DELIVERY_FAILURE
+      permanent: false
+      description: Indicates a failure in delivering an SMS to the recipient, possibly due to unavailability, memory
+        capacity issues, or temporary communication issues. Verify details or contact Support.
+    - id: 33
+      name: EC_MESSAGE_WAITING_LIST_FULL
+      permanent: false
+      description: The message waiting list is full.
+    - id: 34
+      name: EC_SYSTEM_FAILURE
+      permanent: false
+      description: Indicates a system failure.
+    - id: 35
+      name: EC_DATA_MISSING
+      permanent: false
+      description: Indicates that some data is missing.
+    - id: 36
+      name: EC_UNEXPECTED_DATA_VALUE
+      permanent: false
+      description: Indicates that an unexpected data value has been entered.
+    - id: 255
+      name: EC_UNKNOWN_ERROR
+      permanent: false
+      description: Indicates an unknown error.
+    - id: 256
+      name: EC_SM_DF_MEMORYCAPACITYEXCEEDED
+      permanent: false
+      description: Indicates that the message inbox on the recipient's mobile phone is full, preventing new messages.
+        Delete messages to clear space.
+    - id: 257
+      name: EC_SM_DF_EQUIPMENTPROTOCOLERROR
+      permanent: false
+      description: There has been a mobile subscriber equipment error.
+    - id: 258
+      name: EC_SM_DF_EQUIPMENTNOTSM_EQUIPPED
+      permanent: false
+      description: There has been a mobile subscriber equipment error.
+    - id: 259
+      name: EC_SM_DF_UNKNOWNSERVICECENTRE
+      permanent: false
+      description: There has been a mobile subscriber equipment error.
+    - id: 260
+      name: EC_SM_DF_SC_CONGESTION
+      permanent: false
+      description: There has been a mobile subscriber equipment error.
+    - id: 261
+      name: EC_SM_DF_INVALIDSME_ADDRESS
+      permanent: false
+      description: There has been a mobile subscriber equipment error.
+    - id: 262
+      name: EC_SM_DF_SUBSCRIBERNOTSC_SUBSCRIBER
+      permanent: false
+      description: There has been a mobile subscriber equipment error.
+    - id: 500
+      name: EC_PROVIDER_GENERAL_ERROR
+      permanent: false
+      description: General network protocol error caused by incompatible operator network protocol versions or parameters
+        between network components.
+    - id: 502
+      name: EC_NO_RESPONSE
+      permanent: false
+      description: The message was processed and forwarded to the operator, but no response was returned. The error
+        may also apply to SS7 network level issues.
+    - id: 503
+      name: EC_SERVICE_COMPLETION_FAILURE
+      permanent: false
+      description: General network protocol error caused by incompatible operator network protocol versions or parameters
+        between network components.
+    - id: 504
+      name: EC_UNEXPECTED_RESPONSE_FROM_PEER
+      permanent: false
+      description: General network protocol error caused by incompatible operator network protocol versions or parameters
+        between network components.
+    - id: 507
+      name: EC_MISTYPED_PARAMETER
+      permanent: false
+      description: General network protocol error caused by incompatible operator network protocol versions or parameters
+        between network components.
+    - id: 508
+      name: EC_NOT_SUPPORTED_SERVICE
+      permanent: false
+      description: General network protocol error caused by incompatible operator network protocol versions or parameters
+        between network components.
+    - id: 509
+      name: EC_DUPLICATED_INVOKE_ID
+      permanent: false
+      description: General network protocol error caused by incompatible operator network protocol versions or parameters
+        between network components.
+    - id: 565
+      name: EC_CANNOT_RECEIVE_SC
+      permanent: true
+      description: End users connected to this MVNO cannot receive short code messages. The mobile operator rejected
+        the message as the end user is connected to their network through an MVNO. This restriction applies to short
+        code messages.
+    - id: 573
+      name: EC_SC_BLOCKED_BY_END_USER
+      permanent: true
+      description: The end user has asked their mobile operator to block messages sent from your short code. Additional
+        messages must not be sent unless the end user opts in again.
+    - id: 581
+      name: EC_USER_OUT_OF_CREDIT
+      permanent: false
+      description: The end user is out of prepaid credit and cannot receive the message. Retry sending every 24
+        hours for up to seven days.
+    - id: 628
+      name: EC_TEMPORARY_HANDSET_FAILURE
+      permanent: true
+      description: There is a temporary handset failure.
+    - id: 629
+      name: EC_DEST_ADDRESS_UNABLE_TO_RECEIVE_SMS
+      permanent: true
+      description: The destination address is unable to receive SMS.
+    - id: 1024
+      name: EC_OR_APPCONTEXTNOTSUPPORTED
+      permanent: false
+      description: General network protocol error caused by incompatible operator network protocol versions or parameters
+        between network components.
+    - id: 1025
+      name: EC_OR_INVALIDDESTINATIONREFERENCE
+      permanent: false
+      description: General network protocol error caused by incompatible operator network protocol versions or parameters
+        between network components.
+    - id: 1026
+      name: EC_OR_INVALIDORIGINATINGREFERENCE
+      permanent: false
+      description: General network protocol error caused by incompatible operator network protocol versions or parameters
+        between network components.
+    - id: 1027
+      name: EC_OR_ENCAPSULATEDAC_NOTSUPPORTED
+      permanent: false
+      description: General network protocol error caused by incompatible operator network protocol versions or parameters
+        between network components.
+    - id: 1028
+      name: EC_OR_TRANSPORTPROTECTIONNOTADEQUATE
+      permanent: false
+      description: General network protocol error caused by incompatible operator network protocol versions or parameters
+        between network components.
+    - id: 1029
+      name: EC_OR_NOREASONGIVEN
+      permanent: false
+      description: General network protocol error caused by incompatible operator network protocol versions or parameters
+        between network components.
+    - id: 1030
+      name: EC_OR_POTENTIALVERSIONINCOMPATIBILITY
+      permanent: false
+      description: General network protocol error caused by incompatible operator network protocol versions or parameters
+        between network components.
+    - id: 1031
+      name: EC_OR_REMOTENODENOTREACHABLE
+      permanent: false
+      description: The mobile subscriber was not reachable due to a network operator protocol error.
+    - id: 1152
+      name: EC_NNR_NOTRANSLATIONFORANADDRESSOFSUCHNATURE
+      permanent: false
+      description: The mobile subscriber was not reachable due to a network operator protocol error.
+    - id: 1153
+      name: EC_NNR_NOTRANSLATIONFORTHISSPECIFICADDRESS
+      permanent: false
+      description: No translation for this specific address.
+    - id: 1154
+      name: EC_NNR_SUBSYSTEMCONGESTION
+      permanent: false
+      description: The mobile subscriber was not reachable due to a network operator protocol error.
+    - id: 1155
+      name: EC_NNR_SUBSYSTEMFAILURE
+      permanent: false
+      description: The mobile subscriber was not reachable due to a network operator protocol error.
+    - id: 1156
+      name: EC_NNR_UNEQUIPPEDUSER
+      permanent: false
+      description: The mobile subscriber was not reachable due to a network operator protocol error.
+    - id: 1157
+      name: EC_NNR_MTPFAILURE
+      permanent: false
+      description: The mobile subscriber was not reachable due to a network operator protocol error.
+    - id: 1158
+      name: EC_NNR_NETWORKCONGESTION
+      permanent: false
+      description: The mobile subscriber was not reachable due to a network operator protocol error.
+    - id: 1159
+      name: EC_NNR_UNQUALIFIED
+      permanent: false
+      description: The mobile subscriber was not reachable due to a network operator protocol error.
+    - id: 1160
+      name: EC_NNR_ERRORINMESSAGETRANSPORTXUDT
+      permanent: false
+      description: The mobile subscriber was not reachable due to a network operator protocol error.
+    - id: 1161
+      name: EC_NNR_ERRORINLOCALPROCESSINGXUDT
+      permanent: false
+      description: The mobile subscriber was not reachable due to a network operator protocol error.
+    - id: 1162
+      name: EC_NNR_DESTINATIONCANNOTPERFORMREASSEMBLYXUDT
+      permanent: false
+      description: The mobile subscriber was not reachable due to a network operator protocol error.
+    - id: 1163
+      name: EC_NNR_SCCPFAILURE
+      permanent: false
+      description: The mobile subscriber was not reachable due to a network operator protocol error.
+    - id: 1164
+      name: EC_NNR_HOPCOUNTERVIOLATION
+      permanent: false
+      description: The mobile subscriber was not reachable due to a network operator protocol error.
+    - id: 1165
+      name: EC_NNR_SEGMENTATIONNOTSUPPORTED
+      permanent: false
+      description: The mobile subscriber was not reachable due to a network operator protocol error.
+    - id: 1166
+      name: EC_NNR_SEGMENTATIONFAILURE
+      permanent: false
+      description: The mobile subscriber was not reachable due to a network operator protocol error.
+    - id: 1281
+      name: EC_UA_USERSPECIFICREASON
+      permanent: false
+      description: Message was aborted by a network peer due to a network protocol error.
+    - id: 1282
+      name: EC_UA_USERRESOURCELIMITATION
+      permanent: false
+      description: Message was aborted by a network peer due to a network protocol error.
+    - id: 1283
+      name: EC_UA_RESOURCEUNAVAILABLE
+      permanent: false
+      description: Message was aborted by a network peer due to a network protocol error.
+    - id: 1284
+      name: EC_UA_APPLICATIONPROCEDURECANCELLATION
+      permanent: false
+      description: Message was aborted by a network peer due to a network protocol error.
+    - id: 1536
+      name: EC_PA_PROVIDERMALFUNCTION
+      permanent: false
+      description: Message was aborted due to other network protocol errors.
+    - id: 1537
+      name: EC_PA_SUPPORTINGDIALOGORTRANSACTIONREALEASED
+      permanent: false
+      description: Message was aborted due to other network protocol errors.
+    - id: 1538
+      name: EC_PA_RESSOURCELIMITATION
+      permanent: false
+      description: Message was aborted due to other network protocol errors.
+    - id: 1539
+      name: EC_PA_MAINTENANCEACTIVITY
+      permanent: false
+      description: Message was aborted due to other network protocol errors.
+    - id: 1540
+      name: EC_PA_VERSIONINCOMPATIBILITY
+      permanent: false
+      description: Message was aborted due to other network protocol errors.
+    - id: 1541
+      name: EC_PA_ABNORMALMAPDIALOG
+      permanent: false
+      description: Message was aborted due to other network protocol errors.
+    - id: 1792
+      name: EC_NC_ABNORMALEVENTDETECTEDBYPEER
+      permanent: false
+      description: Message was aborted due to other network protocol errors.
+    - id: 1793
+      name: EC_NC_RESPONSEREJECTEDBYPEER
+      permanent: false
+      description: Message was aborted due to other network protocol errors.
+    - id: 1794
+      name: EC_NC_ABNORMALEVENTRECEIVEDFROMPEER
+      permanent: false
+      description: Message was aborted due to other network protocol errors.
+    - id: 1795
+      name: EC_NC_MESSAGECANNOTBEDELIVEREDTOPEER
+      permanent: false
+      description: Message was aborted due to other network protocol errors.
+    - id: 1796
+      name: EC_NC_PROVIDEROUTOFINVOKE
+      permanent: false
+      description: Message was aborted due to other network protocol errors.
+  - group: User errors
+    group_id: 2
+    kind: error
+    code_count: 34
+    codes:
+    - id: 323
+      name: EC_INVALID_REQUEST_TYPE
+      permanent: true
+      description: The request type was invalid.
+    - id: 351
+      name: EC_INVALID_DESTINATION_ADDRESS
+      permanent: false
+      description: 'Invalid destination address. Possible reasons for receiving this error for the following mobile
+        operators might be: Any operator: • The mobile number is not on the mobile operator''s network. • The mobile
+        number has been deactivated. T-Mobile and MetroPCS: • The phone number belongs to a prepaid user who does
+        not have enough credit to receive a message. T-Mobile: • The end user is not provisioned to receive a message
+        from all short codes (or from specific short codes) • The end user is on an MVNO'
+    - id: 352
+      name: EC_INVALID_REQUEST_DESTINATION
+      permanent: true
+      description: Invalid request - destination address country code is not recognized.
+    - id: 355
+      name: EC_MSG_TEXT_TOO_LONG
+      permanent: true
+      description: Message text is too long.
+    - id: 368
+      name: EC_INVALID_SOURCE_ADDRESS
+      permanent: true
+      description: Invalid source address value. The mobile operator rejected the message with an invalid MT source
+        address error. Contact your account manager or reach out to Support to determine if the MT source address
+        should be supported by the end user's mobile operator.
+    - id: 433
+      name: EC_ACCOUNT_ACCESS_DENIED
+      permanent: true
+      description: Account access has been denied.
+    - id: 541
+      name: EC_LIMIT_REACHED
+      permanent: false
+      description: Carrier sending limit has been reached. The message was blocked by AT&T because the TPS (transactions
+        per second) limit on your messaging campaign has been exceeded.
+    - id: 542
+      name: EC_QUOTA_REACHED
+      permanent: false
+      description: Carrier daily quota reached. The message was blocked by T-Mobile because the daily volume limit
+        for your brand has been exceeded. You cannot resend the message until the next day.
+    - id: 572
+      name: EC_CAMPAIGNID_NOT_PROVISIONED
+      permanent: true
+      description: Program ID or campaign ID is not provisioned for this mobile operator or is not active.
+    - id: 577
+      name: EC_ACC_NOT_PROVISIONED_TO_SMS_DEMO_SC
+      permanent: true
+      description: The account is not provisioned to use the SMS demo short code.
+    - id: 578
+      name: EC_EXCEEDED_THE_TIME_LIMIT_OF_SMS_DEMO
+      permanent: true
+      description: Exceeded the time limit for using SMS demo.
+    - id: 579
+      name: EC_DEST_ADDRESS_NOT_IN_SMS_DEMO
+      permanent: true
+      description: The destination address is not in the safelist for SMS demo.
+    - id: 580
+      name: EC_EXCEEDED_THE_MAX_NUMBER
+      permanent: true
+      description: Exceeded the maximum number of demo requests.
+    - id: 594
+      name: EC_INVALID_GLOBAL_CAMPAIGN_ID
+      permanent: true
+      description: Invalid global campaign ID.
+    - id: 597
+      name: EC_ACC_HAS_NO_ADRESS_FOR_DESR
+      permanent: true
+      description: Account is not provisioned with an address that can reach the destination.
+    - id: 598
+      name: EC_INTERACTION_NOT_SUPPORTED
+      permanent: true
+      description: Interaction is not supported for the message destination.
+    - id: 601
+      name: EC_ACC_NOT_2_WAY
+      permanent: true
+      description: Account is not provisioned for global two-way SMS.
+    - id: 603
+      name: EC_CONTENT_BLOCKED
+      permanent: true
+      description: 'Content blocked by user opt-out (MO: STOP). This code can be returned in a delivery receipt
+        for an MT originating from a North American, SMS-enabled toll-free number or an SMS-enabled landline number.
+        Messaging can resume to the end user if the end user opts back into your program.'
+    - id: 604
+      name: EC_BLOCKED_BY_CAMPAIGN_BLACKLIST
+      permanent: true
+      description: Content blocked by campaign blocklist.
+    - id: 607
+      name: EC_REJECTED_SPAM_BY_OPERATOR
+      permanent: true
+      description: This message was identified as spam and cannot be delivered.
+    - id: 608
+      name: EC_SIGNALS_BLOCKED
+      permanent: false
+      description: The message has been rejected due to an anti-fraud mechanism. It means that the risk score of
+        the destination hit the defined threshold and the system blocked the message. In case of a false positive,
+        you can use Signals API to add it to the trusted list.
+    - id: 609
+      name: EC_SIGNALS_HARD_LIMIT_REACHED
+      permanent: true
+      description: The daily system-defined limit for sent messages (UTC-based) has been reached.
+    - id: 2049
+      name: EC_IMSI_BLACKLISTED
+      permanent: true
+      description: IMSI is blocklisted.
+    - id: 2052
+      name: EC_BLACKLISTED_DESTINATIONADDRESS
+      permanent: true
+      description: The destination number has been blocklisted either at the operator`s request or on your account
+        through the web interface. Go to the web interface to remove the blocklist on your account or contact Support
+        for more information.
+    - id: 2053
+      name: EC_BLACKLISTED_SENDERADDRESS
+      permanent: true
+      description: The sender number has been blocklisted either at the operator's request or on your account the
+        web interface. Go to the web interface to remove the blocklist on your account or contact Support for more
+        information.
+    - id: 3041
+      name: EC_DEACTIVATED_LIST
+      permanent: true
+      description: The phone number you provided is listed as deactivated, which means it is no longer active and
+        cannot receive messages. If you included the mobileOperatorId in your request, you can perform an operator
+        lookup to check if the number was ported to a new operator. If you did not include the mobileOperatorId,
+        we have already performed the lookup and confirmed that the number is permanently deactivated. It is crucial
+        to refrain from sending any further messages to this number. For more details, see t
+    - id: 4096
+      name: EC_INVALID_PDU_FORMAT
+      permanent: true
+      description: Invalid PDU format.
+    - id: 4099
+      name: EC_MONTHLY_LIMIT_REACHED
+      permanent: true
+      description: Your account monthly credit limit has been reached. For further financial assistance, contact
+        your account manager or contact Support.
+    - id: 4100
+      name: EC_MESSAGE_CANCELED
+      permanent: true
+      description: The request was received, but has not been sent to the next instance within its validity period
+        and has expired with the appropriate error code, or the same error code was reverted from the operator.
+    - id: 4101
+      name: EC_VALIDITY_EXPIRED
+      permanent: true
+      description: The message was sent to the next instance and has not been delivered within the message validity
+        period, thus it has expired with the appropriate error code, or the error code was reverted from the operator.
+    - id: 4102
+      name: EC_NOTSUBMITTEDTOSMPPCHANNEL
+      permanent: true
+      description: Inbound SM cannot be transferred through SMPP due to the lack of SMPP connectivity.
+    - id: 4103
+      name: EC_DESTINATION_FLOODING
+      permanent: true
+      description: As per the flooding filter rule, you can send 6 messages with the same content to the same destination
+        in one hour while or you can send up to 20 messages with different content to the same destination in a
+        period of one hour. If there is a valid reason for the traffic to bypass the filter, your account manager
+        can assist you with adjusting these limitations, or reach out to Support.
+    - id: 4104
+      name: EC_DESTINATION_TXT_FLOODING
+      permanent: true
+      description: Related to the REJECTED_FLOODING_FILTER status. The message is rejected due to the number of
+        identical messages sent to a single number.
+    - id: 4202
+      name: EC_10DLC_LIMIT_REACHED
+      permanent: true
+      description: Message was not delivered due to 10DLC operator limit.
+  - group: Operator errors
+    group_id: 3
+    kind: error
+    code_count: 35
+    codes:
+    - id: 10
+      name: EC_BEARER_SERVICE_NOT_PROVISIONED
+      permanent: true
+      description: Suggests that the requested bearer service is not available or activated for the user or device
+        attempting to access it. This can be due to service unavailability in the subscription, lack of network
+        support, or configuration/provisioning issues. Resolving this error typically involves contacting the service
+        provider or network operator to ensure the necessary bearer service is provisioned and activated for the
+        subscriber's account.
+    - id: 15
+      name: EC_CUG_REJECT
+      permanent: false
+      description: The destination number belongs to a Closed User Group (CUG), and the sender is not authorized
+        to communicate with that group.
+    - id: 20
+      name: EC_SS_INCOMPATIBILITY
+      permanent: false
+      description: Indicates that the SS is not compatible.
+    - id: 24
+      name: EC_NO_RADIO_RESOURCE_AVAILABLE
+      permanent: false
+      description: The mobile network temporarily could not allocate radio resources to deliver the message to the
+        handset.
+    - id: 51
+      name: EC_RESOURCE_LIMITATION
+      permanent: true
+      description: Indicates that invoked MAP operation could not be finished due to the network congestion - this
+        is an SS7 network congestion error on the MAP protocol level.
+    - id: 71
+      name: EC_UNKNOWN_ALPHABET
+      permanent: false
+      description: Indicates an unknown alphabet.
+    - id: 345
+      name: EC_OPERATOR_NOT_FOUND
+      permanent: true
+      description: Mobile operator not found for the destination address. The service performed a dynamic carrier
+        lookup for the destination address, but it could not be identified; or, the MT source address is not a North
+        American toll-free phone number or landline.
+    - id: 375
+      name: EC_SOURCE_ADDRESS_IS_BLOCKED
+      permanent: true
+      description: Source address (recipient) is blocked or is not provisioned.
+    - id: 488
+      name: EC_TF_NUMBER_NOT_VERIFIED
+      permanent: true
+      description: Indicates that the number has either gone over the limit or they are trying to send to Canada
+        and the number is not verified. Contact your account manager or reach out to Support to get the TFN verified.
+    - id: 501
+      name: EC_INVALID_RESPONSE_RECEIVED
+      permanent: false
+      description: An invalid response has been received.
+    - id: 560
+      name: EC_SC_BLOCKED_FOR_END_USER
+      permanent: true
+      description: The mobile operator blocked the end user from this short code.
+    - id: 561
+      name: EC_CONTENT_BLOCKED_BY_OPERATOR
+      permanent: true
+      description: Content blocked by the mobile operator for this end user.
+    - id: 562
+      name: EC_SC_NOT_PROVISIONED
+      permanent: true
+      description: Short code not provisioned with mobile operator. Contact your dedicated account manager or contact
+        Support if you believe that you are provisioned for the operator or if you want to begin provisioning.
+    - id: 563
+      name: EC_SC_EXPIRED
+      permanent: true
+      description: Short code expired with mobile operator. Contact your dedicated account manager or contact Support
+        if you believe that you are provisioned for the operator or if you want to begin provisioning.
+    - id: 564
+      name: EC_SC_BLOCKED
+      permanent: true
+      description: Short code blocked by mobile operator. The mobile operator rejected the message as the short
+        code is currently blocked from sending messages across their network. Contact your dedicated account manager
+        or reach out to Support if you are unsure why you received this error.
+    - id: 566
+      name: EC_DESTINATION_BLOCKED_BY_OPERATOR
+      permanent: true
+      description: The mobile operator is blocking the phone number from receiving messages from short codes. This
+        is likely due to the end user's account being suspended or barred in some way.
+    - id: 568
+      name: EC_DESTINATION_NOT_SMS_PROVISIONED
+      permanent: true
+      description: Destination address not provisioned for SMS.
+    - id: 569
+      name: EC_DEST_ADDRESS_SUSPENDED
+      permanent: true
+      description: Destination address suspended by the mobile operator.
+    - id: 571
+      name: EC_CAMPAIGN_ID_REJECTED
+      permanent: false
+      description: Program ID or Campaign ID rejected by the mobile operator. This error applies to messages sent
+        to US mobile operators. The error indicates that the program ID or campaign ID in the message request is
+        not provisioned with the mobile operator. Contact your dedicated account manager or Support if you are unsure
+        why you received this error.
+    - id: 574
+      name: EC_BLOCKED_NEW_SUBSCRIPTIONS_FOR_SC
+      permanent: true
+      description: New subscriptions for this short code are blocked by the mobile operator. Indicates that for
+        a given short code, new subscribers are not allowed to receive or send messages. However, existing subscribers
+        are still allowed to receive and send messages.
+    - id: 592
+      name: EC_ACCOUNT_NOT_PROVISIONED_FOR_CHANNEL
+      permanent: true
+      description: The end user's number belongs to a network for which the account is not provisioned, or we do
+        not provide coverage for the specific network.
+    - id: 630
+      name: EC_DEST_OVERLOADED
+      permanent: true
+      description: Destination overloaded.
+    - id: 631
+      name: EC_MOBILE_OPERATOR_NETWORK_ERROR
+      permanent: true
+      description: Mobile operator network error.
+    - id: 632
+      name: EC_SMS_REJECTED_BY_MOBILE_OPERATOR
+      permanent: true
+      description: SMS rejected by the mobile operator for attempted destination address.
+    - id: 633
+      name: EC_UNKNOWN_MOBILE_OPERATOR
+      permanent: true
+      description: Message failed due to an unknown mobile operator error.
+    - id: 810
+      name: EC_FAILED_MESSAGE_DELIVERY
+      permanent: true
+      description: Failed message delivery.
+    - id: 811
+      name: EC_MESSAGE_EXPIRED
+      permanent: true
+      description: Message expired before it reached handset.
+    - id: 815
+      name: EC_MESSAGE_SUBMITTED_NOT_ACKED
+      permanent: true
+      description: Message submitted to but not acknowledged by the mobile operator.
+    - id: 2048
+      name: EC_TIME_OUT
+      permanent: false
+      description: Time out.
+    - id: 2050
+      name: EC_DEST_ADDRESS_BLACKLISTED
+      permanent: true
+      description: The numbers were identified as blocklisted in the operator's DND (Do Not Disturb) database, provided
+        by the operator, or the operator reverted the same error code. Resolving this error typically involves reviewing
+        the blocklist status of the destination address, checking for any legitimate reasons for blocklisting, and
+        taking appropriate actions to remove it.
+    - id: 2051
+      name: EC_INVALIDMSCADDRESS
+      permanent: false
+      description: Text is blocklisted.
+    - id: 4097
+      name: EC_NOTSUBMITTEDTOGMSC
+      permanent: false
+      description: Messages not passed to any operator and failed at the platform.
+    - id: 4098
+      name: EC_VP_EXPIRED
+      permanent: false
+      description: The SMS was not delivered within the configured Validity Period (VP).
+    - id: 4102
+      name: EC_NOTSUBMITTEDTOSMPPCHANNEL
+      permanent: true
+      description: Not submitted to SMPP channel.
+    - id: 5492
+      name: EC_DUPLICATE_MESSAGE
+      permanent: true
+      description: The same message has already been sent to this destination address.
+- family: Voice error codes (DEPRECATED)
+  groups:
+  - group: OK
+    group_id: 0
+    kind: error
+    code_count: 2
+    codes:
+    - id: 5000
+      name: VOICE_ANSWERED
+      permanent: true
+      description: The voice call was successfully answered by the recipient. No further action is required.
+    - id: 5001
+      name: VOICE_ANSWERED_MACHINE
+      permanent: true
+      description: The voice call was answered by a machine or voicemail system. You may consider adjusting your
+        communication strategy for machine-answered calls.
+  - group: Handset errors
+    group_id: 1
+    kind: error
+    code_count: 2
+    codes:
+    - id: 5480
+      name: EC_VOICE_ERROR_TEMPORARILY_NOT_AVAILABLE
+      permanent: false
+      description: Temporary unavailability of the voice service or recipient currently unavailable. Retry the operation
+        later or contact Support for assistance.
+    - id: 5603
+      name: EC_DECLINE
+      permanent: false
+      description: The call was declined by the recipient or the end user rejected the call or is currently unavailable
+        for the call. Consider alternative methods of communication or try reaching out again later.
+  - group: Operator errors
+    group_id: 3
+    kind: error
+    code_count: 20
+    codes:
+    - id: 5002
+      name: EC_VOICE_USER_BUSY
+      permanent: true
+      description: The recipient's phone line is busy. You can try calling again at a later time or explore other
+        communication channels.
+    - id: 5003
+      name: EC_VOICE_NO_ANSWER
+      permanent: true
+      description: The recipient did not answer the call. You may try calling again later or choose an alternative
+        communication method.
+    - id: 5004
+      name: EC_VOICE_ERROR_DOWNLOADING_FILE
+      permanent: true
+      description: An error occurred while downloading the audio file for playback. Verify the file's accessibility
+        and format. If the issue persists, contact Support for further assistance.
+    - id: 5005
+      name: EC_VOICE_ERROR_UNSUPPORTED_AUDIO_FORMAT
+      permanent: true
+      description: The audio format is not supported. Check the audio format requirements, use supported types,
+        and ensure compatibility with the voice service.
+    - id: 5400
+      name: EC_VOICE_ERROR_BAD_REQUEST
+      permanent: false
+      description: The voice call request was malformed or contained invalid parameters. Review the request or ensure
+        it is properly formatted and check the API documentation for the correct request structure.
+    - id: 5403
+      name: EC_VOICE_ERROR_FORBIDDEN
+      permanent: false
+      description: The voice call request was rejected by the operator. Contact Support for further assistance.
+    - id: 5404
+      name: EC_VOICE_ERROR_DESTINATION_NOT_FOUND
+      permanent: false
+      description: The destination for the voice call was not found or is invalid. Double-check the recipient's
+        phone number or destination details.
+    - id: 5407
+      name: EC_VOICE_ERROR_PROXY_AUTHENTICATION_REQUIRED
+      permanent: false
+      description: Proxy authentication is required to establish the voice call. Contact Support for further assistance.
+    - id: 5408
+      name: EC_VOICE_ERROR_REQUEST_TIMEOUT
+      permanent: false
+      description: The voice call request timed out before a response was received or the end user could not be
+        found in time during the call. Contact Support for further assistance.
+    - id: 5410
+      name: EC_VOICE_ERROR_GONE
+      permanent: false
+      description: The requested voice call resource is no longer available. Ensure the recipient's phone number
+        is valid and accessible or contact Support for further assistance.
+    - id: 5413
+      name: EC_VOICE_ERROR_REQUEST_ENTITY_TOO_LARGE
+      permanent: false
+      description: The voice call request entity (for example, audio file) is too large. Reduce the size of the
+        request entity and try again.
+    - id: 5414
+      name: EC_VOICE_ERROR_REQUEST_URI_TOO_LONG
+      permanent: false
+      description: The server is refusing to process the request because the Request-URI is longer than the server
+        is willing to interpret (destination too long).
+    - id: 5415
+      name: EC_VOICE_UNSUPPORTED_MEDIA_TYPE
+      permanent: false
+      description: The media type used in the voice call is not supported. Ensure you are using a compatible media
+        type for the voice call.
+    - id: 5481
+      name: EC_VOICE_ERROR_CALL_DOES_NOT_EXIST
+      permanent: false
+      description: The voice call record/transaction does not exist. Contact Support for further assistance.
+    - id: 5484
+      name: EC_VOICE_ERROR_ADDRESS_INCOMPLETE
+      permanent: false
+      description: The address (for example, destination number) provided for the voice call is incomplete or invalid.
+        Make sure the address is correctly formatted.
+    - id: 5487
+      name: EC_VOICE_ERROR_REQUEST_TERMINATED
+      permanent: false
+      description: The voice call request was terminated with a cancel button or the end user refused to receive
+        a voice call.
+    - id: 5488
+      name: EC_VOICE_ERROR_NOT_ACCEPTABLE_HERE
+      permanent: false
+      description: The voice call request is not acceptable on the operator’s end. Contact Support for further assistance.
+    - id: 5491
+      name: EC_VOICE_ERROR_REQUEST_PENDING
+      permanent: false
+      description: The voice call request is pending and waiting for further processing. Wait for the request to
+        be processed or check the status later.
+    - id: 5501
+      name: EC_NOT_IMPLEMENTED
+      permanent: true
+      description: The requested voice call feature is not implemented or supported. Contact Support for further
+        assistance.
+    - id: 5503
+      name: EC_SERVICE_UNAVAILABLE
+      permanent: true
+      description: The voice call service is temporarily unavailable. Retry the request later or contact Support
+        for further information.
+- family: Voice and WebRTC error codes
+  groups:
+  - group: OK
+    group_id: 0
+    kind: error
+    code_count: 5
+    codes:
+    - id: 10000
+      name: NORMAL_HANGUP
+      permanent: true
+      description: The call ended due to a hangup initiated by the caller, callee, or API.
+    - id: 10001
+      name: ANSWERED_ELSEWHERE
+      permanent: true
+      description: The call was answered on another device or platform. Verify the call status on the intended device
+        or investigate further if needed.
+    - id: 10002
+      name: MACHINE_DETECTED
+      permanent: true
+      description: The voice call was answered by a machine or voicemail system. You may consider adjusting your
+        communication strategy for machine-answered calls.
+    - id: 10003
+      name: HUMAN_DETECTED
+      permanent: true
+      description: A human answered the call. You can take appropriate action based on the call's purpose.
+    - id: 10004
+      name: MAX_DURATION_REACHED
+      permanent: true
+      description: The call reached the maximum allowed duration. If needed, initiate a new call or adjust the call
+        duration settings and contact Support for further assistance.
+  - group: Handset errors
+    group_id: 1
+    kind: error
+    code_count: 4
+    codes:
+    - id: 10100
+      name: DEVICE_FORBIDDEN
+      permanent: true
+      description: The device (camera and/or microphone) used for the call is not allowed or blocked. Check device
+        permissions or restrictions and take appropriate action.
+    - id: 10101
+      name: DEVICE_NOT_FOUND
+      permanent: true
+      description: The device (camera and/or microphone) for the call could not be found or is unavailable. Ensure
+        the device is accessible and try again.
+    - id: 10102
+      name: DEVICE_UNAVAILABLE
+      permanent: true
+      description: The device (camera and/or microphone) for the call is currently unavailable.
+    - id: 10103
+      name: MEDIA_ERROR
+      permanent: true
+      description: An error occurred with the media during the call (for example, an audio issue). Check the media
+        settings and equipment, and troubleshoot as necessary.
+  - group: User errors
+    group_id: 2
+    kind: error
+    code_count: 5
+    codes:
+    - id: 10200
+      name: NO_ANSWER
+      permanent: true
+      description: The call was successfully delivered to the end user device; however, it was not answered by the
+        end user.
+    - id: 10201
+      name: BUSY
+      permanent: true
+      description: The call has been successfully delivered to the end user's device, but the end user's device
+        indicates that they are currently busy and unable to answer the incoming call.
+    - id: 10202
+      name: CANCELLED
+      permanent: true
+      description: The call was canceled at the origination end before it could be successfully routed to the end
+        user.
+    - id: 10203
+      name: REJECTED
+      permanent: true
+      description: The call was rejected/declined by the end user at the receiving end.
+    - id: 10204
+      name: TEMPORARILY_UNAVAILABLE
+      permanent: true
+      description: The end user was unavailable to receive the call at the moment. The operator attempted to connect
+        the call but encountered an issue with the end user's connection or availability, resulting in the call
+        not being successfully connected. It is advisable to verify if the phone number provided is valid and reachable
+        to ensure effective communication in the future.
+  - group: Operator errors
+    group_id: 3
+    kind: error
+    code_count: 17
+    codes:
+    - id: 10300
+      name: FORBIDDEN
+      permanent: true
+      description: The received request was rejected. Contact Support for further assistance.
+    - id: 10301
+      name: INSUFFICIENT_FUNDS
+      permanent: true
+      description: The account you are using does not have sufficient credits or funds available to initiate the
+        phone call you are attempting to make. In order to proceed with the call, you will need to ensure that there
+        are enough credits or funds in your account.
+    - id: 10302
+      name: UNAUTHENTICATED
+      permanent: true
+      description: The caller's credentials or access rights are invalid or insufficient to initiate the call. To
+        resolve this, ensure that the caller provides valid authentication credentials or obtains proper authorization
+        for making the call.
+    - id: 10303
+      name: DESTINATION_NOT_FOUND
+      permanent: true
+      description: The server was unable to locate the destination number you dialed. This could be due to an incorrect
+        country prefix or an invalid number format. To resolve this issue, double-check the country prefix and ensure
+        that the number you dialed is accurate and in the correct format.
+    - id: 10304
+      name: DESTINATION_UNAVAILABLE
+      permanent: true
+      description: The destination number you attempted to call is currently unavailable to receive incoming calls.
+        To address this situation, it is recommended to verify if the number you dialed is valid and reachable.
+    - id: 10305
+      name: INVALID_DESTINATION
+      permanent: true
+      description: The server was unable to locate the destination number you dialed. This could be due to an incorrect
+        country prefix or an invalid number format. To resolve this issue, double-check the country prefix and ensure
+        that the number you dialed is accurate and in the correct format.
+    - id: 10306
+      name: INVALID_REQUEST
+      permanent: true
+      description: The call request is invalid or malformed. Review the request parameters and structure, and make
+        necessary adjustments.
+    - id: 10307
+      name: REQUEST_TIMEOUT
+      permanent: true
+      description: The call request timed out without a response. For more specific details and assistance, contact
+        Support.
+    - id: 10308
+      name: NETWORK_ERROR
+      permanent: true
+      description: An error occurred in the network during the call. Check the network connection and contact Support
+        for further investigation.
+    - id: 10309
+      name: SERVICE_UNAVAILABLE
+      permanent: true
+      description: The call service is temporarily unavailable. Contact Support for assistance.
+    - id: 10310
+      name: UNKNOWN
+      permanent: true
+      description: An unknown error occurred during the call. Contact Support for further investigation and assistance.
+    - id: 10311
+      name: FEATURE_UNAVAILABLE
+      permanent: true
+      description: The requested call feature is not available or supported. Consider alternative features or methods
+        for communication or contact Support for assistance.
+    - id: 10312
+      name: CONGESTION
+      permanent: true
+      description: The call could not be completed due to network congestion or overload. Contact Support for further
+        investigation and assistance.
+    - id: 10313
+      name: UNAUTHORIZED
+      permanent: true
+      description: The destination number you attempted to call has not authorized incoming calls. To resolve this
+        situation, obtain authorization from the callee or their service provider.
+    - id: 10400
+      name: URL_NOT_FOUND
+      permanent: true
+      description: The requested URL for the call was not found. Verify the URL and make necessary corrections.
+    - id: 10401
+      name: URL_UNREACHABLE
+      permanent: true
+      description: The requested URL for the call is unreachable. Check the network connectivity and URL accessibility.
+    - id: 10402
+      name: INVALID_RESPONSE
+      permanent: true
+      description: The response received during the call is invalid or unexpected. Contact Support for assistance.
+- family: Push notification error codes
+  groups:
+  - group: Registration errors
+    group_id: 1
+    kind: error
+    code_count: 4
+    codes:
+    - id: 8001
+      name: EC_DEVICE_APP_UNINSTALL
+      permanent: true
+      description: User has uninstalled the application on device or device cloud token expired.
+    - id: 8002
+      name: EC_FCM_MISMATCH_SENDER_ID
+      permanent: true
+      description: FCM responded with MismatchSenderId in response error field. Sender ID is a unique numerical
+        value created when you create your Firebase project, available in the Cloud Messaging tab of the Firebase
+        console's Settings panel. The sender ID is used to identify each app server that can send messages to the
+        client app. Check your application build configuration.
+    - id: 8003
+      name: EC_NO_APPLICATION_FOUND
+      permanent: true
+      description: Application with provided ApplicationCode for sending push messages is not found. Check your
+        message target parameters.
+    - id: 8004
+      name: EC_NO_REGISTRATION_ID_FOUND
+      permanent: true
+      description: Registration with provided PushRegistrationId does not exist or has expired.
+  - group: Cloud errors
+    group_id: 3
+    kind: error
+    code_count: 9
+    codes:
+    - id: 8005
+      name: EC_SYS_ERROR_FROM_CLOUD
+      permanent: true
+      description: Failed to send push notification. Cloud (FCM or APNS) responded with error while processing the
+        request.
+    - id: 8006
+      name: EC_INVALID_FCM_AUTH_DATA
+      permanent: true
+      description: Invalid cloud authentication data (Server Key). FCM responded with status 401 (Unauthorized).
+        Check your Application configuration for Android on the web interface.
+    - id: 8007
+      name: EC_INVALID_APNS_CERT
+      permanent: true
+      description: Invalid certificate for APNS. Check your Application configuration for iOS on the web interface.
+    - id: 8008
+      name: EC_APPLICATION_CLOUD_TYPE_DISABLED
+      permanent: true
+      description: Cloud type was disabled by client for the application. Request is targeted to registration with
+        cloud type that was disabled by the client. Check your Application configuration on the web interface.
+    - id: 8009
+      name: EC_PUSH_INTERNAL_REQUEST_ERROR
+      permanent: true
+      description: Internal error. Try again later and, if the problem persists, contact Support for further assistance.
+    - id: 8010
+      name: EC_INVALID_PUSH_PAYLOAD
+      permanent: true
+      description: Invalid push payload data. Contact Support for further assistance.
+    - id: 8011
+      name: EC_PUSH_INTERNAL_GW_ERROR
+      permanent: true
+      description: Internal error. Try again later and if the problem persists, contact Support for further assistance.
+    - id: 8012
+      name: EC_PUSH_CLOUD_TEMP_UNAVAILABLE
+      permanent: true
+      description: Push Cloud (FCM or APNS) is temporarily unavailable. Message is pending in retry.
+    - id: 8013
+      name: EC_REGISTRATION_ID_DISABLED
+      permanent: true
+      description: 'Push notifications cannot be delivered because the recipient’s device is not able to receive
+        them. Possible causes from the recipient’s side: - Manually disabled notifications - App was uninstalled
+        Possible causes from your side: - The installation was disabled for this recipient’s profile in People -
+        The installation was disabled in the app code If cause was from your side, you can resolve the issue by
+        enabling the installation again for this recipient’s profile in People or refer to the SDK do'
+- family: MMS error codes
+  groups:
+  - group: null
+    group_id: null
+    kind: error
+    code_count: 30
+    codes:
+    - id: 15000
+      name: EC_MMS_GENERAL_ERROR
+      permanent: false
+      description: Indicates an MMS provider general error occurred.
+    - id: 15002
+      name: EC_SYSTEM_ERROR
+      permanent: true
+      description: Indicates a system error occurred.
+    - id: 15003
+      name: EC_MSISDN_NOT_REGISTERED
+      permanent: true
+      description: The MSISDN is not registered by the operator.
+    - id: 15004
+      name: EC_DEFERRED
+      permanent: false
+      description: The message is deferred. The end user's handset has retrieved the MMS header, but not the full
+        message.
+    - id: 15005
+      name: EC_MMS_FORWARDED
+      permanent: true
+      description: The end user has forwarded the MMS to another address without retrieving it.
+    - id: 15006
+      name: EC_VALIDITY_EXPIRED
+      permanent: true
+      description: The mobile operator could not contact the handset before the message expired.
+    - id: 15007
+      name: EC_CONTENT_CANNOT_BE_DOWNLOADED_ON_HANDSET
+      permanent: true
+      description: The content cannot be downloaded on the handset.
+    - id: 15008
+      name: EC_PROVIDER_DELIVERY_ERROR
+      permanent: true
+      description: Indicates an MMS provider error occurred during the delivery.
+    - id: 15009
+      name: EC_RECIPIENT_NOT_FOUND
+      permanent: true
+      description: The mobile operator could not find the recipient on the mobile.
+    - id: 15010
+      name: EC_SOURCE_ADDRESS_NOT_REGISTERED
+      permanent: true
+      description: The source address not provisioned with the operator.
+    - id: 15011
+      name: EC_RECIPIENT_BLOCKED_BY_OPERATOR
+      permanent: true
+      description: The recipient blocked by receiving MMS by the operator.
+    - id: 15012
+      name: EC_DRM_NOT_SUPPORTED
+      permanent: true
+      description: DRM is not supported.
+    - id: 15013
+      name: EC_MMS_CONTENT_BLOCKED_BY_OPERATOR
+      permanent: true
+      description: MMS content blocked or is unsupported by the operator.
+    - id: 15014
+      name: EC_MMS_INVALID_SUBJECT
+      permanent: true
+      description: The MMS subject in the request is invalid.
+    - id: 15015
+      name: EC_MMS_SC_BLOCKED_BY_END_USER
+      permanent: true
+      description: The end user has blocked traffic from this specific SC.
+    - id: 15016
+      name: EC_UNKNOWN_CARRIER
+      permanent: true
+      description: Unable to determine the mobile operator.
+    - id: 15017
+      name: EC_RECIPIENT_DEACTIVATED
+      permanent: true
+      description: The recipient is deactivated.
+    - id: 15018
+      name: EC_RECIPIENT_SUSPENDED
+      permanent: true
+      description: The recipient is suspended from the service.
+    - id: 15019
+      name: EC_HANDSET_DOES_NOT_SUPPORT_MMS
+      permanent: true
+      description: MMS is not supported on the handset.
+    - id: 15020
+      name: EC_CAMPAIGN_BLOCKED_BY_OPERATOR
+      permanent: true
+      description: The campaign is blocked by the mobile operator.
+    - id: 15021
+      name: EC_CAMPAIGN_INFO_NOT_PROVISIONED
+      permanent: true
+      description: Campaign information is not provisioned for this mobile operator.
+    - id: 15022
+      name: EC_URL_ATTACHMENT_TOO_LARGE
+      permanent: true
+      description: The MMS cannot be retrieved because the URL attachment is too large.
+    - id: 15023
+      name: EC_FAILED_TO_ROUTE_MESSAGE
+      permanent: true
+      description: The MMS message could not be routed.
+    - id: 15024
+      name: EC_REMOTE_CONTENT_FAILURE
+      permanent: true
+      description: The remote content could not be retrieved.
+    - id: 15025
+      name: EC_REMOTE_CONTENT_INTERNAL_FAILURE
+      permanent: true
+      description: An internal error occurred while trying to fetch the remote content.
+    - id: 15026
+      name: EC_TOO_BIG_CONTENT
+      permanent: true
+      description: The message was rejected because the submitted content exceeds operator limits.
+    - id: 15200
+      name: EC_INVALID_MSG_TYPE
+      permanent: true
+      description: The MMS message type is invalid.
+    - id: 15201
+      name: EC_MMS_INVALID_DESTINATION_ADDRESS
+      permanent: true
+      description: The MMS destination address is invalid.
+    - id: 15202
+      name: EC_MMS_INVALID_SOURCE_ADDRESS
+      permanent: true
+      description: The MMS source address is invalid.
+    - id: 15203
+      name: EC_INVALID_SUBJECT
+      permanent: true
+      description: The MMS subject parameter is invalid.
+- family: Email error codes
+  groups:
+  - group: Dropped
+    group_id: 1
+    kind: error
+    code_count: 31
+    codes:
+    - id: 6002
+      name: EC_SPAM_DETECTED
+      permanent: true
+      description: The content you are trying to send was detected as possible spam by the platform. Review the
+        Email deliverability section and adjust your content accordingly before retry.
+    - id: 6003
+      name: EC_UNSUBSCRIBED_EMAIL_ADDRESS
+      permanent: true
+      description: The recipient opted out of receiving updates from this specific address. If removal is desired,
+        complete the request by going to the Do not contact option in the web interface.
+    - id: 6016
+      name: EC_SENDER_DOMAIN_BOUNCE_BLOCKED
+      permanent: true
+      description: Your domain has been blocked due to a high bounce rate to protect IPs and its reputation. The
+        domain unblocking procedure is automated and will happen after a 24-hour cooling-off period. To prevent
+        this from occurring in the future, check the reports and clean up your recipient database from inactive
+        addresses. Review the Email validation section to help you with the procedure.
+    - id: 6018
+      name: EC_REQUEST_INVALID
+      permanent: true
+      description: The submitted request is not valid. Ensure that the data and request parameters are accurate
+        and in the right format.
+    - id: 6020
+      name: EC_EMAIL_TEMPLATE_NOT_FOUND
+      permanent: true
+      description: The email template from the request could not be found. Make sure that the template ID is correct
+        before retry.
+    - id: 6021
+      name: EC_EMAIL_PLACEHOLDERS_ERROR
+      permanent: true
+      description: Error with placeholders in the content. Check the placeholders to confirm there are no issues
+        or typos in them and retry.
+    - id: 6023
+      name: EC_BLOCKED_SUSPICIOUS_ACTIVITY
+      permanent: true
+      description: Your domain has been blocked due to suspicious activity. Should you require any additional information
+        regarding this matter, contact Support or your account manager.
+    - id: 6024
+      name: EC_EMAIL_TOO_MANY_URLS
+      permanent: true
+      description: Maximum amount of URLs with Tracking enabled is 150. Lower the amount of URLs or turn off the
+        Tracking features before retry.
+    - id: 6025
+      name: EC_EMAIL_INVALID_TRACKING_PARAMS
+      permanent: true
+      description: Tracking parameters in the email are not valid. Review them and then retry.
+    - id: 6026
+      name: EC_EMAIL_LANDING_PAGE_PLACEHOLDERS_SIZE_EXCEEDED
+      permanent: true
+      description: Size of the placeholders on the landing page limit is 256 characters. Adjust (decrease) the landing
+        page placeholder size accordingly and retry.
+    - id: 6027
+      name: EC_EMAIL_INVALID_HEADERS
+      permanent: true
+      description: The headers of the email are invalid or improperly formatted. Check the headers and ensure they
+        meet the required format.
+    - id: 6029
+      name: EC_SENDER_ADDRESS_INVALID
+      permanent: true
+      description: The email sender is invalid or unauthorized to send emails. To resolve the issue, check the sender
+        domain for spelling mistakes and ensure that the domain is verified and properly configured.
+    - id: 6030
+      name: EC_EMAIL_INVALID_LANDING_PAGE
+      permanent: true
+      description: The specified landing page is invalid or inaccessible. Confirm the landing page's URL and availability
+        and retry.
+    - id: 6031
+      name: EC_INVALID_PRESERVED_CC_OR_BCC_RECIPIENT
+      permanent: true
+      description: Invalid preserved recipient in CC or BCC. Check the recipient list and ensure that all preserved
+        recipients are valid and the limit is not reached.
+    - id: 6033
+      name: EC_INVALID_CC_BCC_EMAIL_ADDRESS
+      permanent: true
+      description: The request contains invalid addresses in the CC and/or BCC. Ensure that the addresses are correctly
+        formatted by checking them.
+    - id: 6034
+      name: EC_SUPPRESSED_BOUNCE
+      permanent: true
+      description: A bounce SMTP response from the recipient's mailbox provider earlier has resulted in the recipient
+        address being suppressed.
+    - id: 6035
+      name: EC_SUPPRESSED_SPAM_COMPLAINT
+      permanent: true
+      description: Due to the recipient reporting previous content sent from the same domain as spam, the recipient's
+        address has been suppressed. Note that this error code will be deployed at a later stage. For the time being,
+        spam complaints will be marked with EC 6034.
+    - id: 6036
+      name: EC_SENDER_DOMAIN_UNVERIFIED
+      permanent: true
+      description: Domain does not currently have all required DNS records set up correctly. Check your DNS configuration.
+        See Verify your sender domain.
+    - id: 6038
+      name: EC_EMAIL_CONTENT_EXPIRED
+      permanent: true
+      description: The content in a template expired due to the lack of regular usage. To resolve the issue, check
+        the content and re-upload it. If the issue persists, contact Support.
+    - id: 6039
+      name: EC_EMAIL_TEMPLATE_LANGUAGE_ERROR
+      permanent: true
+      description: Error in template language in your content. See Template language for more details. If the problem
+        persists, contact Support.
+    - id: 6040
+      name: EC_EMAIL_TEMPLATE_EXPIRED
+      permanent: true
+      description: The template validity period expired. Either update a template to prolong the validity, or copy
+        it and update the template ID before retry.
+    - id: 6041
+      name: EC_EMAIL_TEMPLATE_NOT_SAVED
+      permanent: true
+      description: The template was not saved. Make sure the requested template is correctly stored on the web interface
+        before retry.
+    - id: 6050
+      name: EC_SENDER_WARMUP
+      permanent: false
+      description: The sender domain has reached its reputation warmup limit for today.
+    - id: 6051
+      name: EC_WARMUP
+      permanent: false
+      description: The sender has reached its reputation warmup limit for today.
+    - id: 6052
+      name: EC_RECIPIENT_DOMAIN_TYPO
+      permanent: true
+      description: Recipient domain is blocked as it is listed on the Infobip internal blocklist.
+    - id: 6053
+      name: EC_ACCESS_DENIED_BY_MAILBOX_PROVIDER
+      permanent: false
+      description: The mailbox provider has denied access for the sender.
+    - id: 6054
+      name: EC_SINGLE_SENDER_NOT_VERIFIED
+      permanent: true
+      description: Single sender not verified. Verify your sender address before retrying the traffic.
+    - id: 6055
+      name: EC_SINGLE_SENDER_TRAFFIC_EXCEEDED
+      permanent: true
+      description: Your account has reached the limit of 100 emails sent from registered Single Sender address(es).
+        To continue sending emails through Infobip, add your domain to your account. For more information, see Register
+        a new domain.
+    - id: 6056
+      name: EC_NO_IP_POOL_ASSIGNED
+      permanent: false
+      description: The registered sending domain does not have an IP pool assigned.
+    - id: 6057
+      name: EC_SAFETY_RATE_LIMIT
+      permanent: false
+      description: The sending IP/domain is rate limited by the platform to protect the IP/domain reputation, as
+        rejections were noticed from the specific mailbox provider. This usually relates to the lack of warmup or
+        negative reactions by traffic recipients. To resolve the issue, slow down the traffic towards the specific
+        provider to increase your reputation gradually. For more information, see IP and domain warmup.
+    - id: 6058
+      name: EC_MAILBOX_PROVIDER_RATE_LIMIT
+      permanent: false
+      description: The sending IP or domain is limited by the mailbox provider.
+  - group: Bounced
+    group_id: 2
+    kind: error
+    code_count: 16
+    codes:
+    - id: 6006
+      name: EC_INVALID_EMAIL_ADDRESS
+      permanent: true
+      description: The recipient's email address provided is either invalid, inactive, or disabled. Check for possible
+        typos and validate the address before the retry. Review the Email validation section to help you with the
+        procedure.
+    - id: 6007
+      name: EC_MAILBOX_TEMPORARY_UNAVAILABLE
+      permanent: false
+      description: The recipient's mailbox is temporarily unavailable. Retry the email in a few hours and contact
+        Support if you continue to encounter the same response for the additional checks.
+    - id: 6009
+      name: EC_MAILBOX_PERMANENTLY_UNAVAILABLE
+      permanent: true
+      description: The recipient's mailbox provider (domain) might be permanently unavailable. Contact the recipient
+        and attend to the situation before retry.
+    - id: 6010
+      name: EC_RECIPIENT_INBOX_FULL
+      permanent: false
+      description: The recipient's mailbox storage limit has been reached and they cannot receive additional emails.
+        Contact the recipient and resolve this situation by clearing some data.
+    - id: 6011
+      name: EC_SOFT_BOUNCE
+      permanent: false
+      description: Response indicates a temporary delivery error. Retry sending and if the same response is returned,
+        contact the recipient to attend to the situation.
+    - id: 6012
+      name: EC_HARD_BOUNCE
+      permanent: true
+      description: Response is indicating a permanent error related to the delivery. Contact the recipient to confirm
+        and solve the situation.
+    - id: 6017
+      name: EC_SENDER_IP_BLACKLISTED
+      permanent: false
+      description: The IP address assigned to your domain has been blocklisted. See Email deliverability and request
+        the de-listing on the relevant blocklist.
+    - id: 6037
+      name: EC_RECIPIENT_DOMAIN_MX_NOT_FOUND
+      permanent: true
+      description: The domain to which this address belongs is possibly unavailable or does not exist due to the
+        MX not being found or being unavailable. Check the address for any typos and validate the address.
+    - id: 6042
+      name: EC_SPAM_REVERTED
+      permanent: true
+      description: The content in the email was flagged as spam by the mailbox provider. See Email deliverability
+        and adjust your content accordingly before retry.
+    - id: 6043
+      name: EC_SUSPICIOUS_CONTENT
+      permanent: true
+      description: Mailbox provider decided to deny your traffic due to the suspicious content. Ensure that you
+        are following content best practices before retrying the traffic. If the error persists, contact the mailbox
+        provider.
+    - id: 6044
+      name: EC_SUSPICIOUS_SENDER
+      permanent: true
+      description: Recipient mailbox provider denied your messages due to very low reputation of your domain or
+        IPs. This usually happens due to different sending best practices not being followed. Ensure that you respect
+        general and mailbox provider's best practices when sending traffic. If the error repeats, contact the mailbox
+        provider to resolve the situation.
+    - id: 6045
+      name: EC_RECIPIENT_DOMAIN_POLICY_ERROR
+      permanent: true
+      description: Mailbox provider blocked your message as it does not meet their email policy requirements for
+        your organization or for the recipient's organization. Follow the best practices and if the error repeats,
+        contact the recipient for additional details and possible solution.
+    - id: 6046
+      name: EC_UNSOLICITED_RECIPIENT
+      permanent: false
+      description: The recipient mailbox provider (domain) has detected that this message is likely to be an unsolicited
+        email; therefore, it was blocked. Ensure that your recipients are subscribed and interested in the traffic
+        before retry.
+    - id: 6047
+      name: EC_DOMAIN_CONFIGURATION_ERROR
+      permanent: true
+      description: Your domain might be missing valid DKIM or SPF, so your traffic has been denied by the recipient
+        mailbox provider. Ensure that your DNS records are valid before retry.
+    - id: 6048
+      name: EC_DMARC_POLICY_ISSUE
+      permanent: true
+      description: Recipient mailbox provider denied your domain's DMARC policy. Ensure that the policy is valid
+        before retry and if the error repeats, contact the recipient mailbox provider for further instructions.
+    - id: 6049
+      name: EC_SENDER_DOMAIN_BLACKLISTED
+      permanent: true
+      description: Your domain has been blocklisted by the recipient mailbox. See Email deliverability and request
+        the de-listing on the relevant blocklist.
+  - group: System errors
+    group_id: 3
+    kind: error
+    code_count: 1
+    codes:
+    - id: 6013
+      name: EC_INTERNAL_SYSTEM_ERROR
+      permanent: false
+      description: Something went wrong on the Infobip end. Retry the traffic and contact Support if the same error
+        is returned.
+- family: Chat error codes
+  groups:
+  - group: Client errors
+    group_id: 1
+    kind: error
+    code_count: 36
+    codes:
+    - id: 7001
+      name: EC_UNKNOWN_APPLICATION
+      permanent: true
+      description: Indicates that the requested application is unknown or not recognized. Resolution steps involve
+        verifying the application details, ensuring proper configuration, and contacting the appropriate support
+        channels for assistance.
+    - id: 7002
+      name: EC_UNKNOWN_USER
+      permanent: true
+      description: 'Signifies that the user is unknown or not registered. In the context of RCS, this means the
+        user cannot be reached through RCS because: • Their device does not support RCS or RCS is disabled. • Their
+        mobile network does not support RCS for the agent (either the agent is not launched there or RCS traffic
+        is not enabled). • An unlaunched agent is requesting capabilities for a user who is not a registered tester.
+        To resolve this error, verify the user''s details or ensure that the MSISDN is correct '
+    - id: 7003
+      name: EC_BLOCKED_USER
+      permanent: true
+      description: Indicates that the user has been blocked or restricted from accessing the messages. In RCS, this
+        occurs when the user has opted out of further communication from the agent. Resolution steps involve investigating
+        the reason for the user block, reviewing any violation or restriction policies, and taking appropriate actions
+        such as unblocking or contacting Support for further assistance.
+    - id: 7004
+      name: EC_UNAUTHORIZED_ACCESS
+      permanent: true
+      description: Denotes unauthorized access or unrecognized service access credentials. To resolve this error,
+        investigate the unauthorized access attempt, ensure proper authentication/credentials, and contact Support
+        for further assistance.
+    - id: 7005
+      name: EC_FORBIDDEN_ACCESS
+      permanent: true
+      description: 'Indicates that access to the requested resource or service is forbidden. In RCS, this may occur
+        when: • An unlaunched agent attempts to send a message, event, or capability callback to a non-tester. •
+        The carrier does not support RCS or the carrier itself is not supported. Resolution steps involve verifying
+        the user''s access rights and permissions, ensuring the application is allowed to send messages, and verifying
+        that it is published or approved by the provider.'
+    - id: 7006
+      name: EC_BAD_REQUEST
+      permanent: true
+      description: 'The server cannot process the request due to invalid syntax or parameters. In RCS, this typically
+        occurs when: • The message contains unsupported content. • The message includes features or settings that
+        the recipient’s device does not support. Verify the request data and ensure that it follows the required
+        format or check the API documentation for the correct request structure or contact Support for additional
+        guidance.'
+    - id: 7007
+      name: EC_ILLEGAL_TRAFFIC_TYPE
+      permanent: true
+      description: Indicates that the content of the submitted message does not align with the registered traffic
+        type of the sender. This could be due to the use of incompatible media elements or not understanding any
+        restrictions or guidelines related to traffic types. For more specific details and assistance, contact Support.
+    - id: 7008
+      name: EC_INVALID_TEMPLATE_ARGS
+      permanent: true
+      description: Denotes invalid or missing parameters in a message template. To resolve this error, review the
+        template structure, ensure that all required parameters are provided, and correct any invalid or missing
+        parameters.
+    - id: 7009
+      name: EC_INVALID_TEMPLATE
+      permanent: true
+      description: Signifies an invalid or incorrect message template. In RCS, it's used on connections that have
+        template management. Resolution steps involve reviewing the template and making the necessary modifications
+        or corrections.
+    - id: 7010
+      name: EC_NO_SESSION
+      permanent: true
+      description: Indicates that the session has not been initiated or has expired. To resolve this error, establish
+        a valid session by authenticating the user or application, ensuring a new session, or extending the existing
+        session.
+    - id: 7011
+      name: EC_ACCOUNT_ISSUE
+      permanent: true
+      description: Signifies an issue or problem related to the user's account. Resolution steps involve investigating
+        the account-related problem and contacting Support for further assistance.
+    - id: 7012
+      name: EC_DEPLOYMENT_CONFIGURATION_ERROR
+      permanent: false
+      description: Denotes an error or issue with the deployment or configuration of the system or service. To resolve
+        this error, contact Support for further assistance.
+    - id: 7013
+      name: EC_MEDIA_HOSTING_ERROR
+      permanent: false
+      description: Indicates an error or problem related to media hosting or storage. Resolution steps involve verifying
+        the media hosting setup, ensuring proper connectivity, and resolving any hosting-related issues.
+    - id: 7014
+      name: EC_MEDIA_UPLOAD_ERROR
+      permanent: false
+      description: Signifies an error or problem encountered during media upload. To resolve this error, check for
+        any network or connectivity issues, and ensure that the media file meets the specified requirements.
+    - id: 7015
+      name: EC_MEDIA_METADATA_ERROR
+      permanent: true
+      description: Denotes an error or issue with the metadata associated with media files. Resolution steps involve
+        reviewing the metadata information, ensuring content type and size, and resolving any metadata-related problems.
+    - id: 7016
+      name: EC_SPAM_RATE
+      permanent: true
+      description: Message failed because there are restrictions related to the sender quality rating on how many
+        messages can be sent from this sender to unique end users during the period defined by the provider.
+    - id: 7017
+      name: EC_TOO_MANY_REQUESTS
+      permanent: false
+      description: Signifies that the number of requests from the application has exceeded the allowed limit. In
+        RCS, this occurs when tester request quotas are exceeded, such as sending more than 20 tester requests in
+        a single day or surpassing the total maximum of 200 tester requests. To resolve this error, reduce the frequency
+        or number of requests, adhere to rate limits, and consider optimizing the request flow if necessary.
+    - id: 7018
+      name: EC_INTERNAL_BAD_MAPPING
+      permanent: true
+      description: Denotes an internal error related to mapping or data structures within the system. In RCS, this
+        occurs when a message is rejected due to an invalid request, such as using a disallowed image format or
+        incorrectly applying message parameters. Resolution steps involve investigating the mapping issue, reviewing
+        and resolving any inconsistencies or errors in the mapping process, and contacting Support for further assistance.
+    - id: 7019
+      name: EC_PROVIDER_BILLING_ERROR
+      permanent: true
+      description: Indicates an error or problem with the billing process or integration with the provider. To resolve
+        this error, review the billing setup, ensure proper integration and configuration with the provider, and
+        address any billing-related issues or errors.
+    - id: 7020
+      name: EC_DEVICE_REPRODUCTION_ERROR
+      permanent: true
+      description: Signifies an error or problem related to displaying content on the end user device. To resolve
+        it, check network connectivity and refresh the content, clear the cache, update the app or software, ensure
+        device compatibility, and verify if the latest Terms of Service has been accepted. If the issue persists,
+        contact Support for further assistance.
+    - id: 7021
+      name: EC_LIMITED_FUNCTIONALITY
+      permanent: true
+      description: Denotes limited functionality or restricted access to certain features or services on the Meta
+        side. To resolve this error, review the functionality restriction on the Meta side.
+    - id: 7022
+      name: EC_MEDIA_UNSUPPORTED
+      permanent: true
+      description: Indicates that the media file or format is not supported by Meta. Resolution steps involve verifying
+        the supported media formats, converting the media file to a supported format if necessary, and ensuring
+        compatibility with Meta's media requirements.
+    - id: 7023
+      name: EC_DATA_MISMATCH
+      permanent: true
+      description: Signifies a mismatch or inconsistency in the data, either locally or remotely. To resolve this
+        error, validate its accuracy and consistency, and address any mismatches or inconsistencies. If you need
+        additional assistance, contact Support.
+    - id: 7024
+      name: EC_NOT_ALLOWED_SENDING_TIME
+      permanent: false
+      description: Denotes an error where the sending time for the message is not allowed or falls outside the permitted
+        time window. Resolution steps involve reviewing the sending time restrictions or policies, adjusting the
+        sending time if necessary, and ensuring compliance with the permitted time frames.
+    - id: 7025
+      name: EC_UNSUPPORTED_MOBILE_APP_VERSION
+      permanent: true
+      description: Indicates that the mobile app version being used is not supported by Meta. To resolve this error,
+        update the mobile app to a supported version, ensure compatibility with Meta requirements, and address any
+        version-related issues. Contact Support for further assistance.
+    - id: 7026
+      name: EC_MESSAGE_TYPE_EXHAUSTED
+      permanent: true
+      description: Denotes that the message type or category has been exhausted or reached the supplier's API limit.
+        Resolution steps involve reviewing the message type limitations and managing message usage within the allocated
+        limits.
+    - id: 7027
+      name: EC_BLOCKED_CONTENT
+      permanent: true
+      description: Signifies that the content of the message is blocked or restricted due to policy violations or
+        content filtering. To resolve this error, review the message content, ensure compliance with content guidelines,
+        modify the content if necessary, and address any policy violations.
+    - id: 7029
+      name: EC_USER_IDENTITY_CHANGED
+      permanent: true
+      description: Indicates that the user's identity or authentication details have changed or become invalid.
+        Resolution steps involve verifying the user's identity, updating authentication information if necessary,
+        and ensuring proper user identification and authentication.
+    - id: 7030
+      name: EC_TEMPLATE_BLOCKED_BY_USER
+      permanent: true
+      description: The receiving user has blocked a specific template.
+    - id: 7031
+      name: EC_INVALID_WA_FLOW
+      permanent: true
+      description: Indicates an invalid state of the flow or an incorrect mode in the Flow message. Resolution steps
+        involve verifying the message request and flow. Applies to cases where the flow is in a deprecated, blocked,
+        or throttled state, as well as cases of an invalid flow mode in message requests (for example, using a draft
+        when the flow is published).
+    - id: 7032
+      name: EC_FREQUENCY_CAPPING
+      permanent: true
+      description: Indicates that the message was rejected because Meta limits how many WhatsApp marketing template
+        messages a person can receive from all businesses within a certain time period. Once a user reaches this
+        per-user limit, additional marketing templates that would start a new conversation may be blocked, starting
+        with messages that are less likely to be read. For more details, refer to the Meta documentation.
+    - id: 7033
+      name: EC_MARKETING_OPT_OUT
+      permanent: true
+      description: Indicates that the message was not delivered because the recipient has opted out of receiving
+        WhatsApp marketing messages from this business. This occurs when the end user disables the Offers and announcements
+        setting in WhatsApp. To resume receiving marketing messages, the user must manually re-enable this option
+        in WhatsApp. For more information, refer to the Meta documentation.
+    - id: 7034
+      name: EC_SENDER_NOT_REGISTERED
+      permanent: true
+      description: Sender not registered on the WhatsApp Business Platform.
+    - id: 7035
+      name: EC_CALL_PERMISSION_REQUEST_FAILED
+      permanent: false
+      description: The maximum number of call permission requests has been reached for this business–consumer pair.
+    - id: 7102
+      name: EC_PHONE_MATCHING_DISABLED
+      permanent: true
+      description: Indicates a data mismatch or inconsistency, either locally or remotely. To resolve the issue,
+        verify the accuracy and consistency of the data, and address any discrepancies or inconsistencies. Contact
+        Support for additional assistance.
+    - id: 7201
+      name: EC_UNSUPPORTED_DEVICE
+      permanent: true
+      description: Denotes an unsupported or incompatible device attempting to access the service. To resolve this
+        error, verify the device compatibility requirements, and address any device-related issues or limitations.
+  - group: Provider errors
+    group_id: 2
+    kind: error
+    code_count: 6
+    codes:
+    - id: 7036
+      name: EC_TEMPLATE_NOT_SYNCED
+      permanent: false
+      description: The newly created template was sent through MM Lite before completing ad synchronization. Please
+        wait up to 10 minutes for ad synchronization to complete, then try again.
+    - id: 7037
+      name: EC_TEMPLATE_NOT_AVAILABLE
+      permanent: false
+      description: Meta was unable to complete ad synchronization for the template you want to send, or your business
+        may not be eligible for MM Lite.
+    - id: 7038
+      name: EC_INVALID_WA_ACCOUNT_TYPE
+      permanent: true
+      description: The WhatsApp Business Account (WABA) uses the On-Behalf-Of (OBO) model. OBO WABAs are not supported.
+        Use a different WABA or transfer ownership of the WABA to the business customer.
+    - id: 7050
+      name: EC_PROVIDER_INTERNAL_ERROR
+      permanent: false
+      description: Indicates an internal error or issue within the provider's system or infrastructure that is affecting
+        the processing of messages. If you encounter this error, it is recommended to wait for some time. If the
+        issue persists, reach out to Support for assistance and investigation.
+    - id: 7051
+      name: EC_PROVIDER_TIMEOUT
+      permanent: false
+      description: Signifies a timeout or connection issue with the provider and the platform. To resolve this error,
+        contact Support for assistance in resolving the issue and investigating the underlying cause.
+    - id: 7052
+      name: EC_PROVIDER_DR_ERROR
+      permanent: true
+      description: Denotes an error or problem related to the provider's delivery report mechanisms or processes.
+        Resolution steps involve contacting Support for further assistance.
+  - group: System errors
+    group_id: 3
+    kind: error
+    code_count: 7
+    codes:
+    - id: 7080
+      name: EC_INTERNAL_ERROR
+      permanent: true
+      description: Indicates an internal error or issue within the system or service. To resolve this error, contact
+        Support for further assistance.
+    - id: 7081
+      name: EC_CONFIGURATION_ERROR
+      permanent: true
+      description: Signifies an error or problem related to the configuration settings of the sender or the sender
+        is not registered for the targeted country on the provider's side. Resolution steps involve reviewing the
+        configuration settings related to the sender or contacting Support for further assistance.
+    - id: 7082
+      name: EC_TEMPORARY_GATEWAY_ERROR
+      permanent: true
+      description: Denotes a temporary error or issue in processing messages or the communication channel. To resolve
+        this error, contact Support for further assistance.
+    - id: 7083
+      name: EC_SERVICE_NOT_ACTIVATED
+      permanent: true
+      description: Indicates that the requested service or feature is not activated or enabled for the user or account.
+        Resolution steps involve checking the service activation status and contacting Support for further assistance.
+    - id: 7084
+      name: EC_MISSING_SENDER_METADATA
+      permanent: true
+      description: Denotes missing or incomplete sender metadata in the request. To resolve this error, review and
+        make sure that all required sender metadata is provided with accurate and complete sender information and
+        contact Support for further assistance.
+    - id: 7280
+      name: EC_DUPLICATE_REQUEST
+      permanent: true
+      description: Signifies a duplicate or redundant request sent to the user. Resolution steps involve identifying
+        the duplicate request, removing or deduplicating the redundant requests, and ensuring a single valid request
+        is processed.
+    - id: 7281
+      name: EC_BAD_ORIGIN
+      permanent: true
+      description: Indicates an invalid or unauthorized origin or source of the request. To resolve this error,
+        validate the request origin and contact Support for further assistance.
+- family: Mobile Identity error codes
+  groups:
+  - group: null
+    group_id: null
+    kind: error
+    code_count: 19
+    codes:
+    - id: 100
+      name: EC_NO_COVERAGE
+      response_type: SYNC
+      description: No coverage for requested phone number.
+    - id: 101
+      name: EC_GATEWAY_OPERATION_FAILED
+      response_type: SYNC & CALLBACK
+      description: Provider service failed.
+    - id: 102
+      name: EC_OPERATION_RESTRICTED
+      response_type: SYNC
+      description: Operation restricted.
+    - id: 200
+      name: EC_INVALID_REQUEST
+      response_type: SYNC
+      description: Validation failed for requested arguments.
+    - id: 201
+      name: EC_INVALID_TOKEN
+      response_type: SYNC
+      description: The token is invalid or does not exist.
+    - id: 202
+      name: EC_CONSENT_NOT_GRANTED
+      response_type: SYNC
+      description: User consent not granted.
+    - id: 300
+      name: EC_MI_ACCOUNT_DISABLED
+      response_type: SYNC
+      description: User account is disabled for Mobile Identity service. Contact Support to enable it.
+    - id: 301
+      name: EC_OPERATION_NOT_ALLOWED
+      response_type: SYNC
+      description: Service is not allowed for this account. Contact Support to enable it.
+    - id: 302
+      name: EC_COUNTRY_NOT_ALLOWED
+      response_type: SYNC
+      description: Destination country is not allowed for this account. Contact Support to enable it.
+    - id: 303
+      name: EC_GATEWAY_NOT_ALLOWED
+      response_type: SYNC
+      description: Provider is not allowed for this account. Contact Support to enable it.
+    - id: 304
+      name: EC_REJECTED_NOT_ENOUGH_CREDITS
+      response_type: SYNC
+      description: Not enough credits for this service.
+    - id: 305
+      name: EC_MOBILE_DEVICE_TIMEOUT
+      response_type: CALLBACK
+      description: Timeout occurred during a mobile device redirect.
+    - id: 306
+      name: EC_REJECTED_INVALID_IP_ADDRESS
+      response_type: SYNC & CALLBACK
+      description: IP address not in MNO data range.
+    - id: 307
+      name: EC_OTP_SMS_SEND_FAILED
+      response_type: CALLBACK
+      description: Failed to send an SMS message.
+    - id: 308
+      name: EC_NI_ATTRIBUTE_NOT_ALLOWED
+      response_type: CALLBACK
+      description: Requested Number Intelligence attribute is not allowed for this account. Contact Support to enable
+        it.
+    - id: 309
+      name: EC_SIM_SWAP_CHECK_FAILED
+      response_type: CALLBACK
+      description: Failed to execute SIM Swap check request due to an error on the MNO side. Contact Support for
+        more details.
+    - id: 310
+      name: EC_SIM_SWAP_DETECTED
+      response_type: CALLBACK
+      description: No coverage for the requested phone number.
+    - id: 400
+      name: EC_UNPROCESSABLE_CONTENT
+      response_type: SYNC & CALLBACK
+      description: Unable to process provided data.
+    - id: 1000
+      name: EC_USER_INTERNAL_ERROR
+      response_type: SYNC & CALLBACK
+      description: Internal error on the platform. Contact Support to resolve the issue.
+- family: DLT error codes
+  groups:
+  - group: null
+    group_id: null
+    kind: status
+    code_count: 51
+    codes:
+    - id: 4106
+      name: EC_BLOCKED_BY_DLT
+      description: This error indicates that a message has been blocked by the DLT Provider due to regulatory compliance
+        issues, sender registration, template registration, and so on.
+    - id: 4107
+      name: EC_DLT_SCRUBBING_TIMEOUT
+      description: Timeout while performing DLT Scrubbing.
+    - id: 4108
+      name: EC_SENDER_BLOCKED_BY_DLT
+      description: The error typically indicates that the sender of a message has been blocked by the DLT Provider.
+        This means that the sender has been restricted from sending messages due to non-compliance with regulations,
+        insufficient registration, or other factors determined by the DLT Provider.
+    - id: 4109
+      name: EC_TELEMARKETER_BLOCKED_BY_DLT
+      description: Telemarketer blocked by DLT Scrubbing.
+    - id: 4110
+      name: EC_ENTITY_BLOCKED_BY_DLT
+      description: The error typically indicates that the principal entity ID of a message has been blocked by the
+        DLT Provider. This means that the entity has been restricted from sending messages due to non-compliance
+        with regulations, insufficient registration, or other factors determined by the DLT Provider.
+    - id: 4111
+      name: EC_TEMPLATE_BLOCKED_BY_DLT
+      description: The error typically indicates that the template or content of a message has been blocked by the
+        DLT Provider. This means that the message template or content has been restricted from sending messages
+        due to non-compliance with regulations, insufficient registration, or other factors determined by the DLT
+        Provider.
+    - id: 4112
+      name: EC_ENTITY_NOT_FOUND
+      description: Indicates that the requested principal entity ID could not be found or located. This means that
+        the DLT Provider was unable to locate the specific PE ID being referenced. It could be due to various reasons,
+        such as an incorrect identifier, a non-existent entity, or a misconfiguration.
+    - id: 4113
+      name: EC_ENTITY_NOT_REGISTERED
+      description: No entry of entity on the platform.
+    - id: 4114
+      name: EC_ENTITY_INACTIVE
+      description: This error code indicates that the principal entity in question is inactive or disabled. This
+        could be due to various reasons, such as principal entity ID suspension, temporary deactivation, or restrictions.
+        Resolving this error typically includes checking with the DLT Provider.
+    - id: 4115
+      name: EC_ENTITY_BLACKLISTED
+      description: This error code indicates that the requested principal entity has been blocklisted. It means
+        that the entity is restricted or prohibited on DLT Provider, due to issues such as violation of policies,
+        non-compliance, or suspicious activity.
+    - id: 4116
+      name: EC_INVALID_ENTITY_ID
+      description: This error code suggests that the provided Principal entity ID is in an invalid or wrong format
+        or does not exist in the DLT Provider. It means that the principal entity ID is incorrect or unrecognized.
+        Verifying the accuracy of the entity ID or resolving any issues related to the entity's DLT provider can
+        help resolve this error.
+    - id: 4117
+      name: EC_ENTITY_ID_NOT_ALLOWED_FOR_TM
+      description: Principal entity is not allowed for the TM.
+    - id: 4118
+      name: EC_TELEMARKETER_NOT_REGISTERED
+      description: No entry of TMID on the platform.
+    - id: 4119
+      name: EC_TELEMARKETER_INACTIVE
+      description: Telemarketer is inactive on the platform.
+    - id: 4120
+      name: EC_TELEMARKETER_BLACKLISTED
+      description: Telemarketer is blocklisted on all platforms.
+    - id: 4121
+      name: EC_HEADER_NOT_FOUND
+      description: This error code signifies that the requested header/sender ID information was not found. It means
+        that the DLT Provider could not locate the required header in the given context or request. Review the request
+        structure, and ensure the presence of the necessary headers.
+    - id: 4122
+      name: EC_HEADER_INACTIVE
+      description: This error code indicates that the requested header is inactive or disabled. It means that the
+        header, typically used to send messages, is currently inactive. Activating the required header or checking
+        for any configuration or permission-related issues on DLT Provider can help resolve this error.
+    - id: 4123
+      name: EC_HEADER_BLACKLISTED
+      description: This error code suggests that the requested header has been blocklisted, meaning it is restricted
+        or prohibited from being used. It could be due to policy violations, non-compliance, or suspicious activity.
+    - id: 4124
+      name: EC_PEID_NOT_MATCHED_WITH_HEADER
+      description: This error code indicates that the provided PEID (Principal Entity ID) does not match the header/sender
+        ID information. It means that there is a mismatch between the specified PEID and the associated header in
+        the request. Verifying the accuracy and alignment of the PEID and header on the DLT Provider can help resolve
+        this error.
+    - id: 4125
+      name: EC_HEADER_IN_FREEPOOL
+      description: Header in free pool.
+    - id: 4126
+      name: EC_TEMPLATE_NOT_FOUND
+      description: This error code signifies that the requested template could not be found. It means that the DLT
+        Provider was unable to locate the specified template, which is typically used for standardized message formats
+        or content. Verifying the template's existence, correcting the identifier, or troubleshooting any issues
+        related to template retrieval can help address this error.
+    - id: 4127
+      name: EC_TEMPLATE_INACTIVE
+      description: This error code suggests that the requested template is inactive or disabled. It means that the
+        template, which is typically used for predefined message structures, is currently not active on DLT Provider.
+        Activating the required template or addressing any configuration or permission-related issues with DLT Provider
+        can help resolve this error.
+    - id: 4128
+      name: EC_TEMPLATE_BLACKLISTED
+      description: This error code indicates that the requested template has been blocklisted, meaning it is restricted
+        or prohibited from being used. It could be due to policy violations, non-compliance, or suspicious activity.
+    - id: 4129
+      name: EC_TEMPLATE_NOT_MATCHED
+      description: This error code suggests that the requested template does not match the provided content or message.
+        It means that there is a mismatch between the specified template and the actual content being sent. Ensuring
+        the alignment between the registered template and the actual content being sent can help resolve this error.
+    - id: 4130
+      name: EC_HEADER_NOT_REGISTERED_FOR_TEMPLATE
+      description: This error code signifies that the specified header is not registered or associated with the
+        requested template. It means that the header being used does not align with the template requirements or
+        associations. Verifying the registration and link between the header and template can help address this
+        error.
+    - id: 4131
+      name: EC_TEMPLATE_VARIABLE_EXCEEDED_MAX_LENGTH
+      description: This error code indicates that a variable within the template exceeds the maximum allowed length.
+        It means that variables used within the template exceed the defined character limit. Adjusting the character
+        length can help resolve this error.
+    - id: 4132
+      name: EC_ERROR_IDENTIFYING_TEMPLATE
+      description: Error in identifying the template.
+    - id: 4133
+      name: EC_INVALID_TEMPLATE_ID
+      description: This error code suggests that the provided template ID is invalid or does not exist in the system.
+        It means that the template ID/content ID used to reference a specific template is incorrect or unrecognized.
+        Verifying the accuracy of the template ID or troubleshooting any issues related to the template's existence
+        can help address this error.
+    - id: 4134
+      name: EC_TEMPLATE_NOT_REGISTERED_TO_ENTITY
+      description: This error code signifies that the requested template is not registered or associated with the
+        specified principal entity ID. It means the template being used does not link to the intended principal
+        entity. Verifying the registration and association between the template and principal entity ID can help
+        resolve this error.
+    - id: 4135
+      name: EC_PROMOTIONAL_TEMPLATE_USED_ON_OTHERS_HEADER
+      description: Promotional template used on other/transaction header.
+    - id: 4136
+      name: EC_INVALID_TEMPLATE_TYPE
+      description: Invalid template type.
+    - id: 4137
+      name: EC_PREFERENCE_NOT_MATCHED
+      description: This error code indicates that the requested preference does not match the specified criteria
+        on the end user number. It means that the preference being used does not align with the end user number.
+    - id: 4138
+      name: EC_INVALID_PROMO_TIME
+      description: This error code suggests that the provided promotional time is invalid or outside the allowed
+        range (9 PM to 10 AM). It means that the specified promotional time period does not adhere to the defined
+        constraints or rules.
+    - id: 4139
+      name: EC_SE_CATEGORY_BLOCK
+      description: This error code indicates that the requested category of service entity (SE) has been blocked.
+        It means that the particular category or type of service entity is restricted or prohibited from being used.
+        Resolving this error typically includes checking the category of service entity or using a DND consent on
+        a specific number.
+    - id: 4140
+      name: EC_CONSENT_FAILED
+      description: General error code for consent.
+    - id: 4141
+      name: EC_SCRUBBING_FAILED
+      description: General error code in case of any exceptions.
+    - id: 4142
+      name: EC_TLV_PEID_NOT_FOUND
+      description: This error code suggests that the requested Principal Entity ID (PEID) within the TLV structure
+        was not found. It means that the system or service could not locate the specified PEID within the TLV data.
+        Verifying the correct use and presence of the PEID within the TLV structure in the SMPP request can help
+        resolve this error.
+    - id: 4143
+      name: EC_TLV_TMPID_NOT_FOUND
+      description: This error code signifies that the requested Template ID within the TLV structure was not found.
+        It means that the system or service was unable to locate the specified template ID within the TLV data.
+        Verifying the correct usage and presence of the template ID within the TLV structure in the SMPP request
+        can help address this error.
+    - id: 4144
+      name: EC_CONTENT_MULTIPART_INCOMPLETE_BY_DLT
+      description: Undelivered/expired. If the DLT has not received long SMS parts or if any part is missing, the
+        DLT shows this code.
+    - id: 4146
+      name: EC_HEADER_SUSPENDED_DUE_TO_VALIDITY
+      description: This error signifies that the header has been suspended due to validity issues concerning DLT
+        compliance. To resolve this, review and ensure that the header information complies with DLT regulations.
+    - id: 4147
+      name: EC_HEADER_SUSPENDED_DUE_TO_USAGE
+      description: This error occurs when the header is suspended due to excessive usage that violates DLT regulations.
+        Evaluate your SMS sending practices, consider reducing the volume of messages sent, and adhere to DLT guidelines.
+    - id: 4148
+      name: EC_HEADER_SUSPENDED_DUE_TO_CUSTOMER
+      description: This error suggests that the header has been suspended due to issues related to the customer's
+        DLT account. Contact your DLT service provider or Support to address and resolve customer-specific DLT compliance
+        concerns.
+    - id: 4149
+      name: EC_TEMPLATE_SUSPENDED_DUE_TO_VALIDITY
+      description: This error indicates that the template has been suspended due to validity problems concerning
+        DLT compliance. To rectify this, review and correct the template content to ensure it aligns with DLT regulations
+        and standards.
+    - id: 4150
+      name: EC_TEMPLATE_SUSPENDED_DUE_TO_USAGE
+      description: This error arises when the template is suspended due to excessive usage that violates DLT regulations.
+        Optimize your SMS templates or reduce the frequency of template usage to comply with DLT guidelines.
+    - id: 4151
+      name: EC_TEMPLATE_SUSPENDED_DUE_TO_CUSTOMER
+      description: This error implies that the template has been suspended due to issues related to the customer's
+        DLT compliance status. Contact your DLT service provider or Support to address and resolve customer-specific
+        DLT compliance matters.
+    - id: 4153
+      name: EC_CTA_NOT_WHITELISTED
+      description: This error indicates that the URL in your SMS template has not been safelisted on the DLT platform,
+        a requirement for SMS delivery in accordance with TRAI regulations.
+    - id: 4154
+      name: EC_PE_TM_HASH_NOT_RECEIVED
+      description: This error indicates that the PE-TM hash was not received or an empty value was provided in the
+        request.
+    - id: 4155
+      name: EC_PE_TM_HASH_NOT_REGISTERED
+      description: This error indicates that the submitted PE-TM hash does not match any registered hash for the
+        specified PE.
+    - id: 4156
+      name: EC_PE_TM_HASH_INACTIVE
+      description: This error indicates that the status of the PE-TM hash is invalid because one of the telemarketers
+        in the chain is inactive.
+    - id: 4157
+      name: EC_PE_TM_HASH_BLACKLISTED
+      description: This error implies that the status of the PE-TM hash is blocklisted.
+    - id: 4158
+      name: EC_PE_TM_HASH_SUSPENDED
+      description: This error indicates that the status of the PE-TM hash is suspended by the customer.
+- family: Live Chat error codes
+  groups:
+  - group: null
+    group_id: null
+    kind: status
+    code_count: 28
+    codes:
+    - id: 1001
+      name: Mandatory field missing
+      description: Param widgetId is required in the method.
+    - id: 1011
+      name: Widget initializing error
+      description: Widget already initialized.
+    - id: 1012
+      name: Widget initializing error
+      description: Error in the widget configuration.
+    - id: 1013
+      name: Widget initializing error
+      description: Already authenticated with another widget id.
+    - id: 1031
+      name: Widget visibility error
+      description: Initializing on pages that are not allowed.
+    - id: 1032
+      name: Widget visibility error
+      description: Auth customers only.
+    - id: 1033
+      name: Widget visibility error
+      description: Outside working hours.
+    - id: 1101
+      name: Mandatory field missing
+      description: token parameter is required in the method.
+    - id: 1102
+      name: Mandatory field missing
+      description: ski field is required in JWT.
+    - id: 1103
+      name: Mandatory field missing
+      description: sub field is required in JWT.
+    - id: 1104
+      name: Mandatory field missing
+      description: iss field is required in JWT.
+    - id: 1105
+      name: Mandatory field missing
+      description: iat field is required in JWT.
+    - id: 1106
+      name: Mandatory field missing
+      description: jti field is required in JWT.
+    - id: 1111
+      name: Field in wrong type
+      description: iat should be a number type and should be in seconds.
+    - id: 1112
+      name: Field in wrong type
+      description: exp should be a number type and should be in seconds.
+    - id: 1113
+      name: Field in wrong type
+      description: stp should be one of [email, msisdn, externalPersonId].
+    - id: 1114
+      name: Field in wrong format
+      description: Check sub for stp type.
+    - id: 1121
+      name: Method invocation error
+      description: User is already authenticated.
+    - id: 1122
+      name: Method invocation error
+      description: JWT payload is broken.
+    - id: 1123
+      name: Method invocation error
+      description: ski is wrong, no widget key with this id.
+    - id: 1124
+      name: Method invocation error
+      description: alg is incorrect.
+    - id: 1125
+      name: Method invocation error
+      description: There is something wrong with the encryption.
+    - id: 1126
+      name: Method invocation error
+      description: iss differs from the initialized widget id.
+    - id: 1127
+      name: Method invocation error
+      description: iat is not valid, should be earlier than now.
+    - id: 1128
+      name: Method invocation error
+      description: exp is not valid, should be later than now.
+    - id: 1198
+      name: Connection issue
+      description: Failed to authenticate. Try again later.
+    - id: 1199
+      name: Request error
+      description: Request failed with status ${status}.
+    - id: 1321
+      name: Method invocation error
+      description: User is already logged out.
+- family: Moments error codes
+  groups:
+  - group: Rejected
+    group_id: null
+    kind: status
+    code_count: 6
+    codes:
+    - id: 200
+      name: REJECTED_INVALID_CONTACT
+      description: A person started to be processed but was rejected as the contact was not recognized.
+    - id: 202
+      name: REJECTED_VARIABLE_MISSED
+      description: One of the Flow variables specified in the request does not exist or has a spelling error.
+    - id: 203
+      name: REJECTED_PERSON_ALREADY_IN_FLOW
+      description: Person is already in Flow.
+    - id: 204
+      name: REJECTED_PERSON_NOT_ALLOWED_TO_REENTER
+      description: Person is currently not allowed to re-enter Flow.
+    - id: 205
+      name: REJECTED_FLOW_ERROR_UNKNOWN
+      description: A generic Flow error.
+    - id: 206
+      name: REJECTED_NOT_ENOUGH_CREDITS
+      description: Your account is out of credits. Top up your account. Contact your account manager for assistance
+        in topping up or applying for an online account top-up service.
+- family: People API error codes
+  groups:
+  - group: 400 Bad Request
+    group_id: null
+    kind: status
+    code_count: 20
+    codes:
+    - id: 40001
+      name: BAD_REQUEST
+      description: Generic request validation error.
+    - id: 40002
+      name: DUPLICATE
+      description: Profile already exists.
+    - id: 40003
+      name: DUPLICATE_EXT_PERSON_ID
+      description: Profile with this External ID already exists.
+    - id: 40004
+      name: DUPLICATE_NUMBER_DESTINATION
+      description: Profile with the phone number already exists.
+    - id: 40005
+      name: DUPLICATE_EMAIL_DESTINATION
+      description: Profile with the email address already exists.
+    - id: 40006
+      name: DUPLICATE_NAME
+      description: Object (tag, attribute, company) with this name already exists.
+    - id: 40007
+      name: INVALID_ADDITIONAL_FIELD_TYPE
+      description: Invalid value type for the custom attribute (for example, when a string value is specified for
+        a numeric attribute).
+    - id: 40010
+      name: CUSTOM_ATTRIBUTE_OUT_OF_BOUNDS
+      description: Invalid value for the custom attribute.
+    - id: 40012
+      name: INVALID_UNIQUE_FIELD
+      description: Invalid profile identifier value in the request.
+    - id: 40013
+      name: NON_MANAGED_DESTINATIONS_EXCEPTION
+      description: You can only modify the email and phone contacts using this API.
+    - id: 40014
+      name: INVALID_UPDATE_ENTRIES
+      description: Invalid query (wrong field or missing value) in the batch update request.
+    - id: 40015
+      name: UNKNOWN_PROPERTY
+      description: Unknown profile attribute in the request.
+    - id: 40016
+      name: INVALID_DELETE_ENTRIES
+      description: Invalid query (wrong field or missing value) in the batch delete request.
+    - id: 40018
+      name: EMPTY_DESTINATIONS
+      description: Missing contact information for the profile.
+    - id: 40019
+      name: BAD_QUERY
+      description: Bad filter query in the request.
+    - id: 40020
+      name: PLACEHOLDER_CANNOT_BE_DELETED
+      description: Custom attribute cannot be deleted.
+    - id: 40021
+      name: TAG_CANNOT_BE_DELETED
+      description: The tag cannot be deleted.
+    - id: 40022
+      name: INVALID_PLACEHOLDER
+      description: Invalid custom attribute.
+    - id: 40023
+      name: INTEGRATIONS_CANNOT_BE_MODIFIED
+      description: Integrations data cannot be modified.
+    - id: 40024
+      name: WEB_SDK_RESTRICTED_OPERATION
+      description: You cannot create or change Customer profiles from Web SDK.
+  - group: 404 Not Found
+    group_id: null
+    kind: status
+    code_count: 7
+    codes:
+    - id: 40401
+      name: PERSON_DOES_NOT_EXIST
+      description: The person does not exist.
+    - id: 40403
+      name: TAG_DOES_NOT_EXIST
+      description: The tag does not exist.
+    - id: 40404
+      name: ADDITIONAL_FIELD_DOES_NOT_EXIST
+      description: The additional field does not exist.
+    - id: 40404
+      name: CUSTOM_ATTRIBUTE_DOES_NOT_EXIST
+      description: The custom attribute does not exist.
+    - id: 40405
+      name: COMPANY_DOES_NOT_EXIST
+      description: The company does not exist.
+    - id: 40406
+      name: PLACEHOLDER_LIST_SCHEMA_MUST_EXIST
+      description: The list attribute must be created before use.
+    - id: 40407
+      name: NON_PARSABLE_DATE
+      description: Invalid date/time value format in the request.
+  - group: 405 Method Not Allowed
+    group_id: null
+    kind: status
+    code_count: 2
+    codes:
+    - id: 40501
+      name: READ_ONLY_ALLOWED
+      description: This account is in read-only mode.
+    - id: 40502
+      name: WRITE_SOURCES_RESTRICTED
+      description: Profile data modification over API is disabled.
+  - group: 409 Conflict
+    group_id: null
+    kind: status
+    code_count: 2
+    codes:
+    - id: 40901
+      name: IMPORT_ALREADY_IN_PROGRESS
+      description: The merge batch is already in progress, please wait until the previous merge is completed.
+    - id: 40902
+      name: OPTIMISTIC_LOCK
+      description: Optimistic lock due to concurrent data updates.
+  - group: 429 Too Many Requests
+    group_id: null
+    kind: status
+    code_count: 1
+    codes:
+    - id: 42901
+      name: TOO_MANY_REQUESTS
+      description: There are too many requests.

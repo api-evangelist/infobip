@@ -1,0 +1,1244 @@
+generated: '2026-07-25'
+method: derived
+source: openapi/infobip-platform-full-openapi.json#/webhooks (102 webhooks) + https://www.infobip.com/docs/api/tag/application-webhooks
+spec_type: OpenAPI 3.1 webhooks
+asyncapi_projection: asyncapi/infobip-webhooks-asyncapi.yml
+delivery:
+  style: HTTP callback to a customer-configured URL
+  configuration:
+  - per-request notifyUrl on send operations
+  - Subscriptions Management API (openapi/infobip-subscriptions-api-openapi.json)
+  - Application webhooks configuration in the web portal
+  retries: Infobip retries webhook delivery automatically when the receiving endpoint does not respond; consumers
+    must tolerate redelivery.
+  consumer_idempotency: Email platform events and several event payloads carry an eventId documented as usable for
+    deduplication; consumers are expected to dedupe on it.
+  endpoint_authentication:
+  - bearer/static token
+  - basic authentication
+  - message signature
+  test_tooling: Subscriptions Management API test-connection-to-webhook operation
+webhook_count: 102
+by_area:
+- area: voice
+  count: 16
+- area: rcs
+  count: 11
+- area: whatsapp
+  count: 7
+- area: numbers
+  count: 7
+- area: viber
+  count: 5
+- area: messenger
+  count: 5
+- area: sms
+  count: 4
+- area: mms
+  count: 4
+- area: email
+  count: 4
+- area: kakao
+  count: 4
+- area: biometrics
+  count: 4
+- area: omni-failover
+  count: 3
+- area: tiktok
+  count: 3
+- area: messages-api
+  count: 3
+- area: mobile-identity
+  count: 3
+- area: common-assets
+  count: 2
+- area: zalo
+  count: 2
+- area: apple-mfb
+  count: 2
+- area: instagram
+  count: 2
+- area: resources
+  count: 2
+- area: answers
+  count: 1
+- area: webrtc-calls
+  count: 1
+- area: line
+  count: 1
+- area: mobile-app-messaging
+  count: 1
+- area: live-chat
+  count: 1
+- area: open-channel
+  count: 1
+- area: metrics-api
+  count: 1
+- area: billing-usage-api
+  count: 1
+- area: blocklist
+  count: 1
+webhooks:
+- name: receive-test-message
+  operationId: receive-test-message
+  method: POST
+  summary: Receive testing message
+  area: answers
+  tags:
+  - customer-engagement
+  - answers
+  - answers-testing-receive-message
+  content_type: application/json
+  payload_schema: 781c309206ee4e50226d2695a75a47d5a1a01fb64cb954c3d350b69d70b039a2.PublicAnswersEventExample
+- name: cdp-event-webhook
+  operationId: cdp-event-webhook
+  method: POST
+  summary: People Webhook
+  area: common-assets
+  tags:
+  - customer-engagement
+  - common-assets
+  - customer-engagement-webhooks
+  content_type: application/json
+  payload_schema: 1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.CDPWebhookReport
+- name: conversation-event-webhook
+  operationId: conversation-event-webhook
+  method: POST
+  summary: Conversations Webhook
+  area: common-assets
+  tags:
+  - customer-engagement
+  - common-assets
+  - customer-engagement-webhooks
+  content_type: application/json
+  payload_schema: 1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationWebhookReport
+- name: receive-inbound-sms-messages
+  operationId: receive-inbound-sms-messages
+  method: POST
+  summary: Receive inbound SMS messages
+  area: sms
+  tags:
+  - channels
+  - sms
+  - inbound-sms
+  content_type: application/json
+  payload_schema: cd5e571e477c0b81ca50ad592cf9f67cc32feded2012ec26d7fae09c0c2d5108.SmsMoReportResponse
+- name: receive-outbound-sms-message-reports-v3
+  operationId: receive-outbound-sms-message-report-v3
+  method: POST
+  summary: Receive outbound SMS message reports
+  area: sms
+  tags:
+  - channels
+  - sms
+  - logs-and-status-reports
+  content_type: application/json
+  payload_schema: 20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.DeliveryReports
+- name: receive-sms-tracking-notification
+  operationId: receive-sms-tracking-notification
+  method: POST
+  summary: Receive SMS tracking notifications
+  area: sms
+  tags:
+  - channels
+  - sms
+  - logs-and-status-reports
+  content_type: application/json
+  payload_schema: 20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.UrlTrackingWebhook
+- name: receive-outbound-sms-message-reports
+  operationId: receive-outbound-sms-message-report
+  method: POST
+  summary: Receive outbound SMS message report
+  area: sms
+  tags:
+  - channels
+  - sms
+  - logs-and-status-reports
+  content_type: application/json
+  payload_schema: 1705572441d20bbbfe49765ca2bed87cd314f9c5c501048d5a9494385ff9f223.SMSReportResponse
+- name: receive-inbound-mms-messages
+  operationId: receive-inbound-mms-messages
+  method: POST
+  summary: Receive inbound MMS messages
+  area: mms
+  tags:
+  - channels
+  - mms
+  - receive-mms
+  content_type: application/json
+  payload_schema: 62b589527d7474f21f086ddb07e8698e9fcfbbe16400c91718f1ab58d998c3f1.MMSMoWebhookRequest
+- name: receive-outbound-mms-message-delivery-reports
+  operationId: receive-outbound-mms-message-delivery-reports
+  method: POST
+  summary: Receive MMS delivery reports
+  area: mms
+  tags:
+  - channels
+  - mms
+  - logs-and-status-reports-mms
+  content_type: application/json
+  payload_schema: faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.DeliveryReports
+- name: receive-outbound-mms-message-reports
+  operationId: receive-outbound-mms-message-reports
+  method: POST
+  summary: Receive outbound MMS message report
+  area: mms
+  tags:
+  - channels
+  - mms
+  - logs-and-status-reports-mms
+  content_type: application/json
+  payload_schema: 243664b2993460e9e9a3aa6c63ab422a58e22db15efe4cb007ed315aff543dd9.MmsReportRequest
+- name: receive-mms-tracking-notification
+  operationId: receive-mms-tracking-notification
+  method: POST
+  summary: Receive MMS tracking notifications
+  area: mms
+  tags:
+  - channels
+  - mms
+  - logs-and-status-reports-mms
+  content_type: application/json
+  payload_schema: faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.UrlTrackingWebhook
+- name: calls-event-webhook
+  operationId: calls-event-webhook
+  method: POST
+  summary: Event Webhook
+  area: voice
+  tags:
+  - channels
+  - voice
+  - calls
+  - calls-applications
+  - application-webhooks
+  content_type: application/json
+  payload_schema: 4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.Event
+- name: receive-markup-language-instructions
+  operationId: markup-language-callback
+  method: POST
+  summary: Markup callback API
+  area: voice
+  tags:
+  - channels
+  - voice
+  - calls-markup-language
+  - markup-language-instructions
+  content_type: application/json
+  payload_schema: 60d0e6d5cbcf8382b5a6bad1f38781f71991c7ea63dad2e6ec22ddc8893af51c.WebhookCallbackRequest
+- name: receive-markup-language-error
+  operationId: markup-language-error-callback
+  method: POST
+  summary: Error callback API
+  area: voice
+  tags:
+  - channels
+  - voice
+  - calls-markup-language
+  - markup-language-instructions
+  content_type: application/json
+  payload_schema: 60d0e6d5cbcf8382b5a6bad1f38781f71991c7ea63dad2e6ec22ddc8893af51c.ErrorCallbackRequest
+- name: receive-markup-language-record
+  operationId: markup-language-record-callback
+  method: POST
+  summary: Record callback API
+  area: voice
+  tags:
+  - channels
+  - voice
+  - calls-markup-language
+  - markup-language-instructions
+  content_type: application/json
+  payload_schema: 60d0e6d5cbcf8382b5a6bad1f38781f71991c7ea63dad2e6ec22ddc8893af51c.RecordCallbackRequest
+- name: receive-markup-language-capture-dtmf
+  operationId: markup-language-capture-dtmf-callback
+  method: POST
+  summary: Capture DTMF callback API
+  area: voice
+  tags:
+  - channels
+  - voice
+  - calls-markup-language
+  - markup-language-instructions
+  content_type: application/json
+  payload_schema: 60d0e6d5cbcf8382b5a6bad1f38781f71991c7ea63dad2e6ec22ddc8893af51c.CaptureDtmfCallbackRequest
+- name: fetch-markup-language
+  operationId: markup-language-fetch-callback
+  method: POST
+  summary: Fetch callback API
+  area: voice
+  tags:
+  - channels
+  - voice
+  - calls-markup-language
+  - markup-language-instructions
+  content_type: application/json
+  payload_schema: 60d0e6d5cbcf8382b5a6bad1f38781f71991c7ea63dad2e6ec22ddc8893af51c.WebhookCallbackRequest
+- name: send-machine-detection-callback
+  operationId: markup-language-machine-detection-callback
+  method: POST
+  summary: Machine detection callback API
+  area: voice
+  tags:
+  - channels
+  - voice
+  - calls-markup-language
+  - markup-language-instructions
+  content_type: application/json
+  payload_schema: 60d0e6d5cbcf8382b5a6bad1f38781f71991c7ea63dad2e6ec22ddc8893af51c.MachineDetectionCallbackRequest
+- name: dial-callback
+  operationId: markup-language-dial-callback
+  method: POST
+  summary: Dial callback API
+  area: voice
+  tags:
+  - channels
+  - voice
+  - calls-markup-language
+  - markup-language-instructions
+  content_type: application/json
+  payload_schema: 60d0e6d5cbcf8382b5a6bad1f38781f71991c7ea63dad2e6ec22ddc8893af51c.DialCallbackRequest
+- name: send-machine-detection-async-callback
+  operationId: markup-language-machine-detection-async-callback
+  method: POST
+  summary: Machine detection async callback API
+  area: voice
+  tags:
+  - channels
+  - voice
+  - calls-markup-language
+  - markup-language-instructions-async
+  content_type: application/json
+  payload_schema: 60d0e6d5cbcf8382b5a6bad1f38781f71991c7ea63dad2e6ec22ddc8893af51c.MachineDetectionCallbackRequest
+- name: send-machine-message-detection-async-callback
+  operationId: markup-language-machine-message-detection-callback
+  method: POST
+  summary: Machine message detection callback API
+  area: voice
+  tags:
+  - channels
+  - voice
+  - calls-markup-language
+  - markup-language-instructions-async
+  content_type: application/json
+  payload_schema: 60d0e6d5cbcf8382b5a6bad1f38781f71991c7ea63dad2e6ec22ddc8893af51c.MachineMessageDetectionCallbackRequest
+- name: send-recording-status-callback
+  operationId: markup-language-recording-status-callback
+  method: POST
+  summary: Recording status callback API
+  area: voice
+  tags:
+  - channels
+  - voice
+  - calls-markup-language
+  - markup-language-instructions-async
+  content_type: application/json
+  payload_schema: 60d0e6d5cbcf8382b5a6bad1f38781f71991c7ea63dad2e6ec22ddc8893af51c.RecordingStatusCallbackRequest
+- name: receive-voice-delivery-reports
+  operationId: receive-voice-delivery-reports
+  method: POST
+  summary: Receive Voice Delivery Reports
+  area: voice
+  tags:
+  - channels
+  - voice
+  - voice-reports-and-logs
+  content_type: text/plain
+  payload_schema: b5f674fb4d8d190ed269baf3b9aaf29827a4d03ec2de31bb6b608809be9a182b.VoiceReportsResponse
+- name: deprecated-receive-voice-delivery-reports
+  operationId: receive-voice-delivery-reports-deprecated
+  method: POST
+  summary: Receive Voice Delivery Reports
+  area: voice
+  tags:
+  - channels
+  - voice
+  - voice-reports-and-logs
+  content_type: text/plain
+  payload_schema: 42b3068683a04f02f0303cd880adeb4415571c6aad33d9a3c6850123c94c9889.VoiceReportsResponse
+- name: receive-number-masking-target
+  operationId: provide-number-masking-target
+  method: POST
+  summary: Number Masking callback API
+  area: voice
+  tags:
+  - channels
+  - voice
+  - number-masking
+  - number-masking-events
+  content_type: application/json
+  payload_schema: 59ad711434aad6c39708ffc0bab084b409f8c1de0ab1fd0cfa66aa965f740ee4.CallbackRequest
+- name: receive-masked-call-report
+  operationId: receive-masked-call-report
+  method: POST
+  summary: Number Masking status API
+  area: voice
+  tags:
+  - channels
+  - voice
+  - number-masking
+  - number-masking-events
+  content_type: application/json
+  payload_schema: 9ddf5548c4806a579a37575477f73704a9d1f23ccda5d683f70483437522f25d.StatusRequest
+- name: receive-url-destination-request
+  operationId: receive-url-destination-request
+  method: POST
+  summary: URL destination webhook
+  area: voice
+  tags:
+  - channels
+  - voice
+  - routing
+  - call-routing-events
+  content_type: application/json
+  payload_schema: 287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.UrlDestinationHttpRequest
+- name: call-link-status-webhook
+  operationId: call-link-status-webhook
+  method: POST
+  summary: Call Link Webhook
+  area: webrtc-calls
+  tags:
+  - channels
+  - webrtc-calls
+  - call-link
+  - call-link-configs
+  content_type: application/json
+  payload_schema: 0e82c38c2cac57841ec8a3a6ca825965cdf7afbcdea80ae147c9d99f5ab3a8c3.WebhookEventPayload
+- name: receive-inbound-email
+  operationId: receive-inbound-email
+  method: POST
+  summary: Receive parsed emails
+  area: email
+  tags:
+  - channels
+  - email
+  - inbound-email
+  content_type: multipart/form-data
+  payload_schema: 61cea6785aa06882a92b0d6cc8c922ce1d44b92bfbdfd6cde0df0f73fb2499d6.WebhookPayload
+- name: receive-email-delivery-reports
+  operationId: receive-email-delivery-reports
+  method: POST
+  summary: Receive email delivery reports
+  area: email
+  tags:
+  - channels
+  - email
+  - email-webhooks
+  content_type: application/json
+  payload_schema: 34438aa163eb13a2a06ad96ae98170e41cc2ee8902e8b7655aba73ceb0bb23f1.WebhookDLRPayload
+- name: receive-email-tracking-reports
+  operationId: receive-email-tracking-reports
+  method: POST
+  summary: Receive user events
+  area: email
+  tags:
+  - channels
+  - email
+  - email-webhooks
+  content_type: application/json
+  payload_schema: 49bee00604d221bf98890cc8ca36403a588d28255383650998e0c4df2f9a5b4f.WebhookTrackingPayload
+- name: receive-email-platform-events
+  operationId: receive-email-platform-events
+  method: POST
+  summary: Receive email platform events
+  area: email
+  tags:
+  - channels
+  - email
+  - email-webhooks
+  content_type: application/json
+  payload_schema: ff7f7515e81995b140ab1c879b88d9d297a14922c035a187e237cd81e7c216a0.Payload
+- name: receive-inbound-whatsapp-messages
+  operationId: receive-whatsapp-inbound-messages
+  method: POST
+  summary: Receive WhatsApp inbound message
+  area: whatsapp
+  tags:
+  - channels
+  - whatsapp
+  - whatsapp-inbound-messages
+  - whatsapp-receive-inbound-message
+  content_type: application/json
+  payload_schema: f30d78c250ad1209aef755ddde02bb131e1749b705985f0e9f1b007c900b98e2.WhatsAppInboundMessages
+- name: receive-whatsapp-delivery-reports
+  operationId: receive-whatsapp-delivery-reports
+  method: POST
+  summary: Receive delivery reports
+  area: whatsapp
+  tags:
+  - channels
+  - whatsapp
+  - whatsapp-message-status-reports
+  - whatsapp-status-reports
+  content_type: application/json
+  payload_schema: 0b5f1ca361e90fa0a3f8b907dc53fa34f06ccd85fde4d07f80394e60f5f23c99.DeliveryResult
+- name: receive-whatsapp-seen-reports
+  operationId: receive-whatsapp-seen-reports
+  method: POST
+  summary: Receive seen reports
+  area: whatsapp
+  tags:
+  - channels
+  - whatsapp
+  - whatsapp-message-status-reports
+  - whatsapp-status-reports
+  content_type: application/json
+  payload_schema: 0b5f1ca361e90fa0a3f8b907dc53fa34f06ccd85fde4d07f80394e60f5f23c99.SeenResult
+- name: receive-whatsapp-payment-notification
+  operationId: receive-whatsapp-payment-notification
+  method: POST
+  summary: Receive WhatsApp Payment Notification
+  area: whatsapp
+  tags:
+  - channels
+  - whatsapp
+  - whatsapp-message-status-reports
+  - whatsapp-payments
+  content_type: application/json
+  payload_schema: 0b5f1ca361e90fa0a3f8b907dc53fa34f06ccd85fde4d07f80394e60f5f23c99.PaymentNotificationResponse
+- name: receive-whatsapp-marketing-update-notification
+  operationId: receive-whatsapp-marketing-update-notification
+  method: POST
+  summary: Receive WhatsApp Marketing Update Notification
+  area: whatsapp
+  tags:
+  - channels
+  - whatsapp
+  - whatsapp-message-status-reports
+  - whatsapp-marketing-update
+  content_type: application/json
+  payload_schema: 0b5f1ca361e90fa0a3f8b907dc53fa34f06ccd85fde4d07f80394e60f5f23c99.MarketingUpdateNotificationResponse
+- name: receive-whatsapp-message-template-update-events
+  operationId: receive-whatsapp-message-template-update-events
+  method: POST
+  summary: Receive WhatsApp template update
+  area: whatsapp
+  tags:
+  - channels
+  - whatsapp
+  - whatsapp-service-management
+  - whatsapp-template-management
+  content_type: application/json
+  payload_schema: f9ccb6cb799d6a02d85ff0940902b67433383f1a3c972733a815fa9a18d16bea.TemplateUpdatePushEvent
+- name: receive-whatsapp-identity-change-notification
+  operationId: receive-whatsapp-identity-change-notification
+  method: POST
+  summary: Receive WhatsApp Identity Change Notification
+  area: whatsapp
+  tags:
+  - channels
+  - whatsapp
+  - whatsapp-identity-management
+  content_type: application/json
+  payload_schema: d1778b306237beb41d9922fd3fd38c085ddcf463c618d1f8ceed148892c3020d.SystemEventResponse
+- name: receive-inbound-viber-messages
+  operationId: receive-viber-inbound-messages
+  method: POST
+  summary: Receive Viber inbound message
+  area: viber
+  tags:
+  - channels
+  - viber
+  - viber-business-messages
+  - inbound-message
+  content_type: application/json
+  payload_schema: 9389c24e0e9ed01ee6b8f8356a2a69457800d0649274de6f0e7a1954857d6488.ViberInboundMessages
+- name: receive-outbound-viber-message-delivery-reports
+  operationId: receive-outbound-viber-message-delivery-reports
+  method: POST
+  summary: Receive Viber delivery reports
+  area: viber
+  tags:
+  - channels
+  - viber
+  - viber-business-messages
+  - message-status-reports
+  content_type: application/json
+  payload_schema: 9389c24e0e9ed01ee6b8f8356a2a69457800d0649274de6f0e7a1954857d6488.DeliveryReports
+- name: receive-viber-seen-reports
+  operationId: receive-viber-seen-reports
+  method: POST
+  summary: Receive seen reports
+  area: viber
+  tags:
+  - channels
+  - viber
+  - viber-business-messages
+  - message-status-reports
+  content_type: application/json
+  payload_schema: 9389c24e0e9ed01ee6b8f8356a2a69457800d0649274de6f0e7a1954857d6488.SeenReports
+- name: receive-outbound-viber-bot-message-delivery-reports
+  operationId: receive-outbound-viber-bot-message-delivery-reports
+  method: POST
+  summary: Receive Viber Bot delivery reports
+  area: viber
+  tags:
+  - channels
+  - viber
+  - viber_bot
+  - logs-and-status-reports-viber-bot
+  content_type: application/json
+  payload_schema: 14dcd0f25fe0ff2584924b9f91668496573ab31a7e8cac75f9f81e79874514cb.DeliveryReports
+- name: receive-viber-bot-api-incoming-messages
+  operationId: receive-viber-bot-api-incoming-messages
+  method: POST
+  summary: Receive incoming message
+  area: viber
+  tags:
+  - channels
+  - viber
+  - viber_bot
+  - incoming-viber-bot-message
+  content_type: application/json
+  payload_schema: 14dcd0f25fe0ff2584924b9f91668496573ab31a7e8cac75f9f81e79874514cb.ViberBotInboundResponse
+- name: receive-outbound-line-message-delivery-reports
+  operationId: receive-outbound-line-message-delivery-reports
+  method: POST
+  summary: Receive LON delivery reports
+  area: line
+  tags:
+  - channels
+  - line
+  - line-message-status-reports
+  content_type: application/json
+  payload_schema: 267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.DeliveryReports
+- name: receive-zalo-incoming-messages
+  operationId: receive-zalo-incoming-messages
+  method: POST
+  summary: Receive incoming message
+  area: zalo
+  tags:
+  - channels
+  - zalo
+  - zalo-inbound-messages
+  content_type: application/json
+  payload_schema: 6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundResponse
+- name: receive-outbound-zalo-delivery-reports
+  operationId: receive-outbound-zalo-delivery-reports
+  method: POST
+  summary: Receive delivery reports
+  area: zalo
+  tags:
+  - channels
+  - zalo
+  - zalo-message-status-reports
+  content_type: application/json
+  payload_schema: 6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloReportRequest
+- name: receive-outbound-push-message-delivery-reports
+  operationId: receive-outbound-push-message-delivery-reports
+  method: POST
+  summary: Receive Push delivery reports
+  area: mobile-app-messaging
+  tags:
+  - channels
+  - mobile-app-messaging
+  - push-statistics-and-reports
+  content_type: application/json
+  payload_schema: be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.DeliveryReports
+- name: receive-inbound-rcs-messages
+  operationId: receive-incoming-rcs
+  method: POST
+  summary: Receive RCS inbound message
+  area: rcs
+  tags:
+  - channels
+  - rcs
+  - rcs-inbound-messages
+  content_type: application/json
+  payload_schema: b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.RcsInboundMessages
+- name: inbound-events-receive-inbound-rcs-events
+  operationId: inbound-events-receive-inbound-rcs-events
+  method: POST
+  summary: Receive RCS user action event
+  area: rcs
+  tags:
+  - channels
+  - rcs
+  - rcs-inbound-events
+  content_type: application/json
+  payload_schema: b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.RcsInboundEvents
+- name: receive-rcs-typing-indicator-events
+  operationId: receive-rcs-typing-indicator-events
+  method: POST
+  summary: Receive RCS typing indicator event
+  area: rcs
+  tags:
+  - channels
+  - rcs
+  - rcs-inbound-events
+  content_type: application/json
+  payload_schema: b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.RcsIsTypingEvents
+- name: receive-outbound-rcs-message-delivery-reports
+  operationId: receive-outbound-rcs-message-delivery-reports
+  method: POST
+  summary: Receive RCS delivery reports
+  area: rcs
+  tags:
+  - channels
+  - rcs
+  - rcs-logs-and-status-reports
+  content_type: application/json
+  payload_schema: b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.RcsWebhookDeliveryReports
+- name: receive-rcs-seen-reports
+  operationId: receive-seen-reports-rcs
+  method: POST
+  summary: Receive seen reports
+  area: rcs
+  tags:
+  - channels
+  - rcs
+  - rcs-logs-and-status-reports
+  content_type: application/json
+  payload_schema: b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.SeenReports
+- name: receive-rcs-conversation-started-events
+  operationId: receive-rcs-conversation-started-events
+  method: POST
+  summary: Receive RCS conversation started event
+  area: rcs
+  tags:
+  - channels
+  - rcs
+  - rcs-logs-and-status-reports
+  content_type: application/json
+  payload_schema: b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.RcsConversationStartedEvents
+- name: receive-capability-check-result
+  operationId: receive-capability-check-result
+  method: POST
+  summary: Receive Capability Check result
+  area: rcs
+  tags:
+  - channels
+  - rcs
+  - rcs-capability-check
+  content_type: application/json
+  payload_schema: b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.CapabilityCheckAsyncResult
+- name: receive-rcs-sender-update-events
+  operationId: receive-rcs-sender-update-events
+  method: POST
+  summary: Receive an RCS sender update event
+  area: rcs
+  tags:
+  - channels
+  - rcs
+  - rcs-service-management
+  - rcs-sender-management
+  content_type: application/json
+  payload_schema: c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.RcsSenderUpdateWebhookResponse
+- name: receive-rcs-sender-launch-update-events
+  operationId: receive-rcs-sender-launch-update-events
+  method: POST
+  summary: Receive an RCS sender launch update event
+  area: rcs
+  tags:
+  - channels
+  - rcs
+  - rcs-service-management
+  - rcs-sender-management
+  content_type: application/json
+  payload_schema: c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.RcsSenderLaunchStatusWebhookResponse
+- name: receive-rcs-test-number-update-events
+  operationId: receive-rcs-test-number-update-events
+  method: POST
+  summary: Receive an RCS test number update event
+  area: rcs
+  tags:
+  - channels
+  - rcs
+  - rcs-service-management
+  - rcs-test-number-management
+  content_type: application/json
+  payload_schema: c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.RcsTestNumberUpdateWebhookResponse
+- name: receive-rcs-message-template-update-events
+  operationId: receive-rcs-message-template-update-events
+  method: POST
+  summary: Receive an RCS template update
+  area: rcs
+  tags:
+  - channels
+  - rcs
+  - rcs-service-management
+  - rcs-template-management
+  content_type: application/json
+  payload_schema: c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.TemplateUpdateEvent
+- name: receive-omni-failover-message-delivery-reports
+  operationId: receive-omni-failover-message-delivery-reports
+  method: POST
+  summary: Receive delivery status report
+  area: omni-failover
+  tags:
+  - channels
+  - omni-failover
+  - send-omni-message
+  content_type: application/json
+  payload_schema: 8a2ea8872469b182f7474a94d4bf931da42a6e2a1d1ba07898b1bc7dcdc85cd2.DeliveryReports
+- name: receive-omni-failover-message-seen-reports
+  operationId: receive-omni-failover-message-seen-reports
+  method: POST
+  summary: Receive seen reports
+  area: omni-failover
+  tags:
+  - channels
+  - omni-failover
+  - send-omni-message
+  content_type: application/json
+  payload_schema: 8a2ea8872469b182f7474a94d4bf931da42a6e2a1d1ba07898b1bc7dcdc85cd2.SeenReports
+- name: receive-omni-failover-inbound-messages
+  operationId: receive-omni-failover-incoming-messages
+  method: POST
+  summary: Receive incoming message
+  area: omni-failover
+  tags:
+  - channels
+  - omni-failover
+  - receive-incoming-messages
+  content_type: application/json
+  payload_schema: 46339420b556d1893a150250c0e3220eb8057cd2fc4110e601753f705fc1f8c4.ottReportResponse
+- name: receive-inbound-livechat-messages
+  operationId: receive-inbound-livechat-messages
+  method: POST
+  summary: Receive Livechat inbound messages
+  area: live-chat
+  tags:
+  - channels
+  - live-chat
+  content_type: application/json
+  payload_schema: 245a74e48cd7ce0a3e2f108689f6fc8d5a08a4d75c5aeb1883fc983443d62958.LivechatInboundMessages
+- name: receive-outbound-apple-mfb-message-delivery-reports
+  operationId: receive-outbound-apple-mfb-message-delivery-reports
+  method: POST
+  summary: Receive Apple Messages for Business delivery reports
+  area: apple-mfb
+  tags:
+  - channels
+  - apple-mfb
+  - logs-and-status-reports-apple-mfb
+  content_type: application/json
+  payload_schema: 91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.DeliveryReports
+- name: receive-messages-apple-mfb-incoming-messages
+  operationId: receive-messages-apple-mfb-incoming-messages
+  method: POST
+  summary: Receive incoming message
+  area: apple-mfb
+  tags:
+  - channels
+  - apple-mfb
+  - incoming-apple-mfb-message
+  content_type: application/json
+  payload_schema: 91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundResponse
+- name: receive-outbound-instagram-message-delivery-reports
+  operationId: receive-outbound-instagram-message-delivery-reports
+  method: POST
+  summary: Receive Instagram delivery reports
+  area: instagram
+  tags:
+  - channels
+  - instagram
+  - logs-and-status-reports-instagram
+  content_type: application/json
+  payload_schema: 8bb20f43a591755a249613f66cc72e7e0fcc9b313d81a59f9ca0e0ff261ac181.DeliveryReports
+- name: receive-instagram-api-incoming-messages
+  operationId: receive-instagram-api-incoming-messages
+  method: POST
+  summary: Receive incoming message
+  area: instagram
+  tags:
+  - channels
+  - instagram
+  - incoming-instagram-message
+  content_type: application/json
+  payload_schema: 8bb20f43a591755a249613f66cc72e7e0fcc9b313d81a59f9ca0e0ff261ac181.InstagramDmInboundResponse
+- name: receive-outbound-messenger-message-delivery-reports
+  operationId: receive-outbound-messenger-message-delivery-reports
+  method: POST
+  summary: Receive Messenger delivery reports
+  area: messenger
+  tags:
+  - channels
+  - messenger
+  - logs-and-status-reports-messenger
+  content_type: application/json
+  payload_schema: 747c7e4c0b03b254cdcbef02225bbd858a3bba6d956caa5ac2689fea92b213b0.DeliveryReports
+- name: receive-messenger-seen-reports
+  operationId: receive-messenger-seen-reports
+  method: POST
+  summary: Receive seen reports
+  area: messenger
+  tags:
+  - channels
+  - messenger
+  - logs-and-status-reports-messenger
+  content_type: application/json
+  payload_schema: 747c7e4c0b03b254cdcbef02225bbd858a3bba6d956caa5ac2689fea92b213b0.SeenReports
+- name: receive-messenger-marketing-click
+  operationId: receive-messenger-marketing-click
+  method: POST
+  summary: Receive Messenger Marketing Click event
+  area: messenger
+  tags:
+  - channels
+  - messenger
+  - logs-and-status-reports-messenger
+  content_type: application/json
+  payload_schema: cc99cb7b0e48638be90df2dee94fb1aaadb95bcd09a6944a79bd00ca6a59df77.MarketingMessageClick
+- name: receive-messenger-api-incoming-messages
+  operationId: receive-messenger-api-incoming-messages
+  method: POST
+  summary: Receive incoming message
+  area: messenger
+  tags:
+  - channels
+  - messenger
+  - incoming-messenger-message
+  content_type: application/json
+  payload_schema: 747c7e4c0b03b254cdcbef02225bbd858a3bba6d956caa5ac2689fea92b213b0.FacebookInboundRequest
+- name: receive-messenger-consent-update
+  operationId: receive-messenger-consent-update
+  method: POST
+  summary: Receive Messenger consent update event
+  area: messenger
+  tags:
+  - channels
+  - messenger
+  - incoming-messenger-event
+  content_type: application/json
+  payload_schema: cc99cb7b0e48638be90df2dee94fb1aaadb95bcd09a6944a79bd00ca6a59df77.MessengerConsentUpdate
+- name: receive-outbound-kakao-alim-message-delivery-reports
+  operationId: receive-outbound-kakao-alim-message-delivery-reports
+  method: POST
+  summary: Receive Kakao Alim delivery reports
+  area: kakao
+  tags:
+  - channels
+  - kakao
+  - alim
+  - logs-and-status-reports-kakao-alim
+  content_type: application/json
+  payload_schema: 382231ebb2fc250c93965563ed41f4ba8228460e52f6052a582e69b931876454.DeliveryReports
+- name: receive-outbound-kakao-sangdam-message-delivery-reports
+  operationId: receive-outbound-kakao-sangdam-message-delivery-reports
+  method: POST
+  summary: Receive Kakao Sangdam delivery reports
+  area: kakao
+  tags:
+  - channels
+  - kakao
+  - sangdam
+  - logs-and-status-reports-kakao-sangdam
+  content_type: application/json
+  payload_schema: 1907be504c1be9d07aa876a6a409d4bd97224dac497dfecd7d8092e77aac7215.DeliveryReports
+- name: receive-kakao-sangdam-api-incoming-messages
+  operationId: receive-kakao-sangdam-api-incoming-messages
+  method: POST
+  summary: Receive incoming message
+  area: kakao
+  tags:
+  - channels
+  - kakao
+  - sangdam
+  - incoming-kakao-sangdam-message
+  content_type: application/json
+  payload_schema: 1907be504c1be9d07aa876a6a409d4bd97224dac497dfecd7d8092e77aac7215.KakaoSangdamInboundResponse
+- name: receive-outbound-kakao-chingu-message-delivery-reports
+  operationId: receive-outbound-kakao-chingu-message-delivery-reports
+  method: POST
+  summary: Receive brand message delivery reports
+  area: kakao
+  tags:
+  - channels
+  - kakao
+  - chingu
+  - logs-and-status-reports-kakao-chingu
+  content_type: application/json
+  payload_schema: 3995f10686be3e5fc42bb37b4419fd7fe2425eaa12f76cbe136803640cfabe2c.DeliveryReports
+- name: receive-open-channel-outbound-message
+  operationId: receive-open-channel-outbound-message
+  method: POST
+  summary: Receive Open Channel outbound Message
+  area: open-channel
+  tags:
+  - channels
+  - open-channel
+  - send-open-channel
+  content_type: application/json
+  payload_schema: 0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.WebhookRequest
+- name: receive-outbound-tiktok-message-delivery-reports
+  operationId: receive-outbound-tiktok-message-delivery-reports
+  method: POST
+  summary: Receive TikTok delivery reports
+  area: tiktok
+  tags:
+  - channels
+  - tiktok
+  - logs-and-status-reports-tiktok
+  content_type: application/json
+  payload_schema: e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.DeliveryReports
+- name: receive-tiktok-seen-reports
+  operationId: receive-tiktok-seen-reports
+  method: POST
+  summary: Receive TikTok seen reports
+  area: tiktok
+  tags:
+  - channels
+  - tiktok
+  - logs-and-status-reports-tiktok
+  content_type: application/json
+  payload_schema: e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.SeenReports
+- name: receive-inbound-tiktok-messages
+  operationId: receive-inbound-tiktok-messages
+  method: POST
+  summary: Receive an inbound TikTok message
+  area: tiktok
+  tags:
+  - channels
+  - tiktok
+  - tiktok-inbound-messages
+  content_type: application/json
+  payload_schema: e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokInboundMessage
+- name: brand-registration-status-change-notification
+  operationId: brand-registration-status-change-notification
+  method: POST
+  summary: Receive Brand Status Update
+  area: numbers
+  tags:
+  - platform
+  - numbers
+  - number-registration
+  - brands
+  - brand-management
+  content_type: application/json
+  payload_schema: 2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.BrandRegistrationWebhookResponse
+- name: brand-auth-2fa-update-notification
+  operationId: brand-auth-2fa-update-notification
+  method: POST
+  summary: Receive Brand Auth 2FA Update
+  area: numbers
+  tags:
+  - platform
+  - numbers
+  - number-registration
+  - brands
+  - brand-management
+  content_type: application/json
+  payload_schema: 2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.BrandAuthUpdateWebhookResponse
+- name: brand-vet-notification
+  operationId: brand-vet-notification
+  method: POST
+  summary: Receive Brand Vet Update
+  area: numbers
+  tags:
+  - platform
+  - numbers
+  - number-registration
+  - brands
+  - brand-vetting
+  content_type: application/json
+  payload_schema: 2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.BrandVetStatusWebhookResponse
+- name: campaign-network-status-notification
+  operationId: campaign-network-status-notification
+  method: POST
+  summary: Receive Campaign Network Status Update
+  area: numbers
+  tags:
+  - platform
+  - numbers
+  - number-registration
+  - campaigns
+  content_type: application/json
+  payload_schema: 2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.CampaignNetworkStatusWebhookResponse
+- name: campaign-status-change-notification
+  operationId: campaign-status-change-notification
+  method: POST
+  summary: Receive Campaign Status Update
+  area: numbers
+  tags:
+  - platform
+  - numbers
+  - number-registration
+  - campaigns
+  content_type: application/json
+  payload_schema: 2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.CampaignStatusWebhookResponse
+- name: campaign-ai-feedback-notification
+  operationId: campaign-ai-feedback-notification
+  method: POST
+  summary: Receive AI Campaign Feedback
+  area: numbers
+  tags:
+  - platform
+  - numbers
+  - number-registration
+  - ai-assistant
+  content_type: application/json
+  payload_schema: 2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.CampaignAiFeedbackWebhookResponse
+- name: campaign-ai-builder-notification
+  operationId: campaign-ai-builder-notification
+  method: POST
+  summary: Receive AI Campaign Builder Completion Notification
+  area: numbers
+  tags:
+  - platform
+  - numbers
+  - number-registration
+  - ai-assistant
+  content_type: application/json
+  payload_schema: 2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.CampaignAiBuilderWebhookResponse
+- name: receive-aggregate-data-result
+  operationId: receive-aggregate-data-result
+  method: POST
+  summary: Receive aggregated data result
+  area: metrics-api
+  tags:
+  - platform
+  - metrics-api
+  content_type: application/json
+  payload_schema: 99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.QueryAggregateDataResult
+- name: receive-billing-usage-result
+  operationId: receive-billing-usage-result
+  method: POST
+  summary: Receive billing usage result
+  area: billing-usage-api
+  tags:
+  - platform
+  - billing-usage-api
+  content_type: application/json
+  payload_schema: 99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.BillingUsageResult
+- name: receive-blocklist-event
+  operationId: receive-blocklist-event
+  method: POST
+  summary: Receive blocklist event
+  area: blocklist
+  tags:
+  - platform
+  - blocklist
+  content_type: application/json
+  payload_schema: 2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.BlocklistEventRequest
+- name: receive-messages-api-delivery-reports
+  operationId: receive-messages-api-delivery-reports
+  method: POST
+  summary: Receive delivery reports
+  area: messages-api
+  tags:
+  - platform
+  - messages-api
+  - messages-api-status-reports
+  content_type: application/json
+  payload_schema: 899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiDeliveryReportResponse
+- name: receive-messages-api-seen-reports
+  operationId: receive-messages-api-seen-reports
+  method: POST
+  summary: Receive Seen reports
+  area: messages-api
+  tags:
+  - platform
+  - messages-api
+  - messages-api-status-reports
+  content_type: application/json
+  payload_schema: 899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiSeenReport
+- name: receive-messages-api-incoming-messages
+  operationId: receive-messages-api-incoming-messages
+  method: POST
+  summary: Receive inbound messages
+  area: messages-api
+  tags:
+  - platform
+  - messages-api
+  - inbound-messages
+  content_type: application/json
+  payload_schema: 899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiIncomingMessage
+- name: resource-request-status-change-notification
+  operationId: resource-request-status-change-notification
+  method: POST
+  summary: Receive resource request status update
+  area: resources
+  tags:
+  - platform
+  - resources
+  - resource-request
+  content_type: application/json
+  payload_schema: c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.WebhookStatusNotifApiDocRequestBody
+- name: resource-request-reminder-notification
+  operationId: resource-request-reminder-notification
+  method: POST
+  summary: Receive resource request reminder
+  area: resources
+  tags:
+  - platform
+  - resources
+  - resource-request
+  content_type: application/json
+  payload_schema: c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.WebhookReminderNotifApiDocRequestBody
+- name: receive-silent-mobile-verification-result
+  operationId: receive-silent-mobile-verification-result
+  method: POST
+  summary: Receive silent mobile verification result
+  area: mobile-identity
+  tags:
+  - connectivity
+  - mobile-identity
+  - identity-verification
+  content_type: application/json
+  payload_schema: acc54cffc2fdf57be1405002c65f11d7bb0b2506a15f7e1c75bb3cbcc41d6219.ResultResponse
+- name: receive-advanced-silent-mobile-verification-result
+  operationId: receive-advanced-silent-mobile-verification-result
+  method: POST
+  summary: Receive advanced silent mobile verification result
+  area: mobile-identity
+  tags:
+  - connectivity
+  - mobile-identity
+  - identity-verification
+  content_type: application/json
+  payload_schema: aaab91bc67ad6fdd15298ef61b480f76a93a7cae8c7684c83b1e909cda7f154f.ResultResponse
+- name: receive-number-intelligence-query-results
+  operationId: receive-number-intelligence-query-results
+  method: POST
+  summary: Receive number intelligence query results
+  area: mobile-identity
+  tags:
+  - connectivity
+  - mobile-identity
+  - identity-number-intelligence
+  content_type: application/json
+  payload_schema: c33580c9fc909cbe636f10f5fddd71adf658d961011f6b0e7df8bbb45e9ab4cb.QueryResultResponse
+- name: receive-extraction-session-results
+  operationId: receive-extraction-session-results
+  method: POST
+  summary: Receive Extraction Session Results
+  area: biometrics
+  tags:
+  - connectivity
+  - biometrics
+  - extraction-session
+  content_type: application/json
+  payload_schema: eb583710b0e1739c1b6da279daf56e71bef92e0a50c90d88ff2c7fea69527204.ExtractionWebhookRequest
+- name: receive-kyc-session-results
+  operationId: receive-kyc-session-results
+  method: POST
+  summary: Receive KYC Session Results
+  area: biometrics
+  tags:
+  - connectivity
+  - biometrics
+  - kyc-session
+  content_type: application/json
+  payload_schema: eb583710b0e1739c1b6da279daf56e71bef92e0a50c90d88ff2c7fea69527204.KycWebhookRequest
+- name: receive-enrollment-session-results
+  operationId: receive-enrollment-session-results
+  method: POST
+  summary: Receive Enrollment Session Results
+  area: biometrics
+  tags:
+  - connectivity
+  - biometrics
+  - enrollment-session
+  content_type: application/json
+  payload_schema: eb583710b0e1739c1b6da279daf56e71bef92e0a50c90d88ff2c7fea69527204.EnrollmentWebhookRequest
+- name: receive-verification-session-results
+  operationId: receive-verification-session-results
+  method: POST
+  summary: Receive Verification Session Results
+  area: biometrics
+  tags:
+  - connectivity
+  - biometrics
+  - verification-session
+  content_type: application/json
+  payload_schema: eb583710b0e1739c1b6da279daf56e71bef92e0a50c90d88ff2c7fea69527204.VerificationWebhookRequest

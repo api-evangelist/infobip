@@ -1,0 +1,480 @@
+generated: '2026-07-25'
+method: searched
+source: https://www.infobip.com/docs/release-notes, https://status.infobip.com/, openapi/infobip-platform-full-openapi.json
+  (deprecated + x-deprecationInformation + x-versions + x-is-early-access)
+versioning:
+  scheme: uri-path
+  pattern: /{product}/{majorVersion}/{resource}  e.g. /sms/3/messages, /people/2/persons, /email/4/mime
+  current_spec_version: 3.210.0
+  spec_generated_at: '2026-07-23T15:23:37.825639538Z'
+  spec_endpoint: https://api.infobip.com/platform/1/openapi
+  docs: https://www.infobip.com/docs/api
+  notes: Major version lives in the URI path; superseded majors stay callable and are marked deprecated
+    in the spec with x-deprecationInformation carrying deprecation and sunset dates plus a successorOperationId.
+deprecation:
+  policy: 'Per-operation, published in the OpenAPI: deprecated: true plus x-deprecationInformation {deprecation,
+    sunset, successorOperationId}.'
+  sunset_dates_published: true
+  successor_published: true
+  deprecated_operation_count: 48
+  docs: https://www.infobip.com/docs/api
+stability:
+  early_access_operations: 96
+  early_access_marker: x-is-early-access
+  examples:
+  - get-a-single-company-by-name-or-a-list-of-companies
+  - create-company
+  - delete-company
+  - update-company
+  - create-companies
+  - delete-companies
+  - update-companies
+  - batch-remove-persons-from-company
+  - batch-add-persons-to-company
+  - deprecated-get-list-items
+status_page: https://status.infobip.com/
+release_cadence:
+  cadence: monthly named releases
+  index: https://www.infobip.com/docs/release-notes
+  latest:
+    name: Glacier
+    year: 2026
+    date: '2026-07-08'
+    url: https://www.infobip.com/docs/release-notes/glacier
+support:
+  contact: https://www.infobip.com/contact
+  email: support@infobip.com
+versioned_operations:
+- operationId: send-sms-messages
+  path: /sms/3/messages
+  versions:
+  - versionNumber: 3
+    latest: true
+    operationId: send-sms-messages
+  - versionNumber: 2
+    latest: false
+    operationId: send-sms-message
+  - versionNumber: 2
+    latest: false
+    operationId: send-binary-sms-message
+- operationId: send-sms-messages-over-query-parameters
+  path: /sms/3/text/query
+  versions:
+  - versionNumber: 3
+    latest: true
+    operationId: send-sms-messages-over-query-parameters
+  - versionNumber: 1
+    latest: false
+    operationId: send-sms-message-over-query-parameters
+- operationId: send-sms-message-over-query-parameters
+  path: /sms/1/text/query
+  versions:
+  - versionNumber: 3
+    latest: true
+    operationId: send-sms-messages-over-query-parameters
+  - versionNumber: 1
+    latest: false
+    operationId: send-sms-message-over-query-parameters
+- operationId: send-sms-message
+  path: /sms/2/text/advanced
+  versions:
+  - versionNumber: 3
+    latest: true
+    operationId: send-sms-messages
+  - versionNumber: 2
+    latest: false
+    operationId: send-sms-message
+  - versionNumber: 2
+    latest: false
+    operationId: send-binary-sms-message
+- operationId: send-binary-sms-message
+  path: /sms/2/binary/advanced
+  versions:
+  - versionNumber: 3
+    latest: true
+    operationId: send-sms-messages
+  - versionNumber: 2
+    latest: false
+    operationId: send-sms-message
+  - versionNumber: 2
+    latest: false
+    operationId: send-binary-sms-message
+- operationId: get-outbound-sms-message-delivery-reports-v3
+  path: /sms/3/reports
+  versions:
+  - versionNumber: 3
+    latest: true
+    operationId: get-outbound-sms-message-delivery-reports-v3
+  - versionNumber: 1
+    latest: false
+    operationId: get-outbound-sms-message-delivery-reports
+- operationId: get-outbound-sms-message-logs-v3
+  path: /sms/3/logs
+  versions:
+  - versionNumber: 3
+    latest: true
+    operationId: get-outbound-sms-message-logs-v3
+  - versionNumber: 1
+    latest: false
+    operationId: get-outbound-sms-message-logs
+- operationId: get-outbound-sms-message-delivery-reports
+  path: /sms/1/reports
+  versions:
+  - versionNumber: 3
+    latest: true
+    operationId: get-outbound-sms-message-delivery-reports-v3
+  - versionNumber: 1
+    latest: false
+    operationId: get-outbound-sms-message-delivery-reports
+- operationId: get-outbound-sms-message-logs
+  path: /sms/1/logs
+  versions:
+  - versionNumber: 3
+    latest: true
+    operationId: get-outbound-sms-message-logs-v3
+  - versionNumber: 1
+    latest: false
+    operationId: get-outbound-sms-message-logs
+- operationId: send-email-messages-api
+  path: /email/4/messages
+  versions:
+  - versionNumber: 4
+    latest: true
+    operationId: send-email-messages-api
+  - versionNumber: 3
+    latest: false
+    operationId: send-fully-featured-email
+- operationId: send-fully-featured-email
+  path: /email/3/send
+  versions:
+  - versionNumber: 4
+    latest: true
+    operationId: send-email-messages-api
+  - versionNumber: 3
+    latest: false
+    operationId: send-fully-featured-email
+- operationId: get-email-message-logs
+  path: /email/4/logs
+  versions:
+  - versionNumber: 4
+    latest: true
+    operationId: get-email-message-logs
+  - versionNumber: 1
+    latest: false
+    operationId: get-email-logs
+- operationId: get-outbound-email-message-delivery-reports
+  path: /email/4/reports
+  versions:
+  - versionNumber: 4
+    latest: true
+    operationId: get-outbound-email-message-delivery-reports
+  - versionNumber: 1
+    latest: false
+    operationId: get-email-delivery-reports
+- operationId: get-email-logs
+  path: /email/1/logs
+  versions:
+  - versionNumber: 4
+    latest: true
+    operationId: get-email-message-logs
+  - versionNumber: 1
+    latest: false
+    operationId: get-email-logs
+- operationId: get-email-delivery-reports
+  path: /email/1/reports
+  versions:
+  - versionNumber: 4
+    latest: true
+    operationId: get-outbound-email-message-delivery-reports
+  - versionNumber: 1
+    latest: false
+    operationId: get-email-delivery-reports
+deprecated_operations:
+- operationId: deprecated-get-list-items
+  method: GET
+  path: /people/2/persons/{personId}/lists/{listName}/items
+  deprecated_on: '2023-10-25T00:00:00.000+00:00'
+  sunset: '2024-01-25T00:00:00.000+00:00'
+  successor_operation_id: get-list-items
+- operationId: deprecated-append-list-items
+  method: POST
+  path: /people/2/persons/{personId}/lists/{listName}/items
+  deprecated_on: '2023-10-25T00:00:00.000+00:00'
+  sunset: '2024-01-25T00:00:00.000+00:00'
+  successor_operation_id: append-list-items
+- operationId: deprecated-delete-list-items
+  method: DELETE
+  path: /people/2/persons/{personId}/lists/{listName}/items
+  deprecated_on: '2023-10-25T00:00:00.000+00:00'
+  sunset: '2024-01-25T00:00:00.000+00:00'
+  successor_operation_id: delete-list-items
+- operationId: deprecated-replace-list-item
+  method: PUT
+  path: /people/2/persons/{personId}/lists/{listName}/items/{itemId}
+  deprecated_on: '2023-10-25T00:00:00.000+00:00'
+  sunset: '2024-01-25T00:00:00.000+00:00'
+  successor_operation_id: replace-list-item
+- operationId: deprecated-update-list-item
+  method: PATCH
+  path: /people/2/persons/{personId}/lists/{listName}/items/{itemId}
+  deprecated_on: '2023-10-25T00:00:00.000+00:00'
+  sunset: '2024-01-25T00:00:00.000+00:00'
+  successor_operation_id: update-list-item
+- operationId: deprecated-get-lists
+  method: GET
+  path: /people/2/persons/{personId}/lists
+  deprecated_on: '2023-10-25T00:00:00.000+00:00'
+  sunset: '2024-01-25T00:00:00.000+00:00'
+  successor_operation_id: get-lists
+- operationId: deprecated-delete-lists
+  method: DELETE
+  path: /people/2/persons/{personId}/lists
+  deprecated_on: '2023-10-25T00:00:00.000+00:00'
+  sunset: '2024-01-25T00:00:00.000+00:00'
+  successor_operation_id: delete-lists
+- operationId: deprecated-replace-list
+  method: PUT
+  path: /people/2/persons/{personId}/lists/{listName}
+  deprecated_on: '2023-10-25T00:00:00.000+00:00'
+  sunset: '2024-01-25T00:00:00.000+00:00'
+  successor_operation_id: replace-list
+- operationId: deprecated-update-list
+  method: PATCH
+  path: /people/2/persons/{personId}/lists/{listName}
+  deprecated_on: '2023-10-25T00:00:00.000+00:00'
+  sunset: '2024-01-25T00:00:00.000+00:00'
+  successor_operation_id: update-list
+- operationId: add-people-to-flow
+  method: POST
+  path: /communication/1/flows/{campaignId}/participants
+  deprecated_on: 2023-10-25T00:00:00.777+0000
+  sunset: 2024-10-25T12:00:00.777+0000
+  successor_operation_id: add-flow-participants
+- operationId: update-conversation-account-configuration
+  method: PUT
+  path: /ccaas/1/account/configuration
+  deprecated_on: null
+  sunset: null
+  successor_operation_id: null
+- operationId: remove-conversations-call-timeout
+  method: DELETE
+  path: /ccaas/voice/2/call-timeouts
+  deprecated_on: 2025-03-06T12:00:00.000+0000
+  sunset: 2025-09-06T12:00:00.000+0000
+  successor_operation_id: update-conversations-call-timeout
+- operationId: send-sms-message-over-query-parameters
+  method: GET
+  path: /sms/1/text/query
+  deprecated_on: 2024-10-09T12:00:00.00+0000
+  sunset: null
+  successor_operation_id: send-sms-messages-over-query-parameters
+- operationId: get-outbound-sms-message-logs
+  method: GET
+  path: /sms/1/logs
+  deprecated_on: 2024-05-16T12:00:00.00+0000
+  sunset: null
+  successor_operation_id: get-outbound-sms-message-logs-v3
+- operationId: send-mms-message
+  method: POST
+  path: /mms/1/advanced
+  deprecated_on: 2024-04-26T10:00:00.00+0000
+  sunset: null
+  successor_operation_id: send-mms-messages
+- operationId: deprecated-get-outbound-mms-message-delivery-reports
+  method: GET
+  path: /mms/1/reports
+  deprecated_on: 2024-04-26T10:00:00.00+0000
+  sunset: 2026-06-01T00:00:00.00+0000
+  successor_operation_id: get-outbound-mms-message-delivery-reports
+- operationId: deprecated-get-outbound-mms-message-logs
+  method: GET
+  path: /mms/1/logs
+  deprecated_on: 2024-04-26T10:00:00.00+0000
+  sunset: 2026-06-01T00:00:00.00+0000
+  successor_operation_id: get-outbound-mms-message-logs
+- operationId: conference-broadcast-webrtc-text
+  method: POST
+  path: /calls/1/conferences/{conferenceId}/broadcast-webrtc-text
+  deprecated_on: 2025-11-06T12:00:00.000+0000
+  sunset: 2026-01-11T12:00:00.000+0000
+  successor_operation_id: conference-send-message
+- operationId: dialog-broadcast-webrtc-text
+  method: POST
+  path: /calls/1/dialogs/{dialogId}/broadcast-webrtc-text
+  deprecated_on: 2025-11-06T12:00:00.000+0000
+  sunset: 2026-01-11T12:00:00.000+0000
+  successor_operation_id: dialog-send-message
+- operationId: get-voice-delivery-reports-deprecated
+  method: GET
+  path: /tts/3/reports
+  deprecated_on: '2020-07-01T00:00:00Z'
+  sunset: null
+  successor_operation_id: get-voice-delivery-reports
+- operationId: deprecated-get-whatsapp-templates
+  method: GET
+  path: /whatsapp/1/senders/{sender}/templates
+  deprecated_on: null
+  sunset: null
+  successor_operation_id: null
+- operationId: deprecated-create-whatsapp-template
+  method: POST
+  path: /whatsapp/1/senders/{sender}/templates
+  deprecated_on: null
+  sunset: null
+  successor_operation_id: null
+- operationId: send-viber-text-message
+  method: POST
+  path: /viber/1/message/text
+  deprecated_on: null
+  sunset: null
+  successor_operation_id: null
+- operationId: send-viber-image-message
+  method: POST
+  path: /viber/1/message/image
+  deprecated_on: null
+  sunset: null
+  successor_operation_id: null
+- operationId: send-viber-file-message
+  method: POST
+  path: /viber/1/message/file
+  deprecated_on: null
+  sunset: null
+  successor_operation_id: null
+- operationId: send-viber-video-message
+  method: POST
+  path: /viber/1/message/video
+  deprecated_on: null
+  sunset: null
+  successor_operation_id: null
+- operationId: send-single-push-notification
+  method: POST
+  path: /push/2/message/single
+  deprecated_on: null
+  sunset: null
+  successor_operation_id: null
+- operationId: send-multiple-push-notifications
+  method: POST
+  path: /push/2/message/multi
+  deprecated_on: null
+  sunset: null
+  successor_operation_id: null
+- operationId: send-rcs-message
+  method: POST
+  path: /ott/rcs/1/message
+  deprecated_on: null
+  sunset: null
+  successor_operation_id: null
+- operationId: send-rcs-bulk-message
+  method: POST
+  path: /ott/rcs/1/message/bulk
+  deprecated_on: null
+  sunset: null
+  successor_operation_id: null
+- operationId: send-rcs-template-message
+  method: POST
+  path: /ott/rcs/1/message/template
+  deprecated_on: null
+  sunset: null
+  successor_operation_id: null
+- operationId: send-rcs-bulk-template-message
+  method: POST
+  path: /ott/rcs/1/message/template/bulk
+  deprecated_on: null
+  sunset: null
+  successor_operation_id: null
+- operationId: rcs-template-create
+  method: POST
+  path: /rcs/1/senders/{sender}/templates/{templateName}
+  deprecated_on: 2025-11-12T12:00:00.000+0000
+  sunset: null
+  successor_operation_id: rcs-template-create-v2
+- operationId: get-api-keys-by-filter-deprecated
+  method: GET
+  path: /settings/1/accounts/{accountKey}/api-keys
+  deprecated_on: null
+  sunset: null
+  successor_operation_id: null
+- operationId: create-api-key-deprecated
+  method: POST
+  path: /settings/1/accounts/{accountKey}/api-keys
+  deprecated_on: null
+  sunset: null
+  successor_operation_id: null
+- operationId: get-api-key-deprecated
+  method: GET
+  path: /settings/1/accounts/{accountKey}/api-keys/{key}
+  deprecated_on: null
+  sunset: null
+  successor_operation_id: null
+- operationId: update-api-key-deprecated
+  method: PUT
+  path: /settings/1/accounts/{accountKey}/api-keys/{key}
+  deprecated_on: null
+  sunset: null
+  successor_operation_id: null
+- operationId: list-configurations-for-number
+  method: GET
+  path: /numbers/2/numbers/{numberKey}/sms
+  deprecated_on: 2024-03-13T12:00:00+0000
+  sunset: null
+  successor_operation_id: get-inbound-configurations
+- operationId: modify-sms-configurations
+  method: PUT
+  path: /numbers/2/numbers/{numberKey}/sms
+  deprecated_on: 2024-03-13T12:00:00+0000
+  sunset: null
+  successor_operation_id: manage-inbound-configuration
+- operationId: create-new-configuration
+  method: POST
+  path: /numbers/2/numbers/{numberKey}/sms
+  deprecated_on: 2024-03-13T12:00:00+0000
+  sunset: null
+  successor_operation_id: manage-inbound-configuration
+- operationId: get-single-configuration
+  method: GET
+  path: /numbers/2/numbers/{numberKey}/sms/{configurationKey}
+  deprecated_on: 2024-03-13T12:00:00+0000
+  sunset: null
+  successor_operation_id: get-inbound-configurations
+- operationId: delete-configuration
+  method: DELETE
+  path: /numbers/2/numbers/{numberKey}/sms/{configurationKey}
+  deprecated_on: 2024-03-13T12:00:00+0000
+  sunset: null
+  successor_operation_id: delete-inbound-configuration
+- operationId: get-mms-configurations
+  method: GET
+  path: /numbers/2/numbers/{numberKey}/mms
+  deprecated_on: 2024-03-13T12:00:00+0000
+  sunset: null
+  successor_operation_id: get-inbound-configurations
+- operationId: create-mms-configuration
+  method: POST
+  path: /numbers/2/numbers/{numberKey}/mms
+  deprecated_on: 2024-03-13T12:00:00+0000
+  sunset: null
+  successor_operation_id: manage-inbound-configuration
+- operationId: get-mms-configuration
+  method: GET
+  path: /numbers/2/numbers/{numberKey}/mms/{configurationKey}
+  deprecated_on: 2024-03-13T12:00:00+0000
+  sunset: null
+  successor_operation_id: get-inbound-configurations
+- operationId: update-mms-configuration
+  method: PUT
+  path: /numbers/2/numbers/{numberKey}/mms/{configurationKey}
+  deprecated_on: 2024-03-13T12:00:00+0000
+  sunset: null
+  successor_operation_id: manage-inbound-configuration
+- operationId: delete-mms-configuration
+  method: DELETE
+  path: /numbers/2/numbers/{numberKey}/mms/{configurationKey}
+  deprecated_on: 2024-03-13T12:00:00+0000
+  sunset: null
+  successor_operation_id: delete-inbound-configuration
+- operationId: synchronous-silent-mobile-verification
+  method: POST
+  path: /mi/verification/1/verify/synchronous
+  deprecated_on: 2025-12-24T00:00:00.000+0000
+  sunset: null
+  successor_operation_id: null

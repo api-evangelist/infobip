@@ -1,0 +1,40 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Infobip OpenAPI Specification (voice)
+  version: 1.0.0
+extends: openapi/infobip-voice-openapi.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-slug: infobip
+    x-apievangelist-artifacts:
+      authentication: authentication/infobip-authentication.yml
+      scopes: scopes/infobip-scopes.yml
+      conventions: conventions/infobip-conventions.yml
+      errors:
+      - errors/infobip-problem-types.yml
+      - errors/infobip-error-codes.yml
+      rate_limits: rate-limits/infobip-rate-limits.yml
+      lifecycle: lifecycle/infobip-lifecycle.yml
+      webhooks: asyncapi/infobip-webhooks.yml
+      mcp: mcp/infobip-mcp.yml
+      agentic_access: agentic-access/infobip-agentic-access.yml
+    x-apievangelist-analysis:
+      operation_count: 158
+      operations_with_published_throttling: 133
+      operations_with_declared_scopes: 158
+      deprecated_operations: 3
+      early_access_operations: 0
+      error_format: infobip requestError/serviceException + ApiError (not RFC 9457)
+      idempotency_key: null
+- target: $
+  update:
+    servers:
+    - url: https://api.infobip.com
+      description: Infobip shared base URL. Accounts are also issued a personalized base URL shown in the web portal.
+- target: $.info
+  update:
+    x-apievangelist-deprecated-operations:
+    - conference-broadcast-webrtc-text
+    - dialog-broadcast-webrtc-text
+    - get-voice-delivery-reports-deprecated

@@ -1,0 +1,183 @@
+generated: '2026-07-25'
+method: derived
+source: openapi/infobip-platform-full-openapi.json (4xx/5xx responses across 943 operations)
+format: infobip-requestError
+notes: Infobip does not use RFC 9457 application/problem+json. Errors are returned as a JSON envelope
+  with a requestError/serviceException object (messageId, text, validationErrors) or, for the newer platform
+  APIs, an ApiError object. Delivery-level outcomes are reported separately through the status/error group
+  registry captured in errors/infobip-error-codes.yml.
+envelope:
+  legacy:
+    shape: '{"requestError":{"serviceException":{"messageId":"...","text":"...","validationErrors":{...}}}}'
+    schemas:
+    - ApiException
+    - ExceptionResponse
+  platform:
+    shape: '{"errorCode":"...","description":"...","details":[...]}'
+    schemas:
+    - ApiError
+    - PlatformErrorResponse
+    - StatusCodeResponse
+    - StatusResponse
+error_schemas:
+- schema: ApiException
+  response_count: 834
+- schema: ApiError
+  response_count: 207
+- schema: StatusCodeResponse
+  response_count: 101
+- schema: StatusResponse
+  response_count: 47
+- schema: PlatformErrorResponse
+  response_count: 21
+- schema: APIError400
+  response_count: 10
+- schema: APIError404
+  response_count: 8
+- schema: ExceptionResponse
+  response_count: 5
+- schema: PushApiErrorResponse
+  response_count: 4
+- schema: ProblemDetailsResponse
+  response_count: 4
+- schema: ErrorResponse
+  response_count: 3
+- schema: RecordingNotFoundException
+  response_count: 2
+- schema: OAuthApiException
+  response_count: 2
+- schema: BadRequestResponse
+  response_count: 1
+- schema: RecordingServiceException
+  response_count: 1
+- schema: ApiErrorResponse
+  response_count: 1
+- schema: MarkAsReadErrorResponse
+  response_count: 1
+- schema: ValidationBadResponse
+  response_count: 1
+problems:
+- status: '400'
+  title: Bad Request
+  occurrences: 693
+  common_description: Bad request
+  example_operations:
+  - update-a-person
+  - create-a-new-person
+  - partial-person-update
+  - set-person-contact-information
+  - delete-person-contact-information
+- status: '401'
+  title: Unauthorized
+  occurrences: 937
+  common_description: Unauthorized - Platform authentication error
+  example_operations:
+  - get-a-single-person-or-a-list-of-people
+  - update-a-person
+  - create-a-new-person
+  - delete-a-person
+  - partial-person-update
+- status: '403'
+  title: Forbidden
+  occurrences: 936
+  common_description: Permission denied - Platform authorization error
+  example_operations:
+  - get-a-single-person-or-a-list-of-people
+  - update-a-person
+  - create-a-new-person
+  - delete-a-person
+  - partial-person-update
+- status: '404'
+  title: Not Found
+  occurrences: 588
+  common_description: Not Found
+  example_operations:
+  - match-people-ids
+  - get-a-tag
+  - delete-a-tag
+  - remove-tag-from-people-batch
+  - add-tag-to-people-batch
+- status: '409'
+  title: Conflict
+  occurrences: 28
+  common_description: Conflict
+  example_operations:
+  - create-event-definition
+  - cancel-events-export-request
+  - transfer-call-to-agent
+  - transfer-call-to-queue
+  - transfer-call-to-external-number
+- status: '412'
+  title: Precondition Failed
+  occurrences: 3
+  common_description: PRECONDITION FAILED
+  example_operations:
+  - transfer-call-to-agent
+  - transfer-call-to-queue
+  - transfer-call-to-external-number
+- status: '416'
+  title: Range Not Satisfiable
+  occurrences: 1
+  common_description: Requested range not satisfiable
+  example_operations:
+  - download-recording-file
+- status: '422'
+  title: Unprocessable Entity
+  occurrences: 15
+  common_description: Unprocessable content
+  example_operations:
+  - silent-mobile-verification
+  - advanced-silent-mobile-verification
+  - synchronous-silent-mobile-verification
+  - zero-rated-silent-mobile-verification
+  - query-number-intelligence
+- status: '429'
+  title: Too Many Requests
+  occurrences: 688
+  common_description: Too Many Requests
+  example_operations:
+  - get-a-single-person-or-a-list-of-people
+  - update-a-person
+  - create-a-new-person
+  - delete-a-person
+  - partial-person-update
+- status: 4XX
+  title: Client error
+  occurrences: 55
+  common_description: Error responses
+  example_operations:
+  - get-a-single-person-or-a-list-of-people
+  - update-a-person
+  - create-a-new-person
+  - delete-a-person
+  - partial-person-update
+- status: '500'
+  title: Internal Server Error
+  occurrences: 943
+  common_description: Internal server error
+  example_operations:
+  - get-a-single-person-or-a-list-of-people
+  - update-a-person
+  - create-a-new-person
+  - delete-a-person
+  - partial-person-update
+- status: '502'
+  title: Bad Gateway
+  occurrences: 6
+  common_description: Bad Gateway
+  example_operations:
+  - get-zalo-templates
+  - get-zalo-template
+  - edit-zalo-template
+  - create-zalo-template
+  - upload-zalo-media
+- status: 5XX
+  title: Server error
+  occurrences: 55
+  common_description: Error responses
+  example_operations:
+  - get-a-single-person-or-a-list-of-people
+  - update-a-person
+  - create-a-new-person
+  - delete-a-person
+  - partial-person-update

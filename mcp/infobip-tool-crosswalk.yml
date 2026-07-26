@@ -1,0 +1,223 @@
+generated: '2026-07-25'
+method: derived
+source: mcp/infobip-mcp.yml (searched) bound to operationIds verified in openapi/*.json
+summary: |
+  Infobip exposes one MCP server per API product, so the crosswalk is a SERVER-to-SPEC
+  binding rather than a tool-to-operation binding: the product servers' tools/list is
+  auth-gated (HTTP 401), so the individual tool names and input schemas are not publicly
+  observable. What IS public is (a) the per-server capability list Infobip publishes in
+  github.com/infobip/mcp, (b) the OAuth scope each server requires (RFC 9728
+  protected-resource metadata), and (c) the OpenAPI operations that back each product.
+  Every operationId below was grepped out of the spec named in `openapi:` - none are
+  invented. Confidence is set to `medium` wherever the binding is by published capability
+  name rather than by an observed tool schema.
+surfaces:
+  openapi:
+    catalog: openapi/ (47 documents, 1,886 operations)
+    full_spec: openapi/infobip-platform-full-openapi.json
+    live_endpoint: https://api.infobip.com/platform/1/openapi
+    gated: false
+  mcp:
+    base: https://mcp.infobip.com
+    manifest: mcp/infobip-mcp.yml
+    gated: true
+    note: |
+      tools/list returns 200 only for the two anonymous documentation servers
+      (search, deep-research); all 15 product servers return HTTP 401 MCP401.
+  graphql:
+    present: false
+    note: Infobip publishes no public GraphQL surface.
+crosswalk:
+- tool: sms (server)
+  category: messaging
+  scope: sms:manage
+  openapi: openapi/infobip-sms-openapi.json
+  rest: [send-sms-messages, send-sms-message, send-binary-sms-message, preview-sms-message,
+    get-scheduled-sms-messages, reschedule-sms-messages, get-scheduled-sms-messages-status,
+    update-scheduled-sms-messages-status, get-outbound-sms-message-delivery-reports-v3,
+    get-outbound-sms-message-logs-v3, get-inbound-sms-messages]
+  binding: rest
+  confidence: medium
+  note: 10 tools published; capability list (send, preview, schedule/reschedule, bulk,
+    DLR, logs, URL tracking) maps onto these operations.
+- tool: whatsapp (server)
+  category: messaging
+  scope: whatsapp:manage
+  openapi: openapi/infobip-whatsapp-openapi.json
+  rest: [send-whatsapp-template-message, send-whatsapp-text-message, send-whatsapp-document-message,
+    send-whatsapp-image-message, send-whatsapp-audio-message, send-whatsapp-video-message,
+    send-whatsapp-sticker-message, send-whatsapp-location-message, send-whatsapp-contact-message]
+  binding: rest
+  confidence: medium
+  note: 18 tools published; template management and DLR/log operations also live in this
+    spec.
+- tool: whatsapp-flow (server)
+  category: messaging
+  scope: whatsapp:manage
+  openapi: openapi/infobip-whatsapp-openapi.json
+  rest: [send-whatsapp-interactive-flow-message]
+  binding: rest
+  confidence: low
+  note: 13 tools published including AI flow generation and flow-JSON authoring; only the
+    send-side interactive flow message has a public REST operation in the harvested spec.
+- tool: viber (server)
+  category: messaging
+  scope: viber-bm:manage
+  openapi: openapi/infobip-viber-openapi.json
+  rest: [send-viber-messages, send-viber-text-message, send-viber-image-message,
+    send-viber-file-message, send-viber-video-message, get-outbound-viber-message-delivery-reports,
+    get-outbound-viber-message-logs]
+  binding: rest
+  confidence: medium
+- tool: rcs (server)
+  category: messaging
+  scope: rcs:manage
+  openapi: openapi/infobip-rcs-openapi.json
+  rest: [send-rcs-messages, send-rcs-message, send-rcs-bulk-message, send-rcs-template-message,
+    get-outbound-rcs-message-delivery-reports, get-outbound-rcs-message-logs,
+    capability-check-rcs-destinations-query, get-rcs-senders, create-rcs-sender]
+  binding: rest
+  confidence: medium
+  note: 27 tools - the largest server; sender management and template CRUD are in-spec.
+- tool: email (server)
+  category: messaging
+  scope: email:manage
+  openapi: openapi/infobip-email-openapi.json
+  rest: [send-email-messages-api, send-fully-featured-email, send-mime-email,
+    get-scheduled-emails, reschedule-emails, get-scheduled-email-statuses,
+    update-scheduled-email-statuses, validate-email-addresses]
+  binding: rest
+  confidence: medium
+- tool: voice (server)
+  category: messaging
+  scope: message:send
+  openapi: openapi/infobip-voice-openapi.json
+  rest: [create-call, get-calls, get-call, hangup-call, call-say-text, call-play-file,
+    get-calls-history, get-calls-configurations]
+  binding: rest
+  confidence: medium
+  note: 7 tools published against a 158-operation spec - by far the widest REST-only gap.
+- tool: mobile-app-messaging (server)
+  category: messaging
+  scope: mobile-app-messaging:manage
+  openapi: openapi/infobip-mobile-app-messaging-openapi.json
+  rest: [send-single-push-notification, send-multiple-push-notifications, send-push-notifications,
+    get-push-applications, get-push-statistics, get-outbound-push-message-delivery-reports,
+    get-outbound-push-message-logs]
+  binding: rest
+  confidence: medium
+- tool: message (server, early access)
+  category: messaging
+  scope: messages-api:manage
+  openapi: openapi/infobip-messages-api-openapi.json
+  rest: [send-messages-api-message, get-messages-api-delivery-reports]
+  binding: rest
+  confidence: high
+  note: 1-2 tools; the Messages API is the single omnichannel send endpoint, so the
+    binding is near 1:1.
+- tool: 2fa (server)
+  category: authentication
+  scope: 2fa:manage, 2fa:pin:manage
+  openapi: openapi/infobip-2fa-openapi.json
+  rest: [create-2fa-application, get-2fa-applications, create-2fa-message-template,
+    send-2fa-pin-code-over-sms, send-2fa-pin-code-over-voice, send-2fa-pin-code-over-email,
+    resend-2fa-pin-code-over-sms, verify-2fa-phone-number, get-2fa-verification-status]
+  binding: rest
+  confidence: high
+  note: published capability list maps 1:1 onto the 2FA spec's 18 operations.
+- tool: camara (server)
+  category: authentication
+  scope: mobile-identity:manage
+  openapi: openapi/infobip-camara-openapi.json
+  rest: [authorize-number-verify, verify-number, verify-number-v2, verify-device-location,
+    sim-swap-check, sim-swap-retrieve-date, know-your-customer-match]
+  binding: rest
+  confidence: high
+  note: published capabilities (number verification, device location, SIM swap, KYC match)
+    match the CAMARA spec operation-for-operation.
+- tool: people (server)
+  category: customer-data
+  scope: people:manage
+  openapi: openapi/infobip-people-openapi.json
+  rest: [get-a-single-person-or-a-list-of-people, create-a-new-person, update-a-person,
+    delete-a-person, create-company, update-company, get-list-of-tags, create-a-new-tag]
+  binding: rest
+  confidence: medium
+- tool: account-management (server)
+  category: platform
+  scope: account-management:manage
+  openapi: openapi/infobip-account-management-openapi.json
+  rest: [get-account-balance, get-free-messages-count, get-total-account-balance,
+    get-all-accounts, update-account, search-audit-logs, export-audit-logs]
+  binding: rest
+  confidence: high
+- tool: application-entity (server)
+  category: platform
+  scope: application-entity:manage
+  openapi: openapi/infobip-application-entity-openapi.json
+  rest: [get-applications, create-application, modify-application, delete-application,
+    get-entities, create-entity, modify-entity, delete-entity, create-resource-association,
+    delete-resource-association]
+  binding: rest
+  confidence: high
+mcp_only:
+- tool: explore (search server)
+  reason: Documentation semantic search - a docs-hub capability with no public REST
+    operation in any Infobip OpenAPI.
+- tool: search (deep-research server)
+  reason: Deep documentation search; no REST equivalent.
+- tool: fetch (deep-research server)
+  reason: Fetches a full documentation page by URL; no REST equivalent.
+- tool: provision (server, early access)
+  reason: Conversational sender-registration / number-purchase / channel-setup workflow.
+    It composes Numbers and Resources operations behind a single agent conversation and
+    is scoped by a dedicated mcp:provision scope; no single REST operation corresponds.
+- tool: whatsapp-flow AI flow generation
+  reason: Generates WhatsApp Flow structure/JSON from a prompt - a server-side AI
+    composite with no public REST operation.
+rest_only:
+- capability: Conversations (cloud contact center)
+  openapi: openapi/infobip-conversations-openapi.json
+  operations: 128
+  note: no Conversations MCP server published.
+- capability: Numbers management
+  openapi: openapi/infobip-numbers-openapi.json
+  operations: 73
+  note: reachable only indirectly through the early-access Provision server.
+- capability: Moments (journeys/flows)
+  openapi: openapi/infobip-moments-openapi.json
+  operations: 8
+- capability: Answers (chatbots)
+  openapi: openapi/infobip-answers-openapi.json
+  operations: 3
+- capability: Knowledge Base / AI Assistants
+  openapi: [openapi/infobip-knowledge-base-openapi.json, openapi/infobip-ai-assistants-openapi.json]
+  operations: 30
+- capability: WebRTC calls
+  openapi: openapi/infobip-webrtc-calls-openapi.json
+  operations: 35
+- capability: Channel APIs without an MCP server
+  openapi: [openapi/infobip-mms-openapi.json, openapi/infobip-instagram-openapi.json,
+    openapi/infobip-messenger-openapi.json, openapi/infobip-kakao-openapi.json,
+    openapi/infobip-line-openapi.json, openapi/infobip-zalo-openapi.json,
+    openapi/infobip-tiktok-openapi.json, openapi/infobip-apple-mfb-openapi.json,
+    openapi/infobip-open-channel-openapi.json, openapi/infobip-live-chat-openapi.json]
+  note: 10 channels are REST-only today.
+- capability: Platform utilities
+  openapi: [openapi/infobip-blocklist-openapi.json, openapi/infobip-signals-openapi.json,
+    openapi/infobip-metrics-api-openapi.json, openapi/infobip-billing-usage-api-openapi.json,
+    openapi/infobip-catalogs-api-openapi.json, openapi/infobip-subscriptions-api-openapi.json,
+    openapi/infobip-sending-strategy-openapi.json, openapi/infobip-resources-openapi.json,
+    openapi/infobip-number-lookup-openapi.json, openapi/infobip-number-activation-state-openapi.json,
+    openapi/infobip-biometrics-openapi.json, openapi/infobip-omni-failover-openapi.json,
+    openapi/infobip-vocalize-openapi.json, openapi/infobip-common-assets-openapi.json]
+coverage:
+  mcp_servers_published: 17
+  mcp_servers_oauth_protected: 15
+  mcp_servers_anonymous: 2
+  tools_publicly_observable: 3
+  tools_declared_in_docs: 101   # sum of the per-server tool counts Infobip publishes
+  servers_bound_to_openapi: 14
+  mcp_only_capabilities: 5
+  rest_operations_total: 1886
+  rest_products_without_mcp_server: 30

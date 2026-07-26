@@ -1,0 +1,274 @@
+# Infobip Documentation
+
+> Infobip is a global cloud communications platform. Send messages via SMS, Email, WhatsApp, RCS, Viber, Voice, and 16+ channels through unified APIs. Build AI agents with MCP servers. Manage customer data, automate engagement, and run contact centers.
+
+Infobip provides two primary integration paths: REST APIs for direct channel integration, and MCP (Model Context Protocol) servers for AI agent integration. For omnichannel messaging, prefer the Messages API which unifies all channels under a single endpoint. Each API product also has a dedicated per-channel API for channel-specific features. All API requests require authentication via API key (recommended) or OAuth 2.0, sent in the Authorization header as `App YOUR_API_KEY`. Each Infobip account has a personalized base URL in the format `{yoursubdomain}.api.infobip.com`.
+
+## Create an Account
+
+Sign up for a free Infobip account at [infobip.com/signup](https://www.infobip.com/signup) — no credit card required. After signing up:
+
+1. **Get your API key** from the Infobip portal. Go to Account Settings → API Keys and create a key with the `sms:message:send` scope. See [API Authentication](https://www.infobip.com/docs/essentials/api-essentials/api-authentication) for details.
+2. **Find your base URL** in the portal — it looks like `{yoursubdomain}.api.infobip.com`. See [Base URL](https://www.infobip.com/docs/essentials/api-essentials/base-url).
+
+For the full onboarding walkthrough, see [Create an Account](https://www.infobip.com/docs/essentials/getting-started/create-an-account).
+
+## Send Your First Message
+
+With your API key and base URL, send an SMS with a single REST call:
+
+```shell
+curl -X POST https://{yoursubdomain}.api.infobip.com/sms/3/messages \
+  -H 'Authorization: App {YOUR_API_KEY}' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "messages": [
+      {
+        "sender": "ServiceSMS",
+        "destinations": [{ "to": "YOUR_PHONE_NUMBER" }],
+        "content": { "text": "Hello from Infobip!" }
+      }
+    ]
+  }'
+```
+
+During the free trial, use `ServiceSMS` as the sender and send to the phone number you verified at signup (up to 5 verified numbers). For full details, see [Start Sending Messages](https://www.infobip.com/docs/essentials/getting-started/start-sending-messages).
+
+The same pattern works across all channels — swap the endpoint and payload for [WhatsApp](https://www.infobip.com/docs/api/channels/whatsapp), [Email](https://www.infobip.com/docs/api/channels/email), [RCS](https://www.infobip.com/docs/api/channels/rcs), [Viber](https://www.infobip.com/docs/api/channels/viber), and more. For omnichannel sending from a single endpoint, use the [Messages API](https://www.infobip.com/docs/api/platform/messages-api).
+
+## Browsing Infobip Documentation with AI
+
+The preferred way to explore Infobip documentation using AI tools is the Infobip Docs Search MCP server at `https://mcp.infobip.com/search`. This is a remote MCP server that provides semantic search across the entire Infobip documentation hub -- no API key required. AI tools like Claude Code, Cursor, Windsurf, and any MCP-compatible client can connect to it and search all product docs, tutorials, API guides, and use cases.
+
+To connect, pick the setup that matches your tool:
+
+Claude Code:
+```
+claude mcp add --transport http infobip-docs https://mcp.infobip.com/search
+```
+
+OpenAI Codex CLI:
+```
+codex --full-auto --mcp-server "https://mcp.infobip.com/search"
+```
+
+Cursor (add to `.cursor/mcp.json`):
+```json
+{
+  "mcpServers": {
+    "infobip-docs": {
+      "url": "https://mcp.infobip.com/search"
+    }
+  }
+}
+```
+
+Windsurf (add to `~/.codeium/windsurf/mcp_config.json`):
+```json
+{
+  "mcpServers": {
+    "infobip-docs": {
+      "serverUrl": "https://mcp.infobip.com/search"
+    }
+  }
+}
+```
+
+VS Code / GitHub Copilot (add to `.vscode/mcp.json`):
+```json
+{
+  "servers": {
+    "infobip-docs": {
+      "type": "http",
+      "url": "https://mcp.infobip.com/search"
+    }
+  }
+}
+```
+
+JetBrains IDEs (Settings > Tools > AI Assistant > MCP Servers > Add):
+```json
+{
+  "mcpServers": {
+    "infobip-docs": {
+      "type": "http",
+      "url": "https://mcp.infobip.com/search"
+    }
+  }
+}
+```
+
+Claude Desktop or any STDIO-only client (via mcp-remote bridge):
+```json
+{
+  "mcpServers": {
+    "infobip-docs": {
+      "command": "npx",
+      "args": ["mcp-remote", "https://mcp.infobip.com/search"]
+    }
+  }
+}
+```
+
+Any MCP client supporting Streamable HTTP can connect directly to `https://mcp.infobip.com/search` with no authentication required.
+
+## MCP Servers
+
+Infobip provides remote MCP servers that enable AI agents to send messages, run 2FA flows, manage contacts, and more. Each server is independent and product-specific. All servers support Streamable HTTP (default), SSE (append /sse to the URL), and STDIO via mcp-remote bridge. Authenticate with an API key header or OAuth 2.1.
+
+- [MCP Overview](https://www.infobip.com/docs/mcp): What Infobip MCP servers can do, supported clients, and feature summary
+- [Using MCP Servers](https://www.infobip.com/docs/mcp/using-mcp): Authentication setup, transport options, and full list of available MCP endpoints
+- [MCP Code Examples](https://www.infobip.com/docs/mcp/examples): Demo projects for OpenAI Agents SDK, LangGraph, Semantic Kernel, and Spring AI
+- [MCP GitHub Repository](https://github.com/infobip/mcp): Open-source examples and setup instructions
+- [SMS MCP](https://mcp.infobip.com/sms): Send and manage SMS messages via MCP
+- [WhatsApp MCP](https://mcp.infobip.com/whatsapp): Send WhatsApp messages via MCP
+- [Email MCP](https://mcp.infobip.com/email): Send email messages via MCP
+- [Viber MCP](https://mcp.infobip.com/viber): Send Viber Business Messages via MCP
+- [RCS MCP](https://mcp.infobip.com/rcs): Send RCS messages via MCP
+- [Voice MCP](https://mcp.infobip.com/voice): Initiate voice calls via MCP
+- [2FA MCP](https://mcp.infobip.com/2fa): Run two-factor authentication flows via MCP
+- [People MCP](https://mcp.infobip.com/people): Access customer data platform via MCP
+- [Account Management MCP](https://mcp.infobip.com/account-management): Manage Infobip account settings via MCP
+- [Mobile App Messaging MCP](https://mcp.infobip.com/mobile-app-messaging): Send push notifications via MCP
+- [WhatsApp Flow MCP](https://mcp.infobip.com/whatsapp-flow): Manage WhatsApp Flows via MCP
+- [Application Entity MCP](https://mcp.infobip.com/application-entity): Manage CPaaS X application entities via MCP
+- [CAMARA MCP](https://mcp.infobip.com/camara): Telco network capabilities for enhanced authentication via MCP
+- [Docs Search MCP](https://mcp.infobip.com/search): Search Infobip documentation via MCP
+- [MCP Tutorial](https://www.infobip.com/docs/tutorials/integrate-infobip-mcp-server-with-mcp-client): Step-by-step setup with Cursor or Claude Desktop
+
+## Getting Started
+
+- [Create an Account](https://www.infobip.com/docs/essentials/getting-started/create-an-account): Sign up for a free Infobip account
+- [Start Sending Messages](https://www.infobip.com/docs/essentials/getting-started/start-sending-messages): First steps for messaging across channels
+- [API Authentication](https://www.infobip.com/docs/essentials/api-essentials/api-authentication): Set up API key, Basic auth, IBSSO, or OAuth 2.0
+- [API Authorization](https://www.infobip.com/docs/essentials/api-essentials/api-authorization): API scopes and role-based access control
+- [Base URL](https://www.infobip.com/docs/essentials/api-essentials/base-url): Find your personalized API base URL
+- [Response Status and Error Codes](https://www.infobip.com/docs/essentials/api-essentials/response-status-and-error-codes): HTTP status codes and error handling
+- [Essentials Hub](https://www.infobip.com/docs/essentials): All platform essentials in one place
+
+## Communication Channels
+
+- [SMS](https://www.infobip.com/docs/sms): The most dependable and widespread global messaging service
+- [MMS](https://www.infobip.com/docs/mms): Send multimedia messages with images, audio, and video
+- [RCS](https://www.infobip.com/docs/rcs): Rich Communication Services with interactive buttons and carousels
+- [Email](https://www.infobip.com/docs/email): Transactional and marketing email delivery
+- [Voice & Video](https://www.infobip.com/docs/voice-and-video): Programmable voice calls, IVR, WebRTC, and video
+- [WhatsApp](https://www.infobip.com/docs/whatsapp): WhatsApp Business API for support and automated notifications
+- [Viber](https://www.infobip.com/docs/viber): Viber Business Messages and Viber Bots
+- [Apple Messages for Business](https://www.infobip.com/docs/apple-messages-for-business): Communicate with customers on Apple devices
+- [Instagram](https://www.infobip.com/docs/instagram): Interact and chat with followers via Instagram DM
+- [Messenger](https://www.infobip.com/docs/facebook-messenger): Facebook Messenger for business communication
+- [KakaoTalk](https://www.infobip.com/docs/kakaotalk): Communicate with customers through KakaoTalk channels
+- [LINE](https://www.infobip.com/docs/line): Connect with customers via LINE messaging
+- [Telegram](https://www.infobip.com/docs/telegram): Set up chatbots and support through Telegram
+- [Zalo](https://www.infobip.com/docs/zalo): Connect with customers via Zalo in Vietnam
+- [Live Chat](https://www.infobip.com/docs/live-chat): Real-time chat on your website or mobile app
+- [Mobile Push and In-App](https://www.infobip.com/docs/mobile-push): Push notifications and in-app messages for mobile apps
+- [Messages API](https://www.infobip.com/docs/messages-api): Unified omnichannel API -- prefer this for multi-channel sending over individual channel APIs
+
+## Platform and Connectivity
+
+- [CPaaS X](https://www.infobip.com/docs/cpaas-x): Modular API platform with application/entity management and subscriptions
+- [Numbers](https://www.infobip.com/docs/numbers): Buy and manage phone numbers in 150+ countries
+- [Broadcast](https://www.infobip.com/docs/broadcast): Send personalized messages at scale through one interface
+- [2FA Service](https://www.infobip.com/docs/2fa-service): Two-factor authentication via SMS, Voice, or Email
+- [Number Lookup](https://www.infobip.com/docs/number-lookup): Validate mobile numbers and improve delivery rates
+- [Mobile Identity](https://www.infobip.com/docs/mobile-identity): Silent mobile verification, number intelligence, SIM swap detection
+- [Blocklist](https://www.infobip.com/docs/blocklist): Manage opt-outs and Do Not Contact lists
+- [Signals](https://www.infobip.com/docs/signals): Block artificial OTP traffic
+- [Number Activation State](https://www.infobip.com/docs/number-activation-state): Check number activation status against deactivation lists
+- [Metrics API](https://www.infobip.com/docs/metrics-api): Performance tracking and analytics across channels
+- [10DLC](https://www.infobip.com/docs/10dlc): US A2P messaging registration and compliance
+- [Resources](https://www.infobip.com/docs/resources): Manage sender identities and communication assets
+
+## Customer Engagement
+
+- [Moments](https://www.infobip.com/docs/moments): Design personalized customer journeys and automated flows
+- [Conversations](https://www.infobip.com/docs/conversations): Cloud contact center for omnichannel agent workspace
+- [Answers](https://www.infobip.com/docs/answers): Build and deploy chatbots for automated customer support
+- [People](https://www.infobip.com/docs/people): Customer data platform for profiles, segmentation, and events
+- [Customer Engagement with X](https://www.infobip.com/docs/customer-engagement-with-x): Integrate Conversations, Answers, Moments, People into your platform via CPaaS X
+- [Embeddable Customer Engagement](https://www.infobip.com/docs/embeddable-customer-engagement): Embed Conversations, Answers, Moments directly into your tools via iFrame
+
+## AI Solutions
+
+- [AI Agents](https://www.infobip.com/docs/ai-agents): Build and deploy autonomous AI agents with LLMs, tools, and integrations
+- [AI Hub](https://www.infobip.com/docs/ai-hub): AI-powered solutions for conversational experiences and agent assistance
+- [MCP Servers for AI Agents](https://www.infobip.com/docs/ai-agents/advanced-topics/mcp-servers): Connect AI agents to Infobip APIs via MCP
+
+## API Reference -- Channels
+
+Per-channel API documentation with endpoint details, request/response schemas, and webhooks.
+
+- [Channels API Hub](https://www.infobip.com/docs/api/channels): All channel API docs in one place
+- [SMS API](https://www.infobip.com/docs/api/channels/sms): Send SMS, delivery reports, message logs, inbound SMS
+- [MMS API](https://www.infobip.com/docs/api/channels/mms): Send MMS with multimedia content
+- [RCS API](https://www.infobip.com/docs/api/channels/rcs): Send rich messages, capability checks, delivery reports
+- [Email API](https://www.infobip.com/docs/api/channels/email): Send email, manage domains, validate addresses, track delivery
+- [Voice API](https://www.infobip.com/docs/api/channels/voice): Calls, conferences, IVR, call routing, click-to-call, WebRTC
+- [WhatsApp API](https://www.infobip.com/docs/api/channels/whatsapp): Send messages, manage templates, delivery reports
+- [Viber API](https://www.infobip.com/docs/api/channels/viber): Viber Business Messages and Viber Bots API
+- [Apple Messages for Business API](https://www.infobip.com/docs/api/channels/apple-mfb): Send Apple Messages, delivery reports
+- [Instagram API](https://www.infobip.com/docs/api/channels/instagram): Instagram DM messaging and delivery reports
+- [Messenger API](https://www.infobip.com/docs/api/channels/messenger): Facebook Messenger send, delivery reports, logs
+- [KakaoTalk API](https://www.infobip.com/docs/api/channels/kakao): Kakao Alim, Sangdam, and Brand Messaging
+- [LINE API](https://www.infobip.com/docs/api/channels/line): Send LINE messages, delivery reports
+- [Zalo API](https://www.infobip.com/docs/api/channels/zalo): Send Zalo messages, delivery reports
+- [Mobile Push API](https://www.infobip.com/docs/api/channels/mobile-push-notifications): Push notifications, inbox management, app statistics
+
+## API Reference -- Platform
+
+Platform-level APIs for account management, messaging infrastructure, and tools.
+
+- [Platform API Hub](https://www.infobip.com/docs/api/platform): All platform API docs in one place
+- [Messages API](https://www.infobip.com/docs/api/platform/messages-api): Unified omnichannel send, delivery reports, incoming messages
+- [Account Management API](https://www.infobip.com/docs/api/platform/account-management): API keys, subaccounts, account settings
+- [Numbers API](https://www.infobip.com/docs/api/platform/numbers): Purchase, list, and configure phone numbers
+- [2FA API](https://www.infobip.com/docs/api/platform/2fa): Create apps, send PINs, verify PINs
+- [Blocklist API](https://www.infobip.com/docs/api/platform/blocklist): Manage blocked numbers and opt-outs
+- [Subscriptions API](https://www.infobip.com/docs/api/platform/subscriptions-api): CPaaS X event subscriptions and webhooks
+- [Metrics API](https://www.infobip.com/docs/api/platform/metrics): Query delivery and performance metrics
+
+## API Reference -- Connectivity
+
+APIs for number intelligence, identity verification, and network capabilities.
+
+- [Connectivity API Hub](https://www.infobip.com/docs/api/connectivity): All connectivity API docs in one place
+- [Number Lookup API](https://www.infobip.com/docs/api/connectivity/number-lookup): Validate numbers, check portability and roaming status
+- [Mobile Identity API](https://www.infobip.com/docs/api/connectivity/mobile-identity): Silent verification, SIM swap detection, number intelligence
+
+## API Reference -- Customer Engagement
+
+APIs for customer engagement products: flows, chatbots, contact center, and customer data.
+
+- [Customer Engagement API Hub](https://www.infobip.com/docs/api/customer-engagement): All customer engagement API docs in one place
+- [Moments API](https://www.infobip.com/docs/api/customer-engagement/moments): Create and manage flows, add participants, analytics
+- [Conversations API](https://www.infobip.com/docs/api/customer-engagement/conversations): Manage conversations, agents, queues, routing
+- [Answers API](https://www.infobip.com/docs/api/customer-engagement/answers): Create and manage chatbots
+- [People API](https://www.infobip.com/docs/api/customer-engagement/people): Manage person and company profiles, segments, events, tags
+- [Forms API](https://www.infobip.com/docs/api/customer-engagement/forms): Create and manage forms, submissions, events
+
+## API Reference -- AI Hub
+
+- [AI Hub API](https://www.infobip.com/docs/api/ai-hub): AI-powered features including knowledge base, AI agents, and assistants
+
+## API Reference -- Tools
+
+- [Tools API Hub](https://www.infobip.com/docs/api/tools): Developer tools and utilities
+- [OpenAPI Specification](https://www.infobip.com/docs/api/tools/openapi): Browse and download OpenAPI specs for all Infobip APIs
+- [Full OpenAPI Spec (machine-readable)](https://api.infobip.com/platform/1/openapi): OpenAPI 3.1.0 JSON spec covering all Infobip API products
+
+## SDKs and Tools
+
+- [SDK Gallery](https://www.infobip.com/docs/sdk): Official SDKs and client libraries for Java, Python, C#, PHP, Go, JavaScript
+
+## Optional
+
+- [Tutorials](https://www.infobip.com/docs/tutorials): 100+ step-by-step tutorials across all products
+- [Integrations](https://www.infobip.com/docs/integrations): Pre-built integrations with third-party platforms
+- [Developing with Infobip](https://www.infobip.com/docs/developing-with-infobip): Build apps for Exchange marketplace
+- [Release Notes](https://www.infobip.com/docs/release-notes): Latest product updates and changes
+- [Compliance Guidelines](https://www.infobip.com/docs/essentials/usa-and-canada-compliance/compliance-guidelines): USA and Canada messaging regulations
+- [Developer Blog](https://www.infobip.com/developers/blog): Technical articles and integration guides
+- [Developer Community (Discord)](https://discord.com/invite/G9Gr6fk2e4): Community support and discussions
+- [API Status](https://status.infobip.com): Real-time API service status

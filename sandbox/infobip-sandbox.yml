@@ -1,0 +1,45 @@
+generated: '2026-07-25'
+method: searched
+source: https://www.infobip.com/docs/essentials/getting-started/free-trial, https://www.infobip.com/docs/sms/get-started/send-test-message
+model: free-trial account against the production API — there is no separate sandbox host, no test/live key prefixes,
+  and no test-mode flag
+separation:
+  test_vs_live: same base URL and same API key format; the account itself is in trial state until it is upgraded
+  key_prefixes: null
+  test_mode_flag: null
+free_trial:
+  signup: https://www.infobip.com/signup
+  products:
+  - the channels selected at signup
+  - People
+  - Broadcast
+  message_allowance: up to 100 messages per channel to a verified number (varies by channel)
+  verified_recipients: messages can only be delivered to the phone number and email addresses verified at signup;
+    phone verification is limited to 1 number on a free trial (further recipients can be added and verified, up
+    to five)
+  sender: a predefined shared Infobip test sender must be used; it is removed once the free message limit for that
+    channel is reached
+test_senders:
+- value: InfoSMS
+  type: alphanumeric sender
+- value: ServiceSMS
+  type: alphanumeric sender
+- value: DemoCompany
+  type: alphanumeric sender
+- value: 447xxxxxx
+  type: shared numeric sender (varies by location and channel)
+test_values:
+  magic_numbers: null
+  note: Infobip publishes no magic/simulator destination numbers. Delivery is exercised against real verified handsets,
+    and outcomes are read back from the real status/error registry (errors/infobip-error-codes.yml).
+test_tooling:
+- name: Answers chatbot testing endpoints
+  detail: answers-testing-start-test / stop-test / send-message / receive-message operations plus the receive-test-message
+    webhook let a bot be exercised without a live channel
+- name: Webhook connection test
+  detail: test-connection-to-webhook operation in the Subscriptions Management API
+- name: Live Chat web simulation
+  detail: WEB_SIMULATION bot sender used by the Answers testing surface
+- name: Postman workspace
+  detail: https://www.postman.com/infobip/infobip-api
+console: https://portal.infobip.com

@@ -1,0 +1,143 @@
+generated: '2026-07-25'
+method: searched
+source: https://www.infobip.com/docs/essentials/api-essentials/integration-best-practices, https://www.infobip.com/docs/essentials/api-essentials/response-status-and-error-codes,
+  https://www.infobip.com/docs/essentials/api-essentials/api-authorization, openapi/infobip-platform-full-openapi.json
+base_url:
+  shared: https://api.infobip.com
+  personalized: Accounts are issued a personalized base URL (e.g. https://{subdomain}.api.infobip.com) shown in
+    the web portal and in the API docs once signed in; the shared api.infobip.com host also works.
+  protocol: HTTPS only (HSTS max-age 31536000 on api.infobip.com)
+authentication:
+  primary: API key in the Authorization header, formatted "App {apiKey}"
+  alternatives:
+  - Basic (base64 username:password) — required for the API-key-generation endpoints
+  - IBSSOTokenHeader (portal session token)
+  - OAuth 2.0 / 2.1 via https://auth.infobip.com/realms/infobip (used by the MCP fleet)
+  authorization: Every authenticated endpoint additionally requires at least one API scope; scopes are declared
+    per operation as x-scopes in the OpenAPI (936 operations) and captured in scopes/infobip-scopes.yml
+  artifact: authentication/infobip-authentication.yml
+idempotency:
+  supported: false
+  idempotency_key_header: null
+  evidence: No Idempotency-Key header, parameter, or documented request-replay contract exists in the 1,886-operation
+    corpus or in the API essentials docs.
+  closest_equivalents:
+  - bulkId / messageId are returned by send operations and can be supplied on some send operations so a caller can
+    correlate and query status rather than re-send.
+  - Webhook consumers are expected to dedupe on the eventId field, which Infobip documents as usable for deduplication,
+    because webhook delivery is retried.
+  guidance: Retries of write operations are NOT safe to assume idempotent; on a 429 or 5xx, prefer querying the
+    reports/logs endpoint for the returned bulkId or messageId before re-sending.
+pagination:
+  styles:
+  - page/size offset pagination
+  - limit/page
+  - cursor pagination on newer endpoints
+  request_params:
+  - name: page
+    meaning: zero-based page number
+    default: 0
+  - name: size
+    meaning: records per page
+    default: 10
+    max: 100
+  - name: limit
+    meaning: records per page on the older listing endpoints
+  - name: cursor
+    meaning: opaque cursor on endpoints that support cursor paging
+  - name: useCursor
+    meaning: opt into cursor paging on endpoints that support both
+  - name: includeTotalCount
+    meaning: ask for totalResults to be computed
+  response_envelope:
+    schema: PagingResponse
+    fields:
+    - page
+    - size
+    - totalPages
+    - totalResults
+  sorting:
+  - orderBy
+  - sort
+  - sortBy
+  - sortDirection
+  - direction
+filtering:
+  common_params:
+  - filter
+  - identifier
+  - type
+  - status
+  - generalStatus
+  - sentSince
+  - sentUntil
+  - startTimeAfter
+  - channel
+  - sender
+  - destination
+  - from
+  - to
+  - bulkId
+  - messageId
+  - campaignReferenceId
+  multi_tenancy:
+  - applicationId
+  - entityId — CPaaS X application/entity scoping available on send, report and log operations
+versioning:
+  scheme: uri-path major version, e.g. /sms/3/messages, /people/2/persons, /email/4/mime
+  superseded_versions: stay callable and are flagged deprecated:true with x-deprecationInformation {deprecation,
+    sunset, successorOperationId}
+  operation_version_map: x-versions on 15 operations lists every version of the same capability with latest:true
+    on the current one
+  artifact: lifecycle/infobip-lifecycle.yml
+stability:
+  early_access_marker: x-is-early-access (96 operations)
+  notes: Early Access operations may change without a major version bump.
+error_envelope:
+  legacy: '{"requestError":{"serviceException":{"messageId","text","validationErrors"}}}'
+  platform: ApiError / PlatformErrorResponse objects with errorCode + description
+  delivery_outcomes: Message-level outcomes are NOT HTTP errors — they are returned as status {groupId, groupName,
+    id, name, description} and error {groupId, groupName, id, name, description, permanent} objects on send responses,
+    delivery reports and logs.
+  problem_json: false
+  artifacts:
+  - errors/infobip-problem-types.yml
+  - errors/infobip-error-codes.yml
+rate_limiting:
+  mechanisms:
+  - time window (N requests per time unit)
+  - token bucket (burst capacity + replenish rate)
+  published_in_spec: x-throttling-info on 652 operations
+  exceeded_status: 429
+  retry_after_header: Retry-After
+  guidance: Exponential backoff with a retry cap; honour Retry-After when present.
+  artifact: rate-limits/infobip-rate-limits.yml
+tracing:
+  request_id_header: null
+  correlation: CAMARA network APIs accept and return x-correlator for request correlation; the rest of the platform
+    correlates on messageId / bulkId / requestId in the payload rather than a transport header.
+content_types:
+  request:
+  - application/json
+  - multipart/form-data (media, imports)
+  - application/x-www-form-urlencoded (legacy query-parameter send)
+  response:
+  - application/json
+  - application/xml on legacy SMS/voice endpoints
+webhooks:
+  catalog: asyncapi/infobip-webhooks.yml
+  spec: asyncapi/infobip-webhooks-asyncapi.yml
+  configuration: per-request notifyUrl, the Subscriptions Management API, or portal application webhooks
+  security:
+  - bearer/static token
+  - basic auth
+  - message signature
+  retries: true
+  consumer_idempotency_field: eventId
+cross_links:
+  authentication: authentication/infobip-authentication.yml
+  scopes: scopes/infobip-scopes.yml
+  errors: errors/infobip-problem-types.yml
+  lifecycle: lifecycle/infobip-lifecycle.yml
+  rate_limits: rate-limits/infobip-rate-limits.yml
+  sandbox: sandbox/infobip-sandbox.yml

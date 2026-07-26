@@ -1,0 +1,201 @@
+generated: '2026-07-25'
+method: searched
+status: published
+source: https://www.infobip.com/docs/mcp, https://github.com/infobip/mcp, live probes of https://mcp.infobip.com
+summary: |
+  Infobip runs a FLEET of remote MCP servers rather than a single endpoint: one server
+  per API product, all on https://mcp.infobip.com/{product}. Streamable HTTP is the
+  default transport, SSE is available by appending /sse, and STDIO clients connect
+  through the mcp-remote bridge. The two documentation servers (search, deep-research)
+  are anonymous; every product server is OAuth 2.1 / API-key protected and publishes
+  RFC 9728 protected-resource metadata at
+  https://mcp.infobip.com/.well-known/oauth-protected-resource/{product}
+  naming https://auth.infobip.com/realms/infobip as the authorization server.
+transport:
+  default: streamable-http
+  alternatives: [sse, stdio-via-mcp-remote]
+  sse_convention: append /sse to the server URL
+authentication:
+  methods:
+  - type: oauth2.1
+    authorization_server: https://auth.infobip.com/realms/infobip
+    discovery: https://mcp.infobip.com/{product}/.well-known/oauth-authorization-server
+    protected_resource_metadata: https://mcp.infobip.com/.well-known/oauth-protected-resource/{product}
+  - type: apiKey
+    header: Authorization
+    format: App {INFOBIP_API_KEY}
+  anonymous_servers: [search, deep-research]
+servers:
+- name: sms
+  url: https://mcp.infobip.com/sms
+  resource_name: Infobip SMS MCP server
+  category: messaging
+  tool_count: 10
+  scopes: [sms:manage, profile, offline_access]
+  features: Send and preview messages, schedule and reschedule, bulk sending, transliteration
+    and character sets, delivery reports, message logs, URL tracking
+  tools_list_probe: {status: 401, note: auth-gated; input schemas require an authenticated introspection}
+- name: whatsapp
+  url: https://mcp.infobip.com/whatsapp
+  resource_name: Infobip WhatsApp MCP server
+  category: messaging
+  tool_count: 18
+  scopes: [whatsapp:manage, profile, offline_access]
+  features: Template messages, text/media/location/contact messages, template management,
+    delivery reports, message logs, SMS failover
+  tools_list_probe: {status: 401}
+- name: whatsapp-flow
+  url: https://mcp.infobip.com/whatsapp-flow
+  resource_name: Infobip WhatsApp Flow MCP server
+  category: messaging
+  tool_count: 13
+  scopes: [whatsapp:manage, profile, offline_access]
+  features: Create and manage static/dynamic flows, generate flow structure, manage flow
+    JSON, send and preview interactive flows
+  tools_list_probe: {status: 401}
+- name: viber
+  url: https://mcp.infobip.com/viber
+  resource_name: Infobip Viber MCP server
+  category: messaging
+  tool_count: 5
+  scopes: [viber-bm:manage, profile, offline_access]
+  features: Rich-media messages, delivery reports, message logs, scheduling, SMS failover,
+    URL tracking
+  tools_list_probe: {status: 401}
+- name: rcs
+  url: https://mcp.infobip.com/rcs
+  resource_name: Infobip RCS MCP server
+  category: messaging
+  tool_count: 27
+  scopes: [rcs:manage, profile, offline_access]
+  features: Rich messages (multimedia, suggested replies, carousels, barcodes), delivery
+    reports, message logs, capability check, SMS/MMS failover
+  tools_list_probe: {status: 401}
+- name: email
+  url: https://mcp.infobip.com/email
+  resource_name: Infobip Email MCP server
+  category: messaging
+  tool_count: 11
+  scopes: [email:manage, profile, offline_access]
+  features: Send email, bulk send, schedule and manage scheduled sends, validate email
+    address
+  tools_list_probe: {status: 401}
+- name: voice
+  url: https://mcp.infobip.com/voice
+  resource_name: Infobip Voice MCP server
+  category: messaging
+  tool_count: 7
+  scopes: [message:send, profile, offline_access]
+  features: Single and multi-recipient voice calls, text-to-speech, pre-recorded audio,
+    call management, conference calls, voice list management, delivery reports, call logs
+  tools_list_probe: {status: 401}
+- name: mobile-app-messaging
+  url: https://mcp.infobip.com/mobile-app-messaging
+  resource_name: Infobip Mobile App Messaging MCP server
+  category: messaging
+  tool_count: 7
+  scopes: [mobile-app-messaging:manage, profile, offline_access]
+  features: Push notifications, delivery reports, message logs, push statistics, push
+    application management, inbox message management
+  tools_list_probe: {status: 401}
+- name: message
+  url: https://mcp.infobip.com/message
+  resource_name: Infobip Messages API MCP server
+  category: messaging
+  status: early-access
+  tool_count: 2
+  scopes: [messages-api:manage, profile, offline_access]
+  features: Send text, image, or file-URL messages across SMS, RCS, MMS, and Viber in a
+    single tool call; lowest token footprint of the messaging servers
+  tools_list_probe: {status: 401}
+- name: provision
+  url: https://mcp.infobip.com/provision
+  resource_name: Infobip Provision MCP server
+  category: provisioning
+  status: early-access
+  scopes: [mcp:provision, profile, offline_access]
+  features: Register a sender, purchase a number, and configure channel senders in a
+    single conversation
+  docs: https://www.infobip.com/docs/mcp/provisioning-mcp
+  tools_list_probe: {status: 401}
+- name: 2fa
+  url: https://mcp.infobip.com/2fa
+  resource_name: Infobip 2FA MCP server
+  category: authentication
+  scopes: [2fa:manage, 2fa:pin:manage, profile, offline_access]
+  features: Application management, SMS/Email message templates, send PIN over SMS/Voice/
+    Email, resend and verify PIN, PIN verification status
+  tools_list_probe: {status: 401}
+- name: camara
+  url: https://mcp.infobip.com/camara
+  resource_name: Infobip Camara MCP server
+  category: authentication
+  scopes: [mobile-identity:manage, profile, offline_access]
+  features: Number verification authorization, verify number, device location verification,
+    SIM swap check, SIM swap date retrieval, KYC match
+  tools_list_probe: {status: 401}
+- name: people
+  url: https://mcp.infobip.com/people
+  resource_name: Infobip People MCP server
+  category: customer-data
+  scopes: [people:manage, profile, offline_access]
+  features: Manage person and company profiles, tags, custom attributes and lists, track
+    and export events, audience segmentation
+  tools_list_probe: {status: 401}
+- name: account-management
+  url: https://mcp.infobip.com/account-management
+  resource_name: Infobip Account Management MCP server
+  category: platform
+  scopes: [account-management:manage, profile, offline_access]
+  features: Account balance, free-message count, total balance, manage and update account
+    details, audit logs
+  tools_list_probe: {status: 401}
+- name: application-entity
+  url: https://mcp.infobip.com/application-entity
+  resource_name: Infobip Application Entity MCP server
+  category: platform
+  scopes: [application-entity:manage, profile, offline_access]
+  features: Multi-tenant CPaaS X messaging - create and manage applications and entities
+  tools_list_probe: {status: 401}
+- name: search
+  url: https://mcp.infobip.com/search
+  resource_name: Infobip Search MCP server
+  category: developer-resources
+  authentication: none
+  server_version: 1.7.1
+  tools_list_probe: {status: 200, file: infobip-search-mcp-tools.json}
+  tools:
+  - name: explore
+    title: Explore Infobip Documentation
+    description: Semantic search across the Infobip documentation hub
+    input_schema: {query: string (required, 1-500 chars), fuzziness: boolean}
+- name: deep-research
+  url: https://mcp.infobip.com/deep-research
+  resource_name: Infobip Deep Research MCP server
+  category: developer-resources
+  authentication: none
+  tools_list_probe: {status: 200, file: infobip-deep-research-mcp-tools.json}
+  tools:
+  - name: search
+    title: Search Infobip Documentation
+    input_schema: {query: string (required, 1-500 chars)}
+    annotations: {readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false}
+  - name: fetch
+    title: Fetch full content of a documentation page
+    input_schema: {id: string (document URL)}
+clients_documented:
+- Claude Code
+- Claude Desktop (via mcp-remote)
+- Cursor
+- Windsurf
+- VS Code / GitHub Copilot
+- JetBrains IDEs
+- OpenAI Codex CLI
+- LangChain / LangGraph
+- OpenAI Agents SDK
+- Semantic Kernel
+- Spring AI
+related_repositories:
+- https://github.com/infobip/mcp
+- https://github.com/infobip/infobip-openapi-mcp
+- https://github.com/infobip/xk6-infobip-mcp

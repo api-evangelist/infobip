@@ -1,0 +1,2331 @@
+{
+ "openapi":"3.1.0",
+ "info":{
+  "title":"Infobip OpenAPI Specification",
+  "description":"OpenAPI Specification that contains all public endpoints and webhooks.",
+  "contact":{
+   "name":"Infobip support",
+   "email":"support@infobip.com"
+  },
+  "version":"3.210.0",
+  "x-generatedAt":"2026-07-23T15:23:58.811722049Z"
+ },
+ "tags":[
+  {
+   "name":"customer-engagement",
+   "description":"Complete solutions that will help you drive better outcomes for your customers and business across the entire customer journey.\n",
+   "x-type":"category",
+   "x-displayName":"Customer Engagement"
+  },
+  {
+   "name":"vocalize",
+   "description":"Infobip Vocalize API allows you to integrate AI Gamification features into your application.\n\nWith Vocalize API, you can:\n\n* Create and manage Vocalize campaigns\n* Receive and process user interactions as part of Vocalize campaigns\n* Retrieve Vocalize campaign results and statistics - both for the campaign as a whole and for individual users\n\nPlease note that Vocalize API is currently in beta, and the API endpoints and functionality may change in the future.\n\n[Learn more about Vocalize use cases](https://www.infobip.com/ai-hub/vocalize)\n",
+   "x-type":"product",
+   "x-displayName":"Vocalize"
+  },
+  {
+   "name":"campaign",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Vocalize Campaign"
+  },
+  {
+   "name":"score",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Vocalize Score"
+  }
+ ],
+ "paths":{
+  "/vocalize/2/campaigns/me":{
+   "get":{
+    "tags":[
+     "customer-engagement",
+     "vocalize",
+     "campaign"
+    ],
+    "summary":"Get my campaigns",
+    "description":"Get all campaigns for the authenticated user.",
+    "operationId":"vocalize-get-my-campaigns",
+    "parameters":[
+     {
+      "name":"activeOnly",
+      "in":"query",
+      "description":"If true, only return active campaigns. Defaults to false.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"boolean",
+       "default":false,
+       "description":"If true, only return active campaigns. Defaults to false.",
+       "title":"Activeonly"
+      }
+     },
+     {
+      "name":"hasScores",
+      "in":"query",
+      "description":"If true, only return campaigns that have scores associated with them. Defaults to false.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"boolean",
+       "default":false,
+       "description":"If true, only return campaigns that have scores associated with them. Defaults to false.",
+       "title":"Hasscores"
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Campaigns successfully retrieved",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.CampaignListResponse"
+        },
+        "examples":{
+         "Standard Campaigns Response":{
+          "summary":"Standard Campaigns Response",
+          "value":{
+           "campaigns":[
+            {
+             "name":"Greetings Campaign",
+             "keywordSpec":{
+              "en-US":"Hello from Infobip",
+              "es-ES":"Hola desde Infobip"
+             },
+             "activeFrom":"2026-06-01T14:00:00Z",
+             "activeUntil":"2026-07-01T14:00:00Z",
+             "settings":{
+              "maxDailyAttemptsPerUser":100,
+              "sttModelProvider":"AZURE",
+              "maxDailyAttemptsPerCampaign":85000
+             },
+             "id":"01234567-89ab-cdef-0123-456789abcdef",
+             "accountId":"123",
+             "dateCreated":"2026-03-28T14:48:45.869219"
+            },
+            {
+             "name":"Onboarding Campaign",
+             "keywordSpec":{
+              "en-US":"Welcome to Infobip",
+              "es-ES":"Bienvenido a Infobip"
+             },
+             "activeFrom":"2026-08-10T09:00:00Z",
+             "activeUntil":"2026-09-10T09:00:00Z",
+             "settings":{
+              "maxDailyAttemptsPerUser":75,
+              "sttModelProvider":"GOOGLE",
+              "maxDailyAttemptsPerCampaign":60000
+             },
+             "id":"abcdef12-3456-7890-abcd-ef1234567890",
+             "accountId":"456",
+             "dateCreated":"2026-04-15T10:22:13.567890"
+            }
+           ]
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.APIError400"
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "APIKeyHeader":[]
+     }
+    ],
+    "x-scopes":[],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
+      "numberOfTimeUnits":1,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/vocalize/2/campaigns":{
+   "post":{
+    "tags":[
+     "customer-engagement",
+     "vocalize",
+     "campaign"
+    ],
+    "summary":"Create campaign",
+    "description":"Create a new campaign with the specified parameters.",
+    "operationId":"vocalize-create-campaign",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.CampaignCreatePayload",
+        "description":"Campaign definition."
+       },
+       "examples":{
+        "Basic create campaign request":{
+         "summary":"Basic create campaign request",
+         "value":{
+          "name":"Voice Training Challenge 2025",
+          "keywordSpec":{
+           "en-US":"Hello world, welcome to our voice training program",
+           "es-ES":"Hola mundo, bienvenidos a nuestro programa de entrenamiento vocal",
+           "fr-FR":"Bonjour le monde, bienvenue dans notre programme d'entraînement vocal"
+          },
+          "activeFrom":"2025-07-15T09:00:00Z",
+          "activeUntil":"2025-08-15T18:00:00Z",
+          "settings":{
+           "maxDailyAttemptsPerUser":10,
+           "sttModelProvider":"AZURE",
+           "maxDailyAttemptsPerCampaign":500
+          },
+          "imageUrl":"www.example.com/campaign-banner.png"
+         }
+        },
+        "Create campaign with alternative settings":{
+         "summary":"Create campaign with alternative settings",
+         "value":{
+          "name":"Pronunciation Assessment Workshop",
+          "keywordSpec":{
+           "en-US":"The quick brown fox jumps over the lazy dog",
+           "de-DE":"Der schnelle braune Fuchs springt über den faulen Hund",
+           "ja-JP":"素早い茶色のキツネが怠け者の犬を飛び越える"
+          },
+          "activeFrom":"2025-08-01T06:30:00Z",
+          "activeUntil":"2025-09-30T23:59:59Z",
+          "settings":{
+           "maxDailyAttemptsPerUser":5,
+           "sttModelProvider":"GOOGLE",
+           "maxDailyAttemptsPerCampaign":2000
+          },
+          "imageUrl":"www.example.com/alt-banner.jpg"
+         }
+        },
+        "Create campaign - keyword spec only":{
+         "summary":"Create campaign - keyword spec only",
+         "value":{
+          "name":"Daily Vocabulary Practice",
+          "keywordSpec":{
+           "en-US":"Communication is key to success"
+          },
+          "activeFrom":"2025-07-10T08:00:00Z",
+          "activeUntil":"2025-07-20T20:00:00Z",
+          "settings":{
+           "maxDailyAttemptsPerUser":15,
+           "sttModelProvider":"AZURE",
+           "maxDailyAttemptsPerCampaign":750
+          }
+         }
+        }
+       }
+      },
+      "examples":{}
+     },
+     "required":true
+    },
+    "responses":{
+     "201":{
+      "description":"Campaign successfully created",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.CampaignResponse"
+        },
+        "examples":{
+         "Standard Campaign created response":{
+          "summary":"Standard Campaign created response",
+          "value":{
+           "name":"Greetings Campaign",
+           "keywordSpec":{
+            "en-US":"Hello from Infobip",
+            "es-ES":"Hola desde Infobip"
+           },
+           "activeFrom":"2026-06-01T14:00:00Z",
+           "activeUntil":"2026-07-01T14:00:00Z",
+           "settings":{
+            "maxDailyAttemptsPerUser":100,
+            "sttModelProvider":"AZURE",
+            "maxDailyAttemptsPerCampaign":85000
+           },
+           "id":"01234567-89ab-cdef-0123-456789abcdef",
+           "accountId":"123",
+           "dateCreated":"2026-03-28T14:48:45.869219"
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.APIError400"
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "APIKeyHeader":[]
+     }
+    ],
+    "x-scopes":[],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
+      "numberOfTimeUnits":1,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/vocalize/2/campaigns/{campaignId}":{
+   "get":{
+    "tags":[
+     "customer-engagement",
+     "vocalize",
+     "campaign"
+    ],
+    "summary":"Get campaign",
+    "description":"Get a campaign by its ID.",
+    "operationId":"vocalize-get-campaign",
+    "parameters":[
+     {
+      "name":"campaignId",
+      "in":"path",
+      "description":"The UUID of the campaign to retrieve.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string",
+       "format":"uuid",
+       "description":"The UUID of the campaign to retrieve.",
+       "title":"Campaignid"
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Campaign with ID successfully retrieved",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.CampaignResponse"
+        },
+        "examples":{
+         "Standard Campaign by ID response":{
+          "summary":"Standard Campaign by ID response",
+          "value":{
+           "name":"Greetings Campaign",
+           "keywordSpec":{
+            "en-US":"Hello from Infobip",
+            "es-ES":"Hola desde Infobip"
+           },
+           "activeFrom":"2026-06-01T14:00:00Z",
+           "activeUntil":"2026-07-01T14:00:00Z",
+           "settings":{
+            "maxDailyAttemptsPerUser":42,
+            "sttModelProvider":"GOOGLE",
+            "maxDailyAttemptsPerCampaign":420
+           },
+           "imageUrl":"https://www.example.com/image.jpg",
+           "id":"01234567-89ab-cdef-0123-456789abcdef",
+           "accountId":"123",
+           "dateCreated":"2026-03-28T14:48:45.869219"
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.APIError400"
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.APIError404"
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "APIKeyHeader":[]
+     }
+    ],
+    "x-scopes":[],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
+      "numberOfTimeUnits":1,
+      "timeUnit":"s"
+     }
+    ]
+   },
+   "delete":{
+    "tags":[
+     "customer-engagement",
+     "vocalize",
+     "campaign"
+    ],
+    "summary":"Delete campaign",
+    "description":"Delete a campaign with the specified ID.",
+    "operationId":"vocalize-delete-campaign",
+    "parameters":[
+     {
+      "name":"campaignId",
+      "in":"path",
+      "description":"The UUID of the campaign to delete.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string",
+       "format":"uuid",
+       "description":"The UUID of the campaign to delete.",
+       "title":"Campaignid"
+      }
+     }
+    ],
+    "responses":{
+     "204":{
+      "description":"Successful Response"
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.APIError400"
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.APIError404"
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "APIKeyHeader":[]
+     }
+    ],
+    "x-scopes":[],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
+      "numberOfTimeUnits":1,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/vocalize/2/campaigns/{campaignId}/settings":{
+   "patch":{
+    "tags":[
+     "customer-engagement",
+     "vocalize",
+     "campaign"
+    ],
+    "summary":"Update campaign settings",
+    "description":"Update the settings of a campaign with the specified ID.",
+    "operationId":"vocalize-update-campaign-settings",
+    "parameters":[
+     {
+      "name":"campaignId",
+      "in":"path",
+      "description":"The UUID of the campaign to update.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string",
+       "format":"uuid",
+       "description":"The UUID of the campaign to update.",
+       "title":"Campaignid"
+      }
+     }
+    ],
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.CampaignSettings",
+        "description":"Settings to update for the campaign."
+       },
+       "examples":{
+        "Update campaign settings":{
+         "summary":"Update campaign settings",
+         "value":{
+          "maxDailyAttemptsPerUser":15,
+          "sttModelProvider":"GOOGLE",
+          "maxDailyAttemptsPerCampaign":1000
+         }
+        },
+        "Update campaign settings partially":{
+         "summary":"Update campaign settings partially",
+         "value":{
+          "maxDailyAttemptsPerUser":8
+         }
+        }
+       }
+      },
+      "examples":{}
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"Campaign setting successfully updated",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.CampaignResponse"
+        },
+        "examples":{
+         "Standard Campaign settings updated response":{
+          "summary":"Standard Campaign settings updated response",
+          "value":{
+           "name":"Greetings Campaign",
+           "keywordSpec":{
+            "en-US":"Hello from Infobip",
+            "es-ES":"Hola desde Infobip"
+           },
+           "activeFrom":"2026-06-01T14:00:00Z",
+           "activeUntil":"2026-07-01T14:00:00Z",
+           "settings":{
+            "maxDailyAttemptsPerUser":42,
+            "sttModelProvider":"GOOGLE",
+            "maxDailyAttemptsPerCampaign":420
+           },
+           "imageUrl":"https://www.example.com/image.jpg",
+           "id":"01234567-89ab-cdef-0123-456789abcdef",
+           "accountId":"123",
+           "dateCreated":"2026-03-28T14:48:45.869219"
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.APIError400"
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.APIError404"
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "APIKeyHeader":[]
+     }
+    ],
+    "x-scopes":[],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
+      "numberOfTimeUnits":1,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/vocalize/2/campaigns/{campaignId}/leaderboard":{
+   "get":{
+    "tags":[
+     "customer-engagement",
+     "vocalize",
+     "campaign"
+    ],
+    "summary":"Get campaign leaderboard",
+    "description":"Get leaderboard for a campaign, sorted by score. Additional query parameters can be used to filter and paginate the results. Filter by fromTime and toTime to get scores within a specific time range. Filter by day to get scores for a specific day of the campaign. You cannot use both fromTime/toTime and day together. If no filters are provided, the leaderboard will show all scores for the campaign, paginated. Users who have not provided their name will not be included in the leaderboard.",
+    "operationId":"vocalize-get-campaign-leaderboard",
+    "parameters":[
+     {
+      "name":"campaignId",
+      "in":"path",
+      "description":"The UUID of the campaign to retrieve the leaderboard for.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string",
+       "format":"uuid",
+       "description":"The UUID of the campaign to retrieve the leaderboard for.",
+       "title":"Campaignid"
+      }
+     },
+     {
+      "name":"page",
+      "in":"query",
+      "description":"Page number.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "default":0,
+       "description":"Page number.",
+       "minimum":0,
+       "title":"Page"
+      }
+     },
+     {
+      "name":"size",
+      "in":"query",
+      "description":"Number of records per page.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "default":10,
+       "description":"Number of records per page.",
+       "exclusiveMinimum":0,
+       "maximum":100,
+       "title":"Size"
+      }
+     },
+     {
+      "name":"fromTime",
+      "in":"query",
+      "description":"Start time for filtering scores (datetime, ISO string, or Unix timestamp). Example value: 2023-10-01T00:00:00Z.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "format":"date-time",
+       "description":"Start time for filtering scores (datetime, ISO string, or Unix timestamp). Example value: 2023-10-01T00:00:00Z.",
+       "title":"Fromtime"
+      }
+     },
+     {
+      "name":"toTime",
+      "in":"query",
+      "description":"End time for filtering scores (datetime, ISO string, or Unix timestamp). Example value: 2023-10-31T23:59:59Z.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "format":"date-time",
+       "description":"End time for filtering scores (datetime, ISO string, or Unix timestamp). Example value: 2023-10-31T23:59:59Z.",
+       "title":"Totime"
+      }
+     },
+     {
+      "name":"day",
+      "in":"query",
+      "description":"Retrieves scores for a specific day. Can't be used with fromTime/toTime. Days count starts at 0, which means that the API will return scores for the first day of the campaign.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "description":"Retrieves scores for a specific day. Can't be used with fromTime/toTime. Days count starts at 0, which means that the API will return scores for the first day of the campaign.",
+       "title":"Day"
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Leaderboard retrieved successfully",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.LeaderboardResponse"
+        },
+        "examples":{
+         "Leaderboard Response":{
+          "summary":"Leaderboard Response",
+          "value":{
+           "scores":[
+            {
+             "name":"John Doe",
+             "userId":"12345",
+             "score":900,
+             "date":"2026-06-15T10:00:00Z"
+            },
+            {
+             "name":"Jane Smith",
+             "userId":"67890",
+             "score":600,
+             "date":"2026-06-15T10:05:00Z"
+            }
+           ],
+           "paging":{
+            "page":1,
+            "size":10,
+            "totalPages":1,
+            "totalResults":2
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.APIError400"
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.APIError404"
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "APIKeyHeader":[]
+     }
+    ],
+    "x-scopes":[],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
+      "numberOfTimeUnits":1,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/vocalize/2/campaigns/{campaignId}/stats":{
+   "get":{
+    "tags":[
+     "customer-engagement",
+     "vocalize",
+     "campaign"
+    ],
+    "summary":"Get campaign statistics",
+    "description":"Get statistics for a campaign, including total scores, attempts, and more.",
+    "operationId":"vocalize-get-campaign-stats",
+    "parameters":[
+     {
+      "name":"campaignId",
+      "in":"path",
+      "description":"The UUID of the campaign to retrieve statistics for.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string",
+       "format":"uuid",
+       "description":"The UUID of the campaign to retrieve statistics for.",
+       "title":"Campaignid"
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Successfully retrieved campaign stats",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.CampaignStatsResponse"
+        },
+        "examples":{
+         "Standard Campaign Stats Response":{
+          "summary":"Standard Campaign Stats Response",
+          "value":{
+           "numberOfParticipants":147,
+           "averageScore":780.0,
+           "lowestScore":230.0,
+           "highestScore":980.0,
+           "numberOfAttempts":892
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.APIError400"
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.APIError404"
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "APIKeyHeader":[]
+     }
+    ],
+    "x-scopes":[],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
+      "numberOfTimeUnits":1,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/vocalize/2/campaigns/{campaignId}/reset":{
+   "delete":{
+    "tags":[
+     "customer-engagement",
+     "vocalize",
+     "campaign"
+    ],
+    "summary":"Delete campaign scores",
+    "description":"Delete all scores and attempts for a campaign with the specified ID. This action cannot be undone.",
+    "operationId":"vocalize-reset-campaign",
+    "parameters":[
+     {
+      "name":"campaignId",
+      "in":"path",
+      "description":"The UUID of the campaign to reset.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string",
+       "format":"uuid",
+       "description":"The UUID of the campaign to reset.",
+       "title":"Campaignid"
+      }
+     }
+    ],
+    "responses":{
+     "204":{
+      "description":"Successful Response"
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.APIError400"
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.APIError404"
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "APIKeyHeader":[]
+     }
+    ],
+    "x-scopes":[],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
+      "numberOfTimeUnits":1,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/vocalize/2/scores":{
+   "put":{
+    "tags":[
+     "customer-engagement",
+     "vocalize",
+     "score"
+    ],
+    "summary":"Update score",
+    "description":"This endpoint allows users to create or update their score for a specific campaign. If it is the first attempt of the user, the name parameter can be omited.",
+    "operationId":"vocalize-submit-entry",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.ScoreBase",
+        "description":"Score data to be submitted or updated."
+       },
+       "examples":{
+        "Basic create or update score":{
+         "summary":"Basic create or update score",
+         "value":{
+          "campaignId":"123e4567-e89b-12d3-a456-426614174000",
+          "userId":"00387123456",
+          "name":"John Doe",
+          "audioUrl":"https://example.com/audio/user-recording-2025-07-08-12345.wav",
+          "languageCode":"en-US"
+         }
+        },
+        "Create or update score without name (only valid if first attempt of user)":{
+         "summary":"Create or update score without name (only valid if first attempt of user)",
+         "value":{
+          "campaignId":"987fcdeb-51a2-43f1-b9c8-765432109876",
+          "userId":"00491234567890",
+          "audioUrl":"https://storage.example.com/recordings/pronunciation_test_20250708_143502.mp3",
+          "languageCode":"es-ES"
+         }
+        }
+       }
+      },
+      "examples":{}
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"Score successfully created or updated",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.ScoreResponse"
+        },
+        "examples":{
+         "Standard Create or update score response":{
+          "summary":"Standard Create or update score response",
+          "value":{
+           "score":{
+            "campaignId":"987fcdeb-51a2-43f1-b9c8-765432109876",
+            "userId":"00491234567890",
+            "name":"Maria Garcia",
+            "audioUrl":"https://storage.example.com/recordings/pronunciation_test_20250708_143502.mp3",
+            "languageCode":"es-ES",
+            "keywordScore":0.65,
+            "finalScore":735,
+            "transcribedAudio":"Hola mundo, bienvenidos a nuestro programa",
+            "attempts":1,
+            "dateModified":"2025-07-08T14:45:18.987654Z",
+            "bestScore":735
+           },
+           "stats":{
+            "position":45,
+            "rank":45,
+            "tiedWith":1,
+            "bestScore":735,
+            "attempts":1,
+            "attemptsRemaining":14,
+            "nextScoreToBeat":742,
+            "numberOfParticipants":1500
+           }
+          }
+         },
+         "Standard Create or update score response 2 - best player":{
+          "summary":"Standard Create or update score response 2 - best player",
+          "value":{
+           "score":{
+            "campaignId":"456789ab-cdef-1234-5678-90abcdef1234",
+            "userId":"447700123456",
+            "audioUrl":"https://cdn.example.com/voice-samples/sample_2025_07_08.wav",
+            "languageCode":"fr-FR",
+            "keywordScore":0.98,
+            "shapeScore":0.95,
+            "finalScore":967,
+            "transcribedAudio":"Bonjour le monde, bienvenue dans notre programme",
+            "attempts":8,
+            "dateModified":"2025-07-08T15:12:45.456789Z",
+            "bestScore":963
+           },
+           "stats":{
+            "position":1,
+            "rank":1,
+            "tiedWith":0,
+            "bestScore":963,
+            "attempts":8,
+            "attemptsRemaining":2,
+            "numberOfParticipants":1500
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.APIError400"
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.APIError404"
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "APIKeyHeader":[]
+     }
+    ],
+    "x-scopes":[],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
+      "numberOfTimeUnits":1,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/vocalize/2/scores/stats":{
+   "get":{
+    "tags":[
+     "customer-engagement",
+     "vocalize",
+     "score"
+    ],
+    "summary":"Get user score statistics",
+    "description":"This endpoint retrieves score statistics for a specific user in a campaign.",
+    "operationId":"vocalize-get-score-stats",
+    "parameters":[
+     {
+      "name":"campaignId",
+      "in":"query",
+      "description":"ID of the campaign to get score stats for.",
+      "required":true,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "format":"uuid",
+       "description":"ID of the campaign to get score stats for.",
+       "title":"Campaignid"
+      }
+     },
+     {
+      "name":"userId",
+      "in":"query",
+      "description":"User ID, a unique identifier for the user.",
+      "required":true,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "description":"User ID, a unique identifier for the user.",
+       "minLength":1,
+       "title":"Userid"
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Score stats successfully retrieved",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.ScoreStatsResponse"
+        },
+        "examples":{
+         "Standard Get score stats response":{
+          "summary":"Standard Get score stats response",
+          "value":{
+           "position":45,
+           "rank":45,
+           "tiedWith":8,
+           "bestScore":623,
+           "attempts":5,
+           "attemptsRemaining":10,
+           "nextScoreToBeat":631,
+           "numberOfParticipants":1500
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.APIError400"
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.APIError404"
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "APIKeyHeader":[]
+     }
+    ],
+    "x-scopes":[],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
+      "numberOfTimeUnits":1,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  }
+ },
+ "components":{
+  "schemas":{
+   "1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.APIError400":{
+    "type":"object",
+    "properties":{
+     "errorCode":{
+      "type":"string",
+      "description":"Error code uniquely identifying the error case.",
+      "examples":[
+       "E400"
+      ],
+      "title":"Errorcode"
+     },
+     "description":{
+      "type":"string",
+      "description":"Detailed description of an error.",
+      "examples":[
+       "The request could not be processed due to invalid parameters or data."
+      ],
+      "title":"Description"
+     },
+     "action":{
+      "type":"string",
+      "description":"Action that should be taken to recover from the error.",
+      "examples":[
+       "Please check your request parameters and ensure all required fields are provided with valid values."
+      ],
+      "title":"Action"
+     },
+     "violations":{
+      "type":"array",
+      "description":"List of violations that caused the error.",
+      "examples":[
+       [
+        {
+         "property":"property.path",
+         "violation":"Violation message"
+        }
+       ]
+      ],
+      "items":{
+       "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.APIErrorViolations"
+      },
+      "title":"Violations"
+     },
+     "resources":{
+      "type":"array",
+      "default":[],
+      "description":"List of available resources to recover from the error.",
+      "examples":[
+       []
+      ],
+      "items":{
+       "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.APIErrorResources"
+      },
+      "title":"Resources"
+     }
+    },
+    "required":[
+     "action",
+     "description",
+     "errorCode",
+     "violations"
+    ],
+    "title":"APIError400"
+   },
+   "1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.APIError404":{
+    "type":"object",
+    "properties":{
+     "errorCode":{
+      "type":"string",
+      "description":"Error code uniquely identifying the error case.",
+      "examples":[
+       "E404"
+      ],
+      "title":"Errorcode"
+     },
+     "description":{
+      "type":"string",
+      "description":"Detailed description of an error.",
+      "examples":[
+       "The requested resource could not be found."
+      ],
+      "title":"Description"
+     },
+     "action":{
+      "type":"string",
+      "description":"Action that should be taken to recover from the error.",
+      "examples":[
+       "Please check the resource identifier and ensure it exists."
+      ],
+      "title":"Action"
+     },
+     "violations":{
+      "type":"array",
+      "description":"List of violations that caused the error.",
+      "examples":[
+       []
+      ],
+      "items":{
+       "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.APIErrorViolations"
+      },
+      "title":"Violations"
+     },
+     "resources":{
+      "type":"array",
+      "description":"List of available resources to recover from the error.",
+      "examples":[
+       []
+      ],
+      "items":{
+       "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.APIErrorResources"
+      },
+      "title":"Resources"
+     }
+    },
+    "required":[
+     "action",
+     "description",
+     "errorCode",
+     "resources",
+     "violations"
+    ],
+    "title":"APIError404"
+   },
+   "1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.APIErrorResources":{
+    "type":"object",
+    "properties":{
+     "name":{
+      "type":"string",
+      "description":"Resource name.",
+      "title":"Name"
+     },
+     "url":{
+      "type":"string",
+      "description":"Resource URL.",
+      "title":"Url"
+     }
+    },
+    "required":[
+     "name",
+     "url"
+    ],
+    "title":"APIErrorResources"
+   },
+   "1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.APIErrorViolations":{
+    "type":"object",
+    "properties":{
+     "property":{
+      "type":"string",
+      "description":"Request property that caused the error.",
+      "title":"Property"
+     },
+     "violation":{
+      "type":"string",
+      "description":"Detailed violation description.",
+      "title":"Violation"
+     }
+    },
+    "required":[
+     "property",
+     "violation"
+    ],
+    "title":"APIErrorViolations"
+   },
+   "1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.Campaign":{
+    "type":"object",
+    "properties":{
+     "name":{
+      "type":"string",
+      "description":"Name of the campaign. Must be unique per account.",
+      "examples":[
+       "My Campaign"
+      ],
+      "title":"Name"
+     },
+     "keywordSpec":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"string"
+      },
+      "description":"Specification of language-specific key phrases that users should pronounce during the campaign. This is a dictionary mapping language codes (ISO 639-1 with optional country code, e.g., 'en-US', 'es-ES') to the exact phrases users must say. Find the list of languages supported by Azure <a href=\"https://learn.microsoft.com/en-us/azure/ai-services/speech-service/language-support?tabs=stt\">here</a> and the list of languages supported by Google <a href=\"https://cloud.google.com/speech-to-text/docs/speech-to-text-supported-languages\">here</a>. The speech-to-text engine will compare user audio against these phrases for scoring. If left unspecified, the campaign will rely solely on image and/or audio matching. Phrases should be clear, pronounceable words or short sentences in the target language. ",
+      "examples":[
+       {
+        "en-US":"Hello",
+        "es-ES":"Hola"
+       }
+      ],
+      "title":"Keywordspec"
+     },
+     "activeFrom":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when the campaign becomes active, in ISO 8601 format (e.g., 2023-10-01T00:00:00Z).",
+      "title":"Activefrom"
+     },
+     "activeUntil":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when the campaign ends, in ISO 8601 format (e.g., 2023-10-31T23:59:59Z).",
+      "title":"Activeuntil"
+     },
+     "settings":{
+      "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.CampaignSettings",
+      "default":{
+       "maxDailyAttemptsPerUser":30,
+       "sttModelProvider":"AZURE",
+       "maxDailyAttemptsPerCampaign":1500
+      },
+      "description":"Campaign settings. You can regulate the number of attempts per user daily, as well as the total number of attempts in the campaign daily."
+     },
+     "imageUrl":{
+      "type":"string",
+      "description":"Image used for shape matching.",
+      "examples":[
+       "https://www.example.com/image.jpg"
+      ],
+      "title":"Imageurl"
+     },
+     "id":{
+      "type":"string",
+      "format":"uuid",
+      "description":"Unique identifier of the campaign.",
+      "title":"Id"
+     },
+     "accountId":{
+      "type":"string",
+      "description":"ID of the account that owns the campaign.",
+      "title":"Accountid"
+     },
+     "dateCreated":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when the campaign was created, in ISO 8601 format (e.g., 2023-10-01T00:00:00Z).",
+      "title":"Datecreated"
+     }
+    },
+    "required":[
+     "accountId",
+     "activeFrom",
+     "activeUntil",
+     "id",
+     "name"
+    ],
+    "title":"Campaign"
+   },
+   "1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.CampaignCreatePayload":{
+    "type":"object",
+    "properties":{
+     "name":{
+      "type":"string",
+      "description":"Name of the campaign. Must be unique per account.",
+      "examples":[
+       "My Campaign"
+      ],
+      "title":"Name"
+     },
+     "keywordSpec":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"string"
+      },
+      "description":"Specification of language-specific key phrases that users should pronounce during the campaign. This is a dictionary mapping language codes (ISO 639-1 with optional country code, e.g., 'en-US', 'es-ES') to the exact phrases users must say. Find the list of languages supported by Azure <a href=\"https://learn.microsoft.com/en-us/azure/ai-services/speech-service/language-support?tabs=stt\">here</a> and the list of languages supported by Google <a href=\"https://cloud.google.com/speech-to-text/docs/speech-to-text-supported-languages\">here</a>. The speech-to-text engine will compare user audio against these phrases for scoring. If left unspecified, the campaign will rely solely on image and/or audio matching. Phrases should be clear, pronounceable words or short sentences in the target language. ",
+      "examples":[
+       {
+        "en-US":"Hello",
+        "es-ES":"Hola"
+       }
+      ],
+      "title":"Keywordspec"
+     },
+     "activeFrom":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when the campaign becomes active, in ISO 8601 format (e.g., 2023-10-01T00:00:00Z).",
+      "title":"Activefrom"
+     },
+     "activeUntil":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when the campaign ends, in ISO 8601 format (e.g., 2023-10-31T23:59:59Z).",
+      "title":"Activeuntil"
+     },
+     "settings":{
+      "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.CampaignSettings",
+      "default":{
+       "maxDailyAttemptsPerUser":30,
+       "sttModelProvider":"AZURE",
+       "maxDailyAttemptsPerCampaign":1500
+      },
+      "description":"Campaign settings. You can regulate the number of attempts per user daily, as well as the total number of attempts in the campaign daily."
+     },
+     "imageUrl":{
+      "type":"string",
+      "description":"Image used for shape matching.",
+      "examples":[
+       "https://www.example.com/image.jpg"
+      ],
+      "title":"Imageurl"
+     }
+    },
+    "required":[
+     "activeFrom",
+     "activeUntil",
+     "name"
+    ],
+    "title":"CampaignCreatePayload"
+   },
+   "1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.CampaignListResponse":{
+    "type":"object",
+    "properties":{
+     "campaigns":{
+      "type":"array",
+      "description":"List of campaign objects.",
+      "items":{
+       "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.Campaign"
+      },
+      "title":"Campaigns"
+     }
+    },
+    "required":[
+     "campaigns"
+    ],
+    "title":"CampaignListResponse"
+   },
+   "1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.CampaignResponse":{
+    "type":"object",
+    "properties":{
+     "name":{
+      "type":"string",
+      "description":"Name of the campaign. Must be unique per account.",
+      "examples":[
+       "My Campaign"
+      ],
+      "title":"Name"
+     },
+     "keywordSpec":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"string"
+      },
+      "description":"Specification of language-specific key phrases that users should pronounce during the campaign. This is a dictionary mapping language codes (ISO 639-1 with optional country code, e.g., 'en-US', 'es-ES') to the exact phrases users must say. Find the list of languages supported by Azure <a href=\"https://learn.microsoft.com/en-us/azure/ai-services/speech-service/language-support?tabs=stt\">here</a> and the list of languages supported by Google <a href=\"https://cloud.google.com/speech-to-text/docs/speech-to-text-supported-languages\">here</a>. The speech-to-text engine will compare user audio against these phrases for scoring. If left unspecified, the campaign will rely solely on image and/or audio matching. Phrases should be clear, pronounceable words or short sentences in the target language. ",
+      "examples":[
+       {
+        "en-US":"Hello",
+        "es-ES":"Hola"
+       }
+      ],
+      "title":"Keywordspec"
+     },
+     "activeFrom":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when the campaign becomes active, in ISO 8601 format (e.g., 2023-10-01T00:00:00Z).",
+      "title":"Activefrom"
+     },
+     "activeUntil":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when the campaign ends, in ISO 8601 format (e.g., 2023-10-31T23:59:59Z).",
+      "title":"Activeuntil"
+     },
+     "settings":{
+      "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.CampaignSettings",
+      "default":{
+       "maxDailyAttemptsPerUser":30,
+       "sttModelProvider":"AZURE",
+       "maxDailyAttemptsPerCampaign":1500
+      },
+      "description":"Campaign settings. You can regulate the number of attempts per user daily, as well as the total number of attempts in the campaign daily."
+     },
+     "imageUrl":{
+      "type":"string",
+      "description":"Image used for shape matching.",
+      "examples":[
+       "https://www.example.com/image.jpg"
+      ],
+      "title":"Imageurl"
+     },
+     "id":{
+      "type":"string",
+      "format":"uuid",
+      "description":"Unique identifier of the campaign.",
+      "title":"Id"
+     },
+     "accountId":{
+      "type":"string",
+      "description":"ID of the account that owns the campaign.",
+      "title":"Accountid"
+     },
+     "dateCreated":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when the campaign was created, in ISO 8601 format (e.g., 2023-10-01T00:00:00Z).",
+      "title":"Datecreated"
+     }
+    },
+    "required":[
+     "accountId",
+     "activeFrom",
+     "activeUntil",
+     "id",
+     "name"
+    ],
+    "title":"CampaignResponse"
+   },
+   "1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.CampaignSettings":{
+    "type":"object",
+    "properties":{
+     "maxDailyAttemptsPerUser":{
+      "type":"integer",
+      "default":30,
+      "description":"Maximum number of times a user can participate in the campaign in one day.",
+      "minimum":1.0,
+      "title":"Maxdailyattemptsperuser"
+     },
+     "sttModelProvider":{
+      "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.STTModelProvider",
+      "default":"AZURE",
+      "description":"Speech-to-text model provider used for the campaign. Currently, only 'AZURE' and 'GOOGLE' are supported."
+     },
+     "maxDailyAttemptsPerCampaign":{
+      "type":"integer",
+      "default":1500,
+      "description":"Maximum number of times all users can participate in the campaign in one day.",
+      "minimum":1.0,
+      "title":"Maxdailyattemptspercampaign"
+     }
+    },
+    "title":"CampaignSettings"
+   },
+   "1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.CampaignStatsResponse":{
+    "type":"object",
+    "properties":{
+     "numberOfParticipants":{
+      "type":"integer",
+      "default":0,
+      "description":"Total number of unique participants in the campaign.",
+      "title":"Numberofparticipants"
+     },
+     "averageScore":{
+      "type":"number",
+      "description":"Average score across all participants in the campaign.",
+      "title":"Averagescore"
+     },
+     "lowestScore":{
+      "type":"number",
+      "description":"Lowest score recorded in the campaign.",
+      "title":"Lowestscore"
+     },
+     "highestScore":{
+      "type":"number",
+      "description":"Highest score recorded in the campaign.",
+      "title":"Highestscore"
+     },
+     "numberOfAttempts":{
+      "type":"integer",
+      "default":0,
+      "description":"Total number of attempts made across all participants in the campaign.",
+      "title":"Numberofattempts"
+     }
+    },
+    "title":"CampaignStatsResponse"
+   },
+   "1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.Channel":{
+    "type":"string",
+    "description":"Channel through which the score is submitted, e.g., 'WHATSAPP', 'WEB', etc.",
+    "enum":[
+     "WHATSAPP",
+     "RCS",
+     "WEB",
+     "UNKNOWN"
+    ],
+    "title":"Channel"
+   },
+   "1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.LeaderboardEntry":{
+    "type":"object",
+    "properties":{
+     "name":{
+      "type":"string",
+      "description":"Name of the participant, if available.",
+      "title":"Name"
+     },
+     "userId":{
+      "type":"string",
+      "description":"Unique identifier of the participant, usually in the format of a phone number, e.g., 00387123456.",
+      "title":"Userid"
+     },
+     "score":{
+      "type":"integer",
+      "description":"Score of the participant in the leaderboard, ranging from 0 to 1000.",
+      "title":"Score"
+     },
+     "date":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when the score was recorded, in ISO 8601 format (e.g., 2023-10-01T00:00:00Z).",
+      "title":"Date"
+     }
+    },
+    "required":[
+     "date",
+     "score",
+     "userId"
+    ],
+    "title":"LeaderboardEntry"
+   },
+   "1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.LeaderboardResponse":{
+    "type":"object",
+    "properties":{
+     "scores":{
+      "type":"array",
+      "description":"List of scores for the leaderboard.",
+      "items":{
+       "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.LeaderboardEntry"
+      },
+      "title":"Scores"
+     },
+     "paging":{
+      "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.PagingInfo",
+      "description":"Paging information for the leaderboard response."
+     }
+    },
+    "required":[
+     "paging",
+     "scores"
+    ],
+    "title":"LeaderboardResponse"
+   },
+   "1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.PagingInfo":{
+    "type":"object",
+    "properties":{
+     "page":{
+      "type":"integer",
+      "default":0,
+      "description":"Page number.",
+      "minimum":0.0,
+      "title":"Page"
+     },
+     "size":{
+      "type":"integer",
+      "default":10,
+      "description":"Number of records per page.",
+      "exclusiveMinimum":0.0,
+      "maximum":100.0,
+      "title":"Size"
+     },
+     "totalPages":{
+      "type":"integer",
+      "description":"Total number of pages available based on the total number of records and page size.",
+      "title":"Totalpages"
+     },
+     "totalResults":{
+      "type":"integer",
+      "description":"Total number of records available across all pages.",
+      "title":"Totalresults"
+     }
+    },
+    "required":[
+     "totalPages",
+     "totalResults"
+    ],
+    "title":"PagingInfo"
+   },
+   "1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.STTModelProvider":{
+    "type":"string",
+    "description":"Speech-to-text model provider options.",
+    "enum":[
+     "AZURE",
+     "GOOGLE"
+    ],
+    "title":"STTModelProvider"
+   },
+   "1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.ScoreBase":{
+    "type":"object",
+    "properties":{
+     "campaignId":{
+      "type":"string",
+      "format":"uuid",
+      "description":"Unique identifier of the campaign the score belongs to.",
+      "title":"Campaignid"
+     },
+     "userId":{
+      "type":"string",
+      "description":"User ID, usually in the format of a phone number, e.g., 00387123456.",
+      "examples":[
+       "00387123456"
+      ],
+      "title":"Userid"
+     },
+     "name":{
+      "type":"string",
+      "description":"Name of the participant e.g. John Smith. Maximum 300 characters long. Cannot be empty or whitespace.",
+      "title":"Name"
+     },
+     "audioUrl":{
+      "type":"string",
+      "description":"URL of the audio file used for sound matching. Must be a valid URL pointing to an audio file.",
+      "examples":[
+       "https://www.example.com/audio/test.wav"
+      ],
+      "title":"Audiourl"
+     },
+     "languageCode":{
+      "type":"string",
+      "description":"Language code of the audio file, e.g., 'en-US' for English. This should match the language of the audio file being submitted.",
+      "examples":[
+       "en-US"
+      ],
+      "title":"Languagecode"
+     },
+     "channel":{
+      "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.Channel",
+      "default":"UNKNOWN"
+     }
+    },
+    "required":[
+     "audioUrl",
+     "campaignId",
+     "languageCode",
+     "userId"
+    ],
+    "title":"ScoreBase"
+   },
+   "1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.ScoreResponse":{
+    "type":"object",
+    "properties":{
+     "score":{
+      "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.ScoreReturn",
+      "description":"The score data including all scoring details and best score for the participant."
+     },
+     "stats":{
+      "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.ScoreStats",
+      "description":"Statistical information about the participant's performance and ranking in the campaign."
+     }
+    },
+    "required":[
+     "score",
+     "stats"
+    ],
+    "title":"ScoreResponse"
+   },
+   "1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.ScoreReturn":{
+    "type":"object",
+    "properties":{
+     "campaignId":{
+      "type":"string",
+      "format":"uuid",
+      "description":"Unique identifier of the campaign the score belongs to.",
+      "title":"Campaignid"
+     },
+     "userId":{
+      "type":"string",
+      "description":"User ID, usually in the format of a phone number, e.g., 00387123456.",
+      "examples":[
+       "00387123456"
+      ],
+      "title":"Userid"
+     },
+     "name":{
+      "type":"string",
+      "description":"Name of the participant e.g. John Smith. Maximum 300 characters long. Cannot be empty or whitespace.",
+      "title":"Name"
+     },
+     "audioUrl":{
+      "type":"string",
+      "description":"URL of the audio file used for sound matching. Must be a valid URL pointing to an audio file.",
+      "examples":[
+       "https://www.example.com/audio/test.wav"
+      ],
+      "title":"Audiourl"
+     },
+     "languageCode":{
+      "type":"string",
+      "description":"Language code of the audio file, e.g., 'en-US' for English. This should match the language of the audio file being submitted.",
+      "examples":[
+       "en-US"
+      ],
+      "title":"Languagecode"
+     },
+     "channel":{
+      "$ref":"#/components/schemas/1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.Channel",
+      "default":"UNKNOWN"
+     },
+     "keywordScore":{
+      "type":"number",
+      "description":"Score for keyword matching, ranging from 0 to 1, where 1 is a perfect match.",
+      "title":"Keywordscore"
+     },
+     "shapeScore":{
+      "type":"number",
+      "description":"Score for shape matching, ranging from 0 to 1, where 1 is a perfect match.",
+      "title":"Shapescore"
+     },
+     "finalScore":{
+      "type":"integer",
+      "description":"Final calculated score for this attempt, ranging from 0 to 1000.",
+      "title":"Finalscore"
+     },
+     "transcribedAudio":{
+      "type":"string",
+      "description":"Text transcription of the submitted audio file.",
+      "title":"Transcribedaudio"
+     },
+     "attempts":{
+      "type":"integer",
+      "default":1,
+      "description":"Number of attempts made by the participant in the campaign.",
+      "title":"Attempts"
+     },
+     "dateModified":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when this score was last modified, in UTC.",
+      "title":"Datemodified"
+     },
+     "bestScore":{
+      "type":"integer",
+      "description":"The highest score achieved by the participant in the campaign.",
+      "title":"Bestscore"
+     }
+    },
+    "required":[
+     "audioUrl",
+     "bestScore",
+     "campaignId",
+     "finalScore",
+     "languageCode",
+     "userId"
+    ],
+    "title":"ScoreReturn"
+   },
+   "1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.ScoreStats":{
+    "type":"object",
+    "properties":{
+     "position":{
+      "type":"integer",
+      "description":"Position of the participant on the leaderboard, taking into account tie-breaking.",
+      "title":"Position"
+     },
+     "rank":{
+      "type":"integer",
+      "description":"Position of the participant on the leaderboard, not taking into account tie-breaking.",
+      "title":"Rank"
+     },
+     "tiedWith":{
+      "type":"integer",
+      "description":"Number of other participants tied with the same score.",
+      "title":"Tiedwith"
+     },
+     "bestScore":{
+      "type":"integer",
+      "description":"The highest score achieved by the participant in the campaign.",
+      "title":"Bestscore"
+     },
+     "attempts":{
+      "type":"integer",
+      "description":"Total number of attempts made by the participant in the campaign.",
+      "title":"Attempts"
+     },
+     "attemptsRemaining":{
+      "type":"integer",
+      "description":"Number of attempts remaining for the participant today.",
+      "title":"Attemptsremaining"
+     },
+     "nextScoreToBeat":{
+      "type":"integer",
+      "description":"The next highest score the participant needs to beat to improve their ranking.",
+      "title":"Nextscoretobeat"
+     },
+     "numberOfParticipants":{
+      "type":"integer",
+      "description":"Total number of participants in the campaign.",
+      "title":"Numberofparticipants"
+     }
+    },
+    "required":[
+     "attempts",
+     "attemptsRemaining"
+    ],
+    "title":"ScoreStats"
+   },
+   "1e177a7c00f43fb0cfaf8876573312572061d384022066ddec32b06770199719.ScoreStatsResponse":{
+    "type":"object",
+    "properties":{
+     "position":{
+      "type":"integer",
+      "description":"Position of the participant on the leaderboard, taking into account tie-breaking.",
+      "title":"Position"
+     },
+     "rank":{
+      "type":"integer",
+      "description":"Position of the participant on the leaderboard, not taking into account tie-breaking.",
+      "title":"Rank"
+     },
+     "tiedWith":{
+      "type":"integer",
+      "description":"Number of other participants tied with the same score.",
+      "title":"Tiedwith"
+     },
+     "bestScore":{
+      "type":"integer",
+      "description":"The highest score achieved by the participant in the campaign.",
+      "title":"Bestscore"
+     },
+     "attempts":{
+      "type":"integer",
+      "description":"Total number of attempts made by the participant in the campaign.",
+      "title":"Attempts"
+     },
+     "attemptsRemaining":{
+      "type":"integer",
+      "description":"Number of attempts remaining for the participant today.",
+      "title":"Attemptsremaining"
+     },
+     "nextScoreToBeat":{
+      "type":"integer",
+      "description":"The next highest score the participant needs to beat to improve their ranking.",
+      "title":"Nextscoretobeat"
+     },
+     "numberOfParticipants":{
+      "type":"integer",
+      "description":"Total number of participants in the campaign.",
+      "title":"Numberofparticipants"
+     }
+    },
+    "required":[
+     "attempts",
+     "attemptsRemaining"
+    ],
+    "title":"ScoreStatsResponse"
+   },
+   "ApiError":{
+    "type":"object",
+    "properties":{
+     "errorCode":{
+      "type":"string",
+      "description":"An error code uniquely identifying the error case."
+     },
+     "description":{
+      "type":"string",
+      "description":"A detailed description of an error."
+     },
+     "action":{
+      "type":"string",
+      "description":"An action that should be taken to recover from the error."
+     },
+     "violations":{
+      "type":"array",
+      "description":"List of violations that caused the error.",
+      "items":{
+       "$ref":"#/components/schemas/ApiErrorViolation"
+      }
+     },
+     "resources":{
+      "type":"array",
+      "description":"List of available resources to recover from the error.",
+      "items":{
+       "$ref":"#/components/schemas/ApiErrorResource"
+      }
+     }
+    },
+    "required":[
+     "action",
+     "description",
+     "errorCode",
+     "resources",
+     "violations"
+    ],
+    "title":"ApiError"
+   },
+   "ApiErrorResource":{
+    "type":"object",
+    "description":"List of available resources to recover from the error.",
+    "properties":{
+     "name":{
+      "type":"string",
+      "description":"Resource name."
+     },
+     "url":{
+      "type":"string",
+      "description":"Resource URL."
+     }
+    },
+    "title":"ApiErrorResource"
+   },
+   "ApiErrorViolation":{
+    "type":"object",
+    "description":"List of violations that caused the error.",
+    "properties":{
+     "property":{
+      "type":"string",
+      "description":"Request property that caused the error."
+     },
+     "violation":{
+      "type":"string",
+      "description":"Detailed violation description."
+     }
+    },
+    "title":"ApiErrorViolation"
+   }
+  },
+  "responses":{
+   "ApiError401":{
+    "description":"Unauthorized",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E401",
+       "description":"The request lacks valid authentication credentials for the requested resource.",
+       "action":"Check the resources and adjust authentication credentials.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"API Authentication",
+         "url":"https://www.infobip.com/docs/essentials/api-authentication"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E401</errorCode>\n  <description>The request lacks valid authentication credentials for the requested resource.</description>\n  <action>Check the resources and adjust authentication credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Authentication</name>\n      <url>https://www.infobip.com/docs/essentials/api-authentication</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError403":{
+    "description":"Forbidden",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E403",
+       "description":"Insufficient permissions to access the requested resource.",
+       "action":"Repeat the request with new or different credentials.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"API Scopes",
+         "url":"https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E403</errorCode>\n  <description>Insufficient permissions to access the requested resource.</description>\n  <action>Repeat the request with new or different credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Scopes</name>\n      <url>https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError429":{
+    "description":"Too Many Requests",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E429",
+       "description":"Too many requests sent.",
+       "action":"Check request rate limit specified in the API endpoint documentation resource.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"Throttling handling errors",
+         "url":"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E429</errorCode>\n  <description>Too many requests sent.</description>\n  <action>Check request rate limit specified in the API endpoint documentation resource.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>Throttling handling errors</name>\n      <url>https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError500":{
+    "description":"Internal Server Error",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E500",
+       "description":"Something went wrong.",
+       "action":"Contact the support.",
+       "violations":[],
+       "resources":[]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E500</errorCode>\n  <description>Something went wrong.</description>\n  <action>Contact the support.</action>\n  <violations/>\n  <resources/>\n</ApiError>\n"
+     }
+    }
+   }
+  },
+  "parameters":{},
+  "examples":{},
+  "requestBodies":{},
+  "headers":{},
+  "securitySchemes":{
+   "APIKeyHeader":{
+    "type":"apiKey",
+    "description":"This is the most secure authorization type and the one with the most flexibility.\n\nAPI keys can be generated by calling the dedicated API method. Furthermore, API keys can have a limited scope and cover only some API methods. Lastly, they can\nbe revoked at any time. This range of possibilities makes API keys well suited for separating the API access rights across multiple applications or use cases.\nFinally, the loss of an API key is easily manageable.\n\nYou can manage your API keys from [GUI](https://portal.infobip.com/settings/accounts/api-keys), or programmatically\nwith [dedicated API](#platform-&-connectivity/settings).\n\nAPI key Authorization header example:\n\n```shell\nAuthorization: App 003026bbc133714df1834b8638bb496e-8f4b3d9a-e931-478d-a994-28a725159ab9\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "Basic":{
+    "type":"http",
+    "description":"Basic authorization type can be used in situations when the API key is not available. For example, API methods for generating API keys should be authenticated\nwith the Basic type.\n\nIn this case, the credentials included in the Authorization header should be a Base64 encoded username and password combination. More formally, basic\nauthentication header can be constructed in three steps:\n\n* Username and password are concatenated using the colon `(:)` as a separator `username:password`.\n* The resulting string is encoded using the [RFC2045-MIME](https://www.ietf.org/rfc/rfc2045.txt) variant of Base64.\n* Encoded string is added as credentials after the `\"Basic \"` type.\n\nExample:\n\n```shell\nUsername: \"Aladdin\"\nPassword: \"openSesame\"\n\nConcatenated string: \"Aladdin:openSesame\"\n\nBase64 encoded string: \"QWxhZGRpbjpvcGVuU2VzYW1l\"\n\nAuthorization header: \"Basic QWxhZGRpbjpvcGVuU2VzYW1l\"\n```\n\n> **Implementation detail**: Base64 encoding is a standard and many available programming languages and frameworks provide convenient methods for encoding\n> strings.\n",
+    "scheme":"basic"
+   },
+   "IBSSOTokenHeader":{
+    "type":"apiKey",
+    "description":"This authorization type is suited for situations when you do not want to store Infobip credentials in your own app. Instead, your users will input their Infobip\ncredentials every time they access your application and the application will use those credentials to create a session. From then on, the session token can be\nused to authenticate subsequent API requests. Note that the session will expire automatically after a predefined period of inactivity, and can also be manually\nterminated by making an appropriate API call.\n\nYou can find more details on the creation and behavior of the session at\nthe [dedicated documentation page](#platform-connectivity/account-management/create-session).\n\nAfter obtaining the session token by calling the above-referenced API method you can include it in the Authorization header like this:\n\n```shell\nAuthorization: IBSSO 2f9b4d31-2d0d-49a8-85f0-9b862bdca394\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "OAuth2":{
+    "type":"oauth2",
+    "description":"Similarly to the IBSSO Token authentication you can use OAuth 2.0 bearer token with Infobip serving both as resource and authorization server. You can obtain\nthe access token using the client credentials grant from `auth/1/oauth2/token` endpoint. It will provide you with your access token, and its expiration period.\nYou can use the token to authorize your API calls until it expires. You can find out more about the process in\nthe [official specification](https://tools.ietf.org/html/rfc6749#section-4.4).\n\nYou can include your access token in the Authorization HTTP request header like this:\n\n```http\nAuthorization: Bearer <access_token>\n```",
+    "flows":{
+     "clientCredentials":{
+      "tokenUrl":"https://api.infobip.com/auth/1/oauth2/token",
+      "scopes":{}
+     }
+    }
+   }
+  },
+  "links":{},
+  "callbacks":{}
+ }
+}

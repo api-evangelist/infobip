@@ -1,0 +1,5365 @@
+{
+ "openapi":"3.1.0",
+ "info":{
+  "title":"Infobip OpenAPI Specification",
+  "description":"OpenAPI Specification that contains all public endpoints and webhooks.",
+  "contact":{
+   "name":"Infobip support",
+   "email":"support@infobip.com"
+  },
+  "version":"3.210.0",
+  "x-generatedAt":"2026-07-23T15:23:50.778932683Z"
+ },
+ "tags":[
+  {
+   "name":"channels",
+   "description":"Create a perfect customer experience by using the channels your customer already use and love.\n",
+   "x-type":"category",
+   "x-displayName":"Channels"
+  },
+  {
+   "name":"mobile-app-messaging",
+   "description":"Mobile push and in-app messaging is a set of API requests to send mobile push and in-app messages, receive data about an application with a mobile SDK​, and receive statistics and reports about push messages​.",
+   "x-type":"product",
+   "x-displayName":"Mobile push and in-app messaging"
+  },
+  {
+   "name":"send-push",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Send Push"
+  },
+  {
+   "name":"push-registration",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Push registration"
+  },
+  {
+   "name":"push-applications",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Applications"
+  },
+  {
+   "name":"push-statistics-and-reports",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Statistics and reports"
+  },
+  {
+   "name":"push-configurations-and-actions",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Configurations and actions"
+  },
+  {
+   "name":"push-inbox",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Inbox"
+  }
+ ],
+ "paths":{
+  "/push/2/message/single":{
+   "post":{
+    "tags":[
+     "channels",
+     "mobile-app-messaging",
+     "send-push"
+    ],
+    "summary":"Send single Push notification",
+    "description":"Use this method to send a single Push notification to one or multiple recipients.",
+    "operationId":"send-single-push-notification",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushRequest"
+       },
+       "examples":{
+        "Push Request":{
+         "summary":"Push Request",
+         "value":{
+          "from":"d417d38814740a23f50b5c876e226445-0f700564-abbf-4b5b-beae-86a4ef410904",
+          "to":{
+           "externalUserId":"customer_21234"
+          },
+          "text":"This Message was sent by targeting exact externalUserId.",
+          "validityPeriod":30,
+          "validityPeriodTimeUnit":"MINUTES",
+          "customPayload":{
+           "someData":"someData",
+           "targetUrl":"www.someDomain.com"
+          },
+          "notificationOptions":{
+           "soundEnabled":false,
+           "badge":1,
+           "contentUrl":"https://www.example.com/images/image1.jpg",
+           "category":"mm_accept_decline",
+           "showInApp":true,
+           "inAppExpirationPeriod":6,
+           "inAppExpirationTimeUnit":"MINUTES",
+           "inAppDismissTitle":"Close",
+           "inAppOpenTitle":"Show",
+           "primaryButtonAction":{
+            "resource":"http://someurl.com",
+            "type":"WEB_VIEW_URL"
+           },
+           "inboxTopic":"Promotion"
+          },
+          "notifyUrl":"https://example.com",
+          "notifyContentType":"application/json",
+          "callbackData":"DLR callback data"
+         }
+        }
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushResponse"
+        },
+        "examples":{
+         "Send push notification response":{
+          "summary":"Send push notification response",
+          "value":{
+           "bulks":[
+            {
+             "to":{
+              "externalUserId":"customer_21234"
+             },
+             "status":{
+              "groupId":1,
+              "groupName":"PENDING",
+              "id":26,
+              "name":"PENDING_ACCEPTED",
+              "description":"Message accepted, pending for delivery"
+             },
+             "messageCount":1,
+             "bulkId":"oungulj9xm9b3hixkupu"
+            },
+            {
+             "to":{
+              "externalUserId":"customer_113456"
+             },
+             "status":{
+              "groupId":1,
+              "groupName":"PENDING",
+              "id":26,
+              "name":"PENDING_ACCEPTED",
+              "description":"Message accepted, pending for delivery"
+             },
+             "messageCount":1,
+             "bulkId":"gby7cz3x6m244n2e4vzb"
+            }
+           ]
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/676955110d1a0dfd70a111f0d54754844fb76cec84585649da79c94c1af5f6bc.ApiException"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "deprecated":true,
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "message:send",
+     "mobile-app-messaging:send",
+     "mobile-app-messaging:manage"
+    ]
+   }
+  },
+  "/push/2/message/multi":{
+   "post":{
+    "tags":[
+     "channels",
+     "mobile-app-messaging",
+     "send-push"
+    ],
+    "summary":"Send multiple Push notifications",
+    "description":"Use this method when sending a large amount of messages or targeting different user segments with different messages to optimize data traffic and increase performance.",
+    "operationId":"send-multiple-push-notifications",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushRequestMulti"
+       },
+       "examples":{
+        "Multiple push request":{
+         "summary":"Multiple push request",
+         "value":{
+          "messages":[
+           {
+            "from":"d417d38814740a23f50b5c876e226445-0f700564-abbf-4b5b-beae-86a4ef410904",
+            "to":{
+             "externalUserId":"customer_21234"
+            },
+            "text":"This message can be one of many in this message collection.",
+            "validityPeriod":30,
+            "validityPeriodTimeUnit":"MINUTES",
+            "customPayload":{
+             "someData":"someData",
+             "targetUrl":"www.someDomain.com"
+            },
+            "notificationOptions":{
+             "soundEnabled":false,
+             "badge":1
+            },
+            "notifyUrl":"https://example.com",
+            "notifyContentType":"application/json",
+            "callbackData":"DLR callback data"
+           },
+           {
+            "from":"c297d38814740a23f50b5c876e226445-0f700564-abbf-4b5b-beae-86a4ef410904",
+            "to":{
+             "externalUserId":"customer_113456"
+            },
+            "text":"This is the second message in this collection.",
+            "notificationOptions":{
+             "soundName":"notification_sound.wav"
+            }
+           }
+          ]
+         }
+        }
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushResponse"
+        },
+        "examples":{
+         "Send push notification response":{
+          "summary":"Send push notification response",
+          "value":{
+           "bulks":[
+            {
+             "to":{
+              "externalUserId":"customer_21234"
+             },
+             "status":{
+              "groupId":1,
+              "groupName":"PENDING",
+              "id":26,
+              "name":"PENDING_ACCEPTED",
+              "description":"Message accepted, pending for delivery"
+             },
+             "messageCount":1,
+             "bulkId":"oungulj9xm9b3hixkupu"
+            },
+            {
+             "to":{
+              "externalUserId":"customer_113456"
+             },
+             "status":{
+              "groupId":1,
+              "groupName":"PENDING",
+              "id":26,
+              "name":"PENDING_ACCEPTED",
+              "description":"Message accepted, pending for delivery"
+             },
+             "messageCount":1,
+             "bulkId":"gby7cz3x6m244n2e4vzb"
+            }
+           ]
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/676955110d1a0dfd70a111f0d54754844fb76cec84585649da79c94c1af5f6bc.ApiException"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "deprecated":true,
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "message:send",
+     "mobile-app-messaging:send",
+     "mobile-app-messaging:manage"
+    ]
+   }
+  },
+  "/push/3/messages":{
+   "post":{
+    "tags":[
+     "channels",
+     "mobile-app-messaging",
+     "send-push"
+    ],
+    "summary":"Send Push notifications",
+    "description":"This method allows you to send Push notifications to a recipient or multiple recipients in one request.",
+    "externalDocs":{
+     "description":"Learn more about Mobile Push and In-App Messages",
+     "url":"https://www.infobip.com/docs/mobile-push"
+    },
+    "operationId":"send-push-notifications",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushUnificationRequest"
+       },
+       "examples":{
+        "External user id as destination":{
+         "summary":"External user id as destination",
+         "value":{
+          "messages":[
+           {
+            "sender":"F5E6B95AFBEDEC426344318E1BD3D42E",
+            "destinations":[
+             {
+              "externalUserId":"external-user-id",
+              "type":"EXTERNAL_USER_ID"
+             }
+            ],
+            "content":{
+             "title":"Some title",
+             "text":"Some text",
+             "type":"TEXT"
+            },
+            "options":{
+             "soundEnabled":true,
+             "soundName":"default",
+             "vibrationEnabled":true,
+             "contentAvailable":true,
+             "isSilent":false,
+             "badge":1,
+             "category":"mm_accept_decline",
+             "showMirroredPush":false,
+             "mirroredPushStyle":"MODAL",
+             "mirroredPushExpirationPeriod":1,
+             "mirroredPushExpirationTimeUnit":"HOURS",
+             "mirroredPushDismissTitle":"Dismiss Title",
+             "mirroredPushOpenTitle":"Open Title",
+             "onTapButtonAction":{
+              "resource":"resource",
+              "type":"WEB_VIEW_URL"
+             },
+             "inboxTopic":"Inbox Topic",
+             "sendAt":"2026-07-23T12:55:35.086+0000",
+             "customPayload":{
+              "custom":"payload"
+             }
+            }
+           }
+          ]
+         }
+        },
+        "Email as destination":{
+         "summary":"Email as destination",
+         "value":{
+          "messages":[
+           {
+            "sender":"F5E6B95AFBEDEC426344318E1BD3D42E",
+            "destinations":[
+             {
+              "email":"johnsmith@example.com",
+              "type":"EMAIL"
+             }
+            ],
+            "content":{
+             "title":"Some title",
+             "text":"Some text",
+             "type":"TEXT"
+            },
+            "options":{
+             "soundEnabled":true,
+             "soundName":"default",
+             "vibrationEnabled":true,
+             "contentAvailable":true,
+             "isSilent":false,
+             "badge":1,
+             "category":"mm_accept_decline",
+             "showMirroredPush":false,
+             "mirroredPushStyle":"MODAL",
+             "mirroredPushExpirationPeriod":1,
+             "mirroredPushExpirationTimeUnit":"HOURS",
+             "mirroredPushDismissTitle":"Dismiss Title",
+             "mirroredPushOpenTitle":"Open Title",
+             "onTapButtonAction":{
+              "resource":"resource",
+              "type":"WEB_VIEW_URL"
+             },
+             "inboxTopic":"Inbox Topic",
+             "sendAt":"2026-07-23T12:55:35.086+0000",
+             "customPayload":{
+              "custom":"payload"
+             }
+            }
+           }
+          ]
+         }
+        },
+        "Phone number as destination":{
+         "summary":"Phone number as destination",
+         "value":{
+          "messages":[
+           {
+            "sender":"F5E6B95AFBEDEC426344318E1BD3D42E",
+            "destinations":[
+             {
+              "phoneNumber":"441134960001",
+              "type":"PHONE_NUMBER"
+             }
+            ],
+            "content":{
+             "title":"Some title",
+             "text":"Some text",
+             "type":"TEXT"
+            },
+            "options":{
+             "soundEnabled":true,
+             "soundName":"default",
+             "vibrationEnabled":true,
+             "contentAvailable":true,
+             "isSilent":false,
+             "badge":1,
+             "category":"mm_accept_decline",
+             "showMirroredPush":false,
+             "mirroredPushStyle":"MODAL",
+             "mirroredPushExpirationPeriod":1,
+             "mirroredPushExpirationTimeUnit":"HOURS",
+             "mirroredPushDismissTitle":"Dismiss Title",
+             "mirroredPushOpenTitle":"Open Title",
+             "onTapButtonAction":{
+              "resource":"resource",
+              "type":"WEB_VIEW_URL"
+             },
+             "inboxTopic":"Inbox Topic",
+             "sendAt":"2026-07-23T12:55:35.086+0000",
+             "customPayload":{
+              "custom":"payload"
+             }
+            }
+           }
+          ]
+         }
+        },
+        "Registration as destination":{
+         "summary":"Registration as destination",
+         "value":{
+          "messages":[
+           {
+            "sender":"F5E6B95AFBEDEC426344318E1BD3D42E",
+            "destinations":[
+             {
+              "pushRegistrationId":"DBE0B0B6-668E-491E-8EE8-2A3DB2C71CBE",
+              "type":"REGISTRATION"
+             }
+            ],
+            "content":{
+             "title":"Some title",
+             "text":"Some text",
+             "type":"TEXT"
+            },
+            "options":{
+             "soundEnabled":true,
+             "soundName":"default",
+             "vibrationEnabled":true,
+             "contentAvailable":true,
+             "isSilent":false,
+             "badge":1,
+             "category":"mm_accept_decline",
+             "showMirroredPush":false,
+             "mirroredPushStyle":"MODAL",
+             "mirroredPushExpirationPeriod":1,
+             "mirroredPushExpirationTimeUnit":"HOURS",
+             "mirroredPushDismissTitle":"Dismiss Title",
+             "mirroredPushOpenTitle":"Open Title",
+             "onTapButtonAction":{
+              "resource":"resource",
+              "type":"WEB_VIEW_URL"
+             },
+             "inboxTopic":"Inbox Topic",
+             "sendAt":"2026-07-23T12:55:35.086+0000",
+             "customPayload":{
+              "custom":"payload"
+             }
+            }
+           }
+          ]
+         }
+        },
+        "Multiple destinations":{
+         "summary":"Multiple destinations",
+         "value":{
+          "messages":[
+           {
+            "sender":"F5E6B95AFBEDEC426344318E1BD3D42E",
+            "destinations":[
+             {
+              "$or":[
+               {
+                "DeviceType":"personal"
+               },
+               {
+                "DeviceType":"business"
+               }
+              ],
+              "$and":[
+               {
+                "DeviceType":"personal"
+               },
+               {
+                "DeviceType":"business"
+               }
+              ],
+              "type":"MULTIPLE"
+             }
+            ],
+            "content":{
+             "title":"Some title",
+             "text":"Some text",
+             "type":"TEXT"
+            },
+            "options":{
+             "soundEnabled":true,
+             "soundName":"default",
+             "vibrationEnabled":true,
+             "contentAvailable":true,
+             "isSilent":false,
+             "badge":1,
+             "category":"mm_accept_decline",
+             "showMirroredPush":false,
+             "mirroredPushStyle":"MODAL",
+             "mirroredPushExpirationPeriod":1,
+             "mirroredPushExpirationTimeUnit":"HOURS",
+             "mirroredPushDismissTitle":"Dismiss Title",
+             "mirroredPushOpenTitle":"Open Title",
+             "onTapButtonAction":{
+              "resource":"resource",
+              "type":"WEB_VIEW_URL"
+             },
+             "inboxTopic":"Inbox Topic",
+             "sendAt":"2026-07-23T12:55:35.086+0000",
+             "customPayload":{
+              "custom":"payload"
+             }
+            }
+           }
+          ]
+         }
+        },
+        "Image push notification":{
+         "summary":"Image push notification",
+         "value":{
+          "messages":[
+           {
+            "sender":"F5E6B95AFBEDEC426344318E1BD3D42E",
+            "destinations":[
+             {
+              "pushRegistrationId":"DBE0B0B6-668E-491E-8EE8-2A3DB2C71CBE",
+              "type":"REGISTRATION"
+             }
+            ],
+            "content":{
+             "title":"Some title",
+             "text":"Some text",
+             "url":"https://www.example.com/image.jpg",
+             "type":"IMAGE"
+            },
+            "options":{
+             "soundEnabled":true,
+             "soundName":"default",
+             "vibrationEnabled":true,
+             "contentAvailable":true,
+             "isSilent":false,
+             "badge":1,
+             "category":"mm_accept_decline",
+             "showMirroredPush":false,
+             "mirroredPushStyle":"MODAL",
+             "mirroredPushExpirationPeriod":1,
+             "mirroredPushExpirationTimeUnit":"HOURS",
+             "mirroredPushDismissTitle":"Dismiss Title",
+             "mirroredPushOpenTitle":"Open Title",
+             "onTapButtonAction":{
+              "resource":"resource",
+              "type":"WEB_VIEW_URL"
+             },
+             "inboxTopic":"Inbox Topic",
+             "sendAt":"2026-07-23T12:55:35.086+0000",
+             "customPayload":{
+              "custom":"payload"
+             }
+            }
+           }
+          ]
+         }
+        }
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushUnificationResponse"
+        },
+        "examples":{
+         "Success":{
+          "summary":"Success",
+          "value":{
+           "bulkId":"a28dd97c-2222-4fcf-99f1-0b557ed381da",
+           "messages":[
+            {
+             "messageId":"a28dd97c-1ffb-4fcf-99f1-0b557ed381da",
+             "status":{
+              "groupId":1,
+              "groupName":"PENDING",
+              "id":7,
+              "name":"PENDING_ENROUTE",
+              "description":"Message sent to next instance"
+             },
+             "destination":"DBE0B0B6-668E-491E-8EE8-2A3DB2C71CBE"
+            }
+           ]
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "errorCode":"E400",
+           "description":"Request cannot be processed.",
+           "action":"Check the syntax, violations and adjust the request.",
+           "violations":[
+            {
+             "property":"property.path",
+             "violation":"Violation message."
+            }
+           ],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "message:send",
+     "mobile-app-messaging:send",
+     "mobile-app-messaging:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":2500,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/push/1/applications":{
+   "get":{
+    "tags":[
+     "channels",
+     "mobile-app-messaging",
+     "push-applications"
+    ],
+    "summary":"Get push applications",
+    "description":"The following method allows you to fetch all application profiles configured on a single account.",
+    "operationId":"get-push-applications",
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/5c2cf40bcaa0da78551dad80ceca0bb519c9f9fe84d6b1fad64401849b63d9ac.ApplicationResponse"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "applications":[
+            {
+             "applicationCode":"233623e3c860b49ec69a464834343481-8bj4el4a-256d-23fd-56ad-b5bc3d568b53",
+             "applicationId":"192CCB67425B90FE8A419EB0F350F0589",
+             "name":"Push Test 1",
+             "description":"PUSH test application 1",
+             "registrationsCount":45655,
+             "apns":{
+              "enabled":true
+             },
+             "gcm":{
+              "enabled":false
+             }
+            },
+            {
+             "applicationCode":"26581d19d889e4867b997e386ea0e222-b8325bdd-3d56-76e1-d104-6a5c48234bc8",
+             "applicationId":"AEB30AF8A61ADEB4D9964A299E8FFC10",
+             "name":"Push Test 2",
+             "description":"PUSH test application 2",
+             "registrationsCount":35698,
+             "apns":{
+              "enabled":true
+             },
+             "gcm":{
+              "enabled":true
+             }
+            }
+           ]
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/18a8b746d2b3a8fcfed338bade07f6facb992e3867826d141a0e0ae5a3ba5642.ApiException"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "mobile-app-messaging:manage"
+    ]
+   }
+  },
+  "/push/1/applications/{applicationCode}":{
+   "get":{
+    "tags":[
+     "channels",
+     "mobile-app-messaging",
+     "push-applications"
+    ],
+    "summary":"Get push Application by applicationCode",
+    "description":"The following method allows you to fetch information about a specific application profile.",
+    "operationId":"get-push-application",
+    "parameters":[
+     {
+      "name":"applicationCode",
+      "in":"path",
+      "description":"Application code.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      }
+     },
+     {
+      "name":"useAppCodeAsAppId",
+      "in":"query",
+      "description":"Set to true to treat application code as application ID.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"boolean"
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/5c2cf40bcaa0da78551dad80ceca0bb519c9f9fe84d6b1fad64401849b63d9ac.ApplicationsResponse"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "applicationCode":"233623e3c860b49ec69a464834343481-8bj4el4a-256d-23fd-56ad-b5bc3d568b53",
+           "applicationId":"192CCB67425B90FE8A419EB0F350F0589",
+           "name":"Push Test 1",
+           "description":"PUSH test application 1",
+           "registrationsCount":456655,
+           "apns":{
+            "enabled":false
+           },
+           "gcm":{
+            "enabled":true
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/18a8b746d2b3a8fcfed338bade07f6facb992e3867826d141a0e0ae5a3ba5642.ApiException"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "$ref":"#/components/responses/ApiException404"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "mobile-app-messaging:manage"
+    ]
+   }
+  },
+  "/push/1/statistics":{
+   "get":{
+    "tags":[
+     "channels",
+     "mobile-app-messaging",
+     "push-statistics-and-reports"
+    ],
+    "summary":"Get Push statistics",
+    "description":"The following method allows you to retrieve statistics for a specific bulk of sent Push messages.",
+    "operationId":"get-push-statistics",
+    "parameters":[
+     {
+      "name":"bulkId",
+      "in":"query",
+      "description":"Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request.",
+      "required":true,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"successful response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/a381f86553e288851808282b347a5f8bd7ba34b9b6feb33f5946feb4892476be.StatisticsResponse"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "totalSent":31569,
+           "delivered":29568,
+           "seen":25632,
+           "errors":{
+            "registration":1654,
+            "expired":301,
+            "cloud":46
+           },
+           "delivery":{
+            "rate":93.66,
+            "time":1580727771155
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/77db2635bc301813b34d9bf25b46b5eb0b93ccf4142ac82fa2d80980d0455beb.ApiException"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "mobile-app-messaging:manage"
+    ]
+   }
+  },
+  "/push/1/reports":{
+   "get":{
+    "tags":[
+     "channels",
+     "mobile-app-messaging",
+     "push-statistics-and-reports"
+    ],
+    "summary":"Get Push reports",
+    "description":"This method allows you to get one-time delivery reports for sent Push messages. You can only fetch reports that are no older than 48 hours.",
+    "operationId":"get-push-reports",
+    "parameters":[
+     {
+      "name":"bulkId",
+      "in":"query",
+      "description":"Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":23568941
+     },
+     {
+      "name":"messageId",
+      "in":"query",
+      "description":"The ID of the individual message for which the report is requested.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"ff4804ef-6ab6-4abd-984d-ab3b1387e852"
+     },
+     {
+      "name":"limit",
+      "in":"query",
+      "description":"Maximum number of reports.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer"
+      },
+      "example":1
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Successful response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/fccfa6f52b47dd30d36e2c1fad9bb5d494251b453352b21aeb7a407c6f1eeb5c.ApiReportsResponse"
+        },
+        "examples":{
+         "Push sent messages response":{
+          "summary":"Push sent messages response",
+          "value":{
+           "results":[
+            {
+             "bulkId":"23568941",
+             "messageId":"ff4804ef-6ab6-4abd-984d-ab3b1387e852",
+             "to":"385981178",
+             "sentAt":"1970-01-01T00:00:00.000+0000",
+             "doneAt":"1970-01-01T00:00:01.000+0000",
+             "messageCount":1,
+             "price":{
+              "pricePerMessage":0.01,
+              "currency":"EUR"
+             },
+             "status":{
+              "groupId":3,
+              "groupName":"DELIVERED",
+              "id":5,
+              "name":"DELIVERED_TO_HANDSET",
+              "description":"Message delivered to handset"
+             },
+             "error":{
+              "groupId":0,
+              "groupName":"OK",
+              "id":0,
+              "name":"NO_ERROR",
+              "description":"No Error",
+              "permanent":false
+             },
+             "channel":"PUSH"
+            }
+           ]
+          }
+         },
+         "Getting detailed reports for bulk message sending":{
+          "summary":"Getting detailed reports for bulk message sending",
+          "value":{
+           "results":[
+            {
+             "bulkId":"3382845430",
+             "messageId":"07e03aae-fabc-44ad-b1ce-222e14094d70",
+             "to":"41793026727",
+             "sentAt":"1970-01-01T00:00:00.000+0000",
+             "doneAt":"1970-01-01T00:00:01.000+0000",
+             "messageCount":1,
+             "price":{
+              "pricePerMessage":0.0104,
+              "currency":"EUR"
+             },
+             "status":{
+              "groupId":3,
+              "groupName":"DELIVERED",
+              "id":5,
+              "name":"DELIVERED_TO_HANDSET",
+              "description":"Message delivered to handset"
+             },
+             "error":{
+              "groupId":0,
+              "groupName":"OK",
+              "id":0,
+              "name":"NO_ERROR",
+              "description":"No Error",
+              "permanent":false
+             },
+             "channel":"PUSH"
+            },
+            {
+             "bulkId":"3382845430",
+             "messageId":"1f21d8d7-f306-4f53-9f6e-eddfce9849ea",
+             "to":"41793026728",
+             "sentAt":"1970-01-01T00:00:00.000+0000",
+             "doneAt":"1970-01-01T00:00:01.000+0000",
+             "messageCount":1,
+             "price":{
+              "pricePerMessage":0.01,
+              "currency":"EUR"
+             },
+             "status":{
+              "groupId":3,
+              "groupName":"DELIVERED",
+              "id":5,
+              "name":"DELIVERED_TO_HANDSET",
+              "description":"Message delivered to handset"
+             },
+             "error":{
+              "groupId":0,
+              "groupName":"OK",
+              "id":0,
+              "name":"NO_ERROR",
+              "description":"No Error",
+              "permanent":false
+             },
+             "channel":"PUSH"
+            }
+           ]
+          }
+         },
+         "Getting delivery reports":{
+          "summary":"Getting delivery reports",
+          "value":{
+           "results":[
+            {
+             "bulkId":"czztgteet4fath2pclbq",
+             "messageId":"45653761-3a88-4060-869e-ae372adc7a51",
+             "to":"3fd5c8a4-ae57-46c1-be7a-31bb8a0a7fba",
+             "sentAt":"1970-01-01T00:00:00.000+0000",
+             "doneAt":"1970-01-01T00:00:01.000+0000",
+             "messageCount":1,
+             "price":{
+              "pricePerMessage":0,
+              "currency":"UNKNOWN"
+             },
+             "status":{
+              "groupId":3,
+              "groupName":"DELIVERED",
+              "id":5,
+              "name":"DELIVERED_TO_HANDSET",
+              "description":"Message delivered to handset"
+             },
+             "error":{
+              "groupId":0,
+              "groupName":"OK",
+              "id":0,
+              "name":"NO_ERROR",
+              "description":"No Error",
+              "permanent":false
+             },
+             "channel":"PUSH",
+             "callbackData":"{\"callbackData\":\"Delivery report callback data\",\"subscriberId\":\"customer_21234\"}"
+            }
+           ]
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Error reponses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/77db2635bc301813b34d9bf25b46b5eb0b93ccf4142ac82fa2d80980d0455beb.ApiException"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "message:send",
+     "mobile-app-messaging:send",
+     "mobile-app-messaging:manage"
+    ]
+   }
+  },
+  "/push/1/inbox/reports":{
+   "get":{
+    "tags":[
+     "channels",
+     "mobile-app-messaging",
+     "push-statistics-and-reports"
+    ],
+    "summary":"Receive MO Push messages",
+    "description":"Get MO (Mobile Originated) Push messages that have been received by the Infobip platform from your subscribers' devices. These are incoming messages sent from devices to your application, not messages sent from the platform to devices. Each request will return a batch of received messages - only once. The following request will return the next batch of messages.",
+    "operationId":"receive-push-messages",
+    "parameters":[
+     {
+      "name":"limit",
+      "in":"query",
+      "description":"Maximum number of received messages to return.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer"
+      },
+      "example":2
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Successful response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c8cb45a488f0d2ea03cc082d0f61afb1c3b35cdd297a9f7abb6df8ac5619a483.MoReportsResponse"
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/18a8b746d2b3a8fcfed338bade07f6facb992e3867826d141a0e0ae5a3ba5642.ApiException"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "mobile-app-messaging:manage",
+     "inbound-message:read",
+     "mobile-app-messaging:inbound-message:read"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":10,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/push/3/reports":{
+   "get":{
+    "tags":[
+     "channels",
+     "mobile-app-messaging",
+     "push-statistics-and-reports"
+    ],
+    "summary":"Get Push delivery reports",
+    "description":"If you are unable to receive real-time delivery reports towards your endpoint for various reasons, we offer you an API method to fetch batches of delivery reports to confirm whether specific messages have been delivered. Each request towards this endpoint will return batches of the latest delivery reports. Please note they will be returned only once.",
+    "externalDocs":{
+     "description":"Learn more about Mobile Push and In-App Messages",
+     "url":"https://www.infobip.com/docs/mobile-push"
+    },
+    "operationId":"get-outbound-push-message-delivery-reports",
+    "parameters":[
+     {
+      "name":"bulkId",
+      "in":"query",
+      "description":"The ID that uniquely identifies the request. Bulk ID will be received only when you send a message to more than one destination address.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      }
+     },
+     {
+      "name":"messageId",
+      "in":"query",
+      "description":"The ID that uniquely identifies the message sent.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      }
+     },
+     {
+      "name":"limit",
+      "in":"query",
+      "description":"Maximum number of delivery reports to be returned. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access reports for the last 48h",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "format":"int32",
+       "default":50,
+       "maximum":1000
+      },
+      "example":1
+     },
+     {
+      "name":"entityId",
+      "in":"query",
+      "description":"Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"promotional-traffic-entity"
+     },
+     {
+      "name":"applicationId",
+      "in":"query",
+      "description":"Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"marketing-automation-application"
+     },
+     {
+      "name":"campaignReferenceId",
+      "in":"query",
+      "description":"ID of a campaign that was sent in the message.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"summersale"
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.DeliveryReports"
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "message:send",
+     "mobile-app-messaging:send",
+     "mobile-app-messaging:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":2500,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/push/3/logs":{
+   "get":{
+    "tags":[
+     "channels",
+     "mobile-app-messaging",
+     "push-statistics-and-reports"
+    ],
+    "summary":"Get Push message logs",
+    "description":"Use this method for displaying logs for example in the user interface. Available are the logs for the last 48 hours.",
+    "operationId":"get-outbound-push-message-logs",
+    "parameters":[
+     {
+      "name":"sender",
+      "in":"query",
+      "description":"The sender ID which can be alphanumeric or numeric.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      }
+     },
+     {
+      "name":"destination",
+      "in":"query",
+      "description":"Message destination address.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      }
+     },
+     {
+      "name":"bulkId",
+      "in":"query",
+      "description":"Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. May contain multiple comma-separated values. Maximum length 2048 characters.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"array",
+       "items":{
+        "type":"string"
+       }
+      },
+      "example":"BULK-ID-123-xyz"
+     },
+     {
+      "name":"messageId",
+      "in":"query",
+      "description":"Unique message ID for which a log is requested. May contain multiple comma-separated values. Maximum length 2048 characters.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"array",
+       "items":{
+        "type":"string"
+       }
+      },
+      "example":"MESSAGE-ID-123-xyz,MESSAGE-ID-124-xyz"
+     },
+     {
+      "name":"generalStatus",
+      "in":"query",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.MessageGeneralStatus"
+      }
+     },
+     {
+      "name":"sentSince",
+      "in":"query",
+      "description":"The logs will only include messages sent after this date. Use it alongside sentUntil to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "format":"date-time"
+      },
+      "example":"2020-02-22T17:42:05.390+01:00"
+     },
+     {
+      "name":"sentUntil",
+      "in":"query",
+      "description":"The logs will only include messages sent before this date. Use it alongside sentSince to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "format":"date-time",
+       "description":"The logs will only include messages sent before this date. Use it alongside sentSince to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ.",
+       "example":"2020-02-23T17:42:05.39+01:00"
+      },
+      "example":"2020-02-23T17:42:05.390+01:00"
+     },
+     {
+      "name":"limit",
+      "in":"query",
+      "description":"Maximum number of messages to include in logs. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access logs for the last 48h.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "format":"int32",
+       "default":50,
+       "maximum":1000
+      }
+     },
+     {
+      "name":"entityId",
+      "in":"query",
+      "description":"Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"promotional-traffic-entity"
+     },
+     {
+      "name":"applicationId",
+      "in":"query",
+      "description":"Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"marketing-automation-application"
+     },
+     {
+      "name":"campaignReferenceId",
+      "in":"query",
+      "description":"ID of a campaign that was sent in the message. May contain multiple comma-separated values.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"array",
+       "items":{
+        "type":"string"
+       }
+      },
+      "example":"summersale"
+     },
+     {
+      "name":"useCursor",
+      "in":"query",
+      "description":"Flag used to enable cursor-based pagination. When set to true, the system will use the cursor to fetch the next set of logs.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"boolean"
+      }
+     },
+     {
+      "name":"cursor",
+      "in":"query",
+      "description":"Value which represents the current position in the data set. For the first request, this field shouldn't be defined. In subsequent requests, use the `nextCursor` value returned from the previous response to continue fetching data.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.LogResponseLogPushOutboundContent"
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "mobile-app-messaging:manage",
+     "mobile-app-messaging:logs:read"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":120,
+      "numberOfTimeUnits":0,
+      "timeUnit":"m"
+     }
+    ]
+   }
+  },
+  "/push/1/applications/{applicationCode}/configurations":{
+   "get":{
+    "tags":[
+     "channels",
+     "mobile-app-messaging",
+     "push-configurations-and-actions"
+    ],
+    "summary":"List all configurations",
+    "description":"List all MO (Mobile Originated) message configurations for an application.",
+    "operationId":"list-all-configurations",
+    "parameters":[
+     {
+      "name":"applicationCode",
+      "in":"path",
+      "description":"Application code identifying the application.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"my_app_code"
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Successful response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c8cb45a488f0d2ea03cc082d0f61afb1c3b35cdd297a9f7abb6df8ac5619a483.ConfigurationsResponse"
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/18a8b746d2b3a8fcfed338bade07f6facb992e3867826d141a0e0ae5a3ba5642.ApiException"
+        },
+        "examples":{
+         "Application not found":{
+          "summary":"Application not found",
+          "description":"Application not found",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"1",
+             "text":"Application does not exist"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "mobile-app-messaging:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":10,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   },
+   "post":{
+    "tags":[
+     "channels",
+     "mobile-app-messaging",
+     "push-configurations-and-actions"
+    ],
+    "summary":"Create a new configuration",
+    "description":"Create a new MO (Mobile Originated) message configuration for an application.",
+    "operationId":"create-a-new-configuration",
+    "parameters":[
+     {
+      "name":"applicationCode",
+      "in":"path",
+      "description":"Application code identifying the application.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"my_app_code"
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Successful response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c8cb45a488f0d2ea03cc082d0f61afb1c3b35cdd297a9f7abb6df8ac5619a483.ConfigurationResponse"
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/18a8b746d2b3a8fcfed338bade07f6facb992e3867826d141a0e0ae5a3ba5642.ApiException"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/18a8b746d2b3a8fcfed338bade07f6facb992e3867826d141a0e0ae5a3ba5642.ApiException"
+        },
+        "examples":{
+         "Application not found":{
+          "summary":"Application not found",
+          "description":"Application not found",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"1",
+             "text":"Application does not exist"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "mobile-app-messaging:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":10,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/push/1/applications/{applicationCode}/configurations/{configurationKey}":{
+   "get":{
+    "tags":[
+     "channels",
+     "mobile-app-messaging",
+     "push-configurations-and-actions"
+    ],
+    "summary":"Get a single configuration",
+    "description":"Get a single MO (Mobile Originated) message configuration by key.",
+    "operationId":"get-a-single-configuration",
+    "parameters":[
+     {
+      "name":"applicationCode",
+      "in":"path",
+      "description":"Application code identifying the application.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"my_app_code"
+     },
+     {
+      "name":"configurationKey",
+      "in":"path",
+      "description":"Configuration key identifying the configuration.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"config_key"
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Successful response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c8cb45a488f0d2ea03cc082d0f61afb1c3b35cdd297a9f7abb6df8ac5619a483.ConfigurationResponse"
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/18a8b746d2b3a8fcfed338bade07f6facb992e3867826d141a0e0ae5a3ba5642.ApiException"
+        },
+        "examples":{
+         "Application not found":{
+          "summary":"Application not found",
+          "description":"Application not found",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"1",
+             "text":"Application does not exist"
+            }
+           }
+          }
+         },
+         "Configuration not found":{
+          "summary":"Configuration not found",
+          "description":"Configuration not found",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"6",
+             "text":"Configuration does not exist"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "mobile-app-messaging:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":10,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   },
+   "delete":{
+    "tags":[
+     "channels",
+     "mobile-app-messaging",
+     "push-configurations-and-actions"
+    ],
+    "summary":"Delete the configuration",
+    "description":"Delete an MO (Mobile Originated) message configuration by key.",
+    "operationId":"delete-the-configuration",
+    "parameters":[
+     {
+      "name":"applicationCode",
+      "in":"path",
+      "description":"Application code identifying the application.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"my_app_code"
+     },
+     {
+      "name":"configurationKey",
+      "in":"path",
+      "description":"Configuration key identifying the configuration.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"config_key"
+     }
+    ],
+    "responses":{
+     "204":{
+      "description":"Successful response (no content)",
+      "content":{}
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/18a8b746d2b3a8fcfed338bade07f6facb992e3867826d141a0e0ae5a3ba5642.ApiException"
+        },
+        "examples":{
+         "Application not found":{
+          "summary":"Application not found",
+          "description":"Application not found",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"1",
+             "text":"Application does not exist"
+            }
+           }
+          }
+         },
+         "Configuration not found":{
+          "summary":"Configuration not found",
+          "description":"Configuration not found",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"6",
+             "text":"Configuration does not exist"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "mobile-app-messaging:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":10,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/push/1/applications/{applicationCode}/configurations/{configurationKey}/actions":{
+   "get":{
+    "tags":[
+     "channels",
+     "mobile-app-messaging",
+     "push-configurations-and-actions"
+    ],
+    "summary":"List all actions",
+    "description":"List all actions for an MO (Mobile Originated) message configuration.",
+    "operationId":"list-all-actions",
+    "parameters":[
+     {
+      "name":"applicationCode",
+      "in":"path",
+      "description":"Application code identifying the application.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"my_app_code"
+     },
+     {
+      "name":"configurationKey",
+      "in":"path",
+      "description":"Configuration key identifying the configuration.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"config_key"
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Successful response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c8cb45a488f0d2ea03cc082d0f61afb1c3b35cdd297a9f7abb6df8ac5619a483.ActionsResponse"
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/18a8b746d2b3a8fcfed338bade07f6facb992e3867826d141a0e0ae5a3ba5642.ApiException"
+        },
+        "examples":{
+         "Application not found":{
+          "summary":"Application not found",
+          "description":"Application not found",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"1",
+             "text":"Application does not exist"
+            }
+           }
+          }
+         },
+         "Configuration not found":{
+          "summary":"Configuration not found",
+          "description":"Configuration not found",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"6",
+             "text":"Configuration does not exist"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "mobile-app-messaging:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":10,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   },
+   "post":{
+    "tags":[
+     "channels",
+     "mobile-app-messaging",
+     "push-configurations-and-actions"
+    ],
+    "summary":"Create new action",
+    "description":"Create a new action for an MO (Mobile Originated) message configuration. Supported action types are HTTP_FORWARD and PULL.",
+    "operationId":"create-new-action",
+    "parameters":[
+     {
+      "name":"applicationCode",
+      "in":"path",
+      "description":"Application code identifying the application.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"my_app_code"
+     },
+     {
+      "name":"configurationKey",
+      "in":"path",
+      "description":"Configuration key identifying the configuration.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"config_key"
+     }
+    ],
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/c8cb45a488f0d2ea03cc082d0f61afb1c3b35cdd297a9f7abb6df8ac5619a483.ActionRequest"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"Successful response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c8cb45a488f0d2ea03cc082d0f61afb1c3b35cdd297a9f7abb6df8ac5619a483.ActionResponse"
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/18a8b746d2b3a8fcfed338bade07f6facb992e3867826d141a0e0ae5a3ba5642.ApiException"
+        },
+        "examples":{
+         "Invalid action request":{
+          "summary":"Invalid action request",
+          "description":"Invalid action request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"8",
+             "text":"Invalid action request"
+            }
+           }
+          }
+         },
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/18a8b746d2b3a8fcfed338bade07f6facb992e3867826d141a0e0ae5a3ba5642.ApiException"
+        },
+        "examples":{
+         "Application not found":{
+          "summary":"Application not found",
+          "description":"Application not found",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"1",
+             "text":"Application does not exist"
+            }
+           }
+          }
+         },
+         "Configuration not found":{
+          "summary":"Configuration not found",
+          "description":"Configuration not found",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"6",
+             "text":"Configuration does not exist"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "mobile-app-messaging:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":10,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/push/1/applications/{applicationCode}/configurations/{configurationKey}/actions/{actionKey}":{
+   "delete":{
+    "tags":[
+     "channels",
+     "mobile-app-messaging",
+     "push-configurations-and-actions"
+    ],
+    "summary":"Delete action",
+    "description":"Delete an action from an MO (Mobile Originated) message configuration.",
+    "operationId":"delete-action",
+    "parameters":[
+     {
+      "name":"applicationCode",
+      "in":"path",
+      "description":"Application code identifying the application.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"my_app_code"
+     },
+     {
+      "name":"configurationKey",
+      "in":"path",
+      "description":"Configuration key identifying the configuration.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"config_key"
+     },
+     {
+      "name":"actionKey",
+      "in":"path",
+      "description":"Action key identifying the action to delete.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"action_key"
+     }
+    ],
+    "responses":{
+     "204":{
+      "description":"Successful response (no content)",
+      "content":{}
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/18a8b746d2b3a8fcfed338bade07f6facb992e3867826d141a0e0ae5a3ba5642.ApiException"
+        },
+        "examples":{
+         "Application not found":{
+          "summary":"Application not found",
+          "description":"Application not found",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"1",
+             "text":"Application does not exist"
+            }
+           }
+          }
+         },
+         "Configuration not found":{
+          "summary":"Configuration not found",
+          "description":"Configuration not found",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"6",
+             "text":"Configuration does not exist"
+            }
+           }
+          }
+         },
+         "Action not found":{
+          "summary":"Action not found",
+          "description":"Action not found",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"5",
+             "text":"Action does not exist"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "mobile-app-messaging:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":10,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/push/1/inbox/messages":{
+   "delete":{
+    "tags":[
+     "channels",
+     "mobile-app-messaging",
+     "push-inbox"
+    ],
+    "summary":"Delete Push Inbox messages",
+    "description":"Deletes Push Inbox messages from devices that have a mobile application integrated with the 'Push Inbox'. Beware, this action cannot be undone.",
+    "operationId":"delete-push-inbox-messages",
+    "parameters":[
+     {
+      "name":"campaignId",
+      "in":"query",
+      "description":"`campaignId` of messages that you'd like to delete.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":100004815162342
+     },
+     {
+      "name":"bulkId",
+      "in":"query",
+      "description":"`bulkId` of messages that you'd like to delete.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"fe40d1aa-b4ec-11ec-b909-0242ac120002"
+     },
+     {
+      "name":"messageId",
+      "in":"query",
+      "description":"`messageId` of the specific message you'd like to delete.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":1738833000000
+     }
+    ],
+    "responses":{
+     "202":{
+      "description":"Accepted",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/1fab3d191d736425211a5879d4b2241fa0e80b8ab68239ab74531b9b6408a7a8.DeletionAcceptedResponse"
+        },
+        "examples":{
+         "Success.":{
+          "summary":"Success.",
+          "description":"Success.",
+          "value":{
+           "messageId":"1738833000000",
+           "message":"Your request has been submitted successfully."
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/1a371cd8f3283b37bf4803906b01cdcf51f31ded659ebcfe44c8dbb3c4785a4e.ApiException"
+        },
+        "examples":{
+         "Missing required request parameter.":{
+          "summary":"Missing required request parameter.",
+          "description":"Missing required request parameter.",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Missing required request parameter: campaignId, bulkId or messageId. Please provide one of them."
+            }
+           }
+          }
+         },
+         "Ambiguous request parameters.":{
+          "summary":"Ambiguous request parameters.",
+          "description":"Ambiguous request parameters.",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Ambiguous request parameters: more than one of campaignId, bulkId, or messageId are specified. Please provide only one of them."
+            }
+           }
+          }
+         },
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "mobile-app-messaging:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":2,
+      "numberOfTimeUnits":0,
+      "timeUnit":"m"
+     }
+    ]
+   }
+  },
+  "/push/1/user/{externalUserId}/inbox/messages":{
+   "delete":{
+    "tags":[
+     "channels",
+     "mobile-app-messaging",
+     "push-inbox"
+    ],
+    "summary":"Delete Push Inbox message for a specific user",
+    "description":"Deletes a single Push Inbox message from a specific user's inbox. Requires specifying either campaignId or bulkId.",
+    "operationId":"delete-push-inbox-user-message",
+    "parameters":[
+     {
+      "name":"externalUserId",
+      "in":"path",
+      "description":"External identifier of the user",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      }
+     },
+     {
+      "name":"campaignId",
+      "in":"query",
+      "description":"`campaignId` of message to delete",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      }
+     },
+     {
+      "name":"bulkId",
+      "in":"query",
+      "description":"`bulkId` of message to delete",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      }
+     },
+     {
+      "name":"messageId",
+      "in":"query",
+      "description":"`messageId` of the specific message to delete",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      }
+     }
+    ],
+    "responses":{
+     "202":{
+      "description":"Accepted",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/1fab3d191d736425211a5879d4b2241fa0e80b8ab68239ab74531b9b6408a7a8.DeletionAcceptedResponse"
+        },
+        "examples":{
+         "Success with campaignId":{
+          "summary":"Success with campaignId",
+          "description":"Success with campaignId",
+          "value":{
+           "campaignId":"100004815162342",
+           "message":"Your request has been submitted successfully."
+          }
+         },
+         "Success with bulkId":{
+          "summary":"Success with bulkId",
+          "description":"Success with bulkId",
+          "value":{
+           "bulkId":"fe40d1aa-b4ec-11ec-b909-0242ac120002",
+           "message":"Your request has been submitted successfully."
+          }
+         },
+         "Success with messageId":{
+          "summary":"Success with messageId",
+          "description":"Success with messageId",
+          "value":{
+           "messageId":"1738833000000",
+           "message":"Your request has been submitted successfully."
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/1a371cd8f3283b37bf4803906b01cdcf51f31ded659ebcfe44c8dbb3c4785a4e.ApiException"
+        },
+        "examples":{
+         "Missing required parameter":{
+          "summary":"Missing required parameter",
+          "description":"Missing required parameter",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Missing required request parameter: campaignId, bulkId or messageId. Please provide one of them."
+            }
+           }
+          }
+         },
+         "Ambiguous parameters":{
+          "summary":"Ambiguous parameters",
+          "description":"Ambiguous parameters",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Ambiguous request parameters: more than one of campaignId, bulkId, or messageId are specified. Please provide only one of them."
+            }
+           }
+          }
+         },
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "$ref":"#/components/responses/ApiException404"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "mobile-app-messaging:manage"
+    ]
+   }
+  }
+ },
+ "components":{
+  "schemas":{
+   "18a8b746d2b3a8fcfed338bade07f6facb992e3867826d141a0e0ae5a3ba5642.ApiException":{
+    "type":"object",
+    "properties":{
+     "requestError":{
+      "$ref":"#/components/schemas/ApiRequestError"
+     }
+    },
+    "title":"ApiException"
+   },
+   "1a371cd8f3283b37bf4803906b01cdcf51f31ded659ebcfe44c8dbb3c4785a4e.ApiException":{
+    "type":"object",
+    "properties":{
+     "requestError":{
+      "$ref":"#/components/schemas/ApiRequestError"
+     }
+    },
+    "title":"ApiException"
+   },
+   "1fab3d191d736425211a5879d4b2241fa0e80b8ab68239ab74531b9b6408a7a8.DeletionAcceptedResponse":{
+    "type":"object",
+    "description":"Response to an accepted request.",
+    "properties":{
+     "campaignId":{
+      "type":"string",
+      "description":"`campaignId` of messages that you request to delete."
+     },
+     "bulkId":{
+      "type":"string",
+      "description":"`bulkId` of messages that you request to delete."
+     },
+     "messageId":{
+      "type":"string",
+      "description":"`messageId` of the specific message you request to delete."
+     },
+     "message":{
+      "type":"string",
+      "description":"Response wording."
+     }
+    },
+    "required":[
+     "message"
+    ],
+    "title":"DeletionAcceptedResponse"
+   },
+   "5c2cf40bcaa0da78551dad80ceca0bb519c9f9fe84d6b1fad64401849b63d9ac.ApplicationResponse":{
+    "type":"object",
+    "properties":{
+     "applicationCode":{
+      "type":"string",
+      "description":"Push application code."
+     },
+     "applicationId":{
+      "type":"string",
+      "description":"Push application ID."
+     },
+     "name":{
+      "type":"string",
+      "description":"Push application name."
+     },
+     "description":{
+      "type":"string",
+      "description":"Push application description."
+     },
+     "registrationsCount":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Number of Push application registrations."
+     },
+     "apns":{
+      "$ref":"#/components/schemas/fc58971973975508c3c8fc4221c7201147a075acf31dce7331f3a874d9fc423d.ApnsData"
+     },
+     "gcm":{
+      "$ref":"#/components/schemas/fc58971973975508c3c8fc4221c7201147a075acf31dce7331f3a874d9fc423d.GcmData"
+     }
+    },
+    "required":[
+     "apns",
+     "applicationCode",
+     "applicationId",
+     "description",
+     "gcm",
+     "name",
+     "registrationsCount"
+    ],
+    "title":"ApplicationResponse"
+   },
+   "5c2cf40bcaa0da78551dad80ceca0bb519c9f9fe84d6b1fad64401849b63d9ac.ApplicationsResponse":{
+    "type":"object",
+    "properties":{
+     "applications":{
+      "type":"array",
+      "description":"List of applications.",
+      "items":{
+       "$ref":"#/components/schemas/5c2cf40bcaa0da78551dad80ceca0bb519c9f9fe84d6b1fad64401849b63d9ac.ApplicationResponse"
+      }
+     }
+    },
+    "required":[
+     "applications"
+    ],
+    "title":"ApplicationsResponse"
+   },
+   "676955110d1a0dfd70a111f0d54754844fb76cec84585649da79c94c1af5f6bc.ApiException":{
+    "type":"object",
+    "properties":{
+     "requestError":{
+      "$ref":"#/components/schemas/ApiRequestError"
+     }
+    },
+    "title":"ApiException"
+   },
+   "77db2635bc301813b34d9bf25b46b5eb0b93ccf4142ac82fa2d80980d0455beb.ApiException":{
+    "type":"object",
+    "properties":{
+     "requestError":{
+      "$ref":"#/components/schemas/ApiRequestError"
+     }
+    },
+    "title":"ApiException"
+   },
+   "999e23a63911c41e6f288f288564c4bc2e6a35a6f2a9edba53ecac8c52fe9339.DeliveryInfo":{
+    "type":"object",
+    "description":"Delivery information about the bulk sending of messages.",
+    "properties":{
+     "rate":{
+      "type":"number",
+      "description":"Delivery rate. Ratio between total delivered and total sent messages in a specific bulk sending process."
+     },
+     "time":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Delivery time."
+     }
+    },
+    "required":[
+     "rate",
+     "time"
+    ],
+    "title":"DeliveryInfo"
+   },
+   "999e23a63911c41e6f288f288564c4bc2e6a35a6f2a9edba53ecac8c52fe9339.ErrorInfo":{
+    "type":"object",
+    "description":"Messages not delivered to users.",
+    "properties":{
+     "registration":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Messages not delivered due to errors with non-valid registrations due to user uninstalling the app."
+     },
+     "expired":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Messages undelivered due to expired validity period. Indicates users who have disabled notifications on a specific Push application."
+     },
+     "cloud":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Messages not delivered due to errors on APNS or FCM clouds. Happens due to transient errors on cloud services."
+     }
+    },
+    "required":[
+     "cloud",
+     "expired",
+     "registration"
+    ],
+    "title":"ErrorInfo"
+   },
+   "999e23a63911c41e6f288f288564c4bc2e6a35a6f2a9edba53ecac8c52fe9339.OMNIChannel":{
+    "type":"string",
+    "description":"OMNI Channel.",
+    "enum":[
+     "SMS",
+     "EMAIL",
+     "VOICE",
+     "PARSECO",
+     "PUSH",
+     "VIBER",
+     "FACEBOOK",
+     "LINE",
+     "VKONTAKTE",
+     "KAKAO_CHINGU",
+     "KAKAO_ALIM",
+     "WHATSAPP",
+     "MMS"
+    ],
+    "title":"OMNIChannel"
+   },
+   "ApiError":{
+    "type":"object",
+    "properties":{
+     "errorCode":{
+      "type":"string",
+      "description":"An error code uniquely identifying the error case."
+     },
+     "description":{
+      "type":"string",
+      "description":"A detailed description of an error."
+     },
+     "action":{
+      "type":"string",
+      "description":"An action that should be taken to recover from the error."
+     },
+     "violations":{
+      "type":"array",
+      "description":"List of violations that caused the error.",
+      "items":{
+       "$ref":"#/components/schemas/ApiErrorViolation"
+      }
+     },
+     "resources":{
+      "type":"array",
+      "description":"List of available resources to recover from the error.",
+      "items":{
+       "$ref":"#/components/schemas/ApiErrorResource"
+      }
+     }
+    },
+    "required":[
+     "action",
+     "description",
+     "errorCode",
+     "resources",
+     "violations"
+    ],
+    "title":"ApiError"
+   },
+   "ApiErrorResource":{
+    "type":"object",
+    "description":"List of available resources to recover from the error.",
+    "properties":{
+     "name":{
+      "type":"string",
+      "description":"Resource name."
+     },
+     "url":{
+      "type":"string",
+      "description":"Resource URL."
+     }
+    },
+    "title":"ApiErrorResource"
+   },
+   "ApiErrorViolation":{
+    "type":"object",
+    "description":"List of violations that caused the error.",
+    "properties":{
+     "property":{
+      "type":"string",
+      "description":"Request property that caused the error."
+     },
+     "violation":{
+      "type":"string",
+      "description":"Detailed violation description."
+     }
+    },
+    "title":"ApiErrorViolation"
+   },
+   "ApiException":{
+    "type":"object",
+    "properties":{
+     "requestError":{
+      "$ref":"#/components/schemas/ApiRequestError"
+     }
+    },
+    "title":"ApiException"
+   },
+   "ApiRequestError":{
+    "type":"object",
+    "properties":{
+     "serviceException":{
+      "$ref":"#/components/schemas/ApiRequestErrorDetails"
+     }
+    },
+    "title":"ApiRequestError"
+   },
+   "ApiRequestErrorDetails":{
+    "type":"object",
+    "properties":{
+     "messageId":{
+      "type":"string",
+      "description":"Identifier of the error."
+     },
+     "text":{
+      "type":"string",
+      "description":"Detailed error description."
+     },
+     "validationErrors":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"array",
+       "items":{
+        "type":"string",
+        "description":"Validation errors."
+       }
+      },
+      "description":"Validation errors."
+     }
+    },
+    "title":"ApiRequestErrorDetails"
+   },
+   "a381f86553e288851808282b347a5f8bd7ba34b9b6feb33f5946feb4892476be.StatisticsResponse":{
+    "type":"object",
+    "properties":{
+     "totalSent":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Total number of sent messages."
+     },
+     "delivered":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Total number of delivered messages."
+     },
+     "seen":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Total number of seen messages."
+     },
+     "errors":{
+      "$ref":"#/components/schemas/999e23a63911c41e6f288f288564c4bc2e6a35a6f2a9edba53ecac8c52fe9339.ErrorInfo"
+     },
+     "delivery":{
+      "$ref":"#/components/schemas/999e23a63911c41e6f288f288564c4bc2e6a35a6f2a9edba53ecac8c52fe9339.DeliveryInfo"
+     }
+    },
+    "required":[
+     "delivered",
+     "delivery",
+     "errors",
+     "seen",
+     "totalSent"
+    ],
+    "title":"StatisticsResponse"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.CursorPageInfo":{
+    "type":"object",
+    "description":"Cursor information.",
+    "properties":{
+     "limit":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Requested limit."
+     },
+     "nextCursor":{
+      "type":"string",
+      "description":"The `cursor` value you will use in your next request to fetch the subsequent set of results."
+     }
+    },
+    "readOnly":true,
+    "title":"CursorPageInfo"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.DeliveryDay":{
+    "type":"string",
+    "description":"Days of the week which are included in the delivery time window. At least one day must be provided. Separate multiple days with a comma.",
+    "enum":[
+     "MONDAY",
+     "TUESDAY",
+     "WEDNESDAY",
+     "THURSDAY",
+     "FRIDAY",
+     "SATURDAY",
+     "SUNDAY"
+    ],
+    "title":"DeliveryDay"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.DeliveryReport":{
+    "type":"object",
+    "description":"Collection of reports, one per every message.",
+    "properties":{
+     "bulkId":{
+      "type":"string",
+      "description":"Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request."
+     },
+     "price":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.MessagePrice"
+     },
+     "status":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.MessageStatus"
+     },
+     "error":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.MessageError"
+     },
+     "messageId":{
+      "type":"string",
+      "description":"Unique message ID."
+     },
+     "to":{
+      "type":"string",
+      "description":"Message destination address."
+     },
+     "sender":{
+      "type":"string",
+      "description":"The sender ID which can be alphanumeric or numeric (e.g., `CompanyName`)."
+     },
+     "sentAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when the message was sent. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+     },
+     "doneAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when the Infobip services finished processing the message (i.e., delivered to the destination, network, etc.). Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+     },
+     "messageCount":{
+      "type":"integer",
+      "format":"int32",
+      "description":"The number of sent messages."
+     },
+     "mccMnc":{
+      "type":"string",
+      "description":"Mobile country and network codes."
+     },
+     "callbackData":{
+      "type":"string",
+      "description":"Callback data sent through ‛callbackData‛ field when sending message."
+     },
+     "platform":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.Platform"
+     },
+     "campaignReferenceId":{
+      "type":"string",
+      "description":"ID of a campaign that was sent in the message."
+     }
+    },
+    "title":"DeliveryReport"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.DeliveryReports":{
+    "type":"object",
+    "properties":{
+     "results":{
+      "type":"array",
+      "description":"Collection of reports, one per every message.",
+      "items":{
+       "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.DeliveryReport"
+      }
+     }
+    },
+    "title":"DeliveryReports"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.DeliveryTime":{
+    "type":"object",
+    "description":"The exact time of the day. The time is expressed in the UTC time zone.",
+    "properties":{
+     "hour":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Hour when the time window opens when used in the `from` property or closes when used in the `to` property.",
+      "maximum":23,
+      "minimum":0
+     },
+     "minute":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Minute when the time window opens when used in the `from` property or closes when used in the `to` property.",
+      "maximum":59,
+      "minimum":0
+     }
+    },
+    "required":[
+     "hour",
+     "minute"
+    ],
+    "title":"DeliveryTime"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.DeliveryTimeWindow":{
+    "type":"object",
+    "description":"Sets specific message delivery window outside of which messages won't be delivered. Often, used when there are restrictions on when messages can be sent. The exact time of the day to start sending messages can be defined using the `from` property. The exact time of the day to end sending messages can be defined using the `to` property. Properties `from` and `to` should be both provided with the minimum 1 hour difference or omitted.",
+    "properties":{
+     "days":{
+      "type":"array",
+      "description":"Days of the week which are included in the delivery time window. At least one day must be provided. Separate multiple days with a comma.",
+      "items":{
+       "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.DeliveryDay"
+      }
+     },
+     "from":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.DeliveryTime"
+     },
+     "to":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.DeliveryTime"
+     }
+    },
+    "required":[
+     "days"
+    ],
+    "title":"DeliveryTimeWindow"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.InAppExpirationTimeUnit":{
+    "type":"string",
+    "description":"Time unit for in-app expiration.",
+    "enum":[
+     "MINUTES",
+     "HOURS"
+    ],
+    "title":"InAppExpirationTimeUnit"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.InAppStyle":{
+    "type":"string",
+    "description":"Set to `MODAL` to use in app dialog for actionable message or `BANNER` to show a standard banner view. `MODAL` is supported on iOS from [3.6.0](https://github.com/infobip/mobile-messaging-sdk-ios/releases/tag/3.6.0), on Android from [1.13.0](https://github.com/infobip/mobile-messaging-sdk-android/releases/tag/1.13.0) and on Cordova from [0.7.0](https://github.com/infobip/mobile-messaging-cordova-plugin/releases/tag/0.7.0). `BANNER` is supported from iOS [5.0.0](https://github.com/infobip/mobile-messaging-sdk-ios/releases/tag/5.0.0), Android [2.0.0](https://github.com/infobip/mobile-messaging-sdk-android/releases/tag/2.0.0) and Cordova [1.0.0](https://github.com/infobip/mobile-messaging-cordova-plugin/releases/tag/1.0.0)",
+    "enum":[
+     "MODAL",
+     "BANNER"
+    ],
+    "title":"InAppStyle"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.LogPushOutboundContent":{
+    "type":"object",
+    "description":"An array of message log results, one object per each message log entry.",
+    "properties":{
+     "sender":{
+      "type":"string",
+      "description":"The sender ID which can be alphanumeric or numeric."
+     },
+     "destination":{
+      "type":"string",
+      "description":"Message destination address."
+     },
+     "bulkId":{
+      "type":"string",
+      "description":"Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request.",
+      "example":"BULK-ID-123-xyz"
+     },
+     "messageId":{
+      "type":"string",
+      "description":"Unique message ID for which a log is requested."
+     },
+     "sentAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when the message was sent. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+     },
+     "doneAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when the Infobip services finished processing the message (i.e., delivered to the destination, network, etc.). Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+     },
+     "messageCount":{
+      "type":"integer",
+      "format":"int32",
+      "description":"The number of messages content was split to."
+     },
+     "price":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.MessagePrice"
+     },
+     "status":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.MessageStatus"
+     },
+     "error":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.MessageError"
+     },
+     "platform":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.Platform"
+     },
+     "content":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushOutboundContent"
+     },
+     "campaignReferenceId":{
+      "type":"string",
+      "description":"ID of a campaign that was sent in the message."
+     }
+    },
+    "title":"LogPushOutboundContent"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.LogResponseLogPushOutboundContent":{
+    "type":"object",
+    "properties":{
+     "results":{
+      "type":"array",
+      "description":"An array of message log results, one object per each message log entry.",
+      "items":{
+       "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.LogPushOutboundContent"
+      }
+     },
+     "cursor":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.CursorPageInfo"
+     }
+    },
+    "title":"LogResponseLogPushOutboundContent"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.MessageDeliveryReporting":{
+    "type":"object",
+    "description":"Provides options for configuring the delivery report behavior.",
+    "properties":{
+     "url":{
+      "type":"string",
+      "description":"The URL on your call back server where a delivery report will be sent. If your URL becomes unavailable then the [retry cycle](https://www.infobip.com/docs/sms/sms-over-api#push-retry-cycle-notify-url) uses the following formula: `1min + (1min * retryNumber * retryNumber)`."
+     },
+     "intermediateReport":{
+      "type":"boolean",
+      "description":"The real-time intermediate delivery report containing GSM error codes, messages status, pricing, network and country codes, etc., which will be sent on your callback server. Defaults to `false`."
+     },
+     "notify":{
+      "type":"boolean",
+      "description":"Notify enables you to specify your preferences for receiving DLRs. If set to false, no DLR will be sent. Note: When no webhook is specified in the request and notify is set to 'true' or not defined, your Subscription settings will apply."
+     }
+    },
+    "title":"MessageDeliveryReporting"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.MessageError":{
+    "type":"object",
+    "description":"Indicates whether an [error](https://www.infobip.com/docs/essentials/response-status-and-error-codes#error-codes) occurred during the query execution.",
+    "properties":{
+     "groupId":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Error group ID."
+     },
+     "groupName":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.MessageErrorGroup"
+     },
+     "id":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Error ID."
+     },
+     "name":{
+      "type":"string",
+      "description":"[Error name](https://www.infobip.com/docs/essentials/response-status-and-error-codes#error-codes)."
+     },
+     "description":{
+      "type":"string",
+      "description":"Human-readable description of the error."
+     },
+     "permanent":{
+      "type":"boolean",
+      "description":"Indicates whether the error is recoverable or not."
+     }
+    },
+    "title":"MessageError"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.MessageErrorGroup":{
+    "type":"string",
+    "description":"Error group name that describes which category the error code belongs to.",
+    "enum":[
+     "OK",
+     "HANDSET_ERRORS",
+     "USER_ERRORS",
+     "OPERATOR_ERRORS"
+    ],
+    "title":"MessageErrorGroup"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.MessageGeneralStatus":{
+    "type":"string",
+    "description":"Status group name that describes which category the status code belongs to, i.e., [PENDING](https://www.infobip.com/docs/essentials/response-status-and-error-codes#pending-general-status-codes), [UNDELIVERABLE](https://www.infobip.com/docs/essentials/response-status-and-error-codes#undeliverable-general-status-codes), [DELIVERED](https://www.infobip.com/docs/essentials/response-status-and-error-codes#delivered-general-status-codes), [EXPIRED](https://www.infobip.com/docs/essentials/response-status-and-error-codes#expired-general-status-codes), [REJECTED](https://www.infobip.com/docs/essentials/response-status-and-error-codes#rejected-general-status-codes).",
+    "enum":[
+     "ACCEPTED",
+     "PENDING",
+     "UNDELIVERABLE",
+     "DELIVERED",
+     "EXPIRED",
+     "REJECTED"
+    ],
+    "title":"MessageGeneralStatus"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.MessagePrice":{
+    "type":"object",
+    "description":"Sent message price.",
+    "properties":{
+     "pricePerMessage":{
+      "type":"number",
+      "description":"Price per one message."
+     },
+     "currency":{
+      "type":"string",
+      "description":"The currency in which the price is expressed."
+     }
+    },
+    "title":"MessagePrice"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.MessageResponseDetails":{
+    "type":"object",
+    "description":"Other details of the message.",
+    "title":"MessageResponseDetails"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.MessageResponseMessageResponseDetails":{
+    "type":"object",
+    "description":"An array of message objects of a single message or multiple messages sent under one bulk ID.",
+    "properties":{
+     "messageId":{
+      "type":"string",
+      "description":"Unique message ID. If not provided, it will be auto-generated and returned in the API response."
+     },
+     "status":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.MessageStatus"
+     },
+     "destination":{
+      "type":"string",
+      "description":"The destination address of the message, i.e., its recipient."
+     },
+     "details":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.MessageResponseDetails"
+     }
+    },
+    "title":"MessageResponseMessageResponseDetails"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.MessageStatus":{
+    "type":"object",
+    "description":"Indicates the [status](https://www.infobip.com/docs/essentials/response-status-and-error-codes#api-status-codes) of the message and how to recover from an error should there be any.",
+    "properties":{
+     "groupId":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Status group ID."
+     },
+     "groupName":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.MessageGeneralStatus"
+     },
+     "id":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Status code ID."
+     },
+     "name":{
+      "type":"string",
+      "description":"[Status code](https://www.infobip.com/docs/essentials/response-status-and-error-codes#api-status-codes) name."
+     },
+     "description":{
+      "type":"string",
+      "description":"Human-readable description of the status."
+     },
+     "action":{
+      "type":"string",
+      "description":"Action to take to recover from the error."
+     }
+    },
+    "title":"MessageStatus"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.Platform":{
+    "type":"object",
+    "description":"Platform options. For more details, see [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+    "properties":{
+     "entityId":{
+      "type":"string",
+      "description":"Used when specifying an entity in outbound send requests. It is also returned in notification events. For detailed usage, refer to the [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+      "maxLength":255,
+      "minLength":0
+     },
+     "applicationId":{
+      "type":"string",
+      "description":"Used when specifying an application in outbound send requests. It is also returned in notification events. For detailed usage, refer to the [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+      "maxLength":255,
+      "minLength":0
+     }
+    },
+    "title":"Platform"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PrimaryButtonAction":{
+    "type":"object",
+    "description":"Defines which action to perform on notification tap or on in-app notification primary button tap. More information for [Android](https://github.com/infobip/mobile-messaging-sdk-android/wiki/How-to-define-specific-action-on-notification-or-in-app-primary-button-tap(open-url,-deeplink)%3F), [iOS](https://github.com/infobip/mobile-messaging-sdk-ios/wiki/How-to-define-specific-action-on-notification-or-in-app-primary-button-tap(open-url,-deeplink)%3F), [Cordova](https://github.com/infobip/mobile-messaging-cordova-plugin/wiki/How-to-define-specific-action-on-notification-or-in-app-primary-button-tap(open-url,-deeplink)%3F), [React Native](https://github.com/infobip/mobile-messaging-react-native-plugin/wiki/How-to-define-specific-action-on-notification-or-in-app-primary-button-tap(open-url,-deeplink)%3F).",
+    "properties":{
+     "resource":{
+      "type":"string",
+      "description":"Defines which URL or path should be opened."
+     },
+     "type":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PrimaryButtonActionType"
+     }
+    },
+    "title":"PrimaryButtonAction"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PrimaryButtonActionType":{
+    "type":"string",
+    "description":"`WEB_VIEW_URL` - opening of the external web content in webView, `OPEN_URL_IN_BROWSER` - opening of the external web content in device browser, `DEEP_LINK` - opening of particular mobile app screen over deep link.",
+    "enum":[
+     "WEB_VIEW_URL",
+     "DEEP_LINK",
+     "OPEN_URL_IN_BROWSER"
+    ],
+    "title":"PrimaryButtonActionType"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushBulkResponse":{
+    "type":"object",
+    "description":"Array of push bulk responses",
+    "properties":{
+     "to":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"object"
+      },
+      "description":"Recipient destination address."
+     },
+     "status":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushStatusResponse"
+     },
+     "messageCount":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Number of recipients for targeted segment."
+     },
+     "bulkId":{
+      "type":"string",
+      "description":"The ID which uniquely identifies the request."
+     }
+    },
+    "required":[
+     "bulkId",
+     "messageCount",
+     "status",
+     "to"
+    ],
+    "title":"PushBulkResponse"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushDestination":{
+    "type":"object",
+    "description":"Recipient destination address. [Check examples](https://www.infobip.com/docs/mobile-push/mobile-push-over-api) how to work with recipients",
+    "discriminator":{
+     "propertyName":"type",
+     "mapping":{
+      "EXTERNAL_USER_ID":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushDestinationExternalUserId",
+      "EMAIL":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushDestinationEmail",
+      "PHONE_NUMBER":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushDestinationPhoneNumber",
+      "REGISTRATION":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushDestinationRegistration",
+      "MULTIPLE":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushDestinationMultiple"
+     }
+    },
+    "properties":{
+     "type":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushDestinationType"
+     }
+    },
+    "required":[
+     "type"
+    ],
+    "title":"PushDestination"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushDestinationEmail":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushDestination"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "email":{
+        "type":"string",
+        "description":"Email of the user if it is provided in User Profile"
+       },
+       "messageId":{
+        "type":"string",
+        "description":"Define ID that uniquely identifies the message sent (optional)."
+       },
+       "targetOnlyPrimaryDevices":{
+        "type":"boolean",
+        "description":"Set to true to only send messages to push devices which are marked as primary devices. By default, messages will be sent to all targeted devices, including both primary and non-primary."
+       }
+      }
+     }
+    ],
+    "description":"Single Recipient Destination [more](https://www.infobip.com/docs/mobile-push/mobile-push-over-api#send-push-over-api-destination)",
+    "required":[
+     "email",
+     "type"
+    ],
+    "title":"PushDestinationEmail"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushDestinationExternalUserId":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushDestination"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "externalUserId":{
+        "type":"string",
+        "description":"External user ID set in User Profile"
+       },
+       "messageId":{
+        "type":"string",
+        "description":"Define ID that uniquely identifies the message sent (optional)."
+       },
+       "targetOnlyPrimaryDevices":{
+        "type":"boolean",
+        "description":"Set to true to only send messages to push devices which are marked as primary devices. By default, messages will be sent to all targeted devices, including both primary and non-primary."
+       }
+      }
+     }
+    ],
+    "description":"Single Recipient Destination [more](https://www.infobip.com/docs/mobile-push/mobile-push-over-api#send-push-over-api-destination)",
+    "required":[
+     "externalUserId",
+     "type"
+    ],
+    "title":"PushDestinationExternalUserId"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushDestinationMultiple":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushDestination"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "$or":{
+        "type":"array",
+        "description":"Segment recipients by including different filters by `or` operator, over multiple destination address types. Learn more about [custom attributes](https://www.infobip.com/docs/mobile-push/mobile-push-over-api#push-over-api-multiple-persons-device-attributes)",
+        "items":{
+         "type":"object",
+         "additionalProperties":{
+          "type":"object"
+         },
+         "description":"Segment recipients by including different filters by `or` operator, over multiple destination address types. Learn more about [custom attributes](https://www.infobip.com/docs/mobile-push/mobile-push-over-api#push-over-api-multiple-persons-device-attributes)"
+        }
+       },
+       "$and":{
+        "type":"array",
+        "description":"Segment recipients by including different filters by `and` operator, over multiple destination address types. Learn more about [custom attributes](https://www.infobip.com/docs/mobile-push/mobile-push-over-api#push-over-api-multiple-persons-device-attributes)",
+        "items":{
+         "type":"object",
+         "additionalProperties":{
+          "type":"object"
+         },
+         "description":"Segment recipients by including different filters by `and` operator, over multiple destination address types. Learn more about [custom attributes](https://www.infobip.com/docs/mobile-push/mobile-push-over-api#push-over-api-multiple-persons-device-attributes)"
+        }
+       },
+       "targetOnlyPrimaryDevices":{
+        "type":"boolean",
+        "description":"Set to true to only send messages to push devices which are marked as primary devices. By default, messages will be sent to all targeted devices, including both primary and non-primary."
+       }
+      }
+     }
+    ],
+    "description":"Multiple Recipient Destinations [more](https://www.infobip.com/docs/mobile-push/mobile-push-over-api#push-over-api-multiple-persons-using-or)",
+    "required":[
+     "type"
+    ],
+    "title":"PushDestinationMultiple"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushDestinationPhoneNumber":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushDestination"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "phoneNumber":{
+        "type":"string",
+        "description":"MSISDN in [international format](https://en.wikipedia.org/wiki/E.164) (Example: 41793026727)"
+       },
+       "messageId":{
+        "type":"string",
+        "description":"Define ID that uniquely identifies the message sent (optional)."
+       },
+       "targetOnlyPrimaryDevices":{
+        "type":"boolean",
+        "description":"Set to true to only send messages to push devices which are marked as primary devices. By default, messages will be sent to all targeted devices, including both primary and non-primary."
+       }
+      }
+     }
+    ],
+    "description":"Single Recipient Destination [more](https://www.infobip.com/docs/mobile-push/mobile-push-over-api#send-push-over-api-destination)",
+    "required":[
+     "phoneNumber",
+     "type"
+    ],
+    "title":"PushDestinationPhoneNumber"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushDestinationRegistration":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushDestination"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "pushRegistrationId":{
+        "type":"string",
+        "description":"Push Registration Id is a unique ID which identifies application instance and specific device"
+       },
+       "messageId":{
+        "type":"string",
+        "description":"Define the ID that uniquely identifies the message sent (optional)."
+       },
+       "targetOnlyPrimaryDevices":{
+        "type":"boolean",
+        "description":"Set to true to only send messages to push devices which are marked as primary devices. By default, messages will be sent to all targeted devices, including both primary and non-primary."
+       }
+      }
+     }
+    ],
+    "description":"Single Recipient Destination [more](https://www.infobip.com/docs/mobile-push/mobile-push-over-api#send-push-over-api-destination)",
+    "required":[
+     "pushRegistrationId",
+     "type"
+    ],
+    "title":"PushDestinationRegistration"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushDestinationType":{
+    "type":"string",
+    "enum":[
+     "EXTERNAL_USER_ID",
+     "EMAIL",
+     "PHONE_NUMBER",
+     "REGISTRATION",
+     "MULTIPLE"
+    ],
+    "title":"PushDestinationType"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushMessageRequestOptions":{
+    "type":"object",
+    "description":"Options applicable to all messages in the request.",
+    "properties":{
+     "schedule":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.RequestSchedulingSettings"
+     }
+    },
+    "title":"PushMessageRequestOptions"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushOutboundContent":{
+    "type":"object",
+    "description":"Message content.",
+    "discriminator":{
+     "propertyName":"type",
+     "mapping":{
+      "TEXT":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushOutboundTextContent",
+      "IMAGE":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushOutboundImageContent"
+     }
+    },
+    "properties":{
+     "type":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushOutboundContentType"
+     }
+    },
+    "required":[
+     "type"
+    ],
+    "title":"PushOutboundContent"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushOutboundContentOptionsInAppExpirationTimeUnit":{
+    "type":"string",
+    "description":"Time unit mirrored push notification expiration.",
+    "enum":[
+     "MINUTES",
+     "HOURS"
+    ],
+    "title":"PushOutboundContentOptionsInAppExpirationTimeUnit"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushOutboundContentOptionsInAppStyle":{
+    "type":"string",
+    "description":"Set to `MODAL` to show mirrored push notification in app as a dialog for actionable message or `BANNER` to show a standard banner view. `MODAL` is supported on iOS from [3.6.0](https://github.com/infobip/mobile-messaging-sdk-ios/releases/tag/3.6.0), on Android from [1.13.0](https://github.com/infobip/mobile-messaging-sdk-android/releases/tag/1.13.0) and on Cordova from [0.7.0](https://github.com/infobip/mobile-messaging-cordova-plugin/releases/tag/0.7.0). `BANNER` is supported from iOS [5.0.0](https://github.com/infobip/mobile-messaging-sdk-ios/releases/tag/5.0.0), Android [2.0.0](https://github.com/infobip/mobile-messaging-sdk-android/releases/tag/2.0.0) and Cordova [1.0.0](https://github.com/infobip/mobile-messaging-cordova-plugin/releases/tag/1.0.0)",
+    "enum":[
+     "MODAL",
+     "BANNER"
+    ],
+    "title":"PushOutboundContentOptionsInAppStyle"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushOutboundContentOptionsInboxMessageExpirationTimeUnit":{
+    "type":"string",
+    "description":"Time unit for inbox message expiration. Only applicable when inboxTopic is present.",
+    "enum":[
+     "DAYS",
+     "MONTHS"
+    ],
+    "title":"PushOutboundContentOptionsInboxMessageExpirationTimeUnit"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushOutboundContentType":{
+    "type":"string",
+    "enum":[
+     "TEXT",
+     "IMAGE"
+    ],
+    "title":"PushOutboundContentType"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushOutboundImageContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushOutboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "title":{
+        "type":"string",
+        "description":"Notification title displayed within the notification. Requires iOS 10+ or Android 4.1+ (may depend on Android custom firmware)",
+        "maxLength":50,
+        "minLength":0
+       },
+       "text":{
+        "type":"string",
+        "description":"Text of the message that will be sent.",
+        "maxLength":4000,
+        "minLength":1
+       },
+       "url":{
+        "type":"string",
+        "description":"URL of the image displayed in the notification. Rich push notifications are available on devices with [iOS](https://github.com/infobip/mobile-messaging-sdk-ios/wiki/Rich-notifications) 10 and [Android](https://github.com/infobip/mobile-messaging-sdk-android/wiki/Rich-notifications) 4.1.+. Supported on iOS since MM SDK version 2.5.8. Supported on Android since MM SDK version 1.6.4."
+       }
+      }
+     }
+    ],
+    "required":[
+     "text",
+     "type",
+     "url"
+    ],
+    "title":"PushOutboundImageContent"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushOutboundTextContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushOutboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "title":{
+        "type":"string",
+        "description":"Notification title displayed within the notification. Requires iOS 10+ or Android 4.1+ (may depend on Android custom firmware)",
+        "maxLength":50,
+        "minLength":0
+       },
+       "text":{
+        "type":"string",
+        "description":"Text of the message that will be sent.",
+        "maxLength":4000,
+        "minLength":1
+       }
+      }
+     }
+    ],
+    "required":[
+     "text",
+     "type"
+    ],
+    "title":"PushOutboundTextContent"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushRequest":{
+    "type":"object",
+    "description":"List of push requests",
+    "properties":{
+     "from":{
+      "type":"string",
+      "description":"PUSH Application Code you are using to send messages. Application Code is the application identifier which links your mobile application to the [application profile](https://www.infobip.com/docs/mobile-push/get-started/mobile-application-profile#copy-application-code-create-and-enable-a-mobile-application-profile) created in Infobip Platform. It is required to insert the Application Code in Mobile Messaging SDK configuration once you implement it in your mobile application.",
+      "maxLength":80,
+      "minLength":1
+     },
+     "to":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"object"
+      },
+      "description":"Recipient destination address. [Check examples](https://www.infobip.com/docs/mobile-push/mobile-push-over-api) how to work with recipients"
+     },
+     "text":{
+      "type":"string",
+      "description":"Text of the message that will be sent.",
+      "maxLength":4000,
+      "minLength":1
+     },
+     "validityPeriod":{
+      "type":"integer",
+      "format":"int64",
+      "description":"The message validity period. Unless specified differently in `validityPeriodTimeUnit`, it is expressed in hours. Once the period expires, messages that haven't left the Infobip platform or the Cloud (APNS or FCM) will be canceled and won't get delivered. Default value is 48h. Minimum value is 30 sec. Maximum value is 72h.",
+      "minimum":0
+     },
+     "validityPeriodTimeUnit":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.ValidityPeriodTimeUnit"
+     },
+     "sendAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Used for scheduled Push notifications. Message will be sent at scheduled time. Date and time when the message is to be sent. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ, and can only be scheduled for no later than 180 days in advance."
+     },
+     "customPayload":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"object"
+      },
+      "description":"Additional data that can be delivered with the Push message. customPayload must be formatted as JSON object."
+     },
+     "notificationOptions":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushRequestNotificationOptions"
+     },
+     "notifyUrl":{
+      "type":"string",
+      "description":"The URL on your call back server on to which a delivery report will be sent. The retry cycle for when your URL becomes unavailable uses the following formula: `1min + (1min * retryNumber * retryNumber)`."
+     },
+     "notifyContentType":{
+      "type":"string",
+      "description":"Preferred Delivery report content type. Supported content types: application/json, application/xml."
+     },
+     "callbackData":{
+      "type":"string",
+      "description":"Additional client's data that will be sent onto `notifyUrl`. The maximum value is 200 characters."
+     },
+     "targetOnlyPrimaryDevices":{
+      "type":"boolean",
+      "description":"Set to true to only send messages to push devices which are marked as primary devices. By default, messages will be sent to all targeted devices, including both primary and non-primary."
+     }
+    },
+    "required":[
+     "from",
+     "text",
+     "to"
+    ],
+    "title":"PushRequest"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushRequestMulti":{
+    "type":"object",
+    "properties":{
+     "messages":{
+      "type":"array",
+      "description":"List of push requests",
+      "items":{
+       "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushRequest"
+      }
+     }
+    },
+    "required":[
+     "messages"
+    ],
+    "title":"PushRequestMulti"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushRequestNotificationOptions":{
+    "type":"object",
+    "description":"JSON object that contains notification options.",
+    "properties":{
+     "title":{
+      "type":"string",
+      "description":"Notification title displayed within the notification. Requires iOS 10+ or Android 4.1+ (may depend on Android custom firmware)",
+      "maxLength":45,
+      "minLength":0
+     },
+     "soundEnabled":{
+      "type":"boolean",
+      "description":"Sound when a notification arrives on a device."
+     },
+     "soundName":{
+      "type":"string",
+      "description":"Name of the custom sound played when a notification arrives on a device. The audio file should be located in the app with max 30 seconds length. File extension is required for [iOS](https://github.com/infobip/mobile-messaging-sdk-ios/wiki/How-to-use-custom-notification-sound%3F) and optional for [Android](https://github.com/infobip/mobile-messaging-sdk-android/wiki/How-to-use-custom-notification-sound%3F). (Example: notification_sound.wav). Check Android and iOS usage details. To play a custom sound, `soundEnabled` must be set to `true`."
+     },
+     "vibrationEnabled":{
+      "type":"boolean",
+      "description":"Notification vibration (Android only)."
+     },
+     "isSilent":{
+      "type":"boolean",
+      "description":"Set to true to send silent push message. Such messages aren’t displayed on device lock screen and in the notification center. Silent messages can be used to deliver custom data to your mobile application or to trigger an in-app notification."
+     },
+     "badge":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Badge counter (iOS only)."
+     },
+     "contentUrl":{
+      "type":"string",
+      "description":"URL of the image displayed in the notification. Rich push notifications are available on devices with [iOS](https://github.com/infobip/mobile-messaging-sdk-ios/wiki/Rich-notifications) 10 and [Android](https://github.com/infobip/mobile-messaging-sdk-android/wiki/Rich-notifications) 4.1.+. Supported on iOS since MM SDK version 2.5.8. Supported on Android since MM SDK version 1.6.4."
+     },
+     "category":{
+      "type":"string",
+      "description":"Category id for actionable notification. Supported on [Android](https://github.com/infobip/mobile-messaging-sdk-android/wiki/Interactive-notifications) since MM SDK version 1.6.16. Supported on [iOS](https://github.com/infobip/mobile-messaging-sdk-ios/wiki/Interactive-Notifications) since MM SDK version 2.6.9. Predefined category ids: mm_accept_decline - Accept & Decline button actions."
+     },
+     "showInApp":{
+      "type":"boolean",
+      "description":"Show notification in application."
+     },
+     "inAppStyle":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.InAppStyle"
+     },
+     "inAppExpirationPeriod":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Sets validity period for in-app notification. Users will only see in-app if they received it to their device within validity period, which starts from sending time. Time unit for this parameter is set by property of inAppExpirationTimeUnit. Default value is 48h. Supported on Android since version 3.4.0, on iOS since version 8.2.1",
+      "minimum":0
+     },
+     "inAppExpirationTimeUnit":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.InAppExpirationTimeUnit"
+     },
+     "inAppDismissTitle":{
+      "type":"string",
+      "description":"Specifies custom title for `Dismiss` button. Supported on Android since version 3.4.0, on iOS since version 8.2.1."
+     },
+     "inAppOpenTitle":{
+      "type":"string",
+      "description":"Specifies custom title for `Open` button. Supported on Android since version 3.4.0, on iOS since version 8.2.1."
+     },
+     "primaryButtonAction":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PrimaryButtonAction"
+     },
+     "inboxTopic":{
+      "type":"string",
+      "description":"A case sensitive topic name to save a message to an inbox. If the topic name does not exist for a specified account, message sending will be rejected."
+     }
+    },
+    "title":"PushRequestNotificationOptions"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushResponse":{
+    "type":"object",
+    "properties":{
+     "bulks":{
+      "type":"array",
+      "description":"Array of push bulk responses",
+      "items":{
+       "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushBulkResponse"
+      }
+     }
+    },
+    "required":[
+     "bulks"
+    ],
+    "title":"PushResponse"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushStatusResponse":{
+    "type":"object",
+    "description":"Message status.",
+    "properties":{
+     "groupId":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Status group ID."
+     },
+     "groupName":{
+      "type":"string",
+      "description":"Status group name."
+     },
+     "id":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Status ID."
+     },
+     "name":{
+      "type":"string",
+      "description":"Status name."
+     },
+     "description":{
+      "type":"string",
+      "description":"Human readable description of the status."
+     }
+    },
+    "required":[
+     "groupId",
+     "groupName",
+     "id",
+     "name"
+    ],
+    "title":"PushStatusResponse"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushUnificationMessage":{
+    "type":"object",
+    "description":"An array of message objects of a single message or multiple messages sent under one bulk ID.",
+    "properties":{
+     "sender":{
+      "type":"string",
+      "description":"Use Application Code or Application ID of application profile, [application profile](https://www.infobip.com/docs/mobile-push/get-started/mobile-application-profile#copy-application-code-create-and-enable-a-mobile-application-profile), created in Infobip web interface."
+     },
+     "destinations":{
+      "type":"array",
+      "description":"An array of destination objects for where messages are being sent. A valid destination is required. When using a `MULTIPLE` type, at least one property is required.",
+      "items":{
+       "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushDestination"
+      }
+     },
+     "content":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushOutboundContent"
+     },
+     "options":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushUnificationMessageOptions"
+     },
+     "webhooks":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.Webhooks"
+     }
+    },
+    "required":[
+     "content",
+     "destinations",
+     "sender"
+    ],
+    "title":"PushUnificationMessage"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushUnificationMessageOptions":{
+    "type":"object",
+    "description":"Message options.",
+    "properties":{
+     "platform":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.Platform"
+     },
+     "validityPeriod":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.ValidityPeriod"
+     },
+     "deliveryTimeWindow":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.DeliveryTimeWindow"
+     },
+     "soundEnabled":{
+      "type":"boolean",
+      "description":"Sound when a notification arrives on a device."
+     },
+     "soundName":{
+      "type":"string",
+      "description":"Name of the custom sound played when a notification arrives on a device. The audio file should be located in the app with max 30 seconds length. File extension is required for [iOS](https://github.com/infobip/mobile-messaging-sdk-ios/wiki/How-to-use-custom-notification-sound%3F) and optional for [Android](https://github.com/infobip/mobile-messaging-sdk-android/wiki/How-to-use-custom-notification-sound%3F). (Example: notification_sound.wav). Check Android and iOS usage details. To play a custom sound, `soundEnabled` must be set to `true`."
+     },
+     "vibrationEnabled":{
+      "type":"boolean",
+      "description":"Notification vibration (Android only)."
+     },
+     "contentAvailable":{
+      "type":"boolean",
+      "description":"System flag indicating whether or not mobile app should wake up when message received (iOS only)."
+     },
+     "isSilent":{
+      "type":"boolean",
+      "description":"Set to true to send silent push message. Such messages aren’t displayed on device lock screen and in the notification center. Silent messages can be used to deliver custom data to your mobile application or to trigger a mirrored push notification."
+     },
+     "badge":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Badge counter (iOS only)."
+     },
+     "category":{
+      "type":"string",
+      "description":"Category id for actionable notification. Supported on [Android](https://github.com/infobip/mobile-messaging-sdk-android/wiki/Interactive-notifications) since MM SDK version 1.6.16. Supported on [iOS](https://github.com/infobip/mobile-messaging-sdk-ios/wiki/Interactive-Notifications) since MM SDK version 2.6.9. Predefined category ids: mm_accept_decline - Accept & Decline button actions."
+     },
+     "showMirroredPush":{
+      "type":"boolean",
+      "description":"Show mirrored push notification in application."
+     },
+     "mirroredPushStyle":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushOutboundContentOptionsInAppStyle"
+     },
+     "mirroredPushExpirationPeriod":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Sets validity period for mirrored push notification. Users will only see mirrored push notification if they received it to their device within validity period, which starts from sending time.",
+      "minimum":0
+     },
+     "mirroredPushExpirationTimeUnit":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushOutboundContentOptionsInAppExpirationTimeUnit"
+     },
+     "mirroredPushDismissTitle":{
+      "type":"string",
+      "description":"Specifies custom title for `Dismiss` button for mirrored push notification."
+     },
+     "mirroredPushOpenTitle":{
+      "type":"string",
+      "description":"Specifies custom title for `Open` button for mirrored push notification."
+     },
+     "onTapButtonAction":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PrimaryButtonAction"
+     },
+     "inboxTopic":{
+      "type":"string",
+      "description":"A case sensitive topic name to save a message to an inbox. If the topic name does not exist for a specified account, message sending will be rejected. [A case sensitive topic name to save a message to an inbox](https://www.infobip.com/docs/mobile-push/inbox)"
+     },
+     "inboxMessageExpirationPeriod":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Sets validity period for inbox message. Users will only see the message in their inbox if it has not expired. Time unit for this parameter is set by property of inboxMessageExpirationTimeUnit. This field is only applicable when inboxTopic is present."
+     },
+     "inboxMessageExpirationTimeUnit":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushOutboundContentOptionsInboxMessageExpirationTimeUnit"
+     },
+     "sendAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when the message is to be sent. Used for scheduled messages. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`, and can only be scheduled for no later than 180 days in advance."
+     },
+     "customPayload":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"object"
+      },
+      "description":"Additional data that can be delivered with the Push message. customPayload must be formatted as JSON object."
+     },
+     "campaignReferenceId":{
+      "type":"string",
+      "description":"ID that allows you to track, analyze, and show an aggregated overview and the performance of individual campaigns per sending channel.",
+      "maxLength":255,
+      "minLength":0
+     }
+    },
+    "title":"PushUnificationMessageOptions"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushUnificationRequest":{
+    "type":"object",
+    "properties":{
+     "messages":{
+      "type":"array",
+      "description":"An array of message objects of a single message or multiple messages sent under one bulk ID.",
+      "items":{
+       "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushUnificationMessage"
+      }
+     },
+     "options":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushMessageRequestOptions"
+     }
+    },
+    "required":[
+     "messages"
+    ],
+    "title":"PushUnificationRequest"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.PushUnificationResponse":{
+    "type":"object",
+    "properties":{
+     "bulkId":{
+      "type":"string",
+      "description":"Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. If not provided, it will be auto-generated and returned in the API response. Typically used for fetching delivery reports and message logs."
+     },
+     "messages":{
+      "type":"array",
+      "description":"An array of message objects of a single message or multiple messages sent under one bulk ID.",
+      "items":{
+       "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.MessageResponseMessageResponseDetails"
+      }
+     }
+    },
+    "required":[
+     "messages"
+    ],
+    "title":"PushUnificationResponse"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.RequestSchedulingSettings":{
+    "type":"object",
+    "description":"Options for scheduling a message.",
+    "properties":{
+     "bulkId":{
+      "type":"string",
+      "description":"Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. If not provided, it will be auto-generated and returned in the API response.",
+      "maxLength":100,
+      "minLength":0
+     },
+     "sendAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when the message is to be sent. Used for scheduled messages. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`, and can only be scheduled for no later than 180 days in advance."
+     },
+     "sendingSpeedLimit":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.SendingSpeedLimit"
+     }
+    },
+    "title":"RequestSchedulingSettings"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.SendingSpeedLimit":{
+    "type":"object",
+    "description":"Limits the send speed when sending messages in bulk to deliver messages over a longer period of time. You may wish to use this to allow your systems or agents to handle large amounts of incoming traffic, e.g., if you are expecting recipients to follow through with a call-to-action option from a message you sent. Not setting a send speed limit can overwhelm your resources with incoming traffic.",
+    "properties":{
+     "amount":{
+      "type":"integer",
+      "format":"int32",
+      "description":"The number of messages to be sent per timeUnit. By default, the system sends messages as fast as the infrastructure allows. Use this parameter to adapt sending capacity to your needs. The system is only able to work against its maximum capacity for ambitious message batches."
+     },
+     "timeUnit":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.SpeedLimitTimeUnit"
+     }
+    },
+    "required":[
+     "amount"
+    ],
+    "title":"SendingSpeedLimit"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.SpeedLimitTimeUnit":{
+    "type":"string",
+    "default":"MINUTE",
+    "description":"The time unit to define when setting a messaging speed limit. Defaults to `MINUTE`.",
+    "enum":[
+     "MINUTE",
+     "HOUR",
+     "DAY"
+    ],
+    "title":"SpeedLimitTimeUnit"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.ValidityPeriod":{
+    "type":"object",
+    "description":"Message validity period. Once expired, the message won't be sent. Validity period longer than 48h is not supported. If exceeded, it will be automatically set to 48h.",
+    "properties":{
+     "amount":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Message validity period's value. If `timeUnit` is not set, it will default to `MINUTES`."
+     },
+     "timeUnit":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.ValidityPeriodTimeUnit"
+     }
+    },
+    "required":[
+     "amount"
+    ],
+    "title":"ValidityPeriod"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.ValidityPeriodTimeUnit":{
+    "type":"string",
+    "description":"Time unit for validity period. Defaults to hours.",
+    "enum":[
+     "SECONDS",
+     "MINUTES",
+     "HOURS"
+    ],
+    "title":"ValidityPeriodTimeUnit"
+   },
+   "be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.Webhooks":{
+    "type":"object",
+    "description":"Provides options for configuring message webhooks.",
+    "properties":{
+     "delivery":{
+      "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.MessageDeliveryReporting"
+     },
+     "contentType":{
+      "type":"string",
+      "description":"Preferred delivery report content type, `application/json` or `application/xml`."
+     },
+     "callbackData":{
+      "type":"string",
+      "description":"Additional data that can be used for identifying, managing, or monitoring a message. Data included here will also be automatically included in the message Delivery Report. The maximum value is 4000 characters.",
+      "maxLength":4000,
+      "minLength":0
+     }
+    },
+    "title":"Webhooks"
+   },
+   "c8cb45a488f0d2ea03cc082d0f61afb1c3b35cdd297a9f7abb6df8ac5619a483.ActionRequest":{
+    "type":"object",
+    "properties":{
+     "type":{
+      "$ref":"#/components/schemas/c8cb45a488f0d2ea03cc082d0f61afb1c3b35cdd297a9f7abb6df8ac5619a483.ActionType"
+     },
+     "forwardUrl":{
+      "type":"string",
+      "description":"URL for HTTP forward action. Required when type is HTTP_FORWARD."
+     },
+     "callbackData":{
+      "type":"string",
+      "description":"Callback data that will be sent along with the message."
+     }
+    },
+    "required":[
+     "type"
+    ],
+    "title":"ActionRequest"
+   },
+   "c8cb45a488f0d2ea03cc082d0f61afb1c3b35cdd297a9f7abb6df8ac5619a483.ActionResponse":{
+    "type":"object",
+    "description":"List of actions.",
+    "properties":{
+     "key":{
+      "type":"string",
+      "description":"Action key."
+     },
+     "type":{
+      "$ref":"#/components/schemas/c8cb45a488f0d2ea03cc082d0f61afb1c3b35cdd297a9f7abb6df8ac5619a483.ActionType"
+     },
+     "callbackData":{
+      "type":"string",
+      "description":"Callback data that will be sent along with the message."
+     },
+     "forwardUrl":{
+      "type":"string",
+      "description":"URL for HTTP forward action."
+     }
+    },
+    "required":[
+     "key",
+     "type"
+    ],
+    "title":"ActionResponse"
+   },
+   "c8cb45a488f0d2ea03cc082d0f61afb1c3b35cdd297a9f7abb6df8ac5619a483.ActionType":{
+    "type":"string",
+    "description":"Action type.",
+    "enum":[
+     "HTTP_FORWARD",
+     "PULL"
+    ],
+    "title":"ActionType"
+   },
+   "c8cb45a488f0d2ea03cc082d0f61afb1c3b35cdd297a9f7abb6df8ac5619a483.ActionsResponse":{
+    "type":"object",
+    "properties":{
+     "actions":{
+      "type":"array",
+      "description":"List of actions.",
+      "items":{
+       "$ref":"#/components/schemas/c8cb45a488f0d2ea03cc082d0f61afb1c3b35cdd297a9f7abb6df8ac5619a483.ActionResponse"
+      }
+     }
+    },
+    "required":[
+     "actions"
+    ],
+    "title":"ActionsResponse"
+   },
+   "c8cb45a488f0d2ea03cc082d0f61afb1c3b35cdd297a9f7abb6df8ac5619a483.ConfigurationResponse":{
+    "type":"object",
+    "description":"List of configurations.",
+    "properties":{
+     "key":{
+      "type":"string",
+      "description":"Configuration key."
+     }
+    },
+    "required":[
+     "key"
+    ],
+    "title":"ConfigurationResponse"
+   },
+   "c8cb45a488f0d2ea03cc082d0f61afb1c3b35cdd297a9f7abb6df8ac5619a483.ConfigurationsResponse":{
+    "type":"object",
+    "properties":{
+     "configurations":{
+      "type":"array",
+      "description":"List of configurations.",
+      "items":{
+       "$ref":"#/components/schemas/c8cb45a488f0d2ea03cc082d0f61afb1c3b35cdd297a9f7abb6df8ac5619a483.ConfigurationResponse"
+      }
+     }
+    },
+    "required":[
+     "configurations"
+    ],
+    "title":"ConfigurationsResponse"
+   },
+   "c8cb45a488f0d2ea03cc082d0f61afb1c3b35cdd297a9f7abb6df8ac5619a483.MoReportResult":{
+    "type":"object",
+    "description":"List of MO report results.",
+    "properties":{
+     "messageId":{
+      "type":"string",
+      "description":"The ID that uniquely identifies the received message."
+     },
+     "pairedMessageId":{
+      "type":"string",
+      "description":"Message ID of the MT message that this MO message is a reply to."
+     },
+     "from":{
+      "type":"string",
+      "description":"The sender ID which can be alphanumeric or numeric."
+     },
+     "subscriberId":{
+      "type":"string",
+      "description":"Subscriber ID of the message sender."
+     },
+     "to":{
+      "type":"string",
+      "description":"The message destination address."
+     },
+     "applicationCode":{
+      "type":"string",
+      "description":"Application code that the message was sent to."
+     },
+     "receivedAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Indicates when the message was received. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`."
+     },
+     "callbackData":{
+      "type":"string",
+      "description":"Callback data sent through callbackData field when the message was sent."
+     },
+     "text":{
+      "type":"string",
+      "description":"Full text of the received message."
+     },
+     "cleanText":{
+      "type":"string",
+      "description":"Text of the received message without the keyword."
+     },
+     "keyword":{
+      "type":"string",
+      "description":"Keyword extracted from the message text."
+     },
+     "customPayload":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"object"
+      },
+      "description":"Custom payload of the received message."
+     },
+     "bulkId":{
+      "type":"string",
+      "description":"Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request."
+     },
+     "initialMessageId":{
+      "type":"string",
+      "description":"The ID of the original MT message that initiated the conversation."
+     }
+    },
+    "required":[
+     "applicationCode",
+     "cleanText",
+     "from",
+     "messageId",
+     "receivedAt",
+     "text",
+     "to"
+    ],
+    "title":"MoReportResult"
+   },
+   "c8cb45a488f0d2ea03cc082d0f61afb1c3b35cdd297a9f7abb6df8ac5619a483.MoReportsResponse":{
+    "type":"object",
+    "properties":{
+     "results":{
+      "type":"array",
+      "description":"List of MO report results.",
+      "items":{
+       "$ref":"#/components/schemas/c8cb45a488f0d2ea03cc082d0f61afb1c3b35cdd297a9f7abb6df8ac5619a483.MoReportResult"
+      }
+     },
+     "messageCount":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Number of returned messages in this request."
+     },
+     "pendingMessageCount":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Number of remaining messages on the server that have not been pulled yet."
+     }
+    },
+    "required":[
+     "messageCount",
+     "pendingMessageCount",
+     "results"
+    ],
+    "title":"MoReportsResponse"
+   },
+   "fc58971973975508c3c8fc4221c7201147a075acf31dce7331f3a874d9fc423d.ApnsData":{
+    "type":"object",
+    "description":"APNs data.",
+    "properties":{
+     "enabled":{
+      "type":"boolean",
+      "description":"Equals true if sending messages via APNS is enabled for this application."
+     }
+    },
+    "title":"ApnsData"
+   },
+   "fc58971973975508c3c8fc4221c7201147a075acf31dce7331f3a874d9fc423d.GcmData":{
+    "type":"object",
+    "description":"GCM data.",
+    "properties":{
+     "enabled":{
+      "type":"boolean",
+      "description":"Equals true if sending messages via Firebase is enabled for this application."
+     }
+    },
+    "title":"GcmData"
+   },
+   "fccfa6f52b47dd30d36e2c1fad9bb5d494251b453352b21aeb7a407c6f1eeb5c.ApiReport":{
+    "type":"object",
+    "description":"List of API reports",
+    "properties":{
+     "bulkId":{
+      "type":"string",
+      "description":"Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request."
+     },
+     "messageId":{
+      "type":"string",
+      "description":"The ID of the individual message for which the report is requested."
+     },
+     "to":{
+      "type":"string",
+      "description":"The message destination address."
+     },
+     "sentAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Indicates when the message was sent. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`."
+     },
+     "doneAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Tells when the message was finished processing by Infobip (ie. delivered to destination, delivered to destination network, etc.)"
+     },
+     "messageCount":{
+      "type":"integer",
+      "format":"int32",
+      "description":"The number of sent message segments."
+     },
+     "price":{
+      "$ref":"#/components/schemas/fccfa6f52b47dd30d36e2c1fad9bb5d494251b453352b21aeb7a407c6f1eeb5c.Price"
+     },
+     "status":{
+      "$ref":"#/components/schemas/fccfa6f52b47dd30d36e2c1fad9bb5d494251b453352b21aeb7a407c6f1eeb5c.Status"
+     },
+     "error":{
+      "$ref":"#/components/schemas/fccfa6f52b47dd30d36e2c1fad9bb5d494251b453352b21aeb7a407c6f1eeb5c.Error"
+     },
+     "channel":{
+      "$ref":"#/components/schemas/999e23a63911c41e6f288f288564c4bc2e6a35a6f2a9edba53ecac8c52fe9339.OMNIChannel"
+     },
+     "mccMnc":{
+      "type":"string",
+      "description":"Information about country and network of the mobile device"
+     },
+     "callbackData":{
+      "type":"string",
+      "description":"Callback data sent through callbackData field in Send PUSH notifications or Send bulk PUSH notifications API methods."
+     }
+    },
+    "title":"ApiReport"
+   },
+   "fccfa6f52b47dd30d36e2c1fad9bb5d494251b453352b21aeb7a407c6f1eeb5c.ApiReportsResponse":{
+    "type":"object",
+    "properties":{
+     "results":{
+      "type":"array",
+      "description":"List of API reports",
+      "items":{
+       "$ref":"#/components/schemas/fccfa6f52b47dd30d36e2c1fad9bb5d494251b453352b21aeb7a407c6f1eeb5c.ApiReport"
+      }
+     }
+    },
+    "title":"ApiReportsResponse"
+   },
+   "fccfa6f52b47dd30d36e2c1fad9bb5d494251b453352b21aeb7a407c6f1eeb5c.Error":{
+    "type":"object",
+    "description":"Indicates whether the error occurred during the query execution.",
+    "properties":{
+     "groupId":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Error [group ID](https://www.infobip.com/docs/essentials/response-status-and-error-codes#error-codes)."
+     },
+     "groupName":{
+      "type":"string",
+      "description":"Error [group name](https://www.infobip.com/docs/essentials/response-status-and-error-codes#error-codes)."
+     },
+     "id":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Error [ID](https://www.infobip.com/docs/essentials/response-status-and-error-codes#error-codes)."
+     },
+     "name":{
+      "type":"string",
+      "description":"Error [name](https://www.infobip.com/docs/essentials/response-status-and-error-codes#error-codes)."
+     },
+     "description":{
+      "type":"string",
+      "description":"Human-readable [description](https://www.infobip.com/docs/essentials/response-status-and-error-codes#error-codes) of the error."
+     },
+     "permanent":{
+      "type":"boolean",
+      "description":"Tells if the error [is permanent](https://www.infobip.com/docs/essentials/response-status-and-error-codes#error-codes)."
+     }
+    },
+    "title":"Error"
+   },
+   "fccfa6f52b47dd30d36e2c1fad9bb5d494251b453352b21aeb7a407c6f1eeb5c.Price":{
+    "type":"object",
+    "description":"Sent message price.",
+    "properties":{
+     "pricePerMessage":{
+      "type":"number",
+      "description":"Price per message."
+     },
+     "currency":{
+      "type":"string",
+      "description":"The currency in which the price is expressed."
+     }
+    },
+    "title":"Price"
+   },
+   "fccfa6f52b47dd30d36e2c1fad9bb5d494251b453352b21aeb7a407c6f1eeb5c.Status":{
+    "type":"object",
+    "description":"Indicates whether the message is successfully sent, not sent, delivered, not delivered, waiting for delivery or any other possible status.",
+    "properties":{
+     "groupId":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Status [group ID](https://www.infobip.com/docs/essentials/response-status-and-error-codes#http-status-codes)."
+     },
+     "groupName":{
+      "type":"string",
+      "description":"Status [group name](https://www.infobip.com/docs/essentials/response-status-and-error-codes#http-status-codes)."
+     },
+     "id":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Status [ID](https://www.infobip.com/docs/essentials/response-status-and-error-codes#http-status-codes)."
+     },
+     "name":{
+      "type":"string",
+      "description":"Status [name](https://www.infobip.com/docs/essentials/response-status-and-error-codes#http-status-codes)."
+     },
+     "description":{
+      "type":"string",
+      "description":"Human-readable [description](https://www.infobip.com/docs/essentials/response-status-and-error-codes#http-status-codes) of the status."
+     },
+     "action":{
+      "type":"string",
+      "description":"[Action](https://www.infobip.com/docs/essentials/response-status-and-error-codes#http-status-codes) that should be taken to eliminate the error."
+     }
+    },
+    "title":"Status"
+   }
+  },
+  "responses":{
+   "ApiError401":{
+    "description":"Unauthorized",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E401",
+       "description":"The request lacks valid authentication credentials for the requested resource.",
+       "action":"Check the resources and adjust authentication credentials.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"API Authentication",
+         "url":"https://www.infobip.com/docs/essentials/api-authentication"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E401</errorCode>\n  <description>The request lacks valid authentication credentials for the requested resource.</description>\n  <action>Check the resources and adjust authentication credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Authentication</name>\n      <url>https://www.infobip.com/docs/essentials/api-authentication</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError403":{
+    "description":"Forbidden",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E403",
+       "description":"Insufficient permissions to access the requested resource.",
+       "action":"Repeat the request with new or different credentials.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"API Scopes",
+         "url":"https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E403</errorCode>\n  <description>Insufficient permissions to access the requested resource.</description>\n  <action>Repeat the request with new or different credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Scopes</name>\n      <url>https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError429":{
+    "description":"Too Many Requests",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E429",
+       "description":"Too many requests sent.",
+       "action":"Check request rate limit specified in the API endpoint documentation resource.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"Throttling handling errors",
+         "url":"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E429</errorCode>\n  <description>Too many requests sent.</description>\n  <action>Check request rate limit specified in the API endpoint documentation resource.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>Throttling handling errors</name>\n      <url>https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError500":{
+    "description":"Internal Server Error",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E500",
+       "description":"Something went wrong.",
+       "action":"Contact the support.",
+       "violations":[],
+       "resources":[]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E500</errorCode>\n  <description>Something went wrong.</description>\n  <action>Contact the support.</action>\n  <violations/>\n  <resources/>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiException401":{
+    "description":"Unauthorized",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"UNAUTHORIZED",
+         "text":"Unauthorized"
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>UNAUTHORIZED</messageId>\n      <text>Unauthorized</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   },
+   "ApiException403":{
+    "description":"Forbidden",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"FORBIDDEN",
+         "text":"Forbidden"
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>FORBIDDEN</messageId>\n      <text>Forbidden</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   },
+   "ApiException404":{
+    "description":"Not Found",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"NOT_FOUND",
+         "text":"Not found"
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>NOT_FOUND</messageId>\n      <text>Not found</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   },
+   "ApiException429":{
+    "description":"Too Many Requests",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"TOO_MANY_REQUESTS",
+         "text":"Too many requests"
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>TOO_MANY_REQUESTS</messageId>\n      <text>Too many requests</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   },
+   "ApiException500":{
+    "description":"Internal Server Error",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"GENERAL_ERROR",
+         "text":"Something went wrong. Please contact support."
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>GENERAL_ERROR</messageId>\n      <text>Something went wrong. Please contact support.</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   }
+  },
+  "parameters":{},
+  "examples":{},
+  "requestBodies":{},
+  "headers":{},
+  "securitySchemes":{
+   "APIKeyHeader":{
+    "type":"apiKey",
+    "description":"This is the most secure authorization type and the one with the most flexibility.\n\nAPI keys can be generated by calling the dedicated API method. Furthermore, API keys can have a limited scope and cover only some API methods. Lastly, they can\nbe revoked at any time. This range of possibilities makes API keys well suited for separating the API access rights across multiple applications or use cases.\nFinally, the loss of an API key is easily manageable.\n\nYou can manage your API keys from [GUI](https://portal.infobip.com/settings/accounts/api-keys), or programmatically\nwith [dedicated API](#platform-&-connectivity/settings).\n\nAPI key Authorization header example:\n\n```shell\nAuthorization: App 003026bbc133714df1834b8638bb496e-8f4b3d9a-e931-478d-a994-28a725159ab9\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "Basic":{
+    "type":"http",
+    "description":"Basic authorization type can be used in situations when the API key is not available. For example, API methods for generating API keys should be authenticated\nwith the Basic type.\n\nIn this case, the credentials included in the Authorization header should be a Base64 encoded username and password combination. More formally, basic\nauthentication header can be constructed in three steps:\n\n* Username and password are concatenated using the colon `(:)` as a separator `username:password`.\n* The resulting string is encoded using the [RFC2045-MIME](https://www.ietf.org/rfc/rfc2045.txt) variant of Base64.\n* Encoded string is added as credentials after the `\"Basic \"` type.\n\nExample:\n\n```shell\nUsername: \"Aladdin\"\nPassword: \"openSesame\"\n\nConcatenated string: \"Aladdin:openSesame\"\n\nBase64 encoded string: \"QWxhZGRpbjpvcGVuU2VzYW1l\"\n\nAuthorization header: \"Basic QWxhZGRpbjpvcGVuU2VzYW1l\"\n```\n\n> **Implementation detail**: Base64 encoding is a standard and many available programming languages and frameworks provide convenient methods for encoding\n> strings.\n",
+    "scheme":"basic"
+   },
+   "IBSSOTokenHeader":{
+    "type":"apiKey",
+    "description":"This authorization type is suited for situations when you do not want to store Infobip credentials in your own app. Instead, your users will input their Infobip\ncredentials every time they access your application and the application will use those credentials to create a session. From then on, the session token can be\nused to authenticate subsequent API requests. Note that the session will expire automatically after a predefined period of inactivity, and can also be manually\nterminated by making an appropriate API call.\n\nYou can find more details on the creation and behavior of the session at\nthe [dedicated documentation page](#platform-connectivity/account-management/create-session).\n\nAfter obtaining the session token by calling the above-referenced API method you can include it in the Authorization header like this:\n\n```shell\nAuthorization: IBSSO 2f9b4d31-2d0d-49a8-85f0-9b862bdca394\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "OAuth2":{
+    "type":"oauth2",
+    "description":"Similarly to the IBSSO Token authentication you can use OAuth 2.0 bearer token with Infobip serving both as resource and authorization server. You can obtain\nthe access token using the client credentials grant from `auth/1/oauth2/token` endpoint. It will provide you with your access token, and its expiration period.\nYou can use the token to authorize your API calls until it expires. You can find out more about the process in\nthe [official specification](https://tools.ietf.org/html/rfc6749#section-4.4).\n\nYou can include your access token in the Authorization HTTP request header like this:\n\n```http\nAuthorization: Bearer <access_token>\n```",
+    "flows":{
+     "clientCredentials":{
+      "tokenUrl":"https://api.infobip.com/auth/1/oauth2/token",
+      "scopes":{}
+     }
+    }
+   }
+  },
+  "links":{},
+  "callbacks":{}
+ },
+ "webhooks":{
+  "receive-outbound-push-message-delivery-reports":{
+   "post":{
+    "tags":[
+     "channels",
+     "mobile-app-messaging",
+     "push-statistics-and-reports"
+    ],
+    "summary":"Receive Push delivery reports",
+    "description":"For each message that you send out, we can send you a delivery report. For this to work you need to have an endpoint to forward the reports to. Please specify the endpoint per each message via the `webhooks > delivery > url` parameter. Alternatively, you can provide the endpoint’s URL to Customer support and they will set it up for you. Contact support@infobip.com if you require help.",
+    "externalDocs":{
+     "description":"Learn more about Mobile Push and In-App Messages",
+     "url":"https://www.infobip.com/docs/mobile-push"
+    },
+    "operationId":"receive-outbound-push-message-delivery-reports",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.DeliveryReports"
+       }
+      },
+      "application/xml":{
+       "schema":{
+        "$ref":"#/components/schemas/be899aa87631e28acaf5aa6d4ae5df630595a5bf087810b506602819a5d8b742.DeliveryReports"
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"Your server returns this code if it accepts the callback."
+     }
+    }
+   }
+  }
+ }
+}

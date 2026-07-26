@@ -1,0 +1,2596 @@
+{
+ "openapi":"3.1.0",
+ "info":{
+  "title":"Infobip OpenAPI Specification",
+  "description":"OpenAPI Specification that contains all public endpoints and webhooks.",
+  "contact":{
+   "name":"Infobip support",
+   "email":"support@infobip.com"
+  },
+  "version":"3.210.0",
+  "x-generatedAt":"2026-07-23T15:24:02.70882158Z"
+ },
+ "tags":[
+  {
+   "name":"connectivity",
+   "description":"Powerful infrastructure and tools that connect you to the world.\n",
+   "x-type":"category",
+   "x-displayName":"Connectivity"
+  },
+  {
+   "name":"biometrics",
+   "description":"Represents a set of services used for biometric authentication and identity proofing of the end user.",
+   "x-type":"product",
+   "x-displayName":"Biometrics"
+  },
+  {
+   "name":"scenario",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Scenario"
+  },
+  {
+   "name":"extraction-session",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Extraction session"
+  },
+  {
+   "name":"kyc-session",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"KYC session"
+  },
+  {
+   "name":"enrollment-session",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Enrollment session"
+  },
+  {
+   "name":"verification-session",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Verification session"
+  }
+ ],
+ "paths":{
+  "/biometrics/1/scenarios":{
+   "get":{
+    "tags":[
+     "connectivity",
+     "biometrics",
+     "scenario"
+    ],
+    "summary":"Get Scenarios",
+    "description":"This function is used to retrieve all scenarios enabled for your account.",
+    "operationId":"get-biometrics-scenarios",
+    "parameters":[
+     {
+      "name":"applicationTypes",
+      "in":"query",
+      "description":"One or more application types to filter scenarios. If none is set, then scenarios for all application types are returned in the response. Example: `?applicationTypes=extraction,kyc`.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"array",
+       "items":{
+        "type":"string",
+        "description":"Application type identifier."
+       }
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.ScenarioResponse"
+        },
+        "examples":{
+         "OK":{
+          "summary":"OK",
+          "description":"OK",
+          "value":{
+           "scenarios":[
+            {
+             "name":"CODE_EXTRACTION_QR",
+             "description":"Scenario for default code extraction.",
+             "applicationType":"EXTRACTION"
+            },
+            {
+             "name":"PASSPORT_MRZ_STANDARD",
+             "description":"Scan MRZ and image from passport, extract MRZ data and ask for selfie to compare it with the scanned image.",
+             "applicationType":"KYC"
+            }
+           ]
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiException"
+        },
+        "examples":{
+         "Not found":{
+          "summary":"Not found",
+          "description":"Not found",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"EC_UNKNOWN_APPLICATION",
+             "text":"Application cannot be found. Check application name in url parameter!"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "description":"Too Many Requests",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiException"
+        },
+        "examples":{
+         "Too Many Requests":{
+          "summary":"Too Many Requests",
+          "description":"Too Many Requests",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"EC_TOO_MANY_REQUESTS",
+             "text":"Too many requests."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "biometrics:manage"
+    ]
+   }
+  },
+  "/biometrics/1/extraction/sessions":{
+   "get":{
+    "tags":[
+     "connectivity",
+     "biometrics",
+     "extraction-session"
+    ],
+    "summary":"Get Extraction Session",
+    "description":"This function is used to retrieve a session by `sessionId` received in [Create Extraction Session](#platform-connectivity/biometrics/create-biometrics-extraction-session) response.",
+    "operationId":"get-biometrics-extraction-session",
+    "parameters":[
+     {
+      "name":"X-Session-Id",
+      "in":"header",
+      "description":"Session ID header.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"efc373be-ab6d-4c63-b798-1f65b7b4b2b3"
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.GetSessionResponse"
+        },
+        "examples":{
+         "OK":{
+          "summary":"OK",
+          "description":"OK",
+          "value":{
+           "session":{
+            "scenarioName":"SOME_SCENARIO_NAME",
+            "locationInfo":{
+             "country":"HRV",
+             "language":"en-US"
+            },
+            "partnerReference":"MyRef-jqhof",
+            "webhook":{
+             "url":"https://example.com/webhook",
+             "type":"ON_END"
+            },
+            "successUrl":"https://example.com/success",
+            "cancelUrl":"https://example.com/cancel",
+            "retainData":true,
+            "status":"ACTIVE",
+            "id":"efc373be-ab6d-4c63-b798-1f65b7b4b2b3",
+            "applicationType":"KYC",
+            "createdAt":"2021-11-02T14:15:45.7058838Z",
+            "validUntil":"2021-11-02T14:25:45.7059354Z"
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiException"
+        },
+        "examples":{
+         "Not found":{
+          "summary":"Not found",
+          "description":"Not found",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"EC_SESSION_NOT_FOUND",
+             "text":"Session not found. Check session ID!"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "description":"Too Many Requests",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiException"
+        },
+        "examples":{
+         "Too Many Requests":{
+          "summary":"Too Many Requests",
+          "description":"Too Many Requests",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"EC_TOO_MANY_REQUESTS",
+             "text":"Too many requests."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "biometrics:manage"
+    ]
+   },
+   "post":{
+    "tags":[
+     "connectivity",
+     "biometrics",
+     "extraction-session"
+    ],
+    "summary":"Create Extraction Session",
+    "description":"This function is used to initiate a session. It is the very first step for extraction application.",
+    "operationId":"create-biometrics-extraction-session",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.ExtractionSessionRequest"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.CreatedSessionResponse"
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiException"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "description":"Bad request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"EC_ACCOUNT_VALIDATION",
+             "text":"Account does not have scenario enabled."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "429":{
+      "description":"Too Many Requests",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiException"
+        },
+        "examples":{
+         "Too Many Requests":{
+          "summary":"Too Many Requests",
+          "description":"Too Many Requests",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"EC_TOO_MANY_REQUESTS",
+             "text":"Too many requests."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "biometrics:manage"
+    ]
+   },
+   "delete":{
+    "tags":[
+     "connectivity",
+     "biometrics",
+     "extraction-session"
+    ],
+    "summary":"Abort Extraction Session",
+    "description":"This function is used to abort the session. Use `sessionId` received in the [Create Extraction Session](#platform-connectivity/biometrics/create-biometrics-extraction-session) response.",
+    "operationId":"delete-biometrics-extraction-session",
+    "parameters":[
+     {
+      "name":"X-Session-Id",
+      "in":"header",
+      "description":"Session ID header.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"efc373be-ab6d-4c63-b798-1f65b7b4b2b3"
+     }
+    ],
+    "responses":{
+     "204":{
+      "description":"Aborted successfully"
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiException"
+        },
+        "examples":{
+         "Not found":{
+          "summary":"Not found",
+          "description":"Not found",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"EC_SESSION_NOT_FOUND",
+             "text":"Session not found. Check session ID!"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "description":"Too Many Requests",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiException"
+        },
+        "examples":{
+         "Too Many Requests":{
+          "summary":"Too Many Requests",
+          "description":"Too Many Requests",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"EC_TOO_MANY_REQUESTS",
+             "text":"Too many requests."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "biometrics:manage"
+    ]
+   }
+  },
+  "/biometrics/1/kyc/sessions":{
+   "get":{
+    "tags":[
+     "connectivity",
+     "biometrics",
+     "kyc-session"
+    ],
+    "summary":"Get KYC Session",
+    "description":"This function is used to retrieve a session by `sessionId` received in the [Create KYC Session](#platform-connectivity/biometrics/create-biometrics-kyc-session) response.",
+    "operationId":"get-biometrics-kyc-session",
+    "parameters":[
+     {
+      "name":"X-Session-Id",
+      "in":"header",
+      "description":"Session ID header.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"efc373be-ab6d-4c63-b798-1f65b7b4b2b3"
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.GetSessionResponse"
+        },
+        "examples":{
+         "OK":{
+          "summary":"OK",
+          "description":"OK",
+          "value":{
+           "session":{
+            "scenarioName":"SOME_SCENARIO_NAME",
+            "locationInfo":{
+             "country":"HRV",
+             "language":"en-US"
+            },
+            "partnerReference":"MyRef-jqhof",
+            "webhook":{
+             "url":"https://example.com/webhook",
+             "type":"ON_END"
+            },
+            "successUrl":"https://example.com/success",
+            "cancelUrl":"https://example.com/cancel",
+            "retainData":true,
+            "status":"ACTIVE",
+            "id":"efc373be-ab6d-4c63-b798-1f65b7b4b2b3",
+            "applicationType":"KYC",
+            "createdAt":"2021-11-02T14:15:45.7058838Z",
+            "validUntil":"2021-11-02T14:25:45.7059354Z"
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiException"
+        },
+        "examples":{
+         "Not found":{
+          "summary":"Not found",
+          "description":"Not found",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"EC_SESSION_NOT_FOUND",
+             "text":"Session not found. Check session ID!"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "description":"Too Many Requests",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiException"
+        },
+        "examples":{
+         "Too Many Requests":{
+          "summary":"Too Many Requests",
+          "description":"Too Many Requests",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"EC_TOO_MANY_REQUESTS",
+             "text":"Too many requests."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "biometrics:manage"
+    ]
+   },
+   "post":{
+    "tags":[
+     "connectivity",
+     "biometrics",
+     "kyc-session"
+    ],
+    "summary":"Create KYC Session",
+    "description":"This function is used to initiate a session. It is the very first step for KYC application.",
+    "operationId":"create-biometrics-kyc-session",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.KycSessionRequest"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.CreatedSessionResponse"
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiException"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "description":"Bad request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"EC_ACCOUNT_VALIDATION",
+             "text":"Account does not have scenario enabled."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "429":{
+      "description":"Too Many Requests",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiException"
+        },
+        "examples":{
+         "Too Many Requests":{
+          "summary":"Too Many Requests",
+          "description":"Too Many Requests",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"EC_TOO_MANY_REQUESTS",
+             "text":"Too many requests."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "biometrics:manage"
+    ]
+   },
+   "delete":{
+    "tags":[
+     "connectivity",
+     "biometrics",
+     "kyc-session"
+    ],
+    "summary":"Abort KYC Session",
+    "description":"This function is used to abort the session. Use `sessionId` received in the [Create KYC Session](#platform-connectivity/biometrics/create-biometrics-kyc-session) response.",
+    "operationId":"delete-biometrics-kyc-session",
+    "parameters":[
+     {
+      "name":"X-Session-Id",
+      "in":"header",
+      "description":"Session ID header.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"efc373be-ab6d-4c63-b798-1f65b7b4b2b3"
+     }
+    ],
+    "responses":{
+     "204":{
+      "description":"Aborted successfully"
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiException"
+        },
+        "examples":{
+         "Not found":{
+          "summary":"Not found",
+          "description":"Not found",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"EC_SESSION_NOT_FOUND",
+             "text":"Session not found. Check session ID!"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "description":"Too Many Requests",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiException"
+        },
+        "examples":{
+         "Too Many Requests":{
+          "summary":"Too Many Requests",
+          "description":"Too Many Requests",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"EC_TOO_MANY_REQUESTS",
+             "text":"Too many requests."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "biometrics:manage"
+    ]
+   }
+  },
+  "/biometrics/1/enrollment/sessions":{
+   "get":{
+    "tags":[
+     "connectivity",
+     "biometrics",
+     "enrollment-session"
+    ],
+    "summary":"Get Enrollment Session",
+    "description":"This function is used to retrieve a session by `sessionId` received in the [Create Enrollment Session](#platform-connectivity/biometrics/create-biometrics-enrollment-session) response.",
+    "operationId":"get-biometrics-enrollment-session",
+    "parameters":[
+     {
+      "name":"X-Session-Id",
+      "in":"header",
+      "description":"Session ID header.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"efc373be-ab6d-4c63-b798-1f65b7b4b2b3"
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.GetSessionResponse"
+        },
+        "examples":{
+         "OK":{
+          "summary":"OK",
+          "description":"OK",
+          "value":{
+           "session":{
+            "scenarioName":"SOME_SCENARIO_NAME",
+            "locationInfo":{
+             "country":"HRV",
+             "language":"en-US"
+            },
+            "partnerReference":"MyRef-jqhof",
+            "webhook":{
+             "url":"https://example.com/webhook",
+             "type":"ON_END"
+            },
+            "successUrl":"https://example.com/success",
+            "cancelUrl":"https://example.com/cancel",
+            "retainData":true,
+            "status":"ACTIVE",
+            "id":"efc373be-ab6d-4c63-b798-1f65b7b4b2b3",
+            "applicationType":"KYC",
+            "createdAt":"2021-11-02T14:15:45.7058838Z",
+            "validUntil":"2021-11-02T14:25:45.7059354Z"
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiException"
+        },
+        "examples":{
+         "Not found":{
+          "summary":"Not found",
+          "description":"Not found",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"EC_SESSION_NOT_FOUND",
+             "text":"Session not found. Check session ID!"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "description":"Too Many Requests",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiException"
+        },
+        "examples":{
+         "Too Many Requests":{
+          "summary":"Too Many Requests",
+          "description":"Too Many Requests",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"EC_TOO_MANY_REQUESTS",
+             "text":"Too many requests."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "biometrics:manage"
+    ]
+   },
+   "post":{
+    "tags":[
+     "connectivity",
+     "biometrics",
+     "enrollment-session"
+    ],
+    "summary":"Create Enrollment Session",
+    "description":"This function is used to initiate a session. It is the very first step for Enrollment application.",
+    "operationId":"create-biometrics-enrollment-session",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.EnrollmentSessionRequest"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.CreatedSessionResponse"
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiException"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "description":"Bad request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"EC_ACCOUNT_VALIDATION",
+             "text":"Account does not have scenario enabled."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "429":{
+      "description":"Too Many Requests",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiException"
+        },
+        "examples":{
+         "Too Many Requests":{
+          "summary":"Too Many Requests",
+          "description":"Too Many Requests",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"EC_TOO_MANY_REQUESTS",
+             "text":"Too many requests."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "biometrics:manage"
+    ]
+   },
+   "delete":{
+    "tags":[
+     "connectivity",
+     "biometrics",
+     "enrollment-session"
+    ],
+    "summary":"Abort Enrollment Session",
+    "description":"This function is used to abort the session. Use `sessionId` received in the [Create Enrollment Session](#platform-connectivity/biometrics/create-biometrics-enrollment-session) response.",
+    "operationId":"delete-biometrics-enrollment-session",
+    "parameters":[
+     {
+      "name":"X-Session-Id",
+      "in":"header",
+      "description":"Session ID header.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"efc373be-ab6d-4c63-b798-1f65b7b4b2b3"
+     }
+    ],
+    "responses":{
+     "204":{
+      "description":"Aborted successfully"
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiException"
+        },
+        "examples":{
+         "Not found":{
+          "summary":"Not found",
+          "description":"Not found",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"EC_SESSION_NOT_FOUND",
+             "text":"Session not found. Check session ID!"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "description":"Too Many Requests",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiException"
+        },
+        "examples":{
+         "Too Many Requests":{
+          "summary":"Too Many Requests",
+          "description":"Too Many Requests",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"EC_TOO_MANY_REQUESTS",
+             "text":"Too many requests."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "biometrics:manage"
+    ]
+   }
+  },
+  "/biometrics/1/verification/sessions":{
+   "get":{
+    "tags":[
+     "connectivity",
+     "biometrics",
+     "verification-session"
+    ],
+    "summary":"Get Verification Session",
+    "description":"This function is used to retrieve a session by `sessionId` received in the [Create Verification Session](#platform-connectivity/biometrics/create-biometrics-verification-session) response.",
+    "operationId":"get-biometrics-verification-session",
+    "parameters":[
+     {
+      "name":"X-Session-Id",
+      "in":"header",
+      "description":"Session ID header.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"efc373be-ab6d-4c63-b798-1f65b7b4b2b3"
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.GetSessionResponse"
+        },
+        "examples":{
+         "OK":{
+          "summary":"OK",
+          "description":"OK",
+          "value":{
+           "session":{
+            "scenarioName":"SOME_SCENARIO_NAME",
+            "locationInfo":{
+             "country":"HRV",
+             "language":"en-US"
+            },
+            "partnerReference":"MyRef-jqhof",
+            "webhook":{
+             "url":"https://example.com/webhook",
+             "type":"ON_END"
+            },
+            "successUrl":"https://example.com/success",
+            "cancelUrl":"https://example.com/cancel",
+            "retainData":true,
+            "status":"ACTIVE",
+            "id":"efc373be-ab6d-4c63-b798-1f65b7b4b2b3",
+            "applicationType":"KYC",
+            "createdAt":"2021-11-02T14:15:45.7058838Z",
+            "validUntil":"2021-11-02T14:25:45.7059354Z"
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiException"
+        },
+        "examples":{
+         "Not found":{
+          "summary":"Not found",
+          "description":"Not found",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"EC_SESSION_NOT_FOUND",
+             "text":"Session not found. Check session ID!"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "description":"Too Many Requests",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiException"
+        },
+        "examples":{
+         "Too Many Requests":{
+          "summary":"Too Many Requests",
+          "description":"Too Many Requests",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"EC_TOO_MANY_REQUESTS",
+             "text":"Too many requests."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "biometrics:manage"
+    ]
+   },
+   "post":{
+    "tags":[
+     "connectivity",
+     "biometrics",
+     "verification-session"
+    ],
+    "summary":"Create Verification Session",
+    "description":"This function is used to initiate a session. It is the very first step for Verification application.",
+    "operationId":"create-biometrics-verification-session",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.VerificationSessionRequest"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.CreatedSessionResponse"
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiException"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "description":"Bad request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"EC_ACCOUNT_VALIDATION",
+             "text":"Account does not have scenario enabled."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "429":{
+      "description":"Too Many Requests",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiException"
+        },
+        "examples":{
+         "Too Many Requests":{
+          "summary":"Too Many Requests",
+          "description":"Too Many Requests",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"EC_TOO_MANY_REQUESTS",
+             "text":"Too many requests."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "biometrics:manage"
+    ]
+   },
+   "delete":{
+    "tags":[
+     "connectivity",
+     "biometrics",
+     "verification-session"
+    ],
+    "summary":"Abort Verification Session",
+    "description":"This function is used to abort the session. Use `sessionId` received in the [Create Verification Session](#platform-connectivity/biometrics/create-biometrics-verification-session) response.",
+    "operationId":"delete-biometrics-verification-session",
+    "parameters":[
+     {
+      "name":"X-Session-Id",
+      "in":"header",
+      "description":"Session ID header.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"efc373be-ab6d-4c63-b798-1f65b7b4b2b3"
+     }
+    ],
+    "responses":{
+     "204":{
+      "description":"Aborted successfully"
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiException"
+        },
+        "examples":{
+         "Not found":{
+          "summary":"Not found",
+          "description":"Not found",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"EC_SESSION_NOT_FOUND",
+             "text":"Session not found. Check session ID!"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "description":"Too Many Requests",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiException"
+        },
+        "examples":{
+         "Too Many Requests":{
+          "summary":"Too Many Requests",
+          "description":"Too Many Requests",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"EC_TOO_MANY_REQUESTS",
+             "text":"Too many requests."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "biometrics:manage"
+    ]
+   }
+  }
+ },
+ "components":{
+  "schemas":{
+   "8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.BiometricData":{
+    "type":"object",
+    "description":"Biometric data.",
+    "oneOf":[
+     {
+      "$ref":"#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.BiometricReference"
+     },
+     {
+      "$ref":"#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.BiometricVector"
+     }
+    ],
+    "title":"BiometricData"
+   },
+   "8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.BiometricReference":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.BiometricData"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "reference":{
+        "type":"string",
+        "description":"36-character unique identifier of a biometric vector associated with the end user. Used, if Infobip needs to store the vector in enrolment phase and return reference in result.",
+        "example":"usr_eb1cfc67ead74fc29ff2c65c4cec2baf"
+       }
+      }
+     }
+    ],
+    "title":"BiometricReference"
+   },
+   "8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.BiometricVector":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.BiometricData"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "vector":{
+        "type":"array",
+        "description":"Biometric vector associated with the end user. Used when Infobip didn't store the vector in enrolment phase.",
+        "example":[
+         -0.09652680158615112,
+         0.07107646763324738,
+         -0.029479391872882843,
+         -0.006973235867917538
+        ],
+        "items":{
+         "type":"number",
+         "format":"double"
+        }
+       }
+      }
+     }
+    ],
+    "title":"BiometricVector"
+   },
+   "8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.CreatedSessionResponse":{
+    "type":"object",
+    "description":"JSON containing information about the new session.",
+    "properties":{
+     "sessionId":{
+      "type":"string",
+      "description":"Unique session identifier.",
+      "example":"efc373be-ab6d-4c63-b798-1f65b7b4b2b3"
+     },
+     "redirectUrl":{
+      "type":"string",
+      "description":"URL with `sessionId` to be sent to the end user which would then directly apply the scenario.",
+      "example":"https://example.com/web/?sessionId=efc373be-ab6d-4c63-b798-1f65b7b4b2b3"
+     }
+    },
+    "title":"CreatedSessionResponse"
+   },
+   "8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.EnrollmentSessionRequest":{
+    "type":"object",
+    "description":"JSON containing session parameters and client identifiers for Enrollment application.",
+    "properties":{
+     "scenarioName":{
+      "type":"string",
+      "description":"Request a specific scenario within the application. To get possible values call [Get Scenarios](#platform-connectivity/biometrics/get-biometrics-scenarios) with the following query parameter: `?applicationTypes=enrollment`. Check scenario descriptions in the response to find the scenario you need, and copy its `name`.",
+      "example":"FACE_ENROLLMENT"
+     },
+     "locationInfo":{
+      "$ref":"#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.LocationInfo"
+     },
+     "partnerReference":{
+      "type":"string",
+      "description":"Your (usually unique) identifier of the end user performing the scenario. Will be sent together with the rest of the information via the webhook.",
+      "example":"MyRef-jqhof"
+     },
+     "webhook":{
+      "$ref":"#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.WebhookInfo"
+     },
+     "successUrl":{
+      "type":"string",
+      "description":"End user will be sent to this URL after the selected scenario has been successfully completed.",
+      "example":"https://example.com/success"
+     },
+     "cancelUrl":{
+      "type":"string",
+      "description":"End user will be sent to this URL if they cancel the scenario.",
+      "example":"https://example.com/cancel"
+     },
+     "retainData":{
+      "type":"boolean",
+      "description":"Indicates whether Infobip should store and retain data. This value overrides value in account configuration.",
+      "example":true
+     }
+    },
+    "required":[
+     "locationInfo",
+     "scenarioName",
+     "webhook"
+    ],
+    "title":"EnrollmentSessionRequest"
+   },
+   "8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.ExtractionSessionRequest":{
+    "type":"object",
+    "description":"JSON containing session parameters and client identifiers for extraction application.",
+    "properties":{
+     "scenarioName":{
+      "type":"string",
+      "description":"Request a specific scenario within the application. To get possible values call [Get Scenarios](#platform-connectivity/biometrics/get-biometrics-scenarios) with the following query parameter: `?applicationTypes=extraction`. Check scenario descriptions in the response to find the scenario you need, and copy its `name`.",
+      "example":"CODE_EXTRACTION_QR"
+     },
+     "locationInfo":{
+      "$ref":"#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.LocationInfo"
+     },
+     "partnerReference":{
+      "type":"string",
+      "description":"Your (usually unique) identifier of the end user performing the scenario. Will be sent together with the rest of the information via the webhook.",
+      "example":"MyRef-jqhof"
+     },
+     "webhook":{
+      "$ref":"#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.WebhookInfo"
+     },
+     "successUrl":{
+      "type":"string",
+      "description":"End user will be sent to this URL after the selected scenario has been successfully completed.",
+      "example":"https://example.com/success"
+     },
+     "cancelUrl":{
+      "type":"string",
+      "description":"End user will be sent to this URL if they cancel the scenario.",
+      "example":"https://example.com/cancel"
+     },
+     "retainData":{
+      "type":"boolean",
+      "description":"Indicates whether Infobip should store and retain data. This value overrides value in account configuration.",
+      "example":true
+     }
+    },
+    "required":[
+     "locationInfo",
+     "scenarioName",
+     "webhook"
+    ],
+    "title":"ExtractionSessionRequest"
+   },
+   "8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.GenericSession":{
+    "type":"object",
+    "description":"Session object.",
+    "properties":{
+     "scenarioName":{
+      "type":"string",
+      "description":"Request a specific scenario within the application.",
+      "example":"SOME_SCENARIO_NAME"
+     },
+     "locationInfo":{
+      "$ref":"#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.LocationInfo"
+     },
+     "partnerReference":{
+      "type":"string",
+      "description":"Your (usually unique) identifier of the end user performing the scenario. Will be sent together with the rest of the information via the webhook.",
+      "example":"MyRef-jqhof"
+     },
+     "webhook":{
+      "$ref":"#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.WebhookInfo"
+     },
+     "successUrl":{
+      "type":"string",
+      "description":"End user will be sent to this URL after the selected scenario has been successfully completed.",
+      "example":"https://example.com/success"
+     },
+     "cancelUrl":{
+      "type":"string",
+      "description":"End user will be sent to this URL if they cancel the scenario.",
+      "example":"https://example.com/cancel"
+     },
+     "retainData":{
+      "type":"boolean",
+      "description":"Indicates whether Infobip should store and retain data. This value overrides value in account configuration.",
+      "example":true
+     },
+     "status":{
+      "type":"string",
+      "description":"Current session status.",
+      "enum":[
+       "CREATED",
+       "ACTIVE",
+       "SUCCESS",
+       "EXPIRED",
+       "CANCELED"
+      ],
+      "example":"ACTIVE"
+     },
+     "id":{
+      "type":"string",
+      "description":"Unique session identifier.",
+      "example":"efc373be-ab6d-4c63-b798-1f65b7b4b2b3"
+     },
+     "applicationType":{
+      "type":"string",
+      "description":"Application type identifier.",
+      "example":"KYC"
+     },
+     "createdAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Session creation date and time. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`.",
+      "example":"2021-11-02T14:15:45.7058838Z"
+     },
+     "validUntil":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Session validity date and time. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`.",
+      "example":"2021-11-02T14:25:45.7059354Z"
+     }
+    },
+    "required":[
+     "locationInfo",
+     "scenarioName",
+     "webhook"
+    ],
+    "title":"GenericSession"
+   },
+   "8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.GetSessionResponse":{
+    "type":"object",
+    "description":"JSON containing execution results and details about the retrieved session.",
+    "properties":{
+     "session":{
+      "$ref":"#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.GenericSession"
+     }
+    },
+    "title":"GetSessionResponse"
+   },
+   "8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.KycSessionRequest":{
+    "type":"object",
+    "description":"JSON containing session parameters and client identifiers for KYC application.",
+    "properties":{
+     "scenarioName":{
+      "type":"string",
+      "description":"Request a specific scenario within the application. To get possible values call [Get Scenarios](#platform-connectivity/biometrics/get-biometrics-scenarios) with the following query parameter: `?applicationTypes=kyc`. Check scenario descriptions in the response to find the scenario you need, and copy its `name`.",
+      "example":"KYC_PASSPORT_HRV"
+     },
+     "locationInfo":{
+      "$ref":"#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.LocationInfo"
+     },
+     "partnerReference":{
+      "type":"string",
+      "description":"Your (usually unique) identifier of the end user performing the scenario. Will be sent together with the rest of the information via the webhook.",
+      "example":"MyRef-jqhof"
+     },
+     "webhook":{
+      "$ref":"#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.WebhookInfo"
+     },
+     "successUrl":{
+      "type":"string",
+      "description":"End user will be sent to this URL after the selected scenario has been successfully completed.",
+      "example":"https://example.com/success"
+     },
+     "cancelUrl":{
+      "type":"string",
+      "description":"End user will be sent to this URL if they cancel the scenario.",
+      "example":"https://example.com/cancel"
+     },
+     "retainData":{
+      "type":"boolean",
+      "description":"Indicates whether Infobip should store and retain data. This value overrides value in account configuration.",
+      "example":true
+     }
+    },
+    "required":[
+     "locationInfo",
+     "scenarioName",
+     "webhook"
+    ],
+    "title":"KycSessionRequest"
+   },
+   "8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.LocationInfo":{
+    "type":"object",
+    "description":"End user location information.",
+    "properties":{
+     "country":{
+      "type":"string",
+      "description":"End user country needed for processing documents. Format [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).",
+      "example":"HRV"
+     },
+     "language":{
+      "type":"string",
+      "default":"en-US",
+      "description":"End user language. Will be used within the UI when completing scenario steps. Format: [ISO 639-1](http://www.lingoes.net/en/translator/langcode.htm).",
+      "example":"en-US"
+     }
+    },
+    "required":[
+     "country"
+    ],
+    "title":"LocationInfo"
+   },
+   "8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.ScenarioDescription":{
+    "type":"object",
+    "description":"Object containing scenario identifier and its description.",
+    "properties":{
+     "name":{
+      "type":"string",
+      "description":"Scenario identifier. This value should be used in all Create Session requests."
+     },
+     "description":{
+      "type":"string",
+      "description":"Scenario description."
+     },
+     "applicationType":{
+      "type":"string",
+      "description":"Application type identifier."
+     }
+    },
+    "title":"ScenarioDescription"
+   },
+   "8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.ScenarioResponse":{
+    "type":"object",
+    "properties":{
+     "scenarios":{
+      "type":"array",
+      "description":"List of all enabled scenarios.",
+      "items":{
+       "$ref":"#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.ScenarioDescription"
+      }
+     }
+    },
+    "title":"ScenarioResponse"
+   },
+   "8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.VerificationSessionRequest":{
+    "type":"object",
+    "description":"JSON containing session parameters and client identifiers for Verification application.",
+    "properties":{
+     "scenarioName":{
+      "type":"string",
+      "description":"Request a specific scenario within the application. To get possible values call [Get Scenarios](#platform-connectivity/biometrics/get-biometrics-scenarios) with the following query parameter: `?applicationTypes=verification`. Check scenario descriptions in the response to find the scenario you need, and copy its `name`.",
+      "example":"FACE_VERIFICATION"
+     },
+     "locationInfo":{
+      "$ref":"#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.LocationInfo"
+     },
+     "partnerReference":{
+      "type":"string",
+      "description":"Your (usually unique) identifier of the end user performing the scenario. Will be sent together with the rest of the information via the webhook.",
+      "example":"MyRef-jqhof"
+     },
+     "webhook":{
+      "$ref":"#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.WebhookInfo"
+     },
+     "successUrl":{
+      "type":"string",
+      "description":"End user will be sent to this URL after the selected scenario has been successfully completed.",
+      "example":"https://example.com/success"
+     },
+     "cancelUrl":{
+      "type":"string",
+      "description":"End user will be sent to this URL if they cancel the scenario.",
+      "example":"https://example.com/cancel"
+     },
+     "retainData":{
+      "type":"boolean",
+      "description":"Indicates whether Infobip should store and retain data. This value overrides value in account configuration.",
+      "example":true
+     },
+     "biometricData":{
+      "$ref":"#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.BiometricData"
+     }
+    },
+    "required":[
+     "locationInfo",
+     "scenarioName",
+     "webhook"
+    ],
+    "title":"VerificationSessionRequest"
+   },
+   "8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.WebhookInfo":{
+    "type":"object",
+    "description":"Webhook that will be called with the information about the request status. The webhook will be called with a POST method that contains all the info in JSON format. Check webhook endpoint for more details.",
+    "properties":{
+     "url":{
+      "type":"string",
+      "format":"uri",
+      "description":"Your webhook URL onto which the request is received.",
+      "example":"https://example.com/webhook"
+     },
+     "type":{
+      "type":"string",
+      "default":"ON_END",
+      "description":"Defines what kind of requests you want to receive on a webhook. `ON_END` - only final status at the end, `ON_STATUS_CHANGE` - any change in the scenario.",
+      "enum":[
+       "ON_END",
+       "ON_STATUS_CHANGE"
+      ],
+      "example":"ON_END"
+     }
+    },
+    "required":[
+     "url"
+    ],
+    "title":"WebhookInfo"
+   },
+   "ApiException":{
+    "type":"object",
+    "properties":{
+     "requestError":{
+      "$ref":"#/components/schemas/ApiRequestError"
+     }
+    },
+    "title":"ApiException"
+   },
+   "ApiRequestError":{
+    "type":"object",
+    "properties":{
+     "serviceException":{
+      "$ref":"#/components/schemas/ApiRequestErrorDetails"
+     }
+    },
+    "title":"ApiRequestError"
+   },
+   "ApiRequestErrorDetails":{
+    "type":"object",
+    "properties":{
+     "messageId":{
+      "type":"string",
+      "description":"Identifier of the error.",
+      "example":"BAD_REQUEST"
+     },
+     "text":{
+      "type":"string",
+      "description":"Detailed error description.",
+      "example":"Bad request"
+     },
+     "validationErrors":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"array",
+       "description":"Map of validation errors.",
+       "example":"\"request.message.content.media.file.url\": [\"is not a valid url\"]",
+       "items":{
+        "type":"string",
+        "description":"Map of validation errors.",
+        "example":"\"request.message.content.media.file.url\": [\"is not a valid url\"]"
+       }
+      },
+      "description":"Map of validation errors.",
+      "example":"\"request.message.content.media.file.url\": [\"is not a valid url\"]"
+     }
+    },
+    "title":"ApiRequestErrorDetails"
+   },
+   "eb583710b0e1739c1b6da279daf56e71bef92e0a50c90d88ff2c7fea69527204.EnrollmentWebhookData":{
+    "type":"object",
+    "description":"Result data object.",
+    "properties":{
+     "biometricReference":{
+      "type":"string",
+      "description":"36-character unique identifier of a biometric vector associated with the end user. Used, if Infobip needs to store the vector.",
+      "example":"usr_eb1cfc67ead74fc29ff2c65c4cec2baf"
+     },
+     "biometricVector":{
+      "type":"array",
+      "description":"Biometric vector associated with the end user. Used, if Infobip does not store the vector.",
+      "example":[
+       -0.09652680158615112,
+       0.07107646763324738,
+       -0.029479391872882843,
+       -0.006973235867917538
+      ],
+      "items":{
+       "type":"number",
+       "format":"double"
+      }
+     }
+    },
+    "title":"EnrollmentWebhookData"
+   },
+   "eb583710b0e1739c1b6da279daf56e71bef92e0a50c90d88ff2c7fea69527204.EnrollmentWebhookRequest":{
+    "type":"object",
+    "properties":{
+     "sessionId":{
+      "type":"string",
+      "description":"Unique session identifier.",
+      "example":"efc373be-ab6d-4c63-b798-1f65b7b4b2b3"
+     },
+     "partnerReference":{
+      "type":"string",
+      "description":"Your identifier of the end user performing a scenario sent in the initial request.",
+      "example":"MyRef-jqhof"
+     },
+     "status":{
+      "type":"string",
+      "description":"Current session status.",
+      "enum":[
+       "CREATED",
+       "ACTIVE",
+       "SUCCESS",
+       "EXPIRED",
+       "CANCELED"
+      ],
+      "example":"SUCCESS"
+     },
+     "data":{
+      "$ref":"#/components/schemas/eb583710b0e1739c1b6da279daf56e71bef92e0a50c90d88ff2c7fea69527204.EnrollmentWebhookData"
+     }
+    },
+    "required":[
+     "data",
+     "partnerReference",
+     "sessionId"
+    ],
+    "title":"EnrollmentWebhookRequest"
+   },
+   "eb583710b0e1739c1b6da279daf56e71bef92e0a50c90d88ff2c7fea69527204.ExtractionWebhookData":{
+    "type":"object",
+    "description":"Result data object.",
+    "properties":{
+     "payload":{
+      "type":"string",
+      "description":"Payload extracted from scanned code.",
+      "example":"1234567890"
+     }
+    },
+    "title":"ExtractionWebhookData"
+   },
+   "eb583710b0e1739c1b6da279daf56e71bef92e0a50c90d88ff2c7fea69527204.ExtractionWebhookRequest":{
+    "type":"object",
+    "properties":{
+     "sessionId":{
+      "type":"string",
+      "description":"Unique session identifier.",
+      "example":"efc373be-ab6d-4c63-b798-1f65b7b4b2b3"
+     },
+     "partnerReference":{
+      "type":"string",
+      "description":"Your identifier of the end user performing a scenario sent in the initial request.",
+      "example":"MyRef-jqhof"
+     },
+     "status":{
+      "type":"string",
+      "description":"Current session status.",
+      "enum":[
+       "CREATED",
+       "ACTIVE",
+       "SUCCESS",
+       "EXPIRED",
+       "CANCELED"
+      ],
+      "example":"SUCCESS"
+     },
+     "data":{
+      "$ref":"#/components/schemas/eb583710b0e1739c1b6da279daf56e71bef92e0a50c90d88ff2c7fea69527204.ExtractionWebhookData"
+     }
+    },
+    "required":[
+     "data",
+     "partnerReference",
+     "sessionId"
+    ],
+    "title":"ExtractionWebhookRequest"
+   },
+   "eb583710b0e1739c1b6da279daf56e71bef92e0a50c90d88ff2c7fea69527204.KycWebhookData":{
+    "type":"object",
+    "description":"Result data object.",
+    "properties":{
+     "mrzData":{
+      "$ref":"#/components/schemas/eb583710b0e1739c1b6da279daf56e71bef92e0a50c90d88ff2c7fea69527204.MrzWebhookData"
+     },
+     "faceMatch":{
+      "type":"boolean",
+      "description":"The result of comparing face images between a document and a selfie. `True`, if distance between images is less than configured threshold, which means that the faces most likely match. `False` means that the faces most likely do not match.",
+      "example":true
+     },
+     "faceDistance":{
+      "type":"number",
+      "format":"float",
+      "description":"Distance between face images from a document and a selfie. Possible values are numbers between `0.00` and `1.00`. The closer the number is to `0.00`, the more likely it is that the images match.",
+      "example":0.232
+     },
+     "faceConfidenceScore":{
+      "type":"number",
+      "format":"float",
+      "description":"Confidence score between face images from a document and a selfie. Possible values are numbers between `0.00` and `100.00`. The closer the number is to `100.00`, the more likely it is that the images match.",
+      "example":83.0
+     },
+     "biometricReference":{
+      "type":"string",
+      "description":"36-character unique identifier of a biometric vector associated with the end user. Used, if Infobip needs to store the vector.",
+      "example":"usr_eb1cfc67ead74fc29ff2c65c4cec2baf"
+     },
+     "biometricVector":{
+      "type":"array",
+      "description":"Biometric vector associated with the end user. Used, if Infobip does not store the vector.",
+      "example":[
+       -0.09652680158615112,
+       0.07107646763324738,
+       -0.029479391872882843,
+       -0.006973235867917538
+      ],
+      "items":{
+       "type":"number",
+       "format":"double"
+      }
+     }
+    },
+    "title":"KycWebhookData"
+   },
+   "eb583710b0e1739c1b6da279daf56e71bef92e0a50c90d88ff2c7fea69527204.KycWebhookRequest":{
+    "type":"object",
+    "properties":{
+     "sessionId":{
+      "type":"string",
+      "description":"Unique session identifier.",
+      "example":"efc373be-ab6d-4c63-b798-1f65b7b4b2b3"
+     },
+     "partnerReference":{
+      "type":"string",
+      "description":"Your identifier of the end user performing a scenario sent in the initial request.",
+      "example":"MyRef-jqhof"
+     },
+     "status":{
+      "type":"string",
+      "description":"Current session status.",
+      "enum":[
+       "CREATED",
+       "ACTIVE",
+       "SUCCESS",
+       "EXPIRED",
+       "CANCELED"
+      ],
+      "example":"SUCCESS"
+     },
+     "data":{
+      "$ref":"#/components/schemas/eb583710b0e1739c1b6da279daf56e71bef92e0a50c90d88ff2c7fea69527204.KycWebhookData"
+     }
+    },
+    "required":[
+     "data",
+     "partnerReference",
+     "sessionId"
+    ],
+    "title":"KycWebhookRequest"
+   },
+   "eb583710b0e1739c1b6da279daf56e71bef92e0a50c90d88ff2c7fea69527204.MrzWebhookData":{
+    "type":"object",
+    "description":"Results of reading Machine Readable Zone (MRZ) data.",
+    "properties":{
+     "name":{
+      "type":"string",
+      "description":"Name; part of the MRZ name of a holder.",
+      "example":"NAME"
+     },
+     "surname":{
+      "type":"string",
+      "description":"Surname; part of the MRZ name of a holder.",
+      "example":"SURNAME"
+     },
+     "documentNumber":{
+      "type":"string",
+      "description":"MRZ document number.",
+      "example":"123456789"
+     },
+     "birthDate":{
+      "type":"string",
+      "description":"MRZ date of birth. Has the following format: `YYMMDD`.",
+      "example":"000101"
+     },
+     "expiryDate":{
+      "type":"string",
+      "description":"MRZ date of expiry. Has the following format: `YYMMDD`.",
+      "example":"250101"
+     },
+     "country":{
+      "type":"string",
+      "description":"MRZ issuing state or organization.",
+      "example":"HRV"
+     },
+     "sex":{
+      "type":"string",
+      "description":"MRZ gender.",
+      "example":"F"
+     },
+     "nationality":{
+      "type":"string",
+      "description":"MRZ nationality.",
+      "example":"HRV"
+     },
+     "optionalData":{
+      "type":"array",
+      "description":"MRZ optional data.",
+      "example":[
+       "mrzOptionalItem1",
+       "mrzOptionalItem2"
+      ],
+      "items":{
+       "type":"string"
+      }
+     },
+     "personalNumber":{
+      "type":"string",
+      "description":"Personal identification number, part of MRZ optional data.",
+      "example":"01234567890"
+     },
+     "type":{
+      "type":"string",
+      "description":"MRZ document code.",
+      "example":"P"
+     }
+    },
+    "title":"MrzWebhookData"
+   },
+   "eb583710b0e1739c1b6da279daf56e71bef92e0a50c90d88ff2c7fea69527204.VerificationWebhookData":{
+    "type":"object",
+    "description":"Result data object.",
+    "properties":{
+     "faceMatch":{
+      "type":"boolean",
+      "description":"The result of comparing face images between a document and a selfie. `True`, if distance between images is less than configured threshold, which means that the faces most likely match. `False` means that the faces most likely do not match.",
+      "example":true
+     },
+     "faceDistance":{
+      "type":"number",
+      "format":"float",
+      "description":"Distance between face images from a document and a selfie. Possible values are numbers between `0.00` and `1.00`. The closer the number is to `0.00`, the more likely it is that the images match.",
+      "example":0.232
+     },
+     "faceConfidenceScore":{
+      "type":"number",
+      "format":"float",
+      "description":"Confidence score between face images from a document and a selfie. Possible values are numbers between `0.00` and `100.00`. The closer the number is to `100.00`, the more likely it is that the images match.",
+      "example":83.0
+     }
+    },
+    "title":"VerificationWebhookData"
+   },
+   "eb583710b0e1739c1b6da279daf56e71bef92e0a50c90d88ff2c7fea69527204.VerificationWebhookRequest":{
+    "type":"object",
+    "properties":{
+     "sessionId":{
+      "type":"string",
+      "description":"Unique session identifier.",
+      "example":"efc373be-ab6d-4c63-b798-1f65b7b4b2b3"
+     },
+     "partnerReference":{
+      "type":"string",
+      "description":"Your identifier of the end user performing a scenario sent in the initial request.",
+      "example":"MyRef-jqhof"
+     },
+     "status":{
+      "type":"string",
+      "description":"Current session status.",
+      "enum":[
+       "CREATED",
+       "ACTIVE",
+       "SUCCESS",
+       "EXPIRED",
+       "CANCELED"
+      ],
+      "example":"SUCCESS"
+     },
+     "data":{
+      "$ref":"#/components/schemas/eb583710b0e1739c1b6da279daf56e71bef92e0a50c90d88ff2c7fea69527204.VerificationWebhookData"
+     }
+    },
+    "required":[
+     "data",
+     "partnerReference",
+     "sessionId"
+    ],
+    "title":"VerificationWebhookRequest"
+   }
+  },
+  "responses":{
+   "ApiException401":{
+    "description":"Unauthorized",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"UNAUTHORIZED",
+         "text":"Unauthorized"
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>UNAUTHORIZED</messageId>\n      <text>Unauthorized</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   },
+   "ApiException403":{
+    "description":"Forbidden",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"FORBIDDEN",
+         "text":"Forbidden"
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>FORBIDDEN</messageId>\n      <text>Forbidden</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   },
+   "ApiException500":{
+    "description":"Internal Server Error",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"GENERAL_ERROR",
+         "text":"Something went wrong. Please contact support."
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>GENERAL_ERROR</messageId>\n      <text>Something went wrong. Please contact support.</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   }
+  },
+  "parameters":{},
+  "examples":{},
+  "requestBodies":{},
+  "headers":{},
+  "securitySchemes":{
+   "APIKeyHeader":{
+    "type":"apiKey",
+    "description":"This is the most secure authorization type and the one with the most flexibility.\n\nAPI keys can be generated by calling the dedicated API method. Furthermore, API keys can have a limited scope and cover only some API methods. Lastly, they can\nbe revoked at any time. This range of possibilities makes API keys well suited for separating the API access rights across multiple applications or use cases.\nFinally, the loss of an API key is easily manageable.\n\nYou can manage your API keys from [GUI](https://portal.infobip.com/settings/accounts/api-keys), or programmatically\nwith [dedicated API](#platform-&-connectivity/settings).\n\nAPI key Authorization header example:\n\n```shell\nAuthorization: App 003026bbc133714df1834b8638bb496e-8f4b3d9a-e931-478d-a994-28a725159ab9\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "Basic":{
+    "type":"http",
+    "description":"Basic authorization type can be used in situations when the API key is not available. For example, API methods for generating API keys should be authenticated\nwith the Basic type.\n\nIn this case, the credentials included in the Authorization header should be a Base64 encoded username and password combination. More formally, basic\nauthentication header can be constructed in three steps:\n\n* Username and password are concatenated using the colon `(:)` as a separator `username:password`.\n* The resulting string is encoded using the [RFC2045-MIME](https://www.ietf.org/rfc/rfc2045.txt) variant of Base64.\n* Encoded string is added as credentials after the `\"Basic \"` type.\n\nExample:\n\n```shell\nUsername: \"Aladdin\"\nPassword: \"openSesame\"\n\nConcatenated string: \"Aladdin:openSesame\"\n\nBase64 encoded string: \"QWxhZGRpbjpvcGVuU2VzYW1l\"\n\nAuthorization header: \"Basic QWxhZGRpbjpvcGVuU2VzYW1l\"\n```\n\n> **Implementation detail**: Base64 encoding is a standard and many available programming languages and frameworks provide convenient methods for encoding\n> strings.\n",
+    "scheme":"basic"
+   },
+   "IBSSOTokenHeader":{
+    "type":"apiKey",
+    "description":"This authorization type is suited for situations when you do not want to store Infobip credentials in your own app. Instead, your users will input their Infobip\ncredentials every time they access your application and the application will use those credentials to create a session. From then on, the session token can be\nused to authenticate subsequent API requests. Note that the session will expire automatically after a predefined period of inactivity, and can also be manually\nterminated by making an appropriate API call.\n\nYou can find more details on the creation and behavior of the session at\nthe [dedicated documentation page](#platform-connectivity/account-management/create-session).\n\nAfter obtaining the session token by calling the above-referenced API method you can include it in the Authorization header like this:\n\n```shell\nAuthorization: IBSSO 2f9b4d31-2d0d-49a8-85f0-9b862bdca394\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "OAuth2":{
+    "type":"oauth2",
+    "description":"Similarly to the IBSSO Token authentication you can use OAuth 2.0 bearer token with Infobip serving both as resource and authorization server. You can obtain\nthe access token using the client credentials grant from `auth/1/oauth2/token` endpoint. It will provide you with your access token, and its expiration period.\nYou can use the token to authorize your API calls until it expires. You can find out more about the process in\nthe [official specification](https://tools.ietf.org/html/rfc6749#section-4.4).\n\nYou can include your access token in the Authorization HTTP request header like this:\n\n```http\nAuthorization: Bearer <access_token>\n```",
+    "flows":{
+     "clientCredentials":{
+      "tokenUrl":"https://api.infobip.com/auth/1/oauth2/token",
+      "scopes":{}
+     }
+    }
+   }
+  },
+  "links":{},
+  "callbacks":{}
+ },
+ "webhooks":{
+  "receive-extraction-session-results":{
+   "post":{
+    "tags":[
+     "connectivity",
+     "biometrics",
+     "extraction-session"
+    ],
+    "summary":"Receive Extraction Session Results",
+    "description":"Webhook that will be called with information about the Extraction Session status and results. The webhook URL provided in the [Create Extraction Session](#platform-connectivity/biometrics/create-biometrics-extraction-session) request will be called with the POST method that contains all the info in JSON format. It only expects `200 OK` status with no content in response.",
+    "operationId":"receive-extraction-session-results",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/eb583710b0e1739c1b6da279daf56e71bef92e0a50c90d88ff2c7fea69527204.ExtractionWebhookRequest"
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"Your server returns this code if it accepts the callback"
+     }
+    }
+   }
+  },
+  "receive-kyc-session-results":{
+   "post":{
+    "tags":[
+     "connectivity",
+     "biometrics",
+     "kyc-session"
+    ],
+    "summary":"Receive KYC Session Results",
+    "description":"Webhook which will be called with information about the KYC session status and results. The webhook URL provided in the [Create KYC Session](#platform-connectivity/biometrics/create-biometrics-kyc-session) request will be called with the POST method that contains all the info in JSON format. It only expects `200 OK` status with no content in response.",
+    "operationId":"receive-kyc-session-results",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/eb583710b0e1739c1b6da279daf56e71bef92e0a50c90d88ff2c7fea69527204.KycWebhookRequest"
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"Your server returns this code if it accepts the callback"
+     }
+    }
+   }
+  },
+  "receive-enrollment-session-results":{
+   "post":{
+    "tags":[
+     "connectivity",
+     "biometrics",
+     "enrollment-session"
+    ],
+    "summary":"Receive Enrollment Session Results",
+    "description":"Webhook that will be called with information about the Enrollment Session status and results. The webhook URL provided in the [Create Enrollment Session](#platform-connectivity/biometrics/create-biometrics-enrollment-session) request will be called with the POST method that contains all the info in JSON format. It only expects `200 OK` status with no content in response.",
+    "operationId":"receive-enrollment-session-results",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/eb583710b0e1739c1b6da279daf56e71bef92e0a50c90d88ff2c7fea69527204.EnrollmentWebhookRequest"
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"Your server returns this code if it accepts the callback"
+     }
+    }
+   }
+  },
+  "receive-verification-session-results":{
+   "post":{
+    "tags":[
+     "connectivity",
+     "biometrics",
+     "verification-session"
+    ],
+    "summary":"Receive Verification Session Results",
+    "description":"Webhook which will be called with information about the Verification session status and results. The webhook URL provided in the [Create Verification Session](#platform-connectivity/biometrics/create-biometrics-verification-session) request will be called with the POST method that contains all the info in JSON format. It only expects `200 OK` status with no content in response.",
+    "operationId":"receive-verification-session-results",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/eb583710b0e1739c1b6da279daf56e71bef92e0a50c90d88ff2c7fea69527204.VerificationWebhookRequest"
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"Your server returns this code if it accepts the callback"
+     }
+    }
+   }
+  }
+ }
+}

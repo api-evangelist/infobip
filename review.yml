@@ -1,0 +1,377 @@
+aid: infobip
+name: Infobip
+review:
+  question: >-
+    Does Infobip publish a real, self-serve developer surface with downloadable OpenAPI,
+    and what is its CAMARA / GSMA Open Gateway posture as a CPaaS aggregator?
+  answer: true
+  date: '2026-07-25'
+  reviewer: API Evangelist
+  homeMarket: Croatia
+  tier: cpaas-aggregator
+  gated: false
+findings:
+  summary: |
+    Infobip is on the API-native half of the telecom split. It runs a real, public,
+    self-serve developer surface — no login wall in front of the documentation, the
+    API reference, or the specification itself. The single most important finding is
+    that Infobip serves its ENTIRE OpenAPI 3.1 definition anonymously from a live API
+    endpoint: GET https://api.infobip.com/platform/1/openapi returned HTTP 200 and a
+    9.9 MB OpenAPI 3.1.0 document (info.version 3.210.0, x-generatedAt
+    2026-07-23T15:23:37Z) containing 652 operation paths and 102 webhooks across 338
+    tags. A companion endpoint, GET /platform/1/openapi/available-products, returned
+    46 product identifiers, and GET /platform/1/openapi/{product} returned a separate
+    OpenAPI 3.1 document for each of the 46 — all HTTP 200, all anonymous. The 46
+    per-product path counts sum to exactly 652, so the product specs cleanly partition
+    the platform spec. All 47 documents were harvested verbatim into openapi/.
+    Ironically the docs page for that endpoint lists auth schemes as required, but the
+    endpoint answered anonymously on the review date.
+
+    CAMARA posture is the strongest signal in this profile and it is real, not a press
+    release. The published specification contains a first-class "camara" product under
+    the Connectivity category with nine callable endpoints under /camara/*, covering
+    Number Verification (both network-based v0 and SIM-based v2, including a v2 DCQL
+    request and a device-phone-number retrieval), SIM Swap (check and retrieve-date),
+    Device Location Verification, and KYC Match v0.3. Infobip also holds GSMA Open
+    Gateway certification for SIM Swap and Number Verification, announced 2025-09-16,
+    and is an announced Aduna (Ericsson/carrier JV) channel partner as of February
+    2025. The honest caveat: while the CAMARA specification is public and machine
+    readable, the product description inside Infobip's own spec opens with "Contact us
+    and get started with CAMARA. Please fill out the form, and our experts will contact
+    you shortly" — so the CAMARA subset is commercially sales-gated even though the
+    rest of the platform is self-serve. The same CTA appears on the Mobile Identity
+    product, which carries Infobip's own pre-CAMARA equivalents (Silent Mobile
+    Verification, Number Intelligence, a proprietary /mi/simswap/1/check, and a
+    National Identity Number check).
+
+    Auth is API key first. The spec declares four security schemes: APIKeyHeader
+    ("Authorization: App <key>", scoped, revocable, managed in the portal),
+    HTTP Basic, an IBSSO session token header, and OAuth2 client-credentials with
+    tokenUrl https://api.infobip.com/auth/1/oauth2/token. Notably, CIBA
+    (Client-Initiated Backchannel Authentication) — the authorization pattern CAMARA
+    specifies for network-based consent — does NOT appear anywhere in the 9.9 MB
+    specification: zero occurrences of "ciba", "backchannel", or "openid", and no
+    OIDC discovery document is served (/.well-known/openid-configuration on
+    api.infobip.com returned HTTP 404 with an Infobip JSON error body). The CAMARA
+    number-verification v0 flow does expose GET /camara/number-verification/v0/authorize,
+    a redirect-style device authorization step, but it is wrapped in Infobip's own
+    auth rather than a published OIDC/CIBA surface. That is the aggregator pattern:
+    the carrier-side CAMARA authorization complexity is absorbed and re-fronted as a
+    plain Infobip API key.
+
+    No TM Forum Open API conformance certification was found for Infobip, and no NEF /
+    SCEF, 5G network-slicing, or edge/MEC surface is documented — expected, since
+    Infobip is a channel on top of operator networks rather than an operator running
+    exposure functions. Webhooks are extensive and first-class: 102 webhook definitions
+    are carried natively in the OpenAPI 3.1 `webhooks` object (delivery reports,
+    inbound messages, call events, verification results), which is a stronger event
+    posture than an unpublished callback list, though no AsyncAPI document is
+    published. A public Postman workspace exists (publisher "Infobip Developers",
+    7 collections, public visibility). First-party SDKs are published for Java, Python,
+    PHP, C#, Go and Node (npm @infobip-api/sdk, PyPI infobip-api-python-sdk), plus RTC
+    and Mobile Messaging SDKs for iOS/Android/React Native/Flutter/Cordova. Infobip
+    additionally operates remote MCP servers documented at infobip.com/docs/mcp with
+    an OAuth 2.1 or API key path — an agent-facing surface most of the sector lacks.
+  developerPortal:
+    url: https://www.infobip.com/docs/api
+    httpStatus: 200
+    confirmed: true
+    type: real self-serve portal
+    loginWall: false
+    freeTrial: true
+    signUp: https://www.infobip.com/signup
+    note: >-
+      developer.infobip.com (200) and dev.infobip.com (200) both redirect to
+      https://www.infobip.com/docs/api. developers.infobip.com and docs.infobip.com do
+      not resolve (curl exit 000). Caveat recorded honestly: the docs hub is a
+      single-page app that answers HTTP 200 for any path under /docs/api/, including
+      invented ones, so per-product documentation URLs in apis.yml were derived from
+      the category/product tag pairs inside Infobip's own published specification and
+      match the URL pattern confirmed against a real page
+      (https://www.infobip.com/docs/api/tools/openapi/get-openapi).
+  specHarvest:
+    harvested: true
+    count: 47
+    fetchDate: '2026-07-25'
+    format: OpenAPI 3.1.0 (JSON)
+    specVersion: 3.210.0
+    sources:
+    - url: https://api.infobip.com/platform/1/openapi
+      httpStatus: 200
+      bytes: 9943432
+      anonymous: true
+      savedAs: openapi/infobip-platform-full-openapi.json
+      note: Complete platform specification — 652 paths, 102 webhooks, 338 tags.
+    - url: https://api.infobip.com/platform/1/openapi/available-products
+      httpStatus: 200
+      anonymous: true
+      note: Returned 46 product identifiers used to harvest per-product specifications.
+    - url: https://api.infobip.com/platform/1/openapi/{product}
+      httpStatus: 200
+      anonymous: true
+      savedAs: openapi/infobip-<product>-openapi.json
+      count: 46
+      note: >-
+        One specification per product for 2fa, account-management, ai-assistants,
+        answers, apple-mfb, application-entity, billing-usage-api, biometrics,
+        blocklist, camara, catalogs-api, common-assets, conversations, email,
+        instagram, kakao, knowledge-base, line, live-chat, messages-api, messenger,
+        metrics-api, mms, mobile-app-messaging, mobile-identity, moments,
+        number-activation-state, number-lookup, numbers, omni-failover, open-channel,
+        openapi, people, rcs, resources, sending-strategy, signals, sms,
+        subscriptions-api, tiktok, viber, vocalize, voice, webrtc-calls, whatsapp,
+        zalo.
+    negativeProbes:
+    - url: https://www.infobip.com/openapi.json
+      httpStatus: 404
+    - url: https://api.infobip.com/openapi.json
+      httpStatus: 404
+    - url: https://api.infobip.com/swagger.json
+      httpStatus: 404
+    - url: https://api.infobip.com/api-docs
+      httpStatus: 404
+    - url: https://api.infobip.com/v3/api-docs
+      httpStatus: 404
+    - url: https://api.infobip.com/graphql
+      httpStatus: 404
+  camara:
+    posture: >-
+      Real, callable CAMARA implementation published as OpenAPI by a CPaaS aggregator —
+      GSMA Open Gateway certified for SIM Swap and Number Verification, Aduna channel
+      partner — but commercially sales-gated behind a contact form.
+    implemented: true
+    pressReleaseOnly: false
+    specPublished: true
+    specFile: openapi/infobip-camara-openapi.json
+    docs: https://www.infobip.com/docs/api/connectivity/camara
+    apis:
+    - name: Number Verification
+      camaraProject: NumberVerification
+      endpoints:
+      - GET /camara/number-verification/v0/authorize
+      - POST /camara/number-verification/v0/verify
+      - POST /camara/number-verification/v2/verify
+      - POST /camara/number-verification/v2/dcql
+      - GET /camara/number-verification/v2/device-phone-number
+      note: Split into network-based (v0) and SIM-based (v2) sections.
+    - name: SIM Swap
+      camaraProject: SimSwap
+      endpoints:
+      - POST /camara/sim-swap/v0/check
+      - POST /camara/sim-swap/v0/retrieve-date
+    - name: Device Location Verification
+      camaraProject: DeviceLocation
+      endpoints:
+      - POST /camara/location/v0/verify
+    - name: KYC Match
+      camaraProject: KnowYourCustomer
+      endpoints:
+      - POST /camara/kyc-match/v0.3/match
+    notFound:
+    - Device Status / Reachability
+    - Quality on Demand (QoD)
+    - Carrier Billing
+    - Device Swap
+    - Population Density
+    - Anti-fraud / Scam Signal
+    gatingNote: >-
+      Infobip's own product description in the specification reads "Contact us and get
+      started with CAMARA. Please fill out the form, and our experts will contact you
+      shortly." The specification is public and machine readable; commercial access is
+      not self-serve.
+  openGateway:
+    member: true
+    certifications:
+    - SIM Swap
+    - Number Verification
+    announced: '2025-09-16'
+    source: https://www.infobip.com/news/infobip-network-api-certifications
+    gsmaSource: >-
+      https://www.gsma.com/solutions-and-impact/gsma-open-gateway/infobip-achieves-gsma-open-gateway-certifications-for-network-apis/
+      (returned HTTP 403 to automated fetch on the review date; certification confirmed
+      via Infobip's own newsroom page).
+  aduna:
+    partner: true
+    role: developer/channel partner in the Aduna (Ericsson + carrier JV) network-API ecosystem
+    announced: '2025-02'
+    source: https://www.ericsson.com/en/press-releases/2025/2/aduna-partners-with-infobip-to-expand-ecosystem-and-network-innovation
+    note: >-
+      Aduna aggregates operator CAMARA APIs; Infobip is one of its developer platform
+      channels alongside Google Cloud, Sinch and Vonage. Infobip therefore reaches
+      network APIs BOTH directly (its own operator connections) and through Aduna.
+  tmForum:
+    conformanceFound: false
+    note: >-
+      No TM Forum Open API conformance certification (TMF620/622/641 or any other) was
+      found for Infobip. Expected for a CPaaS aggregator rather than a BSS/OSS vendor
+      or an operator.
+  threeGpp:
+    nefOrScef: false
+    networkSlicing: false
+    edgeMec: false
+    note: >-
+      No NEF/SCEF, network-slicing or edge/MEC surface is documented. Infobip consumes
+      operator capability through CAMARA and its own carrier connections rather than
+      operating exposure functions.
+  auth:
+    schemes:
+    - type: apiKey
+      name: APIKeyHeader
+      header: 'Authorization: App <api-key>'
+      scoped: true
+      note: Primary scheme; keys are scoped and revocable, managed in the Infobip portal.
+    - type: http
+      name: Basic
+      scheme: basic
+    - type: apiKey
+      name: IBSSOTokenHeader
+      note: Session token obtained from user credentials.
+    - type: oauth2
+      name: OAuth2
+      flow: clientCredentials
+      tokenUrl: https://api.infobip.com/auth/1/oauth2/token
+    ciba: false
+    cibaNote: >-
+      No CIBA / Client-Initiated Backchannel Authentication anywhere in the 9.9 MB
+      specification (zero matches for "ciba", "backchannel", "back-channel",
+      "bc-authorize", "openid"). CAMARA's OIDC/CIBA authorization is absorbed by the
+      aggregator and re-fronted as an Infobip API key.
+    oidcDiscovery:
+    - url: https://api.infobip.com/.well-known/openid-configuration
+      httpStatus: 404
+    - url: https://api.infobip.com/.well-known/oauth-authorization-server
+      httpStatus: 404
+    liveProbe:
+      url: POST https://api.infobip.com/sms/2/text/advanced
+      httpStatus: 401
+      body: '{"requestError":{"serviceException":{"messageId":"UNAUTHORIZED","text":"Invalid login details"}}}'
+      note: Confirms a live, real API host behind the specification.
+  webhooks:
+    published: true
+    count: 102
+    mechanism: OpenAPI 3.1 `webhooks` object carried in the published specification
+    asyncapi: false
+    subscriptionManagement: >-
+      A dedicated Subscriptions Management product (22 operations) manages webhook
+      subscriptions, notification profiles, webhook security settings and certificates.
+    note: >-
+      Richest webhook products by count — voice (16), rcs (11), numbers (7),
+      whatsapp (7), messenger (5), viber (5).
+  sdks:
+    firstParty:
+    - language: Java
+      repo: https://github.com/infobip/infobip-api-java-client
+    - language: Python
+      repo: https://github.com/infobip/infobip-api-python-client
+      package: https://pypi.org/project/infobip-api-python-sdk/
+    - language: PHP
+      repo: https://github.com/infobip/infobip-api-php-client
+    - language: C#
+      repo: https://github.com/infobip/infobip-api-csharp-client
+    - language: Go
+      repo: https://github.com/infobip/infobip-api-go-client
+    - language: Node.js
+      package: https://www.npmjs.com/package/@infobip-api/sdk
+      version: 0.3.2
+    mobileAndRtc:
+    - Mobile Messaging SDK (iOS, Android, Huawei, React Native, Flutter, Cordova, Expo)
+    - Infobip RTC SDK (iOS, Android, JS)
+    generatedFrom: OpenAPI specification
+    docs: https://www.infobip.com/docs/sdk
+  postman:
+    workspace: https://www.postman.com/infobip/infobip-api
+    visibility: public
+    publisher: Infobip Developers
+    collections: 7
+    note: Confirmed via Postman public workspace search API.
+  graphql:
+    published: false
+    note: https://api.infobip.com/graphql returned HTTP 404.
+  mcp:
+    published: true
+    docs: https://www.infobip.com/docs/mcp
+    host: https://mcp.infobip.com
+    repo: https://github.com/infobip/mcp
+    auth: OAuth 2.1 or API key
+    note: >-
+      Remote MCP servers for messaging, 2FA, telco network capabilities, customer data
+      and documentation search. Infobip also open-sources infobip-openapi-mcp, a
+      framework for exposing OpenAPI-documented HTTP APIs as MCP servers.
+  productFamily:
+    channels:
+    - SMS
+    - MMS
+    - Voice
+    - WebRTC
+    - RCS
+    - WhatsApp
+    - Viber
+    - Messenger
+    - Instagram Direct Messages
+    - LINE
+    - Kakao Talk
+    - Zalo
+    - TikTok
+    - Apple Messages for Business
+    - Email
+    - Mobile push and in-app messaging
+    - Live Chat
+    - Open Channel
+    - OMNI Failover
+    connectivity:
+    - CAMARA
+    - Mobile Identity
+    - Number lookup
+    - Number Activation State
+    - Biometrics
+    platform:
+    - Messages API
+    - Numbers
+    - 2FA
+    - Account management
+    - Application and Entity Management
+    - Subscriptions Management
+    - Sending Strategy Management
+    - Blocklist
+    - Catalogs
+    - Resources
+    - Metrics
+    - Billing Usage
+    - Signals
+    customerEngagement:
+    - Conversations
+    - Moments
+    - People
+    - Answers
+    - Knowledge Base
+    - Vocalize
+    - Common Assets
+    aiHub:
+    - AI Assistants
+    tools:
+    - OpenAPI
+  transports:
+  - protocol: REST
+    scheme: https
+    baseURL: https://api.infobip.com
+    documented: true
+    note: >-
+      Infobip issues account-specific personalized base URLs; https://api.infobip.com is
+      the generic host and is what answered on probe. The published specification
+      declares no servers[] block.
+  - protocol: Webhooks
+    scheme: https
+    documented: true
+    note: 102 webhook definitions carried in the OpenAPI 3.1 `webhooks` object.
+  - protocol: WebRTC
+    documented: true
+    note: Infobip RTC / WebRTC Calls product with 22 operations and first-party JS/iOS/Android SDKs.
+  - protocol: MCP
+    scheme: https
+    baseURL: https://mcp.infobip.com
+    documented: true
+  - protocol: GraphQL
+    documented: false
+  - protocol: gRPC
+    documented: false
+    note: No published .proto files found.

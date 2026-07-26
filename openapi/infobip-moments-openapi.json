@@ -1,0 +1,2959 @@
+{
+ "openapi":"3.1.0",
+ "info":{
+  "title":"Infobip OpenAPI Specification",
+  "description":"OpenAPI Specification that contains all public endpoints and webhooks.",
+  "contact":{
+   "name":"Infobip support",
+   "email":"support@infobip.com"
+  },
+  "version":"3.210.0",
+  "x-generatedAt":"2026-07-23T15:23:53.730447352Z"
+ },
+ "tags":[
+  {
+   "name":"customer-engagement",
+   "description":"Complete solutions that will help you drive better outcomes for your customers and business across the entire customer journey.\n",
+   "x-type":"category",
+   "x-displayName":"Customer Engagement"
+  },
+  {
+   "name":"moments",
+   "description":"Use Moments to set up and manage automated messaging campaigns with your customers by building conversation workflows.\n",
+   "x-type":"product",
+   "x-displayName":"Moments"
+  },
+  {
+   "name":"flow",
+   "description":"[Flow](https://www.infobip.com/docs/moments/manage-flow) is the Infobip communication builder that helps you create and manage messaging campaigns. The Flows API allows you to add or remove people from communication programmatically for flows with an [active status](https://www.infobip.com/docs/moments/manage-flow#launch-create).\n\nUse the Add Participants to flow endpoint to a person or batches of persons (between 1-1000 persons). The method works asynchronously to queue and process participants at a rate of 10 requests per second. For reporting of operation results, use the notifyUrl  field to provide a URL of your callback server that will receive a status report or use the Get a report on participants added to Flow endpoint.\n",
+   "x-type":"module",
+   "x-displayName":"Flow"
+  },
+  {
+   "name":"forms",
+   "description":"[Forms](https://www.infobip.com/docs/forms) is an Infobip platform solution to collect customer data that you can then use for messaging or analytics. Forms API allows you to retrieve an active form from your web page, track events, or collect the field values when the end user submits a form.\n",
+   "x-type":"module",
+   "x-displayName":"Forms"
+  }
+ ],
+ "paths":{
+  "/moments/1/flows/{campaignId}/participants":{
+   "post":{
+    "tags":[
+     "customer-engagement",
+     "moments",
+     "flow"
+    ],
+    "summary":"Add participants to flow",
+    "description":"Use this endpoint to add participants to a flow, accommodating anywhere from 1 to 1000 persons.\n                When participants are added, their profiles in People are automatically created, updated or merged based on the identifiers provided.<br>\n                If identifiers are unique, a new profile is created.<br>\n                If identifiers match an existing profile, then that profile is updated.<br>\n                If identifiers refer to multiple existing profiles or are not unique within the request, profiles are merged.<br>\n                To prevent unwanted merges, ensure each participant's identifiers\n                (<code>identifyBy</code>, <code>externalId</code> and <code>contactInformation</code>) are unique.",
+    "operationId":"add-flow-participants",
+    "parameters":[
+     {
+      "name":"campaignId",
+      "in":"path",
+      "description":"Unique identifier of the flow that participant will be added to.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64"
+      },
+      "example":200000000000001
+     }
+    ],
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.AddFlowParticipantsRequest"
+       },
+       "examples":{
+        "Add participants to Flow":{
+         "summary":"Add participants to Flow",
+         "description":"Add participants to Flow",
+         "value":{
+          "participants":[
+           {
+            "identifyBy":{
+             "identifier":"370329180020364",
+             "type":"FACEBOOK"
+            }
+           },
+           {
+            "identifyBy":{
+             "identifier":"test@infobip.com",
+             "type":"EMAIL"
+            },
+            "variables":{
+             "orderNumber":1167873391
+            }
+           },
+           {
+            "identifyBy":{
+             "identifier":"test2@infobip.com",
+             "type":"EMAIL"
+            },
+            "variables":{
+             "orderNumber":1595299041
+            },
+            "person":{
+             "externalId":"optional_external_person_id",
+             "customAttributes":{
+              "Contract Expiry":"2023-04-01",
+              "Company":"Infobip"
+             },
+             "contactInformation":{
+              "email":[
+               {
+                "address":"test@infobip.com"
+               }
+              ]
+             }
+            }
+           }
+          ],
+          "notifyUrl":"https://mydomain/callback",
+          "callbackData":"Callback Data"
+         }
+        }
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.AddFlowParticipantsResponse"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "operationId":"03f2d474-0508-46bf-9f3d-d8e2c28adaea"
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.BadRequestResponse"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "description":"Bad request",
+          "value":{
+           "type":"about:blank",
+           "title":"Bad Request",
+           "status":400,
+           "detail":"Failed to read request",
+           "instance":"/moments/1/flows/200000000000001/participants"
+          }
+         },
+         "Invalid number of participants":{
+          "summary":"Invalid number of participants",
+          "description":"Invalid number of participants",
+          "value":{
+           "errorCode":"400",
+           "errorMessage":"Number of participants must be between 1 and 1000. Received: 1200"
+          }
+         },
+         "Mandatory fields absent":{
+          "summary":"Mandatory fields absent",
+          "description":"Mandatory fields absent",
+          "value":{
+           "errorCode":"400",
+           "errorMessage":"Mandatory fields are absent: [participants]"
+          }
+         },
+         "Validation errors":{
+          "summary":"Validation errors",
+          "description":"Validation errors",
+          "value":{
+           "errorCode":"400",
+           "errorMessage":"Field participants.[0].identifyBy.type must not be null or unsupported value"
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.ExceptionResponse"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "errorCode":"40401",
+           "errorMessage":"Could not find active flow for campaign 200000000000001"
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "description":"Too Many Requests",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8a96177a069f927b552e6f478d6833812472502f930c109564e4f89f3264faaa.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"TOO_MANY_REQUESTS",
+             "text":"Too many requests"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "flow:use",
+     "flow:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":10,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/moments/1/flows/{campaignId}/participants/report":{
+   "get":{
+    "tags":[
+     "customer-engagement",
+     "moments",
+     "flow"
+    ],
+    "summary":"Get a report on participants added to flow",
+    "description":"Use this API endpoint to fetch a report to confirm that all persons have been successfully added to the flow.\n                Please note that report is stored for 30 days.",
+    "operationId":"get-flow-participants-added-report",
+    "parameters":[
+     {
+      "name":"campaignId",
+      "in":"path",
+      "description":"Unique identifier of the flow that participant will be added to.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64"
+      },
+      "example":200000000000001
+     },
+     {
+      "name":"operationId",
+      "in":"query",
+      "description":"Unique identifier of the operation.",
+      "required":true,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"03f2d474-0508-46bf-9f3d-d8e2c28adaea"
+     },
+     {
+      "name":"applicationId",
+      "in":"query",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      }
+     },
+     {
+      "name":"entityId",
+      "in":"query",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.FlowParticipantsReportResponse"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "operationId":"03f2d474-0508-46bf-9f3d-d8e2c28adaea",
+           "campaignId":200000000000001,
+           "callbackData":"Callback Data",
+           "participants":[
+            {
+             "identifyBy":{
+              "identifier":"test@infobip.com",
+              "type":"EMAIL"
+             },
+             "status":"ACCEPTED"
+            },
+            {
+             "identifyBy":{
+              "identifier":"test2@infobip.com",
+              "type":"EMAIL"
+             },
+             "status":"REJECTED",
+             "errorReason":"REJECTED_INVALID_CONTACT"
+            }
+           ]
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{}
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "flow:use",
+     "flow:read",
+     "flow:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":10,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/communication/1/flows/{campaignId}/participants":{
+   "post":{
+    "tags":[
+     "customer-engagement",
+     "moments",
+     "flow"
+    ],
+    "summary":"Add Person to Flow",
+    "description":"Creates or updates a person and adds it to Flow",
+    "operationId":"add-people-to-flow",
+    "parameters":[
+     {
+      "name":"campaignId",
+      "in":"path",
+      "description":"Unique identifier of the flow that person will be added to",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64"
+      },
+      "example":10159347
+     },
+     {
+      "name":"phone",
+      "in":"query",
+      "description":"Person's phone number",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":19123456789
+     },
+     {
+      "name":"email",
+      "in":"query",
+      "description":"Person's email address",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"janewilliams@example.com"
+     },
+     {
+      "name":"externalId",
+      "in":"query",
+      "description":"Unique ID for the person from an external system",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"8edb24b5-0319-48cd-a1d9-1e8bc5d577ab"
+     }
+    ],
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.FlowPersonRequest"
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"OK"
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.ExceptionResponse"
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.ExceptionResponse"
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "deprecated":true,
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "flow:use",
+     "flow:manage"
+    ],
+    "x-deprecationInformation":{
+     "deprecation":"2023-10-25T00:00:00.777+0000",
+     "sunset":"2024-10-25T12:00:00.777+0000",
+     "successorOperationId":"add-flow-participants"
+    },
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":10,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   },
+   "delete":{
+    "tags":[
+     "customer-engagement",
+     "moments",
+     "flow"
+    ],
+    "summary":"Remove person from flow",
+    "description":"Removes a participant with given identifier from the flow.",
+    "operationId":"remove-people-from-flow",
+    "parameters":[
+     {
+      "name":"campaignId",
+      "in":"path",
+      "description":"Unique identifier of the flow that person will be removed from.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64"
+      },
+      "example":10159347
+     },
+     {
+      "name":"phone",
+      "in":"query",
+      "description":"Person's phone number.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":19123456789
+     },
+     {
+      "name":"email",
+      "in":"query",
+      "description":"Person's email address.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"janewilliams@example.com"
+     },
+     {
+      "name":"externalId",
+      "in":"query",
+      "description":"Unique ID for the person from an external system.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"8edb24b5-0319-48cd-a1d9-1e8bc5d577ab"
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"OK"
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.ExceptionResponse"
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.ExceptionResponse"
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "flow:use",
+     "flow:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":10,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/forms/1/forms":{
+   "get":{
+    "tags":[
+     "customer-engagement",
+     "moments",
+     "forms"
+    ],
+    "summary":"Get forms",
+    "description":"Use this method to get a list of forms.",
+    "operationId":"get-forms",
+    "parameters":[
+     {
+      "name":"offset",
+      "in":"query",
+      "description":"Skip first {offset} forms of the list.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "format":"int32",
+       "default":0
+      },
+      "example":60
+     },
+     {
+      "name":"limit",
+      "in":"query",
+      "description":"The maximum number of returned forms. Maximum value is `100`.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "format":"int32",
+       "default":25
+      },
+      "example":30
+     },
+     {
+      "name":"formType",
+      "in":"query",
+      "description":"The type of returned forms.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "enum":[
+        "OPT_IN",
+        "OPT_OUT",
+        "FACEBOOK",
+        "LIVECHAT",
+        "APPLE"
+       ]
+      },
+      "example":"APPLE"
+     },
+     {
+      "name":"formStatus",
+      "in":"query",
+      "description":"The status of returned forms.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "$ref":"#/components/schemas/082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.FormStatus"
+      },
+      "example":"ACTIVE"
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Successful Response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.ApiFormListDto"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "forms":[
+            {
+             "id":"f23f0f7c-9898-4feb-8f21-5afe2c29db7e",
+             "name":"Test form",
+             "elements":[
+              {
+               "component":"TEXT",
+               "fieldId":"first_name",
+               "personField":"firstName",
+               "label":"First Name",
+               "isRequired":false,
+               "isHidden":false,
+               "additionalConfiguration":{},
+               "validationRules":{
+                "maxLength":255,
+                "sample":"James",
+                "forbiddenSymbols":[
+                 "^",
+                 "&",
+                 "<",
+                 ">",
+                 "\"",
+                 "/",
+                 "\\",
+                 "\n",
+                 "\r",
+                 ":",
+                 "(",
+                 ")",
+                 "{",
+                 "}",
+                 "=",
+                 ";",
+                 "#",
+                 "|",
+                 "+",
+                 "%",
+                 "*",
+                 "?",
+                 "[",
+                 "]"
+                ]
+               },
+               "placeholder":"First Name"
+              },
+              {
+               "component":"TEXT",
+               "fieldId":"last_name",
+               "personField":"lastName",
+               "label":"Last Name",
+               "isRequired":false,
+               "isHidden":false,
+               "additionalConfiguration":{},
+               "validationRules":{
+                "maxLength":255,
+                "sample":"James",
+                "forbiddenSymbols":[
+                 "^",
+                 "&",
+                 "<",
+                 ">",
+                 "\"",
+                 "/",
+                 "\\",
+                 "\n",
+                 "\r",
+                 ":",
+                 "(",
+                 ")",
+                 "{",
+                 "}",
+                 "=",
+                 ";",
+                 "#",
+                 "|",
+                 "+",
+                 "%",
+                 "*",
+                 "?",
+                 "[",
+                 "]"
+                ]
+               },
+               "placeholder":"Last Name"
+              },
+              {
+               "component":"TEXT",
+               "fieldId":"company",
+               "personField":"267ce64a-1a26-4326-9036-6384696f39c8",
+               "label":"Company",
+               "isRequired":false,
+               "isHidden":false,
+               "additionalConfiguration":{},
+               "validationRules":{
+                "maxLength":1000,
+                "sample":"Lorem ipsum"
+               },
+               "placeholder":"Company"
+              },
+              {
+               "component":"TEXT",
+               "fieldId":"country",
+               "personField":"country",
+               "label":"Country",
+               "isRequired":false,
+               "isHidden":false,
+               "additionalConfiguration":{},
+               "validationRules":{
+                "maxLength":1000,
+                "sample":"Lorem ipsum"
+               },
+               "placeholder":"Country"
+              },
+              {
+               "component":"EMAIL",
+               "fieldId":"email",
+               "personField":"email",
+               "label":"Email Address",
+               "isRequired":true,
+               "isHidden":false,
+               "additionalConfiguration":{},
+               "validationRules":{
+                "maxLength":1000,
+                "pattern":"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])",
+                "sample":"email@example.com"
+               },
+               "placeholder":"Email"
+              },
+              {
+               "component":"TEXTAREA",
+               "fieldId":"business_needs",
+               "label":"Business Needs",
+               "isRequired":false,
+               "isHidden":false,
+               "additionalConfiguration":{},
+               "validationRules":{
+                "maxLength":3000,
+                "sample":"Lorem ipsum ..."
+               },
+               "placeholder":""
+              },
+              {
+               "component":"TEXT",
+               "fieldId":"offer_id",
+               "label":"OfferId",
+               "isRequired":false,
+               "isHidden":false,
+               "additionalConfiguration":{},
+               "validationRules":{
+                "maxLength":1000,
+                "sample":"Lorem ipsum"
+               },
+               "placeholder":"OfferId"
+              },
+              {
+               "component":"TEXT",
+               "fieldId":"plan_id",
+               "label":"PlanId",
+               "isRequired":false,
+               "isHidden":false,
+               "additionalConfiguration":{},
+               "validationRules":{
+                "maxLength":1000,
+                "sample":"Lorem ipsum"
+               },
+               "placeholder":"PlanId"
+              },
+              {
+               "component":"TEXT",
+               "fieldId":"subscription_id",
+               "label":"SubscriptionId",
+               "isRequired":false,
+               "isHidden":false,
+               "additionalConfiguration":{},
+               "validationRules":{
+                "maxLength":1000,
+                "sample":"Lorem ipsum"
+               },
+               "placeholder":"SubscriptionId"
+              },
+              {
+               "component":"TEXT",
+               "fieldId":"Tenant_id",
+               "label":"TenantId",
+               "isRequired":false,
+               "isHidden":false,
+               "additionalConfiguration":{},
+               "validationRules":{
+                "maxLength":1000,
+                "sample":"Lorem ipsum"
+               },
+               "placeholder":"TenantId"
+              },
+              {
+               "component":"SUBMIT_BUTTON",
+               "label":"Submit"
+              }
+             ],
+             "createdAt":"2022-07-11T06:38:12.757+0000",
+             "updatedAt":"2022-07-11T06:45:12.826+0000",
+             "resubmitEnabled":true,
+             "formType":"OPT_IN",
+             "formStatus":"ACTIVE"
+            },
+            {
+             "id":"7370b24c-9788-4a52-a6a4-047cecbe2df2",
+             "name":"test",
+             "elements":[
+              {
+               "component":"EMAIL",
+               "fieldId":"email",
+               "personField":"email",
+               "label":"Email",
+               "isRequired":false,
+               "isHidden":false,
+               "additionalConfiguration":{},
+               "validationRules":{
+                "maxLength":1000,
+                "pattern":"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])",
+                "sample":"email@example.com"
+               },
+               "placeholder":"Email"
+              },
+              {
+               "component":"SUBMIT_BUTTON",
+               "label":"Submit"
+              }
+             ],
+             "createdAt":"2022-06-15T13:21:38.195+0000",
+             "updatedAt":"2022-06-15T13:21:46.286+0000",
+             "resubmitEnabled":true,
+             "formType":"OPT_IN",
+             "formStatus":"ACTIVE"
+            }
+           ],
+           "offset":0,
+           "limit":25,
+           "total":2
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.ApiFormListDto"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiFormListDto>\n      \n  <forms>\n            \n    <forms>\n                  \n      <id>f23f0f7c-9898-4feb-8f21-5afe2c29db7e</id>\n                  \n      <name>Test form</name>\n                  \n      <elements>\n                        \n        <elements>\n                              \n          <component>TEXT</component>\n                              \n          <fieldId>first_name</fieldId>\n                              \n          <personField>firstName</personField>\n                              \n          <label>First Name</label>\n                              \n          <isRequired>false</isRequired>\n                              \n          <isHidden>false</isHidden>\n                              \n          <additionalConfiguration/>\n                              \n          <validationRules>\n                                    \n            <maxLength>255</maxLength>\n                                    \n            <sample>James</sample>\n                                    \n            <forbiddenSymbols>\n                                          \n              <forbiddenSymbols>^</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>&amp;</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>&lt;</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>&gt;</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>\"</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>/</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>\\</forbiddenSymbols>\n                                          \n              <forbiddenSymbols/>\n                                          \n              <forbiddenSymbols>&#13;</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>:</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>(</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>)</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>{</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>}</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>=</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>;</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>#</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>|</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>+</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>%</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>*</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>?</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>[</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>]</forbiddenSymbols>\n                                      \n            </forbiddenSymbols>\n                                \n          </validationRules>\n                              \n          <placeholder>First Name</placeholder>\n                          \n        </elements>\n                        \n        <elements>\n                              \n          <component>TEXT</component>\n                              \n          <fieldId>last_name</fieldId>\n                              \n          <personField>lastName</personField>\n                              \n          <label>Last Name</label>\n                              \n          <isRequired>false</isRequired>\n                              \n          <isHidden>false</isHidden>\n                              \n          <additionalConfiguration/>\n                              \n          <validationRules>\n                                    \n            <maxLength>255</maxLength>\n                                    \n            <sample>James</sample>\n                                    \n            <forbiddenSymbols>\n                                          \n              <forbiddenSymbols>^</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>&amp;</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>&lt;</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>&gt;</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>\"</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>/</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>\\</forbiddenSymbols>\n                                          \n              <forbiddenSymbols/>\n                                          \n              <forbiddenSymbols>&#13;</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>:</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>(</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>)</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>{</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>}</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>=</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>;</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>#</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>|</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>+</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>%</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>*</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>?</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>[</forbiddenSymbols>\n                                          \n              <forbiddenSymbols>]</forbiddenSymbols>\n                                      \n            </forbiddenSymbols>\n                                \n          </validationRules>\n                              \n          <placeholder>Last Name</placeholder>\n                          \n        </elements>\n                        \n        <elements>\n                              \n          <component>TEXT</component>\n                              \n          <fieldId>company</fieldId>\n                              \n          <personField>267ce64a-1a26-4326-9036-6384696f39c8</personField>\n                              \n          <label>Company</label>\n                              \n          <isRequired>false</isRequired>\n                              \n          <isHidden>false</isHidden>\n                              \n          <additionalConfiguration/>\n                              \n          <validationRules>\n                                    \n            <maxLength>1000</maxLength>\n                                    \n            <sample>Lorem ipsum</sample>\n                                \n          </validationRules>\n                              \n          <placeholder>Company</placeholder>\n                          \n        </elements>\n                        \n        <elements>\n                              \n          <component>TEXT</component>\n                              \n          <fieldId>country</fieldId>\n                              \n          <personField>country</personField>\n                              \n          <label>Country</label>\n                              \n          <isRequired>false</isRequired>\n                              \n          <isHidden>false</isHidden>\n                              \n          <additionalConfiguration/>\n                              \n          <validationRules>\n                                    \n            <maxLength>1000</maxLength>\n                                    \n            <sample>Lorem ipsum</sample>\n                                \n          </validationRules>\n                              \n          <placeholder>Country</placeholder>\n                          \n        </elements>\n                        \n        <elements>\n                              \n          <component>EMAIL</component>\n                              \n          <fieldId>email</fieldId>\n                              \n          <personField>email</personField>\n                              \n          <label>Email Address</label>\n                              \n          <isRequired>true</isRequired>\n                              \n          <isHidden>false</isHidden>\n                              \n          <additionalConfiguration/>\n                              \n          <validationRules>\n                                    \n            <maxLength>1000</maxLength>\n                                    \n            <pattern>(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])</pattern>\n                                    \n            <sample>email@example.com</sample>\n                                \n          </validationRules>\n                              \n          <placeholder>Email</placeholder>\n                          \n        </elements>\n                        \n        <elements>\n                              \n          <component>TEXTAREA</component>\n                              \n          <fieldId>business_needs</fieldId>\n                              \n          <label>Business Needs</label>\n                              \n          <isRequired>false</isRequired>\n                              \n          <isHidden>false</isHidden>\n                              \n          <additionalConfiguration/>\n                              \n          <validationRules>\n                                    \n            <maxLength>3000</maxLength>\n                                    \n            <sample>Lorem ipsum ...</sample>\n                                \n          </validationRules>\n                              \n          <placeholder/>\n                          \n        </elements>\n                        \n        <elements>\n                              \n          <component>TEXT</component>\n                              \n          <fieldId>offer_id</fieldId>\n                              \n          <label>OfferId</label>\n                              \n          <isRequired>false</isRequired>\n                              \n          <isHidden>false</isHidden>\n                              \n          <additionalConfiguration/>\n                              \n          <validationRules>\n                                    \n            <maxLength>1000</maxLength>\n                                    \n            <sample>Lorem ipsum</sample>\n                                \n          </validationRules>\n                              \n          <placeholder>OfferId</placeholder>\n                          \n        </elements>\n                        \n        <elements>\n                              \n          <component>TEXT</component>\n                              \n          <fieldId>plan_id</fieldId>\n                              \n          <label>PlanId</label>\n                              \n          <isRequired>false</isRequired>\n                              \n          <isHidden>false</isHidden>\n                              \n          <additionalConfiguration/>\n                              \n          <validationRules>\n                                    \n            <maxLength>1000</maxLength>\n                                    \n            <sample>Lorem ipsum</sample>\n                                \n          </validationRules>\n                              \n          <placeholder>PlanId</placeholder>\n                          \n        </elements>\n                        \n        <elements>\n                              \n          <component>TEXT</component>\n                              \n          <fieldId>subscription_id</fieldId>\n                              \n          <label>SubscriptionId</label>\n                              \n          <isRequired>false</isRequired>\n                              \n          <isHidden>false</isHidden>\n                              \n          <additionalConfiguration/>\n                              \n          <validationRules>\n                                    \n            <maxLength>1000</maxLength>\n                                    \n            <sample>Lorem ipsum</sample>\n                                \n          </validationRules>\n                              \n          <placeholder>SubscriptionId</placeholder>\n                          \n        </elements>\n                        \n        <elements>\n                              \n          <component>TEXT</component>\n                              \n          <fieldId>Tenant_id</fieldId>\n                              \n          <label>TenantId</label>\n                              \n          <isRequired>false</isRequired>\n                              \n          <isHidden>false</isHidden>\n                              \n          <additionalConfiguration/>\n                              \n          <validationRules>\n                                    \n            <maxLength>1000</maxLength>\n                                    \n            <sample>Lorem ipsum</sample>\n                                \n          </validationRules>\n                              \n          <placeholder>TenantId</placeholder>\n                          \n        </elements>\n                        \n        <elements>\n                              \n          <component>SUBMIT_BUTTON</component>\n                              \n          <label>Submit</label>\n                          \n        </elements>\n                    \n      </elements>\n                  \n      <createdAt>2022-07-11T06:38:12.757+0000</createdAt>\n                  \n      <updatedAt>2022-07-11T06:45:12.826+0000</updatedAt>\n                  \n      <resubmitEnabled>true</resubmitEnabled>\n                  \n      <formType>OPT_IN</formType>\n                  \n      <formStatus>ACTIVE</formStatus>\n              \n    </forms>\n            \n    <forms>\n                  \n      <id>7370b24c-9788-4a52-a6a4-047cecbe2df2</id>\n                  \n      <name>test</name>\n                  \n      <elements>\n                        \n        <elements>\n                              \n          <component>EMAIL</component>\n                              \n          <fieldId>email</fieldId>\n                              \n          <personField>email</personField>\n                              \n          <label>Email</label>\n                              \n          <isRequired>false</isRequired>\n                              \n          <isHidden>false</isHidden>\n                              \n          <additionalConfiguration/>\n                              \n          <validationRules>\n                                    \n            <maxLength>1000</maxLength>\n                                    \n            <pattern>(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])</pattern>\n                                    \n            <sample>email@example.com</sample>\n                                \n          </validationRules>\n                              \n          <placeholder>Email</placeholder>\n                          \n        </elements>\n                        \n        <elements>\n                              \n          <component>SUBMIT_BUTTON</component>\n                              \n          <label>Submit</label>\n                          \n        </elements>\n                    \n      </elements>\n                  \n      <createdAt>2022-06-15T13:21:38.195+0000</createdAt>\n                  \n      <updatedAt>2022-06-15T13:21:46.286+0000</updatedAt>\n                  \n      <resubmitEnabled>true</resubmitEnabled>\n                  \n      <formType>OPT_IN</formType>\n                  \n      <formStatus>ACTIVE</formStatus>\n              \n    </forms>\n        \n  </forms>\n      \n  <offset>0</offset>\n      \n  <limit>25</limit>\n      \n  <total>2</total>\n  \n</ApiFormListDto>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/265dbb28cc1ed1396ae9d1feb97047d1e9ccf99987cba8dbae6c3a765606751c.ApiException"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/265dbb28cc1ed1396ae9d1feb97047d1e9ccf99987cba8dbae6c3a765606751c.ApiException"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>BAD_REQUEST</messageId>\n      <text>Bad request</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "web:sdk",
+     "forms:manage",
+     "forms:read"
+    ]
+   }
+  },
+  "/forms/1/forms/{id}":{
+   "get":{
+    "tags":[
+     "customer-engagement",
+     "moments",
+     "forms"
+    ],
+    "summary":"Get form",
+    "description":"Use this method to get a form by its ID.",
+    "operationId":"get-form",
+    "parameters":[
+     {
+      "name":"id",
+      "in":"path",
+      "description":"ID of a form",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"f7cf1606-e155-40eb-9721-78183d268d24"
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Successful Response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.ApiFormDto"
+        },
+        "examples":{
+         "Company Newsletter":{
+          "summary":"Company Newsletter",
+          "description":"Company Newsletter",
+          "value":{
+           "id":"f23f0f7c-9898-4feb-8f21-5afe2c29db7e",
+           "name":"Test Form",
+           "elements":[
+            {
+             "component":"TEXT",
+             "fieldId":"first_name",
+             "personField":"firstName",
+             "label":"First Name",
+             "isRequired":false,
+             "isHidden":false,
+             "additionalConfiguration":{},
+             "validationRules":{
+              "maxLength":255,
+              "sample":"James",
+              "forbiddenSymbols":[
+               "^",
+               "&",
+               "<",
+               ">",
+               "\"",
+               "/",
+               "\\",
+               "\n",
+               "\r",
+               ":",
+               "(",
+               ")",
+               "{",
+               "}",
+               "=",
+               ";",
+               "#",
+               "|",
+               "+",
+               "%",
+               "*",
+               "?",
+               "[",
+               "]"
+              ]
+             },
+             "placeholder":"First Name"
+            },
+            {
+             "component":"TEXT",
+             "fieldId":"last_name",
+             "personField":"lastName",
+             "label":"Last Name",
+             "isRequired":false,
+             "isHidden":false,
+             "additionalConfiguration":{},
+             "validationRules":{
+              "maxLength":255,
+              "sample":"James",
+              "forbiddenSymbols":[
+               "^",
+               "&",
+               "<",
+               ">",
+               "\"",
+               "/",
+               "\\",
+               "\n",
+               "\r",
+               ":",
+               "(",
+               ")",
+               "{",
+               "}",
+               "=",
+               ";",
+               "#",
+               "|",
+               "+",
+               "%",
+               "*",
+               "?",
+               "[",
+               "]"
+              ]
+             },
+             "placeholder":"Last Name"
+            },
+            {
+             "component":"TEXT",
+             "fieldId":"company",
+             "personField":"267ce64a-1a26-4326-9036-6384696f39c8",
+             "label":"Company",
+             "isRequired":false,
+             "isHidden":false,
+             "additionalConfiguration":{},
+             "validationRules":{
+              "maxLength":1000,
+              "sample":"Lorem ipsum"
+             },
+             "placeholder":"Company"
+            },
+            {
+             "component":"TEXT",
+             "fieldId":"country",
+             "personField":"country",
+             "label":"Country",
+             "isRequired":false,
+             "isHidden":false,
+             "additionalConfiguration":{},
+             "validationRules":{
+              "maxLength":1000,
+              "sample":"Lorem ipsum"
+             },
+             "placeholder":"Country"
+            },
+            {
+             "component":"EMAIL",
+             "fieldId":"email",
+             "personField":"email",
+             "label":"Email Address",
+             "isRequired":true,
+             "isHidden":false,
+             "additionalConfiguration":{},
+             "validationRules":{
+              "maxLength":1000,
+              "pattern":"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])",
+              "sample":"email@example.com"
+             },
+             "placeholder":"Email"
+            },
+            {
+             "component":"TEXTAREA",
+             "fieldId":"business_needs",
+             "label":"Business Needs",
+             "isRequired":false,
+             "isHidden":false,
+             "additionalConfiguration":{},
+             "validationRules":{
+              "maxLength":3000,
+              "sample":"Lorem ipsum ..."
+             },
+             "placeholder":""
+            },
+            {
+             "component":"TEXT",
+             "fieldId":"offer_id",
+             "label":"OfferId",
+             "isRequired":false,
+             "isHidden":false,
+             "additionalConfiguration":{},
+             "validationRules":{
+              "maxLength":1000,
+              "sample":"Lorem ipsum"
+             },
+             "placeholder":"OfferId"
+            },
+            {
+             "component":"TEXT",
+             "fieldId":"plan_id",
+             "label":"PlanId",
+             "isRequired":false,
+             "isHidden":false,
+             "additionalConfiguration":{},
+             "validationRules":{
+              "maxLength":1000,
+              "sample":"Lorem ipsum"
+             },
+             "placeholder":"PlanId"
+            },
+            {
+             "component":"TEXT",
+             "fieldId":"subscription_id",
+             "label":"SubscriptionId",
+             "isRequired":false,
+             "isHidden":false,
+             "additionalConfiguration":{},
+             "validationRules":{
+              "maxLength":1000,
+              "sample":"Lorem ipsum"
+             },
+             "placeholder":"SubscriptionId"
+            },
+            {
+             "component":"TEXT",
+             "fieldId":"Tenant_id",
+             "label":"TenantId",
+             "isRequired":false,
+             "isHidden":false,
+             "additionalConfiguration":{},
+             "validationRules":{
+              "maxLength":1000,
+              "sample":"Lorem ipsum"
+             },
+             "placeholder":"TenantId"
+            },
+            {
+             "component":"SUBMIT_BUTTON",
+             "label":"Submit"
+            }
+           ],
+           "createdAt":"2022-07-11T06:38:12.757+0000",
+           "updatedAt":"2022-07-11T06:45:12.826+0000",
+           "resubmitEnabled":true,
+           "formType":"OPT_IN",
+           "formStatus":"ACTIVE"
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.ApiFormDto"
+        },
+        "examples":{
+         "Company Newsletter":{
+          "summary":"Company Newsletter",
+          "description":"Company Newsletter",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiFormDto>\n      \n  <id>f23f0f7c-9898-4feb-8f21-5afe2c29db7e</id>\n      \n  <name>Test Form</name>\n      \n  <elements>\n            \n    <elements>\n                  \n      <component>TEXT</component>\n                  \n      <fieldId>first_name</fieldId>\n                  \n      <personField>firstName</personField>\n                  \n      <label>First Name</label>\n                  \n      <isRequired>false</isRequired>\n                  \n      <isHidden>false</isHidden>\n                  \n      <additionalConfiguration/>\n                  \n      <validationRules>\n                        \n        <maxLength>255</maxLength>\n                        \n        <sample>James</sample>\n                        \n        <forbiddenSymbols>\n                              \n          <forbiddenSymbols>^</forbiddenSymbols>\n                              \n          <forbiddenSymbols>&amp;</forbiddenSymbols>\n                              \n          <forbiddenSymbols>&lt;</forbiddenSymbols>\n                              \n          <forbiddenSymbols>&gt;</forbiddenSymbols>\n                              \n          <forbiddenSymbols>\"</forbiddenSymbols>\n                              \n          <forbiddenSymbols>/</forbiddenSymbols>\n                              \n          <forbiddenSymbols>\\</forbiddenSymbols>\n                              \n          <forbiddenSymbols/>\n                              \n          <forbiddenSymbols>&#13;</forbiddenSymbols>\n                              \n          <forbiddenSymbols>:</forbiddenSymbols>\n                              \n          <forbiddenSymbols>(</forbiddenSymbols>\n                              \n          <forbiddenSymbols>)</forbiddenSymbols>\n                              \n          <forbiddenSymbols>{</forbiddenSymbols>\n                              \n          <forbiddenSymbols>}</forbiddenSymbols>\n                              \n          <forbiddenSymbols>=</forbiddenSymbols>\n                              \n          <forbiddenSymbols>;</forbiddenSymbols>\n                              \n          <forbiddenSymbols>#</forbiddenSymbols>\n                              \n          <forbiddenSymbols>|</forbiddenSymbols>\n                              \n          <forbiddenSymbols>+</forbiddenSymbols>\n                              \n          <forbiddenSymbols>%</forbiddenSymbols>\n                              \n          <forbiddenSymbols>*</forbiddenSymbols>\n                              \n          <forbiddenSymbols>?</forbiddenSymbols>\n                              \n          <forbiddenSymbols>[</forbiddenSymbols>\n                              \n          <forbiddenSymbols>]</forbiddenSymbols>\n                          \n        </forbiddenSymbols>\n                    \n      </validationRules>\n                  \n      <placeholder>First Name</placeholder>\n              \n    </elements>\n            \n    <elements>\n                  \n      <component>TEXT</component>\n                  \n      <fieldId>last_name</fieldId>\n                  \n      <personField>lastName</personField>\n                  \n      <label>Last Name</label>\n                  \n      <isRequired>false</isRequired>\n                  \n      <isHidden>false</isHidden>\n                  \n      <additionalConfiguration/>\n                  \n      <validationRules>\n                        \n        <maxLength>255</maxLength>\n                        \n        <sample>James</sample>\n                        \n        <forbiddenSymbols>\n                              \n          <forbiddenSymbols>^</forbiddenSymbols>\n                              \n          <forbiddenSymbols>&amp;</forbiddenSymbols>\n                              \n          <forbiddenSymbols>&lt;</forbiddenSymbols>\n                              \n          <forbiddenSymbols>&gt;</forbiddenSymbols>\n                              \n          <forbiddenSymbols>\"</forbiddenSymbols>\n                              \n          <forbiddenSymbols>/</forbiddenSymbols>\n                              \n          <forbiddenSymbols>\\</forbiddenSymbols>\n                              \n          <forbiddenSymbols/>\n                              \n          <forbiddenSymbols>&#13;</forbiddenSymbols>\n                              \n          <forbiddenSymbols>:</forbiddenSymbols>\n                              \n          <forbiddenSymbols>(</forbiddenSymbols>\n                              \n          <forbiddenSymbols>)</forbiddenSymbols>\n                              \n          <forbiddenSymbols>{</forbiddenSymbols>\n                              \n          <forbiddenSymbols>}</forbiddenSymbols>\n                              \n          <forbiddenSymbols>=</forbiddenSymbols>\n                              \n          <forbiddenSymbols>;</forbiddenSymbols>\n                              \n          <forbiddenSymbols>#</forbiddenSymbols>\n                              \n          <forbiddenSymbols>|</forbiddenSymbols>\n                              \n          <forbiddenSymbols>+</forbiddenSymbols>\n                              \n          <forbiddenSymbols>%</forbiddenSymbols>\n                              \n          <forbiddenSymbols>*</forbiddenSymbols>\n                              \n          <forbiddenSymbols>?</forbiddenSymbols>\n                              \n          <forbiddenSymbols>[</forbiddenSymbols>\n                              \n          <forbiddenSymbols>]</forbiddenSymbols>\n                          \n        </forbiddenSymbols>\n                    \n      </validationRules>\n                  \n      <placeholder>Last Name</placeholder>\n              \n    </elements>\n            \n    <elements>\n                  \n      <component>TEXT</component>\n                  \n      <fieldId>company</fieldId>\n                  \n      <personField>267ce64a-1a26-4326-9036-6384696f39c8</personField>\n                  \n      <label>Company</label>\n                  \n      <isRequired>false</isRequired>\n                  \n      <isHidden>false</isHidden>\n                  \n      <additionalConfiguration/>\n                  \n      <validationRules>\n                        \n        <maxLength>1000</maxLength>\n                        \n        <sample>Lorem ipsum</sample>\n                    \n      </validationRules>\n                  \n      <placeholder>Company</placeholder>\n              \n    </elements>\n            \n    <elements>\n                  \n      <component>TEXT</component>\n                  \n      <fieldId>country</fieldId>\n                  \n      <personField>country</personField>\n                  \n      <label>Country</label>\n                  \n      <isRequired>false</isRequired>\n                  \n      <isHidden>false</isHidden>\n                  \n      <additionalConfiguration/>\n                  \n      <validationRules>\n                        \n        <maxLength>1000</maxLength>\n                        \n        <sample>Lorem ipsum</sample>\n                    \n      </validationRules>\n                  \n      <placeholder>Country</placeholder>\n              \n    </elements>\n            \n    <elements>\n                  \n      <component>EMAIL</component>\n                  \n      <fieldId>email</fieldId>\n                  \n      <personField>email</personField>\n                  \n      <label>Email Address</label>\n                  \n      <isRequired>true</isRequired>\n                  \n      <isHidden>false</isHidden>\n                  \n      <additionalConfiguration/>\n                  \n      <validationRules>\n                        \n        <maxLength>1000</maxLength>\n                        \n        <pattern>(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])</pattern>\n                        \n        <sample>email@example.com</sample>\n                    \n      </validationRules>\n                  \n      <placeholder>Email</placeholder>\n              \n    </elements>\n            \n    <elements>\n                  \n      <component>TEXTAREA</component>\n                  \n      <fieldId>business_needs</fieldId>\n                  \n      <label>Business Needs</label>\n                  \n      <isRequired>false</isRequired>\n                  \n      <isHidden>false</isHidden>\n                  \n      <additionalConfiguration/>\n                  \n      <validationRules>\n                        \n        <maxLength>3000</maxLength>\n                        \n        <sample>Lorem ipsum ...</sample>\n                    \n      </validationRules>\n                  \n      <placeholder/>\n              \n    </elements>\n            \n    <elements>\n                  \n      <component>TEXT</component>\n                  \n      <fieldId>offer_id</fieldId>\n                  \n      <label>OfferId</label>\n                  \n      <isRequired>false</isRequired>\n                  \n      <isHidden>false</isHidden>\n                  \n      <additionalConfiguration/>\n                  \n      <validationRules>\n                        \n        <maxLength>1000</maxLength>\n                        \n        <sample>Lorem ipsum</sample>\n                    \n      </validationRules>\n                  \n      <placeholder>OfferId</placeholder>\n              \n    </elements>\n            \n    <elements>\n                  \n      <component>TEXT</component>\n                  \n      <fieldId>plan_id</fieldId>\n                  \n      <label>PlanId</label>\n                  \n      <isRequired>false</isRequired>\n                  \n      <isHidden>false</isHidden>\n                  \n      <additionalConfiguration/>\n                  \n      <validationRules>\n                        \n        <maxLength>1000</maxLength>\n                        \n        <sample>Lorem ipsum</sample>\n                    \n      </validationRules>\n                  \n      <placeholder>PlanId</placeholder>\n              \n    </elements>\n            \n    <elements>\n                  \n      <component>TEXT</component>\n                  \n      <fieldId>subscription_id</fieldId>\n                  \n      <label>SubscriptionId</label>\n                  \n      <isRequired>false</isRequired>\n                  \n      <isHidden>false</isHidden>\n                  \n      <additionalConfiguration/>\n                  \n      <validationRules>\n                        \n        <maxLength>1000</maxLength>\n                        \n        <sample>Lorem ipsum</sample>\n                    \n      </validationRules>\n                  \n      <placeholder>SubscriptionId</placeholder>\n              \n    </elements>\n            \n    <elements>\n                  \n      <component>TEXT</component>\n                  \n      <fieldId>Tenant_id</fieldId>\n                  \n      <label>TenantId</label>\n                  \n      <isRequired>false</isRequired>\n                  \n      <isHidden>false</isHidden>\n                  \n      <additionalConfiguration/>\n                  \n      <validationRules>\n                        \n        <maxLength>1000</maxLength>\n                        \n        <sample>Lorem ipsum</sample>\n                    \n      </validationRules>\n                  \n      <placeholder>TenantId</placeholder>\n              \n    </elements>\n            \n    <elements>\n                  \n      <component>SUBMIT_BUTTON</component>\n                  \n      <label>Submit</label>\n              \n    </elements>\n        \n  </elements>\n      \n  <createdAt>2022-07-11T06:38:12.757+0000</createdAt>\n      \n  <updatedAt>2022-07-11T06:45:12.826+0000</updatedAt>\n      \n  <resubmitEnabled>true</resubmitEnabled>\n      \n  <formType>OPT_IN</formType>\n      \n  <formStatus>ACTIVE</formStatus>\n  \n</ApiFormDto>\n"
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/265dbb28cc1ed1396ae9d1feb97047d1e9ccf99987cba8dbae6c3a765606751c.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"Form is not found"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/265dbb28cc1ed1396ae9d1feb97047d1e9ccf99987cba8dbae6c3a765606751c.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>NOT_FOUND</messageId>\n                  \n      <text>Form is not found</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "APIKeyHeader":[]
+     }
+    ],
+    "x-scopes":[
+     "web:sdk",
+     "forms:manage",
+     "forms:use",
+     "forms:read"
+    ]
+   }
+  },
+  "/forms/1/forms/{id}/views":{
+   "post":{
+    "tags":[
+     "customer-engagement",
+     "moments",
+     "forms"
+    ],
+    "summary":"Increment form view count",
+    "description":"Use this method to increase the view counter of a specific form. It's used for proper statistics calculation. Statistics are available on the form performance page on the Portal.",
+    "operationId":"increment-view-count",
+    "parameters":[
+     {
+      "name":"id",
+      "in":"path",
+      "description":"ID of a form",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"cec5dfd2-4238-48e0-933b-9acbdb2e6f5f"
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Successful Response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.ApiStatusResponse"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "status":"OK"
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.ApiStatusResponse"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiStatusResponse>\n  <status>OK</status>\n</ApiStatusResponse>\n"
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/265dbb28cc1ed1396ae9d1feb97047d1e9ccf99987cba8dbae6c3a765606751c.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"Form is not found"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/265dbb28cc1ed1396ae9d1feb97047d1e9ccf99987cba8dbae6c3a765606751c.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>NOT_FOUND</messageId>\n                  \n      <text>Form is not found</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "APIKeyHeader":[]
+     }
+    ],
+    "x-scopes":[
+     "web:sdk",
+     "forms:manage",
+     "forms:use",
+     "forms:read"
+    ]
+   }
+  },
+  "/forms/1/forms/{id}/data":{
+   "post":{
+    "tags":[
+     "customer-engagement",
+     "moments",
+     "forms"
+    ],
+    "summary":"Submit form data",
+    "description":"Use this method to submit form data.",
+    "operationId":"submit-form-data",
+    "parameters":[
+     {
+      "name":"ib-submission-source",
+      "in":"header",
+      "description":"By sending source information you will be able to see Analytics by Source – It reflects the submission rates by source if your form is present in numerous places.",
+      "required":false,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      }
+     },
+     {
+      "name":"ib-submission-form-campaign",
+      "in":"header",
+      "description":"By sending campaign information you will be able to see Analytics by Campaign – It reflects the submission rates by campaign if your form is included in multiple campaigns.",
+      "required":false,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      }
+     },
+     {
+      "name":"id",
+      "in":"path",
+      "description":"ID of a form",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"f7cf1606-e155-40eb-9721-78183d268d24"
+     }
+    ],
+    "requestBody":{
+     "description":"Form Data",
+     "content":{
+      "application/x-www-form-urlencoded":{
+       "schema":{
+        "$ref":"#/components/schemas/082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.FormDataPayloadMap"
+       },
+       "examples":{
+        "Request example":{
+         "summary":"Request example",
+         "value":"firstName=John&Email=john.doe%40example.com"
+        }
+       }
+      },
+      "multipart/form-data":{
+       "schema":{
+        "$ref":"#/components/schemas/082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.FormDataPayloadMap"
+       },
+       "examples":{
+        "Request example":{
+         "summary":"Request example",
+         "value":"----ExampleFormBoundary7MA4YWxkTrZu0gW\nContent-Disposition: form-data; name=\"firstName\"\n\nJohn\n----ExampleFormBoundary7MA4YWxkTrZu0gW\nContent-Disposition: form-data; name=\"Email\"\n\njohn.doe@example.com\n----ExampleFormBoundary7MA4YWxkTrZu0gW"
+        }
+       }
+      },
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.FormDataPayloadMap"
+       },
+       "examples":{
+        "Request example":{
+         "summary":"Request example",
+         "value":{
+          "string":"string",
+          "number":26,
+          "float":1.5,
+          "boolean":true
+         }
+        }
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"Successful Response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.ApiStatusResponse"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "status":"OK"
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.ApiStatusResponse"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiStatusResponse>\n  <status>OK</status>\n</ApiStatusResponse>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/265dbb28cc1ed1396ae9d1feb97047d1e9ccf99987cba8dbae6c3a765606751c.ApiException"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/265dbb28cc1ed1396ae9d1feb97047d1e9ccf99987cba8dbae6c3a765606751c.ApiException"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>BAD_REQUEST</messageId>\n      <text>Bad request</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "description":"Forbidden",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/265dbb28cc1ed1396ae9d1feb97047d1e9ccf99987cba8dbae6c3a765606751c.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"FORBIDDEN",
+             "text":"Form is not submittable using the API"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/265dbb28cc1ed1396ae9d1feb97047d1e9ccf99987cba8dbae6c3a765606751c.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>FORBIDDEN</messageId>\n                  \n      <text>Form is not submittable using API</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/265dbb28cc1ed1396ae9d1feb97047d1e9ccf99987cba8dbae6c3a765606751c.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"Form is not found"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/265dbb28cc1ed1396ae9d1feb97047d1e9ccf99987cba8dbae6c3a765606751c.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>NOT_FOUND</messageId>\n                  \n      <text>Form is not found</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "APIKeyHeader":[]
+     }
+    ],
+    "x-scopes":[
+     "web:sdk",
+     "forms:manage",
+     "forms:use",
+     "forms:read"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":10,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  }
+ },
+ "components":{
+  "schemas":{
+   "082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.ActionAfterSubmission":{
+    "type":"object",
+    "description":"Action after the submission",
+    "properties":{
+     "type":{
+      "$ref":"#/components/schemas/082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.ActionAfterSubmissionType"
+     },
+     "value":{
+      "type":"string"
+     }
+    },
+    "required":[
+     "type",
+     "value"
+    ],
+    "title":"ActionAfterSubmission"
+   },
+   "082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.ActionAfterSubmissionType":{
+    "type":"string",
+    "enum":[
+     "REDIRECT",
+     "MESSAGE"
+    ],
+    "title":"ActionAfterSubmissionType"
+   },
+   "082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.ApiFormDto":{
+    "type":"object",
+    "properties":{
+     "id":{
+      "type":"string",
+      "description":"Form identifier"
+     },
+     "name":{
+      "type":"string",
+      "description":"Form name"
+     },
+     "elements":{
+      "type":"array",
+      "description":"List of form fields",
+      "items":{
+       "$ref":"#/components/schemas/082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.FormElementDto"
+      }
+     },
+     "createdAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Time when form was created"
+     },
+     "updatedAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Time when form was update last time"
+     },
+     "actionAfterSubmission":{
+      "$ref":"#/components/schemas/082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.ActionAfterSubmission"
+     },
+     "resubmitEnabled":{
+      "type":"boolean",
+      "description":"Can resubmit multiple times"
+     },
+     "formType":{
+      "$ref":"#/components/schemas/082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.FormType"
+     },
+     "formStatus":{
+      "$ref":"#/components/schemas/082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.FormStatus"
+     }
+    },
+    "required":[
+     "elements",
+     "formStatus",
+     "formType",
+     "id",
+     "name",
+     "resubmitEnabled"
+    ],
+    "title":"ApiFormDto"
+   },
+   "082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.ApiFormListDto":{
+    "type":"object",
+    "properties":{
+     "forms":{
+      "type":"array",
+      "description":"Forms list",
+      "items":{
+       "$ref":"#/components/schemas/082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.ApiFormDto"
+      }
+     },
+     "offset":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Offset from beginning of list of available forms"
+     },
+     "limit":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Number of returned forms"
+     },
+     "total":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Total number of available forms"
+     }
+    },
+    "required":[
+     "forms"
+    ],
+    "title":"ApiFormListDto"
+   },
+   "082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.ApiStatusResponse":{
+    "type":"object",
+    "properties":{
+     "status":{
+      "type":"string"
+     }
+    },
+    "required":[
+     "status"
+    ],
+    "title":"ApiStatusResponse"
+   },
+   "082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.ComponentType":{
+    "type":"string",
+    "enum":[
+     "TEXT",
+     "TEXTAREA",
+     "NUMBER",
+     "DROPDOWN",
+     "CHECKBOX",
+     "CHECKBOX_GROUP",
+     "RADIOBUTTON",
+     "DATE",
+     "DATETIME",
+     "EMAIL",
+     "MSISDN",
+     "SUBMIT_BUTTON",
+     "TITLE",
+     "DESCRIPTION",
+     "APPLE_SPLASH",
+     "APPLE_BOOLEAN",
+     "WHATSAPP_SCREEN",
+     "WHATSAPP_HEADING",
+     "WHATSAPP_SUBHEADING",
+     "WHATSAPP_BODY"
+    ],
+    "title":"ComponentType"
+   },
+   "082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.FormDataPayloadMap":{
+    "type":"object",
+    "additionalProperties":{
+     "type":"object",
+     "description":"Field name and its value"
+    },
+    "description":"Field name and its value",
+    "title":"FormDataPayloadMap"
+   },
+   "082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.FormElementDto":{
+    "type":"object",
+    "description":"List of form fields",
+    "properties":{
+     "component":{
+      "$ref":"#/components/schemas/082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.ComponentType"
+     },
+     "fieldId":{
+      "type":"string"
+     },
+     "personField":{
+      "type":"string"
+     },
+     "label":{
+      "type":"string"
+     },
+     "isRequired":{
+      "type":"boolean"
+     },
+     "isHidden":{
+      "type":"boolean"
+     },
+     "additionalConfiguration":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"string"
+      }
+     },
+     "textContent":{
+      "type":"string"
+     },
+     "options":{
+      "type":"array",
+      "items":{
+       "$ref":"#/components/schemas/082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.FormElementOptionDto"
+      }
+     },
+     "validationRules":{
+      "$ref":"#/components/schemas/082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.ValidationRules"
+     },
+     "placeholder":{
+      "type":"string"
+     },
+     "checkboxText":{
+      "type":"string"
+     },
+     "validationMessages":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"string"
+      }
+     }
+    },
+    "required":[
+     "component"
+    ],
+    "title":"FormElementDto"
+   },
+   "082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.FormElementOptionDto":{
+    "type":"object",
+    "properties":{
+     "name":{
+      "type":"string"
+     },
+     "value":{
+      "type":"string"
+     },
+     "additionalConfiguration":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"string"
+      }
+     }
+    },
+    "required":[
+     "name",
+     "value"
+    ],
+    "title":"FormElementOptionDto"
+   },
+   "082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.FormStatus":{
+    "type":"string",
+    "description":"Form status",
+    "enum":[
+     "ACTIVE",
+     "DISABLED",
+     "DRAFT"
+    ],
+    "title":"FormStatus"
+   },
+   "082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.FormType":{
+    "type":"string",
+    "description":"Form type",
+    "enum":[
+     "OPT_IN",
+     "OPT_OUT",
+     "FACEBOOK",
+     "LIVECHAT",
+     "APPLE",
+     "CSAT",
+     "WA_FLOW"
+    ],
+    "title":"FormType"
+   },
+   "082acced121042a63992bde26d4dd141353f7b2633c33f797139d71d4bef2a93.ValidationRules":{
+    "type":"object",
+    "properties":{
+     "datePattern":{
+      "type":"string"
+     },
+     "maxLength":{
+      "type":"integer",
+      "format":"int32"
+     },
+     "maxValue":{
+      "type":"string"
+     },
+     "minValue":{
+      "type":"string"
+     },
+     "pattern":{
+      "type":"string"
+     },
+     "sample":{
+      "type":"string"
+     },
+     "forbiddenSymbols":{
+      "type":"array",
+      "items":{
+       "type":"string"
+      }
+     }
+    },
+    "title":"ValidationRules"
+   },
+   "265dbb28cc1ed1396ae9d1feb97047d1e9ccf99987cba8dbae6c3a765606751c.ApiException":{
+    "type":"object",
+    "properties":{
+     "requestError":{
+      "$ref":"#/components/schemas/ApiRequestError"
+     }
+    },
+    "title":"ApiException"
+   },
+   "8a96177a069f927b552e6f478d6833812472502f930c109564e4f89f3264faaa.ApiException":{
+    "type":"object",
+    "properties":{
+     "requestError":{
+      "$ref":"#/components/schemas/ApiRequestError"
+     }
+    },
+    "title":"ApiException"
+   },
+   "900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.AddFlowParticipantResult":{
+    "type":"object",
+    "description":"Result of operation for the given participant.",
+    "properties":{
+     "identifyBy":{
+      "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.WebhookPersonUniqueField"
+     },
+     "status":{
+      "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.AddFlowParticipantStatus"
+     },
+     "errorReason":{
+      "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.ErrorStatusReason"
+     }
+    },
+    "required":[
+     "identifyBy",
+     "status"
+    ],
+    "title":"AddFlowParticipantResult"
+   },
+   "900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.AddFlowParticipantStatus":{
+    "type":"string",
+    "description":"Processing status of the participant.",
+    "enum":[
+     "PENDING",
+     "REJECTED",
+     "ACCEPTED"
+    ],
+    "title":"AddFlowParticipantStatus"
+   },
+   "900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.AddFlowParticipantsRequest":{
+    "type":"object",
+    "description":"Request to add given participants to the Flow campaign.",
+    "properties":{
+     "participants":{
+      "type":"array",
+      "description":"Array of participants to add.",
+      "items":{
+       "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.FlowParticipant"
+      },
+      "maxLength":1000
+     },
+     "notifyUrl":{
+      "type":"string",
+      "description":"The URL on your callback server on which a report of operation results will be sent.",
+      "maxLength":1000
+     },
+     "callbackData":{
+      "type":"string",
+      "description":"Additional data will be passed in the request to your callback server along with the operation results report.",
+      "maxLength":2000
+     }
+    },
+    "required":[
+     "participants"
+    ],
+    "title":"AddFlowParticipantsRequest"
+   },
+   "900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.AddFlowParticipantsResponse":{
+    "type":"object",
+    "properties":{
+     "operationId":{
+      "type":"string",
+      "description":"Unique identifier of the operation.",
+      "example":"03f2d474-0508-46bf-9f3d-d8e2c28adaea"
+     }
+    },
+    "required":[
+     "operationId"
+    ],
+    "title":"AddFlowParticipantsResponse"
+   },
+   "900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.BadRequestResponse":{
+    "type":"object",
+    "anyOf":[
+     {
+      "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.CustomBadRequestResponse"
+     },
+     {
+      "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.ExceptionResponse"
+     }
+    ],
+    "title":"BadRequestResponse"
+   },
+   "900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.CommonOttContact":{
+    "type":"object",
+    "description":"A list of person's Kakao Sangdam destinations.",
+    "properties":{
+     "applicationId":{
+      "type":"string",
+      "description":"Application Id on which the user is subscribed.",
+      "readOnly":true
+     },
+     "userId":{
+      "type":"string",
+      "description":"Unique user ID for a person.",
+      "readOnly":true
+     },
+     "systemData":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"object",
+       "readOnly":true
+      },
+      "description":"System data collected from the user's profile.",
+      "readOnly":true
+     }
+    },
+    "readOnly":true,
+    "title":"CommonOttContact"
+   },
+   "900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.CommonPushContact":{
+    "type":"object",
+    "description":"A list of person's web push destinations.",
+    "properties":{
+     "applicationId":{
+      "type":"string",
+      "description":"Application Id on which the user is subscribed.",
+      "readOnly":true
+     },
+     "registrationId":{
+      "type":"string",
+      "description":"Push registration ID.",
+      "readOnly":true
+     },
+     "additionalData":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"object",
+       "readOnly":true
+      },
+      "description":"Unique user ID for a person.",
+      "readOnly":true
+     },
+     "systemData":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"object",
+       "readOnly":true
+      },
+      "description":"System data collected from the user's profile.",
+      "readOnly":true
+     }
+    },
+    "readOnly":true,
+    "title":"CommonPushContact"
+   },
+   "900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.CustomBadRequestResponse":{
+    "type":"object",
+    "description":"Bad request",
+    "example":{
+     "type":"about:blank",
+     "title":"Bad Request",
+     "status":400,
+     "detail":"Failed to read request",
+     "instance":"/moments/1/flows/200000000000001/participants"
+    },
+    "properties":{
+     "type":{
+      "type":"string"
+     },
+     "title":{
+      "type":"string"
+     },
+     "status":{
+      "type":"integer",
+      "format":"int32"
+     },
+     "detail":{
+      "type":"string"
+     },
+     "instance":{
+      "type":"string"
+     }
+    },
+    "required":[
+     "detail",
+     "instance",
+     "status",
+     "title",
+     "type"
+    ],
+    "title":"Bad Request Response"
+   },
+   "900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.ErrorStatusReason":{
+    "type":"string",
+    "description":"\nDetailed reason for the REJECTED status:\n* `REJECTED_INVALID_CONTACT` - Person started to be processed but has been rejected as the contact is not recognized.\n* `REJECTED_ATTRIBUTE_MISSED` - One of the person's attributes specified in the request does not exist or has spelling error.\n* `REJECTED_PERSON_ALREADY_IN_FLOW` - Person is already in flow.\n* `REJECTED_PERSON_NOT_ALLOWED_TO_REENTER` - Person is not allowed to re-enter flow now.\n* `REJECTED_FLOW_ERROR_UNKNOWN` - Generic flow error.\n* `REJECTED_NOT_ENOUGH_CREDITS` - Your account is out of credits for further submission. Top up your account. For further assistance in topping up or applying for an online account top-up service, you may contact your Account Manager.\n",
+    "enum":[
+     "REJECTED_INVALID_CONTACT",
+     "REJECTED_ATTRIBUTE_MISSED",
+     "REJECTED_PERSON_IN_FLOW",
+     "REJECTED_PERSON_NOT_ALLOWED_TO_REENTER",
+     "REJECTED_FLOW_ERROR_UNKNOWN",
+     "REJECTED_NOT_ENOUGH_CREDITS",
+     "REJECTED_CDP_ERROR_UNKNOWN"
+    ],
+    "title":"ErrorStatusReason"
+   },
+   "900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.ExceptionResponse":{
+    "type":"object",
+    "description":"Response error codes\n\n<table>\n<tr><th>Error</th><th>ErrorCode</th><th>HTTP status</th></tr>\n<tr><td>Bad request</td><td>40001</td><td>400</td></tr>\n<tr><td>Duplicate person</td><td>40002</td><td>400</td></tr>\n<tr><td>Person manipulation failed</td><td>40003</td><td>400</td></tr>\n<tr><td>Person already in flow</td><td>40004</td><td>400</td></tr>\n<tr><td>Flow inactive</td><td>40005</td><td>400</td></tr>\n<tr><td>Person is not in the flow</td><td>40006</td><td>400</td></tr>\n<tr><td>Flow not found</td><td>40401</td><td>404</td></tr>\n<tr><td>Person not found</td><td>40402</td><td>404</td></tr>\n<tr><td>Action not found</td><td>40403</td><td>404</td></tr>\n<tr><td>Internal server error</td><td>50001</td><td>500</td></tr>\n</table>",
+    "example":{
+     "errorCode":40001,
+     "errorMessage":""
+    },
+    "properties":{
+     "errorCode":{
+      "type":"integer",
+      "format":"int32"
+     },
+     "errorMessage":{
+      "type":"string"
+     }
+    },
+    "title":"Exception Response"
+   },
+   "900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.FlowParticipant":{
+    "type":"object",
+    "description":"Participant to be added to Flow campaign.",
+    "maxLength":1000,
+    "properties":{
+     "identifyBy":{
+      "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.WebhookPersonUniqueField"
+     },
+     "variables":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"object"
+      },
+      "description":"Flow variables to assign to the participant when it is added to the flow."
+     },
+     "person":{
+      "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.IamPersonV2"
+     }
+    },
+    "required":[
+     "identifyBy"
+    ],
+    "title":"FlowParticipant"
+   },
+   "900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.FlowParticipantsReportResponse":{
+    "type":"object",
+    "description":"Summary of processing status for participants in a given operation.",
+    "properties":{
+     "operationId":{
+      "type":"string",
+      "description":"Unique identifier of the operation.",
+      "example":"03f2d474-0508-46bf-9f3d-d8e2c28adaea"
+     },
+     "campaignId":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Unique identifier of the flow campaign.",
+      "example":200000000000001
+     },
+     "callbackData":{
+      "type":"string",
+      "description":"Additional data will be passed in the request to your callback server along with the operation results report."
+     },
+     "participants":{
+      "type":"array",
+      "description":"Array with information about each participant submitted for the operation.",
+      "items":{
+       "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.AddFlowParticipantResult"
+      }
+     }
+    },
+    "required":[
+     "campaignId",
+     "operationId",
+     "participants"
+    ],
+    "title":"FlowParticipantsReportResponse"
+   },
+   "900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.FlowPersonRequest":{
+    "type":"object",
+    "description":"Contains the data used for person creation (if it does not exist) or partial update (if it exists)",
+    "example":{
+     "personData":{
+      "externalId":"1",
+      "firstName":"Jane",
+      "lastName":"Smith",
+      "address":"67 Farringdon Road",
+      "city":"London",
+      "country":"United Kingdom",
+      "gender":"FEMALE",
+      "birthDate":"1966-01-15",
+      "middleName":"Janie",
+      "profilePicture":"http://profile.com",
+      "tags":[
+       "VIP Customers",
+       "New Customers"
+      ],
+      "customAttributes":{
+       "Contract Expiry":"2018-06-01",
+       "Company":"Acme"
+      },
+      "contactInformation":{
+       "phone":[
+        {
+         "number":"41793026727"
+        },
+        {
+         "number":"41793026728"
+        }
+       ],
+       "email":[
+        {
+         "address":"jane@acme.com"
+        },
+        {
+         "address":"janesmith@acme.com"
+        }
+       ]
+      }
+     },
+     "flowVariables":{
+      "orderDate":"2021-09-01",
+      "orderDetails":"Extended Weight, Discount",
+      "orderNumber":1234567
+     }
+    },
+    "properties":{
+     "personData":{
+      "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.IamPersonV2"
+     },
+     "flowVariables":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"object"
+      }
+     }
+    },
+    "required":[
+     "personData"
+    ],
+    "title":"FlowPersonRequest"
+   },
+   "900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.IamEmailContact":{
+    "type":"object",
+    "description":"A list of person's email addresses. Max 100 emails per person.",
+    "properties":{
+     "address":{
+      "type":"string",
+      "description":"Person's email address. Must comply with the [email format](https://tools.ietf.org/html/rfc2822) and cannot exceed 255 characters. One person can have up to 100 email addresses."
+     }
+    },
+    "title":"IamEmailContact"
+   },
+   "900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.IamGender":{
+    "type":"string",
+    "description":"Person's gender.",
+    "enum":[
+     "MALE",
+     "FEMALE"
+    ],
+    "title":"IamGender"
+   },
+   "900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.IamIntegrationsV2":{
+    "type":"object",
+    "description":"Integrations.",
+    "properties":{
+     "salesforce":{
+      "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.IamSalesforceV2"
+     }
+    },
+    "title":"IamIntegrationsV2"
+   },
+   "900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.IamPersonContactsV2":{
+    "type":"object",
+    "description":"List of phones, emails and other information how a person can be contacted.",
+    "properties":{
+     "phone":{
+      "type":"array",
+      "description":"A list of person's phone numbers. Max 100 numbers per person.",
+      "items":{
+       "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.IamPhoneContact"
+      }
+     },
+     "email":{
+      "type":"array",
+      "description":"A list of person's email addresses. Max 100 emails per person.",
+      "items":{
+       "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.IamEmailContact"
+      }
+     },
+     "push":{
+      "type":"array",
+      "description":"List of person's push registrations.",
+      "items":{
+       "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.IamPushContactV2"
+      },
+      "readOnly":true
+     },
+     "facebook":{
+      "type":"array",
+      "description":"A list of person's Messenger destinations.",
+      "items":{
+       "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.CommonOttContact"
+      },
+      "readOnly":true
+     },
+     "line":{
+      "type":"array",
+      "description":"A list of person's Line destinations.",
+      "items":{
+       "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.CommonOttContact"
+      },
+      "readOnly":true
+     },
+     "viberBots":{
+      "type":"array",
+      "description":"A list of person's Viber Bots destinations.",
+      "items":{
+       "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.CommonOttContact"
+      },
+      "readOnly":true
+     },
+     "liveChat":{
+      "type":"array",
+      "description":"A list of person's Live Chat destinations.",
+      "items":{
+       "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.CommonOttContact"
+      },
+      "readOnly":true
+     },
+     "instagram":{
+      "type":"array",
+      "description":"A list of person's Instagram destinations.",
+      "items":{
+       "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.CommonOttContact"
+      },
+      "readOnly":true
+     },
+     "telegram":{
+      "type":"array",
+      "description":"A list of person's Telegram destinations.",
+      "items":{
+       "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.CommonOttContact"
+      },
+      "readOnly":true
+     },
+     "appleBusinessChat":{
+      "type":"array",
+      "description":"A list of person's Apple Business Chat destinations.",
+      "items":{
+       "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.CommonOttContact"
+      },
+      "readOnly":true
+     },
+     "webpush":{
+      "type":"array",
+      "description":"A list of person's web push destinations.",
+      "items":{
+       "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.CommonPushContact"
+      },
+      "readOnly":true
+     },
+     "instagramDm":{
+      "type":"array",
+      "description":"A list of person's Instagram DM destinations.",
+      "items":{
+       "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.CommonOttContact"
+      },
+      "readOnly":true
+     },
+     "kakaoSangdam":{
+      "type":"array",
+      "description":"A list of person's Kakao Sangdam destinations.",
+      "items":{
+       "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.CommonOttContact"
+      },
+      "readOnly":true
+     }
+    },
+    "title":"IamPersonContactsV2"
+   },
+   "900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.IamPersonV2":{
+    "type":"object",
+    "description":"Person attributes. In case a person with either the specified <code>externalId</code> or <code>contactInformation</code> already exists in the People, the persons will be automatically merged. See <a href=\"https://www.infobip.com/docs/api/customer-engagement/moments/add-flow-participants\" target=\"_blank\">endpoint description</a> for more info.",
+    "properties":{
+     "createdAt":{
+      "type":"string",
+      "description":"Date and time of creation. Has the following format: yyyy-MM-dd'T'HH:mm:ss.",
+      "readOnly":true
+     },
+     "modifiedAt":{
+      "type":"string",
+      "description":"Date and time of last modification. Has the following format: yyyy-MM-dd'T'HH:mm:ss.",
+      "readOnly":true
+     },
+     "id":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Unique id of the entity.",
+      "readOnly":true
+     },
+     "externalId":{
+      "type":"string",
+      "description":"Unique ID for a person from your or another external system, 256 characters max."
+     },
+     "firstName":{
+      "type":"string",
+      "description":"Person's first name, 255 characters max."
+     },
+     "lastName":{
+      "type":"string",
+      "description":"Person's last name, 255 characters max."
+     },
+     "type":{
+      "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.PublicIamTypeV2"
+     },
+     "address":{
+      "type":"string",
+      "description":"Person's title, 50 characters max."
+     },
+     "city":{
+      "type":"string",
+      "description":"Person's city, 50 characters max."
+     },
+     "country":{
+      "type":"string",
+      "description":"Person's country, 50 characters max."
+     },
+     "gender":{
+      "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.IamGender"
+     },
+     "birthDate":{
+      "type":"string",
+      "description":"Person's date of birth, format `YYYY-MM-DD`."
+     },
+     "middleName":{
+      "type":"string",
+      "description":"Person's middle name, 50 characters max."
+     },
+     "preferredLanguage":{
+      "type":"string",
+      "description":"Person's preferred language. Must be in two letter ISO (xx) or language-region BCP-47 (xx-YY) format."
+     },
+     "profilePicture":{
+      "type":"string",
+      "description":"URL for the person's profile picture, 2083 characters max."
+     },
+     "origin":{
+      "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.PublicIamOrigin"
+     },
+     "modifiedFrom":{
+      "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.PublicIamOrigin"
+     },
+     "tags":{
+      "type":"array",
+      "description":"List of tags that this person has.",
+      "items":{
+       "type":"string",
+       "description":"List of tags that this person has."
+      },
+      "uniqueItems":true
+     },
+     "customAttributes":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"object"
+      },
+      "description":"List of custom attributes for the person, 4096 characters max per value."
+     },
+     "contactInformation":{
+      "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.IamPersonContactsV2"
+     },
+     "integrations":{
+      "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.IamIntegrationsV2"
+     },
+     "computedAttributes":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"object"
+      },
+      "description":"Person's computed attributes grouped by type."
+     }
+    },
+    "title":"IamPersonV2"
+   },
+   "900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.IamPhoneContact":{
+    "type":"object",
+    "description":"A list of person's phone numbers. Max 100 numbers per person.",
+    "properties":{
+     "number":{
+      "type":"string",
+      "description":"Person's phone number. Must be in [international format](https://en.wikipedia.org/wiki/E.164) and cannot exceed 50 characters. One person can have up to 100 phone numbers."
+     }
+    },
+    "title":"IamPhoneContact"
+   },
+   "900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.IamPushContactV2":{
+    "type":"object",
+    "description":"List of person's push registrations.",
+    "properties":{
+     "applicationId":{
+      "type":"string",
+      "description":"Application Id on which the user is subscribed.",
+      "readOnly":true
+     },
+     "registrationId":{
+      "type":"string",
+      "description":"Push registration ID.",
+      "readOnly":true
+     },
+     "additionalData":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"object",
+       "readOnly":true
+      },
+      "description":"Unique user ID for a person.",
+      "readOnly":true
+     },
+     "systemData":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"object",
+       "readOnly":true
+      },
+      "description":"System data collected from the user's profile.",
+      "readOnly":true
+     },
+     "isPrimary":{
+      "type":"boolean",
+      "description":"Set to true if this device is a primary device of a user among other devices.",
+      "readOnly":true
+     }
+    },
+    "readOnly":true,
+    "title":"IamPushContactV2"
+   },
+   "900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.IamSalesforceV2":{
+    "type":"object",
+    "description":"Salesforce integration.",
+    "properties":{
+     "leadId":{
+      "type":"string",
+      "description":"Salesforce lead id."
+     },
+     "contactId":{
+      "type":"string",
+      "description":"Salesforce contact id."
+     }
+    },
+    "title":"IamSalesforceV2"
+   },
+   "900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.PublicIamOrigin":{
+    "type":"string",
+    "description":"The information which describes the source of the last modification of record.",
+    "enum":[
+     "API",
+     "PORTAL",
+     "WEB_SDK",
+     "INTEGRATION",
+     "PUSH",
+     "FACEBOOK",
+     "LINE",
+     "TELEGRAM",
+     "SALESFORCE",
+     "DYNAMICS",
+     "ZAPIER",
+     "FORMS",
+     "COMPUTED",
+     "ANSWERS",
+     "CONVERSATIONS"
+    ],
+    "readOnly":true,
+    "title":"PublicIamOrigin"
+   },
+   "900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.PublicIamTypeV2":{
+    "type":"string",
+    "description":"Person's type, default type is CUSTOMER.",
+    "enum":[
+     "CUSTOMER",
+     "LEAD"
+    ],
+    "title":"PublicIamTypeV2"
+   },
+   "900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.WebhookPersonUniqueField":{
+    "type":"object",
+    "description":"Unique identifier of the participant.",
+    "properties":{
+     "identifier":{
+      "type":"string",
+      "description":"Unique ID for a person"
+     },
+     "type":{
+      "$ref":"#/components/schemas/900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.WebhookPersonUniqueFieldType"
+     },
+     "sender":{
+      "type":"string",
+      "description":"Sender or application ID.`sender` is required for all identifier types except `PHONE`, `EMAIL`"
+     }
+    },
+    "required":[
+     "identifier",
+     "type"
+    ],
+    "title":"WebhookPersonUniqueField"
+   },
+   "900634339512041dd9c6cd5c4ad62d6cf43ea57e0548f5deeceb9f79d92b92f0.WebhookPersonUniqueFieldType":{
+    "type":"string",
+    "description":"Type of unique ID",
+    "enum":[
+     "EMAIL",
+     "PHONE",
+     "FACEBOOK",
+     "LINE",
+     "APPLE_BUSINESS_CHAT"
+    ],
+    "title":"WebhookPersonUniqueFieldType"
+   },
+   "ApiException":{
+    "type":"object",
+    "properties":{
+     "requestError":{
+      "$ref":"#/components/schemas/ApiRequestError"
+     }
+    },
+    "title":"ApiException"
+   },
+   "ApiRequestError":{
+    "type":"object",
+    "properties":{
+     "serviceException":{
+      "$ref":"#/components/schemas/ApiRequestErrorDetails"
+     }
+    },
+    "title":"ApiRequestError"
+   },
+   "ApiRequestErrorDetails":{
+    "type":"object",
+    "properties":{
+     "messageId":{
+      "type":"string",
+      "description":"Identifier of the error."
+     },
+     "text":{
+      "type":"string",
+      "description":"Detailed error description."
+     },
+     "validationErrors":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"array",
+       "items":{
+        "type":"string",
+        "description":"Validation errors."
+       }
+      },
+      "description":"Validation errors."
+     }
+    },
+    "title":"ApiRequestErrorDetails"
+   }
+  },
+  "responses":{
+   "ApiException401":{
+    "description":"Unauthorized",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"UNAUTHORIZED",
+         "text":"Unauthorized"
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>UNAUTHORIZED</messageId>\n      <text>Unauthorized</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   },
+   "ApiException403":{
+    "description":"Forbidden",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"FORBIDDEN",
+         "text":"Forbidden"
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>FORBIDDEN</messageId>\n      <text>Forbidden</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   },
+   "ApiException429":{
+    "description":"Too Many Requests",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"TOO_MANY_REQUESTS",
+         "text":"Too many requests"
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>TOO_MANY_REQUESTS</messageId>\n      <text>Too many requests</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   },
+   "ApiException500":{
+    "description":"Internal Server Error",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"GENERAL_ERROR",
+         "text":"Something went wrong. Please contact support."
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>GENERAL_ERROR</messageId>\n      <text>Something went wrong. Please contact support.</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   }
+  },
+  "parameters":{},
+  "examples":{},
+  "requestBodies":{},
+  "headers":{},
+  "securitySchemes":{
+   "APIKeyHeader":{
+    "type":"apiKey",
+    "description":"This is the most secure authorization type and the one with the most flexibility.\n\nAPI keys can be generated by calling the dedicated API method. Furthermore, API keys can have a limited scope and cover only some API methods. Lastly, they can\nbe revoked at any time. This range of possibilities makes API keys well suited for separating the API access rights across multiple applications or use cases.\nFinally, the loss of an API key is easily manageable.\n\nYou can manage your API keys from [GUI](https://portal.infobip.com/settings/accounts/api-keys), or programmatically\nwith [dedicated API](#platform-&-connectivity/settings).\n\nAPI key Authorization header example:\n\n```shell\nAuthorization: App 003026bbc133714df1834b8638bb496e-8f4b3d9a-e931-478d-a994-28a725159ab9\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "Basic":{
+    "type":"http",
+    "description":"Basic authorization type can be used in situations when the API key is not available. For example, API methods for generating API keys should be authenticated\nwith the Basic type.\n\nIn this case, the credentials included in the Authorization header should be a Base64 encoded username and password combination. More formally, basic\nauthentication header can be constructed in three steps:\n\n* Username and password are concatenated using the colon `(:)` as a separator `username:password`.\n* The resulting string is encoded using the [RFC2045-MIME](https://www.ietf.org/rfc/rfc2045.txt) variant of Base64.\n* Encoded string is added as credentials after the `\"Basic \"` type.\n\nExample:\n\n```shell\nUsername: \"Aladdin\"\nPassword: \"openSesame\"\n\nConcatenated string: \"Aladdin:openSesame\"\n\nBase64 encoded string: \"QWxhZGRpbjpvcGVuU2VzYW1l\"\n\nAuthorization header: \"Basic QWxhZGRpbjpvcGVuU2VzYW1l\"\n```\n\n> **Implementation detail**: Base64 encoding is a standard and many available programming languages and frameworks provide convenient methods for encoding\n> strings.\n",
+    "scheme":"basic"
+   },
+   "IBSSOTokenHeader":{
+    "type":"apiKey",
+    "description":"This authorization type is suited for situations when you do not want to store Infobip credentials in your own app. Instead, your users will input their Infobip\ncredentials every time they access your application and the application will use those credentials to create a session. From then on, the session token can be\nused to authenticate subsequent API requests. Note that the session will expire automatically after a predefined period of inactivity, and can also be manually\nterminated by making an appropriate API call.\n\nYou can find more details on the creation and behavior of the session at\nthe [dedicated documentation page](#platform-connectivity/account-management/create-session).\n\nAfter obtaining the session token by calling the above-referenced API method you can include it in the Authorization header like this:\n\n```shell\nAuthorization: IBSSO 2f9b4d31-2d0d-49a8-85f0-9b862bdca394\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "OAuth2":{
+    "type":"oauth2",
+    "description":"Similarly to the IBSSO Token authentication you can use OAuth 2.0 bearer token with Infobip serving both as resource and authorization server. You can obtain\nthe access token using the client credentials grant from `auth/1/oauth2/token` endpoint. It will provide you with your access token, and its expiration period.\nYou can use the token to authorize your API calls until it expires. You can find out more about the process in\nthe [official specification](https://tools.ietf.org/html/rfc6749#section-4.4).\n\nYou can include your access token in the Authorization HTTP request header like this:\n\n```http\nAuthorization: Bearer <access_token>\n```",
+    "flows":{
+     "clientCredentials":{
+      "tokenUrl":"https://api.infobip.com/auth/1/oauth2/token",
+      "scopes":{}
+     }
+    }
+   }
+  },
+  "links":{},
+  "callbacks":{}
+ }
+}

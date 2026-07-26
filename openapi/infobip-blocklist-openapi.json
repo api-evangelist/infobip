@@ -1,0 +1,1374 @@
+{
+ "openapi":"3.1.0",
+ "info":{
+  "title":"Infobip OpenAPI Specification",
+  "description":"OpenAPI Specification that contains all public endpoints and webhooks.",
+  "contact":{
+   "name":"Infobip support",
+   "email":"support@infobip.com"
+  },
+  "version":"3.210.0",
+  "x-generatedAt":"2026-07-23T15:23:57.067489985Z"
+ },
+ "tags":[
+  {
+   "name":"platform",
+   "description":"Modular tools to scale and automate your business.\n",
+   "x-type":"category",
+   "x-displayName":"Platform"
+  },
+  {
+   "name":"blocklist",
+   "description":"Phone numbers and email addresses (referred to as destinations) that no longer want to be contacted are stored inside a Blocklist (also known as [Do Not Contact List](https://www.infobip.com/docs/people/manage-audience#do-not-contact-list))\n\nThis platform feature is used to make sure that no communication is sent to recipients who have opted out of your communication campaigns.\n\nWith the Blocklist API, you are able to programmatically manage and track the list of recipients who want to stop receiving communication from your company while remaining compliant with important personal data regulations, such as GDPR.\n",
+   "x-type":"product",
+   "x-displayName":"Blocklist"
+  }
+ ],
+ "paths":{
+  "/platform/1/blocklists":{
+   "get":{
+    "tags":[
+     "platform",
+     "blocklist"
+    ],
+    "summary":"Get all blocklists",
+    "description":"This method allows you to get all blocklist records or filter them based on specific parameters.",
+    "operationId":"get-all-blocklists",
+    "parameters":[
+     {
+      "name":"sender",
+      "in":"query",
+      "description":"The sender ID for which blocklist happened.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "example":"10950",
+       "maxLength":255,
+       "minLength":1
+      }
+     },
+     {
+      "name":"destination",
+      "in":"query",
+      "description":"Blocklisted destination address.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "example":"41793026727",
+       "maxLength":255,
+       "minLength":1
+      }
+     },
+     {
+      "name":"channel",
+      "in":"query",
+      "description":"Channel used for sending for which blocklist happened.\n\nIf you want to check blocklist records for all channels, this field can be left out.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "$ref":"#/components/schemas/2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.ViewableChannel"
+      }
+     },
+     {
+      "name":"sourceType",
+      "in":"query",
+      "description":"Represents the way blocklist record was created:\n\nCUSTOM - blocklist record that was created manually\n\nMO - blocklist record automatically created once an end user unsubscribes by replying with a specific keyword (e.g.: STOP). This is applicable for the following channels: SMS, MMS.\n\nURL_OPT_OUT - blocklist record automatically created once an end user clicks an opt-out link included in the message.\n\nCAMPAIGN - blocklist record automatically created through a triggered event in the Flow (e.g., if the message was not opened in 24h, add to blocklist).",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "$ref":"#/components/schemas/2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.SourceType"
+      }
+     },
+     {
+      "name":"accountKey",
+      "in":"query",
+      "description":"Account connected with a blocklist record. Main account has access to blocklist records of their subaccounts. Subaccounts can only access blocklist records specific to them. [API to retrieve account key](https://www.infobip.com/docs/api/platform/account-management/get-all-accounts).",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "example":"8F0792F86035A9F4290821F1EE6BC06A"
+      }
+     },
+     {
+      "name":"getAllAccountKeysBlocklists",
+      "in":"query",
+      "description":"If set to `true`, blocklist records for subaccounts will be returned as well.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"boolean",
+       "example":false
+      }
+     },
+     {
+      "name":"createdDateFrom",
+      "in":"query",
+      "description":"Use with `createDateTo` to search for blocklists for a particular date range.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "format":"date-time",
+       "example":"2022-08-18T12:33:42.123Z"
+      }
+     },
+     {
+      "name":"createdDateTo",
+      "in":"query",
+      "description":"Use with `createDateFrom` to search for blocklists for a particular date range.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "format":"date-time",
+       "example":"2022-08-18T13:33:42.123Z"
+      }
+     },
+     {
+      "name":"campaign",
+      "in":"query",
+      "description":"ID that allows you to track, analyze, and show an aggregated overview and the performance of individual campaigns per sending channel.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "example":"summersale",
+       "maxLength":255,
+       "minLength":1
+      }
+     },
+     {
+      "name":"page",
+      "in":"query",
+      "description":"Requested page number.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "default":0,
+       "example":0,
+       "minimum":0
+      }
+     },
+     {
+      "name":"size",
+      "in":"query",
+      "description":"Requested page size.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "default":100,
+       "example":10,
+       "maximum":1000,
+       "minimum":1
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.BlocklistGetResponse"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "results":[
+            {
+             "sender":"10950",
+             "destination":"12022921990",
+             "sourceType":"MO",
+             "channel":"MMS",
+             "accountKey":"8F0792F86035A9F4290821F1EE6BC06A",
+             "createdDate":"2022-08-18T12:36:42.123Z"
+            },
+            {
+             "sender":"64350",
+             "destination":"12022921994",
+             "sourceType":"CUSTOM",
+             "channel":"SMS",
+             "accountKey":"8F0792F86035A9F4290821F1EE6BC06A",
+             "createdDate":"2022-08-18T12:36:42.123Z"
+            },
+            {
+             "sender":"c5ab692f-b5d8-4bad-bee5-c121dc346a39",
+             "destination":"urn:mbid:AQAAY3hr45FzBEsLpieCa0GANPlF399IiV/0gLSXRvwHauT0ph5Akk/Tx66ekESCF32bAOUHbSDCgQmZpGlyVr+wWepO0vPd7SUSQMUhjm+TTD7b/gGuVS6urpS2PL8I4GT+NW67K6VIO/1TeADk+Yu18i9HQfw=",
+             "sourceType":"MO",
+             "channel":"APPLE_MB",
+             "accountKey":"8F0792F86035A9F4290821F1EE6BC06A",
+             "createdDate":"2022-08-18T12:36:42.123Z"
+            }
+           ],
+           "paging":{
+            "page":0,
+            "size":10,
+            "totalPages":1,
+            "totalResults":2
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/bad08f31d0530c669218bdbac07f91125fbbb50284a2712ce5d27fb95dd26628.ApiException"
+        },
+        "examples":{
+         "Bad request example for filter request":{
+          "summary":"Bad request example for filter request",
+          "description":"Bad request example for filter request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request",
+             "validationErrors":{
+              "channel":[
+               "unsupported channel"
+              ],
+              "sender":[
+               "size must be between 1 and 255"
+              ],
+              "sourceType":[
+               "unsupported source type"
+              ],
+              "destination":[
+               "size must be between 1 and 255"
+              ],
+              "size":[
+               "must be less than or equal to 1000"
+              ],
+              "page":[
+               "must be greater than or equal to 0"
+              ],
+              "request":[
+               "created dates must be in supported format, both present and valid (`from` must be before `to`)"
+              ]
+             }
+            }
+           }
+          }
+         },
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "blocklist:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":1,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   },
+   "post":{
+    "tags":[
+     "platform",
+     "blocklist"
+    ],
+    "summary":"Create blocklists",
+    "description":"This method allows you to add someone to blocklist. It accepts create request with blocklists and asynchronously saves them, leaving out duplicate entries.",
+    "operationId":"create-blocklists",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.BlocklistCreateRequest"
+       },
+       "examples":{
+        "Blocklist create request":{
+         "summary":"Blocklist create request",
+         "description":"Blocklist create request",
+         "value":{
+          "blocklist":[
+           {
+            "destinations":[
+             {
+              "to":"2025550954"
+             },
+             {
+              "to":"2025550316"
+             }
+            ]
+           },
+           {
+            "sender":"someone@example.com",
+            "destinations":[
+             {
+              "to":"jane.doe@example.com"
+             },
+             {
+              "to":"john.doe@example.com"
+             }
+            ],
+            "channel":"EMAIL",
+            "accountKey":"8F0792F86035A9F4290821F1EE6BC06A"
+           }
+          ]
+         }
+        }
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "202":{
+      "description":"Accepted"
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/bad08f31d0530c669218bdbac07f91125fbbb50284a2712ce5d27fb95dd26628.ApiException"
+        },
+        "examples":{
+         "Bad request example for create request":{
+          "summary":"Bad request example for create request",
+          "description":"Bad request example for create request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request",
+             "validationErrors":{
+              "blocklist[1].accountKey":[
+               "unsupported account key"
+              ],
+              "blocklist[0].channel":[
+               "unsupported channel"
+              ],
+              "blocklist[0].destinations[0].to":[
+               "size must be between 1 and 255"
+              ],
+              "blocklist[1].channel":[
+               "unsupported channel"
+              ],
+              "blocklist[1].destinations[1].to":[
+               "size must be between 1 and 255"
+              ],
+              "blocklist[2].destinations":[
+               "must not be empty"
+              ]
+             }
+            }
+           }
+          }
+         },
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "blocklist:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":1,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   },
+   "delete":{
+    "tags":[
+     "platform",
+     "blocklist"
+    ],
+    "summary":"Delete blocklists",
+    "description":"This method allows you to remove someone from blocklist. It accepts delete request and asynchronously deletes all blocklists that match given properties. \n\nNote: To delete a blocklist, you must list all properties that were defined in the create request. For example, to delete the blocklist with the following properties: \n\n`{\"sender\": \"10950\", \"destination\": \"12022921990\", \"sourceType\": \"CUSTOM\", \"channel\": \"MMS\", \"createdDate\": \"2022-08-18T12:36:42.123Z\"}` \n\nThe delete request must contain all present properties, like this: \n\n`{\"blocklist\": [{\"destinations\": [{\"to\": \"12022921990\"}], \"sender\": \"10950\", \"channel\": \"MMS\", \"sourceType\": \"CUSTOM\"}`. \n\nOnly when all properties are listed will the blocklist be removed.",
+    "operationId":"delete-blocklists",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.BlocklistDeleteRequest"
+       },
+       "examples":{
+        "Blocklist delete request":{
+         "summary":"Blocklist delete request",
+         "description":"Blocklist delete request",
+         "value":{
+          "blocklist":[
+           {
+            "destinations":[
+             {
+              "to":"2025550954"
+             },
+             {
+              "to":"2025550316"
+             }
+            ],
+            "sourceType":"CAMPAIGN"
+           },
+           {
+            "sender":"someone@example.com",
+            "destinations":[
+             {
+              "to":"jane.doe@example.com"
+             },
+             {
+              "to":"john.doe@example.com"
+             }
+            ],
+            "channel":"EMAIL",
+            "accountKey":"8F0792F86035A9F4290821F1EE6BC06A",
+            "sourceType":"CUSTOM"
+           }
+          ]
+         }
+        }
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "202":{
+      "description":"Accepted"
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/bad08f31d0530c669218bdbac07f91125fbbb50284a2712ce5d27fb95dd26628.ApiException"
+        },
+        "examples":{
+         "Bad request example for delete request":{
+          "summary":"Bad request example for delete request",
+          "description":"Bad request example for delete request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request",
+             "validationErrors":{
+              "blocklist[1].accountKey":[
+               "unsupported account key"
+              ],
+              "blocklist[0].channel":[
+               "unsupported channel"
+              ],
+              "blocklist[0].sourceType":[
+               "unsupported source type"
+              ],
+              "blocklist[0].destinations[0].to":[
+               "size must be between 1 and 255"
+              ],
+              "blocklist[1].channel":[
+               "unsupported channel"
+              ],
+              "blocklist[1].destinations[1].to":[
+               "size must be between 1 and 255"
+              ],
+              "blocklist[2].destinations":[
+               "must not be empty"
+              ]
+             }
+            }
+           }
+          }
+         },
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "blocklist:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":1,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  }
+ },
+ "components":{
+  "schemas":{
+   "2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.BlocklistCreate":{
+    "type":"object",
+    "description":"Blocklist.",
+    "properties":{
+     "destinations":{
+      "type":"array",
+      "description":"Destination addresses that need to be blocklisted.",
+      "items":{
+       "$ref":"#/components/schemas/2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.ToCreate"
+      }
+     },
+     "sender":{
+      "type":"string",
+      "description":"The sender ID for which blocklist happened.",
+      "maxLength":255,
+      "minLength":1
+     },
+     "channel":{
+      "$ref":"#/components/schemas/2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.CreatableChannel"
+     },
+     "accountKey":{
+      "type":"string",
+      "description":"Account connected with a blocklist record. Main account has access to blocklist records of their subaccounts. Subaccounts can only access blocklist records specific to them. [API to retrieve account key](https://www.infobip.com/docs/api/platform/account-management/get-all-accounts)."
+     }
+    },
+    "required":[
+     "destinations"
+    ],
+    "title":"BlocklistCreate"
+   },
+   "2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.BlocklistCreateRequest":{
+    "type":"object",
+    "description":"Blocklist request.",
+    "properties":{
+     "blocklist":{
+      "type":"array",
+      "description":"Blocklist elements that need to be blocklisted. Number of destinations cannot exceed 50 000.",
+      "items":{
+       "$ref":"#/components/schemas/2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.BlocklistCreate"
+      }
+     }
+    },
+    "required":[
+     "blocklist"
+    ],
+    "title":"BlocklistCreateRequest"
+   },
+   "2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.BlocklistDelete":{
+    "type":"object",
+    "description":"Blocklist.",
+    "properties":{
+     "destinations":{
+      "type":"array",
+      "description":"Destination addresses that need to be removed from blocklist.",
+      "items":{
+       "$ref":"#/components/schemas/2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.ToDelete"
+      }
+     },
+     "sender":{
+      "type":"string",
+      "description":"The sender ID that needs to be removed from blocklist. Sender can be alphanumeric or numeric.",
+      "maxLength":255,
+      "minLength":1
+     },
+     "channel":{
+      "$ref":"#/components/schemas/2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.DeletableChannel"
+     },
+     "accountKey":{
+      "type":"string",
+      "description":"Account for which blocklist record/s will be removed. Main account can remove blocklist record/s for their subaccounts. Subaccounts can remove blocklist record/s specific to them. [API to retrieve account key](https://www.infobip.com/docs/api/platform/account-management/get-all-accounts)."
+     },
+     "sourceType":{
+      "$ref":"#/components/schemas/2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.SourceType"
+     }
+    },
+    "required":[
+     "destinations"
+    ],
+    "title":"BlocklistDelete"
+   },
+   "2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.BlocklistDeleteRequest":{
+    "type":"object",
+    "description":"Blocklist request.",
+    "properties":{
+     "blocklist":{
+      "type":"array",
+      "description":"Blocklist elements that need to be removed from blocklist. Number of destinations cannot exceed 50 000.",
+      "items":{
+       "$ref":"#/components/schemas/2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.BlocklistDelete"
+      }
+     }
+    },
+    "required":[
+     "blocklist"
+    ],
+    "title":"BlocklistDeleteRequest"
+   },
+   "2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.BlocklistEvent":{
+    "type":"object",
+    "description":"Blocklist event.",
+    "properties":{
+     "event":{
+      "$ref":"#/components/schemas/2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.BlocklistEventType"
+     },
+     "receivedAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when the event was received."
+     },
+     "messageId":{
+      "type":"string",
+      "description":"The ID that uniquely identifies the event sent."
+     },
+     "content":{
+      "$ref":"#/components/schemas/2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.Content"
+     }
+    },
+    "required":[
+     "content",
+     "event",
+     "messageId",
+     "receivedAt"
+    ],
+    "title":"BlocklistEvent"
+   },
+   "2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.BlocklistEventRequest":{
+    "type":"object",
+    "description":"Blocklist event request.",
+    "properties":{
+     "results":{
+      "type":"array",
+      "description":"Incoming blocklist events.",
+      "items":{
+       "$ref":"#/components/schemas/2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.BlocklistEvent"
+      }
+     }
+    },
+    "required":[
+     "results"
+    ],
+    "title":"BlocklistEventRequest"
+   },
+   "2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.BlocklistEventType":{
+    "type":"string",
+    "description":"Blocklist event type.",
+    "enum":[
+     "BLOCK",
+     "UNBLOCK"
+    ],
+    "title":"BlocklistEventType"
+   },
+   "2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.BlocklistGetResponse":{
+    "type":"object",
+    "description":"Blocklist get response.",
+    "properties":{
+     "results":{
+      "type":"array",
+      "description":"Blocklists for requested paging information.",
+      "items":{
+       "$ref":"#/components/schemas/2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.BlocklistResponse"
+      }
+     },
+     "paging":{
+      "$ref":"#/components/schemas/2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.PagingResponse"
+     }
+    },
+    "required":[
+     "paging",
+     "results"
+    ],
+    "title":"BlocklistGetResponse"
+   },
+   "2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.BlocklistResponse":{
+    "type":"object",
+    "description":"Blocklist response.",
+    "properties":{
+     "sender":{
+      "type":"string",
+      "description":"The sender ID for which blocklist happened."
+     },
+     "destination":{
+      "type":"string",
+      "description":"Blocklisted destination address."
+     },
+     "sourceType":{
+      "$ref":"#/components/schemas/2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.SourceType"
+     },
+     "channel":{
+      "$ref":"#/components/schemas/2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.ViewableChannel"
+     },
+     "accountKey":{
+      "type":"string",
+      "description":"Account connected with a blocklist record. Main account has access to blocklist records of their subaccounts. Subaccounts can only access blocklist records specific to them. [API to retrieve account key](https://www.infobip.com/docs/api/platform/account-management/get-all-accounts)."
+     },
+     "createdDate":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Timestamp of created blocklist record."
+     },
+     "campaign":{
+      "type":"string",
+      "format":"string",
+      "description":"ID that allows you to track, analyze, and show an aggregated overview and the performance of individual campaigns per sending channel."
+     }
+    },
+    "required":[
+     "accountKey",
+     "createdDate",
+     "destination",
+     "sourceType"
+    ],
+    "title":"BlocklistResponse"
+   },
+   "2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.CampaignReference":{
+    "type":"object",
+    "description":"Campaign reference, if matched by the Infobip platform.",
+    "properties":{
+     "campaignId":{
+      "type":"integer",
+      "format":"int32",
+      "description":"ID of the campaign or flow."
+     },
+     "campaign":{
+      "type":"string",
+      "description":"ID that allows you to track, analyze, and show an aggregated overview and the performance of individual campaigns per sending channel."
+     },
+     "versionId":{
+      "type":"integer",
+      "format":"int32",
+      "description":"ID of the version of the campaign created over Infobip Portal."
+     }
+    },
+    "title":"CampaignReference"
+   },
+   "2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.Content":{
+    "type":"object",
+    "description":"Event content.",
+    "properties":{
+     "sender":{
+      "type":"string",
+      "description":"The sender ID for which blocklist happened."
+     },
+     "destination":{
+      "type":"string",
+      "description":"Blocklisted destination address."
+     },
+     "channel":{
+      "$ref":"#/components/schemas/2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.ViewableChannel"
+     },
+     "sourceType":{
+      "$ref":"#/components/schemas/2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.EventSourceType"
+     },
+     "outboundMessageReference":{
+      "$ref":"#/components/schemas/2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.OutboundMessageReference"
+     },
+     "inboundMessageReference":{
+      "$ref":"#/components/schemas/2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.InboundMessageReference"
+     },
+     "campaignReference":{
+      "$ref":"#/components/schemas/2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.CampaignReference"
+     }
+    },
+    "required":[
+     "destination",
+     "sourceType"
+    ],
+    "title":"Content"
+   },
+   "2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.CreatableChannel":{
+    "type":"string",
+    "description":"Channel used for sending for which blocklist happened.",
+    "enum":[
+     "SMS",
+     "EMAIL",
+     "VIBER",
+     "RCS",
+     "MMS",
+     "WHATSAPP"
+    ],
+    "title":"CreatableChannel"
+   },
+   "2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.DeletableChannel":{
+    "type":"string",
+    "description":"Channel for which blocklist record/s will be removed.",
+    "enum":[
+     "SMS",
+     "EMAIL",
+     "VIBER",
+     "RCS",
+     "MMS",
+     "APPLE_MB",
+     "WHATSAPP"
+    ],
+    "title":"DeletableChannel"
+   },
+   "2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.EventSourceType":{
+    "type":"string",
+    "description":"Represents the way blocklist record was created:\n\nMO - blocklist record automatically created once an end user unsubscribes by replying with a specific keyword (e.g.: STOP). This is applicable for the following channels: SMS, MMS.\n\nURL_OPT_OUT - blocklist record automatically created once an end user clicks an opt-out link included in the message.\n\nCAMPAIGN - blocklist record automatically created through a triggered event in the Flow (e.g., if the message was not opened in 24h, add to blocklist).",
+    "enum":[
+     "MO",
+     "URL_OPT_OUT",
+     "CAMPAIGN"
+    ],
+    "title":"EventSourceType"
+   },
+   "2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.InboundMessageReference":{
+    "type":"object",
+    "description":"Inbound message reference, if matched by the Infobip platform.",
+    "properties":{
+     "inboundMessageId":{
+      "type":"string",
+      "description":"ID of the message that triggered the event if matched by the Infobip platform. For example, MO message ID."
+     }
+    },
+    "title":"InboundMessageReference"
+   },
+   "2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.OutboundMessageReference":{
+    "type":"object",
+    "description":"Outbound message reference, if matched by the Infobip platform.",
+    "properties":{
+     "bulkId":{
+      "type":"string",
+      "description":"ID of the bulk of outgoing messages."
+     },
+     "outboundMessageId":{
+      "type":"string",
+      "description":"ID of the paired outgoing message."
+     },
+     "sendAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when the bulk or message was scheduled to be sent."
+     }
+    },
+    "title":"OutboundMessageReference"
+   },
+   "2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.PagingResponse":{
+    "type":"object",
+    "description":"Paging response.",
+    "properties":{
+     "page":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Requested page number."
+     },
+     "size":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Requested page size."
+     },
+     "totalPages":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Total pages."
+     },
+     "totalResults":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Total results."
+     }
+    },
+    "required":[
+     "page",
+     "size",
+     "totalPages",
+     "totalResults"
+    ],
+    "title":"PagingResponse"
+   },
+   "2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.SourceType":{
+    "type":"string",
+    "description":"Represents the way blocklist record was created:\n\nCUSTOM - blocklist record that was created manually\n\nMO - blocklist record automatically created once an end user unsubscribes by replying with a specific keyword (e.g.: STOP). This is applicable for the following channels: SMS, MMS.\n\nURL_OPT_OUT - blocklist record automatically created once an end user clicks an opt-out link included in the message.\n\nCAMPAIGN - blocklist record automatically created through a triggered event in the Flow (e.g., if the message was not opened in 24h, add to blocklist).\n\nIf source type is omitted while deleting, all blocklists that match delete request will be deleted regardless of the source type.",
+    "enum":[
+     "CUSTOM",
+     "MO",
+     "URL_OPT_OUT",
+     "CAMPAIGN"
+    ],
+    "title":"SourceType"
+   },
+   "2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.ToCreate":{
+    "type":"object",
+    "description":"To.",
+    "properties":{
+     "to":{
+      "type":"string",
+      "description":"Destination address that needs to be blocklisted. Addresses must be a number in international format (example: `41793026727`),  a valid email address (example: `recipient@example.com`) or valid email domain (example: `example.com`).",
+      "maxLength":255,
+      "minLength":1
+     }
+    },
+    "required":[
+     "to"
+    ],
+    "title":"ToCreate"
+   },
+   "2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.ToDelete":{
+    "type":"object",
+    "description":"To.",
+    "properties":{
+     "to":{
+      "type":"string",
+      "description":"Destination address that needs to be removed from blocklist. Addresses must be a number in international format (example: `41793026727`), a valid email address (example: `recipient@example.com`) or valid email domain (example: `example.com`).",
+      "maxLength":255,
+      "minLength":1
+     }
+    },
+    "required":[
+     "to"
+    ],
+    "title":"ToDelete"
+   },
+   "2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.ViewableChannel":{
+    "type":"string",
+    "description":"Channel used for sending for which blocklist happened.",
+    "enum":[
+     "SMS",
+     "EMAIL",
+     "VOICE_OUTBOUND_TTS",
+     "NEW_PUSH_NOTIF",
+     "VIBER",
+     "RCS",
+     "WHATSAPP",
+     "APPLE_MB",
+     "MMS"
+    ],
+    "title":"ViewableChannel"
+   },
+   "ApiException":{
+    "type":"object",
+    "properties":{
+     "requestError":{
+      "$ref":"#/components/schemas/ApiRequestError"
+     }
+    },
+    "title":"ApiException"
+   },
+   "ApiRequestError":{
+    "type":"object",
+    "properties":{
+     "serviceException":{
+      "$ref":"#/components/schemas/ApiRequestErrorDetails"
+     }
+    },
+    "title":"ApiRequestError"
+   },
+   "ApiRequestErrorDetails":{
+    "type":"object",
+    "properties":{
+     "messageId":{
+      "type":"string",
+      "description":"Identifier of the error."
+     },
+     "text":{
+      "type":"string",
+      "description":"Detailed error description."
+     },
+     "validationErrors":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"array",
+       "items":{
+        "type":"string",
+        "description":"Validation errors."
+       }
+      },
+      "description":"Validation errors."
+     }
+    },
+    "title":"ApiRequestErrorDetails"
+   },
+   "bad08f31d0530c669218bdbac07f91125fbbb50284a2712ce5d27fb95dd26628.ApiException":{
+    "type":"object",
+    "properties":{
+     "requestError":{
+      "$ref":"#/components/schemas/ApiRequestError"
+     }
+    },
+    "title":"ApiException"
+   }
+  },
+  "responses":{
+   "ApiException401":{
+    "description":"Unauthorized",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"UNAUTHORIZED",
+         "text":"Unauthorized"
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>UNAUTHORIZED</messageId>\n      <text>Unauthorized</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   },
+   "ApiException403":{
+    "description":"Forbidden",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"FORBIDDEN",
+         "text":"Forbidden"
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>FORBIDDEN</messageId>\n      <text>Forbidden</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   },
+   "ApiException429":{
+    "description":"Too Many Requests",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"TOO_MANY_REQUESTS",
+         "text":"Too many requests"
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>TOO_MANY_REQUESTS</messageId>\n      <text>Too many requests</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   },
+   "ApiException500":{
+    "description":"Internal Server Error",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"GENERAL_ERROR",
+         "text":"Something went wrong. Please contact support."
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>GENERAL_ERROR</messageId>\n      <text>Something went wrong. Please contact support.</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   }
+  },
+  "parameters":{},
+  "examples":{},
+  "requestBodies":{},
+  "headers":{},
+  "securitySchemes":{
+   "APIKeyHeader":{
+    "type":"apiKey",
+    "description":"This is the most secure authorization type and the one with the most flexibility.\n\nAPI keys can be generated by calling the dedicated API method. Furthermore, API keys can have a limited scope and cover only some API methods. Lastly, they can\nbe revoked at any time. This range of possibilities makes API keys well suited for separating the API access rights across multiple applications or use cases.\nFinally, the loss of an API key is easily manageable.\n\nYou can manage your API keys from [GUI](https://portal.infobip.com/settings/accounts/api-keys), or programmatically\nwith [dedicated API](#platform-&-connectivity/settings).\n\nAPI key Authorization header example:\n\n```shell\nAuthorization: App 003026bbc133714df1834b8638bb496e-8f4b3d9a-e931-478d-a994-28a725159ab9\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "Basic":{
+    "type":"http",
+    "description":"Basic authorization type can be used in situations when the API key is not available. For example, API methods for generating API keys should be authenticated\nwith the Basic type.\n\nIn this case, the credentials included in the Authorization header should be a Base64 encoded username and password combination. More formally, basic\nauthentication header can be constructed in three steps:\n\n* Username and password are concatenated using the colon `(:)` as a separator `username:password`.\n* The resulting string is encoded using the [RFC2045-MIME](https://www.ietf.org/rfc/rfc2045.txt) variant of Base64.\n* Encoded string is added as credentials after the `\"Basic \"` type.\n\nExample:\n\n```shell\nUsername: \"Aladdin\"\nPassword: \"openSesame\"\n\nConcatenated string: \"Aladdin:openSesame\"\n\nBase64 encoded string: \"QWxhZGRpbjpvcGVuU2VzYW1l\"\n\nAuthorization header: \"Basic QWxhZGRpbjpvcGVuU2VzYW1l\"\n```\n\n> **Implementation detail**: Base64 encoding is a standard and many available programming languages and frameworks provide convenient methods for encoding\n> strings.\n",
+    "scheme":"basic"
+   },
+   "IBSSOTokenHeader":{
+    "type":"apiKey",
+    "description":"This authorization type is suited for situations when you do not want to store Infobip credentials in your own app. Instead, your users will input their Infobip\ncredentials every time they access your application and the application will use those credentials to create a session. From then on, the session token can be\nused to authenticate subsequent API requests. Note that the session will expire automatically after a predefined period of inactivity, and can also be manually\nterminated by making an appropriate API call.\n\nYou can find more details on the creation and behavior of the session at\nthe [dedicated documentation page](#platform-connectivity/account-management/create-session).\n\nAfter obtaining the session token by calling the above-referenced API method you can include it in the Authorization header like this:\n\n```shell\nAuthorization: IBSSO 2f9b4d31-2d0d-49a8-85f0-9b862bdca394\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "OAuth2":{
+    "type":"oauth2",
+    "description":"Similarly to the IBSSO Token authentication you can use OAuth 2.0 bearer token with Infobip serving both as resource and authorization server. You can obtain\nthe access token using the client credentials grant from `auth/1/oauth2/token` endpoint. It will provide you with your access token, and its expiration period.\nYou can use the token to authorize your API calls until it expires. You can find out more about the process in\nthe [official specification](https://tools.ietf.org/html/rfc6749#section-4.4).\n\nYou can include your access token in the Authorization HTTP request header like this:\n\n```http\nAuthorization: Bearer <access_token>\n```",
+    "flows":{
+     "clientCredentials":{
+      "tokenUrl":"https://api.infobip.com/auth/1/oauth2/token",
+      "scopes":{}
+     }
+    }
+   }
+  },
+  "links":{},
+  "callbacks":{}
+ },
+ "webhooks":{
+  "receive-blocklist-event":{
+   "post":{
+    "tags":[
+     "platform",
+     "blocklist"
+    ],
+    "summary":"Receive blocklist event",
+    "description":"Anytime a blocklist is added or removed by an end-user action or within the campaign, an event is sent. You need to subscribe to this event using the 'BLOCKLIST' channel, and specify the 'BLOCK' and 'UNBLOCK' events. For more details, see [documentation](https://www.infobip.com/docs/api/platform/subscriptions-api).",
+    "operationId":"receive-blocklist-event",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.BlocklistEventRequest"
+       },
+       "examples":{
+        "Block event request source type URL Optout":{
+         "summary":"Block event request source type URL Optout",
+         "value":{
+          "results":[
+           {
+            "event":"BLOCK",
+            "receivedAt":"2023-06-06T14:18:29.797+0000",
+            "messageId":"1695640910883409241",
+            "content":{
+             "sender":"sender@example.com",
+             "destination":"recipient@example.com",
+             "channel":"EMAIL",
+             "sourceType":"URL_OPT_OUT",
+             "outboundMessageReference":{
+              "bulkId":"2034072219640523072",
+              "outboundMessageId":"2250be2d4219-3af1-78856-aabe-1362af1edfd2",
+              "sendAt":"2023-06-06T13:18:29.797+0000"
+             }
+            }
+           }
+          ]
+         }
+        },
+        "Block event request source type Campaign":{
+         "summary":"Block event request source type Campaign",
+         "value":{
+          "results":[
+           {
+            "event":"BLOCK",
+            "receivedAt":"2023-06-06T14:18:29.797+0000",
+            "messageId":"1695640910883409241",
+            "content":{
+             "sender":"385919998888",
+             "destination":"41793026731",
+             "sourceType":"CAMPAIGN",
+             "campaignReference":{
+              "campaign":"summersale",
+              "versionId":1
+             }
+            }
+           }
+          ]
+         }
+        },
+        "Unblock event request source type MO":{
+         "summary":"Unblock event request source type MO",
+         "value":{
+          "results":[
+           {
+            "event":"UNBLOCK",
+            "receivedAt":"2023-06-06T14:18:29.797+0000",
+            "messageId":"1695640910883409241",
+            "content":{
+             "sender":"385919998888",
+             "destination":"41793026731",
+             "sourceType":"MO",
+             "outboundMessageReference":{
+              "bulkId":"2034072219640523072",
+              "outboundMessageId":"2250be2d4219-3af1-78856-aabe-1362af1edfd2",
+              "sendAt":"2023-06-06T13:18:29.797+0000"
+             },
+             "inboundMessageReference":{
+              "inboundMessageId":"8695640910883409241"
+             }
+            }
+           }
+          ]
+         }
+        },
+        "Unblock event request source type MO (APPLE_MB)":{
+         "summary":"Unblock event request source type MO (APPLE_MB)",
+         "value":{
+          "results":[
+           {
+            "event":"UNBLOCK",
+            "receivedAt":"2023-06-06T14:18:29.797+0000",
+            "messageId":"1695640910883409241",
+            "content":{
+             "sender":"c5ab692f-b5d8-4bad-bee5-c121dc346a39",
+             "destination":"urn:mbid:AQAAY3hr45FzBEsLpieCa0GANPlF399IiV/0gLSXRvwHauT0ph5Akk/Tx66ekESCF32bAOUHbSDCgQmZpGlyVr+wWepO0vPd7SUSQMUhjm+TTD7b/gGuVS6urpS2PL8I4GT+NW67K6VIO/1TeADk+Yu18i9HQfw=",
+             "sourceType":"MO",
+             "outboundMessageReference":{
+              "bulkId":"2034072219640523072",
+              "outboundMessageId":"2250be2d4219-3af1-78856-aabe-1362af1edfd2",
+              "sendAt":"2023-06-06T13:18:29.797+0000"
+             },
+             "inboundMessageReference":{
+              "inboundMessageId":"8695640910883409241"
+             }
+            }
+           }
+          ]
+         }
+        }
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"Your server returns this code if it accepts the callback."
+     }
+    }
+   }
+  }
+ }
+}

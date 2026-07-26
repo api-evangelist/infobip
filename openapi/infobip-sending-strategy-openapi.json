@@ -1,0 +1,903 @@
+{
+ "openapi":"3.1.0",
+ "info":{
+  "title":"Infobip OpenAPI Specification",
+  "description":"OpenAPI Specification that contains all public endpoints and webhooks.",
+  "contact":{
+   "name":"Infobip support",
+   "email":"support@infobip.com"
+  },
+  "version":"3.210.0",
+  "x-generatedAt":"2026-07-23T15:23:56.750833833Z"
+ },
+ "tags":[
+  {
+   "name":"platform",
+   "description":"Modular tools to scale and automate your business.\n",
+   "x-type":"category",
+   "x-displayName":"Platform"
+  },
+  {
+   "name":"sending-strategy",
+   "description":"Sending Strategy represents one type of configuration for your sending resources. This configuration in its simplest form allows you to set manipulation for your senders on a country level for a specific channel (SMS/MMS) on an Entity or Application-Entity level (read more about Entity and Application [here](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)). Sending Strategies have additional functionalities on top of sender manipulations, like Sticky sender (same sender used for all messaging towards the same destination) and Geolocated sender (sender picked based on the local area code of the customer receiving the message). More about Sending Strategy Management, available features, and future development can be read [here](https://www.infobip.com/docs/cpaas-x/sending-strategy-management).\n\nSending Strategy types:\n* __Application-level Sending Strategy (also called the Default Sending Strategy)__\n  * A strategy that distributes sending across the pool of senders that are automatically fetched based on the definition you specified in [Resources Associations](https://www.infobip.com/docs/cpaas-x/resources#resource-association).\n* __Entity/Application-level Sending Strategy__\n  * A strategy used for client-specific setup. You can define different rules, features, and limitations for each client of yours.\n* __Additional features__\n  * Geolocated Sender - by turning on this feature, traffic will be sent from one of the defined senders that have the same local area code as the customer receiving the message. Customers are more likely to positively react to a message if it comes from a number from their local state. Note: Geolocated sender can be used for terminating messages in North America only.\n  * Sticky Sender - by turning on this feature, when a customer receives a message from one of the defined senders then the same sender will be used for all further messages sent to that customer. Customers are more likely to positively react to a message if it comes from a consistent number connected with some brand/company. \n  * Note: A geolocated sender and a Sticky sender can be used in combination.\n  * Sender Type Priority - enables you to define the priority of your senders in case you have more than one sender for a destination country.\n  * Coming soon:\n    * Default Sender - enables you to define a sender that would be used in case a message does not pass with your Entity-specific sender/s. This can be defined per each Entity differently or can be defined as a default sender on the Application level.\n\nNote: When the \"from\" field (sender) is defined along with application and/or entity in the sending API call, it overrides the Sending Strategy configuration and sender manipulations will not apply\n",
+   "x-type":"product",
+   "x-displayName":"Sending Strategy Management"
+  }
+ ],
+ "paths":{
+  "/provisioning/2/sending-strategies":{
+   "get":{
+    "tags":[
+     "platform",
+     "sending-strategy"
+    ],
+    "summary":"Get sending strategies",
+    "description":"Get sending strategies.",
+    "operationId":"get-sending-strategies-v2",
+    "parameters":[
+     {
+      "name":"sendingStrategyId",
+      "in":"query",
+      "description":"Id of created Sending Strategy.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "example":"78D8394AC3EG0460B4CF0E723FC31B49"
+      }
+     },
+     {
+      "name":"applicationId",
+      "in":"query",
+      "description":"Application Id of created Sending Strategy. For more details, see the [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "example":"test-application-1"
+      }
+     },
+     {
+      "name":"entityId",
+      "in":"query",
+      "description":"Entity Id of created Sending Strategy. For more details, see the [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "example":"test-entity-1"
+      }
+     },
+     {
+      "name":"page",
+      "in":"query",
+      "description":"Requested page number.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "default":0,
+       "example":0,
+       "minimum":0
+      }
+     },
+     {
+      "name":"size",
+      "in":"query",
+      "description":"Requested page size.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "default":100,
+       "example":10,
+       "maximum":1000,
+       "minimum":1
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"OK.",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/5929f45c31f06c29ab1bc6e26caa01575484225e5ef99a2512bee829b646f1c1.PageResponse"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "results":[
+            {
+             "sendingStrategyId":"78D8394AC3EG0460B4CF0E723FC31B49",
+             "platform":{
+              "entityId":"test-entity-1",
+              "applicationId":"test-application-1"
+             },
+             "channel":"MMS",
+             "destinationCountryCode":"US",
+             "useStickySender":false,
+             "useGeolocatedSender":true,
+             "priorities":[
+              {
+               "senderType":"VIRTUAL_LONG_NUMBER",
+               "priority":1
+              },
+              {
+               "senderType":"TOLL_FREE_NUMBER",
+               "priority":2
+              }
+             ]
+            },
+            {
+             "sendingStrategyId":"3B9D1EACAB7FBDRN4EE03592BFCD6BE1",
+             "platform":{
+              "entityId":"test-entity-2",
+              "applicationId":"test-application-2"
+             },
+             "useStickySender":false,
+             "useGeolocatedSender":false
+            },
+            {
+             "sendingStrategyId":"712D1EACAB7FDORN4EE035954FCD6BOO",
+             "platform":{
+              "entityId":"test-entity-2",
+              "applicationId":"test-application-3"
+             },
+             "useStickySender":true,
+             "useGeolocatedSender":false
+            }
+           ],
+           "paging":{
+            "page":0,
+            "size":10,
+            "totalPages":1,
+            "totalResults":3
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "sending-strategy:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":1,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   },
+   "post":{
+    "tags":[
+     "platform",
+     "sending-strategy"
+    ],
+    "summary":"Create sending strategy",
+    "description":"Create sending strategy.",
+    "operationId":"create-sending-strategy-v2",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/5929f45c31f06c29ab1bc6e26caa01575484225e5ef99a2512bee829b646f1c1.SssRequestV2"
+       },
+       "examples":{
+        "Application level":{
+         "summary":"Application level",
+         "description":"Application level",
+         "value":{
+          "platform":{
+           "applicationId":"default"
+          }
+         }
+        },
+        "Application/Entity level":{
+         "summary":"Application/Entity level",
+         "description":"Application/Entity level",
+         "value":{
+          "platform":{
+           "entityId":"test-entity-1",
+           "applicationId":"test-application-1"
+          },
+          "channel":"MMS",
+          "destinationCountryCode":"CA"
+         }
+        },
+        "Application level with additional features":{
+         "summary":"Application level with additional features",
+         "description":"Application level with additional features",
+         "value":{
+          "platform":{
+           "applicationId":"default"
+          },
+          "channel":"SMS",
+          "useStickySender":true
+         }
+        },
+        "Application/Entity level with additional features":{
+         "summary":"Application/Entity level with additional features",
+         "description":"Application/Entity level with additional features",
+         "value":{
+          "platform":{
+           "entityId":"test-entity-1",
+           "applicationId":"test-application-1"
+          },
+          "channel":"SMS",
+          "destinationCountryCode":"US",
+          "useStickySender":true,
+          "useGeolocatedSender":true,
+          "priorities":[
+           {
+            "senderType":"VIRTUAL_LONG_NUMBER",
+            "priority":1
+           },
+           {
+            "senderType":"TOLL_FREE_NUMBER",
+            "priority":2
+           }
+          ]
+         }
+        }
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "201":{
+      "description":"Created.",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/5929f45c31f06c29ab1bc6e26caa01575484225e5ef99a2512bee829b646f1c1.SendingStrategyId"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "sendingStrategyId":"78D8394AC3EG0460B4CF0E723FC31B49"
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request.",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "errorCode":"E400",
+           "description":"Request cannot be processed.",
+           "action":"Check the syntax, violations and adjust the request.",
+           "violations":[
+            {
+             "property":"property.path",
+             "violation":"Violation message."
+            }
+           ],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "sending-strategy:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":1,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/provisioning/2/sending-strategies/{sendingStrategyId}":{
+   "delete":{
+    "tags":[
+     "platform",
+     "sending-strategy"
+    ],
+    "summary":"Delete sending strategy by sending strategy id",
+    "description":"Delete sending strategy by sending strategy id.",
+    "operationId":"delete-sending-strategy-by-sending-strategy-id-v2",
+    "parameters":[
+     {
+      "name":"sendingStrategyId",
+      "in":"path",
+      "description":"Id of the Sending Strategy.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"78D8394AC3EG0460B4CF0E723FC31B49"
+     }
+    ],
+    "responses":{
+     "204":{
+      "description":"No content."
+     },
+     "400":{
+      "description":"Bad request.",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "errorCode":"E400",
+           "description":"Request cannot be processed.",
+           "action":"Check the syntax, violations and adjust the request.",
+           "violations":[
+            {
+             "property":"property.path",
+             "violation":"Violation message."
+            }
+           ],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "404":{
+      "description":"Not found.",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "sending-strategy:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":1,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  }
+ },
+ "components":{
+  "schemas":{
+   "5929f45c31f06c29ab1bc6e26caa01575484225e5ef99a2512bee829b646f1c1.PageInfo":{
+    "type":"object",
+    "description":"Contains information about the page.",
+    "properties":{
+     "page":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Requested page number.",
+      "minimum":0
+     },
+     "size":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Requested page size.",
+      "minimum":1
+     },
+     "totalPages":{
+      "type":"integer",
+      "format":"int32",
+      "description":"The total number of pages of the results matching the requested parameters.",
+      "minimum":0
+     },
+     "totalResults":{
+      "type":"integer",
+      "format":"int64",
+      "description":"The total number of the results matching the requested parameters.",
+      "minimum":0
+     }
+    },
+    "required":[
+     "page",
+     "size",
+     "totalPages",
+     "totalResults"
+    ],
+    "title":"PageInfo"
+   },
+   "5929f45c31f06c29ab1bc6e26caa01575484225e5ef99a2512bee829b646f1c1.PageResponse":{
+    "type":"object",
+    "properties":{
+     "results":{
+      "type":"array",
+      "description":"The list of the results for this page.",
+      "items":{
+       "$ref":"#/components/schemas/5929f45c31f06c29ab1bc6e26caa01575484225e5ef99a2512bee829b646f1c1.SssV2"
+      }
+     },
+     "paging":{
+      "$ref":"#/components/schemas/5929f45c31f06c29ab1bc6e26caa01575484225e5ef99a2512bee829b646f1c1.PageInfo"
+     }
+    },
+    "required":[
+     "paging",
+     "results"
+    ],
+    "title":"PageResponse"
+   },
+   "5929f45c31f06c29ab1bc6e26caa01575484225e5ef99a2512bee829b646f1c1.Platform":{
+    "type":"object",
+    "description":"Platform options. For more details, see [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+    "properties":{
+     "entityId":{
+      "type":"string",
+      "description":"Used when specifying an entity in outbound send requests. It is also returned in notification events. For detailed usage, refer to the [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+      "maxLength":255,
+      "minLength":0
+     },
+     "applicationId":{
+      "type":"string",
+      "description":"Used when specifying an application in outbound send requests. It is also returned in notification events. For detailed usage, refer to the [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+      "maxLength":255,
+      "minLength":0
+     }
+    },
+    "title":"Platform"
+   },
+   "5929f45c31f06c29ab1bc6e26caa01575484225e5ef99a2512bee829b646f1c1.Priority":{
+    "type":"object",
+    "description":"Priorities of the senders that can be defined in case there is more than one sender for a destination country.",
+    "properties":{
+     "senderType":{
+      "$ref":"#/components/schemas/5929f45c31f06c29ab1bc6e26caa01575484225e5ef99a2512bee829b646f1c1.SenderType"
+     },
+     "priority":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Priority of sender type, from 1 to a maximum of 4. Lower number means higher priority.",
+      "example":1,
+      "maximum":4,
+      "minimum":1
+     }
+    },
+    "required":[
+     "priority",
+     "senderType"
+    ],
+    "title":"Priority"
+   },
+   "5929f45c31f06c29ab1bc6e26caa01575484225e5ef99a2512bee829b646f1c1.SenderType":{
+    "type":"string",
+    "description":"Sender type.",
+    "enum":[
+     "ALPHANUMERIC",
+     "VIRTUAL_LONG_NUMBER",
+     "SHORT_CODE",
+     "TOLL_FREE_NUMBER"
+    ],
+    "example":"ALPHANUMERIC",
+    "title":"SenderType"
+   },
+   "5929f45c31f06c29ab1bc6e26caa01575484225e5ef99a2512bee829b646f1c1.SendingStrategyId":{
+    "type":"object",
+    "properties":{
+     "sendingStrategyId":{
+      "type":"string",
+      "description":"Id of the sending strategy.",
+      "example":"78D8394AC3EG0460B4CF0E723FC31B49"
+     }
+    },
+    "required":[
+     "sendingStrategyId"
+    ],
+    "title":"SendingStrategyId"
+   },
+   "5929f45c31f06c29ab1bc6e26caa01575484225e5ef99a2512bee829b646f1c1.SssRequestV2":{
+    "type":"object",
+    "properties":{
+     "platform":{
+      "$ref":"#/components/schemas/5929f45c31f06c29ab1bc6e26caa01575484225e5ef99a2512bee829b646f1c1.Platform"
+     },
+     "channel":{
+      "type":"string",
+      "description":"Channel for which the Sending Strategy is created. Supported channels: SMS, MMS, RCS. If left empty, Sending Strategy will be applied to all supported channels.",
+      "example":"SMS",
+      "maxLength":255,
+      "minLength":1
+     },
+     "destinationCountryCode":{
+      "type":"string",
+      "description":"Country code, in two-letter ISO standard, of the country the messages are terminating to for which the Sending Strategy will be used. If left empty, Sending Strategy will attempt to be used for all the countries where you have senders provisioned.",
+      "example":"US"
+     },
+     "useStickySender":{
+      "type":"boolean",
+      "default":false,
+      "description":"If true, the same sender will be used for any subsequent interactions with the end user (inside one country).",
+      "example":false
+     },
+     "useGeolocatedSender":{
+      "type":"boolean",
+      "default":false,
+      "description":"If true, the sender will be selected from the list of senders based on the nearest local area code. Supported for US and CA for now.",
+      "example":false
+     },
+     "priorities":{
+      "type":"array",
+      "description":"Priorities of the senders that can be defined in case there is more than one sender for a destination country.",
+      "items":{
+       "$ref":"#/components/schemas/5929f45c31f06c29ab1bc6e26caa01575484225e5ef99a2512bee829b646f1c1.Priority"
+      }
+     }
+    },
+    "title":"SssRequestV2"
+   },
+   "5929f45c31f06c29ab1bc6e26caa01575484225e5ef99a2512bee829b646f1c1.SssV2":{
+    "type":"object",
+    "description":"The list of the results for this page.",
+    "properties":{
+     "sendingStrategyId":{
+      "type":"string",
+      "description":"Id of the Sending strategy.",
+      "example":"78D8394AC3EG0460B4CF0E723FC31B49"
+     },
+     "platform":{
+      "$ref":"#/components/schemas/5929f45c31f06c29ab1bc6e26caa01575484225e5ef99a2512bee829b646f1c1.Platform"
+     },
+     "channel":{
+      "type":"string",
+      "description":"Channel for which the Sending Strategy is created. Supported channels: SMS, MMS, RCS. If left empty, Sending Strategy will be applied to all supported channels.",
+      "example":"SMS"
+     },
+     "destinationCountryCode":{
+      "type":"string",
+      "description":"Country code, in two-letter ISO standard, of the country the messages are terminating to for which the Sending Strategy will be used. If left empty, Sending Strategy will attempt to be used for all the countries where you have senders provisioned.",
+      "example":"US"
+     },
+     "useStickySender":{
+      "type":"boolean",
+      "description":"If true, the same sender will be used for any subsequent interactions with the end user (inside one country).",
+      "example":false
+     },
+     "useGeolocatedSender":{
+      "type":"boolean",
+      "description":"If true, the sender will be selected from the list of senders based on the nearest local area code. Supported for US and CA for now.",
+      "example":false
+     },
+     "priorities":{
+      "type":"array",
+      "description":"Priorities of the senders that can be defined in case there is more than one sender for a destination country.",
+      "items":{
+       "$ref":"#/components/schemas/5929f45c31f06c29ab1bc6e26caa01575484225e5ef99a2512bee829b646f1c1.Priority"
+      }
+     }
+    },
+    "required":[
+     "sendingStrategyId",
+     "useGeolocatedSender",
+     "useStickySender"
+    ],
+    "title":"SssV2"
+   },
+   "ApiError":{
+    "type":"object",
+    "properties":{
+     "errorCode":{
+      "type":"string",
+      "description":"An error code uniquely identifying the error case."
+     },
+     "description":{
+      "type":"string",
+      "description":"A detailed description of an error."
+     },
+     "action":{
+      "type":"string",
+      "description":"An action that should be taken to recover from the error."
+     },
+     "violations":{
+      "type":"array",
+      "description":"List of violations that caused the error.",
+      "items":{
+       "$ref":"#/components/schemas/ApiErrorViolation"
+      }
+     },
+     "resources":{
+      "type":"array",
+      "description":"List of available resources to recover from the error.",
+      "items":{
+       "$ref":"#/components/schemas/ApiErrorResource"
+      }
+     }
+    },
+    "required":[
+     "action",
+     "description",
+     "errorCode",
+     "resources",
+     "violations"
+    ],
+    "title":"ApiError"
+   },
+   "ApiErrorResource":{
+    "type":"object",
+    "description":"List of available resources to recover from the error.",
+    "properties":{
+     "name":{
+      "type":"string",
+      "description":"Resource name."
+     },
+     "url":{
+      "type":"string",
+      "description":"Resource URL."
+     }
+    },
+    "title":"ApiErrorResource"
+   },
+   "ApiErrorViolation":{
+    "type":"object",
+    "description":"List of violations that caused the error.",
+    "properties":{
+     "property":{
+      "type":"string",
+      "description":"Request property that caused the error."
+     },
+     "violation":{
+      "type":"string",
+      "description":"Detailed violation description."
+     }
+    },
+    "title":"ApiErrorViolation"
+   }
+  },
+  "responses":{
+   "ApiError401":{
+    "description":"Unauthorized",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E401",
+       "description":"The request lacks valid authentication credentials for the requested resource.",
+       "action":"Check the resources and adjust authentication credentials.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"API Authentication",
+         "url":"https://www.infobip.com/docs/essentials/api-authentication"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E401</errorCode>\n  <description>The request lacks valid authentication credentials for the requested resource.</description>\n  <action>Check the resources and adjust authentication credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Authentication</name>\n      <url>https://www.infobip.com/docs/essentials/api-authentication</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError403":{
+    "description":"Forbidden",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E403",
+       "description":"Insufficient permissions to access the requested resource.",
+       "action":"Repeat the request with new or different credentials.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"API Scopes",
+         "url":"https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E403</errorCode>\n  <description>Insufficient permissions to access the requested resource.</description>\n  <action>Repeat the request with new or different credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Scopes</name>\n      <url>https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError429":{
+    "description":"Too Many Requests",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E429",
+       "description":"Too many requests sent.",
+       "action":"Check request rate limit specified in the API endpoint documentation resource.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"Throttling handling errors",
+         "url":"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E429</errorCode>\n  <description>Too many requests sent.</description>\n  <action>Check request rate limit specified in the API endpoint documentation resource.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>Throttling handling errors</name>\n      <url>https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError500":{
+    "description":"Internal Server Error",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E500",
+       "description":"Something went wrong.",
+       "action":"Contact the support.",
+       "violations":[],
+       "resources":[]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E500</errorCode>\n  <description>Something went wrong.</description>\n  <action>Contact the support.</action>\n  <violations/>\n  <resources/>\n</ApiError>\n"
+     }
+    }
+   }
+  },
+  "parameters":{},
+  "examples":{},
+  "requestBodies":{},
+  "headers":{},
+  "securitySchemes":{
+   "APIKeyHeader":{
+    "type":"apiKey",
+    "description":"This is the most secure authorization type and the one with the most flexibility.\n\nAPI keys can be generated by calling the dedicated API method. Furthermore, API keys can have a limited scope and cover only some API methods. Lastly, they can\nbe revoked at any time. This range of possibilities makes API keys well suited for separating the API access rights across multiple applications or use cases.\nFinally, the loss of an API key is easily manageable.\n\nYou can manage your API keys from [GUI](https://portal.infobip.com/settings/accounts/api-keys), or programmatically\nwith [dedicated API](#platform-&-connectivity/settings).\n\nAPI key Authorization header example:\n\n```shell\nAuthorization: App 003026bbc133714df1834b8638bb496e-8f4b3d9a-e931-478d-a994-28a725159ab9\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "Basic":{
+    "type":"http",
+    "description":"Basic authorization type can be used in situations when the API key is not available. For example, API methods for generating API keys should be authenticated\nwith the Basic type.\n\nIn this case, the credentials included in the Authorization header should be a Base64 encoded username and password combination. More formally, basic\nauthentication header can be constructed in three steps:\n\n* Username and password are concatenated using the colon `(:)` as a separator `username:password`.\n* The resulting string is encoded using the [RFC2045-MIME](https://www.ietf.org/rfc/rfc2045.txt) variant of Base64.\n* Encoded string is added as credentials after the `\"Basic \"` type.\n\nExample:\n\n```shell\nUsername: \"Aladdin\"\nPassword: \"openSesame\"\n\nConcatenated string: \"Aladdin:openSesame\"\n\nBase64 encoded string: \"QWxhZGRpbjpvcGVuU2VzYW1l\"\n\nAuthorization header: \"Basic QWxhZGRpbjpvcGVuU2VzYW1l\"\n```\n\n> **Implementation detail**: Base64 encoding is a standard and many available programming languages and frameworks provide convenient methods for encoding\n> strings.\n",
+    "scheme":"basic"
+   },
+   "IBSSOTokenHeader":{
+    "type":"apiKey",
+    "description":"This authorization type is suited for situations when you do not want to store Infobip credentials in your own app. Instead, your users will input their Infobip\ncredentials every time they access your application and the application will use those credentials to create a session. From then on, the session token can be\nused to authenticate subsequent API requests. Note that the session will expire automatically after a predefined period of inactivity, and can also be manually\nterminated by making an appropriate API call.\n\nYou can find more details on the creation and behavior of the session at\nthe [dedicated documentation page](#platform-connectivity/account-management/create-session).\n\nAfter obtaining the session token by calling the above-referenced API method you can include it in the Authorization header like this:\n\n```shell\nAuthorization: IBSSO 2f9b4d31-2d0d-49a8-85f0-9b862bdca394\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "OAuth2":{
+    "type":"oauth2",
+    "description":"Similarly to the IBSSO Token authentication you can use OAuth 2.0 bearer token with Infobip serving both as resource and authorization server. You can obtain\nthe access token using the client credentials grant from `auth/1/oauth2/token` endpoint. It will provide you with your access token, and its expiration period.\nYou can use the token to authorize your API calls until it expires. You can find out more about the process in\nthe [official specification](https://tools.ietf.org/html/rfc6749#section-4.4).\n\nYou can include your access token in the Authorization HTTP request header like this:\n\n```http\nAuthorization: Bearer <access_token>\n```",
+    "flows":{
+     "clientCredentials":{
+      "tokenUrl":"https://api.infobip.com/auth/1/oauth2/token",
+      "scopes":{}
+     }
+    }
+   }
+  },
+  "links":{},
+  "callbacks":{}
+ }
+}

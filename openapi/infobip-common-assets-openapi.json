@@ -1,0 +1,4082 @@
+{
+ "openapi":"3.1.0",
+ "info":{
+  "title":"Infobip OpenAPI Specification",
+  "description":"OpenAPI Specification that contains all public endpoints and webhooks.",
+  "contact":{
+   "name":"Infobip support",
+   "email":"support@infobip.com"
+  },
+  "version":"3.210.0",
+  "x-generatedAt":"2026-07-23T15:23:58.503098845Z"
+ },
+ "tags":[
+  {
+   "name":"customer-engagement",
+   "description":"Complete solutions that will help you drive better outcomes for your customers and business across the entire customer journey.\n",
+   "x-type":"category",
+   "x-displayName":"Customer Engagement"
+  },
+  {
+   "name":"common-assets",
+   "description":"Reuse assets created on Infobip SaaS products in order to recreate configuration more easily on a single or across multiple accounts. Export or share Moments flows, Answers chatbots or other SaaS assets from your account and import it on another one.  \n\nThis feature is in Early access stage.\n",
+   "x-type":"product",
+   "x-displayName":"Common Assets"
+  },
+  {
+   "name":"saas-resource-export",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Export resource"
+  },
+  {
+   "name":"saas-resource-import",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Import resource"
+  },
+  {
+   "name":"saas-resource-share",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Share resource"
+  },
+  {
+   "name":"saas-status-request",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Get SaaS request status"
+  },
+  {
+   "name":"customer-engagement-webhooks",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Customer Engagement Webhooks"
+  }
+ ],
+ "paths":{
+  "/saas/1/{resourceType}/{resourceId}/export":{
+   "get":{
+    "tags":[
+     "customer-engagement",
+     "common-assets",
+     "saas-resource-export"
+    ],
+    "summary":"Export SaaS resource",
+    "description":"Choose a Saas resource to export and receive the file in the API response.",
+    "operationId":"export-saas-resource",
+    "parameters":[
+     {
+      "name":"resourceType",
+      "in":"path",
+      "description":"Type of SaaS resource.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string",
+       "enum":[
+        "bot"
+       ]
+      }
+     },
+     {
+      "name":"resourceId",
+      "in":"path",
+      "description":"SaaS resource identifier.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"OK",
+      "headers":{
+       "Content-Disposition":{
+        "description":"Exported file name.",
+        "style":"simple",
+        "explode":false,
+        "schema":{
+         "type":"string"
+        }
+       }
+      },
+      "content":{
+       "application/octet-stream":{
+        "schema":{
+         "type":"string",
+         "format":"byte"
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "404":{
+      "$ref":"#/components/responses/ApiError404"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "answers:manage"
+    ],
+    "x-is-early-access":true
+   }
+  },
+  "/saas/1/{resourceType}/import":{
+   "post":{
+    "tags":[
+     "customer-engagement",
+     "common-assets",
+     "saas-resource-import"
+    ],
+    "summary":"Import SaaS resource",
+    "description":"Import a SaaS resource to your account.",
+    "operationId":"import-saas-resource",
+    "parameters":[
+     {
+      "name":"resourceType",
+      "in":"path",
+      "description":"Type of SaaS resource.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string",
+       "enum":[
+        "bot"
+       ]
+      }
+     }
+    ],
+    "requestBody":{
+     "description":"Resource definition.",
+     "content":{
+      "multipart/form-data":{
+       "schema":{
+        "type":"object",
+        "properties":{
+         "file":{
+          "type":"string",
+          "format":"binary"
+         }
+        },
+        "required":[
+         "file"
+        ]
+       },
+       "examples":{
+        "Request example":{
+         "summary":"Request example",
+         "value":"----bndr\nContent-Disposition: form-data; name=\"file\"; filename=\"bot-1234-982382131.export\"\nContent-Type: application/octet-stream\n\n74AEE8084910ED9207FD67107DE275B43AC04AEEA6                    \n----bndr-- "
+        }
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/f92ed732784664dca5efb3669b03438e69cca5f33f4420f5b4996e58aa137657.ImportResponse"
+        }
+       }
+      }
+     },
+     "400":{
+      "$ref":"#/components/responses/ApiError400"
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "404":{
+      "$ref":"#/components/responses/ApiError404"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "answers:manage"
+    ],
+    "x-is-early-access":true
+   }
+  },
+  "/saas/1/{resourceType}/{resourceId}/share":{
+   "post":{
+    "tags":[
+     "customer-engagement",
+     "common-assets",
+     "saas-resource-share"
+    ],
+    "summary":"Share SaaS resource",
+    "description":"Use this endpoint to share a SaaS resource with other accounts. You can check the status of your share request [here](https://www.infobip.com/docs/api/customer-engagement/common-assets/saas-request-status).",
+    "operationId":"share-saas-resource",
+    "parameters":[
+     {
+      "name":"resourceType",
+      "in":"path",
+      "description":"Type of SaaS resource.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string",
+       "enum":[
+        "bot"
+       ]
+      }
+     },
+     {
+      "name":"resourceId",
+      "in":"path",
+      "description":"SaaS resource identifier.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      }
+     }
+    ],
+    "requestBody":{
+     "description":"Accounts to share the resource with.",
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/f92ed732784664dca5efb3669b03438e69cca5f33f4420f5b4996e58aa137657.ShareRequest"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "202":{
+      "description":"Accepted",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/f92ed732784664dca5efb3669b03438e69cca5f33f4420f5b4996e58aa137657.ShareResponse"
+        }
+       }
+      }
+     },
+     "400":{
+      "$ref":"#/components/responses/ApiError400"
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "404":{
+      "$ref":"#/components/responses/ApiError404"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "answers:manage"
+    ],
+    "x-is-early-access":true
+   }
+  },
+  "/saas/1/request/{requestId}/status":{
+   "get":{
+    "tags":[
+     "customer-engagement",
+     "common-assets",
+     "saas-status-request"
+    ],
+    "summary":"Get SaaS request status",
+    "description":"Get the status of your share request.",
+    "operationId":"saas-request-status",
+    "parameters":[
+     {
+      "name":"requestId",
+      "in":"path",
+      "description":"Identifier of user request on SaaS.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/f92ed732784664dca5efb3669b03438e69cca5f33f4420f5b4996e58aa137657.RequestStatusResponse"
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "404":{
+      "$ref":"#/components/responses/ApiError404"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "answers:manage"
+    ],
+    "x-is-early-access":true
+   }
+  }
+ },
+ "components":{
+  "schemas":{
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.AgentStatus":{
+    "type":"object",
+    "description":"Agent status details.",
+    "properties":{
+     "id":{
+      "type":"string",
+      "description":"Unique status ID. UUID v4.",
+      "example":"112f35ab-1cc3-4822-9aa2-22ee1f23112a"
+     },
+     "name":{
+      "type":"string",
+      "description":"Status name. Learn more about [agent statuses](https://www.infobip.com/docs/conversations/conversations-setup#agent-statuses).",
+      "example":"Available"
+     },
+     "group":{
+      "type":"string",
+      "description":"Status group.",
+      "enum":[
+       "ACTIVE",
+       "BUSY",
+       "INVISIBLE",
+       "AWAY"
+      ],
+      "example":"ACTIVE"
+     }
+    },
+    "required":[
+     "id"
+    ],
+    "title":"AgentStatus"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.AgentStatusChanged":{
+    "type":"object",
+    "description":"Contains the conversation event-specific data.",
+    "properties":{
+     "id":{
+      "type":"string",
+      "description":"Unique agent ID. UUID v4 value.",
+      "example":"fbcfe58e-a5c3-3a80-b569-f631dbb27c41"
+     },
+     "userId":{
+      "type":"string",
+      "description":"Unique encrypted user ID."
+     },
+     "email":{
+      "type":"string",
+      "description":"Agent email address.",
+      "example":"agent@example.com"
+     },
+     "role":{
+      "type":"string",
+      "description":"Agent role.",
+      "enum":[
+       "AGENT",
+       "SUPERVISOR",
+       "BOT"
+      ],
+      "example":"AGENT"
+     },
+     "status":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.AgentStatus"
+     },
+     "invoker":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Invoker"
+     }
+    },
+    "required":[
+     "id",
+     "invoker",
+     "role",
+     "status"
+    ],
+    "title":"AgentStatusChanged"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.AuthenticationData":{
+    "type":"object",
+    "description":"Authentication data for Live Chat end users.",
+    "properties":{
+     "authenticationType":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.AuthenticationType"
+     },
+     "value":{
+      "type":"string",
+      "description":"Value used for authentication (email, phone, external ID).",
+      "example":"customer@example.com"
+     },
+     "personId":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Person ID in People database.",
+      "example":3325
+     }
+    },
+    "required":[
+     "authenticationType"
+    ],
+    "title":"AuthenticationData"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.AuthenticationType":{
+    "type":"string",
+    "description":"Live Chat customer authentication type.",
+    "enum":[
+     "EMAIL",
+     "PHONE",
+     "EXTERNAL_ID",
+     "NOT_AUTHENTICATED"
+    ],
+    "example":"EMAIL",
+    "title":"AuthenticationType"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.CDPWebhookReport":{
+    "type":"object",
+    "discriminator":{
+     "propertyName":"type",
+     "mapping":{
+      "PERSON_ATTRIBUTE_CHANGED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonAttributeChangedReport",
+      "PERSON_CONTACT_INFORMATION_UPDATED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonContactInformationUpdatedReport",
+      "PERSON_CONTACT_INFORMATION_CREATED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonContactInformationCreatedReport",
+      "PERSON_CONTACT_INFORMATION_DELETED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonContactInformationDeletedReport",
+      "PERSON_MERGED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonMergedReport",
+      "PERSON_CREATED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonCreatedReport",
+      "PERSON_DELETED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonDeletedReport",
+      "PERSON_TAG_ADDED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonTagAddedReport",
+      "PERSON_TAG_DELETED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonTagRemovedReport",
+      "WEB_SDK_SESSION_STARTED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.WebSdkSessionStartedReport",
+      "WEB_SDK_SESSION_ENDED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.WebSdkSessionEndedReport",
+      "WEB_SDK_PAGE_VIEW":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.WebSdkPageViewReport",
+      "MOBILE_APP_PERSONALIZE":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.MobileAppPersonalizeReport",
+      "MOBILE_APP_DEPERSONALIZE":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.MobileAppDepersonalizeReport",
+      "MOBILE_APP_INSTALL":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.MobileAppInstallReport",
+      "MOBILE_APP_UNINSTALL":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.MobileAppUninstallReport",
+      "MOBILE_APP_APP_LAUNCH":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.MobileAppAppLaunchReport",
+      "PEOPLE_CUSTOM_AND_TEMPLATE_EVENTS":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.CustomEventReport"
+     }
+    },
+    "properties":{
+     "type":{
+      "type":"string",
+      "description":"Defines the type of event being delivered."
+     },
+     "timestamp":{
+      "type":"string",
+      "description":"Date and time of the event.",
+      "example":"2025-09-10T13:47:40.032+00:00"
+     }
+    },
+    "required":[
+     "timestamp",
+     "type"
+    ],
+    "title":"CDPWebhookReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ChannelDataCreated":{
+    "type":"object",
+    "description":"Details about the communication channel associated with this event.",
+    "properties":{
+     "type":{
+      "type":"string",
+      "description":"Type of the communication channel.",
+      "enum":[
+       "MSISDN",
+       "EMAIL",
+       "PUSH",
+       "FACEBOOK",
+       "LINE",
+       "TELEGRAM",
+       "WEB_PUSH",
+       "LIVE_CHAT",
+       "VIBER_BOTS",
+       "INSTAGRAM",
+       "TWITTER",
+       "INSTAGRAM_DM",
+       "KAKAO_SANGDAM",
+       "APPLE_BC",
+       "OPEN_CHANNEL"
+      ],
+      "example":"EMAIL"
+     },
+     "source":{
+      "type":"string",
+      "description":"System or source where the action originated.",
+      "example":"API"
+     },
+     "sourceId":{
+      "type":"string",
+      "description":"Unique identifier of the source system record that caused the action.",
+      "example":"sourceId"
+     },
+     "value":{
+      "type":"string",
+      "description":"Value associated with the channel.",
+      "example":"385123456789"
+     },
+     "appId":{
+      "type":"string",
+      "description":"Application ID.",
+      "example":"applicationId"
+     },
+     "regId":{
+      "type":"string",
+      "description":"Registration ID.",
+      "example":"registrationId"
+     },
+     "firstName":{
+      "type":"string",
+      "description":"User's first name.",
+      "example":"John"
+     },
+     "lastName":{
+      "type":"string",
+      "description":"User's last name.",
+      "example":"Doe"
+     },
+     "gender":{
+      "type":"string",
+      "description":"User's gender.",
+      "example":"F"
+     },
+     "locale":{
+      "type":"string",
+      "description":"Locale of the user.",
+      "example":"en-US"
+     },
+     "timezone":{
+      "type":"string",
+      "description":"Timezone of the user.",
+      "example":"timezone"
+     },
+     "pushAppId":{
+      "type":"string",
+      "description":"Application ID for push notifications.",
+      "example":"23131"
+     },
+     "pushRegId":{
+      "type":"string",
+      "description":"Push notification registration ID.",
+      "example":"e8f5c3d9-4a1b-4f7c-9d12-3b6a7f8e9d0c"
+     },
+     "os":{
+      "type":"string",
+      "description":"Operating system of the device.",
+      "example":"iOS"
+     },
+     "osVersion":{
+      "type":"string",
+      "description":"Operating system version.",
+      "example":"16.2"
+     },
+     "sdkVersion":{
+      "type":"string",
+      "description":"SDK version used for registration.",
+      "example":"5.0.1"
+     },
+     "appVersion":{
+      "type":"string",
+      "description":"Application version.",
+      "example":"2.3.4"
+     },
+     "preferred":{
+      "type":"string",
+      "description":"Indicates whether the channel is marked as preferred.",
+      "example":"false"
+     }
+    },
+    "title":"ChannelDataCreated"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ChannelDataDeleted":{
+    "type":"object",
+    "description":"Details about the communication channel associated with this event.",
+    "properties":{
+     "type":{
+      "type":"string",
+      "description":"Type of the communication channel.",
+      "enum":[
+       "MSISDN",
+       "EMAIL",
+       "PUSH",
+       "FACEBOOK",
+       "LINE",
+       "TELEGRAM",
+       "WEB_PUSH",
+       "LIVE_CHAT",
+       "VIBER_BOTS",
+       "INSTAGRAM",
+       "TWITTER",
+       "INSTAGRAM_DM",
+       "KAKAO_SANGDAM",
+       "APPLE_BC",
+       "OPEN_CHANNEL"
+      ],
+      "example":"EMAIL"
+     },
+     "source":{
+      "type":"string",
+      "description":"System or source where the action originated.",
+      "example":"API"
+     },
+     "sourceId":{
+      "type":"string",
+      "description":"Unique identifier of the source system record that caused the action.",
+      "example":"sourceId"
+     },
+     "value":{
+      "type":"string",
+      "description":"Value associated with the channel.",
+      "example":"385123456789"
+     },
+     "appId":{
+      "type":"string",
+      "description":"Application ID.",
+      "example":"applicationId"
+     },
+     "regId":{
+      "type":"string",
+      "description":"Registration ID.",
+      "example":"registrationId"
+     },
+     "firstName":{
+      "type":"string",
+      "description":"User's first name.",
+      "example":"John"
+     },
+     "lastName":{
+      "type":"string",
+      "description":"User's last name.",
+      "example":"Doe"
+     },
+     "gender":{
+      "type":"string",
+      "description":"User's gender.",
+      "example":"gender"
+     },
+     "locale":{
+      "type":"string",
+      "description":"Locale of the user.",
+      "example":"locale"
+     },
+     "timezone":{
+      "type":"string",
+      "description":"Timezone of the user.",
+      "example":"timezone"
+     },
+     "pushAppId":{
+      "type":"string",
+      "description":"Application ID for push notifications.",
+      "example":"23131"
+     },
+     "pushRegId":{
+      "type":"string",
+      "description":"Push notification registration ID.",
+      "example":"e8f5c3d9-4a1b-4f7c-9d12-3b6a7f8e9d0c"
+     }
+    },
+    "title":"ChannelDataDeleted"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ChannelDataUpdated":{
+    "type":"object",
+    "description":"Details about the communication channel associated with this event.",
+    "properties":{
+     "type":{
+      "type":"string",
+      "description":"Type of the communication channel.",
+      "enum":[
+       "MSISDN",
+       "EMAIL",
+       "PUSH",
+       "FACEBOOK",
+       "LINE",
+       "TELEGRAM",
+       "WEB_PUSH",
+       "LIVE_CHAT",
+       "VIBER_BOTS",
+       "INSTAGRAM",
+       "TWITTER",
+       "INSTAGRAM_DM",
+       "KAKAO_SANGDAM",
+       "APPLE_BC",
+       "OPEN_CHANNEL"
+      ],
+      "example":"EMAIL"
+     },
+     "source":{
+      "type":"string",
+      "description":"System or source where the action originated.",
+      "example":"API"
+     },
+     "sourceId":{
+      "type":"string",
+      "description":"Unique identifier of the source system record that caused the action.",
+      "example":"sourceId"
+     },
+     "from":{
+      "type":"string",
+      "description":"Previous value before the update.",
+      "example":"old.email@example.com"
+     },
+     "to":{
+      "type":"string",
+      "description":"New value after the update.",
+      "example":"new.email@example.com"
+     },
+     "property":{
+      "type":"string",
+      "description":"The specific property of the person that was updated.",
+      "example":"email"
+     }
+    },
+    "title":"ChannelDataUpdated"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ClosedConversationEventPayload":{
+    "type":"object",
+    "description":"Contains the conversation event-specific data.",
+    "properties":{
+     "id":{
+      "type":"string",
+      "description":"Unique conversation ID. UUID v4 value.",
+      "example":"d1d1de2e-d8dc-4ad7-970e-acca0035e19d"
+     },
+     "shortId":{
+      "type":"string",
+      "description":"Conversation short ID.",
+      "example":"100"
+     },
+     "status":{
+      "type":"string",
+      "description":"Conversation status.",
+      "enum":[
+       "OPEN",
+       "WAITING",
+       "SOLVED",
+       "PENDING",
+       "CLOSED"
+      ],
+      "example":"CLOSED"
+     },
+     "queue":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationQueue"
+     },
+     "priority":{
+      "type":"string",
+      "description":"Conversation priority.",
+      "enum":[
+       "LOW",
+       "NORMAL",
+       "HIGH",
+       "URGENT"
+      ],
+      "example":"NORMAL"
+     },
+     "channel":{
+      "type":"string",
+      "description":"Conversation channel. See the list of [supported Conversations channels](https://www.infobip.com/docs/conversations#available-channels).",
+      "example":"LIVE_CHAT"
+     },
+     "direction":{
+      "type":"string",
+      "description":"Conversation direction.",
+      "enum":[
+       "INBOUND",
+       "OUTBOUND"
+      ],
+      "example":"INBOUND"
+     },
+     "assignee":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationAssignee"
+     },
+     "customer":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Customer"
+     },
+     "form":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationForm"
+     },
+     "formFields":{
+      "type":"array",
+      "description":"List of final conversation [form fields](https://www.infobip.com/docs/conversations/conversations-setup#conversation-forms) and values.",
+      "items":{
+       "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.FormField"
+      }
+     },
+     "lastMessage":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.LastMessageData"
+     },
+     "tags":{
+      "type":"array",
+      "description":"List of associated conversation tags.",
+      "items":{
+       "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Tag"
+      },
+      "uniqueItems":true
+     },
+     "invoker":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Invoker"
+     },
+     "interaction":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InteractionContext"
+     },
+     "topic":{
+      "type":"string",
+      "description":"Conversation topic.",
+      "example":"Topic Name"
+     },
+     "sentiment":{
+      "type":"number",
+      "format":"float",
+      "description":"Final sentiment after closed, range -1.0 to 1.0.",
+      "example":1
+     },
+     "summary":{
+      "type":"string",
+      "description":"Conversation summary.",
+      "example":"Summary"
+     },
+     "timestamp":{
+      "type":"string",
+      "description":"Event timestamp in `yyyy-MM-dd'T'HH:mm:ss.SSSZ` format.",
+      "example":"2025-03-21T13:25:30.145+00:00"
+     }
+    },
+    "required":[
+     "assignee",
+     "channel",
+     "customer",
+     "direction",
+     "form",
+     "formFields",
+     "id",
+     "invoker",
+     "priority",
+     "queue",
+     "status",
+     "tags"
+    ],
+    "title":"ClosedConversationEventPayload"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationAgentStatusChangedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.AgentStatusChanged"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"ConversationAgentStatusChangedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationAssignee":{
+    "type":"object",
+    "description":"Conversation assignee data.",
+    "properties":{
+     "id":{
+      "type":"string",
+      "description":"Agent ID. UUID v4.",
+      "example":"fbcfe58e-a5c3-3a80-b569-f631dbb27c41"
+     },
+     "name":{
+      "type":"string",
+      "description":"Agent name.",
+      "example":"Agent Name"
+     },
+     "email":{
+      "type":"string",
+      "description":"Agent email address.",
+      "example":"agent@example.com"
+     },
+     "role":{
+      "type":"string",
+      "description":"Agent role.",
+      "enum":[
+       "AGENT",
+       "SUPERVISOR",
+       "BOT"
+      ],
+      "example":"AGENT"
+     }
+    },
+    "title":"ConversationAssignee"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationAssignmentUpdatedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationEventPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"ConversationAssignmentUpdatedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationCreatedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationEventPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"ConversationCreatedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationCustomerUpdatedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationEventPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"ConversationCustomerUpdatedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationDeletedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ClosedConversationEventPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"ConversationDeletedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationEventPayload":{
+    "type":"object",
+    "description":"Contains the conversation event-specific data. When conversation status changes to CLOSED, 'sentiment' and 'formFields' fields are included into payload.",
+    "properties":{
+     "id":{
+      "type":"string",
+      "description":"Unique conversation ID. UUID v4 value.",
+      "example":"b9263ee4-93b9-4352-912a-3b558f751276"
+     },
+     "shortId":{
+      "type":"string",
+      "description":"Conversation short ID.",
+      "example":"100"
+     },
+     "status":{
+      "type":"string",
+      "description":"Conversation status.",
+      "enum":[
+       "OPEN",
+       "WAITING",
+       "SOLVED",
+       "PENDING",
+       "CLOSED"
+      ],
+      "example":"OPEN"
+     },
+     "queue":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationQueue"
+     },
+     "priority":{
+      "type":"string",
+      "description":"Conversation priority.",
+      "enum":[
+       "LOW",
+       "NORMAL",
+       "HIGH",
+       "URGENT"
+      ],
+      "example":"NORMAL"
+     },
+     "channel":{
+      "type":"string",
+      "description":"Conversation channel. See the list of [supported Conversations channels](https://www.infobip.com/docs/conversations#available-channels).",
+      "example":"LIVE_CHAT"
+     },
+     "direction":{
+      "type":"string",
+      "description":"Conversation direction.",
+      "enum":[
+       "INBOUND",
+       "OUTBOUND"
+      ],
+      "example":"INBOUND"
+     },
+     "assignee":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationAssignee"
+     },
+     "customer":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Customer"
+     },
+     "form":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationForm"
+     },
+     "lastMessage":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.LastMessageData"
+     },
+     "tags":{
+      "type":"array",
+      "description":"List of associated conversation tags.",
+      "items":{
+       "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Tag"
+      },
+      "uniqueItems":true
+     },
+     "invoker":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Invoker"
+     },
+     "interaction":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InteractionContext"
+     },
+     "topic":{
+      "type":"string",
+      "description":"Conversation topic.",
+      "example":"Test Topic A"
+     },
+     "summary":{
+      "type":"string",
+      "description":"Conversation summary.",
+      "example":"Test Summary"
+     },
+     "timestamp":{
+      "type":"string",
+      "description":"Event timestamp in `yyyy-MM-dd'T'HH:mm:ss.SSSZ` format.",
+      "example":"2025-03-21T13:01:46.839+00:00"
+     }
+    },
+    "required":[
+     "assignee",
+     "channel",
+     "customer",
+     "direction",
+     "form",
+     "id",
+     "invoker",
+     "priority",
+     "queue",
+     "status",
+     "tags"
+    ],
+    "title":"ConversationEventPayload"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationForm":{
+    "type":"object",
+    "description":"Conversation form data.",
+    "properties":{
+     "id":{
+      "type":"string",
+      "description":"Form ID. UUID v4.",
+      "example":"5f50cbf1-476f-4b4d-ba2d-7adacdc8f77f"
+     },
+     "name":{
+      "type":"string",
+      "description":"Form name.",
+      "example":"Title"
+     }
+    },
+    "title":"ConversationForm"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationFormFieldUpdatedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.FormFieldUpdatedEventPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"ConversationFormFieldUpdatedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationFormUpdatedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationEventPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"ConversationFormUpdatedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationMessageUpdatedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.MessageEventPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"ConversationMessageUpdatedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationNoteAddedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.NoteEventPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"ConversationNoteAddedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationNoteRemovedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.NoteEventPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"ConversationNoteRemovedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationNoteUpdatedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.NoteEventPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"ConversationNoteUpdatedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationPriorityUpdatedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationEventPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"ConversationPriorityUpdatedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationQueue":{
+    "type":"object",
+    "description":"Conversation queue data.",
+    "properties":{
+     "id":{
+      "type":"string",
+      "description":"Queue ID. UUID v4.",
+      "example":"35b5e5b7-ac4a-40dc-872f-2a1403bcd770"
+     },
+     "name":{
+      "type":"string",
+      "description":"Queue name.",
+      "example":"Queue Name"
+     }
+    },
+    "title":"ConversationQueue"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationQueueUpdatedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationEventPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"ConversationQueueUpdatedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationSlaPolicyUpdatedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.SlaPolicyUpdatedEventPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"ConversationSlaPolicyUpdatedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationStatusUpdatedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationEventPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"ConversationStatusUpdatedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationSummaryUpdatedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationEventPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"ConversationSummaryUpdatedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationTagAddedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.TagAddedEventPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"ConversationTagAddedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationTagRemovedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.TagRemovedEventPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"ConversationTagRemovedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationTopicUpdatedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationEventPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"ConversationTopicUpdatedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationWebhookReport":{
+    "type":"object",
+    "discriminator":{
+     "propertyName":"type",
+     "mapping":{
+      "INBOUND_MESSAGE":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InboundMessageReport",
+      "OUTBOUND_MESSAGE":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.OutboundMessageReport",
+      "INBOUND_MESSAGE_UPDATED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InboundMessageUpdatedReport",
+      "INBOUND_MESSAGE_DELETED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InboundMessageDeletedReport",
+      "CONVERSATION_CREATED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationCreatedReport",
+      "CONVERSATION_STATUS_UPDATED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationStatusUpdatedReport",
+      "CONVERSATION_ASSIGNMENT_UPDATED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationAssignmentUpdatedReport",
+      "CONVERSATION_PRIORITY_UPDATED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationPriorityUpdatedReport",
+      "CONVERSATION_QUEUE_UPDATED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationQueueUpdatedReport",
+      "CONVERSATION_FORM_UPDATED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationFormUpdatedReport",
+      "CONVERSATION_FORM_FIELD_UPDATED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationFormFieldUpdatedReport",
+      "CONVERSATION_SLA_POLICY_UPDATED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationSlaPolicyUpdatedReport",
+      "CONVERSATION_CUSTOMER_UPDATED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationCustomerUpdatedReport",
+      "CONVERSATION_SUMMARY_UPDATED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationSummaryUpdatedReport",
+      "CONVERSATION_TOPIC_UPDATED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationTopicUpdatedReport",
+      "CONVERSATION_TAG_ADDED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationTagAddedReport",
+      "CONVERSATION_TAG_REMOVED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationTagRemovedReport",
+      "CONVERSATION_NOTE_ADDED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationNoteAddedReport",
+      "CONVERSATION_NOTE_UPDATED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationNoteUpdatedReport",
+      "CONVERSATION_NOTE_REMOVED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationNoteRemovedReport",
+      "CONVERSATION_MESSAGE_UPDATED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationMessageUpdatedReport",
+      "CONVERSATION_DELETED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationDeletedReport",
+      "CONVERSATION_AGENT_STATUS_CHANGED":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationAgentStatusChangedReport"
+     }
+    },
+    "properties":{
+     "type":{
+      "type":"string",
+      "description":"Defines the type of conversation event being delivered."
+     },
+     "timestamp":{
+      "type":"string",
+      "description":"Date and time of the event.",
+      "example":"2025-10-31T13:47:40.032+00:00"
+     }
+    },
+    "required":[
+     "timestamp",
+     "type"
+    ],
+    "title":"ConversationWebhookReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.CustomEventPayload":{
+    "type":"object",
+    "description":"Contains the event-specific data.",
+    "properties":{
+     "person":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonBasicInfo"
+     },
+     "invoker":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InvokerInfo"
+     },
+     "definitionId":{
+      "type":"string",
+      "description":"Event type identifier.",
+      "example":"addToCart"
+     },
+     "customData":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"object"
+      },
+      "description":"Contains custom event data."
+     }
+    },
+    "title":"CustomEventPayload"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.CustomEventReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.CDPWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.CustomEventPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"CustomEventReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Customer":{
+    "type":"object",
+    "description":"Conversation customer data.",
+    "properties":{
+     "id":{
+      "type":"string",
+      "description":"Customer ID. UUID v4.",
+      "example":"35b5e5b7-ac4a-40dc-872f-2a1403bcd769"
+     },
+     "name":{
+      "type":"string",
+      "description":"Customer name.",
+      "example":"Customer Name"
+     },
+     "personId":{
+      "type":"string",
+      "description":"Associated [People](https://www.infobip.com/docs/people) Person ID.",
+      "example":"2500"
+     }
+    },
+    "title":"Customer"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.EventChannelDataChannelDataCreated":{
+    "type":"object",
+    "description":"Contains the event-specific data.",
+    "properties":{
+     "person":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonBasicInfo"
+     },
+     "invoker":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InvokerInfo"
+     },
+     "channelData":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ChannelDataCreated"
+     }
+    },
+    "title":"EventChannelDataChannelDataCreated"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.EventChannelDataChannelDataDeleted":{
+    "type":"object",
+    "description":"Contains the event-specific data.",
+    "properties":{
+     "person":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonBasicInfo"
+     },
+     "invoker":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InvokerInfo"
+     },
+     "channelData":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ChannelDataDeleted"
+     }
+    },
+    "title":"EventChannelDataChannelDataDeleted"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.EventChannelDataChannelDataUpdated":{
+    "type":"object",
+    "description":"Contains the event-specific data.",
+    "properties":{
+     "person":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonBasicInfo"
+     },
+     "invoker":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InvokerInfo"
+     },
+     "channelData":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ChannelDataUpdated"
+     }
+    },
+    "title":"EventChannelDataChannelDataUpdated"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.EventPayloadMobileAppRawPayload":{
+    "type":"object",
+    "description":"Contains the event-specific data. The SDK automatically collects [some mobile system data](https://www.infobip.com/docs/mobile-push/mobile-audience-profiling#installation-information-person-installation-attributes) that defines an installation.",
+    "properties":{
+     "person":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonBasicInfo"
+     },
+     "invoker":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InvokerInfo"
+     },
+     "platform":{
+      "type":"string",
+      "description":"Platform of the mobile device.",
+      "example":"Android"
+     },
+     "sdkVersion":{
+      "type":"string",
+      "description":"SDK version running on the device.",
+      "example":"1.5.0"
+     },
+     "osVersion":{
+      "type":"string",
+      "description":"Version of the operating system.",
+      "example":"16"
+     },
+     "deviceManufacturer":{
+      "type":"string",
+      "description":"Manufacturer of the device.",
+      "example":"XYZ"
+     },
+     "deviceModel":{
+      "type":"string",
+      "description":"Model of the device.",
+      "example":"sdk_phone64_arm64"
+     },
+     "applicationVersion":{
+      "type":"string",
+      "description":"Version of the application running the SDK.",
+      "example":"2.5.0"
+     },
+     "osLanguage":{
+      "type":"string",
+      "description":"Identifier of the language used in the device.",
+      "example":"en"
+     },
+     "pushRegId":{
+      "type":"string",
+      "description":"Registration identifier of a particular push device registration.",
+      "example":"AAAABBBB-ABC1-F001-0000-00009999FFFF"
+     },
+     "appCode":{
+      "type":"string",
+      "description":"Application code identifier.",
+      "example":"11110000aaaabbbb22228888aaaaffff-00001111-2222-3333-4444-eeeeffff0000"
+     }
+    },
+    "title":"EventPayloadMobileAppRawPayload"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.EventPayloadPageViewRawPayload":{
+    "type":"object",
+    "description":"Contains the event-specific data.",
+    "properties":{
+     "person":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonBasicInfo"
+     },
+     "invoker":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InvokerInfo"
+     },
+     "url":{
+      "type":"string",
+      "description":"Absolute URL of the viewed page.",
+      "example":"https://example.com/pricing"
+     },
+     "pageTitle":{
+      "type":"string",
+      "description":"The HTML document title of the page.",
+      "example":"Example"
+     },
+     "referrer":{
+      "type":"string",
+      "description":"Referring URL that sent the visitor to this page.",
+      "example":"https://example.com"
+     },
+     "domain":{
+      "type":"string",
+      "description":"Registered domain of the page.",
+      "example":"example.com"
+     },
+     "path":{
+      "type":"string",
+      "description":"Path component of the URL.",
+      "example":"/pricing"
+     },
+     "deviceType":{
+      "type":"string",
+      "description":"Reported device category.",
+      "example":"Mobile"
+     },
+     "timestamp":{
+      "type":"string",
+      "description":"Timestamp when the page view occurred.",
+      "example":"2025-04-28T18:45:03.000Z"
+     },
+     "browserName":{
+      "type":"string",
+      "description":"Name of the browser.",
+      "example":"Chrome"
+     },
+     "browserVersion":{
+      "type":"string",
+      "description":"Version of the browser.",
+      "example":"140.0.7339.186"
+     },
+     "browserOS":{
+      "type":"string",
+      "description":"Operating system of the device.",
+      "example":"Windows 11"
+     },
+     "city":{
+      "type":"string",
+      "description":"Name of the city.",
+      "example":"Zagreb"
+     },
+     "countryCode":{
+      "type":"string",
+      "description":"Two letter ISO country code.",
+      "example":"HR"
+     },
+     "browserLanguage":{
+      "type":"string",
+      "description":"Preferred language reported by the browser.",
+      "example":"en-US"
+     },
+     "websiteLanguage":{
+      "type":"string",
+      "description":"Language of the website content.",
+      "example":"en"
+     },
+     "asnLatitude":{
+      "type":"string",
+      "description":"Latitude associated with the network's ASN.",
+      "example":"asnLatitude"
+     },
+     "asnLongitude":{
+      "type":"string",
+      "description":"Longitude associated with the network's ASN.",
+      "example":"asnLongitude"
+     }
+    },
+    "title":"EventPayloadPageViewRawPayload"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.EventPayloadPersonAttributeChangedRawPayload":{
+    "type":"object",
+    "description":"Contains the event-specific data.",
+    "properties":{
+     "person":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonBasicInfo"
+     },
+     "invoker":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InvokerInfo"
+     },
+     "attributeName":{
+      "type":"string",
+      "description":"Name of the person's attribute that changed. Learn more about [attributes](https://www.infobip.com/docs/people/manage-data#attributes).",
+      "example":"lastName"
+     },
+     "from":{
+      "type":"string",
+      "description":"Previous value before the change.",
+      "example":"Smith"
+     },
+     "to":{
+      "type":"string",
+      "description":"New value after the change.",
+      "example":"Johnson"
+     },
+     "source":{
+      "type":"string",
+      "description":"System or source where the action originated.",
+      "example":"API"
+     },
+     "sourceId":{
+      "type":"string",
+      "description":"Unique identifier of the source system record that caused the action.",
+      "example":"sourceId"
+     }
+    },
+    "title":"EventPayloadPersonAttributeChangedRawPayload"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.EventPayloadPersonCreatedRawPayload":{
+    "type":"object",
+    "description":"Contains the event-specific data.",
+    "properties":{
+     "person":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonBasicInfo"
+     },
+     "invoker":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InvokerInfo"
+     },
+     "personType":{
+      "type":"string",
+      "description":"Type of person associated with this event.",
+      "enum":[
+       "AGENT",
+       "LEAD",
+       "CUSTOMER"
+      ]
+     },
+     "source":{
+      "type":"string",
+      "description":"System or source where the action originated.",
+      "example":"API"
+     },
+     "sourceId":{
+      "type":"string",
+      "description":"Unique identifier of the source system record that caused the action.",
+      "example":"sourceId"
+     }
+    },
+    "title":"EventPayloadPersonCreatedRawPayload"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.EventPayloadPersonMergedRawPayload":{
+    "type":"object",
+    "description":"Contains the event-specific data.",
+    "properties":{
+     "person":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonBasicInfo"
+     },
+     "invoker":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InvokerInfo"
+     },
+     "source":{
+      "type":"string",
+      "description":"System or source where the action originated.",
+      "example":"API"
+     },
+     "sourceId":{
+      "type":"string",
+      "description":"Unique identifier of the source system record that caused the action.",
+      "example":"sourceId"
+     }
+    },
+    "title":"EventPayloadPersonMergedRawPayload"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.EventPayloadSessionEndedRawPayload":{
+    "type":"object",
+    "description":"Contains the event-specific data.",
+    "properties":{
+     "person":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonBasicInfo"
+     },
+     "invoker":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InvokerInfo"
+     },
+     "sessionId":{
+      "type":"string",
+      "description":"Unique identifier of the web session.",
+      "example":"sessionId"
+     },
+     "sessionStart":{
+      "type":"string",
+      "description":"Timestamp when the session started.",
+      "example":"2025-09-09T10:10:00.000Z"
+     },
+     "sessionType":{
+      "type":"string",
+      "description":"Type of the session as reported by the SDK.",
+      "example":"WEB"
+     },
+     "utmSource":{
+      "type":"string",
+      "description":"UTM source parameter indicating the origin of the traffic.",
+      "example":"google"
+     },
+     "utmMedium":{
+      "type":"string",
+      "description":"UTM medium parameter that identifies the marketing medium.",
+      "example":"email"
+     },
+     "utmCampaign":{
+      "type":"string",
+      "description":"UTM campaign parameter specifying the campaign name or identifier.",
+      "example":"summer_sale_2025"
+     },
+     "utmTerm":{
+      "type":"string",
+      "description":"UTM term parameter used for paid keyword tracking.",
+      "example":"crm-platform"
+     },
+     "utmContent":{
+      "type":"string",
+      "description":"UTM content parameter to differentiate similar content or links.",
+      "example":"variant_a"
+     },
+     "sessionEnd":{
+      "type":"string",
+      "description":"Timestamp when the session ended.",
+      "example":"2025-09-09T10:45:30.934Z"
+     },
+     "sessionLength":{
+      "type":"string",
+      "description":"Session length in seconds.",
+      "example":"2100"
+     },
+     "endedByType":{
+      "type":"string",
+      "description":"Indicates who ended the session.",
+      "enum":[
+       "USER",
+       "SYSTEM"
+      ],
+      "example":"USER"
+     }
+    },
+    "title":"EventPayloadSessionEndedRawPayload"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.EventPayloadSessionStartedRawPayload":{
+    "type":"object",
+    "description":"Contains the event-specific data.",
+    "properties":{
+     "person":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonBasicInfo"
+     },
+     "invoker":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InvokerInfo"
+     },
+     "sessionId":{
+      "type":"string",
+      "description":"Unique identifier of the web session.",
+      "example":"sessionId"
+     },
+     "sessionStart":{
+      "type":"string",
+      "description":"Timestamp when the session started.",
+      "example":"2025-09-09T10:10:00.000Z"
+     },
+     "sessionType":{
+      "type":"string",
+      "description":"Type of the session as reported by the SDK.",
+      "example":"WEB"
+     },
+     "utmSource":{
+      "type":"string",
+      "description":"UTM source parameter indicating the origin of the traffic.",
+      "example":"google"
+     },
+     "utmMedium":{
+      "type":"string",
+      "description":"UTM medium parameter that identifies the marketing medium.",
+      "example":"email"
+     },
+     "utmCampaign":{
+      "type":"string",
+      "description":"UTM campaign parameter specifying the campaign name or identifier.",
+      "example":"summer_sale_2025"
+     },
+     "utmTerm":{
+      "type":"string",
+      "description":"UTM term parameter used for paid keyword tracking.",
+      "example":"crm-platform"
+     },
+     "utmContent":{
+      "type":"string",
+      "description":"UTM content parameter to differentiate similar content or links.",
+      "example":"variant_a"
+     }
+    },
+    "title":"EventPayloadSessionStartedRawPayload"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.FormField":{
+    "type":"object",
+    "description":"Form field name and value.",
+    "properties":{
+     "id":{
+      "type":"string",
+      "description":"Field ID. UUID v4.",
+      "example":"b57ab774-43b7-4b0c-929f-83c1d8eabb03"
+     },
+     "name":{
+      "type":"string",
+      "description":"Field name.",
+      "example":"Field Name 1"
+     },
+     "value":{
+      "type":"string",
+      "description":"Field value.",
+      "example":"234234"
+     }
+    },
+    "title":"FormField"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.FormFieldUpdatedEventPayload":{
+    "type":"object",
+    "description":"Contains the conversation event-specific data.",
+    "properties":{
+     "id":{
+      "type":"string",
+      "description":"Unique conversation ID. UUID v4 value.",
+      "example":"b9263ee4-93b9-4352-912a-3b558f751276"
+     },
+     "shortId":{
+      "type":"string",
+      "description":"Conversation short ID.",
+      "example":"100"
+     },
+     "status":{
+      "type":"string",
+      "description":"Conversation status.",
+      "enum":[
+       "OPEN",
+       "WAITING",
+       "SOLVED",
+       "PENDING",
+       "CLOSED"
+      ],
+      "example":"OPEN"
+     },
+     "queue":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationQueue"
+     },
+     "priority":{
+      "type":"string",
+      "description":"Conversation priority.",
+      "enum":[
+       "LOW",
+       "NORMAL",
+       "HIGH",
+       "URGENT"
+      ],
+      "example":"NORMAL"
+     },
+     "channel":{
+      "type":"string",
+      "description":"Conversation channel. See the list of [supported Conversations channels](https://www.infobip.com/docs/conversations#available-channels).",
+      "example":"LIVE_CHAT"
+     },
+     "direction":{
+      "type":"string",
+      "description":"Conversation direction.",
+      "enum":[
+       "INBOUND",
+       "OUTBOUND"
+      ],
+      "example":"INBOUND"
+     },
+     "customer":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Customer"
+     },
+     "assignee":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationAssignee"
+     },
+     "form":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationForm"
+     },
+     "field":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.FormField"
+     },
+     "lastMessage":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.LastMessageData"
+     },
+     "tags":{
+      "type":"array",
+      "description":"List of associated conversation tags.",
+      "items":{
+       "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Tag"
+      },
+      "uniqueItems":true
+     },
+     "invoker":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Invoker"
+     },
+     "interaction":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InteractionContext"
+     },
+     "topic":{
+      "type":"string",
+      "description":"Conversation topic.",
+      "example":"Test Topic A"
+     },
+     "summary":{
+      "type":"string",
+      "description":"Conversation summary.",
+      "example":"Test Summary"
+     },
+     "timestamp":{
+      "type":"string",
+      "description":"Event timestamp in `yyyy-MM-dd'T'HH:mm:ss.SSSZ` format.",
+      "example":"2025-03-21T13:01:46.839+00:00"
+     }
+    },
+    "required":[
+     "assignee",
+     "channel",
+     "customer",
+     "direction",
+     "field",
+     "form",
+     "id",
+     "invoker",
+     "priority",
+     "queue",
+     "status",
+     "tags"
+    ],
+    "title":"FormFieldUpdatedEventPayload"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InboundMessageDeletedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.MessageEventPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"InboundMessageDeletedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InboundMessageReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.MessageEventPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"InboundMessageReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InboundMessageUpdatedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.MessageEventPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"InboundMessageUpdatedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InteractionContext":{
+    "type":"object",
+    "description":"Interaction Data.",
+    "properties":{
+     "interactionId":{
+      "type":"string",
+      "description":"Interaction Id.",
+      "example":"12fa053a-a13b-43e0-afff-96f081aa6c38"
+     }
+    },
+    "title":"InteractionContext"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Invoker":{
+    "type":"object",
+    "description":"Invoker (entity that made the change).",
+    "properties":{
+     "type":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InvokerType"
+     },
+     "id":{
+      "type":"string",
+      "description":"Invoker ID; agentId for AGENT, null for SYSTEM.",
+      "example":"fbcfe58e-a5c3-3a80-b569-f631dbb27c41"
+     },
+     "name":{
+      "type":"string",
+      "description":"Invoker name; agent name or null for SYSTEM.",
+      "example":"Agent Name"
+     }
+    },
+    "required":[
+     "type"
+    ],
+    "title":"Invoker"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InvokerInfo":{
+    "type":"object",
+    "description":"Information about the user that triggered the event.",
+    "properties":{
+     "type":{
+      "type":"string",
+      "description":"Type of the invoker who triggered the event.",
+      "enum":[
+       "client",
+       "user",
+       "system"
+      ],
+      "example":"client"
+     },
+     "id":{
+      "type":"string",
+      "description":"Unique identifier of the invoker.",
+      "example":"invokerId"
+     },
+     "name":{
+      "type":"string",
+      "description":"Name of the invoker.",
+      "example":"Jane Doe"
+     },
+     "email":{
+      "type":"string",
+      "description":"Email address of the invoker.",
+      "example":"jane.doe@example.com"
+     }
+    },
+    "title":"InvokerInfo"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InvokerType":{
+    "type":"string",
+    "description":"Invoker type.",
+    "enum":[
+     "AGENT",
+     "SYSTEM"
+    ],
+    "example":"AGENT",
+    "title":"InvokerType"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.LastMessageData":{
+    "type":"object",
+    "description":"Last message info that can be used for additional conversation information fetching.",
+    "properties":{
+     "from":{
+      "type":"string",
+      "description":"Sender, varies by channel (alphanumeric to UUID). Ranges from alphanumeric to UUID v4 values, depending on the channel.",
+      "example":"d21806c0-279e-418d-8caf-b96223fd8392"
+     },
+     "to":{
+      "type":"string",
+      "description":"Recipient, varies by channel. Ranges from alphanumeric to UUID v4 values, depending on the channel.",
+      "example":"a48d5aad-f584-41c6-b5e3-c1e3a43b52d2"
+     },
+     "direction":{
+      "type":"string",
+      "description":"Message direction.",
+      "enum":[
+       "INBOUND",
+       "OUTBOUND"
+      ],
+      "example":"OUTBOUND"
+     },
+     "channel":{
+      "type":"string",
+      "description":"Message channel type. See the list of [supported Conversations channels](https://www.infobip.com/docs/conversations#available-channels).",
+      "example":"LIVE_CHAT"
+     }
+    },
+    "title":"LastMessageData"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Message":{
+    "type":"object",
+    "description":"Full message data.",
+    "properties":{
+     "id":{
+      "type":"string",
+      "description":"Unique message ID. UUID v4.",
+      "example":"f74f3515-2a8d-481a-9bd1-36ee1f905585"
+     },
+     "messageId":{
+      "type":"string",
+      "description":"Platform message ID. Ranges from alphanumeric to UUID v4 values, depending on the channel.",
+      "example":"f74f3515-2a8d-481a-9bd1-36ee1f905585"
+     },
+     "channel":{
+      "type":"string",
+      "description":"Message channel. See the list of [supported Conversations channels](https://www.infobip.com/docs/conversations#available-channels).",
+      "example":"LIVE_CHAT"
+     },
+     "from":{
+      "type":"string",
+      "description":"Sender ID or identifier. Ranges from alphanumeric to UUID v4 values, depending on the channel.",
+      "example":"d21806c0-279e-418d-8caf-b96223fd8392"
+     },
+     "to":{
+      "type":"string",
+      "description":"Recipient ID or identifier. Ranges from alphanumeric to UUID v4 values, depending on the channel.",
+      "example":"a48d5aad-f584-41c6-b5e3-c1e3a43b52d2"
+     },
+     "conversationId":{
+      "type":"string",
+      "description":"ID of conversation the message belongs to.",
+      "example":"b9263ee4-93b9-4352-912a-3b558f751276"
+     },
+     "createdAt":{
+      "type":"string",
+      "description":"Message creation time in `yyyy-MM-dd'T'HH:mm:ss.SSSZ` format.",
+      "example":"2025-03-21T13:12:06.495+00:00"
+     },
+     "updatedAt":{
+      "type":"string",
+      "description":"Last message update time in `yyyy-MM-dd'T'HH:mm:ss.SSSZ` format.",
+      "example":"2025-03-21T13:12:06.495+00:00"
+     },
+     "content":{
+      "type":"object",
+      "description":"Message content in various formats (text, image, etc.)."
+     },
+     "socialContext":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.SocialContext"
+     }
+    },
+    "required":[
+     "channel",
+     "conversationId",
+     "from",
+     "id",
+     "messageId",
+     "to"
+    ],
+    "title":"Message"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.MessageEventPayload":{
+    "type":"object",
+    "description":"Contains the conversation event-specific data.",
+    "properties":{
+     "id":{
+      "type":"string",
+      "description":"Unique conversation ID. UUID v4 value.",
+      "example":"bc28d99a-198f-48a1-96ad-5032891dd7ba"
+     },
+     "shortId":{
+      "type":"string",
+      "description":"Conversation short ID.",
+      "example":"100"
+     },
+     "status":{
+      "type":"string",
+      "description":"Conversation status.",
+      "enum":[
+       "OPEN",
+       "WAITING",
+       "SOLVED",
+       "PENDING",
+       "CLOSED"
+      ],
+      "example":"OPEN"
+     },
+     "queue":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationQueue"
+     },
+     "priority":{
+      "type":"string",
+      "description":"Conversation priority.",
+      "enum":[
+       "LOW",
+       "NORMAL",
+       "HIGH",
+       "URGENT"
+      ],
+      "example":"NORMAL"
+     },
+     "channel":{
+      "type":"string",
+      "description":"Conversation channel. See the list of [supported Conversations channels](https://www.infobip.com/docs/conversations#available-channels).",
+      "example":"FACEBOOK_POST"
+     },
+     "direction":{
+      "type":"string",
+      "description":"Conversation direction.",
+      "enum":[
+       "INBOUND",
+       "OUTBOUND"
+      ],
+      "example":"INBOUND"
+     },
+     "assignee":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationAssignee"
+     },
+     "customer":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Customer"
+     },
+     "form":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationForm"
+     },
+     "tags":{
+      "type":"array",
+      "description":"List of associated conversation tags.",
+      "items":{
+       "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Tag"
+      },
+      "uniqueItems":true
+     },
+     "topic":{
+      "type":"string",
+      "description":"Conversation topic.",
+      "example":"Test Topic"
+     },
+     "summary":{
+      "type":"string",
+      "description":"Conversation summary."
+     },
+     "timestamp":{
+      "type":"string",
+      "description":"Event timestamp in `yyyy-MM-dd'T'HH:mm:ss.SSSZ` format.",
+      "example":"2025-03-21T13:20:55.013+00:00"
+     },
+     "message":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Message"
+     },
+     "invoker":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Invoker"
+     },
+     "interaction":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InteractionContext"
+     },
+     "authentication":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.AuthenticationData"
+     }
+    },
+    "required":[
+     "assignee",
+     "channel",
+     "customer",
+     "direction",
+     "form",
+     "id",
+     "invoker",
+     "message",
+     "priority",
+     "queue",
+     "status",
+     "tags"
+    ],
+    "title":"MessageEventPayload"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.MobileAppAppLaunchReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.CDPWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.EventPayloadMobileAppRawPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"MobileAppAppLaunchReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.MobileAppDepersonalizeReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.CDPWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.EventPayloadMobileAppRawPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"MobileAppDepersonalizeReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.MobileAppInstallReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.CDPWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.EventPayloadMobileAppRawPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"MobileAppInstallReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.MobileAppPersonalizeReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.CDPWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.EventPayloadMobileAppRawPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"MobileAppPersonalizeReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.MobileAppUninstallReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.CDPWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.EventPayloadMobileAppRawPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"MobileAppUninstallReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Note":{
+    "type":"object",
+    "description":"Conversation note data.",
+    "properties":{
+     "id":{
+      "type":"string",
+      "description":"Note ID. UUID v4.",
+      "example":"c0cc9ec3-9b59-4c2a-8230-421530f5329c"
+     },
+     "type":{
+      "type":"string",
+      "description":"Note type.",
+      "enum":[
+       "INTERNAL",
+       "JIRA_COMMENT",
+       "ATTACHMENT"
+      ],
+      "example":"INTERNAL"
+     },
+     "content":{
+      "type":"object",
+      "description":"Note content.",
+      "example":"Note Content"
+     }
+    },
+    "required":[
+     "id",
+     "type"
+    ],
+    "title":"Note"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.NoteEventPayload":{
+    "type":"object",
+    "description":"Contains the conversation event-specific data.",
+    "properties":{
+     "id":{
+      "type":"string",
+      "description":"Unique conversation ID. UUID v4 value.",
+      "example":"b9263ee4-93b9-4352-912a-3b558f751276"
+     },
+     "shortId":{
+      "type":"string",
+      "description":"Conversation short ID.",
+      "example":"100"
+     },
+     "status":{
+      "type":"string",
+      "description":"Conversation status.",
+      "enum":[
+       "OPEN",
+       "WAITING",
+       "SOLVED",
+       "PENDING",
+       "CLOSED"
+      ],
+      "example":"OPEN"
+     },
+     "queue":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationQueue"
+     },
+     "priority":{
+      "type":"string",
+      "description":"Conversation priority.",
+      "enum":[
+       "LOW",
+       "NORMAL",
+       "HIGH",
+       "URGENT"
+      ],
+      "example":"NORMAL"
+     },
+     "channel":{
+      "type":"string",
+      "description":"Conversation channel. See the list of [supported Conversations channels](https://www.infobip.com/docs/conversations#available-channels).",
+      "example":"LIVE_CHAT"
+     },
+     "direction":{
+      "type":"string",
+      "description":"Conversation direction.",
+      "enum":[
+       "INBOUND",
+       "OUTBOUND"
+      ],
+      "example":"INBOUND"
+     },
+     "assignee":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationAssignee"
+     },
+     "customer":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Customer"
+     },
+     "form":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationForm"
+     },
+     "tags":{
+      "type":"array",
+      "description":"List of associated conversation tags.",
+      "items":{
+       "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Tag"
+      },
+      "uniqueItems":true
+     },
+     "lastMessage":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.LastMessageData"
+     },
+     "invoker":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Invoker"
+     },
+     "interaction":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InteractionContext"
+     },
+     "topic":{
+      "type":"string",
+      "description":"Conversation topic.",
+      "example":"Test Topic A"
+     },
+     "summary":{
+      "type":"string",
+      "description":"Conversation summary.",
+      "example":"Test Summary"
+     },
+     "timestamp":{
+      "type":"string",
+      "description":"Event timestamp in `yyyy-MM-dd'T'HH:mm:ss.SSSZ` format.",
+      "example":"2025-03-21T13:12:06.158+00:00"
+     },
+     "note":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Note"
+     }
+    },
+    "required":[
+     "assignee",
+     "channel",
+     "customer",
+     "direction",
+     "form",
+     "id",
+     "invoker",
+     "note",
+     "priority",
+     "queue",
+     "status",
+     "tags"
+    ],
+    "title":"NoteEventPayload"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.OutboundMessageReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.MessageEventPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"OutboundMessageReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonAttributeChangedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.CDPWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.EventPayloadPersonAttributeChangedRawPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"PersonAttributeChangedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonBasicInfo":{
+    "type":"object",
+    "description":"Basic information about the person associated with this event.",
+    "properties":{
+     "id":{
+      "type":"string",
+      "description":"Unique person ID.",
+      "example":"personId"
+     },
+     "externalId":{
+      "type":"string",
+      "description":"External system identifier for the person.",
+      "example":"personExternalId"
+     },
+     "lastName":{
+      "type":"string",
+      "description":"Last name of the person.",
+      "example":"Doe"
+     },
+     "firstName":{
+      "type":"string",
+      "description":"First name of the person.",
+      "example":"John"
+     },
+     "email":{
+      "type":"array",
+      "description":"Email addresses of the person.",
+      "example":[
+       "john.doe@example.com",
+       "johndoe1@domain.com"
+      ],
+      "items":{
+       "type":"string",
+       "description":"Email addresses of the person.",
+       "example":"[\"john.doe@example.com\",\"johndoe1@domain.com\"]"
+      }
+     },
+     "phone":{
+      "type":"array",
+      "description":"Phone numbers of the person.",
+      "example":[
+       "385123456789",
+       "385987654321"
+      ],
+      "items":{
+       "type":"string",
+       "description":"Phone numbers of the person.",
+       "example":"[\"385123456789\",\"385987654321\"]"
+      }
+     }
+    },
+    "title":"PersonBasicInfo"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonContactInformationCreatedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.CDPWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.EventChannelDataChannelDataCreated"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"PersonContactInformationCreatedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonContactInformationDeletedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.CDPWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.EventChannelDataChannelDataDeleted"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"PersonContactInformationDeletedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonContactInformationUpdatedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.CDPWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.EventChannelDataChannelDataUpdated"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"PersonContactInformationUpdatedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonCreatedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.CDPWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.EventPayloadPersonCreatedRawPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"PersonCreatedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonDeletedPayload":{
+    "type":"object",
+    "description":"Contains the event-specific data.",
+    "properties":{
+     "person":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonBasicInfo"
+     },
+     "invoker":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InvokerInfo"
+     },
+     "personType":{
+      "type":"string",
+      "description":"Type of person associated with this event.",
+      "enum":[
+       "AGENT",
+       "LEAD",
+       "CUSTOMER"
+      ]
+     },
+     "source":{
+      "type":"string",
+      "description":"System or source where the action originated.",
+      "example":"API"
+     }
+    },
+    "title":"PersonDeletedPayload"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonDeletedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.CDPWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonDeletedPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"PersonDeletedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonMergedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.CDPWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.EventPayloadPersonMergedRawPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"PersonMergedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonTagAddedPayload":{
+    "type":"object",
+    "description":"Contains the event-specific data.",
+    "properties":{
+     "person":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonBasicInfo"
+     },
+     "invoker":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InvokerInfo"
+     },
+     "addedTag":{
+      "type":"string",
+      "description":"The tag that was added to the person. Learn more about [tags](https://www.infobip.com/docs/people/get-started#attributes-tags-and-events-person-profile).",
+      "example":"VIP"
+     },
+     "source":{
+      "type":"string",
+      "description":"System or source where the action originated.",
+      "example":"API"
+     },
+     "sourceId":{
+      "type":"string",
+      "description":"Unique identifier of the source system record that caused the action.",
+      "example":"sourceId"
+     }
+    },
+    "title":"PersonTagAddedPayload"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonTagAddedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.CDPWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonTagAddedPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"PersonTagAddedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonTagRemovedPayload":{
+    "type":"object",
+    "description":"Contains the event-specific data.",
+    "properties":{
+     "person":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonBasicInfo"
+     },
+     "invoker":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InvokerInfo"
+     },
+     "removedTag":{
+      "type":"string",
+      "description":"The tag that was removed from the person. Learn more about [tags](https://www.infobip.com/docs/people/get-started#attributes-tags-and-events-person-profile).",
+      "example":"VIP"
+     },
+     "source":{
+      "type":"string",
+      "description":"System or source where the action originated.",
+      "example":"API"
+     },
+     "sourceId":{
+      "type":"string",
+      "description":"Unique identifier of the source system record that caused the action.",
+      "example":"sourceId"
+     }
+    },
+    "title":"PersonTagRemovedPayload"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonTagRemovedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.CDPWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.PersonTagRemovedPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"PersonTagRemovedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Policy":{
+    "type":"object",
+    "description":"[Conversation SLA policy](https://www.infobip.com/docs/conversations/conversations-setup#service-level-agreement-sla) data.",
+    "properties":{
+     "policyId":{
+      "type":"string",
+      "description":"SLA policy ID. UUID v4.",
+      "example":"policy-uuid-id"
+     },
+     "policyName":{
+      "type":"string",
+      "description":"SLA policy name.",
+      "example":"Standard SLA Policy"
+     },
+     "severityId":{
+      "type":"string",
+      "description":"Severity ID. UUID v4.",
+      "example":"severity-uuid-id"
+     },
+     "severityName":{
+      "type":"string",
+      "description":"Severity name.",
+      "example":"High Priority"
+     }
+    },
+    "title":"Policy"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.SlaPolicyUpdatedEventPayload":{
+    "type":"object",
+    "description":"Contains the conversation event-specific data.",
+    "properties":{
+     "id":{
+      "type":"string",
+      "description":"Unique conversation ID. UUID v4 value.",
+      "example":"b9263ee4-93b9-4352-912a-3b558f751276"
+     },
+     "shortId":{
+      "type":"string",
+      "description":"Conversation short ID.",
+      "example":"100"
+     },
+     "status":{
+      "type":"string",
+      "description":"Conversation status.",
+      "enum":[
+       "OPEN",
+       "WAITING",
+       "SOLVED",
+       "PENDING",
+       "CLOSED"
+      ],
+      "example":"OPEN"
+     },
+     "queue":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationQueue"
+     },
+     "priority":{
+      "type":"string",
+      "description":"Conversation priority.",
+      "enum":[
+       "LOW",
+       "NORMAL",
+       "HIGH",
+       "URGENT"
+      ],
+      "example":"NORMAL"
+     },
+     "channel":{
+      "type":"string",
+      "description":"Conversation channel. See the list of [supported Conversations channels](https://www.infobip.com/docs/conversations#available-channels).",
+      "example":"LIVE_CHAT"
+     },
+     "direction":{
+      "type":"string",
+      "description":"Conversation direction.",
+      "enum":[
+       "INBOUND",
+       "OUTBOUND"
+      ],
+      "example":"INBOUND"
+     },
+     "customer":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Customer"
+     },
+     "assignee":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationAssignee"
+     },
+     "form":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationForm"
+     },
+     "policy":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Policy"
+     },
+     "lastMessage":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.LastMessageData"
+     },
+     "tags":{
+      "type":"array",
+      "description":"List of associated conversation tags.",
+      "items":{
+       "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Tag"
+      },
+      "uniqueItems":true
+     },
+     "invoker":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Invoker"
+     },
+     "interaction":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InteractionContext"
+     },
+     "topic":{
+      "type":"string",
+      "description":"Conversation topic.",
+      "example":"Test Topic A"
+     },
+     "summary":{
+      "type":"string",
+      "description":"Conversation summary.",
+      "example":"Test Summary"
+     },
+     "timestamp":{
+      "type":"string",
+      "description":"Event timestamp in `yyyy-MM-dd'T'HH:mm:ss.SSSZ` format.",
+      "example":"2025-03-21T13:01:46.839+00:00"
+     }
+    },
+    "required":[
+     "assignee",
+     "channel",
+     "customer",
+     "direction",
+     "form",
+     "id",
+     "invoker",
+     "policy",
+     "priority",
+     "queue",
+     "status",
+     "tags"
+    ],
+    "title":"SlaPolicyUpdatedEventPayload"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.SocialContext":{
+    "type":"object",
+    "description":"Available only for the `INBOUND_MESSAGE` event type. Contains social media context for [Facebook Posts](https://www.infobip.com/docs/social-media/facebook-posts) and [Instagram Posts](https://www.infobip.com/docs/social-media/instagram-posts).",
+    "properties":{
+     "username":{
+      "type":"string",
+      "description":"Social media username.",
+      "example":"test_acc"
+     }
+    },
+    "title":"SocialContext"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Tag":{
+    "type":"object",
+    "description":"Recently removed tag data.",
+    "properties":{
+     "id":{
+      "type":"string",
+      "description":"Tag ID. UUID v4.",
+      "example":"93edc97d-80a0-454a-bcaf-9a645194c335"
+     },
+     "name":{
+      "type":"string",
+      "description":"Tag name.",
+      "example":"Tag Name 1"
+     }
+    },
+    "required":[
+     "id"
+    ],
+    "title":"Tag"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.TagAddedEventPayload":{
+    "type":"object",
+    "description":"Contains the conversation event-specific data.",
+    "properties":{
+     "id":{
+      "type":"string",
+      "description":"Unique conversation ID. UUID v4 value.",
+      "example":"b9263ee4-93b9-4352-912a-3b558f751276"
+     },
+     "shortId":{
+      "type":"string",
+      "description":"Conversation short ID.",
+      "example":"100"
+     },
+     "status":{
+      "type":"string",
+      "description":"Conversation status.",
+      "enum":[
+       "OPEN",
+       "WAITING",
+       "SOLVED",
+       "PENDING",
+       "CLOSED"
+      ],
+      "example":"OPEN"
+     },
+     "queue":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationQueue"
+     },
+     "priority":{
+      "type":"string",
+      "description":"Conversation priority.",
+      "enum":[
+       "LOW",
+       "NORMAL",
+       "HIGH",
+       "URGENT"
+      ],
+      "example":"NORMAL"
+     },
+     "channel":{
+      "type":"string",
+      "description":"Conversation channel. See the list of [supported Conversations channels](https://www.infobip.com/docs/conversations#available-channels).",
+      "example":"LIVE_CHAT"
+     },
+     "direction":{
+      "type":"string",
+      "description":"Conversation direction.",
+      "enum":[
+       "INBOUND",
+       "OUTBOUND"
+      ],
+      "example":"INBOUND"
+     },
+     "assignee":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationAssignee"
+     },
+     "customer":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Customer"
+     },
+     "form":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationForm"
+     },
+     "topic":{
+      "type":"string",
+      "description":"Conversation topic.",
+      "example":"Test Topic"
+     },
+     "summary":{
+      "type":"string",
+      "description":"Conversation summary.",
+      "example":"Summary"
+     },
+     "addedTag":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Tag"
+     },
+     "tags":{
+      "type":"array",
+      "description":"List of associated conversation tags.",
+      "items":{
+       "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Tag"
+      },
+      "uniqueItems":true
+     },
+     "lastMessage":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.LastMessageData"
+     },
+     "invoker":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Invoker"
+     },
+     "interaction":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InteractionContext"
+     },
+     "timestamp":{
+      "type":"string",
+      "description":"Event timestamp in `yyyy-MM-dd'T'HH:mm:ss.SSSZ` format.",
+      "example":"2025-03-21T13:08:57.732+00:00"
+     }
+    },
+    "required":[
+     "addedTag",
+     "assignee",
+     "channel",
+     "customer",
+     "direction",
+     "form",
+     "id",
+     "invoker",
+     "priority",
+     "queue",
+     "status",
+     "tags"
+    ],
+    "title":"TagAddedEventPayload"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.TagRemovedEventPayload":{
+    "type":"object",
+    "description":"Contains the conversation event-specific data.",
+    "properties":{
+     "id":{
+      "type":"string",
+      "description":"Unique conversation ID. UUID v4 value.",
+      "example":"b9263ee4-93b9-4352-912a-3b558f751276"
+     },
+     "shortId":{
+      "type":"string",
+      "description":"Conversation short ID.",
+      "example":"100"
+     },
+     "status":{
+      "type":"string",
+      "description":"Conversation status.",
+      "enum":[
+       "OPEN",
+       "WAITING",
+       "SOLVED",
+       "PENDING",
+       "CLOSED"
+      ],
+      "example":"OPEN"
+     },
+     "queue":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationQueue"
+     },
+     "priority":{
+      "type":"string",
+      "description":"Conversation priority.",
+      "enum":[
+       "LOW",
+       "NORMAL",
+       "HIGH",
+       "URGENT"
+      ],
+      "example":"NORMAL"
+     },
+     "channel":{
+      "type":"string",
+      "description":"Conversation channel. See the list of [supported Conversations channels](https://www.infobip.com/docs/conversations#available-channels).",
+      "example":"LIVE_CHAT"
+     },
+     "direction":{
+      "type":"string",
+      "description":"Conversation direction.",
+      "enum":[
+       "INBOUND",
+       "OUTBOUND"
+      ],
+      "example":"INBOUND"
+     },
+     "assignee":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationAssignee"
+     },
+     "customer":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Customer"
+     },
+     "form":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationForm"
+     },
+     "topic":{
+      "type":"string",
+      "description":"Conversation topic.",
+      "example":"Test Topic"
+     },
+     "summary":{
+      "type":"string",
+      "description":"Conversation summary.",
+      "example":"Summary"
+     },
+     "removedTag":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Tag"
+     },
+     "tags":{
+      "type":"array",
+      "description":"List of associated conversation tags.",
+      "items":{
+       "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Tag"
+      },
+      "uniqueItems":true
+     },
+     "lastMessage":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.LastMessageData"
+     },
+     "invoker":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.Invoker"
+     },
+     "interaction":{
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.InteractionContext"
+     },
+     "timestamp":{
+      "type":"string",
+      "description":"Event timestamp in `yyyy-MM-dd'T'HH:mm:ss.SSSZ` format.",
+      "example":"2025-03-21T13:08:11.139+00:00"
+     }
+    },
+    "required":[
+     "assignee",
+     "channel",
+     "customer",
+     "direction",
+     "form",
+     "id",
+     "invoker",
+     "priority",
+     "queue",
+     "removedTag",
+     "status",
+     "tags"
+    ],
+    "title":"TagRemovedEventPayload"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.WebSdkPageViewReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.CDPWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.EventPayloadPageViewRawPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"WebSdkPageViewReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.WebSdkSessionEndedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.CDPWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.EventPayloadSessionEndedRawPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"WebSdkSessionEndedReport"
+   },
+   "1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.WebSdkSessionStartedReport":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.CDPWebhookReport"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "payload":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.EventPayloadSessionStartedRawPayload"
+       }
+      }
+     }
+    ],
+    "required":[
+     "payload",
+     "timestamp",
+     "type"
+    ],
+    "title":"WebSdkSessionStartedReport"
+   },
+   "ApiError":{
+    "type":"object",
+    "properties":{
+     "errorCode":{
+      "type":"string",
+      "description":"An error code uniquely identifying the error case."
+     },
+     "description":{
+      "type":"string",
+      "description":"A detailed description of an error."
+     },
+     "action":{
+      "type":"string",
+      "description":"An action that should be taken to recover from the error."
+     },
+     "violations":{
+      "type":"array",
+      "description":"List of violations that caused the error.",
+      "items":{
+       "$ref":"#/components/schemas/ApiErrorViolation"
+      }
+     },
+     "resources":{
+      "type":"array",
+      "description":"List of available resources to recover from the error.",
+      "items":{
+       "$ref":"#/components/schemas/ApiErrorResource"
+      }
+     }
+    },
+    "required":[
+     "action",
+     "description",
+     "errorCode",
+     "resources",
+     "violations"
+    ],
+    "title":"ApiError"
+   },
+   "ApiErrorResource":{
+    "type":"object",
+    "description":"List of available resources to recover from the error.",
+    "properties":{
+     "name":{
+      "type":"string",
+      "description":"Resource name."
+     },
+     "url":{
+      "type":"string",
+      "description":"Resource URL."
+     }
+    },
+    "title":"ApiErrorResource"
+   },
+   "ApiErrorViolation":{
+    "type":"object",
+    "description":"List of violations that caused the error.",
+    "properties":{
+     "property":{
+      "type":"string",
+      "description":"Request property that caused the error."
+     },
+     "violation":{
+      "type":"string",
+      "description":"Detailed violation description."
+     }
+    },
+    "title":"ApiErrorViolation"
+   },
+   "f92ed732784664dca5efb3669b03438e69cca5f33f4420f5b4996e58aa137657.ImportResponse":{
+    "type":"object",
+    "example":{
+     "resourceId":"12345"
+    },
+    "properties":{
+     "resourceId":{
+      "type":"string",
+      "description":"SaaS resource identifier."
+     }
+    },
+    "required":[
+     "resourceId"
+    ],
+    "title":"ImportResponse"
+   },
+   "f92ed732784664dca5efb3669b03438e69cca5f33f4420f5b4996e58aa137657.RequestDetailsResponse":{
+    "type":"object",
+    "description":"Details about user request status.",
+    "properties":{
+     "account":{
+      "type":"string",
+      "description":"Account identifier."
+     },
+     "status":{
+      "$ref":"#/components/schemas/f92ed732784664dca5efb3669b03438e69cca5f33f4420f5b4996e58aa137657.StatusResponse"
+     },
+     "errorMessage":{
+      "type":"string",
+      "description":"Error message."
+     },
+     "errorCode":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Error code."
+     }
+    },
+    "required":[
+     "account",
+     "status"
+    ],
+    "title":"RequestDetailsResponse"
+   },
+   "f92ed732784664dca5efb3669b03438e69cca5f33f4420f5b4996e58aa137657.RequestStatusResponse":{
+    "type":"object",
+    "example":{
+     "requestId":"786ac8d6-40e5-4dfb-a450-4f71cbb3fc6c",
+     "status":"IN_PROGRESS",
+     "details":{
+      "account":"7CB64E2791F1A14E5BFEBED41A70F08D",
+      "status":"IN_PROGRESS"
+     }
+    },
+    "properties":{
+     "requestId":{
+      "type":"string",
+      "description":"Request identifier."
+     },
+     "status":{
+      "$ref":"#/components/schemas/f92ed732784664dca5efb3669b03438e69cca5f33f4420f5b4996e58aa137657.StatusResponse"
+     },
+     "details":{
+      "type":"array",
+      "description":"Details about user request status.",
+      "items":{
+       "$ref":"#/components/schemas/f92ed732784664dca5efb3669b03438e69cca5f33f4420f5b4996e58aa137657.RequestDetailsResponse"
+      }
+     }
+    },
+    "required":[
+     "requestId",
+     "status"
+    ],
+    "title":"RequestStatusResponse"
+   },
+   "f92ed732784664dca5efb3669b03438e69cca5f33f4420f5b4996e58aa137657.ShareRequest":{
+    "type":"object",
+    "example":{
+     "accounts":[
+      "7CB64E2791F1A14E5BFEBED41A70F08D"
+     ]
+    },
+    "properties":{
+     "accounts":{
+      "type":"array",
+      "description":"List of sub account identifiers. Identifiers are account keys.",
+      "items":{
+       "type":"string",
+       "description":"List of sub account identifiers. Identifiers are account keys."
+      }
+     }
+    },
+    "required":[
+     "accounts"
+    ],
+    "title":"ShareRequest"
+   },
+   "f92ed732784664dca5efb3669b03438e69cca5f33f4420f5b4996e58aa137657.ShareResponse":{
+    "type":"object",
+    "example":{
+     "requestId":"786ac8d6-40e5-4dfb-a450-4f71cbb3fc6c"
+    },
+    "properties":{
+     "requestId":{
+      "type":"string",
+      "description":"Request identifier."
+     }
+    },
+    "required":[
+     "requestId"
+    ],
+    "title":"ShareResponse"
+   },
+   "f92ed732784664dca5efb3669b03438e69cca5f33f4420f5b4996e58aa137657.StatusResponse":{
+    "type":"string",
+    "description":"Status of the operation.",
+    "enum":[
+     "SUCCESS",
+     "FAILURE",
+     "IN_PROGRESS"
+    ],
+    "title":"StatusResponse"
+   }
+  },
+  "responses":{
+   "ApiError400":{
+    "description":"Bad Request",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E400",
+       "description":"Request cannot be processed.",
+       "action":"Check the syntax, violations and adjust the request.",
+       "violations":[],
+       "resources":[]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E400</errorCode>\n  <description>Request cannot be processed.</description>\n  <action>Check the syntax, violations and adjust the request.</action>\n  <violations/>\n  <resources/>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError401":{
+    "description":"Unauthorized",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E401",
+       "description":"The request lacks valid authentication credentials for the requested resource.",
+       "action":"Check the resources and adjust authentication credentials.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"API Authentication",
+         "url":"https://www.infobip.com/docs/essentials/api-authentication"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E401</errorCode>\n  <description>The request lacks valid authentication credentials for the requested resource.</description>\n  <action>Check the resources and adjust authentication credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Authentication</name>\n      <url>https://www.infobip.com/docs/essentials/api-authentication</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError403":{
+    "description":"Forbidden",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E403",
+       "description":"Insufficient permissions to access the requested resource.",
+       "action":"Repeat the request with new or different credentials.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"API Scopes",
+         "url":"https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E403</errorCode>\n  <description>Insufficient permissions to access the requested resource.</description>\n  <action>Repeat the request with new or different credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Scopes</name>\n      <url>https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError404":{
+    "description":"Not Found",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E404",
+       "description":"Not found - request URL doesn't exist on the API server or resource is not found.",
+       "action":"Check the resources and adjust your request.",
+       "violations":[],
+       "resources":[]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E404</errorCode>\n  <description>Not found - request URL doesn't exist on the API server or resource is not found.</description>\n  <action>Check the resources and adjust your request.</action>\n  <violations/>\n  <resources/>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError429":{
+    "description":"Too Many Requests",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E429",
+       "description":"Too many requests sent.",
+       "action":"Check request rate limit specified in the API endpoint documentation resource.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"Throttling handling errors",
+         "url":"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E429</errorCode>\n  <description>Too many requests sent.</description>\n  <action>Check request rate limit specified in the API endpoint documentation resource.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>Throttling handling errors</name>\n      <url>https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError500":{
+    "description":"Internal Server Error",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E500",
+       "description":"Something went wrong.",
+       "action":"Contact the support.",
+       "violations":[],
+       "resources":[]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E500</errorCode>\n  <description>Something went wrong.</description>\n  <action>Contact the support.</action>\n  <violations/>\n  <resources/>\n</ApiError>\n"
+     }
+    }
+   }
+  },
+  "parameters":{},
+  "examples":{},
+  "requestBodies":{},
+  "headers":{},
+  "securitySchemes":{
+   "APIKeyHeader":{
+    "type":"apiKey",
+    "description":"This is the most secure authorization type and the one with the most flexibility.\n\nAPI keys can be generated by calling the dedicated API method. Furthermore, API keys can have a limited scope and cover only some API methods. Lastly, they can\nbe revoked at any time. This range of possibilities makes API keys well suited for separating the API access rights across multiple applications or use cases.\nFinally, the loss of an API key is easily manageable.\n\nYou can manage your API keys from [GUI](https://portal.infobip.com/settings/accounts/api-keys), or programmatically\nwith [dedicated API](#platform-&-connectivity/settings).\n\nAPI key Authorization header example:\n\n```shell\nAuthorization: App 003026bbc133714df1834b8638bb496e-8f4b3d9a-e931-478d-a994-28a725159ab9\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "Basic":{
+    "type":"http",
+    "description":"Basic authorization type can be used in situations when the API key is not available. For example, API methods for generating API keys should be authenticated\nwith the Basic type.\n\nIn this case, the credentials included in the Authorization header should be a Base64 encoded username and password combination. More formally, basic\nauthentication header can be constructed in three steps:\n\n* Username and password are concatenated using the colon `(:)` as a separator `username:password`.\n* The resulting string is encoded using the [RFC2045-MIME](https://www.ietf.org/rfc/rfc2045.txt) variant of Base64.\n* Encoded string is added as credentials after the `\"Basic \"` type.\n\nExample:\n\n```shell\nUsername: \"Aladdin\"\nPassword: \"openSesame\"\n\nConcatenated string: \"Aladdin:openSesame\"\n\nBase64 encoded string: \"QWxhZGRpbjpvcGVuU2VzYW1l\"\n\nAuthorization header: \"Basic QWxhZGRpbjpvcGVuU2VzYW1l\"\n```\n\n> **Implementation detail**: Base64 encoding is a standard and many available programming languages and frameworks provide convenient methods for encoding\n> strings.\n",
+    "scheme":"basic"
+   },
+   "IBSSOTokenHeader":{
+    "type":"apiKey",
+    "description":"This authorization type is suited for situations when you do not want to store Infobip credentials in your own app. Instead, your users will input their Infobip\ncredentials every time they access your application and the application will use those credentials to create a session. From then on, the session token can be\nused to authenticate subsequent API requests. Note that the session will expire automatically after a predefined period of inactivity, and can also be manually\nterminated by making an appropriate API call.\n\nYou can find more details on the creation and behavior of the session at\nthe [dedicated documentation page](#platform-connectivity/account-management/create-session).\n\nAfter obtaining the session token by calling the above-referenced API method you can include it in the Authorization header like this:\n\n```shell\nAuthorization: IBSSO 2f9b4d31-2d0d-49a8-85f0-9b862bdca394\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "OAuth2":{
+    "type":"oauth2",
+    "description":"Similarly to the IBSSO Token authentication you can use OAuth 2.0 bearer token with Infobip serving both as resource and authorization server. You can obtain\nthe access token using the client credentials grant from `auth/1/oauth2/token` endpoint. It will provide you with your access token, and its expiration period.\nYou can use the token to authorize your API calls until it expires. You can find out more about the process in\nthe [official specification](https://tools.ietf.org/html/rfc6749#section-4.4).\n\nYou can include your access token in the Authorization HTTP request header like this:\n\n```http\nAuthorization: Bearer <access_token>\n```",
+    "flows":{
+     "clientCredentials":{
+      "tokenUrl":"https://api.infobip.com/auth/1/oauth2/token",
+      "scopes":{}
+     }
+    }
+   }
+  },
+  "links":{},
+  "callbacks":{}
+ },
+ "webhooks":{
+  "cdp-event-webhook":{
+   "post":{
+    "tags":[
+     "customer-engagement",
+     "common-assets",
+     "customer-engagement-webhooks"
+    ],
+    "summary":"People Webhook",
+    "description":"Webhook triggered when there is any new event on platform that your application should handle.",
+    "operationId":"cdp-event-webhook",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.CDPWebhookReport"
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"Your server returns this code if it accepts the callback."
+     }
+    }
+   }
+  },
+  "conversation-event-webhook":{
+   "post":{
+    "tags":[
+     "customer-engagement",
+     "common-assets",
+     "customer-engagement-webhooks"
+    ],
+    "summary":"Conversations Webhook",
+    "description":"\nWebhooks are automated notifications sent between applications when specific events occur. They enable real-time communication by transmitting data through HTTP requests.\n\nConversations webhooks provide instant access to conversation details and the latest message information, allowing you to manage customer inquiries efficiently. They support real-time integrations to automate workflows for message routing, escalation, and analytics, enhancing operational reporting with comprehensive conversation and message-level metadata.\n\nWith these webhooks, you can receive notifications for incoming messages and conversational events through [Subscriptions Management](https://www.infobip.com/docs/cpaas-x/subscriptions-management).\n\nOn our [web interface](https://portal.infobip.com/login), go to Subscriptions Management → Create subscription. Choose the Customer engagement option in the Channel menu and select the events you want to subscribe to.\nAdditionally, you can use the [Subscriptions Management API](https://www.infobip.com/docs/api/platform/subscriptions-api) endpoints to create the wanted subscriptions.\n\n",
+    "operationId":"conversation-event-webhook",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/1d16d22c7f4e0b1058057e585daf7edad21174e9b497e154a3270b3a39cc630a.ConversationWebhookReport"
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"Your server returns this code if it accepts the callback."
+     }
+    }
+   }
+  }
+ }
+}

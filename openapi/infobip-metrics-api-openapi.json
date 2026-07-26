@@ -1,0 +1,1308 @@
+{
+ "openapi":"3.1.0",
+ "info":{
+  "title":"Infobip OpenAPI Specification",
+  "description":"OpenAPI Specification that contains all public endpoints and webhooks.",
+  "contact":{
+   "name":"Infobip support",
+   "email":"support@infobip.com"
+  },
+  "version":"3.210.0",
+  "x-generatedAt":"2026-07-23T15:24:04.713988125Z"
+ },
+ "tags":[
+  {
+   "name":"platform",
+   "description":"Modular tools to scale and automate your business.\n",
+   "x-type":"category",
+   "x-displayName":"Platform"
+  },
+  {
+   "name":"metrics-api",
+   "description":"Metrics API is a way to access aggregated traffic information. By integrating this API, you can retrieve analytics related to your communications and build your own reporting facilities.",
+   "x-type":"product",
+   "x-displayName":"Metrics"
+  }
+ ],
+ "paths":{
+  "/metrics/1/query-aggregate-data":{
+   "post":{
+    "tags":[
+     "platform",
+     "metrics-api"
+    ],
+    "summary":"Query aggregated traffic data",
+    "description":"Start process for traffic data aggregation. The result will be posted to `callbackURL` provided in the request. The response format is described in [Receive aggregated data result](#platform/metrics-api/receive-aggregate-data-result) operation.",
+    "operationId":"query-aggregate-data",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.QueryAggregateDataRequest"
+       },
+       "examples":{
+        "A simple request":{
+         "summary":"A simple request",
+         "value":{
+          "callbackUrl":"https://example.com/receive",
+          "request":{
+           "filterBy":{
+            "accountKeys":[
+             "565C2852060F94BC771F692C04C055E1"
+            ],
+            "includeSubaccounts":true,
+            "sentSince":"2023-04-01T00:00:00.000+0000",
+            "sentUntil":"2023-04-01T01:00:00.000+0000",
+            "channelCodes":[
+             "SMS"
+            ],
+            "directions":[
+             "OUTBOUND"
+            ],
+            "communicationIds":[
+             12354646546,
+             45534466546,
+             754564654689
+            ],
+            "campaignReferenceIds":[
+             "CAMPAIGNNAME-20240612-001",
+             "CAMPAIGNNAME-20240612-002"
+            ],
+            "entityId":"",
+            "statusGroups":[
+             "REJECTED",
+             "UNDELIVERABLE"
+            ],
+            "statuses":[
+             "UNDELIVERABLE_REJECTED_OPERATOR",
+             "REJECTED_NETWORK",
+             "REJECTED_SENDER"
+            ],
+            "errorGroups":[
+             "OPERATOR_ERRORS",
+             "USER_ERRORS"
+            ],
+            "errorCodes":[
+             "NO_ERROR",
+             "EC_UNKNOWN_SUBSCRIBER",
+             "EC_UNKNOWN_BASE_STATION"
+            ]
+           },
+           "aggregateBy":[
+            "ACCOUNT_KEY",
+            "HOUR",
+            "DIRECTION",
+            "STATUS"
+           ],
+           "metrics":[
+            "TOTAL_TRAFFIC_COUNT"
+           ]
+          }
+         }
+        },
+        "Request using multiple date/time aggregates":{
+         "summary":"Request using multiple date/time aggregates",
+         "description":"When using multiple date/time aggregates, only the finest one will be presented in the response. In this case, when one queries for DAY and HOUR, only HOUR will be present.",
+         "value":{
+          "callbackUrl":"https://example.com/receive",
+          "request":{
+           "filterBy":{
+            "accountKeys":[
+             "565C2852060F94BC771F692C04C055E1"
+            ],
+            "includeSubaccounts":false,
+            "sentSince":"2023-04-01T00:00:00.000+0000",
+            "sentUntil":"2023-04-01T01:00:00.000+0000",
+            "channelCodes":[
+             "SMS"
+            ],
+            "entityId":""
+           },
+           "aggregateBy":[
+            "DAY",
+            "HOUR",
+            "STATUS"
+           ],
+           "metrics":[
+            "TOTAL_TRAFFIC_COUNT"
+           ]
+          }
+         }
+        }
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "201":{
+      "description":"Data querying process is started.",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.QueryAggregateDataResponse"
+        },
+        "examples":{
+         "A successful response":{
+          "summary":"A successful response",
+          "value":{
+           "requestId":"B61D150B0F6596F68D88D253886432B5"
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Request is malformed or invalid.",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "errorCode":"E400",
+           "description":"Request cannot be processed.",
+           "action":"Check the syntax, violations and adjust the request.",
+           "violations":[
+            {
+             "property":"property.path",
+             "violation":"Violation message."
+            }
+           ],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "metrics:manage"
+    ],
+    "x-is-early-access":true,
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":60,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/metrics/1/requests/{requestId}":{
+   "get":{
+    "tags":[
+     "platform",
+     "metrics-api"
+    ],
+    "summary":"Get status of query aggregate data request",
+    "description":"Return the status of ongoing request, started by invoking [Query aggregated traffic data](#platform/metrics-api/query-aggregate-data).",
+    "operationId":"get-aggregate-request-status",
+    "parameters":[
+     {
+      "name":"requestId",
+      "in":"path",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Request status retrieved.",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.RequestInfo"
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "404":{
+      "description":"Request with provided id not found.",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Not found":{
+          "summary":"Not found",
+          "value":{
+           "errorCode":"E404",
+           "description":"Not found - request URL doesn't exist on the API server or resource is not found.",
+           "action":"Check the resources and adjust your request.",
+           "violations":[
+            {
+             "property":"requestId",
+             "violation":"Request with id \"B61D150B0F6596F68D88D253886432B5\" not found"
+            }
+           ],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "metrics:manage"
+    ],
+    "x-is-early-access":true,
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":60,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  }
+ },
+ "components":{
+  "schemas":{
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.AggregateDataFilter":{
+    "type":"object",
+    "description":"\nA JSON object specifying the criteria to filter the results. Each field in the object represents a different filter\ncriterion, enabling detailed and complex filtering.\n        ",
+    "properties":{
+     "accountKeys":{
+      "type":"array",
+      "description":"\nSpecifies a list of unique account keys (identifiers).\n\nIf not provided, the metrics data for the requester's account will be used by default.\n\nExample:\n\n```\n\"accountKeys\": [\"account_key_1\", \"account_key_2\"]\n```\n\nTo retrieve all available account keys, refer to the\n[Account list endpoint](https://www.infobip.com/docs/api/platform/account-management/get-all-accounts).\n        ",
+      "items":{
+       "type":"string",
+       "description":"\nSpecifies a list of unique account keys (identifiers).\n\nIf not provided, the metrics data for the requester's account will be used by default.\n\nExample:\n\n```\n\"accountKeys\": [\"account_key_1\", \"account_key_2\"]\n```\n\nTo retrieve all available account keys, refer to the\n[Account list endpoint](https://www.infobip.com/docs/api/platform/account-management/get-all-accounts).\n        "
+      },
+      "uniqueItems":true
+     },
+     "includeSubaccounts":{
+      "type":"boolean",
+      "default":false,
+      "description":"\nDetermines whether to include traffic data from sub-accounts (children accounts) along with the specified accounts in\n `accountKeys`.\n\nIf set to true, the traffic data for the specified accounts and their sub-accounts is aggregated.\n\nIf set to false, only the traffic data for the specified accounts in `accountKeys` is considered.\n\nThis parameter is optional. If not provided, it defaults to false.\n\nExample:\n\n```\n\"includeSubaccounts\": true\n```\n        ",
+      "example":true
+     },
+     "sentSince":{
+      "type":"string",
+      "format":"date-time",
+      "description":"\nThe start date-time for filtering sent traffic (inclusive).\n\nHas the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`.\n        "
+     },
+     "sentUntil":{
+      "type":"string",
+      "format":"date-time",
+      "description":"\nThe end date-time for filtering sent traffic (exclusive).\n\nHas the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`.\n        "
+     },
+     "timeToDeliver":{
+      "type":"array",
+      "description":"\nRepresents the time within which a message is delivered using time buckets.\n\nFor example, you can filter only for messages delivered within a second. The `from` bucket is inclusive, while the `to` bucket is exclusive.\n        ",
+      "items":{
+       "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.TimeSpan"
+      },
+      "uniqueItems":true
+     },
+     "timeToAnswer":{
+      "type":"array",
+      "description":"\nRepresents the time it took for the call to be answered using time buckets.\n\nFor example, you can filter only for calls answered within a second. The `from` bucket is inclusive, while the `to` bucket is exclusive.\n    ",
+      "items":{
+       "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.TimeSpan"
+      },
+      "uniqueItems":true
+     },
+     "timeToClickFromSeen":{
+      "type":"array",
+      "description":"\nRepresents the time within which a URL is clicked after the message is seen using time buckets.\n\nFor example, you can filter only messages whose URLs were clicked within 1 second after they were seen. The `from`\nbucket is inclusive, while the `to` bucket is exclusive.\n        ",
+      "items":{
+       "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.TimeSpan"
+      },
+      "uniqueItems":true
+     },
+     "timeToClickFromDelivered":{
+      "type":"array",
+      "description":"\nRepresents the time within which a URL is clicked after the message is delivered using time buckets.\n\nFor example, you can filter only for messages whose URLs were clicked within 1 second after delivery. The `from` bucket\n is inclusive, while the `to` bucket is exclusive.\n        ",
+      "items":{
+       "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.TimeSpan"
+      },
+      "uniqueItems":true
+     },
+     "timeToSeenFromDelivered":{
+      "type":"array",
+      "description":"\nRepresents the time within which a message is seen after the message is delivered using time buckets.\n\nFor example, you can filter only for messages seen within 1 second after they were delivered. The `from` bucket is\ninclusive, while the `to` bucket is exclusive.\n        ",
+      "items":{
+       "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.TimeSpan"
+      },
+      "uniqueItems":true
+     },
+     "timeToOpenFromDelivered":{
+      "type":"array",
+      "description":"\nRepresents the time within which a message is opened after the message is delivered using time buckets.\n\nFor example, you can filter only for messages opened within 1 second after they were delivered. The `from` bucket is inclusive, while the `to` bucket is exclusive.\n    ",
+      "items":{
+       "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.TimeSpan"
+      },
+      "uniqueItems":true
+     },
+     "channelCodes":{
+      "type":"array",
+      "description":"\nSpecifies communication channels and/or services. This is a list of available channels/services and their codes:\n\n* `SMS` - SMS\n* `EMAIL` - Email\n* `FACEBOOK` - Facebook Messenger\n* `INSTAGRAM` - Instagram Messaging\n* `KAKAO` - Kakao\n* `LINE` - Line\n* `MMS` - MMS\n* `RCS` - RCS\n* `TELEGRAM` - Telegram\n* `VIBER` - Viber\n* `VOICE_VIDEO` - Voice and Video\n* `WHATSAPP` - WhatsApp\n* `ZALO` - Zalo\n* `APPLE_MB` - Apple Messages for Business\n",
+      "items":{
+       "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.ChannelCode"
+      },
+      "minLength":1,
+      "uniqueItems":true
+     },
+     "capabilities":{
+      "type":"array",
+      "description":"\nSpecifies the function, technology, or flavor within the selected channelCodes, making it easier to identify similar\nservices across channels or services.\n\nAvailable capabilities and their codes:\n\n* `PHONE` – Phone\n* `WEBRTC` – WebRTC\n* `SIPTRUNK` – SIP Trunks\n* `VIBER_BC` – Viber Business Calls\n* `WHATSAPP_BC` – WhatsApp Business Calls\n* `LINE_OA` – LINE Official Account\n* `LINE_ON` – LINE Official Notifications\n* `KAKAO_A` – Kakao Alim\n* `KAKAO_B` – Kakao Brand Message\n* `KAKAO_S` – Kakao Sangdam\n* `ZALO_NS` – Zalo Notification Services\n* `ZALO_F` – Zalo Follower\n* `VIBER_BM` – Viber Business Messages\n* `VIBER_BOTS` – Viber Bots\n* `MESSENGER` – Messenger\n* `INSTAGRAM_DM` – Instagram Direct Messaging\n    ",
+      "items":{
+       "type":"string",
+       "description":"\nSpecifies the function, technology, or flavor within the selected channelCodes, making it easier to identify similar\nservices across channels or services.\n\nAvailable capabilities and their codes:\n\n* `PHONE` – Phone\n* `WEBRTC` – WebRTC\n* `SIPTRUNK` – SIP Trunks\n* `VIBER_BC` – Viber Business Calls\n* `WHATSAPP_BC` – WhatsApp Business Calls\n* `LINE_OA` – LINE Official Account\n* `LINE_ON` – LINE Official Notifications\n* `KAKAO_A` – Kakao Alim\n* `KAKAO_B` – Kakao Brand Message\n* `KAKAO_S` – Kakao Sangdam\n* `ZALO_NS` – Zalo Notification Services\n* `ZALO_F` – Zalo Follower\n* `VIBER_BM` – Viber Business Messages\n* `VIBER_BOTS` – Viber Bots\n* `MESSENGER` – Messenger\n* `INSTAGRAM_DM` – Instagram Direct Messaging\n    "
+      },
+      "uniqueItems":true
+     },
+     "directions":{
+      "type":"array",
+      "description":"\nSpecifies the direction of traffic, indicating whether the message was sent to the user (OUTBOUND) or received from the user (INBOUND).\n    ",
+      "items":{
+       "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.Direction"
+      },
+      "uniqueItems":true
+     },
+     "trafficTypes":{
+      "type":"array",
+      "description":"\nSpecifies the types of traffic. For a full list of values, refer to\n[traffic types](https://www.infobip.com/docs/metrics-api/metrics-and-filters#traffictypes).\n        ",
+      "items":{
+       "type":"string",
+       "description":"\nSpecifies the types of traffic. For a full list of values, refer to\n[traffic types](https://www.infobip.com/docs/metrics-api/metrics-and-filters#traffictypes).\n        "
+      },
+      "uniqueItems":true
+     },
+     "senders":{
+      "type":"array",
+      "description":"\nSpecifies the sender IDs, which can be alphanumeric or numeric.\n\nExample:\n\n```\n\"senders\": [\"mySender\", \"12345\", \"15551234567\", \"jane.smith@somecompany.com\"]\n```\n        ",
+      "items":{
+       "type":"string",
+       "description":"\nSpecifies the sender IDs, which can be alphanumeric or numeric.\n\nExample:\n\n```\n\"senders\": [\"mySender\", \"12345\", \"15551234567\", \"jane.smith@somecompany.com\"]\n```\n        "
+      },
+      "uniqueItems":true
+     },
+     "senderTypes":{
+      "type":"array",
+      "description":"\nSpecifies the types of senders. For a full list of values, refer to\n[sender types](https://www.infobip.com/docs/metrics-api/metrics-and-filters#sendertypes).\n\nExample:\n\n```\n\"senderTypes\": [\"ALPHANUMERIC\", \"SHORT_CODE\", \"VIRTUAL_LONG_NUMBER\", \"DOMAIN\"]\n```\n        ",
+      "items":{
+       "type":"string",
+       "description":"\nSpecifies the types of senders. For a full list of values, refer to\n[sender types](https://www.infobip.com/docs/metrics-api/metrics-and-filters#sendertypes).\n\nExample:\n\n```\n\"senderTypes\": [\"ALPHANUMERIC\", \"SHORT_CODE\", \"VIRTUAL_LONG_NUMBER\", \"DOMAIN\"]\n```\n        "
+      },
+      "uniqueItems":true
+     },
+     "communicationIds":{
+      "type":"array",
+      "description":"\nSpecifies the list of communication IDs associated with either a Broadcast or a Moments/Flow campaign.\n\nUse communication IDs to filter data related to specific campaigns.\n\nFor detailed information on the differences between Broadcast and Flow campaigns, refer to the\n[Broadcast](https://www.infobip.com/docs/broadcast) and [Flow overview](https://www.infobip.com/docs/moments).\n\nExample:\n\n```\n\"communicationIds\": [12354646546, 45534466546, 754564654689]\n```\n        ",
+      "items":{
+       "type":"integer",
+       "format":"int64",
+       "description":"\nSpecifies the list of communication IDs associated with either a Broadcast or a Moments/Flow campaign.\n\nUse communication IDs to filter data related to specific campaigns.\n\nFor detailed information on the differences between Broadcast and Flow campaigns, refer to the\n[Broadcast](https://www.infobip.com/docs/broadcast) and [Flow overview](https://www.infobip.com/docs/moments).\n\nExample:\n\n```\n\"communicationIds\": [12354646546, 45534466546, 754564654689]\n```\n        "
+      },
+      "uniqueItems":true
+     },
+     "campaignReferenceIds":{
+      "type":"array",
+      "description":"\nSpecifies the list of campaign reference IDs used for traffic sent over Infobip APIs.\n\nUse `campaignReferenceIDs` to filter data related to specific campaigns.\n        ",
+      "items":{
+       "type":"string",
+       "description":"\nSpecifies the list of campaign reference IDs used for traffic sent over Infobip APIs.\n\nUse `campaignReferenceIDs` to filter data related to specific campaigns.\n        "
+      },
+      "uniqueItems":true
+     },
+     "networkIds":{
+      "type":"array",
+      "description":"\nList of network IDs.\n        ",
+      "items":{
+       "type":"integer",
+       "format":"int32",
+       "description":"\nList of network IDs.\n        "
+      },
+      "uniqueItems":true
+     },
+     "countryIds":{
+      "type":"array",
+      "description":"\nList of country IDs.\n    ",
+      "items":{
+       "type":"integer",
+       "format":"int32",
+       "description":"\nList of country IDs.\n    "
+      },
+      "uniqueItems":true
+     },
+     "platforms":{
+      "type":"array",
+      "description":"\nSpecifies the platform object, which is a combination of an applicationId and entityId. These IDs uniquely identify each application and entity configured on the Infobip platform.\n\nUse this object and its related parameters to filter data for a specific application and entity combination. Note that these parameters should only be used if you leverage CPaaS X applications and entities to manage your traffic.\n\nFor detailed information on applications and entities in the CPaaS X ecosystem, refer to the\n[CPaaSX overview](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).\n        ",
+      "items":{
+       "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.Platform"
+      },
+      "uniqueItems":true
+     },
+     "applicationId":{
+      "type":"string",
+      "deprecated":true,
+      "description":"\nA unique identifier assigned to an application, use case, or environment within the Infobip CPaaS X ecosystem.\n\nUse this parameter to filter data for a specific application.\n\nTo retrieve all available application IDs, refer to the\n[Application list endpoint](https://www.infobip.com/docs/api/platform/application-entity/get-applications).\n\nExample:\n\n```\n\"applicationId\": \"your_application_id\"\n```\n        "
+     },
+     "entityId":{
+      "type":"string",
+      "deprecated":true,
+      "description":"\nA unique identifier assigned to an entity, such as a brand, customer, or other defined component, within the Infobip CPaaS X ecosystem.\n\nUse this parameter to filter data for a specific entity.\n\nTo retrieve all available entity IDs, refer to the\n[Entity list endpoint](https://www.infobip.com/docs/api/platform/application-entity/get-entities).\n\nExample:\n\n```\n\"entityId\": \"your_entity_id\"\n```\n        "
+     },
+     "statusGroups":{
+      "type":"array",
+      "description":"\nSpecifies the general status code groups.\n\nFor the list of possible values, refer to\n[general status codes](https://www.infobip.com/docs/essentials/response-status-and-error-codes#general-error-codes).\n        ",
+      "items":{
+       "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.GeneralStatus"
+      },
+      "uniqueItems":true
+     },
+     "statuses":{
+      "type":"array",
+      "description":"\nSpecifies the message status reason.\n\nFor the list of possible values, refer to\n[message status reasons](https://www.infobip.com/docs/essentials/response-status-and-error-codes).\n        ",
+      "items":{
+       "type":"string",
+       "description":"\nSpecifies the message status reason.\n\nFor the list of possible values, refer to\n[message status reasons](https://www.infobip.com/docs/essentials/response-status-and-error-codes).\n        "
+      },
+      "uniqueItems":true
+     },
+     "errorGroups":{
+      "type":"array",
+      "description":"\nSpecifies the general error code groups.\n\nFor the list of possible values, refer to\n[error codes groups](https://www.infobip.com/docs/essentials/response-status-and-error-codes#general-error-codes).\n        ",
+      "items":{
+       "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.ErrorCodeGroup"
+      },
+      "uniqueItems":true
+     },
+     "errorCodes":{
+      "type":"array",
+      "description":"\nSpecifies the error codes.\n\nFor the list of possible values, refer to\n[error codes](https://www.infobip.com/docs/essentials/response-status-and-error-codes#general-error-codes).\n        ",
+      "items":{
+       "type":"string",
+       "description":"\nSpecifies the error codes.\n\nFor the list of possible values, refer to\n[error codes](https://www.infobip.com/docs/essentials/response-status-and-error-codes#general-error-codes).\n        "
+      },
+      "uniqueItems":true
+     }
+    },
+    "required":[
+     "channelCodes",
+     "sentSince",
+     "sentUntil"
+    ],
+    "title":"AggregateDataFilter"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.AggregateDataRequest":{
+    "type":"object",
+    "properties":{
+     "filterBy":{
+      "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.AggregateDataFilter"
+     },
+     "aggregateBy":{
+      "type":"array",
+      "description":"\nAn array of strings that defines the properties used for data aggregation. Each item in the array represents an aggregation parameter, with a corresponding column in the response showing values for the chosen aggregate.\n`CHANNEL_CODE` is always included in results for metric accuracy, even if not specified in aggregateBy. For further details,\nrefer to our [documentation](https://www.infobip.com/docs/metrics-api/metrics-and-filters#aggregationdimensions).\n\nAvailable aggregates:\n* `ACCOUNT_KEY` - groups the results by account key, displaying account-specific values.\n* `HOUR` - groups the results by hour, showing corresponding hourly timestamp values.\n* `DAY` - groups the results by day, showing corresponding day values.\n* `WEEK_SATURDAY_START` - groups the results by week, starting on Saturday, with corresponding timestamp values.\n* `WEEK_SUNDAY_START` - groups the results by week, starting on Sunday, with corresponding timestamp values.\n* `WEEK_MONDAY_START` - groups the results by week, starting on Monday, with corresponding timestamp values.\n* `MONTH` - groups the results by month, showing monthly values.\n* `QUARTER` - groups the results by quarter, showing quarterly values.\n* `YEAR` - groups the results by year, displaying annual values.\n* `TIME_TO_DELIVER` - groups the results by message delivery time, showing time-to-deliver period descriptions.\n* `TIME_TO_ANSWER` - groups the results by call answer time, showing time-to-answer period descriptions.\n* `TIME_TO_CLICK_FROM_SEEN` - groups the results by the time (in seconds) between a message being seen and a URL being clicked, showing calculated values.\n* `TIME_TO_CLICK_FROM_DELIVERED` - groups the results by the time (in seconds) between message delivery and a URL being clicked, showing calculated values.\n* `TIME_TO_SEEN_FROM_DELIVERED` - groups the results by the time (in seconds) between message delivery and the message being seen, showing calculated values.\n* `TIME_TO_OPEN_FROM_DELIVERED` - groups the results by the time (in seconds) between message delivery and the message being opened, showing calculated values.\n* `CHANNEL_CODE` - groups the results by channel, showing corresponding channel code values.\n* `CHANNEL_NAME` - groups the results by channel name, showing corresponding channel name values.\n* `CAPABILITY` - groups the results by capability, showing corresponding capability code values.\n* `DIRECTION` - groups the results by traffic direction, showing whether it was OUTBOUND (sent to a client) or INBOUND (received from a client).\n* `TRAFFIC_TYPE` - groups the results by traffic type, showing specific traffic type values.\n* `SENDER` - groups the results by sender, showing sender-specific values.\n* `SENDER_TYPE` - groups the results by type of sender, showing sender type values.\n* `SENDER_DOMAIN` - groups the results by sender domain, showing domain-specific values.\n* `RECIPIENT_DOMAIN` - groups the results by recipient domain, showing domain-specific values.\n* `URL` - groups the results by initial URL in a message, showing URL-specific values.\n* `COMMUNICATION` - groups the results by communication ID, showing the unique ID associated with each message.\n* `CAMPAIGN_REFERENCE` - groups the results by campaign reference ID, showing associated campaign reference values.\n* `NETWORK_ID` - groups the results by network, showing network ID values.\n* `NETWORK_NAME` - groups the results by network name, showing the name associated with each network ID.\n* `COUNTRY_ID` - groups the results by country, showing country ID values.\n* `COUNTRY_NAME` - groups the results by country name, showing the name associated with each country.\n* `APPLICATION_ID` - groups the results by application, showing corresponding application ID values.\n* `ENTITY_ID` - groups the results by entity, showing corresponding entity ID values.\n* `STATUS_GROUP` - groups response results by status group, showing corresponding status group values.\n* `STATUS` - groups response results by status name, showing corresponding status values.\n* `ERROR_GROUP` - groups response results by error group, showing corresponding error group values.\n* `ERROR_CODE` - groups response results by error code, showing corresponding error code values.\n            ",
+      "items":{
+       "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.TrafficAggregate"
+      },
+      "uniqueItems":true
+     },
+     "metrics":{
+      "type":"array",
+      "description":"\nThe metrics parameter accepts an array of non-empty strings that specify the metrics to retrieve. Each column in the response will contain values corresponding to the selected metric type.\n\nFor detailed information on the metrics available through the API, including specific details, limitations, and channel applicability, please refer to our comprehensive\n[documentation](https://www.infobip.com/docs/metrics-api/metrics-and-filters) on available metrics.\n\nAvailable metrics:\n* `TOTAL_TRAFFIC_COUNT` - Total number of messages or message segments sent to and received from customers (inbound and outbound).\n* `TOTAL_ACCEPTED_TRAFFIC_COUNT` - The total number of accepted Email messages sent to your customers (outbound).\n* `TOTAL_SMS_MESSAGES_COUNT` - Total number of SMS messages sent to and received from customers (inbound and outbound). Messages split into multiple segments due to length are counted as a single distinct message.\n* `INTERACTION_COUNT` - Number of distinct messaging interactions. Combined with the `TRAFFIC_TYPE` dimension, it helps analyze specific messaging traffic by breaking down interactions into different WhatsApp or RCS categories, such as conversations or sessions.\n* `TOTAL_SENT_TRAFFIC_COUNT` - Total number of messages submitted for delivery (outbound).\n* `DELIVERED_TRAFFIC_COUNT` - Total number of messages delivered to a recipient.\n* `TRAFFIC_DELIVERY_RATE` - Percentage of messages successfully delivered to recipients. Calculated using the formula: Total delivered / (Total sent - Total rejected) for all channels except Email, where it is calculated as Total delivered / Total sent.\n* `TRAFFIC_DELIVERED_IN_5_SEC_RATE` - Percentage of messages delivered within a 5-second timeframe.\n* `TOTAL_RECEIVED_TRAFFIC_COUNT` - Total number of messages received from customers (inbound).\n* `RECEIVED_TO_SENT_TRAFFIC_RATIO` - Ratio of received (inbound) to sent (outbound) messages that were not rejected.\n* `FAILED_TRAFFIC_COUNT` - Total number of sent (outbound) messages that were not delivered to recipients.\n* `TOTAL_BOUNCE_COUNT` - Total number of emails not delivered, including soft (temporary) and hard (permanent) bounces.\n* `TOTAL_BOUNCE_RATE` - Percentage of emails that were not delivered, calculated by summing soft and hard bounces and dividing by the total sent.\n* `TOTAL_DROPPED_COUNT` - Submitted emails that were dropped before delivery due to factors such as unsubscribes, bounced addresses, spam marking, or sender errors.\n* `TOTAL_DROPPED_RATE` - Percentage of dropped emails, calculated by dividing the number of dropped emails by the accepted emails.\n* `TOTAL_SUPPRESSED_COUNT` - Number of emails not sent due to a bounce or recipient actions like spam marking.\n* `SOFT_BOUNCE_COUNT` - Number of emails temporarily undeliverable due to reasons like full inboxes, temporary domain unavailability, or lack of recipient opt-in.\n* `SOFT_BOUNCE_RATE` - Percentage of temporarily undeliverable emails, calculated by dividing soft bounces by total sent.\n* `HARD_BOUNCE_COUNT` - Number of emails permanently undeliverable to specific recipients.\n* `HARD_BOUNCE_RATE` - Percentage of permanently undeliverable emails, calculated by dividing hard bounces by total sent.\n* `SEEN_OPENED_TRAFFIC_COUNT` - Total number of messages seen or opened. Recipients can turn off their read receipts, resulting in a lower seen count.\n* `SEEN_OPENED_TRAFFIC_RATE` - Percentage of messages seen or opened by unique recipients. Recipients can turn off their read receipts, resulting in a lower seen rate.\n* `VIEWED_TOTAL_COUNT` - Number of email opens per recipient, including multiple opens by the same user.\n* `VIEWED_TOTAL_RATE` - Percentage of recipients who opened an email campaign.\n* `UNIQUE_CLICKS_COUNT` - Number of unique recipients who clicked any link in a message, counted only once per recipient regardless of multiple clicks.\n* `UNIQUE_CLICK_THROUGH_RATE` - Percentage of unique recipients who clicked a link compared to total messages delivered, counting each recipient only once.\n* `UNIQUE_URL_CLICK_COUNT` - Number of unique URLs clicked in a single message.\n* `CLICK_TO_OPEN_RATE` - Percentage of unique clicks divided by unique opens or views, counting each recipient only once.\n* `TOTAL_CLICKS_COUNT` - Total clicks on all URLs in a message, including multiple clicks on the same link. For example, if a message contains 3 links and each is clicked twice, the total clicks count is 6.\n* `TOTAL_CLICK_RATE` - Percentage of recipients who clicked any link, calculated as the total clicks across all URLs divided by the total delivered messages. For example, if 200 SMS messages are sent and there are 400 total clicks, the `TOTAL_CLICK_RATE` is 200%.\n* `UNSUBSCRIBED_USER_COUNT` - Number of recipients who unsubscribed (opted out) from further communications from the sender.\n* `UNSUBSCRIBED_USER_RATE` - Percentage of recipients who unsubscribed (opted out) from further communications from the sender.\n* `EMAIL_COMPLAINTS_COUNT` - Number of emails reported as spam by recipients.\n* `EMAIL_COMPLAINTS_RATE` - Percentage of emails reported as spam by recipients.\n* `TOTAL_CALL_COUNT` - Total number of calls sent to your customers (outbound) and calls received from your customers (inbound).\n* `TOTAL_ATTEMPTED_CALL_COUNT` - Total number of calls initiated for delivery (outbound).\n* `TOTAL_SEIZED_CALL_COUNT` - Total number of calls that have successfully reached the recipient's device and started ringing, regardless of whether they were ultimately answered or not.\n* `TOTAL_ANSWERED_CALL_COUNT` - Total number of calls that were successfully answered, including both inbound calls (initiated by the customer) and outbound calls (initiated by the business).\n* `TOTAL_RECEIVED_CALL_COUNT` - Total number of calls you received from customers (inbound).\n* `AMD_PROCESSED_CALL_COUNT` - The number of calls that used Automated machine detection.\n* `ANSWERED_BY_PERSON_CALL_COUNT` - Number of calls initiated by the business that were successfully answered by a person (human).\n* `ANSWERED_BY_VOICE_DETECTION_CALL_COUNT` - Number of calls initiated by the business that were successfully answered by a voice detection system (e.g., voicemail, automated system).\n* `NOT_ANSWERED_CALL_COUNT` - Total number of outbound calls that were not answered by the recipient.\n* `BUSY_CALL_COUNT` - Total number of outbound calls that received a busy signal or were rejected due to the recipient's line being busy.\n* `CANCELED_CALL_COUNT` - Total number of outbound calls that were canceled at the origination end before they could have been successfully routed to the end user.\n* `FAILED_CALL_COUNT` - Total number of calls that were not successfully delivered for various reasons, including being declined or rejected by the user, rejected by the operator, or due to the end user's unavailability to receive the call at the time of the attempt.\n* `ANSWER_SEIZURE_RATIO` - The percentage of successfully answered calls out of the total number of call attempts that resulted in a seizure (i.e., a call attempt that resulted in a ring-back tone).\n* `ANSWER_RATE` - The percentage of calls that are successfully answered by the called party out of the total number of calls that were attempted.\n* `BUSY_RATE` - The percentage of calls that receive a busy signal out of the total number of attempted calls.\n* `HUNG_UP_COUNT` - The total number of call or session terminations, including those initiated by users after successful interactions and those caused by system errors.\n* `NORMAL_HUNG_UP_COUNT` - The number of regular call or session terminations initiated by users after successful interactions.\n* `ERROR_HUNG_UP_COUNT` - The number of call or session terminations caused by encountered errors within the system.\n* `TOTAL_CALL_DURATION` - The cumulative duration of all calls made to and received from customers (inbound and outbound).\n\nFor more detailed information and examples, please visit:\n- [Metrics and Filters](https://www.infobip.com/docs/metrics-api/metrics-and-filters#metrics)\n- [Constraints](https://www.infobip.com/docs/metrics-api/querying-data#constraints)\n- [Examples](https://www.infobip.com/docs/metrics-api/examples)\n        ",
+      "items":{
+       "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.MetricType"
+      },
+      "minItems":1,
+      "uniqueItems":true
+     }
+    },
+    "required":[
+     "aggregateBy",
+     "filterBy",
+     "metrics"
+    ],
+    "title":"AggregateDataRequest"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.AggregateDataResponse":{
+    "type":"object",
+    "properties":{
+     "requestedPeriod":{
+      "allOf":[
+       {
+        "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.DateTimeInterval"
+       }
+      ],
+      "description":"The actual time period used for data filtering, expressed as a date range. May differ from the requested range because the requested range may be aligned to the aggregation granularity, and, where applicable, trimmed to finalized periods only."
+     },
+     "totalRows":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Total number of data rows."
+     },
+     "columns":{
+      "type":"array",
+      "description":"List of columns available in the response data rows.",
+      "items":{
+       "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.ColumnInfo"
+      },
+      "uniqueItems":true
+     },
+     "rows":{
+      "type":"array",
+      "description":"Array of data rows, where each row shows the aggregated data for one combination of the requested dimensions. Values map to the columns array by index. If a metric is not available for a given channel, the corresponding value is \"N/A\".",
+      "items":{
+       "type":"array",
+       "description":"Values of a row, ordered as specified by columns property.",
+       "items":{
+        "type":"object",
+        "description":"Values of a row, ordered as specified by columns property."
+       }
+      }
+     }
+    },
+    "required":[
+     "columns",
+     "requestedPeriod",
+     "rows",
+     "totalRows"
+    ],
+    "title":"AggregateDataResponse"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.ChannelCode":{
+    "type":"string",
+    "description":"\nSpecifies communication channels and/or services. This is a list of available channels/services and their codes:\n\n* `SMS` - SMS\n* `EMAIL` - Email\n* `FACEBOOK` - Facebook Messenger\n* `INSTAGRAM` - Instagram Messaging\n* `KAKAO` - Kakao\n* `LINE` - Line\n* `MMS` - MMS\n* `RCS` - RCS\n* `TELEGRAM` - Telegram\n* `VIBER` - Viber\n* `VOICE_VIDEO` - Voice and Video\n* `WHATSAPP` - WhatsApp\n* `ZALO` - Zalo\n* `APPLE_MB` - Apple Messages for Business\n",
+    "enum":[
+     "SMS",
+     "EMAIL",
+     "FACEBOOK",
+     "INSTAGRAM",
+     "KAKAO",
+     "LINE",
+     "MMS",
+     "RCS",
+     "TELEGRAM",
+     "VIBER",
+     "VOICE_VIDEO",
+     "WHATSAPP",
+     "ZALO",
+     "APPLE_MB"
+    ],
+    "minLength":1,
+    "title":"ChannelCode"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.ClientRequestStatus":{
+    "type":"string",
+    "description":"Request processing status.",
+    "enum":[
+     "IN_PROGRESS",
+     "SUCCESS",
+     "FAILED"
+    ],
+    "title":"ClientRequestStatus"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.ColumnDataType":{
+    "type":"string",
+    "description":"Data type of the values related to a given column. The available data types are:\n* `STRING` - type used for string values.\n* `INTEGER` - type used for integral numbers.\n* `NUMBER` - type used for floating point numbers.\n* `BOOLEAN` - type used for boolean values.\n* `DATE_TIME` - type used to display date and time together (in UTC timezone, formatted as yyyy-MM-ddTHH:mm:ss).\n",
+    "enum":[
+     "STRING",
+     "INTEGER",
+     "NUMBER",
+     "BOOLEAN",
+     "DATE_TIME"
+    ],
+    "title":"ColumnDataType"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.ColumnInfo":{
+    "type":"object",
+    "description":"Information about columns returned in response.",
+    "properties":{
+     "columnName":{
+      "type":"string",
+      "description":"Name of the column."
+     },
+     "columnDataType":{
+      "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.ColumnDataType"
+     }
+    },
+    "required":[
+     "columnDataType",
+     "columnName"
+    ],
+    "title":"ColumnInfo"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.DateTimeInterval":{
+    "type":"object",
+    "properties":{
+     "sentSince":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Start of the sent traffic date-time period (inclusive).",
+      "example":"2023-04-01T00:00:00Z"
+     },
+     "sentUntil":{
+      "type":"string",
+      "format":"date-time",
+      "description":"End of the sent traffic date-time period (exclusive).",
+      "example":"2023-04-01T00:00:00Z"
+     }
+    },
+    "required":[
+     "sentSince",
+     "sentUntil"
+    ],
+    "title":"DateTimeInterval"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.Direction":{
+    "type":"string",
+    "description":"\nSpecifies the direction of traffic, indicating whether the message was sent to the user (OUTBOUND) or received from the user (INBOUND).\n    ",
+    "enum":[
+     "OUTBOUND",
+     "INBOUND"
+    ],
+    "title":"Direction"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.ErrorCodeGroup":{
+    "type":"string",
+    "description":"\nSpecifies the general error code groups.\n\nFor the list of possible values, refer to\n[error codes groups](https://www.infobip.com/docs/essentials/response-status-and-error-codes#general-error-codes).\n        ",
+    "enum":[
+     "OK",
+     "HANDSET_ERRORS",
+     "USER_ERRORS",
+     "OPERATOR_ERRORS"
+    ],
+    "title":"ErrorCodeGroup"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.GeneralStatus":{
+    "type":"string",
+    "description":"\nSpecifies the general status code groups.\n\nFor the list of possible values, refer to\n[general status codes](https://www.infobip.com/docs/essentials/response-status-and-error-codes#general-error-codes).\n        ",
+    "enum":[
+     "PENDING",
+     "UNDELIVERABLE",
+     "DELIVERED",
+     "EXPIRED",
+     "REJECTED"
+    ],
+    "title":"GeneralStatus"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.MetricType":{
+    "type":"string",
+    "enum":[
+     "TOTAL_TRAFFIC_COUNT",
+     "TOTAL_ACCEPTED_TRAFFIC_COUNT",
+     "TOTAL_SMS_MESSAGES_COUNT",
+     "INTERACTION_COUNT",
+     "UNIQUE_CLICKS_COUNT",
+     "TOTAL_CLICKS_COUNT",
+     "UNIQUE_CLICK_THROUGH_RATE",
+     "DELIVERED_TRAFFIC_COUNT",
+     "FAILED_TRAFFIC_COUNT",
+     "TRAFFIC_DELIVERY_RATE",
+     "TRAFFIC_DELIVERED_IN_5_SEC_RATE",
+     "SEEN_OPENED_TRAFFIC_COUNT",
+     "SEEN_OPENED_TRAFFIC_RATE",
+     "TOTAL_SENT_TRAFFIC_COUNT",
+     "TOTAL_RECEIVED_TRAFFIC_COUNT",
+     "RECEIVED_TO_SENT_TRAFFIC_RATIO",
+     "UNIQUE_URL_CLICK_COUNT",
+     "TOTAL_BOUNCE_COUNT",
+     "TOTAL_BOUNCE_RATE",
+     "TOTAL_SUPPRESSED_COUNT",
+     "SOFT_BOUNCE_COUNT",
+     "SOFT_BOUNCE_RATE",
+     "HARD_BOUNCE_COUNT",
+     "HARD_BOUNCE_RATE",
+     "VIEWED_TOTAL_COUNT",
+     "VIEWED_TOTAL_RATE",
+     "TOTAL_CLICK_RATE",
+     "CLICK_TO_OPEN_RATE",
+     "UNSUBSCRIBED_USER_COUNT",
+     "UNSUBSCRIBED_USER_RATE",
+     "EMAIL_COMPLAINTS_COUNT",
+     "EMAIL_COMPLAINTS_RATE",
+     "TOTAL_CALL_COUNT",
+     "TOTAL_ATTEMPTED_CALL_COUNT",
+     "TOTAL_SEIZED_CALL_COUNT",
+     "TOTAL_ANSWERED_CALL_COUNT",
+     "TOTAL_RECEIVED_CALL_COUNT",
+     "AMD_PROCESSED_CALL_COUNT",
+     "ANSWERED_BY_PERSON_CALL_COUNT",
+     "ANSWERED_BY_VOICE_DETECTION_CALL_COUNT",
+     "NOT_ANSWERED_CALL_COUNT",
+     "BUSY_CALL_COUNT",
+     "CANCELED_CALL_COUNT",
+     "FAILED_CALL_COUNT",
+     "TOTAL_CALL_DURATION",
+     "ANSWER_SEIZURE_RATIO",
+     "ANSWER_RATE",
+     "BUSY_RATE",
+     "HUNG_UP_COUNT",
+     "NORMAL_HUNG_UP_COUNT",
+     "ERROR_HUNG_UP_COUNT"
+    ],
+    "title":"MetricType"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.Platform":{
+    "type":"object",
+    "description":"\nSpecifies the platform object, which is a combination of an applicationId and entityId. These IDs uniquely identify each application and entity configured on the Infobip platform.\n\nUse this object and its related parameters to filter data for a specific application and entity combination. Note that these parameters should only be used if you leverage CPaaS X applications and entities to manage your traffic.\n\nFor detailed information on applications and entities in the CPaaS X ecosystem, refer to the\n[CPaaSX overview](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).\n        ",
+    "properties":{
+     "applicationId":{
+      "type":"string",
+      "description":"\nA unique identifier assigned to an application, use case, or environment within the Infobip CPaaS X ecosystem.\n\nUse this parameter to filter data for a specific application.\n\nTo retrieve all available application IDs, refer to the\n[Application list endpoint](https://www.infobip.com/docs/api/platform/application-entity/get-applications).\n            ",
+      "example":"your_application_id"
+     },
+     "entityId":{
+      "type":"string",
+      "description":"\nA unique identifier assigned to an entity, such as a brand, customer, or other defined component, within the Infobip CPaaS X ecosystem.\n\nUse this parameter to filter data for a specific entity.\n\nTo retrieve all available entity IDs, refer to the\n[Entity list endpoint](https://www.infobip.com/docs/api/platform/application-entity/get-entities).\n        ",
+      "example":"your_entity_id"
+     }
+    },
+    "title":"Platform"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.QueryAggregateDataRequest":{
+    "type":"object",
+    "properties":{
+     "callbackUrl":{
+      "type":"string",
+      "description":"\nThe target URL that will receive the query processing results.The schema for this endpoint is documented at\n[Receive Aggregated Data Result](#platform/metrics-api/receive-aggregate-data-result).\n        "
+     },
+     "request":{
+      "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.AggregateDataRequest"
+     }
+    },
+    "required":[
+     "callbackUrl",
+     "request"
+    ],
+    "title":"QueryAggregateDataRequest"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.QueryAggregateDataResponse":{
+    "type":"object",
+    "properties":{
+     "requestId":{
+      "type":"string",
+      "description":"The identifier of the submitted request."
+     }
+    },
+    "required":[
+     "requestId"
+    ],
+    "title":"QueryAggregateDataResponse"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.QueryAggregateDataResult":{
+    "type":"object",
+    "properties":{
+     "requestId":{
+      "type":"string",
+      "description":"The identifier of original request returned by [Query aggregated traffic data](#platform/metrics-api/query-aggregate-data) endpoint."
+     },
+     "status":{
+      "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.QueryAggregateDataStatus"
+     },
+     "response":{
+      "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.AggregateDataResponse"
+     },
+     "failureMessage":{
+      "type":"string",
+      "description":"The message describing the failure. This field is present only if the request failed."
+     }
+    },
+    "required":[
+     "requestId",
+     "status"
+    ],
+    "title":"QueryAggregateDataResult"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.QueryAggregateDataStatus":{
+    "type":"string",
+    "description":"Status of the request. If successful, the response will contain aggregated data. If failed, it will contain failure message.",
+    "enum":[
+     "SUCCESS",
+     "FAILED"
+    ],
+    "title":"QueryAggregateDataStatus"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.RequestInfo":{
+    "type":"object",
+    "properties":{
+     "requestId":{
+      "type":"string",
+      "description":"Request ID.",
+      "example":"B61D150B0F6596F68D88D253886432B5"
+     },
+     "status":{
+      "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.ClientRequestStatus"
+     },
+     "failureMessage":{
+      "type":"string",
+      "description":"Additional explanation in case of FAILED status."
+     }
+    },
+    "required":[
+     "requestId",
+     "status"
+    ],
+    "title":"RequestInfo"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.TimeBucket":{
+    "type":"string",
+    "enum":[
+     "SECONDS_0",
+     "SECONDS_1",
+     "SECONDS_2",
+     "SECONDS_3",
+     "SECONDS_4",
+     "SECONDS_5",
+     "SECONDS_10",
+     "SECONDS_15",
+     "SECONDS_20",
+     "SECONDS_25",
+     "SECONDS_30",
+     "SECONDS_40",
+     "SECONDS_50",
+     "MINUTES_1",
+     "MINUTES_2",
+     "MINUTES_3",
+     "MINUTES_4",
+     "MINUTES_5",
+     "MINUTES_10",
+     "MINUTES_15",
+     "MINUTES_20",
+     "MINUTES_25",
+     "MINUTES_30",
+     "MINUTES_45",
+     "HOURS_1",
+     "HOURS_6",
+     "HOURS_12",
+     "HOURS_18",
+     "DAYS_1",
+     "DAYS_2",
+     "DAYS_3"
+    ],
+    "title":"TimeBucket"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.TimeSpan":{
+    "type":"object",
+    "description":"\nRepresents the time within which a message is opened after the message is delivered using time buckets.\n\nFor example, you can filter only for messages opened within 1 second after they were delivered. The `from` bucket is inclusive, while the `to` bucket is exclusive.\n    ",
+    "properties":{
+     "from":{
+      "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.TimeBucket"
+     },
+     "to":{
+      "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.TimeBucket"
+     }
+    },
+    "title":"TimeSpan"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.TrafficAggregate":{
+    "type":"string",
+    "enum":[
+     "HOUR",
+     "DAY",
+     "WEEK_SATURDAY_START",
+     "WEEK_SUNDAY_START",
+     "WEEK_MONDAY_START",
+     "MONTH",
+     "QUARTER",
+     "YEAR",
+     "ACCOUNT_KEY",
+     "ACCOUNT_NAME",
+     "STATUS_GROUP",
+     "STATUS",
+     "ERROR_GROUP",
+     "ERROR_CODE",
+     "TIME_TO_DELIVER",
+     "TIME_TO_ANSWER",
+     "TIME_TO_CLICK_FROM_SEEN",
+     "TIME_TO_CLICK_FROM_DELIVERED",
+     "TIME_TO_SEEN_FROM_DELIVERED",
+     "TIME_TO_OPEN_FROM_DELIVERED",
+     "DIRECTION",
+     "SENDER",
+     "SENDER_TYPE",
+     "COMMUNICATION",
+     "CAMPAIGN_REFERENCE",
+     "NETWORK_ID",
+     "NETWORK_NAME",
+     "COUNTRY_ID",
+     "COUNTRY_NAME",
+     "COUNTRY_CODE",
+     "APPLICATION_ID",
+     "ENTITY_ID",
+     "CHANNEL_CODE",
+     "CHANNEL_NAME",
+     "CAPABILITY",
+     "TRAFFIC_TYPE",
+     "URL"
+    ],
+    "title":"TrafficAggregate"
+   },
+   "ApiError":{
+    "type":"object",
+    "properties":{
+     "errorCode":{
+      "type":"string",
+      "description":"An error code uniquely identifying the error case."
+     },
+     "description":{
+      "type":"string",
+      "description":"A detailed description of an error."
+     },
+     "action":{
+      "type":"string",
+      "description":"An action that should be taken to recover from the error."
+     },
+     "violations":{
+      "type":"array",
+      "description":"List of violations that caused the error.",
+      "items":{
+       "$ref":"#/components/schemas/ApiErrorViolation"
+      }
+     },
+     "resources":{
+      "type":"array",
+      "description":"List of available resources to recover from the error.",
+      "items":{
+       "$ref":"#/components/schemas/ApiErrorResource"
+      }
+     }
+    },
+    "required":[
+     "action",
+     "description",
+     "errorCode",
+     "resources",
+     "violations"
+    ],
+    "title":"ApiError"
+   },
+   "ApiErrorResource":{
+    "type":"object",
+    "description":"List of available resources to recover from the error.",
+    "properties":{
+     "name":{
+      "type":"string",
+      "description":"Resource name."
+     },
+     "url":{
+      "type":"string",
+      "description":"Resource URL."
+     }
+    },
+    "title":"ApiErrorResource"
+   },
+   "ApiErrorViolation":{
+    "type":"object",
+    "description":"List of violations that caused the error.",
+    "properties":{
+     "property":{
+      "type":"string",
+      "description":"Request property that caused the error."
+     },
+     "violation":{
+      "type":"string",
+      "description":"Detailed violation description."
+     }
+    },
+    "title":"ApiErrorViolation"
+   }
+  },
+  "responses":{
+   "ApiError401":{
+    "description":"Unauthorized",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E401",
+       "description":"The request lacks valid authentication credentials for the requested resource.",
+       "action":"Check the resources and adjust authentication credentials.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"API Authentication",
+         "url":"https://www.infobip.com/docs/essentials/api-authentication"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E401</errorCode>\n  <description>The request lacks valid authentication credentials for the requested resource.</description>\n  <action>Check the resources and adjust authentication credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Authentication</name>\n      <url>https://www.infobip.com/docs/essentials/api-authentication</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError403":{
+    "description":"Forbidden",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E403",
+       "description":"Insufficient permissions to access the requested resource.",
+       "action":"Repeat the request with new or different credentials.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"API Scopes",
+         "url":"https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E403</errorCode>\n  <description>Insufficient permissions to access the requested resource.</description>\n  <action>Repeat the request with new or different credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Scopes</name>\n      <url>https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError429":{
+    "description":"Too Many Requests",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E429",
+       "description":"Too many requests sent.",
+       "action":"Check request rate limit specified in the API endpoint documentation resource.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"Throttling handling errors",
+         "url":"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E429</errorCode>\n  <description>Too many requests sent.</description>\n  <action>Check request rate limit specified in the API endpoint documentation resource.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>Throttling handling errors</name>\n      <url>https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError500":{
+    "description":"Internal Server Error",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E500",
+       "description":"Something went wrong.",
+       "action":"Contact the support.",
+       "violations":[],
+       "resources":[]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E500</errorCode>\n  <description>Something went wrong.</description>\n  <action>Contact the support.</action>\n  <violations/>\n  <resources/>\n</ApiError>\n"
+     }
+    }
+   }
+  },
+  "parameters":{},
+  "examples":{},
+  "requestBodies":{},
+  "headers":{},
+  "securitySchemes":{
+   "APIKeyHeader":{
+    "type":"apiKey",
+    "description":"This is the most secure authorization type and the one with the most flexibility.\n\nAPI keys can be generated by calling the dedicated API method. Furthermore, API keys can have a limited scope and cover only some API methods. Lastly, they can\nbe revoked at any time. This range of possibilities makes API keys well suited for separating the API access rights across multiple applications or use cases.\nFinally, the loss of an API key is easily manageable.\n\nYou can manage your API keys from [GUI](https://portal.infobip.com/settings/accounts/api-keys), or programmatically\nwith [dedicated API](#platform-&-connectivity/settings).\n\nAPI key Authorization header example:\n\n```shell\nAuthorization: App 003026bbc133714df1834b8638bb496e-8f4b3d9a-e931-478d-a994-28a725159ab9\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "Basic":{
+    "type":"http",
+    "description":"Basic authorization type can be used in situations when the API key is not available. For example, API methods for generating API keys should be authenticated\nwith the Basic type.\n\nIn this case, the credentials included in the Authorization header should be a Base64 encoded username and password combination. More formally, basic\nauthentication header can be constructed in three steps:\n\n* Username and password are concatenated using the colon `(:)` as a separator `username:password`.\n* The resulting string is encoded using the [RFC2045-MIME](https://www.ietf.org/rfc/rfc2045.txt) variant of Base64.\n* Encoded string is added as credentials after the `\"Basic \"` type.\n\nExample:\n\n```shell\nUsername: \"Aladdin\"\nPassword: \"openSesame\"\n\nConcatenated string: \"Aladdin:openSesame\"\n\nBase64 encoded string: \"QWxhZGRpbjpvcGVuU2VzYW1l\"\n\nAuthorization header: \"Basic QWxhZGRpbjpvcGVuU2VzYW1l\"\n```\n\n> **Implementation detail**: Base64 encoding is a standard and many available programming languages and frameworks provide convenient methods for encoding\n> strings.\n",
+    "scheme":"basic"
+   },
+   "IBSSOTokenHeader":{
+    "type":"apiKey",
+    "description":"This authorization type is suited for situations when you do not want to store Infobip credentials in your own app. Instead, your users will input their Infobip\ncredentials every time they access your application and the application will use those credentials to create a session. From then on, the session token can be\nused to authenticate subsequent API requests. Note that the session will expire automatically after a predefined period of inactivity, and can also be manually\nterminated by making an appropriate API call.\n\nYou can find more details on the creation and behavior of the session at\nthe [dedicated documentation page](#platform-connectivity/account-management/create-session).\n\nAfter obtaining the session token by calling the above-referenced API method you can include it in the Authorization header like this:\n\n```shell\nAuthorization: IBSSO 2f9b4d31-2d0d-49a8-85f0-9b862bdca394\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "OAuth2":{
+    "type":"oauth2",
+    "description":"Similarly to the IBSSO Token authentication you can use OAuth 2.0 bearer token with Infobip serving both as resource and authorization server. You can obtain\nthe access token using the client credentials grant from `auth/1/oauth2/token` endpoint. It will provide you with your access token, and its expiration period.\nYou can use the token to authorize your API calls until it expires. You can find out more about the process in\nthe [official specification](https://tools.ietf.org/html/rfc6749#section-4.4).\n\nYou can include your access token in the Authorization HTTP request header like this:\n\n```http\nAuthorization: Bearer <access_token>\n```",
+    "flows":{
+     "clientCredentials":{
+      "tokenUrl":"https://api.infobip.com/auth/1/oauth2/token",
+      "scopes":{}
+     }
+    }
+   }
+  },
+  "links":{},
+  "callbacks":{}
+ },
+ "webhooks":{
+  "receive-aggregate-data-result":{
+   "post":{
+    "tags":[
+     "platform",
+     "metrics-api"
+    ],
+    "summary":"Receive aggregated data result",
+    "description":"Receive data response, requested by [Query aggregate traffic data](#platform/metrics-api/query-aggregate-data). This callback will be invoked only once with POST method.",
+    "operationId":"receive-aggregate-data-result",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.QueryAggregateDataResult"
+       },
+       "examples":{
+        "A simple query result":{
+         "summary":"A simple query result",
+         "value":{
+          "requestId":"B61D150B0F6596F68D88D253886432B5",
+          "status":"SUCCESS",
+          "response":{
+           "requestedPeriod":{
+            "sentSince":"2023-04-01T00:00:00.000+0000",
+            "sentUntil":"2023-04-01T02:00:00.000+0000"
+           },
+           "totalRows":3,
+           "columns":[
+            {
+             "columnName":"HOUR",
+             "columnDataType":"DATE_TIME"
+            },
+            {
+             "columnName":"DIRECTION",
+             "columnDataType":"STRING"
+            },
+            {
+             "columnName":"STATUS_GROUP",
+             "columnDataType":"STRING"
+            },
+            {
+             "columnName":"TOTAL_TRAFFIC_COUNT",
+             "columnDataType":"INTEGER"
+            }
+           ],
+           "rows":[
+            [
+             "2023-04-01T00:00:00.000+0000",
+             "INBOUND",
+             "DELIVERED",
+             7,
+             7
+            ],
+            [
+             "2023-04-01T01:00:00.000+0000",
+             "OUTBOUND",
+             "PENDING",
+             10,
+             11
+            ],
+            [
+             "2023-04-01T01:00:00.000+0000",
+             "OUTBOUND",
+             "DELIVERED",
+             0,
+             0
+            ]
+           ]
+          }
+         }
+        },
+        "An error query result":{
+         "summary":"An error query result",
+         "value":{
+          "requestId":"B61D150B0F6596F68D88D253886432B5",
+          "status":"FAILED",
+          "failureMessage":"Could not load data"
+         }
+        }
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"Your server returns this code if it accepts the callback."
+     }
+    },
+    "x-is-early-access":true
+   }
+  }
+ }
+}

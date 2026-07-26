@@ -1,0 +1,1206 @@
+{
+ "openapi":"3.1.0",
+ "info":{
+  "title":"Infobip OpenAPI Specification",
+  "description":"OpenAPI Specification that contains all public endpoints and webhooks.",
+  "contact":{
+   "name":"Infobip support",
+   "email":"support@infobip.com"
+  },
+  "version":"3.210.0",
+  "x-generatedAt":"2026-07-23T15:24:00.501342205Z"
+ },
+ "tags":[
+  {
+   "name":"connectivity",
+   "description":"Powerful infrastructure and tools that connect you to the world.\n",
+   "x-type":"category",
+   "x-displayName":"Connectivity"
+  },
+  {
+   "name":"number-lookup",
+   "description":"Number Lookup is a product that draws information from Home Location Register which is a database that contains important information about every mobile subscriber of a specific mobile network. You will receive information if the phone number has been ported to another network, if the user is in roaming, if the number is still valid and if it has any permanent or any other errors. Number Lookup also allows you to check the status and validity of mobile numbers, and the country/mobile network they are associated with. This can save substantial amounts to global companies with millions of users, improve delivery rates and optimize processes in real-time.",
+   "x-type":"product",
+   "x-displayName":"Number lookup"
+  }
+ ],
+ "paths":{
+  "/number/1/notify":{
+   "post":{
+    "tags":[
+     "connectivity",
+     "number-lookup"
+    ],
+    "summary":"Number Context lookup (async)",
+    "description":"This method allows you to get number context information for requested phone numbers and receive information at some endpoint asynchronously. Information may vary per country and your package. For package change, contact your account manager or [support](https://www.infobip.com/contact).",
+    "operationId":"number-context-lookup-async",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.NcNotifyRequest"
+       },
+       "examples":{
+        "Look up several phone numbers":{
+         "summary":"Look up several phone numbers",
+         "value":{
+          "notifyContentType":"application/json",
+          "notifyUrl":"https://www.example.com/number/lookup/report",
+          "to":[
+           "41793026727",
+           "41793026834"
+          ]
+         }
+        }
+       }
+      },
+      "application/xml":{
+       "schema":{
+        "$ref":"#/components/schemas/20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.NcNotifyRequest"
+       },
+       "examples":{
+        "Look up several phone numbers":{
+         "summary":"Look up several phone numbers",
+         "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><NcNotifyRequest>\n  <notifyContentType>application/json</notifyContentType>\n  <notifyUrl>https://www.example.com/number/lookup/report</notifyUrl>\n  <to>\n    <to>41793026727</to>\n    <to>41793026834</to>\n  </to>\n</NcNotifyRequest>\n"
+        }
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"Successful response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.NcResponseAsync"
+        },
+        "examples":{
+         "Async number lookup response":{
+          "summary":"Async number lookup response",
+          "value":{
+           "results":[
+            {
+             "to":"3859851212",
+             "status":{
+              "groupId":1,
+              "groupName":"PENDING",
+              "id":3,
+              "name":"PENDING_WAITING_DELIVERY",
+              "description":"Message sent, waiting for delivery report"
+             },
+             "messageId":"2b691c32-1233-4716-a763-4f70cc929eae"
+            },
+            {
+             "to":"3816038923",
+             "status":{
+              "groupId":1,
+              "groupName":"PENDING",
+              "id":3,
+              "name":"PENDING_WAITING_DELIVERY",
+              "description":"Message sent, waiting for delivery report"
+             },
+             "messageId":"24c753c7-8113-4983-9ddb-c50978ba47dc"
+            }
+           ],
+           "bulkId":"BULK-ID-123-xyz"
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.NcResponseAsync"
+        },
+        "examples":{
+         "Async number lookup response":{
+          "summary":"Async number lookup response",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ncResponseAsync>\n  <bulkId>BULK-ID-123-xyz</bulkId>\n  <results>\n    <result>\n      <to>3859851212</to>\n      <status>\n        <groupId>1</groupId>\n        <groupName>PENDING</groupName>\n        <id>3</id>\n        <name>PENDING_WAITING_DELIVERY</name>\n        <description>Message sent, waiting for delivery report</description>\n      </status>\n      <messageId>2b691c32-1233-4716-a763-4f70cc929eae</messageId>\n    </result>\n    <result>\n      <to>3816038923</to>\n      <status>\n        <groupId>1</groupId>\n        <groupName>PENDING</groupName>\n        <id>3</id>\n        <name>PENDING_WAITING_DELIVERY</name>\n        <description>Message sent, waiting for delivery report</description>\n      </status>\n      <messageId>24c753c7-8113-4983-9ddb-c50978ba47dc</messageId>\n    </result>\n  </results>\n</ncResponseAsync>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/578c889dd8f68587bd351066c5c6572a98ea0c15c65b5cacb8779be90fbfbb70.ApiException"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/578c889dd8f68587bd351066c5c6572a98ea0c15c65b5cacb8779be90fbfbb70.ApiException"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>BAD_REQUEST</messageId>\n      <text>Bad request</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "number-lookup:manage",
+     "number-lookup:send"
+    ]
+   }
+  },
+  "/number/1/query":{
+   "post":{
+    "tags":[
+     "connectivity",
+     "number-lookup"
+    ],
+    "summary":"Number Context lookup",
+    "description":"This method allows you to get Number Context information for the requested phone numbers. For package change, contact your account manager or [support](https://www.infobip.com/contact).",
+    "operationId":"number-context-lookup",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.NcQueryRequest"
+       },
+       "examples":{
+        "Look up a phone number":{
+         "summary":"Look up a phone number",
+         "value":{
+          "to":[
+           "41793026727"
+          ]
+         }
+        }
+       }
+      },
+      "application/xml":{
+       "schema":{
+        "$ref":"#/components/schemas/20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.NcQueryRequest"
+       },
+       "examples":{
+        "Look up a phone number":{
+         "summary":"Look up a phone number",
+         "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><NcQueryRequest>\n  <to>\n    <to>41793026727</to>\n  </to>\n</NcQueryRequest>\n"
+        }
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"Successful response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.NcResponse"
+        },
+        "examples":{
+         "Number lookup response":{
+          "summary":"Number lookup response",
+          "value":{
+           "results":[
+            {
+             "to":"41793026727",
+             "mccMnc":"22801",
+             "imsi":"228011234567890",
+             "originalNetwork":{
+              "networkName":"Swisscom",
+              "networkPrefix":"79",
+              "countryName":"Switzerland",
+              "countryPrefix":"41",
+              "networkId":123
+             },
+             "ported":false,
+             "roaming":false,
+             "servingMSC":"41001",
+             "status":{
+              "groupId":3,
+              "groupName":"DELIVERED",
+              "id":5,
+              "name":"DELIVERED_TO_HANDSET",
+              "description":"Message delivered to handset"
+             },
+             "error":{
+              "groupId":0,
+              "groupName":"Ok",
+              "id":0,
+              "name":"NO_ERROR",
+              "description":"No Error",
+              "permanent":false
+             }
+            }
+           ],
+           "bulkId":"BULK-ID-123-xyz"
+          }
+         },
+         "Ported number lookup response":{
+          "summary":"Ported number lookup response",
+          "value":{
+           "results":[
+            {
+             "to":"41793026727",
+             "mccMnc":"22801",
+             "imsi":"228011234567890",
+             "originalNetwork":{
+              "networkName":"Swisscom",
+              "networkPrefix":"79",
+              "countryName":"Switzerland",
+              "countryPrefix":"41",
+              "networkId":123
+             },
+             "ported":true,
+             "portedNetwork":{
+              "networkName":"Sunrise",
+              "networkPrefix":"77",
+              "countryName":"Switzerland",
+              "countryPrefix":"41",
+              "networkId":321
+             },
+             "roaming":false,
+             "servingMSC":"41002",
+             "status":{
+              "groupId":3,
+              "groupName":"DELIVERED",
+              "id":5,
+              "name":"DELIVERED_TO_HANDSET",
+              "description":"Message delivered to handset"
+             },
+             "error":{
+              "groupId":0,
+              "groupName":"Ok",
+              "id":0,
+              "name":"NO_ERROR",
+              "description":"No Error",
+              "permanent":false
+             }
+            }
+           ],
+           "bulkId":"BULK-ID-123-xyz"
+          }
+         },
+         "Roaming number lookup response":{
+          "summary":"Roaming number lookup response",
+          "value":{
+           "results":[
+            {
+             "to":"41793026727",
+             "mccMnc":"22801",
+             "imsi":"228011234567890",
+             "originalNetwork":{
+              "networkName":"Swisscom",
+              "networkPrefix":"79",
+              "countryName":"Switzerland",
+              "countryPrefix":"41",
+              "networkId":123
+             },
+             "ported":false,
+             "roaming":true,
+             "roamingNetwork":{
+              "networkName":"Tele2",
+              "networkPrefix":"739",
+              "countryName":"Sweden",
+              "countryPrefix":"46",
+              "networkId":456
+             },
+             "servingMSC":"46003",
+             "status":{
+              "groupId":3,
+              "groupName":"DELIVERED",
+              "id":5,
+              "name":"DELIVERED_TO_HANDSET",
+              "description":"Message delivered to handset"
+             },
+             "error":{
+              "groupId":0,
+              "groupName":"Ok",
+              "id":0,
+              "name":"NO_ERROR",
+              "description":"No Error",
+              "permanent":false
+             }
+            }
+           ],
+           "bulkId":"BULK-ID-123-xyz"
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.NcResponse"
+        },
+        "examples":{
+         "Number lookup response":{
+          "summary":"Number lookup response",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ncResponse>\n  <bulkId>BULK-ID-123-xyz</bulkId>\n  <results>\n    <result>\n      <to>41793026727</to>\n      <mccMnc>22801</mccMnc>\n      <imsi>228011234567890</imsi>\n      <originalNetwork>\n        <networkName>Swisscom</networkName>\n        <networkPrefix>79</networkPrefix>\n        <countryName>Switzerland</countryName>\n        <countryPrefix>41</countryPrefix>\n        <networkId>123</networkId>\n      </originalNetwork>\n      <ported>false</ported>\n      <roaming>false</roaming>\n      <servingMSC>41001</servingMSC>\n      <status>\n        <groupId>3</groupId>\n        <groupName>DELIVERED</groupName>\n        <id>5</id>\n        <name>DELIVERED_TO_HANDSET</name>\n        <description>Message delivered to handset</description>\n      </status>\n      <error>\n        <groupId>0</groupId>\n        <groupName>Ok</groupName>\n        <id>0</id>\n        <name>NO_ERROR</name>\n        <description>No Error</description>\n        <permanent>false</permanent>\n      </error>\n    </result>\n  </results>\n</ncResponse>\n"
+         },
+         "Ported number lookup response":{
+          "summary":"Ported number lookup response",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ncResponse>\n  <bulkId>BULK-ID-123-xyz</bulkId>\n  <results>\n    <result>\n      <to>41793026727</to>\n      <mccMnc>22801</mccMnc>\n      <imsi>228011234567890</imsi>\n      <originalNetwork>\n        <networkName>Swisscom</networkName>\n        <networkPrefix>79</networkPrefix>\n        <countryName>Switzerland</countryName>\n        <countryPrefix>41</countryPrefix>\n        <networkId>123</networkId>\n      </originalNetwork>\n      <ported>true</ported>\n      <portedNetwork>\n        <networkName>Sunrise</networkName>\n        <networkPrefix>77</networkPrefix>\n        <countryName>Switzerland</countryName>\n        <countryPrefix>41</countryPrefix>\n        <networkId>321</networkId>\n      </portedNetwork>\n      <roaming>false</roaming>\n      <servingMSC>41002</servingMSC>\n      <status>\n        <groupId>3</groupId>\n        <groupName>DELIVERED</groupName>\n        <id>5</id>\n        <name>DELIVERED_TO_HANDSET</name>\n        <description>Message delivered to handset</description>\n      </status>\n      <error>\n        <groupId>0</groupId>\n        <groupName>Ok</groupName>\n        <id>0</id>\n        <name>NO_ERROR</name>\n        <description>No Error</description>\n        <permanent>false</permanent>\n      </error>\n    </result>\n  </results>\n</ncResponse>\n"
+         },
+         "Roaming number lookup response":{
+          "summary":"Roaming number lookup response",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ncResponse>\n  <bulkId>BULK-ID-123-xyz</bulkId>\n  <results>\n    <result>\n      <to>41793026727</to>\n      <mccMnc>22801</mccMnc>\n      <imsi>228011234567890</imsi>\n      <originalNetwork>\n        <networkName>Swisscom</networkName>\n        <networkPrefix>79</networkPrefix>\n        <countryName>Switzerland</countryName>\n        <countryPrefix>41</countryPrefix>\n        <networkId>123</networkId>\n      </originalNetwork>\n      <ported>false</ported>\n      <roaming>true</roaming>\n      <roamingNetwork>\n        <networkName>Tele2</networkName>\n        <networkPrefix>739</networkPrefix>\n        <countryName>Sweden</countryName>\n        <countryPrefix>46</countryPrefix>\n        <networkId>456</networkId>\n      </roamingNetwork>\n      <servingMSC>46003</servingMSC>\n      <status>\n        <groupId>3</groupId>\n        <groupName>DELIVERED</groupName>\n        <id>5</id>\n        <name>DELIVERED_TO_HANDSET</name>\n        <description>Message delivered to handset</description>\n      </status>\n      <error>\n        <groupId>0</groupId>\n        <groupName>Ok</groupName>\n        <id>0</id>\n        <name>NO_ERROR</name>\n        <description>No Error</description>\n        <permanent>false</permanent>\n      </error>\n    </result>\n  </results>\n</ncResponse>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/578c889dd8f68587bd351066c5c6572a98ea0c15c65b5cacb8779be90fbfbb70.ApiException"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/578c889dd8f68587bd351066c5c6572a98ea0c15c65b5cacb8779be90fbfbb70.ApiException"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>BAD_REQUEST</messageId>\n      <text>Bad request</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "number-lookup:manage",
+     "number-lookup:send"
+    ]
+   }
+  },
+  "/number/1/logs":{
+   "get":{
+    "tags":[
+     "connectivity",
+     "number-lookup"
+    ],
+    "summary":"Get Number Context logs",
+    "description":"This method allows you to get logs of sent Number Context requests.",
+    "operationId":"get-number-context-logs",
+    "parameters":[
+     {
+      "name":"to",
+      "in":"query",
+      "description":"Destination address.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      }
+     },
+     {
+      "name":"bulkId",
+      "in":"query",
+      "description":"Bulk ID for which log is requested.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"array",
+       "items":{
+        "type":"string"
+       }
+      }
+     },
+     {
+      "name":"messageId",
+      "in":"query",
+      "description":"NC lookup ID for which log is requested.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"array",
+       "items":{
+        "type":"string"
+       }
+      }
+     },
+     {
+      "name":"generalStatus",
+      "in":"query",
+      "description":"Requested Number Context [status](https://www.infobip.com/docs/essentials/response-status-and-error-codes#api-status-codes).",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "$ref":"#/components/schemas/20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.MessageGeneralStatus"
+      }
+     },
+     {
+      "name":"sentSince",
+      "in":"query",
+      "description":"The logs will only include NC lookups sent after this date. Use it alongside `sentUntil` to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "format":"date-time"
+      },
+      "example":"2015-02-22T17:42:05.390+0100"
+     },
+     {
+      "name":"sentUntil",
+      "in":"query",
+      "description":"The logs will only include NC lookups sent before this date. Use it alongside `sentSince` to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "format":"date-time"
+      },
+      "example":"2015-02-22T19:42:05.390+0100"
+     },
+     {
+      "name":"limit",
+      "in":"query",
+      "description":"Maximum number of Number Context lookups in returned logs. If not set, the latest 50 records are returned. Maximum limit value is `1000` and you can only access logs for the last 48h.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "format":"int32",
+       "exclusiveMinimum":0,
+       "minimum":0
+      }
+     },
+     {
+      "name":"mcc",
+      "in":"query",
+      "description":"Mobile Country Code.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      }
+     },
+     {
+      "name":"mnc",
+      "in":"query",
+      "description":"Mobile Network Code. Mobile Country Code is required if this property is used. ",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Successful response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/4033c81feb806caaa02f9cef553f79f0137a7aaa85d200d9d5e6449874c43c3d.NcLogResponse"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/4033c81feb806caaa02f9cef553f79f0137a7aaa85d200d9d5e6449874c43c3d.NcLogResponse"
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/578c889dd8f68587bd351066c5c6572a98ea0c15c65b5cacb8779be90fbfbb70.ApiException"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/578c889dd8f68587bd351066c5c6572a98ea0c15c65b5cacb8779be90fbfbb70.ApiException"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>BAD_REQUEST</messageId>\n      <text>Bad request</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "number-lookup:logs:read",
+     "number-lookup:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":60,
+      "numberOfTimeUnits":0,
+      "timeUnit":"m"
+     }
+    ]
+   }
+  }
+ },
+ "components":{
+  "schemas":{
+   "20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.MessageGeneralStatus":{
+    "type":"string",
+    "description":"Status group name that describes which category the status code belongs to, i.e., [PENDING](https://www.infobip.com/docs/essentials/response-status-and-error-codes#pending-general-status-codes), [UNDELIVERABLE](https://www.infobip.com/docs/essentials/response-status-and-error-codes#undeliverable-general-status-codes), [DELIVERED](https://www.infobip.com/docs/essentials/response-status-and-error-codes#delivered-general-status-codes), [EXPIRED](https://www.infobip.com/docs/essentials/response-status-and-error-codes#expired-general-status-codes), [REJECTED](https://www.infobip.com/docs/essentials/response-status-and-error-codes#rejected-general-status-codes).",
+    "enum":[
+     "ACCEPTED",
+     "PENDING",
+     "UNDELIVERABLE",
+     "DELIVERED",
+     "EXPIRED",
+     "REJECTED"
+    ],
+    "title":"MessageGeneralStatus"
+   },
+   "20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.NcError":{
+    "type":"object",
+    "properties":{
+     "groupId":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Error group ID.",
+      "readOnly":true
+     },
+     "groupName":{
+      "type":"string",
+      "description":"Error group name.",
+      "readOnly":true
+     },
+     "id":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Error ID.",
+      "readOnly":true
+     },
+     "name":{
+      "type":"string",
+      "description":"Error name.",
+      "readOnly":true
+     },
+     "description":{
+      "type":"string",
+      "description":"Human-readable description of the error.",
+      "readOnly":true
+     },
+     "permanent":{
+      "type":"boolean",
+      "description":"Tells if the error is permanent.",
+      "readOnly":true
+     }
+    },
+    "title":"NcError"
+   },
+   "20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.NcLogPrice":{
+    "type":"object",
+    "properties":{
+     "currency":{
+      "type":"string",
+      "description":"The currency in which the price is expressed.",
+      "readOnly":true
+     },
+     "pricePerLookup":{
+      "type":"number",
+      "format":"double",
+      "description":"Price per one NC lookup.",
+      "readOnly":true
+     }
+    },
+    "title":"NcLogPrice"
+   },
+   "20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.NcNotifyRequest":{
+    "type":"object",
+    "properties":{
+     "notifyContentType":{
+      "type":"string",
+      "description":"Preferred lookup report content type. Can be `application/json` or `application/xml`."
+     },
+     "notifyUrl":{
+      "type":"string",
+      "description":"The URL on your call back server on which the lookup report will be sent."
+     },
+     "to":{
+      "type":"array",
+      "description":"Array of phone numbers to look up. Numbers must be in international format (Example: `41793026727`). Numbers longer than 256 characters in the request will be clipped during processing. The clipped numbers will be included in the response, reports, and logs.",
+      "items":{
+       "type":"string",
+       "description":"Array of phone numbers to look up. Numbers must be in international format (Example: `41793026727`). Numbers longer than 256 characters in the request will be clipped during processing. The clipped numbers will be included in the response, reports, and logs."
+      }
+     }
+    },
+    "required":[
+     "to"
+    ],
+    "title":"NcNotifyRequest",
+    "xml":{
+     "name":"NumberContextRequest"
+    }
+   },
+   "20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.NcQueryRequest":{
+    "type":"object",
+    "properties":{
+     "to":{
+      "type":"array",
+      "description":"Array of phone numbers to look up. Numbers must be in international format (Example: `41793026727`). Numbers longer than 256 characters in the request will be clipped during processing. The clipped numbers will be included in the response, reports, and logs.",
+      "items":{
+       "type":"string",
+       "description":"Array of phone numbers to look up. Numbers must be in international format (Example: `41793026727`). Numbers longer than 256 characters in the request will be clipped during processing. The clipped numbers will be included in the response, reports, and logs."
+      },
+      "maxItems":1000,
+      "minItems":1
+     }
+    },
+    "required":[
+     "to"
+    ],
+    "title":"NcQueryRequest",
+    "xml":{
+     "name":"NumberContextRequest"
+    }
+   },
+   "20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.NcResponse":{
+    "type":"object",
+    "properties":{
+     "results":{
+      "type":"array",
+      "description":"Collection of lookup results.",
+      "items":{
+       "$ref":"#/components/schemas/20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.NcResponseDetails"
+      }
+     },
+     "bulkId":{
+      "type":"string",
+      "description":"The ID that uniquely identifies the request."
+     }
+    },
+    "title":"NcResponse"
+   },
+   "20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.NcResponseAsync":{
+    "type":"object",
+    "properties":{
+     "results":{
+      "type":"array",
+      "description":"Collection of preliminary lookup results.",
+      "items":{
+       "$ref":"#/components/schemas/20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.NcResponseAsyncDetails"
+      }
+     },
+     "bulkId":{
+      "type":"string",
+      "description":"The ID that uniquely identifies the request."
+     }
+    },
+    "title":"NcResponseAsync"
+   },
+   "20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.NcResponseAsyncDetails":{
+    "type":"object",
+    "description":"Collection of preliminary lookup results.",
+    "properties":{
+     "to":{
+      "type":"string",
+      "description":"The looked up phone number.",
+      "readOnly":true
+     },
+     "status":{
+      "$ref":"#/components/schemas/20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.NcStatus"
+     },
+     "messageId":{
+      "type":"string",
+      "description":"The ID that uniquely identifies the performed lookup.",
+      "readOnly":true
+     }
+    },
+    "title":"NcResponseAsyncDetails"
+   },
+   "20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.NcResponseDetails":{
+    "type":"object",
+    "description":"Collection of lookup results.",
+    "properties":{
+     "to":{
+      "type":"string",
+      "description":"The looked up phone number.",
+      "readOnly":true
+     },
+     "mccMnc":{
+      "type":"string",
+      "description":"Mobile country code and mobile network code concatenated. MccMnc will start with the MCC, and it will always have three digits, followed by the MNC (length of the MNC depends on the value of the MCC, and it can be two or three).",
+      "readOnly":true
+     },
+     "imsi":{
+      "type":"string",
+      "description":"International Mobile Subscriber Identity, used to uniquely identify the user of a mobile network.",
+      "readOnly":true
+     },
+     "originalNetwork":{
+      "$ref":"#/components/schemas/20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.Network"
+     },
+     "ported":{
+      "type":"boolean",
+      "description":"True if number has been ported.",
+      "readOnly":true
+     },
+     "portedNetwork":{
+      "$ref":"#/components/schemas/20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.Network"
+     },
+     "roaming":{
+      "type":"boolean",
+      "description":"True if number is currently in roaming.",
+      "readOnly":true
+     },
+     "roamingNetwork":{
+      "$ref":"#/components/schemas/20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.Network"
+     },
+     "servingMSC":{
+      "type":"string",
+      "description":"Serving mobile switching center.",
+      "readOnly":true
+     },
+     "status":{
+      "$ref":"#/components/schemas/20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.NcStatus"
+     },
+     "error":{
+      "$ref":"#/components/schemas/20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.NcError"
+     }
+    },
+    "title":"NcResponseDetails"
+   },
+   "20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.NcStatus":{
+    "type":"object",
+    "properties":{
+     "groupId":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Status group ID.",
+      "readOnly":true
+     },
+     "groupName":{
+      "type":"string",
+      "description":"Status group name that describes which category the status code belongs to, e.g. PENDING, UNDELIVERABLE, DELIVERED, EXPIRED, REJECTED.",
+      "readOnly":true
+     },
+     "id":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Status ID.",
+      "readOnly":true
+     },
+     "name":{
+      "type":"string",
+      "description":"[Status name](https://www.infobip.com/docs/essentials/response-status-and-error-codes).",
+      "readOnly":true
+     },
+     "description":{
+      "type":"string",
+      "description":"Human-readable description of the status.",
+      "readOnly":true
+     },
+     "action":{
+      "type":"string",
+      "description":"Action that should be taken to recover from the error.",
+      "readOnly":true
+     }
+    },
+    "title":"NcStatus"
+   },
+   "20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.Network":{
+    "type":"object",
+    "description":"Information about the roaming network.",
+    "properties":{
+     "networkName":{
+      "type":"string",
+      "description":"Optional human readable name of the network.",
+      "readOnly":true
+     },
+     "networkPrefix":{
+      "type":"string",
+      "description":"Network prefix.",
+      "readOnly":true
+     },
+     "countryName":{
+      "type":"string",
+      "description":"Optional name of the country the network operates in.",
+      "readOnly":true
+     },
+     "countryPrefix":{
+      "type":"string",
+      "description":"Country prefix.",
+      "readOnly":true
+     },
+     "networkId":{
+      "type":"integer",
+      "format":"int32",
+      "description":"ID of the network.",
+      "readOnly":true
+     }
+    },
+    "readOnly":true,
+    "title":"Network Information"
+   },
+   "4033c81feb806caaa02f9cef553f79f0137a7aaa85d200d9d5e6449874c43c3d.NcLog":{
+    "type":"object",
+    "description":"Collection of logs.",
+    "properties":{
+     "bulkId":{
+      "type":"string",
+      "description":"The ID that uniquely identifies the request."
+     },
+     "messageId":{
+      "type":"string",
+      "description":"The ID that uniquely identifies the performed lookup."
+     },
+     "to":{
+      "type":"string",
+      "description":"The looked up phone number."
+     },
+     "sentAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Tells when the lookup was performed. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`."
+     },
+     "doneAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Tells when Infobip finished processing the lookup (e.g. lookup request was delivered to the destination network). Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`."
+     },
+     "mccMnc":{
+      "type":"string",
+      "description":"Mobile country and network codes."
+     },
+     "price":{
+      "$ref":"#/components/schemas/20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.NcLogPrice"
+     },
+     "status":{
+      "$ref":"#/components/schemas/20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.NcStatus"
+     },
+     "error":{
+      "$ref":"#/components/schemas/20085a4036d67f66ebf204560d55d58a7c131c15d42c8ed9442747c488e08630.NcError"
+     }
+    },
+    "title":"NcLog"
+   },
+   "4033c81feb806caaa02f9cef553f79f0137a7aaa85d200d9d5e6449874c43c3d.NcLogResponse":{
+    "type":"object",
+    "properties":{
+     "results":{
+      "type":"array",
+      "description":"Collection of logs.",
+      "items":{
+       "$ref":"#/components/schemas/4033c81feb806caaa02f9cef553f79f0137a7aaa85d200d9d5e6449874c43c3d.NcLog"
+      }
+     }
+    },
+    "title":"NcLogResponse"
+   },
+   "578c889dd8f68587bd351066c5c6572a98ea0c15c65b5cacb8779be90fbfbb70.ApiException":{
+    "type":"object",
+    "properties":{
+     "requestError":{
+      "$ref":"#/components/schemas/ApiRequestError"
+     }
+    },
+    "title":"ApiException"
+   },
+   "ApiException":{
+    "type":"object",
+    "properties":{
+     "requestError":{
+      "$ref":"#/components/schemas/ApiRequestError"
+     }
+    },
+    "title":"ApiException"
+   },
+   "ApiRequestError":{
+    "type":"object",
+    "properties":{
+     "serviceException":{
+      "$ref":"#/components/schemas/ApiRequestErrorDetails"
+     }
+    },
+    "title":"ApiRequestError"
+   },
+   "ApiRequestErrorDetails":{
+    "type":"object",
+    "properties":{
+     "messageId":{
+      "type":"string",
+      "description":"Identifier of the error."
+     },
+     "text":{
+      "type":"string",
+      "description":"Detailed error description."
+     },
+     "validationErrors":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"array",
+       "items":{
+        "type":"string",
+        "description":"Validation errors."
+       }
+      },
+      "description":"Validation errors."
+     }
+    },
+    "title":"ApiRequestErrorDetails"
+   }
+  },
+  "responses":{
+   "ApiException401":{
+    "description":"Unauthorized",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"UNAUTHORIZED",
+         "text":"Unauthorized"
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>UNAUTHORIZED</messageId>\n      <text>Unauthorized</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   },
+   "ApiException403":{
+    "description":"Forbidden",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"FORBIDDEN",
+         "text":"Forbidden"
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>FORBIDDEN</messageId>\n      <text>Forbidden</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   },
+   "ApiException429":{
+    "description":"Too Many Requests",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"TOO_MANY_REQUESTS",
+         "text":"Too many requests"
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>TOO_MANY_REQUESTS</messageId>\n      <text>Too many requests</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   },
+   "ApiException500":{
+    "description":"Internal Server Error",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"GENERAL_ERROR",
+         "text":"Something went wrong. Please contact support."
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>GENERAL_ERROR</messageId>\n      <text>Something went wrong. Please contact support.</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   }
+  },
+  "parameters":{},
+  "examples":{},
+  "requestBodies":{},
+  "headers":{},
+  "securitySchemes":{
+   "APIKeyHeader":{
+    "type":"apiKey",
+    "description":"This is the most secure authorization type and the one with the most flexibility.\n\nAPI keys can be generated by calling the dedicated API method. Furthermore, API keys can have a limited scope and cover only some API methods. Lastly, they can\nbe revoked at any time. This range of possibilities makes API keys well suited for separating the API access rights across multiple applications or use cases.\nFinally, the loss of an API key is easily manageable.\n\nYou can manage your API keys from [GUI](https://portal.infobip.com/settings/accounts/api-keys), or programmatically\nwith [dedicated API](#platform-&-connectivity/settings).\n\nAPI key Authorization header example:\n\n```shell\nAuthorization: App 003026bbc133714df1834b8638bb496e-8f4b3d9a-e931-478d-a994-28a725159ab9\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "Basic":{
+    "type":"http",
+    "description":"Basic authorization type can be used in situations when the API key is not available. For example, API methods for generating API keys should be authenticated\nwith the Basic type.\n\nIn this case, the credentials included in the Authorization header should be a Base64 encoded username and password combination. More formally, basic\nauthentication header can be constructed in three steps:\n\n* Username and password are concatenated using the colon `(:)` as a separator `username:password`.\n* The resulting string is encoded using the [RFC2045-MIME](https://www.ietf.org/rfc/rfc2045.txt) variant of Base64.\n* Encoded string is added as credentials after the `\"Basic \"` type.\n\nExample:\n\n```shell\nUsername: \"Aladdin\"\nPassword: \"openSesame\"\n\nConcatenated string: \"Aladdin:openSesame\"\n\nBase64 encoded string: \"QWxhZGRpbjpvcGVuU2VzYW1l\"\n\nAuthorization header: \"Basic QWxhZGRpbjpvcGVuU2VzYW1l\"\n```\n\n> **Implementation detail**: Base64 encoding is a standard and many available programming languages and frameworks provide convenient methods for encoding\n> strings.\n",
+    "scheme":"basic"
+   },
+   "IBSSOTokenHeader":{
+    "type":"apiKey",
+    "description":"This authorization type is suited for situations when you do not want to store Infobip credentials in your own app. Instead, your users will input their Infobip\ncredentials every time they access your application and the application will use those credentials to create a session. From then on, the session token can be\nused to authenticate subsequent API requests. Note that the session will expire automatically after a predefined period of inactivity, and can also be manually\nterminated by making an appropriate API call.\n\nYou can find more details on the creation and behavior of the session at\nthe [dedicated documentation page](#platform-connectivity/account-management/create-session).\n\nAfter obtaining the session token by calling the above-referenced API method you can include it in the Authorization header like this:\n\n```shell\nAuthorization: IBSSO 2f9b4d31-2d0d-49a8-85f0-9b862bdca394\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "OAuth2":{
+    "type":"oauth2",
+    "description":"Similarly to the IBSSO Token authentication you can use OAuth 2.0 bearer token with Infobip serving both as resource and authorization server. You can obtain\nthe access token using the client credentials grant from `auth/1/oauth2/token` endpoint. It will provide you with your access token, and its expiration period.\nYou can use the token to authorize your API calls until it expires. You can find out more about the process in\nthe [official specification](https://tools.ietf.org/html/rfc6749#section-4.4).\n\nYou can include your access token in the Authorization HTTP request header like this:\n\n```http\nAuthorization: Bearer <access_token>\n```",
+    "flows":{
+     "clientCredentials":{
+      "tokenUrl":"https://api.infobip.com/auth/1/oauth2/token",
+      "scopes":{}
+     }
+    }
+   }
+  },
+  "links":{},
+  "callbacks":{}
+ }
+}

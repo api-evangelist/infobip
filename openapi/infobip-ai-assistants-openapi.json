@@ -1,0 +1,774 @@
+{
+ "openapi":"3.1.0",
+ "info":{
+  "title":"Infobip OpenAPI Specification",
+  "description":"OpenAPI Specification that contains all public endpoints and webhooks.",
+  "contact":{
+   "name":"Infobip support",
+   "email":"support@infobip.com"
+  },
+  "version":"3.210.0",
+  "x-generatedAt":"2026-07-23T15:24:02.023261936Z"
+ },
+ "tags":[
+  {
+   "name":"ai-hub",
+   "description":"AI-powered tools and services to help you create smarter and more personalized customer experiences.\n",
+   "x-type":"category",
+   "x-displayName":"AI Hub"
+  },
+  {
+   "name":"ai-assistants",
+   "description":"Infobip AI assistant is a retrieval-augmented generation (RAG) solution that performs tasks based on documents and\ninstructions you specify. This means the AI draws answers directly from your documents, resulting in more accurate\nand relevant responses. For more information on use cases and how to build AI assistants, visit our\n[AI Assistant](https://www.infobip.com/docs/ai-hub/ai-assistant) product documentation.\n\nWith AI Assistants API, you can:\n* Query your existing AI assistants created via [Infobip Portal](https://www.infobip.com/docs/ai-hub/ai-assistant/create-ai-assistant)\n* Retrieve context the AI assistant uses to answer your queries\n",
+   "x-type":"product",
+   "x-displayName":"AI Assistants"
+  }
+ ],
+ "paths":{
+  "/ai/1/aiassistants/{assistantId}/query":{
+   "post":{
+    "tags":[
+     "ai-hub",
+     "ai-assistants"
+    ],
+    "summary":"Query AI Assistant by ID",
+    "description":"Forwards a message from a user to a specific AI assistant identified by its unique ID and returns the assistant's response.<br/><br/>This endpoint performs a semantic search over an AI assistant's indexed documents based on configured guidelines. It then generates a response using the LLM connected to the assistant.<br/><br/>The \"use shared history\" feature allowing an AI assistant to utilize the agent's conversation history, is only available if used together with [Infobip AI agents](https://www.infobip.com/docs/ai-agents).",
+    "operationId":"query-ai-assistant",
+    "parameters":[
+     {
+      "name":"assistantId",
+      "in":"path",
+      "description":"Unique identifier of the AI assistant to query.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"1ad5a87f-a6cd-3cc0-58c5-317db01440fd"
+     }
+    ],
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.SimpleAiAssistantQuery"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"AI Assistant response retrieved successfully",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponse"
+        },
+        "examples":{
+         "Successful response with context":{
+          "summary":"Successful response with context",
+          "description":"Successful response with context",
+          "value":{
+           "response":"Based on the documentation, you can send an SMS by using our SMS API. First, you need to authenticate using your API key, then make a POST request to the /sms/2/text/advanced endpoint with your message details.",
+           "context":{
+            "originalContexts":[
+             {
+              "text":"To send SMS messages, you need to use the SMS API endpoint...",
+              "filename":"sms-api-guide.pdf"
+             },
+             {
+              "text":"Authentication is required for all API calls...",
+              "filename":"authentication-guide.pdf"
+             }
+            ],
+            "rerankedContexts":[
+             {
+              "text":"To send SMS messages, you need to use the SMS API endpoint...",
+              "filename":"sms-api-guide.pdf"
+             }
+            ]
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "errorCode":"E400",
+           "description":"Request cannot be processed.",
+           "action":"Check the syntax, violations and adjust the request.",
+           "violations":[
+            {
+             "property":"property.path",
+             "violation":"Violation message."
+            }
+           ],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "404":{
+      "description":"Assistant not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Assistant not found error":{
+          "summary":"Assistant not found error",
+          "description":"Assistant not found error",
+          "value":{
+           "errorCode":"40401",
+           "description":"Assistant not found.",
+           "action":"Check the description for error details.",
+           "violations":[],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "ai:read"
+    ],
+    "x-is-early-access":true,
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/ai/1/aiassistants/{assistantId}/retrieve-context":{
+   "post":{
+    "tags":[
+     "ai-hub",
+     "ai-assistants"
+    ],
+    "summary":"Retrieve Context from AI Assistant",
+    "description":"Retrieves the most relevant context chunks from an AI assistant's knowledge base for a given message.<br/><br/>This endpoint performs a semantic search over the assistant's indexed documents and returns the most relevant text segments (top k chunks). You can specify how many chunks to return and optionally enable re-ranking for more accurate results.<br/><br/>The \"use shared history\" feature allowing an AI assistant to utilize the agent's conversation history, is only available if used together with [Infobip AI agents](https://www.infobip.com/docs/ai-agents).",
+    "operationId":"retrieve-ai-assistant-context",
+    "parameters":[
+     {
+      "name":"assistantId",
+      "in":"path",
+      "description":"Unique identifier of the AI assistant from which to retrieve context.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"1ad5a87f-a6cd-3cc0-58c5-317db01440fd"
+     }
+    ],
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.RetrieveContextRequest"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"Context retrieved successfully",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.RetrieveContextApiResponse"
+        },
+        "examples":{
+         "Successful context retrieval":{
+          "summary":"Successful context retrieval",
+          "description":"Successful context retrieval",
+          "value":{
+           "contexts":[
+            {
+             "node":{
+              "id":"node-123-abc",
+              "text":"To send SMS messages, you need to use the SMS API endpoint. Make a POST request to /sms/2/text/advanced with your authentication credentials and message payload.",
+              "metadata":{
+               "source":"sms-api-guide.pdf",
+               "page":5,
+               "chapter":"Sending Messages"
+              },
+              "startCharIdx":0,
+              "endCharIdx":150
+             },
+             "score":0.92
+            },
+            {
+             "node":{
+              "id":"node-456-def",
+              "text":"Authentication is required for all API calls. You can authenticate using an API key in the Authorization header with the format 'App YOUR_API_KEY'.",
+              "metadata":{
+               "source":"authentication-guide.pdf",
+               "page":2
+              },
+              "startCharIdx":200,
+              "endCharIdx":350
+             },
+             "score":0.85
+            }
+           ]
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "errorCode":"E400",
+           "description":"Request cannot be processed.",
+           "action":"Check the syntax, violations and adjust the request.",
+           "violations":[
+            {
+             "property":"property.path",
+             "violation":"Violation message."
+            }
+           ],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "404":{
+      "description":"Assistant not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Assistant not found error":{
+          "summary":"Assistant not found error",
+          "description":"Assistant not found error",
+          "value":{
+           "errorCode":"40401",
+           "description":"Assistant not found.",
+           "action":"Check the description for error details.",
+           "violations":[],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "ai:read"
+    ],
+    "x-is-early-access":true,
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  }
+ },
+ "components":{
+  "schemas":{
+   "2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.ContextNode":{
+    "type":"object",
+    "description":"List of retrieved context nodes.",
+    "properties":{
+     "node":{
+      "$ref":"#/components/schemas/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.NodeDetails"
+     },
+     "score":{
+      "type":"number",
+      "format":"double",
+      "description":"Relevance score for the node."
+     }
+    },
+    "required":[
+     "node",
+     "score"
+    ],
+    "title":"ContextNode"
+   },
+   "2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.NodeDetails":{
+    "type":"object",
+    "description":"Context node details.",
+    "properties":{
+     "id":{
+      "type":"string",
+      "description":"Node ID."
+     },
+     "text":{
+      "type":"string",
+      "description":"Text content."
+     },
+     "metadata":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"object"
+      },
+      "description":"Metadata information."
+     },
+     "startCharIdx":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Start character index."
+     },
+     "endCharIdx":{
+      "type":"integer",
+      "format":"int32",
+      "description":"End character index."
+     }
+    },
+    "required":[
+     "id",
+     "text"
+    ],
+    "title":"NodeDetails"
+   },
+   "2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponse":{
+    "type":"object",
+    "properties":{
+     "response":{
+      "type":"string",
+      "description":"Ai Assistant answer."
+     },
+     "context":{
+      "$ref":"#/components/schemas/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContext"
+     }
+    },
+    "required":[
+     "response"
+    ],
+    "title":"QueryAiAssistantApiResponse"
+   },
+   "2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContext":{
+    "type":"object",
+    "description":"Ai Assistant context used for generating the answer.",
+    "properties":{
+     "originalContexts":{
+      "type":"array",
+      "description":"Ai Assistant contexts before reranking.",
+      "items":{
+       "$ref":"#/components/schemas/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContextChunk"
+      }
+     },
+     "rerankedContexts":{
+      "type":"array",
+      "description":"Ai Assistant contexts after reranking.",
+      "items":{
+       "$ref":"#/components/schemas/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContextChunk"
+      }
+     }
+    },
+    "title":"QueryAiAssistantApiResponseContext"
+   },
+   "2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContextChunk":{
+    "type":"object",
+    "description":"Ai Assistant contexts after reranking.",
+    "properties":{
+     "text":{
+      "type":"string",
+      "description":"The text content of the context chunk retrieved from the assistant's knowledge base."
+     },
+     "filename":{
+      "type":"string",
+      "description":"The name of the source file from which this context chunk was extracted."
+     }
+    },
+    "required":[
+     "filename",
+     "text"
+    ],
+    "title":"QueryAiAssistantApiResponseContextChunk"
+   },
+   "2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.RetrieveContextApiResponse":{
+    "type":"object",
+    "properties":{
+     "contexts":{
+      "type":"array",
+      "description":"List of retrieved context nodes.",
+      "items":{
+       "$ref":"#/components/schemas/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.ContextNode"
+      }
+     }
+    },
+    "required":[
+     "contexts"
+    ],
+    "title":"RetrieveContextApiResponse"
+   },
+   "2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.RetrieveContextRequest":{
+    "type":"object",
+    "description":"AI Assistant retrieve context request with optional retrieval parameters.",
+    "properties":{
+     "message":{
+      "type":"string",
+      "description":"User message to retrieve context for.",
+      "example":"How to send SMS?"
+     },
+     "k":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Number of context chunks to return. Overrides the assistant's default K value. Use this to get more or fewer context chunks.",
+      "example":5
+     },
+     "reRankK":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Enables re-ranking for improved precision. When set, retrieves max(k, reRankK) chunks initially, then uses a cross-encoder to return the top K most relevant results.",
+      "example":10
+     },
+     "useSharedHistory":{
+      "type":"boolean",
+      "default":false,
+      "description":"Flag to indicate whether to use shared conversation history."
+     },
+     "sessionId":{
+      "type":"string",
+      "description":"Session ID to maintain context across multiple queries.",
+      "example":"session-12345"
+     }
+    },
+    "required":[
+     "message"
+    ],
+    "title":"RetrieveContextRequest"
+   },
+   "2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.SimpleAiAssistantQuery":{
+    "type":"object",
+    "description":"Simple AI Assistant query with just a message.",
+    "properties":{
+     "message":{
+      "type":"string",
+      "description":"User message an AI assistant receives.",
+      "example":"Hello, what can you help me with?"
+     },
+     "useSharedHistory":{
+      "type":"boolean",
+      "default":false,
+      "description":"Indicates whether to use shared conversation history. Can only be used with [Infobip AI agents](https://www.infobip.com/docs/ai-agents)."
+     },
+     "sessionId":{
+      "type":"string",
+      "description":"Session ID to maintain context across multiple queries.",
+      "example":"session-12345"
+     },
+     "returnContexts":{
+      "type":"boolean",
+      "default":false,
+      "description":"Flag to indicate whether to return the contexts used in generating the response."
+     }
+    },
+    "required":[
+     "message"
+    ],
+    "title":"SimpleAiAssistantQuery"
+   },
+   "ApiError":{
+    "type":"object",
+    "properties":{
+     "errorCode":{
+      "type":"string",
+      "description":"An error code uniquely identifying the error case."
+     },
+     "description":{
+      "type":"string",
+      "description":"A detailed description of an error."
+     },
+     "action":{
+      "type":"string",
+      "description":"An action that should be taken to recover from the error."
+     },
+     "violations":{
+      "type":"array",
+      "description":"List of violations that caused the error.",
+      "items":{
+       "$ref":"#/components/schemas/ApiErrorViolation"
+      }
+     },
+     "resources":{
+      "type":"array",
+      "description":"List of available resources to recover from the error.",
+      "items":{
+       "$ref":"#/components/schemas/ApiErrorResource"
+      }
+     }
+    },
+    "required":[
+     "action",
+     "description",
+     "errorCode",
+     "resources",
+     "violations"
+    ],
+    "title":"ApiError"
+   },
+   "ApiErrorResource":{
+    "type":"object",
+    "description":"List of available resources to recover from the error.",
+    "properties":{
+     "name":{
+      "type":"string",
+      "description":"Resource name."
+     },
+     "url":{
+      "type":"string",
+      "description":"Resource URL."
+     }
+    },
+    "title":"ApiErrorResource"
+   },
+   "ApiErrorViolation":{
+    "type":"object",
+    "description":"List of violations that caused the error.",
+    "properties":{
+     "property":{
+      "type":"string",
+      "description":"Request property that caused the error."
+     },
+     "violation":{
+      "type":"string",
+      "description":"Detailed violation description."
+     }
+    },
+    "title":"ApiErrorViolation"
+   }
+  },
+  "responses":{
+   "ApiError401":{
+    "description":"Unauthorized",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E401",
+       "description":"The request lacks valid authentication credentials for the requested resource.",
+       "action":"Check the resources and adjust authentication credentials.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"API Authentication",
+         "url":"https://www.infobip.com/docs/essentials/api-authentication"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E401</errorCode>\n  <description>The request lacks valid authentication credentials for the requested resource.</description>\n  <action>Check the resources and adjust authentication credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Authentication</name>\n      <url>https://www.infobip.com/docs/essentials/api-authentication</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError403":{
+    "description":"Forbidden",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E403",
+       "description":"Insufficient permissions to access the requested resource.",
+       "action":"Repeat the request with new or different credentials.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"API Scopes",
+         "url":"https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E403</errorCode>\n  <description>Insufficient permissions to access the requested resource.</description>\n  <action>Repeat the request with new or different credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Scopes</name>\n      <url>https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError429":{
+    "description":"Too Many Requests",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E429",
+       "description":"Too many requests sent.",
+       "action":"Check request rate limit specified in the API endpoint documentation resource.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"Throttling handling errors",
+         "url":"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E429</errorCode>\n  <description>Too many requests sent.</description>\n  <action>Check request rate limit specified in the API endpoint documentation resource.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>Throttling handling errors</name>\n      <url>https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError500":{
+    "description":"Internal Server Error",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E500",
+       "description":"Something went wrong.",
+       "action":"Contact the support.",
+       "violations":[],
+       "resources":[]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E500</errorCode>\n  <description>Something went wrong.</description>\n  <action>Contact the support.</action>\n  <violations/>\n  <resources/>\n</ApiError>\n"
+     }
+    }
+   }
+  },
+  "parameters":{},
+  "examples":{},
+  "requestBodies":{},
+  "headers":{},
+  "securitySchemes":{
+   "APIKeyHeader":{
+    "type":"apiKey",
+    "description":"This is the most secure authorization type and the one with the most flexibility.\n\nAPI keys can be generated by calling the dedicated API method. Furthermore, API keys can have a limited scope and cover only some API methods. Lastly, they can\nbe revoked at any time. This range of possibilities makes API keys well suited for separating the API access rights across multiple applications or use cases.\nFinally, the loss of an API key is easily manageable.\n\nYou can manage your API keys from [GUI](https://portal.infobip.com/settings/accounts/api-keys), or programmatically\nwith [dedicated API](#platform-&-connectivity/settings).\n\nAPI key Authorization header example:\n\n```shell\nAuthorization: App 003026bbc133714df1834b8638bb496e-8f4b3d9a-e931-478d-a994-28a725159ab9\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "Basic":{
+    "type":"http",
+    "description":"Basic authorization type can be used in situations when the API key is not available. For example, API methods for generating API keys should be authenticated\nwith the Basic type.\n\nIn this case, the credentials included in the Authorization header should be a Base64 encoded username and password combination. More formally, basic\nauthentication header can be constructed in three steps:\n\n* Username and password are concatenated using the colon `(:)` as a separator `username:password`.\n* The resulting string is encoded using the [RFC2045-MIME](https://www.ietf.org/rfc/rfc2045.txt) variant of Base64.\n* Encoded string is added as credentials after the `\"Basic \"` type.\n\nExample:\n\n```shell\nUsername: \"Aladdin\"\nPassword: \"openSesame\"\n\nConcatenated string: \"Aladdin:openSesame\"\n\nBase64 encoded string: \"QWxhZGRpbjpvcGVuU2VzYW1l\"\n\nAuthorization header: \"Basic QWxhZGRpbjpvcGVuU2VzYW1l\"\n```\n\n> **Implementation detail**: Base64 encoding is a standard and many available programming languages and frameworks provide convenient methods for encoding\n> strings.\n",
+    "scheme":"basic"
+   },
+   "IBSSOTokenHeader":{
+    "type":"apiKey",
+    "description":"This authorization type is suited for situations when you do not want to store Infobip credentials in your own app. Instead, your users will input their Infobip\ncredentials every time they access your application and the application will use those credentials to create a session. From then on, the session token can be\nused to authenticate subsequent API requests. Note that the session will expire automatically after a predefined period of inactivity, and can also be manually\nterminated by making an appropriate API call.\n\nYou can find more details on the creation and behavior of the session at\nthe [dedicated documentation page](#platform-connectivity/account-management/create-session).\n\nAfter obtaining the session token by calling the above-referenced API method you can include it in the Authorization header like this:\n\n```shell\nAuthorization: IBSSO 2f9b4d31-2d0d-49a8-85f0-9b862bdca394\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "OAuth2":{
+    "type":"oauth2",
+    "description":"Similarly to the IBSSO Token authentication you can use OAuth 2.0 bearer token with Infobip serving both as resource and authorization server. You can obtain\nthe access token using the client credentials grant from `auth/1/oauth2/token` endpoint. It will provide you with your access token, and its expiration period.\nYou can use the token to authorize your API calls until it expires. You can find out more about the process in\nthe [official specification](https://tools.ietf.org/html/rfc6749#section-4.4).\n\nYou can include your access token in the Authorization HTTP request header like this:\n\n```http\nAuthorization: Bearer <access_token>\n```",
+    "flows":{
+     "clientCredentials":{
+      "tokenUrl":"https://api.infobip.com/auth/1/oauth2/token",
+      "scopes":{}
+     }
+    }
+   }
+  },
+  "links":{},
+  "callbacks":{}
+ }
+}

@@ -1,0 +1,5975 @@
+{
+ "openapi":"3.1.0",
+ "info":{
+  "title":"Infobip OpenAPI Specification",
+  "description":"OpenAPI Specification that contains all public endpoints and webhooks.",
+  "contact":{
+   "name":"Infobip support",
+   "email":"support@infobip.com"
+  },
+  "version":"3.210.0",
+  "x-generatedAt":"2026-07-23T15:23:53.024921366Z"
+ },
+ "tags":[
+  {
+   "name":"channels",
+   "description":"Create a perfect customer experience by using the channels your customer already use and love.\n",
+   "x-type":"category",
+   "x-displayName":"Channels"
+  },
+  {
+   "name":"zalo",
+   "description":"Zalo offers businesses a dynamic tool - Zalo Notification Service.\nThis solution is designed to revolutionize customer engagement and communication strategies,\nproviding businesses with a direct and effective means of connecting with their audience.\n\nTo utilize Zalo Notification Service in combination with other channels, check out [Messages API](https://www.infobip.com/docs/api/platform/messages-api).\n",
+   "x-type":"product",
+   "x-displayName":"Zalo"
+  },
+  {
+   "name":"zalo-outbound-messages",
+   "description":"Send messages to multiple recipients. Only notification template messages registered with Zalo can be sent.\nThe API response will not contain the final delivery status, use Delivery Reports instead.\n",
+   "x-type":"module",
+   "x-displayName":"Outbound Messages"
+  },
+  {
+   "name":"zalo-inbound-messages",
+   "description":"Incoming messages will be forwarded in real time to the end-point client provided during the setup.\nThis way, 2-way communication will be established, and the enterprise is enabled to create a certain logic for processing incoming messages.\n",
+   "x-type":"module",
+   "x-displayName":"Inbound Messages"
+  },
+  {
+   "name":"zalo-message-status-reports",
+   "description":"Status Reports (webhooks) tell you what happened to the Zalo message you sent, whether it was successfully delivered or failed to be delivered.\nIn case of Zalo message delivery failure, you'll receive a timestamp and a status code indicating the reason behind it.\nStatus Reports can be pushed in real-time to a Customer's webhook or can be retrieved by an API call.\nLogs provide similar information to Status Reports but are available to query for 48hrs.\n",
+   "x-type":"module",
+   "x-displayName":"Message Status Reports"
+  },
+  {
+   "name":"zalo-service-management",
+   "description":"Manage your Zalo templates, sender quota, and encryption keys.\n",
+   "x-type":"module",
+   "x-displayName":"Service Management"
+  },
+  {
+   "name":"zalo-template-management",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Template Management"
+  },
+  {
+   "name":"zalo-media-management",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Media Management"
+  },
+  {
+   "name":"zalo-sender-management",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Sender Management"
+  }
+ ],
+ "paths":{
+  "/zalo/2/messages":{
+   "post":{
+    "tags":[
+     "channels",
+     "zalo",
+     "zalo-outbound-messages"
+    ],
+    "summary":"Send Zalo messages",
+    "description":"Send messages to multiple recipients. Only [template messages](https://www.infobip.com/docs/zalo/message-types) registered with Zalo can be sent. The API response will not contain the final delivery status, use [Delivery Reports](/docs/api/channels/zalo/zalo-logs-and-status-reports/receive-outbound-zalo-delivery-reports) instead.",
+    "externalDocs":{
+     "description":"Learn more about Zalo channel and use cases",
+     "url":"https://www.infobip.com/docs/zalo"
+    },
+    "operationId":"send-zalo-message",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloRequest"
+       },
+       "examples":{
+        "Template message without validity period and without SMS failover":{
+         "summary":"Template message without validity period and without SMS failover",
+         "value":{
+          "messages":[
+           {
+            "sender":"OFFICIAL-ACCOUNT-ID-XY12Z3",
+            "destinations":[
+             {
+              "to":"41793026727"
+             }
+            ],
+            "content":{
+             "templateName":322307,
+             "templateData":{
+              "customer_name":"John Smith",
+              "date":"20/03/2018"
+             },
+             "type":"TEMPLATE"
+            }
+           }
+          ]
+         }
+        },
+        "Encrypted template message without validity period and without SMS failover":{
+         "summary":"Encrypted template message without validity period and without SMS failover",
+         "value":{
+          "messages":[
+           {
+            "sender":"OFFICIAL-ACCOUNT-ID-XY12Z3",
+            "destinations":[
+             {
+              "to":"41793026727"
+             }
+            ],
+            "content":{
+             "templateName":322307,
+             "templateData":{
+              "customer_name":"MCCCIjANB***hidden***Mvb0CAwEHHQ==",
+              "date":"MKKCIjANB***hidden***Mvb0CAwEBBQ=="
+             },
+             "type":"TEMPLATE"
+            },
+            "options":{
+             "encrypted":true
+            }
+           }
+          ]
+         }
+        },
+        "Template message with validity period and without SMS failover":{
+         "summary":"Template message with validity period and without SMS failover",
+         "value":{
+          "messages":[
+           {
+            "sender":"OFFICIAL-ACCOUNT-ID-XY12Z3",
+            "destinations":[
+             {
+              "to":"41793026727"
+             }
+            ],
+            "content":{
+             "templateName":322307,
+             "templateData":{
+              "customer_name":"John Smith",
+              "date":"20/03/2018"
+             },
+             "type":"TEMPLATE"
+            },
+            "options":{
+             "validityPeriod":{
+              "amount":30,
+              "timeUnit":"MINUTES"
+             }
+            }
+           }
+          ]
+         }
+        },
+        "Encrypted template message with validity period and with SMS failover":{
+         "summary":"Encrypted template message with validity period and with SMS failover",
+         "value":{
+          "messages":[
+           {
+            "sender":"OFFICIAL-ACCOUNT-ID-XY12Z3",
+            "destinations":[
+             {
+              "to":"41793026727"
+             }
+            ],
+            "content":{
+             "templateName":322307,
+             "templateData":{
+              "customer_name":"MCCCIjANB***hidden***Mvb0CAwEHHQ==",
+              "date":"MKKCIjANB***hidden***Mvb0CAwEBBQ=="
+             },
+             "type":"TEMPLATE"
+            },
+            "options":{
+             "validityPeriod":{
+              "amount":30,
+              "timeUnit":"MINUTES"
+             },
+             "smsFailover":{
+              "sender":"41793026726",
+              "text":"Failover message text",
+              "validityPeriod":{
+               "amount":2,
+               "timeUnit":"HOURS"
+              }
+             },
+             "encrypted":true
+            }
+           }
+          ]
+         }
+        },
+        "UID template message with validity period and with SMS failover with destination matching":{
+         "summary":"UID template message with validity period and with SMS failover with destination matching",
+         "value":{
+          "messages":[
+           {
+            "sender":"OFFICIAL-ACCOUNT-ID-XY12Z3",
+            "destinations":[
+             {
+              "to":"1234567890123456789"
+             }
+            ],
+            "content":{
+             "templateName":322307,
+             "templateData":{
+              "customer_name":"John Smith",
+              "date":"20/03/2018"
+             },
+             "type":"TEMPLATE"
+            },
+            "options":{
+             "validityPeriod":{
+              "amount":30,
+              "timeUnit":"MINUTES"
+             },
+             "smsFailover":{
+              "sender":"41793026726",
+              "text":"Failover message text",
+              "validityPeriod":{
+               "amount":2,
+               "timeUnit":"HOURS"
+              },
+              "destinationMatching":[
+               {
+                "initial":"1234567890123456789",
+                "failover":"41793026727"
+               }
+              ]
+             }
+            }
+           }
+          ]
+         }
+        },
+        "Template message without validity period and without SMS failover and with sending mode":{
+         "summary":"Template message without validity period and without SMS failover and with sending mode",
+         "value":{
+          "messages":[
+           {
+            "sender":"OFFICIAL-ACCOUNT-ID-XY12Z3",
+            "destinations":[
+             {
+              "to":"41793026727"
+             }
+            ],
+            "content":{
+             "templateName":322307,
+             "templateData":{
+              "customer_name":"John Smith",
+              "date":"20/03/2018"
+             },
+             "type":"TEMPLATE"
+            },
+            "options":{
+             "sendingMode":"AUTO"
+            }
+           }
+          ]
+         }
+        },
+        "Text message to user":{
+         "summary":"Text message to user",
+         "value":{
+          "messages":[
+           {
+            "sender":"OFFICIAL-ACCOUNT-ID-XY12Z3",
+            "destinations":[
+             {
+              "to":"1234567890123456789"
+             }
+            ],
+            "content":{
+             "text":"Hello! Thank you for following our Official Account.",
+             "type":"TEXT"
+            }
+           }
+          ]
+         }
+        },
+        "Image message to user":{
+         "summary":"Image message to user",
+         "value":{
+          "messages":[
+           {
+            "sender":"OFFICIAL-ACCOUNT-ID-XY12Z3",
+            "destinations":[
+             {
+              "to":"1234567890123456789"
+             }
+            ],
+            "content":{
+             "caption":"Check out our latest promotion!",
+             "url":"https://example.com/promotion.png",
+             "type":"IMAGE"
+            }
+           }
+          ]
+         }
+        },
+        "GIF message to user":{
+         "summary":"GIF message to user",
+         "value":{
+          "messages":[
+           {
+            "sender":"OFFICIAL-ACCOUNT-ID-XY12Z3",
+            "destinations":[
+             {
+              "to":"1234567890123456789"
+             }
+            ],
+            "content":{
+             "caption":"Enjoy this animation!",
+             "url":"https://example.com/animation.gif",
+             "width":400,
+             "height":300,
+             "type":"GIF"
+            }
+           }
+          ]
+         }
+        },
+        "Sticker message to user":{
+         "summary":"Sticker message to user",
+         "value":{
+          "messages":[
+           {
+            "sender":"OFFICIAL-ACCOUNT-ID-XY12Z3",
+            "destinations":[
+             {
+              "to":"1234567890123456789"
+             }
+            ],
+            "content":{
+             "id":"e1540df031b5deb81a4",
+             "type":"STICKER"
+            }
+           }
+          ]
+         }
+        },
+        "Quote consultation message to user":{
+         "summary":"Quote consultation message to user",
+         "value":{
+          "messages":[
+           {
+            "sender":"OFFICIAL-ACCOUNT-ID-XY12Z3",
+            "destinations":[
+             {
+              "to":"1234567890123456789"
+             }
+            ],
+            "content":{
+             "text":"We are open Monday to Friday, 9am to 6pm.",
+             "quoteMessageId":"85f7bfaf11b4dfed86a2",
+             "type":"QUOTE_CONSULTATION"
+            }
+           }
+          ]
+         }
+        },
+        "User information request form to user":{
+         "summary":"User information request form to user",
+         "value":{
+          "messages":[
+           {
+            "sender":"OFFICIAL-ACCOUNT-ID-XY12Z3",
+            "destinations":[
+             {
+              "to":"1234567890123456789"
+             }
+            ],
+            "content":{
+             "title":"Please share your contact details",
+             "subtitle":"We'll use this to send you personalized offers",
+             "imageUrl":"https://example.com/form-banner.png",
+             "type":"USER_INFORMATION_REQUEST_FORM"
+            }
+           }
+          ]
+         }
+        },
+        "File message to user":{
+         "summary":"File message to user",
+         "value":{
+          "messages":[
+           {
+            "sender":"OFFICIAL-ACCOUNT-ID-XY12Z3",
+            "destinations":[
+             {
+              "to":"1234567890123456789"
+             }
+            ],
+            "content":{
+             "url":"https://example.com/invoice.pdf",
+             "type":"FILE"
+            }
+           }
+          ]
+         }
+        },
+        "Reaction to user message":{
+         "summary":"Reaction to user message",
+         "value":{
+          "messages":[
+           {
+            "sender":"OFFICIAL-ACCOUNT-ID-XY12Z3",
+            "destinations":[
+             {
+              "to":"1234567890123456789"
+             }
+            ],
+            "content":{
+             "reactIcon":"HEART",
+             "reactMessageId":"d2e222a71207d35e8a11",
+             "type":"REACTION"
+            }
+           }
+          ]
+         }
+        }
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ResponseEnvelopeMessageResponseMessageResponseDetails"
+        },
+        "examples":{
+         "Successful response":{
+          "summary":"Successful response",
+          "value":{
+           "bulkId":"a28dd97c-2222-4fcf-99f1-0b557ed381da",
+           "messages":[
+            {
+             "messageId":"a28dd97c-1ffb-4fcf-99f1-0b557ed381da",
+             "status":{
+              "groupId":1,
+              "groupName":"PENDING",
+              "id":7,
+              "name":"PENDING_ENROUTE",
+              "description":"Message sent to next instance"
+             },
+             "destination":"41793026727"
+            }
+           ]
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "errorCode":"E400",
+           "description":"Request cannot be processed.",
+           "action":"Check the syntax, violations and adjust the request.",
+           "violations":[
+            {
+             "property":"property.path",
+             "violation":"Violation message."
+            }
+           ],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "message:send",
+     "zalo:message:send",
+     "zalo:manage"
+    ]
+   }
+  },
+  "/zalo/1/logs":{
+   "get":{
+    "tags":[
+     "channels",
+     "zalo",
+     "zalo-message-status-reports"
+    ],
+    "summary":"Get Zalo logs",
+    "description":"You should use this method for displaying logs in the user interface or for some other less frequent usage.",
+    "operationId":"get-zalo-logs",
+    "parameters":[
+     {
+      "name":"from",
+      "in":"query",
+      "description":"Message sender.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "description":"Message sender."
+      }
+     },
+     {
+      "name":"to",
+      "in":"query",
+      "description":"Message destination.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "description":"Message destination."
+      }
+     },
+     {
+      "name":"messageId",
+      "in":"query",
+      "description":"List of message IDs (separated by comma) for which logs are requested.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"array",
+       "description":"List of message IDs (separated by comma) for which logs are requested.",
+       "example":"1,2,3",
+       "items":{
+        "type":"string",
+        "description":"List of message IDs (separated by comma) for which logs are requested.",
+        "example":"1,2,3"
+       }
+      }
+     },
+     {
+      "name":"generalStatus",
+      "in":"query",
+      "description":"Sent Message status.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.IpCoreGeneralStatus"
+      }
+     },
+     {
+      "name":"sentSince",
+      "in":"query",
+      "description":"Lower limit on date and time of sending message. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "format":"date-time",
+       "description":"Lower limit on date and time of sending message. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`."
+      }
+     },
+     {
+      "name":"sentUntil",
+      "in":"query",
+      "description":"Upper limit on date and time of sending message. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "format":"date-time",
+       "description":"Upper limit on date and time of sending message. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`."
+      }
+     },
+     {
+      "name":"limit",
+      "in":"query",
+      "description":"Maximal number of messages in returned logs. If you want to fetch more than 1000 logs you can retrieve them in pages using `sentSince` and `sentUntil` parameters.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "format":"int32",
+       "default":50,
+       "description":"Maximal number of messages in returned logs. If you want to fetch more than 1000 logs you can retrieve them in pages using `sentSince` and `sentUntil` parameters.",
+       "maximum":1000,
+       "minimum":1
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Logs for given criteria are being fetched.",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.LogsResponse"
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request.",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e2e56e613b621c92a292daf20c76b6dbff0520ca1b47769205b02fa7192a30b4.ApiException"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "zalo:logs:read",
+     "zalo:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":10,
+      "numberOfTimeUnits":0,
+      "timeUnit":"m"
+     }
+    ]
+   }
+  },
+  "/zalo/1/sender/{sender}/templates":{
+   "get":{
+    "tags":[
+     "channels",
+     "zalo",
+     "zalo-service-management",
+     "zalo-template-management"
+    ],
+    "summary":"Get Zalo templates",
+    "description":"Returns all templates for a given sender filtered by status.",
+    "operationId":"get-zalo-templates",
+    "parameters":[
+     {
+      "name":"sender",
+      "in":"path",
+      "description":"Sender ID.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64",
+       "description":"Sender ID."
+      }
+     },
+     {
+      "name":"page",
+      "in":"query",
+      "description":"Results page to retrieve (0..N).",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "format":"int32",
+       "default":0
+      }
+     },
+     {
+      "name":"size",
+      "in":"query",
+      "description":"Number of records per page.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "format":"int32",
+       "default":100,
+       "maximum":100,
+       "minimum":1
+      }
+     },
+     {
+      "name":"status",
+      "in":"query",
+      "description":"Filter templates by status. Use ALL to return all templates regardless of status. Defaults to ENABLE.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.TemplateStatus"
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.PageTemplate"
+        },
+        "examples":{
+         "Successful response":{
+          "summary":"Successful response",
+          "value":{
+           "results":[
+            {
+             "templateName":900025,
+             "displayName":"Template_1",
+             "status":"PENDING_REVIEW",
+             "createdTime":"2022-12-31T23:59:59.000+0000"
+            },
+            {
+             "templateName":900026,
+             "displayName":"Template_2",
+             "status":"ENABLE",
+             "createdTime":"2023-01-01T08:19:59.000+0000"
+            }
+           ],
+           "paging":{
+            "page":0,
+            "size":2,
+            "totalPages":1,
+            "totalResults":2
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "errorCode":"E400",
+           "description":"Request cannot be processed.",
+           "action":"Check the syntax, violations and adjust the request.",
+           "violations":[
+            {
+             "property":"property.path",
+             "violation":"Violation message."
+            }
+           ],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     },
+     "502":{
+      "description":"Bad Gateway",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "message:send",
+     "zalo:message:send",
+     "zalo:manage"
+    ],
+    "x-is-early-access":true,
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":10,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/zalo/1/sender/{sender}/templates/{templateName}":{
+   "get":{
+    "tags":[
+     "channels",
+     "zalo",
+     "zalo-service-management",
+     "zalo-template-management"
+    ],
+    "summary":"Get Zalo template",
+    "description":"Returns template's info for given template name.",
+    "operationId":"get-zalo-template",
+    "parameters":[
+     {
+      "name":"sender",
+      "in":"path",
+      "description":"Sender ID.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64",
+       "description":"Sender ID."
+      }
+     },
+     {
+      "name":"templateName",
+      "in":"path",
+      "description":"Name identifying the template. Must be the same as registered template_id.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64",
+       "description":"Name identifying the template. Must be the same as registered template_id."
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "*/*":{
+        "schema":{
+         "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.TemplateInfo"
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "errorCode":"E400",
+           "description":"Request cannot be processed.",
+           "action":"Check the syntax, violations and adjust the request.",
+           "violations":[
+            {
+             "property":"property.path",
+             "violation":"Violation message."
+            }
+           ],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     },
+     "502":{
+      "description":"Bad Gateway",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Zalo API error":{
+          "summary":"Zalo API error",
+          "value":{
+           "errorCode":"ZALO-RSA502",
+           "description":"Zalo API responded with an error.",
+           "action":"Try again later. If the error persists, contact Infobip support.",
+           "violations":[],
+           "resources":[
+            {
+             "name":"Get Zalo quota API endpoint documentation",
+             "url":"https://www.infobip.com/docs/api/get-zalo-quota"
+            },
+            {
+             "name":"Get Zalo template API endpoint documentation",
+             "url":"https://www.infobip.com/docs/api/get-zalo-template"
+            },
+            {
+             "name":"Get Zalo templates API endpoint documentation",
+             "url":"https://www.infobip.com/docs/api/get-zalo-templates"
+            }
+           ]
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "message:send",
+     "zalo:message:send",
+     "zalo:manage"
+    ],
+    "x-is-early-access":true,
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":10,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/zalo/2/sender/{sender}/templates":{
+   "put":{
+    "tags":[
+     "channels",
+     "zalo",
+     "zalo-service-management",
+     "zalo-template-management"
+    ],
+    "summary":"Edit Zalo template",
+    "description":"Edits an existing template that has REJECTED status. The template will be resubmitted for review.",
+    "operationId":"edit-zalo-template",
+    "parameters":[
+     {
+      "name":"sender",
+      "in":"path",
+      "description":"Sender ID.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64",
+       "description":"Sender ID."
+      }
+     }
+    ],
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.EditTemplateRequest"
+       },
+       "examples":{
+        "Edit custom template":{
+         "summary":"Edit custom template",
+         "value":{
+          "note":"Updated template for shipment notifications",
+          "templateContent":{
+           "buttons":{
+            "items":[
+             {
+              "content":"https://example.com/tracking",
+              "title":"Track Shipment",
+              "type":"GO_TO_COMPANY_PAGE"
+             }
+            ]
+           },
+           "logo":{
+            "dark":{
+             "mediaId":"dbuzvadgdaaq9jjam8",
+             "type":"IMAGE"
+            },
+            "light":{
+             "mediaId":"dbuzvadgdaaq9jjam8",
+             "type":"IMAGE"
+            }
+           },
+           "tag":"TRANSACTION",
+           "title":{
+            "value":"Order Successfully Shipped"
+           },
+           "type":"CUSTOM"
+          },
+          "templateId":900025
+         }
+        },
+        "Edit payment request template":{
+         "summary":"Edit payment request template",
+         "value":{
+          "note":"Updated payment template",
+          "templateContent":{
+           "buttons":{
+            "items":[
+             {
+              "content":"https://example.com/invoice",
+              "title":"View Invoice",
+              "type":"GO_TO_COMPANY_PAGE"
+             }
+            ]
+           },
+           "logo":{
+            "dark":{
+             "mediaId":"dbuzvadgdaaq9jjam9",
+             "type":"IMAGE"
+            },
+            "light":{
+             "mediaId":"dbuzvadgdaaq9jjam9",
+             "type":"IMAGE"
+            }
+           },
+           "payment":{
+            "accountName":"John Doe",
+            "amount":"200000",
+            "bankAccount":"1234567890",
+            "bankCode":"970425",
+            "note":"Payment received"
+           },
+           "title":{
+            "value":"Payment Confirmation"
+           },
+           "type":"PAYMENT_REQUEST"
+          },
+          "templateId":900026
+         }
+        }
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.EditTemplateResponse"
+        },
+        "examples":{
+         "Template edited successfully":{
+          "summary":"Template edited successfully",
+          "value":{
+           "appId":"1234567890",
+           "oaId":"9876543210",
+           "previewUrl":"https://example.com/preview/template/900025",
+           "status":"PENDING_REVIEW",
+           "tag":"TRANSACTION",
+           "templateId":"900025",
+           "templateName":"Order Successfully Shipped",
+           "templateType":"CUSTOM",
+           "timeout":86400
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "errorCode":"E400",
+           "description":"Request cannot be processed.",
+           "action":"Check the syntax, violations and adjust the request.",
+           "violations":[
+            {
+             "property":"property.path",
+             "violation":"Violation message."
+            }
+           ],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Sender not found":{
+          "summary":"Sender not found",
+          "value":{
+           "errorCode":"ZALO-RSA404",
+           "description":"Provided sender not found.",
+           "action":"Please check the sender ID provided as a path parameter.",
+           "violations":[],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     },
+     "502":{
+      "description":"Bad Gateway",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Zalo API error":{
+          "summary":"Zalo API error",
+          "value":{
+           "errorCode":"ZALO-RSA502",
+           "description":"Zalo API responded with an error.",
+           "action":"Try again later. If the error persists, contact Infobip support.",
+           "violations":[],
+           "resources":[
+            {
+             "name":"Get Zalo quota API endpoint documentation",
+             "url":"https://www.infobip.com/docs/api/get-zalo-quota"
+            },
+            {
+             "name":"Get Zalo template API endpoint documentation",
+             "url":"https://www.infobip.com/docs/api/get-zalo-template"
+            },
+            {
+             "name":"Get Zalo templates API endpoint documentation",
+             "url":"https://www.infobip.com/docs/api/get-zalo-templates"
+            }
+           ]
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "message:send",
+     "zalo:message:send",
+     "zalo:manage"
+    ],
+    "x-is-early-access":true,
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":10,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   },
+   "post":{
+    "tags":[
+     "channels",
+     "zalo",
+     "zalo-service-management",
+     "zalo-template-management"
+    ],
+    "summary":"Create Zalo template",
+    "description":"Creates a new template for the given sender. The template will be submitted for review and must be approved before it can be used.",
+    "operationId":"create-zalo-template",
+    "parameters":[
+     {
+      "name":"sender",
+      "in":"path",
+      "description":"Sender ID.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64",
+       "description":"Sender ID."
+      }
+     }
+    ],
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.CreateTemplateRequest"
+       },
+       "examples":{
+        "Custom template with logo and buttons":{
+         "summary":"Custom template with logo and buttons",
+         "value":{
+          "note":"Template for order confirmation notifications",
+          "templateContent":{
+           "buttons":{
+            "items":[
+             {
+              "content":"https://example.com/orders",
+              "title":"View Order",
+              "type":"GO_TO_COMPANY_PAGE"
+             }
+            ]
+           },
+           "logo":{
+            "dark":{
+             "mediaId":"dbuzvadgdaaq9jjam7",
+             "type":"IMAGE"
+            },
+            "light":{
+             "mediaId":"dbuzvadgdaaq9jjam7",
+             "type":"IMAGE"
+            }
+           },
+           "tag":"TRANSACTION",
+           "title":{
+            "value":"Your Order Has Been Confirmed"
+           },
+           "type":"CUSTOM"
+          },
+          "templateName":"Order Confirmation",
+          "trackingId":"tracking-custom-001"
+         }
+        },
+        "Voucher template":{
+         "summary":"Voucher template",
+         "value":{
+          "note":"Promotional voucher template",
+          "templateContent":{
+           "buttons":{
+            "items":[
+             {
+              "content":"https://example.com/redeem",
+              "title":"Redeem Now",
+              "type":"GO_TO_COMPANY_PAGE"
+             }
+            ]
+           },
+           "logo":{
+            "dark":{
+             "mediaId":"dbuzvadgdaaq9jjam7",
+             "type":"IMAGE"
+            },
+            "light":{
+             "mediaId":"dbuzvadgdaaq9jjam7",
+             "type":"IMAGE"
+            }
+           },
+           "tag":"PROMOTION",
+           "title":{
+            "value":"Special Discount For You"
+           },
+           "type":"VOUCHER",
+           "voucher":{
+            "condition":"Valid for orders above $50",
+            "endDate":"2025-12-31",
+            "name":"50% Off Discount",
+            "startDate":"2025-01-01",
+            "voucherCode":"SAVE50NOW"
+           }
+          },
+          "templateName":"Discount Voucher",
+          "trackingId":"tracking-voucher-001"
+         }
+        }
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.CreateTemplateResponse"
+        },
+        "examples":{
+         "Template created successfully":{
+          "summary":"Template created successfully",
+          "value":{
+           "appId":"1234567890",
+           "oaId":"9876543210",
+           "previewUrl":"https://example.com/preview/template/900027",
+           "status":"PENDING_REVIEW",
+           "tag":"TRANSACTION",
+           "templateId":"900027",
+           "templateName":"Order Confirmation",
+           "templateType":"CUSTOM",
+           "timeout":86400
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "errorCode":"E400",
+           "description":"Request cannot be processed.",
+           "action":"Check the syntax, violations and adjust the request.",
+           "violations":[
+            {
+             "property":"property.path",
+             "violation":"Violation message."
+            }
+           ],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Sender not found":{
+          "summary":"Sender not found",
+          "value":{
+           "errorCode":"ZALO-RSA404",
+           "description":"Provided sender not found.",
+           "action":"Please check the sender ID provided as a path parameter.",
+           "violations":[],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "409":{
+      "description":"Conflict",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Template already exists":{
+          "summary":"Template already exists",
+          "value":{
+           "errorCode":"ZALO-TMP409",
+           "description":"Template with the same name already exists.",
+           "action":"Please use a different template name.",
+           "violations":[],
+           "resources":[
+            {
+             "name":"Create Zalo template API endpoint documentation",
+             "url":"https://www.infobip.com/docs/api/create-zalo-template"
+            }
+           ]
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     },
+     "502":{
+      "description":"Bad Gateway",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Zalo API error":{
+          "summary":"Zalo API error",
+          "value":{
+           "errorCode":"ZALO-RSA502",
+           "description":"Zalo API responded with an error.",
+           "action":"Try again later. If the error persists, contact Infobip support.",
+           "violations":[],
+           "resources":[
+            {
+             "name":"Get Zalo quota API endpoint documentation",
+             "url":"https://www.infobip.com/docs/api/get-zalo-quota"
+            },
+            {
+             "name":"Get Zalo template API endpoint documentation",
+             "url":"https://www.infobip.com/docs/api/get-zalo-template"
+            },
+            {
+             "name":"Get Zalo templates API endpoint documentation",
+             "url":"https://www.infobip.com/docs/api/get-zalo-templates"
+            }
+           ]
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "message:send",
+     "zalo:message:send",
+     "zalo:manage"
+    ],
+    "x-is-early-access":true,
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":10,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/zalo/1/sender/{sender}/media":{
+   "post":{
+    "tags":[
+     "channels",
+     "zalo",
+     "zalo-service-management",
+     "zalo-media-management"
+    ],
+    "summary":"Upload Zalo media",
+    "description":"Uploads an image file to Zalo and returns the media ID that can be referenced in template content.",
+    "operationId":"upload-zalo-media",
+    "parameters":[
+     {
+      "name":"sender",
+      "in":"path",
+      "description":"Sender ID.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64",
+       "description":"Sender ID."
+      }
+     }
+    ],
+    "requestBody":{
+     "content":{
+      "multipart/form-data":{
+       "schema":{
+        "type":"object",
+        "properties":{
+         "file":{
+          "type":"string",
+          "format":"binary",
+          "description":"Image file to upload."
+         }
+        },
+        "required":[
+         "file"
+        ]
+       }
+      }
+     }
+    },
+    "responses":{
+     "201":{
+      "description":"Media uploaded",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.MediaUploadResponse"
+        },
+        "examples":{
+         "Successful response":{
+          "summary":"Successful response",
+          "description":"Successful response",
+          "value":{
+           "mediaId":"dbuzvadgdaaq9jjam7"
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "errorCode":"E400",
+           "description":"Request cannot be processed.",
+           "action":"Check the syntax, violations and adjust the request.",
+           "violations":[
+            {
+             "property":"property.path",
+             "violation":"Violation message."
+            }
+           ],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Sender not found":{
+          "summary":"Sender not found",
+          "value":{
+           "errorCode":"ZALO-RSA404",
+           "description":"Provided sender not found.",
+           "action":"Please check the sender ID provided as a path parameter.",
+           "violations":[],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     },
+     "502":{
+      "description":"Bad Gateway",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Zalo API error":{
+          "summary":"Zalo API error",
+          "value":{
+           "errorCode":"ZALO-RSA502",
+           "description":"Zalo API responded with an error.",
+           "action":"Try again later. If the error persists, contact Infobip support.",
+           "violations":[],
+           "resources":[
+            {
+             "name":"Get Zalo quota API endpoint documentation",
+             "url":"https://www.infobip.com/docs/api/get-zalo-quota"
+            },
+            {
+             "name":"Get Zalo template API endpoint documentation",
+             "url":"https://www.infobip.com/docs/api/get-zalo-template"
+            },
+            {
+             "name":"Get Zalo templates API endpoint documentation",
+             "url":"https://www.infobip.com/docs/api/get-zalo-templates"
+            }
+           ]
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "zalo:manage"
+    ],
+    "x-is-early-access":true,
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":10,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/zalo/1/sender/{sender}/quota":{
+   "get":{
+    "tags":[
+     "channels",
+     "zalo",
+     "zalo-service-management",
+     "zalo-sender-management"
+    ],
+    "summary":"Get Zalo quota",
+    "description":"Returns the quota (number) of Zalo notifications sent per day.",
+    "operationId":"get-zalo-quota",
+    "parameters":[
+     {
+      "name":"sender",
+      "in":"path",
+      "description":"Sender ID.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64",
+       "description":"Sender ID."
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "*/*":{
+        "schema":{
+         "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.QuotaInfo"
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "errorCode":"E400",
+           "description":"Request cannot be processed.",
+           "action":"Check the syntax, violations and adjust the request.",
+           "violations":[
+            {
+             "property":"property.path",
+             "violation":"Violation message."
+            }
+           ],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     },
+     "502":{
+      "description":"Bad Gateway",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Zalo API error":{
+          "summary":"Zalo API error",
+          "value":{
+           "errorCode":"ZALO-RSA502",
+           "description":"Zalo API responded with an error.",
+           "action":"Try again later. If the error persists, contact Infobip support.",
+           "violations":[],
+           "resources":[
+            {
+             "name":"Get Zalo quota API endpoint documentation",
+             "url":"https://www.infobip.com/docs/api/get-zalo-quota"
+            },
+            {
+             "name":"Get Zalo template API endpoint documentation",
+             "url":"https://www.infobip.com/docs/api/get-zalo-template"
+            },
+            {
+             "name":"Get Zalo templates API endpoint documentation",
+             "url":"https://www.infobip.com/docs/api/get-zalo-templates"
+            }
+           ]
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "message:send",
+     "zalo:message:send",
+     "zalo:manage"
+    ],
+    "x-is-early-access":true,
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":10,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/zalo/1/sender/{sender}/public-key":{
+   "get":{
+    "tags":[
+     "channels",
+     "zalo",
+     "zalo-service-management",
+     "zalo-sender-management"
+    ],
+    "summary":"Get Zalo sender public key",
+    "description":"Returns previously generated public RSA key. In case you haven't already generated an RSA key, you need to do that using the \"Create Zalo sender public key\" method. To use the public RSA key, please *Base64 decode* the provided value!",
+    "operationId":"get-zalo-public-key",
+    "parameters":[
+     {
+      "name":"sender",
+      "in":"path",
+      "description":"Sender ID.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64",
+       "description":"Sender ID."
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "*/*":{
+        "schema":{
+         "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.PublicKeyResponse"
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "errorCode":"E400",
+           "description":"Request cannot be processed.",
+           "action":"Check the syntax, violations and adjust the request.",
+           "violations":[
+            {
+             "property":"property.path",
+             "violation":"Violation message."
+            }
+           ],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Sender not found":{
+          "summary":"Sender not found",
+          "value":{
+           "errorCode":"ZALO-RSA404",
+           "description":"Provided sender not found.",
+           "action":"Please check the sender ID provided as a path parameter.",
+           "violations":[],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "zalo:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":10,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   },
+   "post":{
+    "tags":[
+     "channels",
+     "zalo",
+     "zalo-service-management",
+     "zalo-sender-management"
+    ],
+    "summary":"Create Zalo sender public key",
+    "description":"The RSA key generation API allows you to generate a key pair consisting of a public key and a private key.<br />Only the public key will be returned by this method. The private key will be stored by Zalo to decrypt the content.<br />In case you've already generated an RSA key, please use the public key get API to get the public key.<br />To use the public RSA key, please *Base64 decode* the provided value!",
+    "operationId":"create-zalo-public-key",
+    "parameters":[
+     {
+      "name":"sender",
+      "in":"path",
+      "description":"Sender ID.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64",
+       "description":"Sender ID."
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "*/*":{
+        "schema":{
+         "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.PublicKeyResponse"
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Sender not found":{
+          "summary":"Sender not found",
+          "value":{
+           "errorCode":"ZALO-RSA404",
+           "description":"Provided sender not found.",
+           "action":"Please check the sender ID provided as a path parameter.",
+           "violations":[],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "409":{
+      "description":"Conflict",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "RSA key already exists":{
+          "summary":"RSA key already exists",
+          "value":{
+           "errorCode":"ZALO-RSA409",
+           "description":"RSA key already exists.",
+           "action":"Use the \"Get existing RSA key\" endpoint to fetch the existing key.",
+           "violations":[],
+           "resources":[
+            {
+             "name":"Create a new RSA key API endpoint documentation",
+             "url":"https://www.infobip.com/docs/api/create-zalo-public-key"
+            },
+            {
+             "name":"Get existing RSA key API endpoint documentation",
+             "url":"https://www.infobip.com/docs/api/get-zalo-public-key"
+            }
+           ]
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "zalo:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":10,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  }
+ },
+ "components":{
+  "schemas":{
+   "270617dafe939f994767f4b01223addd34979b1c67bb145186dac4c5c875ab19.Price":{
+    "type":"object",
+    "description":"Message price.",
+    "properties":{
+     "pricePerMessage":{
+      "type":"number",
+      "description":"Price per one message.",
+      "example":0.02
+     },
+     "currency":{
+      "type":"string",
+      "description":"The currency in which the price is expressed.",
+      "example":"EUR"
+     }
+    },
+    "title":"Price"
+   },
+   "270617dafe939f994767f4b01223addd34979b1c67bb145186dac4c5c875ab19.Status":{
+    "type":"object",
+    "description":"Indicates whether the message is successfully sent, not sent, delivered, not delivered, waiting for delivery, or any other possible status.",
+    "properties":{
+     "groupId":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Status group ID.",
+      "example":1
+     },
+     "groupName":{
+      "type":"string",
+      "description":"Status group name.",
+      "example":"PENDING"
+     },
+     "id":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Status ID.",
+      "example":26
+     },
+     "name":{
+      "type":"string",
+      "description":"Status name.",
+      "example":"PENDING_ACCEPTED"
+     },
+     "description":{
+      "type":"string",
+      "description":"Status description.",
+      "example":"Message accepted, pending for delivery."
+     }
+    },
+    "required":[
+     "description",
+     "groupId",
+     "groupName",
+     "id",
+     "name"
+    ],
+    "title":"Status"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Attachment":{
+    "type":"object",
+    "description":"Component containing media reference.",
+    "properties":{
+     "type":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.AttachmentType"
+     },
+     "mediaId":{
+      "type":"string",
+      "description":"Media ID of the attachment.",
+      "maxLength":100,
+      "minLength":1
+     }
+    },
+    "required":[
+     "mediaId",
+     "type"
+    ],
+    "title":"Attachment"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.AttachmentType":{
+    "type":"string",
+    "description":"Type of attachment.",
+    "enum":[
+     "IMAGE"
+    ],
+    "title":"AttachmentType"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.AuthenticationTemplate":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZbsTemplateContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "logo":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Logo"
+       },
+       "otp":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Otp"
+       },
+       "securityWarning":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Paragraph"
+       }
+      }
+     }
+    ],
+    "required":[
+     "logo",
+     "otp",
+     "securityWarning",
+     "type"
+    ],
+    "title":"AuthenticationTemplate"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ButtonItem":{
+    "type":"object",
+    "description":"List of buttons.",
+    "properties":{
+     "type":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ButtonType"
+     },
+     "title":{
+      "type":"string",
+      "description":"Title displayed on the button.",
+      "maxLength":30,
+      "minLength":5
+     },
+     "content":{
+      "type":"string",
+      "description":"Content/action associated with the button.",
+      "maxLength":200,
+      "minLength":1
+     }
+    },
+    "required":[
+     "content",
+     "title",
+     "type"
+    ],
+    "title":"ButtonItem"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ButtonType":{
+    "type":"string",
+    "description":"Type of button action.",
+    "enum":[
+     "GO_TO_COMPANY_PAGE",
+     "MAKE_PHONE_CALL",
+     "GO_TO_OA_INFORMATION_PAGE",
+     "GO_TO_ZALO_MINI_APP",
+     "GO_TO_COMPANY_APPLICATION_PAGE",
+     "GO_TO_ANOTHER_WEBSITE_OR_MINI_APP",
+     "GO_TO_ANOTHER_APPLICATION",
+     "GO_TO_OA_POST",
+     "COPY",
+     "PAY_NOW",
+     "SEE_DETAILS",
+     "GO_TO_ELECTRONIC_INVOICE_LOOKUP_PAGE",
+     "GO_TO_LANDING_PAGE_APP_DOWNLOAD"
+    ],
+    "title":"ButtonType"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.CompactButtons":{
+    "type":"object",
+    "description":"Compact buttons component.",
+    "properties":{
+     "items":{
+      "type":"array",
+      "description":"List of buttons.",
+      "items":{
+       "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ButtonItem"
+      },
+      "maxItems":2,
+      "minItems":1
+     }
+    },
+    "required":[
+     "items"
+    ],
+    "title":"CompactButtons"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.CreateTemplateRequest":{
+    "type":"object",
+    "description":"Request to create a new ZBS template in Zalo.",
+    "properties":{
+     "templateName":{
+      "type":"string",
+      "description":"Template name.",
+      "maxLength":60,
+      "minLength":10
+     },
+     "templateContent":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZbsTemplateContent"
+     },
+     "params":{
+      "type":"array",
+      "description":"Template parameters for dynamic content.",
+      "items":{
+       "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.TemplateParameter"
+      }
+     },
+     "note":{
+      "type":"string",
+      "description":"Template note.",
+      "maxLength":400,
+      "minLength":1
+     },
+     "trackingId":{
+      "type":"string",
+      "description":"Tracking identifier.",
+      "maxLength":200,
+      "minLength":1
+     }
+    },
+    "required":[
+     "note",
+     "templateContent",
+     "templateName",
+     "trackingId"
+    ],
+    "title":"CreateTemplateRequest"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.CreateTemplateResponse":{
+    "type":"object",
+    "description":"Response from Zalo API after creating a ZBS template.",
+    "properties":{
+     "templateId":{
+      "type":"string",
+      "description":"Unique identifier for the created template."
+     },
+     "templateName":{
+      "type":"string",
+      "description":"Name of the template."
+     },
+     "templateType":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZbsTemplateType"
+     },
+     "status":{
+      "type":"string",
+      "description":"Current status of the template."
+     },
+     "tag":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.TemplateTag"
+     },
+     "appId":{
+      "type":"string",
+      "description":"Application ID associated with the template."
+     },
+     "oaId":{
+      "type":"string",
+      "description":"Official Account ID that owns the template."
+     },
+     "timeout":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Template timeout."
+     },
+     "previewUrl":{
+      "type":"string",
+      "description":"URL to preview the template in Zalo's interface."
+     }
+    },
+    "required":[
+     "templateType"
+    ],
+    "title":"CreateTemplateResponse"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.CustomTemplate":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZbsTemplateContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "tag":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.TemplateTag"
+       },
+       "logo":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Logo"
+       },
+       "title":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Title"
+       },
+       "paragraphs":{
+        "type":"array",
+        "description":"Paragraph components.",
+        "items":{
+         "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Paragraph"
+        },
+        "maxItems":4,
+        "minItems":1
+       },
+       "table":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Table"
+       },
+       "buttons":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.TemplateButtons"
+       },
+       "image":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Images"
+       }
+      }
+     }
+    ],
+    "required":[
+     "buttons",
+     "tag",
+     "title",
+     "type"
+    ],
+    "title":"CustomTemplate"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.DefaultMessageRequestOptions":{
+    "type":"object",
+    "description":"Options applicable to all messages in the request.",
+    "properties":{
+     "schedule":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.RequestSchedulingSettings"
+     },
+     "tracking":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.UrlOptions"
+     }
+    },
+    "title":"DefaultMessageRequestOptions"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.DeliveryDay":{
+    "type":"string",
+    "description":"Days of the week which are included in the delivery time window. At least one day must be provided. Separate multiple days with a comma.",
+    "enum":[
+     "MONDAY",
+     "TUESDAY",
+     "WEDNESDAY",
+     "THURSDAY",
+     "FRIDAY",
+     "SATURDAY",
+     "SUNDAY"
+    ],
+    "title":"DeliveryDay"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.DeliveryTime":{
+    "type":"object",
+    "description":"The exact time of the day. The time is expressed in the UTC time zone.",
+    "properties":{
+     "hour":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Hour when the time window opens when used in the `from` property or closes when used in the `to` property.",
+      "maximum":23,
+      "minimum":0
+     },
+     "minute":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Minute when the time window opens when used in the `from` property or closes when used in the `to` property.",
+      "maximum":59,
+      "minimum":0
+     }
+    },
+    "required":[
+     "hour",
+     "minute"
+    ],
+    "title":"DeliveryTime"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.DeliveryTimeWindow":{
+    "type":"object",
+    "description":"Sets specific message delivery window outside of which messages won't be delivered. Often, used when there are restrictions on when messages can be sent. The exact time of the day to start sending messages can be defined using the `from` property. The exact time of the day to end sending messages can be defined using the `to` property. Properties `from` and `to` should be both provided with the minimum 1 hour difference or omitted.",
+    "properties":{
+     "days":{
+      "type":"array",
+      "description":"Days of the week which are included in the delivery time window. At least one day must be provided. Separate multiple days with a comma.",
+      "items":{
+       "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.DeliveryDay"
+      }
+     },
+     "from":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.DeliveryTime"
+     },
+     "to":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.DeliveryTime"
+     }
+    },
+    "required":[
+     "days"
+    ],
+    "title":"DeliveryTimeWindow"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.EditTemplateRequest":{
+    "type":"object",
+    "properties":{
+     "templateId":{
+      "type":"string",
+      "description":"Template ID."
+     },
+     "templateName":{
+      "type":"string",
+      "description":"Template name (10-60 characters).",
+      "maxLength":60,
+      "minLength":10
+     },
+     "templateContent":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZbsTemplateContent"
+     },
+     "params":{
+      "type":"array",
+      "description":"Template parameters for dynamic content.",
+      "items":{
+       "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.TemplateParameter"
+      }
+     },
+     "note":{
+      "type":"string",
+      "description":"Template note.",
+      "maxLength":400,
+      "minLength":1
+     },
+     "trackingId":{
+      "type":"string",
+      "description":"Tracking identifier.",
+      "maxLength":200,
+      "minLength":1
+     }
+    },
+    "required":[
+     "note",
+     "templateContent",
+     "templateId",
+     "templateName",
+     "trackingId"
+    ],
+    "title":"EditTemplateRequest"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.EditTemplateResponse":{
+    "type":"object",
+    "description":"Response from Zalo API after editing a ZBS template.",
+    "properties":{
+     "templateId":{
+      "type":"string",
+      "description":"Unique identifier for the edited template."
+     },
+     "templateName":{
+      "type":"string",
+      "description":"Name of the template."
+     },
+     "templateType":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZbsTemplateType"
+     },
+     "status":{
+      "type":"string",
+      "description":"Current status of the template."
+     },
+     "tag":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.TemplateTag"
+     },
+     "appId":{
+      "type":"string",
+      "description":"Application ID associated with the template."
+     },
+     "oaId":{
+      "type":"string",
+      "description":"Official Account ID that owns the template."
+     },
+     "timeout":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Template timeout."
+     },
+     "previewUrl":{
+      "type":"string",
+      "description":"URL to preview the template in Zalo's interface."
+     }
+    },
+    "required":[
+     "templateType"
+    ],
+    "title":"EditTemplateResponse"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Error":{
+    "type":"object",
+    "properties":{
+     "groupId":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Error group ID."
+     },
+     "groupName":{
+      "type":"string",
+      "description":"Error group name."
+     },
+     "id":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Error ID."
+     },
+     "name":{
+      "type":"string",
+      "description":"Error name."
+     },
+     "description":{
+      "type":"string",
+      "description":"Human-readable description of the error."
+     },
+     "permanent":{
+      "type":"boolean",
+      "description":"Tells if the error is permanent."
+     }
+    },
+    "title":"Error"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ErrorReport":{
+    "type":"object",
+    "description":"Indicates whether the error occurred during the query execution.",
+    "properties":{
+     "groupId":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Error group ID.",
+      "example":0
+     },
+     "groupName":{
+      "type":"string",
+      "description":"Error group name.",
+      "example":"OK"
+     },
+     "id":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Error ID.",
+      "example":0
+     },
+     "name":{
+      "type":"string",
+      "description":"Error name.",
+      "example":"NO_ERROR"
+     },
+     "description":{
+      "type":"string",
+      "description":"Human-readable description of the error.",
+      "example":"No Error"
+     },
+     "permanent":{
+      "type":"boolean",
+      "description":"Indicator of whether the error is permanent.",
+      "example":false
+     }
+    },
+    "required":[
+     "description",
+     "groupId",
+     "groupName",
+     "id",
+     "name",
+     "permanent"
+    ],
+    "title":"ErrorReport"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.FailoverDestinationPair":{
+    "type":"object",
+    "description":"The SMS failover destination matching.",
+    "properties":{
+     "initial":{
+      "type":"string",
+      "description":"The initial destination address specified in the request."
+     },
+     "failover":{
+      "type":"string",
+      "description":"The failover destination address to be used instead of the original destination address. Addresses must be in international format (Example: `41793026727`)"
+     }
+    },
+    "required":[
+     "failover",
+     "initial"
+    ],
+    "title":"FailoverDestinationPair"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Images":{
+    "type":"object",
+    "description":"Images component.",
+    "properties":{
+     "items":{
+      "type":"array",
+      "description":"List of image attachments.",
+      "items":{
+       "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Attachment"
+      },
+      "maxItems":3,
+      "minItems":1
+     }
+    },
+    "title":"Images"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.InboundMessageZaloInboundContent":{
+    "type":"object",
+    "description":"Collection of mobile originated messages.",
+    "properties":{
+     "entityId":{
+      "type":"string",
+      "description":"Used when specifying an entity in outbound send requests. It is also returned in notification events. For detailed usage, refer to the [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+      "maxLength":255,
+      "minLength":0
+     },
+     "applicationId":{
+      "type":"string",
+      "description":"Used when specifying an application in outbound send requests. It is also returned in notification events. For detailed usage, refer to the [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+      "maxLength":255,
+      "minLength":0
+     },
+     "sender":{
+      "type":"string",
+      "description":"Number which sent the message."
+     },
+     "to":{
+      "type":"string",
+      "description":"Sender provided during the activation process."
+     },
+     "integrationType":{
+      "type":"string",
+      "description":"Integration type."
+     },
+     "receivedAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when Infobip received the message. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+     },
+     "keyword":{
+      "type":"string",
+      "description":"Keyword extracted from the message text."
+     },
+     "messageId":{
+      "type":"string",
+      "description":"The ID that uniquely identifies the received message."
+     },
+     "pairedMessageId":{
+      "type":"string",
+      "description":"Message ID of paired outgoing message if matched by Infobip platform."
+     },
+     "callbackData":{
+      "type":"string",
+      "description":"Callback data sent through ‛callbackData‛ field when sending message."
+     },
+     "message":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundContent"
+     },
+     "price":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.MessagePrice"
+     }
+    },
+    "required":[
+     "integrationType",
+     "message",
+     "messageId",
+     "price",
+     "receivedAt",
+     "sender",
+     "to"
+    ],
+    "title":"InboundMessageZaloInboundContent"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.IndiaDltOptions":{
+    "type":"object",
+    "description":"Distributed Ledger Technology (DLT) specific parameters required for sending SMS to phone numbers registered in India.",
+    "properties":{
+     "contentTemplateId":{
+      "type":"string",
+      "description":"Registered DLT content template ID which matches message you are sending."
+     },
+     "principalEntityId":{
+      "type":"string",
+      "description":"Your assigned DLT principal entity ID."
+     },
+     "telemarketerId":{
+      "type":"string",
+      "description":"Your assigned Telemarketer ID. (required for Aggregators)"
+     }
+    },
+    "required":[
+     "principalEntityId"
+    ],
+    "title":"IndiaDltOptions"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.IpCoreGeneralStatus":{
+    "type":"string",
+    "description":"Sent Message status.",
+    "enum":[
+     "ACCEPTED",
+     "PENDING",
+     "UNDELIVERABLE",
+     "DELIVERED",
+     "EXPIRED",
+     "REJECTED"
+    ],
+    "title":"IpCoreGeneralStatus"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Log":{
+    "type":"object",
+    "description":"Collection of logs.",
+    "properties":{
+     "bulkId":{
+      "type":"string",
+      "description":"The ID that uniquely identifies the request."
+     },
+     "messageId":{
+      "type":"string",
+      "description":"The ID that uniquely identifies the message sent."
+     },
+     "to":{
+      "type":"string",
+      "description":"The message destination address."
+     },
+     "from":{
+      "type":"string",
+      "description":"Sender ID that can be alphanumeric or numeric."
+     },
+     "text":{
+      "type":"string",
+      "description":"Text of the message that was sent."
+     },
+     "sentAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Tells when the message was sent. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`."
+     },
+     "doneAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Tells when the message was finished processing by Infobip (i.e. delivered to the destination, delivered to the destination network, etc.). Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`."
+     },
+     "smsCount":{
+      "type":"integer",
+      "format":"int32",
+      "description":"The number of sent message segments."
+     },
+     "mccMnc":{
+      "type":"string",
+      "description":"Mobile country and network codes."
+     },
+     "price":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Price"
+     },
+     "status":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Status"
+     },
+     "error":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Error"
+     }
+    },
+    "title":"Log"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Logo":{
+    "type":"object",
+    "description":"Logo with light and dark variants.",
+    "properties":{
+     "light":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Attachment"
+     },
+     "dark":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Attachment"
+     }
+    },
+    "required":[
+     "dark",
+     "light"
+    ],
+    "title":"Logo"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.LogsResponse":{
+    "type":"object",
+    "properties":{
+     "results":{
+      "type":"array",
+      "description":"Collection of logs.",
+      "items":{
+       "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Log"
+      }
+     }
+    },
+    "title":"LogsResponse"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.MediaUploadResponse":{
+    "type":"object",
+    "properties":{
+     "mediaId":{
+      "type":"string",
+      "description":"Identifier of the uploaded media returned by Zalo.",
+      "example":"dbuzvadgdaaq9jjam7"
+     }
+    },
+    "required":[
+     "mediaId"
+    ],
+    "title":"MediaUploadResponse"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.MessageDeliveryReporting":{
+    "type":"object",
+    "description":"Provides options for configuring the delivery report behavior.",
+    "properties":{
+     "url":{
+      "type":"string",
+      "description":"The URL on your call back server where a delivery report will be sent. If your URL becomes unavailable then the [retry cycle](https://www.infobip.com/docs/sms/sms-over-api#push-retry-cycle-notify-url) uses the following formula: `1min + (1min * retryNumber * retryNumber)`."
+     },
+     "intermediateReport":{
+      "type":"boolean",
+      "description":"The real-time intermediate delivery report containing GSM error codes, messages status, pricing, network and country codes, etc., which will be sent on your callback server. Defaults to `false`."
+     },
+     "notify":{
+      "type":"boolean",
+      "description":"Notify enables you to specify your preferences for receiving DLRs. If set to false, no DLR will be sent. Note: When no webhook is specified in the request and notify is set to 'true' or not defined, your Subscription settings will apply."
+     }
+    },
+    "title":"MessageDeliveryReporting"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.MessageGeneralStatus":{
+    "type":"string",
+    "description":"Status group name that describes which category the status code belongs to, i.e., [PENDING](https://www.infobip.com/docs/essentials/response-status-and-error-codes#pending-general-status-codes), [UNDELIVERABLE](https://www.infobip.com/docs/essentials/response-status-and-error-codes#undeliverable-general-status-codes), [DELIVERED](https://www.infobip.com/docs/essentials/response-status-and-error-codes#delivered-general-status-codes), [EXPIRED](https://www.infobip.com/docs/essentials/response-status-and-error-codes#expired-general-status-codes), [REJECTED](https://www.infobip.com/docs/essentials/response-status-and-error-codes#rejected-general-status-codes).",
+    "enum":[
+     "ACCEPTED",
+     "PENDING",
+     "UNDELIVERABLE",
+     "DELIVERED",
+     "EXPIRED",
+     "REJECTED"
+    ],
+    "title":"MessageGeneralStatus"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.MessagePrice":{
+    "type":"object",
+    "description":"Sent message price.",
+    "properties":{
+     "pricePerMessage":{
+      "type":"number",
+      "description":"Price per one message."
+     },
+     "currency":{
+      "type":"string",
+      "description":"The currency in which the price is expressed."
+     }
+    },
+    "title":"MessagePrice"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.MessageResponseDetails":{
+    "type":"object",
+    "description":"Other details of the message.",
+    "title":"MessageResponseDetails"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.MessageResponseMessageResponseDetails":{
+    "type":"object",
+    "description":"An array of message objects of a single message or multiple messages sent under one bulk ID.",
+    "properties":{
+     "messageId":{
+      "type":"string",
+      "description":"Unique message ID. If not provided, it will be auto-generated and returned in the API response."
+     },
+     "status":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.MessageStatus"
+     },
+     "destination":{
+      "type":"string",
+      "description":"The destination address of the message, i.e., its recipient."
+     },
+     "details":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.MessageResponseDetails"
+     }
+    },
+    "title":"MessageResponseMessageResponseDetails"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.MessageStatus":{
+    "type":"object",
+    "description":"Indicates the [status](https://www.infobip.com/docs/essentials/response-status-and-error-codes#api-status-codes) of the message and how to recover from an error should there be any.",
+    "properties":{
+     "groupId":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Status group ID."
+     },
+     "groupName":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.MessageGeneralStatus"
+     },
+     "id":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Status code ID."
+     },
+     "name":{
+      "type":"string",
+      "description":"[Status code](https://www.infobip.com/docs/essentials/response-status-and-error-codes#api-status-codes) name."
+     },
+     "description":{
+      "type":"string",
+      "description":"Human-readable description of the status."
+     },
+     "action":{
+      "type":"string",
+      "description":"Action to take to recover from the error."
+     }
+    },
+    "title":"MessageStatus"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.NonMsisdnSmsFailover":{
+    "type":"object",
+    "description":"Failover SMS message to be sent if the original message could not be delivered.",
+    "properties":{
+     "sender":{
+      "type":"string",
+      "description":"The sender ID. It can be alphanumeric or numeric (e.g., `CompanyName`). Make sure you don't exceed [character limit](https://www.infobip.com/docs/sms/get-started#sender-names)."
+     },
+     "text":{
+      "type":"string",
+      "description":"Content of the message being sent."
+     },
+     "validityPeriod":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ValidityPeriod"
+     },
+     "regional":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.RegionalOptions"
+     },
+     "destinationMatching":{
+      "type":"array",
+      "description":"The SMS failover destination matching.",
+      "items":{
+       "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.FailoverDestinationPair"
+      }
+     }
+    },
+    "required":[
+     "text"
+    ],
+    "title":"NonMsisdnSmsFailover"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Otp":{
+    "type":"object",
+    "description":"OTP code component.",
+    "properties":{
+     "value":{
+      "type":"string",
+      "description":"OTP code value.",
+      "maxLength":10,
+      "minLength":1
+     }
+    },
+    "required":[
+     "value"
+    ],
+    "title":"Otp"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.PageInfo":{
+    "type":"object",
+    "description":"Contains information about the page.",
+    "properties":{
+     "page":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Requested page number.",
+      "minimum":0
+     },
+     "size":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Requested page size.",
+      "minimum":1
+     },
+     "totalPages":{
+      "type":"integer",
+      "format":"int32",
+      "description":"The total number of pages of the results matching the requested parameters.",
+      "minimum":0
+     },
+     "totalResults":{
+      "type":"integer",
+      "format":"int64",
+      "description":"The total number of the results matching the requested parameters.",
+      "minimum":0
+     }
+    },
+    "required":[
+     "page",
+     "size",
+     "totalPages",
+     "totalResults"
+    ],
+    "title":"PageInfo"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.PageTemplate":{
+    "type":"object",
+    "properties":{
+     "results":{
+      "type":"array",
+      "description":"The list of the results for this page.",
+      "items":{
+       "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Template"
+      }
+     },
+     "paging":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.PageInfo"
+     }
+    },
+    "required":[
+     "paging",
+     "results"
+    ],
+    "title":"PageTemplate"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Paragraph":{
+    "type":"object",
+    "description":"Paragraph component.",
+    "properties":{
+     "value":{
+      "type":"string",
+      "description":"Paragraph text.",
+      "maxLength":400,
+      "minLength":9
+     }
+    },
+    "required":[
+     "value"
+    ],
+    "title":"Paragraph"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Payment":{
+    "type":"object",
+    "description":"Payment component with bank details.",
+    "properties":{
+     "bankCode":{
+      "type":"string",
+      "description":"Bank code.",
+      "maxLength":6,
+      "minLength":1
+     },
+     "accountName":{
+      "type":"string",
+      "description":"Account holder name.",
+      "maxLength":100,
+      "minLength":1
+     },
+     "bankAccount":{
+      "type":"string",
+      "description":"Bank account number.",
+      "maxLength":100,
+      "minLength":1
+     },
+     "amount":{
+      "type":"string",
+      "description":"Payment amount."
+     },
+     "note":{
+      "type":"string",
+      "description":"Payment note.",
+      "maxLength":90,
+      "minLength":0
+     }
+    },
+    "required":[
+     "accountName",
+     "amount",
+     "bankAccount",
+     "bankCode",
+     "note"
+    ],
+    "title":"Payment"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.PaymentRequestTemplate":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZbsTemplateContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "logo":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Logo"
+       },
+       "title":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Title"
+       },
+       "payment":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Payment"
+       },
+       "paragraphs":{
+        "type":"array",
+        "description":"Paragraph components.",
+        "items":{
+         "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Paragraph"
+        },
+        "maxItems":4,
+        "minItems":1
+       },
+       "table":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Table"
+       },
+       "buttons":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.CompactButtons"
+       }
+      }
+     }
+    ],
+    "required":[
+     "buttons",
+     "logo",
+     "payment",
+     "title",
+     "type"
+    ],
+    "title":"PaymentRequestTemplate"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Platform":{
+    "type":"object",
+    "description":"Platform options. For more details, see [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+    "properties":{
+     "entityId":{
+      "type":"string",
+      "description":"Used when specifying an entity in outbound send requests. It is also returned in notification events. For detailed usage, refer to the [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+      "maxLength":255,
+      "minLength":0
+     },
+     "applicationId":{
+      "type":"string",
+      "description":"Used when specifying an application in outbound send requests. It is also returned in notification events. For detailed usage, refer to the [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+      "maxLength":255,
+      "minLength":0
+     }
+    },
+    "title":"Platform"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Price":{
+    "type":"object",
+    "properties":{
+     "pricePerMessage":{
+      "type":"number",
+      "description":"Price per one message."
+     },
+     "currency":{
+      "type":"string",
+      "description":"The currency in which the price is expressed."
+     }
+    },
+    "title":"Price"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.PublicKeyResponse":{
+    "type":"object",
+    "properties":{
+     "publicKey":{
+      "type":"string",
+      "description":"Public key. The value is *Base64 encoded*!",
+      "example":"MIICIjANB***hidden***Mvb0CAwEAAQ=="
+     }
+    },
+    "required":[
+     "publicKey"
+    ],
+    "title":"PublicKeyResponse"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.QuotaInfo":{
+    "type":"object",
+    "description":"Information about ZNS message quotas.",
+    "properties":{
+     "dailyQuota":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Number of ZNS messages that the OA can send in a day."
+     },
+     "remainingDailyQuota":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Remaining number of ZNS messages that the OA can send in a day."
+     },
+     "monthlyPromotionQuota":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Number of ZNS promotional messages that the OA can send in a month."
+     },
+     "remainingMonthlyPromotionQuota":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Remaining number of ZNS promotional messages that the OA can send in a month."
+     },
+     "estimatedNextMonthPromotionQuota":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Estimated number of ZNS promotional messages that the OA can send in the next month."
+     }
+    },
+    "title":"QuotaInfo"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Rating":{
+    "type":"object",
+    "description":"Rating component with rate levels.",
+    "properties":{
+     "option":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.RatingOption"
+     },
+     "items":{
+      "type":"array",
+      "description":"Rating items for each rate level. Must contain exactly 3 or 5 items depending on chosen option (one for each rate level).",
+      "items":{
+       "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.RatingItem"
+      }
+     }
+    },
+    "required":[
+     "items"
+    ],
+    "title":"Rating"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.RatingItem":{
+    "type":"object",
+    "description":"Rating items for each rate level. Must contain exactly 3 or 5 items depending on chosen option (one for each rate level).",
+    "properties":{
+     "rate":{
+      "type":"string",
+      "description":"Rate level.",
+      "pattern":"^[1-5]$"
+     },
+     "title":{
+      "type":"string",
+      "description":"Rating title.",
+      "maxLength":50,
+      "minLength":1
+     },
+     "question":{
+      "type":"string",
+      "description":"Optional question to ask.",
+      "maxLength":100,
+      "minLength":0
+     },
+     "answers":{
+      "type":"array",
+      "description":"Optional list of predefined answers.",
+      "items":{
+       "type":"string",
+       "description":"Optional list of predefined answers.",
+       "maxLength":5,
+       "minLength":1
+      },
+      "maxItems":5,
+      "minItems":1
+     },
+     "thanks":{
+      "type":"string",
+      "description":"Thank you message.",
+      "maxLength":100,
+      "minLength":1
+     },
+     "description":{
+      "type":"string",
+      "description":"Rating description.",
+      "maxLength":200,
+      "minLength":1
+     }
+    },
+    "required":[
+     "description",
+     "rate",
+     "thanks",
+     "title"
+    ],
+    "title":"RatingItem"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.RatingOption":{
+    "type":"string",
+    "default":"FIVE_STARS",
+    "description":"Option of rating.",
+    "enum":[
+     "THREE_EMOTIONS",
+     "FIVE_EMOTIONS",
+     "FIVE_STARS"
+    ],
+    "title":"RatingOption"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.RecipientType":{
+    "type":"string",
+    "description":"Recipient Type must be `TACIR` or `BIREYSEL`.",
+    "enum":[
+     "BIREYSEL",
+     "TACIR"
+    ],
+    "title":"RecipientType"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.RegionalOptions":{
+    "type":"object",
+    "description":"Region-specific parameters, often imposed by local laws. Use this, if country or region that you are sending an SMS to requires additional information.",
+    "properties":{
+     "indiaDlt":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.IndiaDltOptions"
+     },
+     "turkeyIys":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.TurkeyIysOptions"
+     },
+     "southKorea":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.SouthKoreaOptions"
+     }
+    },
+    "title":"RegionalOptions"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.RequestSchedulingSettings":{
+    "type":"object",
+    "description":"Options for scheduling a message.",
+    "properties":{
+     "bulkId":{
+      "type":"string",
+      "description":"Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. If not provided, it will be auto-generated and returned in the API response.",
+      "maxLength":100,
+      "minLength":0
+     },
+     "sendAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when the message is to be sent. Used for scheduled messages. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`, and can only be scheduled for no later than 180 days in advance."
+     },
+     "sendingSpeedLimit":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.SendingSpeedLimit"
+     }
+    },
+    "title":"RequestSchedulingSettings"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ResponseEnvelopeMessageResponseMessageResponseDetails":{
+    "type":"object",
+    "properties":{
+     "bulkId":{
+      "type":"string",
+      "description":"Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. If not provided, it will be auto-generated and returned in the API response. Typically used for fetching delivery reports and message logs."
+     },
+     "messages":{
+      "type":"array",
+      "description":"An array of message objects of a single message or multiple messages sent under one bulk ID.",
+      "items":{
+       "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.MessageResponseMessageResponseDetails"
+      }
+     }
+    },
+    "required":[
+     "messages"
+    ],
+    "title":"ResponseEnvelopeMessageResponseMessageResponseDetails"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.SendingSpeedLimit":{
+    "type":"object",
+    "description":"Limits the send speed when sending messages in bulk to deliver messages over a longer period of time. You may wish to use this to allow your systems or agents to handle large amounts of incoming traffic, e.g., if you are expecting recipients to follow through with a call-to-action option from a message you sent. Not setting a send speed limit can overwhelm your resources with incoming traffic.",
+    "properties":{
+     "amount":{
+      "type":"integer",
+      "format":"int32",
+      "description":"The number of messages to be sent per timeUnit. By default, the system sends messages as fast as the infrastructure allows. Use this parameter to adapt sending capacity to your needs. The system is only able to work against its maximum capacity for ambitious message batches."
+     },
+     "timeUnit":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.SpeedLimitTimeUnit"
+     }
+    },
+    "required":[
+     "amount"
+    ],
+    "title":"SendingSpeedLimit"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ServiceReviewTemplate":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZbsTemplateContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "logo":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Logo"
+       },
+       "title":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Title"
+       },
+       "rating":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Rating"
+       },
+       "paragraph":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Paragraph"
+       },
+       "buttons":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.CompactButtons"
+       }
+      }
+     }
+    ],
+    "required":[
+     "buttons",
+     "logo",
+     "rating",
+     "title",
+     "type"
+    ],
+    "title":"ServiceReviewTemplate"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.SouthKoreaOptions":{
+    "type":"object",
+    "description":"Use case dependent parameters for sending SMS to phone numbers registered in South Korea.",
+    "properties":{
+     "title":{
+      "type":"string",
+      "description":"Title of the message.",
+      "maxLength":66,
+      "minLength":0
+     },
+     "resellerCode":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Reseller identification code: 9-digit registration number in the business registration certificate for South Korea. Resellers should submit this when sending."
+     }
+    },
+    "title":"SouthKoreaOptions"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.SpeedLimitTimeUnit":{
+    "type":"string",
+    "default":"MINUTE",
+    "description":"The time unit to define when setting a messaging speed limit. Defaults to `MINUTE`.",
+    "enum":[
+     "MINUTE",
+     "HOUR",
+     "DAY"
+    ],
+    "title":"SpeedLimitTimeUnit"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Status":{
+    "type":"object",
+    "properties":{
+     "groupId":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Status group ID."
+     },
+     "groupName":{
+      "type":"string",
+      "description":"Status group name."
+     },
+     "id":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Status ID."
+     },
+     "name":{
+      "type":"string",
+      "description":"Status name."
+     },
+     "description":{
+      "type":"string",
+      "description":"Human-readable description of the status."
+     },
+     "action":{
+      "type":"string",
+      "description":"Action that should be taken to eliminate the error."
+     }
+    },
+    "title":"Status"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Table":{
+    "type":"object",
+    "description":"Table component with rows.",
+    "properties":{
+     "rows":{
+      "type":"array",
+      "description":"List of rows.",
+      "items":{
+       "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.TableRowItem"
+      },
+      "maxItems":8,
+      "minItems":2
+     }
+    },
+    "required":[
+     "rows"
+    ],
+    "title":"Table"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.TableRowEffect":{
+    "type":"string",
+    "description":"Visual effect for table row.",
+    "enum":[
+     "NO_EFFECT",
+     "SUCCESS",
+     "UPDATE",
+     "NOTE",
+     "ERROR",
+     "BASICS"
+    ],
+    "title":"TableRowEffect"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.TableRowItem":{
+    "type":"object",
+    "description":"List of rows.",
+    "properties":{
+     "title":{
+      "type":"string",
+      "description":"Title of the row.",
+      "maxLength":36,
+      "minLength":3
+     },
+     "value":{
+      "type":"string",
+      "description":"Value of the row.",
+      "maxLength":90,
+      "minLength":3
+     },
+     "rowType":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.TableRowEffect"
+     }
+    },
+    "required":[
+     "title",
+     "value"
+    ],
+    "title":"TableRowItem"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Template":{
+    "type":"object",
+    "description":"ZNS message template.",
+    "properties":{
+     "templateName":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Name identifying the template. Is the same as registered template_id."
+     },
+     "displayName":{
+      "type":"string",
+      "description":"Human readable name of the template."
+     },
+     "status":{
+      "type":"string",
+      "description":"Template status. Possible values: `PENDING_REVIEW`, `DISABLE`, `ENABLE`, `REJECT`."
+     },
+     "createdTime":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Template creation date. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`."
+     }
+    },
+    "title":"Template"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.TemplateButton":{
+    "type":"object",
+    "description":"List of template buttons.",
+    "properties":{
+     "type":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ButtonType"
+     },
+     "title":{
+      "type":"string",
+      "description":"Button title."
+     },
+     "content":{
+      "type":"string",
+      "description":"Button content."
+     }
+    },
+    "title":"TemplateButton"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.TemplateButtons":{
+    "type":"object",
+    "description":"Buttons component for templates.",
+    "properties":{
+     "items":{
+      "type":"array",
+      "description":"List of buttons.",
+      "items":{
+       "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ButtonItem"
+      },
+      "maxItems":3,
+      "minItems":1
+     }
+    },
+    "required":[
+     "items"
+    ],
+    "title":"TemplateButtons"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.TemplateInfo":{
+    "type":"object",
+    "description":"Information about a ZNS message template.",
+    "properties":{
+     "templateName":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Name identifying the template. Must be the same as registered template_id."
+     },
+     "displayName":{
+      "type":"string",
+      "description":"Human readable name of the template."
+     },
+     "status":{
+      "type":"string",
+      "description":"Template status. Possible values: `PENDING_REVIEW`, `DISABLE`, `ENABLE`, `REJECT`."
+     },
+     "reason":{
+      "type":"string",
+      "description":"Reason for current template status."
+     },
+     "templateProperties":{
+      "type":"array",
+      "description":"List of template properties.",
+      "items":{
+       "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.TemplateProperty"
+      }
+     },
+     "templateButtons":{
+      "type":"array",
+      "description":"List of template buttons.",
+      "items":{
+       "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.TemplateButton"
+      }
+     },
+     "previewUrl":{
+      "type":"string",
+      "description":"Path to the template preview."
+     },
+     "templateTag":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.TemplateTag"
+     }
+    },
+    "title":"TemplateInfo"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.TemplateParameter":{
+    "type":"object",
+    "description":"Template parameters for dynamic content.",
+    "properties":{
+     "type":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.TemplateParameterType"
+     },
+     "name":{
+      "type":"string",
+      "description":"Name of the parameter. Only letters, digits, hyphen and underscore are allowed.",
+      "maxLength":20,
+      "minLength":1,
+      "pattern":"^[A-Za-z0-9_-]+$"
+     },
+     "sampleValue":{
+      "type":"string",
+      "description":"Sample data for the parameter.",
+      "maxLength":200,
+      "minLength":1
+     }
+    },
+    "required":[
+     "name",
+     "sampleValue",
+     "type"
+    ],
+    "title":"TemplateParameter"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.TemplateParameterType":{
+    "type":"string",
+    "description":"Type of the parameter.",
+    "enum":[
+     "CUSTOMER_NAME",
+     "PHONE_NUMBER",
+     "ADDRESS",
+     "CODE",
+     "CUSTOM_LABELS",
+     "TRADING_STATUS",
+     "CONTACT_INFORMATION",
+     "GENDER_TITLE",
+     "PRODUCT_NAME_BRAND",
+     "QUANTITY_AMOUNT",
+     "TIME",
+     "OTP",
+     "URL",
+     "CURRENCY_VND",
+     "BANK_TRANSFER_NOTE"
+    ],
+    "title":"TemplateParameterType"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.TemplateProperty":{
+    "type":"object",
+    "description":"List of template properties.",
+    "properties":{
+     "name":{
+      "type":"string",
+      "description":"Property name."
+     },
+     "required":{
+      "type":"boolean",
+      "description":"Indicates if the property is mandatory."
+     },
+     "type":{
+      "type":"string",
+      "description":"Property type e.g. STRING."
+     },
+     "maxLength":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Maximum number of characters that the property value can have."
+     },
+     "minLength":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Minimum number of characters that the property value can have."
+     },
+     "acceptNull":{
+      "type":"boolean",
+      "description":"Indicates if the property value can be null."
+     }
+    },
+    "title":"TemplateProperty"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.TemplateStatus":{
+    "type":"string",
+    "enum":[
+     "ALL",
+     "ENABLED",
+     "PENDING_REVIEW",
+     "REJECTED",
+     "DISABLED"
+    ],
+    "example":"PENDING_REVIEW",
+    "title":"TemplateStatus"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.TemplateTag":{
+    "type":"string",
+    "description":"Template tag for classification.",
+    "enum":[
+     "TRANSACTION",
+     "CUSTOMER_CARE",
+     "PROMOTION"
+    ],
+    "title":"TemplateTag"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Title":{
+    "type":"object",
+    "description":"Title component.",
+    "properties":{
+     "value":{
+      "type":"string",
+      "description":"Title text.",
+      "maxLength":65,
+      "minLength":9
+     }
+    },
+    "required":[
+     "value"
+    ],
+    "title":"Title"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ToDestination":{
+    "type":"object",
+    "description":"An array of destination objects for where messages are being sent. A valid destination is required.",
+    "properties":{
+     "to":{
+      "type":"string",
+      "description":"The destination address of the message."
+     },
+     "messageId":{
+      "type":"string",
+      "description":"The ID that uniquely identifies the message sent.",
+      "maxLength":200,
+      "minLength":0
+     }
+    },
+    "required":[
+     "to"
+    ],
+    "title":"Destination"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.TurkeyIysOptions":{
+    "type":"object",
+    "description":"IYS regulations specific parameters required for sending promotional SMS to phone numbers registered in Turkey.",
+    "properties":{
+     "brandCode":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Brand code is an ID of the company based on a company VAT number. If not provided in request, default value is used from your Infobip account."
+     },
+     "recipientType":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.RecipientType"
+     }
+    },
+    "required":[
+     "recipientType"
+    ],
+    "title":"TurkeyIysOptions"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.UrlOptions":{
+    "type":"object",
+    "description":"Sets up [URL shortening](https://www.infobip.com/docs/url-shortening) and tracking feature.",
+    "properties":{
+     "shortenUrl":{
+      "type":"boolean",
+      "default":true,
+      "description":"Enable shortening of the URLs within a message. Set this to `true`, if you want to set up other URL options."
+     },
+     "trackClicks":{
+      "type":"boolean",
+      "default":true,
+      "description":"Enable tracking of short URL clicks within a message: which URL was clicked, how many times, and by whom."
+     },
+     "trackingUrl":{
+      "type":"string",
+      "description":"The URL of your callback server on to which the Click report will be sent."
+     },
+     "removeProtocol":{
+      "type":"boolean",
+      "default":false,
+      "description":"Remove a protocol, such as `https://`, from links to shorten a message. Note that some mobiles may not recognize such links as a URL."
+     },
+     "customDomain":{
+      "type":"string",
+      "description":"Select a predefined custom domain to use when generating a short URL."
+     }
+    },
+    "title":"UrlOptions"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ValidityPeriod":{
+    "type":"object",
+    "description":"Message validity period. Once expired, the message won't be sent. Validity period longer than 48h is not supported. If exceeded, it will be automatically set to 48h.",
+    "properties":{
+     "amount":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Message validity period's value. If `timeUnit` is not set, it will default to `MINUTES`."
+     },
+     "timeUnit":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ValidityPeriodTimeUnit"
+     }
+    },
+    "required":[
+     "amount"
+    ],
+    "title":"ValidityPeriod"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ValidityPeriodTimeUnit":{
+    "type":"string",
+    "default":"MINUTES",
+    "description":"Message validity period time unit.",
+    "enum":[
+     "SECONDS",
+     "MINUTES",
+     "HOURS"
+    ],
+    "title":"ValidityPeriodTimeUnit"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Voucher":{
+    "type":"object",
+    "description":"Voucher component.",
+    "properties":{
+     "name":{
+      "type":"string",
+      "description":"Voucher name.",
+      "maxLength":30,
+      "minLength":1
+     },
+     "condition":{
+      "type":"string",
+      "description":"Voucher usage condition.",
+      "maxLength":40,
+      "minLength":1
+     },
+     "startDate":{
+      "type":"string",
+      "description":"Voucher validity start date. Accepts Infobip ISO datetime or Zalo formats: dd/MM/yyyy, dd/MM/yyyy HH, dd/MM/yyyy HH:mm, dd/MM/yyyy HH:mm:ss.",
+      "maxLength":30,
+      "minLength":0
+     },
+     "endDate":{
+      "type":"string",
+      "description":"Voucher validity end date. Accepts Infobip ISO datetime or Zalo formats: dd/MM/yyyy, dd/MM/yyyy HH, dd/MM/yyyy HH:mm, dd/MM/yyyy HH:mm:ss.",
+      "maxLength":30,
+      "minLength":0
+     },
+     "voucherCode":{
+      "type":"string",
+      "description":"Voucher redemption code.",
+      "maxLength":25,
+      "minLength":1
+     }
+    },
+    "required":[
+     "condition",
+     "endDate",
+     "name",
+     "startDate",
+     "voucherCode"
+    ],
+    "title":"Voucher"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.VoucherTemplate":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZbsTemplateContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "tag":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.TemplateTag"
+       },
+       "logo":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Logo"
+       },
+       "image":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Images"
+       },
+       "title":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Title"
+       },
+       "voucher":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Voucher"
+       },
+       "buttons":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.CompactButtons"
+       },
+       "paragraphs":{
+        "type":"array",
+        "description":"Paragraph components.",
+        "items":{
+         "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Paragraph"
+        },
+        "maxItems":4,
+        "minItems":1
+       },
+       "table":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Table"
+       }
+      }
+     }
+    ],
+    "required":[
+     "buttons",
+     "tag",
+     "title",
+     "type",
+     "voucher"
+    ],
+    "title":"VoucherTemplate"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Webhooks":{
+    "type":"object",
+    "description":"Provides options for configuring message webhooks.",
+    "properties":{
+     "delivery":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.MessageDeliveryReporting"
+     },
+     "contentType":{
+      "type":"string",
+      "description":"Preferred delivery report content type, `application/json` or `application/xml`."
+     },
+     "callbackData":{
+      "type":"string",
+      "description":"Additional data that can be used for identifying, managing, or monitoring a message. Data included here will also be automatically included in the message Delivery Report. The maximum value is 4000 characters.",
+      "maxLength":4000,
+      "minLength":0
+     }
+    },
+    "title":"Webhooks"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundAudioContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "url":{
+        "type":"string"
+       }
+      }
+     }
+    ],
+    "required":[
+     "url"
+    ],
+    "title":"ZaloInboundAudioContent"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundBusinessCardContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "name":{
+        "type":"string"
+       },
+       "avatar":{
+        "type":"string"
+       },
+       "qrCodeUrl":{
+        "type":"string"
+       }
+      }
+     }
+    ],
+    "required":[
+     "name"
+    ],
+    "title":"ZaloInboundBusinessCardContent"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundContent":{
+    "type":"object",
+    "description":"Message content.",
+    "discriminator":{
+     "propertyName":"type",
+     "mapping":{
+      "RESPONSE_BUTTON":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundResponseButtonContent",
+      "USER_FEEDBACK":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundUserFeedbackContent",
+      "FOLLOW":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundFollowContent",
+      "UNFOLLOW":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundUnfollowContent",
+      "TEXT":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundTextContent",
+      "USER_SUBMIT_INFO":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundUserSubmitInfoContent",
+      "IMAGE":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundImageContent",
+      "VIDEO":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundVideoContent",
+      "AUDIO":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundAudioContent",
+      "FILE":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundFileContent",
+      "GIF":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundGifContent",
+      "LINK":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundLinkContent",
+      "STICKER":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundStickerContent",
+      "LOCATION":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundLocationContent",
+      "BUSINESS_CARD":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundBusinessCardContent",
+      "UNKNOWN":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundUnknownContent"
+     }
+    },
+    "properties":{
+     "type":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundContentType"
+     }
+    },
+    "title":"ZaloInboundContent"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundContentType":{
+    "type":"string",
+    "enum":[
+     "RESPONSE_BUTTON",
+     "USER_FEEDBACK",
+     "FOLLOW",
+     "UNFOLLOW",
+     "TEXT",
+     "USER_SUBMIT_INFO",
+     "IMAGE",
+     "VIDEO",
+     "AUDIO",
+     "FILE",
+     "GIF",
+     "LINK",
+     "STICKER",
+     "LOCATION",
+     "BUSINESS_CARD",
+     "UNKNOWN"
+    ],
+    "title":"ZaloInboundContentType"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundFileContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "url":{
+        "type":"string"
+       },
+       "name":{
+        "type":"string"
+       },
+       "size":{
+        "type":"integer",
+        "format":"int64"
+       },
+       "checksum":{
+        "type":"string"
+       },
+       "fileType":{
+        "type":"string"
+       }
+      }
+     }
+    ],
+    "required":[
+     "name",
+     "url"
+    ],
+    "title":"ZaloInboundFileContent"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundFollowContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "source":{
+        "type":"string"
+       }
+      }
+     }
+    ],
+    "required":[
+     "source"
+    ],
+    "title":"ZaloInboundFollowContent"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundGifContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "url":{
+        "type":"string"
+       },
+       "thumbnail":{
+        "type":"string"
+       }
+      }
+     }
+    ],
+    "required":[
+     "url"
+    ],
+    "title":"ZaloInboundGifContent"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundImageContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "url":{
+        "type":"string"
+       },
+       "thumbnail":{
+        "type":"string"
+       }
+      }
+     }
+    ],
+    "required":[
+     "url"
+    ],
+    "title":"ZaloInboundImageContent"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundLinkContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "url":{
+        "type":"string"
+       },
+       "thumbnail":{
+        "type":"string"
+       },
+       "description":{
+        "type":"string"
+       }
+      }
+     }
+    ],
+    "required":[
+     "url"
+    ],
+    "title":"ZaloInboundLinkContent"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundLocationContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "latitude":{
+        "type":"number",
+        "format":"double"
+       },
+       "longitude":{
+        "type":"number",
+        "format":"double"
+       }
+      }
+     }
+    ],
+    "required":[
+     "latitude",
+     "longitude"
+    ],
+    "title":"ZaloInboundLocationContent"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundResponse":{
+    "type":"object",
+    "properties":{
+     "results":{
+      "type":"array",
+      "description":"Collection of mobile originated messages.",
+      "items":{
+       "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.InboundMessageZaloInboundContent"
+      }
+     },
+     "messageCount":{
+      "type":"integer",
+      "format":"int32",
+      "description":"The number of messages returned in the results array."
+     },
+     "pendingMessageCount":{
+      "type":"integer",
+      "format":"int32",
+      "description":"The number of messages that have not been pulled in."
+     }
+    },
+    "title":"ZaloInboundResponse"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundResponseButtonContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "eventName":{
+        "type":"string"
+       },
+       "submitTime":{
+        "type":"string",
+        "format":"date-time"
+       },
+       "buttonType":{
+        "type":"string"
+       },
+       "buttonText":{
+        "type":"string"
+       },
+       "trackingId":{
+        "type":"string"
+       }
+      }
+     }
+    ],
+    "required":[
+     "buttonText",
+     "buttonType",
+     "eventName",
+     "submitTime",
+     "trackingId"
+    ],
+    "title":"ZaloInboundResponseButtonContent"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundStickerContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "url":{
+        "type":"string"
+       },
+       "id":{
+        "type":"string"
+       }
+      }
+     }
+    ],
+    "required":[
+     "id",
+     "url"
+    ],
+    "title":"ZaloInboundStickerContent"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundTextContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "text":{
+        "type":"string"
+       }
+      }
+     }
+    ],
+    "required":[
+     "text"
+    ],
+    "title":"ZaloInboundTextContent"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundUnfollowContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "source":{
+        "type":"string"
+       }
+      }
+     }
+    ],
+    "required":[
+     "source"
+    ],
+    "title":"ZaloInboundUnfollowContent"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundUnknownContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "raw":{
+        "type":"object",
+        "additionalProperties":{
+         "type":"object"
+        }
+       }
+      }
+     }
+    ],
+    "title":"ZaloInboundUnknownContent"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundUserFeedbackContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "eventName":{
+        "type":"string"
+       },
+       "note":{
+        "type":"string"
+       },
+       "rate":{
+        "type":"integer",
+        "format":"int32"
+       },
+       "submitTime":{
+        "type":"string",
+        "format":"date-time"
+       },
+       "msgId":{
+        "type":"string"
+       },
+       "feedbacks":{
+        "type":"array",
+        "items":{
+         "type":"string"
+        }
+       },
+       "trackingId":{
+        "type":"string"
+       }
+      }
+     }
+    ],
+    "required":[
+     "eventName",
+     "msgId",
+     "rate",
+     "submitTime",
+     "trackingId"
+    ],
+    "title":"ZaloInboundUserFeedbackContent"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundUserSubmitInfoContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "address":{
+        "type":"string"
+       },
+       "phone":{
+        "type":"string"
+       },
+       "city":{
+        "type":"string"
+       },
+       "district":{
+        "type":"string"
+       },
+       "name":{
+        "type":"string"
+       },
+       "ward":{
+        "type":"string"
+       }
+      }
+     }
+    ],
+    "title":"ZaloInboundUserSubmitInfoContent"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundVideoContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "url":{
+        "type":"string"
+       },
+       "thumbnail":{
+        "type":"string"
+       },
+       "description":{
+        "type":"string"
+       }
+      }
+     }
+    ],
+    "required":[
+     "url"
+    ],
+    "title":"ZaloInboundVideoContent"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloMessage":{
+    "type":"object",
+    "description":"An array of message objects of a single message or multiple messages sent under one bulk ID.",
+    "properties":{
+     "sender":{
+      "type":"string",
+      "description":"The sender ID. It can be alphanumeric or numeric (e.g., `CompanyName`). Make sure you don't exceed [character limit](https://www.infobip.com/docs/sms/get-started#sender-names)."
+     },
+     "destinations":{
+      "type":"array",
+      "description":"An array of destination objects for where messages are being sent. A valid destination is required.",
+      "items":{
+       "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ToDestination"
+      }
+     },
+     "content":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundContent"
+     },
+     "options":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloMessageOptions"
+     },
+     "webhooks":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Webhooks"
+     }
+    },
+    "required":[
+     "content",
+     "destinations",
+     "sender"
+    ],
+    "title":"ZaloMessage"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloMessageOptions":{
+    "type":"object",
+    "description":"Message options.",
+    "properties":{
+     "platform":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.Platform"
+     },
+     "validityPeriod":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ValidityPeriod"
+     },
+     "deliveryTimeWindow":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.DeliveryTimeWindow"
+     },
+     "campaignReferenceId":{
+      "type":"string",
+      "description":"ID that allows you to track, analyze, and show an aggregated overview and the performance of individual campaigns per sending channel.",
+      "maxLength":255,
+      "minLength":0
+     },
+     "smsFailover":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.NonMsisdnSmsFailover"
+     },
+     "encrypted":{
+      "type":"boolean",
+      "description":"Set to *true* when you want to send encrypted Zalo messages! In that case, you need to send encrypted values in templateData property! If the encrypted field is set to *true*, URL shortening within Zalo message will be disabled and unavailable. Ensure this configuration aligns with your use case before enabling encryption."
+     },
+     "sendingMode":{
+      "type":"string",
+      "description":"Mode for sending Zalo messages. `REGULAR` - Zalo messages are sent in the usual manner. `OVER_THE_LIMIT` - Allows OA to send Zalo tag 3 messages exceeding the limit (more expensive). `AUTO` - use `REGULAR` with fallback to `OVER_THE_LIMIT` if needed. Over limit sending mode is not supported for sending messages tagged as CUSTOMER_CARE or TRANSACTION.",
+      "enum":[
+       "REGULAR",
+       "OVER_THE_LIMIT",
+       "AUTO"
+      ]
+     }
+    },
+    "title":"ZaloMessageOptions"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundContent":{
+    "type":"object",
+    "description":"Message content.",
+    "discriminator":{
+     "propertyName":"type",
+     "mapping":{
+      "TEMPLATE":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundTemplateContent",
+      "TEXT":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundTextContent",
+      "IMAGE":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundImageContent",
+      "GIF":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundGifContent",
+      "STICKER":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundStickerContent",
+      "QUOTE_CONSULTATION":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundQuoteConsultationContent",
+      "USER_INFORMATION_REQUEST_FORM":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundUserInformationRequestFormContent",
+      "FILE":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundFileContent",
+      "REACTION":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundReactionContent"
+     }
+    },
+    "properties":{
+     "type":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundContentType"
+     }
+    },
+    "required":[
+     "type"
+    ],
+    "title":"ZaloOutboundContent"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundContentType":{
+    "type":"string",
+    "enum":[
+     "TEMPLATE",
+     "TEXT",
+     "IMAGE",
+     "GIF",
+     "STICKER",
+     "QUOTE_CONSULTATION",
+     "USER_INFORMATION_REQUEST_FORM",
+     "FILE",
+     "REACTION"
+    ],
+    "title":"ZaloOutboundContentType"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundFileContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "url":{
+        "type":"string",
+        "description":"URL of the file to send. The gateway will download and upload it to Zalo on your behalf. Maximum size: 5 MB.",
+        "maxLength":1000,
+        "minLength":0
+       }
+      }
+     }
+    ],
+    "required":[
+     "type",
+     "url"
+    ],
+    "title":"ZaloOutboundFileContent"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundGifContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "caption":{
+        "type":"string",
+        "description":"Gif title.",
+        "maxLength":2000,
+        "minLength":0
+       },
+       "url":{
+        "type":"string",
+        "description":"URL of the GIF. Maximum size: 1 MB."
+       },
+       "width":{
+        "type":"integer",
+        "format":"int32",
+        "description":"Width of the GIF in pixels."
+       },
+       "height":{
+        "type":"integer",
+        "format":"int32",
+        "description":"Height of the GIF in pixels."
+       }
+      }
+     }
+    ],
+    "required":[
+     "caption",
+     "height",
+     "type",
+     "url",
+     "width"
+    ],
+    "title":"ZaloOutboundGifContent"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundImageContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "caption":{
+        "type":"string",
+        "description":"Image title.",
+        "maxLength":2000,
+        "minLength":0
+       },
+       "url":{
+        "type":"string",
+        "description":"URL of the image. Supported formats: JPG, PNG. Maximum size: 1 MB. Optimal aspect ratio 16:9."
+       }
+      }
+     }
+    ],
+    "required":[
+     "caption",
+     "type",
+     "url"
+    ],
+    "title":"ZaloOutboundImageContent"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundQuoteConsultationContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "text":{
+        "type":"string",
+        "description":"Content of the message being sent.",
+        "maxLength":2000,
+        "minLength":0
+       },
+       "quoteMessageId":{
+        "type":"string",
+        "description":"Message id of the message you want to reply to."
+       }
+      }
+     }
+    ],
+    "required":[
+     "quoteMessageId",
+     "text",
+     "type"
+    ],
+    "title":"ZaloOutboundQuoteConsultationContent"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundReactionContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "reactIcon":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloReactIcon"
+       },
+       "reactMessageId":{
+        "type":"string",
+        "description":"ID of the message to react to.",
+        "maxLength":50,
+        "minLength":0
+       }
+      }
+     }
+    ],
+    "required":[
+     "reactIcon",
+     "reactMessageId",
+     "type"
+    ],
+    "title":"ZaloOutboundReactionContent"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundStickerContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "id":{
+        "type":"string",
+        "description":"Id of a sticker."
+       }
+      }
+     }
+    ],
+    "required":[
+     "id",
+     "type"
+    ],
+    "title":"ZaloOutboundStickerContent"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundTemplateContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "templateName":{
+        "type":"integer",
+        "format":"int32",
+        "description":"Must be the same as registered template_id.",
+        "example":322307
+       },
+       "templateData":{
+        "type":"object",
+        "additionalProperties":{
+         "type":"object",
+         "example":{
+          "name":"John Smith",
+          "city":"New York"
+         }
+        },
+        "description":"Template Data. Object defining values for all placeholders of the template used.\n\nIf sending encrypted messages, all template values need to be encrypted using Cipher Type: *RSA/ECB/OAEPWITHSHA-256ANDMGF1PADDING* and *Base64 encoded*!\nPlease use the RSA key generated by \"Get existing RSA key\" or \"Create a new RSA key\" methods while encrypting messages!\n\nIn that case, you need to set the options property \"encrypred\": true",
+        "example":{
+         "name":"John Smith",
+         "city":"New York"
+        }
+       }
+      }
+     }
+    ],
+    "required":[
+     "templateName",
+     "type"
+    ],
+    "title":"ZaloOutboundTemplateContent"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundTextContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "text":{
+        "type":"string",
+        "description":"Content of the message being sent.",
+        "maxLength":2000,
+        "minLength":0
+       }
+      }
+     }
+    ],
+    "required":[
+     "text",
+     "type"
+    ],
+    "title":"ZaloOutboundTextContent"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundUserInformationRequestFormContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloOutboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "title":{
+        "type":"string",
+        "description":"Title of the information request form. Maximum 100 characters.",
+        "maxLength":100,
+        "minLength":0
+       },
+       "subtitle":{
+        "type":"string",
+        "description":"Subtitle of the information request form. Maximum 500 characters.",
+        "maxLength":500,
+        "minLength":0
+       },
+       "imageUrl":{
+        "type":"string",
+        "description":"URL of the image displayed in the information request form."
+       }
+      }
+     }
+    ],
+    "required":[
+     "imageUrl",
+     "subtitle",
+     "title",
+     "type"
+    ],
+    "title":"ZaloOutboundUserInformationRequestFormContent"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloReactIcon":{
+    "type":"string",
+    "description":"Reaction icon to place on a message. Use REMOVE to remove all reactions from a message.",
+    "enum":[
+     "LAUGH",
+     "NERVOUS",
+     "CRYING",
+     "STRONG",
+     "HEART",
+     "ANGRY",
+     "SHOCKED",
+     "REMOVE"
+    ],
+    "title":"ZaloReactIcon"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloReportRequest":{
+    "type":"object",
+    "properties":{
+     "results":{
+      "type":"array",
+      "items":{
+       "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloReportSingle"
+      }
+     }
+    },
+    "required":[
+     "results"
+    ],
+    "title":"ZaloReportRequest"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloReportSingle":{
+    "type":"object",
+    "properties":{
+     "bulkId":{
+      "type":"string",
+      "description":"Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request.",
+      "example":"BULK-ID-123-xyz"
+     },
+     "messageId":{
+      "type":"string",
+      "description":"Unique message ID.",
+      "example":"45db39c3-7822-4e72-a3ec-c87442c0ffz9"
+     },
+     "to":{
+      "type":"string",
+      "description":"Message destination address.",
+      "example":"41793026727"
+     },
+     "sentAt":{
+      "type":"string",
+      "description":"Indicates whether the message was sent. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`.",
+      "example":"2019-11-09T16:00:00.000+0000"
+     },
+     "doneAt":{
+      "type":"string",
+      "description":"Indicates whether message processing was finished by Infobip (i.e., delivered to the destination, delivered to the destination network, etc.). Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`.",
+      "example":"2019-11-09T16:00:00.000+0000"
+     },
+     "messageCount":{
+      "type":"integer",
+      "format":"int32",
+      "description":"The number of messages were charged for this message request.",
+      "example":1
+     },
+     "mccMnc":{
+      "type":"string",
+      "description":"Mobile country and network codes."
+     },
+     "callbackData":{
+      "type":"string",
+      "description":"Callback data sent through `callbackData` field in message.",
+      "example":"my-reference"
+     },
+     "price":{
+      "$ref":"#/components/schemas/270617dafe939f994767f4b01223addd34979b1c67bb145186dac4c5c875ab19.Price"
+     },
+     "status":{
+      "$ref":"#/components/schemas/270617dafe939f994767f4b01223addd34979b1c67bb145186dac4c5c875ab19.Status"
+     },
+     "error":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ErrorReport"
+     },
+     "entityId":{
+      "type":"string",
+      "description":"Entity used in request.",
+      "example":"my-entity-id"
+     },
+     "applicationId":{
+      "type":"string",
+      "description":"Application used in request.",
+      "example":"my-application-id"
+     },
+     "channel":{
+      "type":"string",
+      "description":"The channel used for delivering the message.",
+      "example":"ZALO_NOTIFICATION_SERVICE"
+     }
+    },
+    "required":[
+     "bulkId",
+     "channel",
+     "messageId",
+     "to"
+    ],
+    "title":"ZaloReportSingle"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloRequest":{
+    "type":"object",
+    "properties":{
+     "messages":{
+      "type":"array",
+      "description":"An array of message objects of a single message or multiple messages sent under one bulk ID.",
+      "items":{
+       "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloMessage"
+      }
+     },
+     "options":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.DefaultMessageRequestOptions"
+     }
+    },
+    "required":[
+     "messages"
+    ],
+    "title":"ZaloRequest"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZbsTemplateContent":{
+    "type":"object",
+    "description":"Template content.",
+    "discriminator":{
+     "propertyName":"type",
+     "mapping":{
+      "CUSTOM":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.CustomTemplate",
+      "AUTHENTICATION":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.AuthenticationTemplate",
+      "PAYMENT_REQUEST":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.PaymentRequestTemplate",
+      "VOUCHER":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.VoucherTemplate",
+      "SERVICE_REVIEW":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ServiceReviewTemplate"
+     }
+    },
+    "properties":{
+     "type":{
+      "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZbsTemplateType"
+     }
+    },
+    "required":[
+     "type"
+    ],
+    "title":"ZbsTemplateContent"
+   },
+   "6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZbsTemplateType":{
+    "type":"string",
+    "enum":[
+     "AUTHENTICATION",
+     "PAYMENT_REQUEST",
+     "SERVICE_REVIEW",
+     "VOUCHER",
+     "CUSTOM"
+    ],
+    "title":"ZbsTemplateType"
+   },
+   "ApiError":{
+    "type":"object",
+    "properties":{
+     "errorCode":{
+      "type":"string",
+      "description":"An error code uniquely identifying the error case."
+     },
+     "description":{
+      "type":"string",
+      "description":"A detailed description of an error."
+     },
+     "action":{
+      "type":"string",
+      "description":"An action that should be taken to recover from the error."
+     },
+     "violations":{
+      "type":"array",
+      "description":"List of violations that caused the error.",
+      "items":{
+       "$ref":"#/components/schemas/ApiErrorViolation"
+      }
+     },
+     "resources":{
+      "type":"array",
+      "description":"List of available resources to recover from the error.",
+      "items":{
+       "$ref":"#/components/schemas/ApiErrorResource"
+      }
+     }
+    },
+    "required":[
+     "action",
+     "description",
+     "errorCode",
+     "resources",
+     "violations"
+    ],
+    "title":"ApiError"
+   },
+   "ApiErrorResource":{
+    "type":"object",
+    "description":"List of available resources to recover from the error.",
+    "properties":{
+     "name":{
+      "type":"string",
+      "description":"Resource name."
+     },
+     "url":{
+      "type":"string",
+      "description":"Resource URL."
+     }
+    },
+    "title":"ApiErrorResource"
+   },
+   "ApiErrorViolation":{
+    "type":"object",
+    "description":"List of violations that caused the error.",
+    "properties":{
+     "property":{
+      "type":"string",
+      "description":"Request property that caused the error."
+     },
+     "violation":{
+      "type":"string",
+      "description":"Detailed violation description."
+     }
+    },
+    "title":"ApiErrorViolation"
+   },
+   "ApiException":{
+    "type":"object",
+    "properties":{
+     "requestError":{
+      "$ref":"#/components/schemas/ApiRequestError"
+     }
+    },
+    "title":"ApiException"
+   },
+   "ApiRequestError":{
+    "type":"object",
+    "properties":{
+     "serviceException":{
+      "$ref":"#/components/schemas/ApiRequestErrorDetails"
+     }
+    },
+    "title":"ApiRequestError"
+   },
+   "ApiRequestErrorDetails":{
+    "type":"object",
+    "properties":{
+     "messageId":{
+      "type":"string",
+      "description":"Identifier of the error."
+     },
+     "text":{
+      "type":"string",
+      "description":"Detailed error description."
+     },
+     "validationErrors":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"array",
+       "items":{
+        "type":"string",
+        "description":"Validation errors."
+       }
+      },
+      "description":"Validation errors."
+     }
+    },
+    "title":"ApiRequestErrorDetails"
+   },
+   "e2e56e613b621c92a292daf20c76b6dbff0520ca1b47769205b02fa7192a30b4.ApiException":{
+    "type":"object",
+    "properties":{
+     "requestError":{
+      "$ref":"#/components/schemas/ApiRequestError"
+     }
+    },
+    "title":"ApiException"
+   }
+  },
+  "responses":{
+   "ApiError401":{
+    "description":"Unauthorized",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E401",
+       "description":"The request lacks valid authentication credentials for the requested resource.",
+       "action":"Check the resources and adjust authentication credentials.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"API Authentication",
+         "url":"https://www.infobip.com/docs/essentials/api-authentication"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E401</errorCode>\n  <description>The request lacks valid authentication credentials for the requested resource.</description>\n  <action>Check the resources and adjust authentication credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Authentication</name>\n      <url>https://www.infobip.com/docs/essentials/api-authentication</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError403":{
+    "description":"Forbidden",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E403",
+       "description":"Insufficient permissions to access the requested resource.",
+       "action":"Repeat the request with new or different credentials.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"API Scopes",
+         "url":"https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E403</errorCode>\n  <description>Insufficient permissions to access the requested resource.</description>\n  <action>Repeat the request with new or different credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Scopes</name>\n      <url>https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError429":{
+    "description":"Too Many Requests",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E429",
+       "description":"Too many requests sent.",
+       "action":"Check request rate limit specified in the API endpoint documentation resource.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"Throttling handling errors",
+         "url":"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E429</errorCode>\n  <description>Too many requests sent.</description>\n  <action>Check request rate limit specified in the API endpoint documentation resource.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>Throttling handling errors</name>\n      <url>https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError500":{
+    "description":"Internal Server Error",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E500",
+       "description":"Something went wrong.",
+       "action":"Contact the support.",
+       "violations":[],
+       "resources":[]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E500</errorCode>\n  <description>Something went wrong.</description>\n  <action>Contact the support.</action>\n  <violations/>\n  <resources/>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiException401":{
+    "description":"Unauthorized",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"UNAUTHORIZED",
+         "text":"Unauthorized"
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>UNAUTHORIZED</messageId>\n      <text>Unauthorized</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   },
+   "ApiException403":{
+    "description":"Forbidden",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"FORBIDDEN",
+         "text":"Forbidden"
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>FORBIDDEN</messageId>\n      <text>Forbidden</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   },
+   "ApiException429":{
+    "description":"Too Many Requests",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"TOO_MANY_REQUESTS",
+         "text":"Too many requests"
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>TOO_MANY_REQUESTS</messageId>\n      <text>Too many requests</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   },
+   "ApiException500":{
+    "description":"Internal Server Error",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"GENERAL_ERROR",
+         "text":"Something went wrong. Please contact support."
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>GENERAL_ERROR</messageId>\n      <text>Something went wrong. Please contact support.</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   }
+  },
+  "parameters":{},
+  "examples":{},
+  "requestBodies":{},
+  "headers":{},
+  "securitySchemes":{
+   "APIKeyHeader":{
+    "type":"apiKey",
+    "description":"This is the most secure authorization type and the one with the most flexibility.\n\nAPI keys can be generated by calling the dedicated API method. Furthermore, API keys can have a limited scope and cover only some API methods. Lastly, they can\nbe revoked at any time. This range of possibilities makes API keys well suited for separating the API access rights across multiple applications or use cases.\nFinally, the loss of an API key is easily manageable.\n\nYou can manage your API keys from [GUI](https://portal.infobip.com/settings/accounts/api-keys), or programmatically\nwith [dedicated API](#platform-&-connectivity/settings).\n\nAPI key Authorization header example:\n\n```shell\nAuthorization: App 003026bbc133714df1834b8638bb496e-8f4b3d9a-e931-478d-a994-28a725159ab9\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "Basic":{
+    "type":"http",
+    "description":"Basic authorization type can be used in situations when the API key is not available. For example, API methods for generating API keys should be authenticated\nwith the Basic type.\n\nIn this case, the credentials included in the Authorization header should be a Base64 encoded username and password combination. More formally, basic\nauthentication header can be constructed in three steps:\n\n* Username and password are concatenated using the colon `(:)` as a separator `username:password`.\n* The resulting string is encoded using the [RFC2045-MIME](https://www.ietf.org/rfc/rfc2045.txt) variant of Base64.\n* Encoded string is added as credentials after the `\"Basic \"` type.\n\nExample:\n\n```shell\nUsername: \"Aladdin\"\nPassword: \"openSesame\"\n\nConcatenated string: \"Aladdin:openSesame\"\n\nBase64 encoded string: \"QWxhZGRpbjpvcGVuU2VzYW1l\"\n\nAuthorization header: \"Basic QWxhZGRpbjpvcGVuU2VzYW1l\"\n```\n\n> **Implementation detail**: Base64 encoding is a standard and many available programming languages and frameworks provide convenient methods for encoding\n> strings.\n",
+    "scheme":"basic"
+   },
+   "IBSSOTokenHeader":{
+    "type":"apiKey",
+    "description":"This authorization type is suited for situations when you do not want to store Infobip credentials in your own app. Instead, your users will input their Infobip\ncredentials every time they access your application and the application will use those credentials to create a session. From then on, the session token can be\nused to authenticate subsequent API requests. Note that the session will expire automatically after a predefined period of inactivity, and can also be manually\nterminated by making an appropriate API call.\n\nYou can find more details on the creation and behavior of the session at\nthe [dedicated documentation page](#platform-connectivity/account-management/create-session).\n\nAfter obtaining the session token by calling the above-referenced API method you can include it in the Authorization header like this:\n\n```shell\nAuthorization: IBSSO 2f9b4d31-2d0d-49a8-85f0-9b862bdca394\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "OAuth2":{
+    "type":"oauth2",
+    "description":"Similarly to the IBSSO Token authentication you can use OAuth 2.0 bearer token with Infobip serving both as resource and authorization server. You can obtain\nthe access token using the client credentials grant from `auth/1/oauth2/token` endpoint. It will provide you with your access token, and its expiration period.\nYou can use the token to authorize your API calls until it expires. You can find out more about the process in\nthe [official specification](https://tools.ietf.org/html/rfc6749#section-4.4).\n\nYou can include your access token in the Authorization HTTP request header like this:\n\n```http\nAuthorization: Bearer <access_token>\n```",
+    "flows":{
+     "clientCredentials":{
+      "tokenUrl":"https://api.infobip.com/auth/1/oauth2/token",
+      "scopes":{}
+     }
+    }
+   }
+  },
+  "links":{},
+  "callbacks":{}
+ },
+ "webhooks":{
+  "receive-zalo-incoming-messages":{
+   "post":{
+    "tags":[
+     "channels",
+     "zalo",
+     "zalo-inbound-messages"
+    ],
+    "summary":"Receive incoming message",
+    "description":"Incoming messages will be forwarded to this endpoint. Please provide the endpoint’s URL to your Account Manager and they will set it up for you. Alternatively you can specify the endpoint per each message via the `webhooks > delivery > url` parameter. Contact support@infobip.com if you require help.<br/>Name of the default format or renderer for inbound Zalo messages is `INBOUND_MESSAGES_SAPI_UNIFIED`, and is documented in this section.",
+    "externalDocs":{
+     "description":"Learn more about Zalo channel and use cases",
+     "url":"https://www.infobip.com/docs/zalo"
+    },
+    "operationId":"receive-zalo-incoming-messages",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloInboundResponse"
+       },
+       "examples":{
+        "Received text message":{
+         "summary":"Received text message",
+         "value":{
+          "results":[
+           {
+            "sender":"1234567890123456789",
+            "to":"OFFICIAL-ACCOUNT-ID-XY12Z3",
+            "integrationType":"ZALO_NOTIFICATION_SERVICE",
+            "receivedAt":"2023-01-01T00:00:00.000+0000",
+            "messageId":"1688025180464000014",
+            "message":{
+             "text":"Hello! I have a question about my order.",
+             "type":"TEXT"
+            },
+            "price":{
+             "pricePerMessage":0,
+             "currency":"EUR"
+            }
+           }
+          ],
+          "messageCount":1,
+          "pendingMessageCount":0
+         }
+        },
+        "Received image message":{
+         "summary":"Received image message",
+         "value":{
+          "results":[
+           {
+            "sender":"1234567890123456789",
+            "to":"OFFICIAL-ACCOUNT-ID-XY12Z3",
+            "integrationType":"ZALO_NOTIFICATION_SERVICE",
+            "receivedAt":"2023-01-01T00:00:00.000+0000",
+            "messageId":"1688025180464000014",
+            "message":{
+             "url":"https://example.com/photo.jpg",
+             "thumbnail":"https://example.com/thumb.jpg",
+             "type":"IMAGE"
+            },
+            "price":{
+             "pricePerMessage":0,
+             "currency":"EUR"
+            }
+           }
+          ],
+          "messageCount":1,
+          "pendingMessageCount":0
+         }
+        },
+        "Received video message":{
+         "summary":"Received video message",
+         "value":{
+          "results":[
+           {
+            "sender":"1234567890123456789",
+            "to":"OFFICIAL-ACCOUNT-ID-XY12Z3",
+            "integrationType":"ZALO_NOTIFICATION_SERVICE",
+            "receivedAt":"2023-01-01T00:00:00.000+0000",
+            "messageId":"1688025180464000014",
+            "message":{
+             "url":"https://example.com/video.mp4",
+             "thumbnail":"https://example.com/thumb.jpg",
+             "type":"VIDEO"
+            },
+            "price":{
+             "pricePerMessage":0,
+             "currency":"EUR"
+            }
+           }
+          ],
+          "messageCount":1,
+          "pendingMessageCount":0
+         }
+        },
+        "Received audio message":{
+         "summary":"Received audio message",
+         "value":{
+          "results":[
+           {
+            "sender":"1234567890123456789",
+            "to":"OFFICIAL-ACCOUNT-ID-XY12Z3",
+            "integrationType":"ZALO_NOTIFICATION_SERVICE",
+            "receivedAt":"2023-01-01T00:00:00.000+0000",
+            "messageId":"1688025180464000014",
+            "message":{
+             "url":"https://example.com/audio.m4a",
+             "type":"AUDIO"
+            },
+            "price":{
+             "pricePerMessage":0,
+             "currency":"EUR"
+            }
+           }
+          ],
+          "messageCount":1,
+          "pendingMessageCount":0
+         }
+        },
+        "Received file message":{
+         "summary":"Received file message",
+         "value":{
+          "results":[
+           {
+            "sender":"1234567890123456789",
+            "to":"OFFICIAL-ACCOUNT-ID-XY12Z3",
+            "integrationType":"ZALO_NOTIFICATION_SERVICE",
+            "receivedAt":"2023-01-01T00:00:00.000+0000",
+            "messageId":"1688025180464000014",
+            "message":{
+             "url":"https://example.com/document.pdf",
+             "name":"document.pdf",
+             "size":204800,
+             "fileType":"application/pdf",
+             "type":"FILE"
+            },
+            "price":{
+             "pricePerMessage":0,
+             "currency":"EUR"
+            }
+           }
+          ],
+          "messageCount":1,
+          "pendingMessageCount":0
+         }
+        },
+        "Received GIF message":{
+         "summary":"Received GIF message",
+         "value":{
+          "results":[
+           {
+            "sender":"1234567890123456789",
+            "to":"OFFICIAL-ACCOUNT-ID-XY12Z3",
+            "integrationType":"ZALO_NOTIFICATION_SERVICE",
+            "receivedAt":"2023-01-01T00:00:00.000+0000",
+            "messageId":"1688025180464000014",
+            "message":{
+             "url":"https://example.com/animation.gif",
+             "type":"GIF"
+            },
+            "price":{
+             "pricePerMessage":0,
+             "currency":"EUR"
+            }
+           }
+          ],
+          "messageCount":1,
+          "pendingMessageCount":0
+         }
+        },
+        "Received link message":{
+         "summary":"Received link message",
+         "value":{
+          "results":[
+           {
+            "sender":"1234567890123456789",
+            "to":"OFFICIAL-ACCOUNT-ID-XY12Z3",
+            "integrationType":"ZALO_NOTIFICATION_SERVICE",
+            "receivedAt":"2023-01-01T00:00:00.000+0000",
+            "messageId":"1688025180464000014",
+            "message":{
+             "url":"https://example.com/article",
+             "thumbnail":"https://example.com/thumb.jpg",
+             "description":"Interesting article",
+             "type":"LINK"
+            },
+            "price":{
+             "pricePerMessage":0,
+             "currency":"EUR"
+            }
+           }
+          ],
+          "messageCount":1,
+          "pendingMessageCount":0
+         }
+        },
+        "Received location message":{
+         "summary":"Received location message",
+         "value":{
+          "results":[
+           {
+            "sender":"1234567890123456789",
+            "to":"OFFICIAL-ACCOUNT-ID-XY12Z3",
+            "integrationType":"ZALO_NOTIFICATION_SERVICE",
+            "receivedAt":"2023-01-01T00:00:00.000+0000",
+            "messageId":"1688025180464000014",
+            "message":{
+             "latitude":10.7769,
+             "longitude":106.7009,
+             "type":"LOCATION"
+            },
+            "price":{
+             "pricePerMessage":0,
+             "currency":"EUR"
+            }
+           }
+          ],
+          "messageCount":1,
+          "pendingMessageCount":0
+         }
+        },
+        "Received sticker message":{
+         "summary":"Received sticker message",
+         "value":{
+          "results":[
+           {
+            "sender":"1234567890123456789",
+            "to":"OFFICIAL-ACCOUNT-ID-XY12Z3",
+            "integrationType":"ZALO_NOTIFICATION_SERVICE",
+            "receivedAt":"2023-01-01T00:00:00.000+0000",
+            "messageId":"1688025180464000014",
+            "message":{
+             "url":"https://example.com/sticker.png",
+             "id":"e1540df031b5deb81a4",
+             "type":"STICKER"
+            },
+            "price":{
+             "pricePerMessage":0,
+             "currency":"EUR"
+            }
+           }
+          ],
+          "messageCount":1,
+          "pendingMessageCount":0
+         }
+        },
+        "Received business card message":{
+         "summary":"Received business card message",
+         "value":{
+          "results":[
+           {
+            "sender":"1234567890123456789",
+            "to":"OFFICIAL-ACCOUNT-ID-XY12Z3",
+            "integrationType":"ZALO_NOTIFICATION_SERVICE",
+            "receivedAt":"2023-01-01T00:00:00.000+0000",
+            "messageId":"1688025180464000014",
+            "message":{
+             "name":"John Smith",
+             "avatar":"https://example.com/avatar.jpg",
+             "type":"BUSINESS_CARD"
+            },
+            "price":{
+             "pricePerMessage":0,
+             "currency":"EUR"
+            }
+           }
+          ],
+          "messageCount":1,
+          "pendingMessageCount":0
+         }
+        }
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"Your server returns this code if it accepts the callback."
+     }
+    }
+   }
+  },
+  "receive-outbound-zalo-delivery-reports":{
+   "post":{
+    "tags":[
+     "channels",
+     "zalo",
+     "zalo-message-status-reports"
+    ],
+    "summary":"Receive delivery reports",
+    "description":"Incoming Reports will be forwarded to this endpoint. Please specify the endpoint’s URL for each message via the webhooks > delivery > url parameter. Alternatively you can provide the endpoint’s URL to [Customer Support](support@infobip.com) and they will set it up for you. Contact [support@infobip.com](support@infobip.com) if you require help.",
+    "externalDocs":{
+     "description":"Learn more about the Zalo channel and its use cases",
+     "url":"https://www.infobip.com/docs/api/channels/zalo"
+    },
+    "operationId":"receive-outbound-zalo-delivery-reports",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloReportRequest"
+       },
+       "examples":{
+        "Received report":{
+         "summary":"Received report",
+         "value":{
+          "results":[
+           {
+            "bulkId":"BULK-ID-123-xyz",
+            "messageId":"45db39c3-7822-4e72-a3ec-c87442c0ffz9",
+            "to":"41793026727",
+            "sentAt":"2019-11-09T16:00:00.000+0000",
+            "doneAt":"2019-11-09T16:00:00.000+0000",
+            "messageCount":1,
+            "price":{
+             "pricePerMessage":0.01,
+             "currency":"EUR"
+            },
+            "status":{
+             "groupId":3,
+             "groupName":"DELIVERED",
+             "id":5,
+             "name":"DELIVERED_TO_HANDSET",
+             "description":"Message delivered to handset"
+            },
+            "error":{
+             "groupId":0,
+             "groupName":"OK",
+             "id":0,
+             "name":"NO_ERROR",
+             "description":"No Error",
+             "permanent":false
+            },
+            "entityId":"my-entity-id",
+            "applicationId":"my-application-id",
+            "channel":"ZALO_NOTIFICATION_SERVICE"
+           },
+           {
+            "bulkId":"BULK-ID-123-xyz",
+            "messageId":"12db39c3-7822-4e72-a3ec-c87442c0ffc5",
+            "to":"41793026834",
+            "sentAt":"2019-11-09T17:00:00.000+0000",
+            "doneAt":"2019-11-09T17:00:00.000+0000",
+            "messageCount":1,
+            "price":{
+             "pricePerMessage":0.01,
+             "currency":"EUR"
+            },
+            "status":{
+             "groupId":3,
+             "groupName":"DELIVERED",
+             "id":5,
+             "name":"DELIVERED_TO_HANDSET",
+             "description":"Message delivered to handset"
+            },
+            "error":{
+             "groupId":0,
+             "groupName":"OK",
+             "id":0,
+             "name":"NO_ERROR",
+             "description":"No Error",
+             "permanent":false
+            },
+            "entityId":"my-entity-id",
+            "applicationId":"my-application-id",
+            "channel":"ZALO_NOTIFICATION_SERVICE"
+           }
+          ]
+         }
+        }
+       }
+      },
+      "application/xml":{
+       "schema":{
+        "$ref":"#/components/schemas/6a8bbdacebad88e7e0de8bdfd30e29e04d114b9f00175a0482b9e26b742d85d5.ZaloReportRequest"
+       },
+       "examples":{
+        "Received report":{
+         "summary":"Received report",
+         "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ZaloReportRequest>\n  <results>\n    <results>\n      <bulkId>BULK-ID-123-xyz</bulkId>\n      <messageId>45db39c3-7822-4e72-a3ec-c87442c0ffz9</messageId>\n      <to>41793026727</to>\n      <sentAt>2019-11-09T16:00:00.000+0000</sentAt>\n      <doneAt>2019-11-09T16:00:00.000+0000</doneAt>\n      <messageCount>1</messageCount>\n      <price>\n        <pricePerMessage>0.01</pricePerMessage>\n        <currency>EUR</currency>\n      </price>\n      <status>\n        <groupId>3</groupId>\n        <groupName>DELIVERED</groupName>\n        <id>5</id>\n        <name>DELIVERED_TO_HANDSET</name>\n        <description>Message delivered to handset</description>\n      </status>\n      <error>\n        <groupId>0</groupId>\n        <groupName>OK</groupName>\n        <id>0</id>\n        <name>NO_ERROR</name>\n        <description>No Error</description>\n        <permanent>false</permanent>\n      </error>\n      <entityId>my-entity-id</entityId>\n      <applicationId>my-application-id</applicationId>\n      <channel>ZALO_NOTIFICATION_SERVICE</channel>\n    </results>\n    <results>\n      <bulkId>BULK-ID-123-xyz</bulkId>\n      <messageId>12db39c3-7822-4e72-a3ec-c87442c0ffc5</messageId>\n      <to>41793026834</to>\n      <sentAt>2019-11-09T17:00:00.000+0000</sentAt>\n      <doneAt>2019-11-09T17:00:00.000+0000</doneAt>\n      <messageCount>1</messageCount>\n      <price>\n        <pricePerMessage>0.01</pricePerMessage>\n        <currency>EUR</currency>\n      </price>\n      <status>\n        <groupId>3</groupId>\n        <groupName>DELIVERED</groupName>\n        <id>5</id>\n        <name>DELIVERED_TO_HANDSET</name>\n        <description>Message delivered to handset</description>\n      </status>\n      <error>\n        <groupId>0</groupId>\n        <groupName>OK</groupName>\n        <id>0</id>\n        <name>NO_ERROR</name>\n        <description>No Error</description>\n        <permanent>false</permanent>\n      </error>\n      <entityId>my-entity-id</entityId>\n      <applicationId>my-application-id</applicationId>\n      <channel>ZALO_NOTIFICATION_SERVICE</channel>\n    </results>\n  </results>\n</ZaloReportRequest>\n"
+        }
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"Your server returns this code if it accepts the callback."
+     }
+    }
+   }
+  }
+ }
+}

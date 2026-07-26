@@ -1,0 +1,1222 @@
+{
+ "openapi":"3.1.0",
+ "info":{
+  "title":"Infobip OpenAPI Specification",
+  "description":"OpenAPI Specification that contains all public endpoints and webhooks.",
+  "contact":{
+   "name":"Infobip support",
+   "email":"support@infobip.com"
+  },
+  "version":"3.210.0",
+  "x-generatedAt":"2026-07-23T15:23:54.084527897Z"
+ },
+ "tags":[
+  {
+   "name":"platform",
+   "description":"Modular tools to scale and automate your business.\n",
+   "x-type":"category",
+   "x-displayName":"Platform"
+  },
+  {
+   "name":"billing-usage-api",
+   "description":"The Billing Usage API gives you programmatic access to the same billing data behind your monthly invoices. Query costs on demand, integrate results into your own systems, and build automated reporting pipelines.",
+   "x-type":"product",
+   "x-displayName":"Billing Usage"
+  }
+ ],
+ "paths":{
+  "/billing/1/usage/query":{
+   "post":{
+    "tags":[
+     "platform",
+     "billing-usage-api"
+    ],
+    "summary":"Query billing usage data",
+    "description":"Start the process of aggregating billing-grade financial cost data for your Infobip traffic. The results are delivered once via POST to the `callbackURL` provided in the request. Make sure the URL is reachable before submitting. See [Receive billing usage result](#platform/billing-usage/receive-billing-usage-result) for the webhook payload structure.",
+    "operationId":"query-billing-usage",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.QueryBillingUsageRequest"
+       },
+       "examples":{
+        "A simple billing usage request":{
+         "summary":"A simple billing usage request",
+         "value":{
+          "callbackUrl":"https://example.com/receive",
+          "request":{
+           "filterBy":{
+            "dateInterval":{
+             "sentSince":"2026-03-01",
+             "sentUntil":"2026-04-01"
+            }
+           },
+           "aggregateBy":[
+            "CATEGORY_CODE",
+            "COUNTRY_NAME"
+           ],
+           "options":{
+            "includeUnfinalizedData":true
+           }
+          }
+         }
+        },
+        "A detailed billing usage request":{
+         "summary":"A detailed billing usage request",
+         "value":{
+          "callbackUrl":"https://example.com/webhooks/billing-usage",
+          "request":{
+           "filterBy":{
+            "dateInterval":{
+             "sentSince":"2026-03-01",
+             "sentUntil":"2026-04-01"
+            },
+            "categories":[
+             "SMS",
+             "WHATSAPP",
+             "RCS"
+            ],
+            "platforms":[
+             {
+              "applicationId":"app_a",
+              "entityId":"entity_a"
+             },
+             {
+              "applicationId":"app_a",
+              "entityId":"entity_b"
+             },
+             {
+              "applicationId":"app_b",
+              "entityId":"entity_a"
+             }
+            ],
+            "directions":[
+             "OUTBOUND"
+            ],
+            "campaignReferenceIds":[
+             "campaign_ref_1",
+             "campaign_ref_2",
+             "campaign_ref_3"
+            ]
+           },
+           "aggregateBy":[
+            "APPLICATION_ID",
+            "ENTITY_ID",
+            "CATEGORY_CODE",
+            "COUNTRY_NAME",
+            "TRAFFIC_TYPE",
+            "SENDER_TYPE",
+            "ACCOUNT_KEY"
+           ],
+           "options":{
+            "includeUnfinalizedData":true
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "201":{
+      "description":"Data querying process is started.",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.QueryAggregateDataResponse"
+        },
+        "examples":{
+         "A successful response":{
+          "summary":"A successful response",
+          "value":{
+           "requestId":"B61D150B0F6596F68D88D253886432B5"
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Request is malformed or invalid.",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "errorCode":"E400",
+           "description":"Request cannot be processed.",
+           "action":"Check the syntax, violations and adjust the request.",
+           "violations":[
+            {
+             "property":"property.path",
+             "violation":"Violation message."
+            }
+           ],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "billing:usage:view"
+    ],
+    "x-is-early-access":true,
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":60,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  }
+ },
+ "components":{
+  "schemas":{
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.AggregateDataResponse":{
+    "type":"object",
+    "properties":{
+     "requestedPeriod":{
+      "allOf":[
+       {
+        "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.DateTimeInterval"
+       }
+      ],
+      "description":"The actual time period used for data filtering, expressed as a date range. May differ from the requested range because the requested range may be aligned to the aggregation granularity, and, where applicable, trimmed to finalized periods only."
+     },
+     "totalRows":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Total number of data rows."
+     },
+     "columns":{
+      "type":"array",
+      "description":"List of columns available in the response data rows.",
+      "items":{
+       "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.ColumnInfo"
+      },
+      "uniqueItems":true
+     },
+     "rows":{
+      "type":"array",
+      "description":"Array of data rows, where each row shows the aggregated data for one combination of the requested dimensions. Values map to the columns array by index. If a metric is not available for a given channel, the corresponding value is \"N/A\".",
+      "items":{
+       "type":"array",
+       "description":"Values of a row, ordered as specified by columns property.",
+       "items":{
+        "type":"object",
+        "description":"Values of a row, ordered as specified by columns property."
+       }
+      }
+     }
+    },
+    "required":[
+     "columns",
+     "requestedPeriod",
+     "rows",
+     "totalRows"
+    ],
+    "title":"AggregateDataResponse"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.BillingUsageAggregate":{
+    "type":"string",
+    "enum":[
+     "DAY",
+     "MONTH",
+     "APPLICATION_ID",
+     "ENTITY_ID",
+     "ACCOUNT_NAME",
+     "ACCOUNT_KEY",
+     "CATEGORY_CODE",
+     "CATEGORY_NAME",
+     "SUBCATEGORY_CODE",
+     "SUBCATEGORY_NAME",
+     "USER_NAME",
+     "DIRECTION",
+     "TRAFFIC_TYPE",
+     "SENDER",
+     "SENDER_TYPE",
+     "NETWORK_NAME",
+     "NORM_NET_CODE",
+     "COUNTRY_NAME",
+     "COUNTRY_CODE",
+     "COUNTRY_PREFIX",
+     "CAMPAIGN_ID",
+     "CAMPAIGN_REFERENCE",
+     "TEMPLATE_ID"
+    ],
+    "title":"BillingUsageAggregate"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.BillingUsageDataFilter":{
+    "type":"object",
+    "description":"\nA JSON object specifying criteria to filter the results. Each field in the object represents a different filter\ncriterion to enable detailed and complex filtering.\n        ",
+    "properties":{
+     "dateInterval":{
+      "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.DateInterval"
+     },
+     "accountKeys":{
+      "type":"array",
+      "description":"\nSpecifies a list of unique account keys (identifiers).\n\nIf not provided, data for all accounts in the customer hierarchy will be included.\n\nTo retrieve all available account keys, refer to the\n[Account list endpoint](https://www.infobip.com/docs/api/platform/account-management/get-all-accounts).\n        ",
+      "example":[
+       "account_key_1",
+       "account_key_2"
+      ],
+      "items":{
+       "type":"string",
+       "description":"\nSpecifies a list of unique account keys (identifiers).\n\nIf not provided, data for all accounts in the customer hierarchy will be included.\n\nTo retrieve all available account keys, refer to the\n[Account list endpoint](https://www.infobip.com/docs/api/platform/account-management/get-all-accounts).\n        ",
+       "example":"[\"account_key_1\",\"account_key_2\"]"
+      },
+      "uniqueItems":true
+     },
+     "categories":{
+      "type":"array",
+      "description":"\nChannel or service categories to filter by.\n\nIf not provided, all billing categories available to the authenticated account are included.\n        ",
+      "enum":[
+       "SMS",
+       "SMS_OPERATOR_FEE",
+       "MMS",
+       "MMS_OPERATOR_FEE",
+       "EMAIL",
+       "RCS",
+       "WHATSAPP",
+       "VIBER",
+       "APPLE_MB",
+       "MOBILE_PUSH",
+       "NUMBER_LOOKUP",
+       "CARRIER_LOOKUP",
+       "EMAIL_VALIDATION",
+       "AGENTOS",
+       "AI"
+      ],
+      "items":{
+       "type":"string",
+       "description":"\nChannel or service categories to filter by.\n\nIf not provided, all billing categories available to the authenticated account are included.\n        ",
+       "enum":[
+        "SMS",
+        "SMS_OPERATOR_FEE",
+        "MMS",
+        "MMS_OPERATOR_FEE",
+        "EMAIL",
+        "RCS",
+        "WHATSAPP",
+        "VIBER",
+        "APPLE_MB",
+        "MOBILE_PUSH",
+        "NUMBER_LOOKUP",
+        "CARRIER_LOOKUP",
+        "EMAIL_VALIDATION",
+        "AGENTOS",
+        "AI"
+       ]
+      },
+      "uniqueItems":true
+     },
+     "subCategories":{
+      "type":"array",
+      "description":"\nSubcategories of categories (service variants). Currently applicable to Viber only.\n        ",
+      "enum":[
+       "VIBER_BM",
+       "VIBER_BOTS"
+      ],
+      "items":{
+       "type":"string",
+       "description":"\nSubcategories of categories (service variants). Currently applicable to Viber only.\n        ",
+       "enum":[
+        "VIBER_BM",
+        "VIBER_BOTS"
+       ]
+      },
+      "uniqueItems":true
+     },
+     "countryCodes":{
+      "type":"array",
+      "description":"\nSpecifies ISO 3166-1 alpha-2 country codes to filter billing data for specific countries.\n        ",
+      "example":[
+       "US",
+       "DE",
+       "IN"
+      ],
+      "items":{
+       "type":"string",
+       "description":"\nSpecifies ISO 3166-1 alpha-2 country codes to filter billing data for specific countries.\n        ",
+       "example":"[\"US\",\"DE\",\"IN\"]"
+      },
+      "uniqueItems":true
+     },
+     "platforms":{
+      "type":"array",
+      "description":"\nSpecifies the platform object, which is a combination of an applicationId and entityId. These IDs uniquely identify\neach application and entity configured on the Infobip platform.\n\nUse this object and its related parameters to filter data for a specific application and entity combination. Note that\nthese parameters should only be used if you leverage CPaaS X applications and entities to manage your traffic.\n\nFor detailed information on applications and entities in the CPaaS X ecosystem, refer to the\n[CPaaSX overview](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).\n        ",
+      "items":{
+       "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.Platform"
+      },
+      "uniqueItems":true
+     },
+     "directions":{
+      "type":"array",
+      "description":"\nSpecifies the direction of traffic, indicating whether the message was sent to the user (OUTBOUND) or received from the user (INBOUND).\n        ",
+      "items":{
+       "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.Direction"
+      },
+      "uniqueItems":true
+     },
+     "trafficTypes":{
+      "type":"array",
+      "description":"\nSpecifies the types of traffic. For a full list of values, refer to\n[traffic types](https://www.infobip.com/docs/metrics-api/metrics-and-filters#traffictypes).\n        ",
+      "example":[
+       "UTILITY",
+       "FREE_FORM"
+      ],
+      "items":{
+       "type":"string",
+       "description":"\nSpecifies the types of traffic. For a full list of values, refer to\n[traffic types](https://www.infobip.com/docs/metrics-api/metrics-and-filters#traffictypes).\n        ",
+       "example":"[\"UTILITY\",\"FREE_FORM\"]"
+      },
+      "uniqueItems":true
+     },
+     "senders":{
+      "type":"array",
+      "description":"\nSpecifies the sender IDs, which can be alphanumeric or numeric.\n        ",
+      "example":[
+       "mySender",
+       "12345",
+       "15551234567",
+       "jane.smith@somecompany.com"
+      ],
+      "items":{
+       "type":"string",
+       "description":"\nSpecifies the sender IDs, which can be alphanumeric or numeric.\n        ",
+       "example":"[\"mySender\",\"12345\",\"15551234567\",\"jane.smith@somecompany.com\"]"
+      },
+      "uniqueItems":true
+     },
+     "senderTypes":{
+      "type":"array",
+      "description":"\nSpecifies the types of senders. For a full list of values, refer to\n[sender types](https://www.infobip.com/docs/metrics-api/metrics-and-filters#sendertypes).\n        ",
+      "example":[
+       "ALPHANUMERIC",
+       "SHORT_CODE",
+       "VIRTUAL_LONG_NUMBER",
+       "DOMAIN"
+      ],
+      "items":{
+       "type":"string",
+       "description":"\nSpecifies the types of senders. For a full list of values, refer to\n[sender types](https://www.infobip.com/docs/metrics-api/metrics-and-filters#sendertypes).\n        ",
+       "example":"[\"ALPHANUMERIC\",\"SHORT_CODE\",\"VIRTUAL_LONG_NUMBER\",\"DOMAIN\"]"
+      },
+      "uniqueItems":true
+     },
+     "campaignReferenceIds":{
+      "type":"array",
+      "description":"\nSpecifies the list of campaign reference IDs used for traffic sent over Infobip APIs.\n\nUse `campaignReferenceIds` to filter data related to specific campaigns.\n        ",
+      "example":[
+       "summer-sale",
+       "bf2026"
+      ],
+      "items":{
+       "type":"string",
+       "description":"\nSpecifies the list of campaign reference IDs used for traffic sent over Infobip APIs.\n\nUse `campaignReferenceIds` to filter data related to specific campaigns.\n        ",
+       "example":"[\"summer-sale\",\"bf2026\"]"
+      },
+      "uniqueItems":true
+     },
+     "campaignIds":{
+      "type":"array",
+      "description":"\nCampaign IDs, also known as communication IDs, associated with Broadcast or Moments/Flow campaigns.\n\nUse these values to filter billing data related to specific campaigns.\n\nFor detailed information on the differences between Broadcast and Flow campaigns, refer to the\n[Broadcast](https://www.infobip.com/docs/broadcast) and [Flow overview](https://www.infobip.com/docs/moments).\n        ",
+      "example":[
+       12354646546,
+       45534466546,
+       754564654689
+      ],
+      "items":{
+       "type":"integer",
+       "format":"int64",
+       "description":"\nCampaign IDs, also known as communication IDs, associated with Broadcast or Moments/Flow campaigns.\n\nUse these values to filter billing data related to specific campaigns.\n\nFor detailed information on the differences between Broadcast and Flow campaigns, refer to the\n[Broadcast](https://www.infobip.com/docs/broadcast) and [Flow overview](https://www.infobip.com/docs/moments).\n        "
+      },
+      "uniqueItems":true
+     },
+     "templateIds":{
+      "type":"array",
+      "description":"\nWhatsApp template IDs.\n        ",
+      "example":[
+       "5653923468715475",
+       "5253923468715475"
+      ],
+      "items":{
+       "type":"string",
+       "description":"\nWhatsApp template IDs.\n        ",
+       "example":"[\"5653923468715475\",\"5253923468715475\"]"
+      },
+      "uniqueItems":true
+     }
+    },
+    "required":[
+     "dateInterval"
+    ],
+    "title":"BillingUsageDataFilter"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.BillingUsageMetadata":{
+    "type":"object",
+    "description":"Additional billing data metadata included in the response.",
+    "properties":{
+     "clientRequestedPeriod":{
+      "allOf":[
+       {
+        "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.clientRequestedPeriod"
+       }
+      ],
+      "description":"Originally requested time period referenced in the response."
+     },
+     "billingPeriods":{
+      "type":"array",
+      "description":"Metadata for each covered calendar month.",
+      "items":{
+       "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.BillingUsageMetadataPeriod"
+      }
+     }
+    },
+    "required":[
+     "billingPeriods",
+     "clientRequestedPeriod"
+    ],
+    "title":"BillingUsageMetadata"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.BillingUsageMetadataPeriod":{
+    "type":"object",
+    "description":"Metadata for each covered calendar month.",
+    "properties":{
+     "month":{
+      "type":"string",
+      "description":"Calendar month in yyyy-MM format.",
+      "example":"2026-03"
+     },
+     "volumeFinalized":{
+      "type":"boolean",
+      "description":"Indicates whether the billing data for this month has been fully processed and no further volume changes are expected."
+     }
+    },
+    "required":[
+     "month",
+     "volumeFinalized"
+    ],
+    "title":"BillingUsageMetadataPeriod"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.BillingUsageQueryOptions":{
+    "type":"object",
+    "description":"\nOptional settings that control data completeness, such as whether to include billing data where volumes have\nnot yet been finalized.\n        ",
+    "properties":{
+     "includeUnfinalizedData":{
+      "type":"boolean",
+      "default":true,
+      "description":"\nControls whether to include billing data where volumes have not yet been finalized. Set to `true` to include the\nlatest unfinalized data, or `false` to return only finalized billing data.\n        "
+     }
+    },
+    "title":"BillingUsageQueryOptions"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.BillingUsageResult":{
+    "type":"object",
+    "properties":{
+     "requestId":{
+      "type":"string",
+      "description":"Identifier of the original request, returned by [Query billing usage data](#platform/billing-usage/query-billing-usage) endpoint."
+     },
+     "status":{
+      "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.QueryAggregateDataStatus"
+     },
+     "response":{
+      "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.AggregateDataResponse"
+     },
+     "failureMessage":{
+      "type":"string",
+      "description":"Message describing the failure. Returned only if the request failed."
+     },
+     "metadata":{
+      "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.BillingUsageMetadata"
+     }
+    },
+    "required":[
+     "requestId",
+     "status"
+    ],
+    "title":"BillingUsageResult"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.ColumnDataType":{
+    "type":"string",
+    "description":"Data type of the values related to a given column. The available data types are:\n* `STRING` - type used for string values.\n* `INTEGER` - type used for integral numbers.\n* `NUMBER` - type used for floating point numbers.\n* `BOOLEAN` - type used for boolean values.\n* `DATE_TIME` - type used to display date and time together (in UTC timezone, formatted as yyyy-MM-ddTHH:mm:ss).\n",
+    "enum":[
+     "STRING",
+     "INTEGER",
+     "NUMBER",
+     "BOOLEAN",
+     "DATE_TIME"
+    ],
+    "title":"ColumnDataType"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.ColumnInfo":{
+    "type":"object",
+    "description":"Information about columns returned in response.",
+    "properties":{
+     "columnName":{
+      "type":"string",
+      "description":"Name of the column."
+     },
+     "columnDataType":{
+      "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.ColumnDataType"
+     }
+    },
+    "required":[
+     "columnDataType",
+     "columnName"
+    ],
+    "title":"ColumnInfo"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.DateInterval":{
+    "type":"object",
+    "description":"\nTime period for billing data in UTC.\n\n`sentSince` is inclusive and `sentUntil` is exclusive. Billing usage data is available for the current month and the\nprevious two calendar months.\n        ",
+    "properties":{
+     "sentSince":{
+      "type":"string",
+      "format":"date",
+      "description":"\nStart of period (inclusive). Uses UTC timezone.\n\nFormat: `yyyy-MM-dd`.\n        ",
+      "example":"2026-03-01"
+     },
+     "sentUntil":{
+      "type":"string",
+      "format":"date",
+      "description":"\nEnd of period (exclusive). Uses UTC timezone.\n\nFormat: `yyyy-MM-dd`.\n        ",
+      "example":"2026-04-01"
+     }
+    },
+    "required":[
+     "sentSince",
+     "sentUntil"
+    ],
+    "title":"DateInterval"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.DateTimeInterval":{
+    "type":"object",
+    "properties":{
+     "sentSince":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Start of the sent traffic date-time period (inclusive).",
+      "example":"2023-04-01T00:00:00Z"
+     },
+     "sentUntil":{
+      "type":"string",
+      "format":"date-time",
+      "description":"End of the sent traffic date-time period (exclusive).",
+      "example":"2023-04-01T00:00:00Z"
+     }
+    },
+    "required":[
+     "sentSince",
+     "sentUntil"
+    ],
+    "title":"DateTimeInterval"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.Direction":{
+    "type":"string",
+    "description":"\nSpecifies the direction of traffic, indicating whether the message was sent to the user (OUTBOUND) or received from the user (INBOUND).\n    ",
+    "enum":[
+     "OUTBOUND",
+     "INBOUND"
+    ],
+    "title":"Direction"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.Platform":{
+    "type":"object",
+    "description":"\nSpecifies the platform object, which is a combination of an applicationId and entityId. These IDs uniquely identify each application and entity configured on the Infobip platform.\n\nUse this object and its related parameters to filter data for a specific application and entity combination. Note that these parameters should only be used if you leverage CPaaS X applications and entities to manage your traffic.\n\nFor detailed information on applications and entities in the CPaaS X ecosystem, refer to the\n[CPaaSX overview](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).\n        ",
+    "properties":{
+     "applicationId":{
+      "type":"string",
+      "description":"\nA unique identifier assigned to an application, use case, or environment within the Infobip CPaaS X ecosystem.\n\nUse this parameter to filter data for a specific application.\n\nTo retrieve all available application IDs, refer to the\n[Application list endpoint](https://www.infobip.com/docs/api/platform/application-entity/get-applications).\n            ",
+      "example":"your_application_id"
+     },
+     "entityId":{
+      "type":"string",
+      "description":"\nA unique identifier assigned to an entity, such as a brand, customer, or other defined component, within the Infobip CPaaS X ecosystem.\n\nUse this parameter to filter data for a specific entity.\n\nTo retrieve all available entity IDs, refer to the\n[Entity list endpoint](https://www.infobip.com/docs/api/platform/application-entity/get-entities).\n        ",
+      "example":"your_entity_id"
+     }
+    },
+    "title":"Platform"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.QueryAggregateDataResponse":{
+    "type":"object",
+    "properties":{
+     "requestId":{
+      "type":"string",
+      "description":"The identifier of the submitted request."
+     }
+    },
+    "required":[
+     "requestId"
+    ],
+    "title":"QueryAggregateDataResponse"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.QueryAggregateDataStatus":{
+    "type":"string",
+    "description":"Status of the request. If successful, the response will contain aggregated data. If failed, it will contain failure message.",
+    "enum":[
+     "SUCCESS",
+     "FAILED"
+    ],
+    "title":"QueryAggregateDataStatus"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.QueryBillingUsageApiRequest":{
+    "type":"object",
+    "description":"\nContains filter criteria, aggregation dimensions, and query options for the billing usage report.\n        ",
+    "properties":{
+     "filterBy":{
+      "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.BillingUsageDataFilter"
+     },
+     "aggregateBy":{
+      "type":"array",
+      "description":"\nAn array of strings that defines the properties used for data aggregation. Each item in the array represents an\naggregation parameter, with a corresponding column in the response showing values for the chosen aggregate.\n\nIf neither `ACCOUNT_NAME` nor `ACCOUNT_KEY` is specified, `ACCOUNT_NAME` is prepended to the response columns automatically.\nIf neither `CATEGORY_NAME` nor `CATEGORY_CODE` is specified, `CATEGORY_CODE` is prepended to the response columns automatically.\n\nAvailable aggregation dimensions:\n\n**Time:**\n* `DAY` - Day-level aggregation\n* `MONTH` - Month-level aggregation\n\n**CPaaSX Context:**\n* `APPLICATION_ID` - CPaaSX application identifier\n* `ENTITY_ID` - CPaaSX entity identifier\n\n**Account:**\n* `ACCOUNT_NAME` - Account display name\n* `ACCOUNT_KEY` - Account identifier\n* `USER_NAME` - User who initiated traffic\n\n**Service:**\n* `CATEGORY_NAME` - Channel/service display name\n* `CATEGORY_CODE` - Channel/service code\n* `SUBCATEGORY_NAME` - Service variant name\n* `SUBCATEGORY_CODE` - Service variant code\n* `DIRECTION` - Inbound/Outbound\n* `TRAFFIC_TYPE` - Channel-specific classification\n\n**Sender:**\n* `SENDER` - Sender ID/number/domain\n* `SENDER_TYPE` - VLN, shortcode, alphanumeric\n\n**Geography:**\n* `NETWORK_NAME` - Mobile operator name\n* `NORM_NET_CODE` - MCC+MNC code\n* `COUNTRY_NAME` - Destination country\n* `COUNTRY_CODE` - ISO 3166-1 alpha-2 code\n* `COUNTRY_PREFIX` - International dialing code\n\n**Campaign:**\n* `CAMPAIGN_ID` - Campaign identifier\n* `CAMPAIGN_REFERENCE` - External campaign reference\n* `TEMPLATE_ID` - WhatsApp template ID\n            ",
+      "items":{
+       "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.BillingUsageAggregate"
+      },
+      "uniqueItems":true
+     },
+     "options":{
+      "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.BillingUsageQueryOptions"
+     }
+    },
+    "required":[
+     "aggregateBy",
+     "filterBy"
+    ],
+    "title":"QueryBillingUsageApiRequest"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.QueryBillingUsageRequest":{
+    "type":"object",
+    "properties":{
+     "callbackUrl":{
+      "type":"string",
+      "description":"\nTarget URL to receive the query processing results. For schema details, see:\n[Receive billing usage result](#platform/billing-usage/receive-billing-usage-result).\n        "
+     },
+     "request":{
+      "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.QueryBillingUsageApiRequest"
+     }
+    },
+    "required":[
+     "callbackUrl",
+     "request"
+    ],
+    "title":"QueryBillingUsageRequest"
+   },
+   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.clientRequestedPeriod":{
+    "type":"object",
+    "description":"Originally requested time period referenced in the response.",
+    "properties":{
+     "sentSince":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Start of the sent traffic date-time period (inclusive).",
+      "example":"2023-04-01T00:00:00Z"
+     },
+     "sentUntil":{
+      "type":"string",
+      "format":"date-time",
+      "description":"End of the sent traffic date-time period (exclusive).",
+      "example":"2023-04-01T00:00:00Z"
+     }
+    },
+    "required":[
+     "sentSince",
+     "sentUntil"
+    ],
+    "title":"clientRequestedPeriod"
+   },
+   "ApiError":{
+    "type":"object",
+    "properties":{
+     "errorCode":{
+      "type":"string",
+      "description":"An error code uniquely identifying the error case."
+     },
+     "description":{
+      "type":"string",
+      "description":"A detailed description of an error."
+     },
+     "action":{
+      "type":"string",
+      "description":"An action that should be taken to recover from the error."
+     },
+     "violations":{
+      "type":"array",
+      "description":"List of violations that caused the error.",
+      "items":{
+       "$ref":"#/components/schemas/ApiErrorViolation"
+      }
+     },
+     "resources":{
+      "type":"array",
+      "description":"List of available resources to recover from the error.",
+      "items":{
+       "$ref":"#/components/schemas/ApiErrorResource"
+      }
+     }
+    },
+    "required":[
+     "action",
+     "description",
+     "errorCode",
+     "resources",
+     "violations"
+    ],
+    "title":"ApiError"
+   },
+   "ApiErrorResource":{
+    "type":"object",
+    "description":"List of available resources to recover from the error.",
+    "properties":{
+     "name":{
+      "type":"string",
+      "description":"Resource name."
+     },
+     "url":{
+      "type":"string",
+      "description":"Resource URL."
+     }
+    },
+    "title":"ApiErrorResource"
+   },
+   "ApiErrorViolation":{
+    "type":"object",
+    "description":"List of violations that caused the error.",
+    "properties":{
+     "property":{
+      "type":"string",
+      "description":"Request property that caused the error."
+     },
+     "violation":{
+      "type":"string",
+      "description":"Detailed violation description."
+     }
+    },
+    "title":"ApiErrorViolation"
+   }
+  },
+  "responses":{
+   "ApiError401":{
+    "description":"Unauthorized",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E401",
+       "description":"The request lacks valid authentication credentials for the requested resource.",
+       "action":"Check the resources and adjust authentication credentials.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"API Authentication",
+         "url":"https://www.infobip.com/docs/essentials/api-authentication"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E401</errorCode>\n  <description>The request lacks valid authentication credentials for the requested resource.</description>\n  <action>Check the resources and adjust authentication credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Authentication</name>\n      <url>https://www.infobip.com/docs/essentials/api-authentication</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError403":{
+    "description":"Forbidden",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E403",
+       "description":"Insufficient permissions to access the requested resource.",
+       "action":"Repeat the request with new or different credentials.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"API Scopes",
+         "url":"https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E403</errorCode>\n  <description>Insufficient permissions to access the requested resource.</description>\n  <action>Repeat the request with new or different credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Scopes</name>\n      <url>https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError429":{
+    "description":"Too Many Requests",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E429",
+       "description":"Too many requests sent.",
+       "action":"Check request rate limit specified in the API endpoint documentation resource.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"Throttling handling errors",
+         "url":"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E429</errorCode>\n  <description>Too many requests sent.</description>\n  <action>Check request rate limit specified in the API endpoint documentation resource.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>Throttling handling errors</name>\n      <url>https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError500":{
+    "description":"Internal Server Error",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E500",
+       "description":"Something went wrong.",
+       "action":"Contact the support.",
+       "violations":[],
+       "resources":[]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E500</errorCode>\n  <description>Something went wrong.</description>\n  <action>Contact the support.</action>\n  <violations/>\n  <resources/>\n</ApiError>\n"
+     }
+    }
+   }
+  },
+  "parameters":{},
+  "examples":{},
+  "requestBodies":{},
+  "headers":{},
+  "securitySchemes":{
+   "APIKeyHeader":{
+    "type":"apiKey",
+    "description":"This is the most secure authorization type and the one with the most flexibility.\n\nAPI keys can be generated by calling the dedicated API method. Furthermore, API keys can have a limited scope and cover only some API methods. Lastly, they can\nbe revoked at any time. This range of possibilities makes API keys well suited for separating the API access rights across multiple applications or use cases.\nFinally, the loss of an API key is easily manageable.\n\nYou can manage your API keys from [GUI](https://portal.infobip.com/settings/accounts/api-keys), or programmatically\nwith [dedicated API](#platform-&-connectivity/settings).\n\nAPI key Authorization header example:\n\n```shell\nAuthorization: App 003026bbc133714df1834b8638bb496e-8f4b3d9a-e931-478d-a994-28a725159ab9\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "Basic":{
+    "type":"http",
+    "description":"Basic authorization type can be used in situations when the API key is not available. For example, API methods for generating API keys should be authenticated\nwith the Basic type.\n\nIn this case, the credentials included in the Authorization header should be a Base64 encoded username and password combination. More formally, basic\nauthentication header can be constructed in three steps:\n\n* Username and password are concatenated using the colon `(:)` as a separator `username:password`.\n* The resulting string is encoded using the [RFC2045-MIME](https://www.ietf.org/rfc/rfc2045.txt) variant of Base64.\n* Encoded string is added as credentials after the `\"Basic \"` type.\n\nExample:\n\n```shell\nUsername: \"Aladdin\"\nPassword: \"openSesame\"\n\nConcatenated string: \"Aladdin:openSesame\"\n\nBase64 encoded string: \"QWxhZGRpbjpvcGVuU2VzYW1l\"\n\nAuthorization header: \"Basic QWxhZGRpbjpvcGVuU2VzYW1l\"\n```\n\n> **Implementation detail**: Base64 encoding is a standard and many available programming languages and frameworks provide convenient methods for encoding\n> strings.\n",
+    "scheme":"basic"
+   },
+   "IBSSOTokenHeader":{
+    "type":"apiKey",
+    "description":"This authorization type is suited for situations when you do not want to store Infobip credentials in your own app. Instead, your users will input their Infobip\ncredentials every time they access your application and the application will use those credentials to create a session. From then on, the session token can be\nused to authenticate subsequent API requests. Note that the session will expire automatically after a predefined period of inactivity, and can also be manually\nterminated by making an appropriate API call.\n\nYou can find more details on the creation and behavior of the session at\nthe [dedicated documentation page](#platform-connectivity/account-management/create-session).\n\nAfter obtaining the session token by calling the above-referenced API method you can include it in the Authorization header like this:\n\n```shell\nAuthorization: IBSSO 2f9b4d31-2d0d-49a8-85f0-9b862bdca394\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "OAuth2":{
+    "type":"oauth2",
+    "description":"Similarly to the IBSSO Token authentication you can use OAuth 2.0 bearer token with Infobip serving both as resource and authorization server. You can obtain\nthe access token using the client credentials grant from `auth/1/oauth2/token` endpoint. It will provide you with your access token, and its expiration period.\nYou can use the token to authorize your API calls until it expires. You can find out more about the process in\nthe [official specification](https://tools.ietf.org/html/rfc6749#section-4.4).\n\nYou can include your access token in the Authorization HTTP request header like this:\n\n```http\nAuthorization: Bearer <access_token>\n```",
+    "flows":{
+     "clientCredentials":{
+      "tokenUrl":"https://api.infobip.com/auth/1/oauth2/token",
+      "scopes":{}
+     }
+    }
+   }
+  },
+  "links":{},
+  "callbacks":{}
+ },
+ "webhooks":{
+  "receive-billing-usage-result":{
+   "post":{
+    "tags":[
+     "platform",
+     "billing-usage-api"
+    ],
+    "summary":"Receive billing usage result",
+    "description":"Receives data response requested by the [Query billing usage data](#platform/billing-usage/query-billing-usage) endpoint. This webhook is called once via POST when the query completes.",
+    "operationId":"receive-billing-usage-result",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.BillingUsageResult"
+       },
+       "examples":{
+        "A simple billing usage result":{
+         "summary":"A simple billing usage result",
+         "value":{
+          "requestId":"B61D150B0F6596F68D88D253886432B5",
+          "status":"SUCCESS",
+          "response":{
+           "requestedPeriod":{
+            "sentSince":"2026-03-01T00:00:00.000+0000",
+            "sentUntil":"2026-04-01T00:00:00.000+0000"
+           },
+           "totalRows":2,
+           "columns":[
+            {
+             "columnName":"ACCOUNT_NAME",
+             "columnDataType":"STRING"
+            },
+            {
+             "columnName":"CATEGORY_CODE",
+             "columnDataType":"STRING"
+            },
+            {
+             "columnName":"COUNTRY_NAME",
+             "columnDataType":"STRING"
+            },
+            {
+             "columnName":"UNIT_TYPE",
+             "columnDataType":"STRING"
+            },
+            {
+             "columnName":"UNIT_PRICE",
+             "columnDataType":"NUMBER"
+            },
+            {
+             "columnName":"QUANTITY",
+             "columnDataType":"NUMBER"
+            },
+            {
+             "columnName":"TOTAL_PER_UNIT",
+             "columnDataType":"NUMBER"
+            },
+            {
+             "columnName":"CURRENCY",
+             "columnDataType":"STRING"
+            }
+           ],
+           "rows":[
+            [
+             "Account A",
+             "SMS",
+             "United States",
+             "message part",
+             0.0075,
+             1500,
+             11.25,
+             "USD"
+            ],
+            [
+             "Account A",
+             "WHATSAPP",
+             "India",
+             "message",
+             0.0089,
+             450,
+             4.01,
+             "USD"
+            ]
+           ]
+          },
+          "metadata":{
+           "clientRequestedPeriod":{
+            "sentSince":"2026-03-01T00:00:00.000+0000",
+            "sentUntil":"2026-04-01T00:00:00.000+0000"
+           },
+           "billingPeriods":[
+            {
+             "month":"2026-03",
+             "volumeFinalized":true
+            }
+           ]
+          }
+         }
+        },
+        "A detailed billing usage result":{
+         "summary":"A detailed billing usage result",
+         "value":{
+          "requestId":"B61D150B0F6596F68D88D253886432B5",
+          "status":"SUCCESS",
+          "response":{
+           "requestedPeriod":{
+            "sentSince":"2026-03-01T00:00:00.000+0000",
+            "sentUntil":"2026-04-01T00:00:00.000+0000"
+           },
+           "totalRows":3,
+           "columns":[
+            {
+             "columnName":"APPLICATION_ID",
+             "columnDataType":"STRING"
+            },
+            {
+             "columnName":"ENTITY_ID",
+             "columnDataType":"STRING"
+            },
+            {
+             "columnName":"CATEGORY_CODE",
+             "columnDataType":"STRING"
+            },
+            {
+             "columnName":"COUNTRY_NAME",
+             "columnDataType":"STRING"
+            },
+            {
+             "columnName":"TRAFFIC_TYPE",
+             "columnDataType":"STRING"
+            },
+            {
+             "columnName":"SENDER_TYPE",
+             "columnDataType":"STRING"
+            },
+            {
+             "columnName":"ACCOUNT_KEY",
+             "columnDataType":"STRING"
+            },
+            {
+             "columnName":"UNIT_TYPE",
+             "columnDataType":"STRING"
+            },
+            {
+             "columnName":"UNIT_PRICE",
+             "columnDataType":"NUMBER"
+            },
+            {
+             "columnName":"QUANTITY",
+             "columnDataType":"NUMBER"
+            },
+            {
+             "columnName":"TOTAL_PER_UNIT",
+             "columnDataType":"NUMBER"
+            },
+            {
+             "columnName":"CURRENCY",
+             "columnDataType":"STRING"
+            }
+           ],
+           "rows":[
+            [
+             "app_a",
+             "entity_a",
+             "SMS",
+             "United States",
+             "A2P",
+             "ALPHANUMERIC",
+             "565C2852060F94BC771F692C04C055E1",
+             "message part",
+             0.0075,
+             1500,
+             11.25,
+             "USD"
+            ],
+            [
+             "app_a",
+             "entity_a",
+             "WHATSAPP",
+             "India",
+             "MARKETING",
+             "DOMAIN",
+             "565C2852060F94BC771F692C04C055E1",
+             "message",
+             0.0089,
+             450,
+             4.01,
+             "USD"
+            ],
+            [
+             "app_b",
+             "entity_b",
+             "RCS",
+             "United Kingdom",
+             "RICH",
+             "ALPHANUMERIC",
+             "565C2852060F94BC771F692C04C055E1",
+             "message",
+             0.0244,
+             200,
+             4.88,
+             "EUR"
+            ]
+           ]
+          },
+          "metadata":{
+           "clientRequestedPeriod":{
+            "sentSince":"2026-03-01T00:00:00.000+0000",
+            "sentUntil":"2026-04-01T00:00:00.000+0000"
+           },
+           "billingPeriods":[
+            {
+             "month":"2026-03",
+             "volumeFinalized":true
+            }
+           ]
+          }
+         }
+        },
+        "An error billing usage result":{
+         "summary":"An error billing usage result",
+         "value":{
+          "requestId":"B61D150B0F6596F68D88D253886432B5",
+          "status":"FAILED",
+          "failureMessage":"Could not load data"
+         }
+        }
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"Your server returns this code if it accepts the callback."
+     }
+    },
+    "x-is-early-access":true
+   }
+  }
+ }
+}

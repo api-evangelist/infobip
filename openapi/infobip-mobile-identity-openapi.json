@@ -1,0 +1,2978 @@
+{
+ "openapi":"3.1.0",
+ "info":{
+  "title":"Infobip OpenAPI Specification",
+  "description":"OpenAPI Specification that contains all public endpoints and webhooks.",
+  "contact":{
+   "name":"Infobip support",
+   "email":"support@infobip.com"
+  },
+  "version":"3.210.0",
+  "x-generatedAt":"2026-07-23T15:23:51.145301426Z"
+ },
+ "tags":[
+  {
+   "name":"connectivity",
+   "description":"Powerful infrastructure and tools that connect you to the world.\n",
+   "x-type":"category",
+   "x-displayName":"Connectivity"
+  },
+  {
+   "name":"mobile-identity",
+   "description":"**Contact us and get started with Mobile Identity. Please [fill out the form](https://www.infobip.com/contact), and our experts will contact you shortly.** \\\n\\\nMobile Identity represents the set of services that we offer in cooperation with the mobile network operators and through them, we are bringing the vast amount of data that the mobile network operators have about their subscribers to provide better ways of authentication and protect online transactions.\n",
+   "x-type":"product",
+   "x-displayName":"Mobile Identity"
+  },
+  {
+   "name":"identity-verification",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Silent mobile verification"
+  },
+  {
+   "name":"identity-number-intelligence",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Number intelligence"
+  },
+  {
+   "name":"identity-sim-swap-verification",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"SIM swap verification"
+  },
+  {
+   "name":"identity-national-identity-number",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"National identity number"
+  }
+ ],
+ "paths":{
+  "/mi/verification/1/verify":{
+   "post":{
+    "tags":[
+     "connectivity",
+     "mobile-identity",
+     "identity-verification"
+    ],
+    "summary":"Silent Mobile Verification",
+    "description":"Verify possession of end-user's mobile phone number with the mobile network operator's data connection.\nAPI and URL may vary per country. Please contact your sales for more details.",
+    "operationId":"silent-mobile-verification",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.SmvVerifyRequestDto"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"string",
+           "description":"Silent Mobile Verification request status.",
+           "enum":[
+            "REDIRECT"
+           ]
+          },
+          "token":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request ID. The whole flow from the request to response has same token so it can be used for debugging in case of error or matching API request with the callback webhook response.",
+           "example":"123e4567-e89b-12d3-a456-426655440000"
+          },
+          "deviceRedirectUrl":{
+           "type":"string",
+           "format":"uri",
+           "description":"An URL to perform mobile device redirect to if specified so by 'status'.",
+           "example":"https://api.infobip.com/mno-domain/smv-check-endpoint"
+          }
+         }
+        },
+        "examples":{
+         "OK":{
+          "summary":"OK",
+          "description":"OK",
+          "value":{
+           "status":"REDIRECT",
+           "token":"123e4567-e89b-12d3-a456-426655440000",
+           "deviceRedirectUrl":"https://api.infobip.com/mno-domain/smv-check-endpoint"
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "error":{
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.ErrorDto"
+          },
+          "status":{
+           "type":"string",
+           "description":"Silent Mobile Verification request status.",
+           "enum":[
+            "ERROR"
+           ]
+          },
+          "token":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request ID. The whole flow from the request to response has same token so it can be used for debugging in case of error or matching API request with the callback webhook response.",
+           "example":"123e4567-e89b-12d3-a456-426655440000"
+          }
+         }
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "description":"Bad request",
+          "value":{
+           "error":{
+            "id":202,
+            "name":"EC_CONSENT_NOT_GRANTED",
+            "description":"User consent not granted"
+           },
+           "status":"ERROR",
+           "token":"123e4567-e89b-12d3-a456-426655440000"
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "description":"Unauthorized - Platform authentication error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+        },
+        "examples":{
+         "Unauthorized":{
+          "summary":"Unauthorized",
+          "description":"Unauthorized",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHORIZED",
+             "text":"Invalid login details"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "403":{
+      "description":"Permission denied - Platform authorization error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+        },
+        "examples":{
+         "Permission denied":{
+          "summary":"Permission denied",
+          "description":"Permission denied",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHORIZED",
+             "text":"No permission to access resource"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "422":{
+      "description":"Unprocessable content",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "error":{
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.ErrorDto"
+          },
+          "status":{
+           "type":"string",
+           "description":"Silent Mobile Verification request status.",
+           "enum":[
+            "ERROR"
+           ]
+          },
+          "token":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request ID. The whole flow from the request to response has same token so it can be used for debugging in case of error or matching API request with the callback webhook response.",
+           "example":"123e4567-e89b-12d3-a456-426655440000"
+          }
+         }
+        },
+        "examples":{
+         "Unprocessable content":{
+          "summary":"Unprocessable content",
+          "description":"Unprocessable content",
+          "value":{
+           "error":{
+            "id":400,
+            "name":"EC_UNPROCESSABLE_CONTENT",
+            "description":"Unable to process provided data."
+           },
+           "status":"ERROR",
+           "token":"123e4567-e89b-12d3-a456-426655440000"
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "description":"Internal server error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "error":{
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.ErrorDto"
+          },
+          "status":{
+           "type":"string",
+           "description":"Silent Mobile Verification request status.",
+           "enum":[
+            "ERROR"
+           ]
+          },
+          "token":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request ID. The whole flow from the request to response has same token so it can be used for debugging in case of error or matching API request with the callback webhook response.",
+           "example":"123e4567-e89b-12d3-a456-426655440000"
+          }
+         }
+        },
+        "examples":{
+         "Internal server error":{
+          "summary":"Internal server error",
+          "description":"Internal server error",
+          "value":{
+           "error":{
+            "id":1000,
+            "name":"EC_INTERNAL_ERROR",
+            "description":"Internal error in Infobip platform. Contact Support to resolve the issue."
+           },
+           "status":"ERROR",
+           "token":"123e4567-e89b-12d3-a456-426655440000"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "mobile-identity:manage"
+    ]
+   }
+  },
+  "/mi/verification/1/verify/advanced":{
+   "post":{
+    "tags":[
+     "connectivity",
+     "mobile-identity",
+     "identity-verification"
+    ],
+    "summary":"Advanced Silent Mobile Verification",
+    "description":"Verify possession of the end user's mobile phone number with a mobile network operator's data connection.\nIf request body is supplied with additional data, the following can be done:\n- SIM swap check before the mobile phone number verification\n- Fallback SMS message if silent mobile verification fails\n\nAPI and URL may vary per country. Contact your Account Manager for implementation details.",
+    "operationId":"advanced-silent-mobile-verification",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.SmvVerifyAdvancedRequestDto"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"string",
+           "description":"Silent Mobile Verification request status.",
+           "enum":[
+            "ACCEPTED"
+           ]
+          },
+          "token":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request ID. The whole flow from the request to response has same token so it can be used for debugging in case of error or matching API request with the callback webhook response.",
+           "example":"123e4567-e89b-12d3-a456-426655440000"
+          }
+         }
+        },
+        "examples":{
+         "OK":{
+          "summary":"OK",
+          "description":"OK",
+          "value":{
+           "status":"ACCEPTED",
+           "token":"6a31ccca-ceba-4998-a3b0-16ae5e182ab0"
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "error":{
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.ErrorDto"
+          },
+          "status":{
+           "type":"string",
+           "description":"Silent Mobile Verification request status.",
+           "enum":[
+            "ERROR"
+           ]
+          },
+          "token":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request ID. The whole flow from the request to response has same token so it can be used for debugging in case of error or matching API request with the callback webhook response.",
+           "example":"123e4567-e89b-12d3-a456-426655440000"
+          }
+         }
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "description":"Bad request",
+          "value":{
+           "error":{
+            "id":202,
+            "name":"EC_CONSENT_NOT_GRANTED",
+            "description":"User consent not granted"
+           },
+           "status":"ERROR",
+           "token":"56693a53-4174-4e81-8e9c-b8863a7ad827"
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "description":"Unauthorized - Platform authentication error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+        },
+        "examples":{
+         "Unauthorized":{
+          "summary":"Unauthorized",
+          "description":"Unauthorized",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHORIZED",
+             "text":"Invalid login details"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "403":{
+      "description":"Permission denied - Platform authorization error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+        },
+        "examples":{
+         "Permission denied":{
+          "summary":"Permission denied",
+          "description":"Permission denied",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHORIZED",
+             "text":"No permission to access resource"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "422":{
+      "description":"Unprocessable content",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "error":{
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.ErrorDto"
+          },
+          "status":{
+           "type":"string",
+           "description":"Silent Mobile Verification request status.",
+           "enum":[
+            "ERROR"
+           ]
+          },
+          "token":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request ID. The whole flow from the request to response has same token so it can be used for debugging in case of error or matching API request with the callback webhook response.",
+           "example":"123e4567-e89b-12d3-a456-426655440000"
+          }
+         }
+        },
+        "examples":{
+         "Unprocessable content":{
+          "summary":"Unprocessable content",
+          "description":"Unprocessable content",
+          "value":{
+           "error":{
+            "id":400,
+            "name":"EC_UNPROCESSABLE_CONTENT",
+            "description":"Unable to process provided data."
+           },
+           "status":"ERROR",
+           "token":"56693a53-4174-4e81-8e9c-b8863a7ad827"
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "description":"Internal server error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "error":{
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.ErrorDto"
+          },
+          "status":{
+           "type":"string",
+           "description":"Silent Mobile Verification request status.",
+           "enum":[
+            "ERROR"
+           ]
+          },
+          "token":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request ID. The whole flow from the request to response has same token so it can be used for debugging in case of error or matching API request with the callback webhook response.",
+           "example":"123e4567-e89b-12d3-a456-426655440000"
+          }
+         }
+        },
+        "examples":{
+         "Internal server error":{
+          "summary":"Internal server error",
+          "description":"Internal server error",
+          "value":{
+           "error":{
+            "id":1000,
+            "name":"EC_INTERNAL_ERROR",
+            "description":"Internal error in Infobip platform. Contact Support to resolve the issue."
+           },
+           "status":"ERROR",
+           "token":"56693a53-4174-4e81-8e9c-b8863a7ad827"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "mobile-identity:manage"
+    ]
+   }
+  },
+  "/mi/verification/1/verify/synchronous":{
+   "post":{
+    "tags":[
+     "connectivity",
+     "mobile-identity",
+     "identity-verification"
+    ],
+    "summary":"Synchronous Silent Mobile Verification",
+    "description":"Verify possession of end-user's mobile phone number with the mobile network operator's data connection.\nThis API endpoint is available only in Brazil. Please contact your sales for more details.",
+    "operationId":"synchronous-silent-mobile-verification",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.SmvVerifySynchronousRequestDto"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "result":{
+           "type":"string",
+           "description":"Verification result.",
+           "enum":[
+            "VALID",
+            "INVALID"
+           ]
+          },
+          "token":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request ID. The whole flow from the request to response has same token so it can be used for debugging in case of error or matching API request with the callback webhook response.",
+           "example":"123e4567-e89b-12d3-a456-426655440000"
+          }
+         }
+        },
+        "examples":{
+         "VALID":{
+          "summary":"VALID",
+          "description":"VALID",
+          "value":{
+           "result":"VALID",
+           "token":"6a31ccca-ceba-4998-a3b0-16ae5e182ab0"
+          }
+         },
+         "INVALID":{
+          "summary":"INVALID",
+          "description":"INVALID",
+          "value":{
+           "result":"INVALID",
+           "token":"6a31ccca-ceba-4998-a3b0-16ae5e182ab0"
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "error":{
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.ErrorDto"
+          },
+          "result":{
+           "type":"string",
+           "description":"Verification result.",
+           "enum":[
+            "ERROR"
+           ]
+          },
+          "token":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request ID. The whole flow from the request to response has same token so it can be used for debugging in case of error or matching API request with the callback webhook response.",
+           "example":"123e4567-e89b-12d3-a456-426655440000"
+          }
+         }
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "description":"Bad request",
+          "value":{
+           "error":{
+            "id":202,
+            "name":"EC_CONSENT_NOT_GRANTED",
+            "description":"User consent not granted"
+           },
+           "result":"ERROR",
+           "token":"56693a53-4174-4e81-8e9c-b8863a7ad827"
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "description":"Unauthorized - Platform authentication error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+        },
+        "examples":{
+         "Unauthorized":{
+          "summary":"Unauthorized",
+          "description":"Unauthorized",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHORIZED",
+             "text":"Invalid login details"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "403":{
+      "description":"Permission denied - Platform authorization error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+        },
+        "examples":{
+         "Permission denied":{
+          "summary":"Permission denied",
+          "description":"Permission denied",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHORIZED",
+             "text":"No permission to access resource"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "422":{
+      "description":"Unprocessable content",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "error":{
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.ErrorDto"
+          },
+          "result":{
+           "type":"string",
+           "description":"Verification result.",
+           "enum":[
+            "ERROR"
+           ]
+          },
+          "token":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request ID. The whole flow from the request to response has same token so it can be used for debugging in case of error or matching API request with the callback webhook response.",
+           "example":"123e4567-e89b-12d3-a456-426655440000"
+          }
+         }
+        },
+        "examples":{
+         "Unprocessable content":{
+          "summary":"Unprocessable content",
+          "description":"Unprocessable content",
+          "value":{
+           "error":{
+            "id":400,
+            "name":"EC_UNPROCESSABLE_CONTENT",
+            "description":"Unable to process provided data."
+           },
+           "result":"ERROR",
+           "token":"56693a53-4174-4e81-8e9c-b8863a7ad827"
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "description":"Internal server error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "error":{
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.ErrorDto"
+          },
+          "result":{
+           "type":"string",
+           "description":"Verification result.",
+           "enum":[
+            "ERROR"
+           ]
+          },
+          "token":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request ID. The whole flow from the request to response has same token so it can be used for debugging in case of error or matching API request with the callback webhook response.",
+           "example":"123e4567-e89b-12d3-a456-426655440000"
+          }
+         }
+        },
+        "examples":{
+         "Internal server error":{
+          "summary":"Internal server error",
+          "description":"Internal server error",
+          "value":{
+           "error":{
+            "id":1000,
+            "name":"EC_INTERNAL_ERROR",
+            "description":"Internal error in Infobip platform. Contact Support to resolve the issue."
+           },
+           "result":"ERROR",
+           "token":"56693a53-4174-4e81-8e9c-b8863a7ad827"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "deprecated":true,
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "mobile-identity:manage"
+    ],
+    "x-deprecationInformation":{
+     "deprecation":"2025-12-24T00:00:00.000+0000"
+    }
+   }
+  },
+  "/mi/verification/1/zero-rated/init":{
+   "post":{
+    "tags":[
+     "connectivity",
+     "mobile-identity",
+     "identity-verification"
+    ],
+    "summary":"Zero rated request initialization",
+    "description":"Initialise zero rated request.\nThis API endpoint is available only in Brazil. Please contact your sales for more details.",
+    "operationId":"initiate-zero-rated-silent-mobile-verification",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.InitZeroRatedRequestDto"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "token":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request ID. The whole flow from the request to response has same token so it can be used for debugging in case of error or matching API request with the callback webhook response.",
+           "example":"123e4567-e89b-12d3-a456-426655440000"
+          },
+          "deviceRedirectUrl":{
+           "type":"string",
+           "format":"uri",
+           "description":"An URL to perform mobile device redirect to if specified so by 'status'.",
+           "example":"https://api.infobip.com/mno-domain/smv-check-endpoint"
+          }
+         }
+        },
+        "examples":{
+         "OK":{
+          "summary":"OK",
+          "description":"OK",
+          "value":{
+           "token":"6a31ccca-ceba-4998-a3b0-16ae5e182ab0",
+           "deviceRedirectUrl":"https://api.infobip.com/mi/verification/1/zero-rated?token=6a31ccca-ceba-4998-a3b0-16ae5e182ab0"
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "error":{
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.ErrorDto"
+          },
+          "token":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request ID. The whole flow from the request to response has same token so it can be used for debugging in case of error or matching API request with the callback webhook response.",
+           "example":"123e4567-e89b-12d3-a456-426655440000"
+          }
+         }
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "description":"Bad request",
+          "value":{
+           "error":{
+            "id":202,
+            "name":"EC_CONSENT_NOT_GRANTED",
+            "description":"User consent not granted"
+           },
+           "token":"56693a53-4174-4e81-8e9c-b8863a7ad827"
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "description":"Unauthorized - Platform authentication error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+        },
+        "examples":{
+         "Unauthorized":{
+          "summary":"Unauthorized",
+          "description":"Unauthorized",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHORIZED",
+             "text":"Invalid login details"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "403":{
+      "description":"Permission denied - Platform authorization error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+        },
+        "examples":{
+         "Permission denied":{
+          "summary":"Permission denied",
+          "description":"Permission denied",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHORIZED",
+             "text":"No permission to access resource"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "description":"Internal server error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "error":{
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.ErrorDto"
+          },
+          "token":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request ID. The whole flow from the request to response has same token so it can be used for debugging in case of error or matching API request with the callback webhook response.",
+           "example":"123e4567-e89b-12d3-a456-426655440000"
+          }
+         }
+        },
+        "examples":{
+         "Internal server error":{
+          "summary":"Internal server error",
+          "description":"Internal server error",
+          "value":{
+           "error":{
+            "id":1000,
+            "name":"EC_INTERNAL_ERROR",
+            "description":"Internal error in Infobip platform. Contact Support to resolve the issue."
+           },
+           "token":"56693a53-4174-4e81-8e9c-b8863a7ad827"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "mobile-identity:manage"
+    ]
+   }
+  },
+  "/mi/verification/1/verify/zero-rated":{
+   "post":{
+    "tags":[
+     "connectivity",
+     "mobile-identity",
+     "identity-verification"
+    ],
+    "summary":"Zero rated request verify",
+    "description":"Verify possession of end-user's mobile phone number with the mobile network operator's data connection.\nThis API endpoint is available only in Brazil. Please contact your sales for more details.",
+    "operationId":"zero-rated-silent-mobile-verification",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.VerifyZeroRatedRequestDto"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "result":{
+           "type":"string",
+           "description":"Verification result.",
+           "enum":[
+            "VALID",
+            "INVALID"
+           ]
+          },
+          "token":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request ID. The whole flow from the request to response has same token so it can be used for debugging in case of error or matching API request with the callback webhook response.",
+           "example":"123e4567-e89b-12d3-a456-426655440000"
+          }
+         }
+        },
+        "examples":{
+         "VALID":{
+          "summary":"VALID",
+          "description":"VALID",
+          "value":{
+           "result":"VALID",
+           "token":"6a31ccca-ceba-4998-a3b0-16ae5e182ab0"
+          }
+         },
+         "INVALID":{
+          "summary":"INVALID",
+          "description":"INVALID",
+          "value":{
+           "result":"INVALID",
+           "token":"6a31ccca-ceba-4998-a3b0-16ae5e182ab0"
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "error":{
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.ErrorDto"
+          },
+          "result":{
+           "type":"string",
+           "description":"Verification result.",
+           "enum":[
+            "ERROR"
+           ]
+          },
+          "token":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request ID. The whole flow from the request to response has same token so it can be used for debugging in case of error or matching API request with the callback webhook response.",
+           "example":"123e4567-e89b-12d3-a456-426655440000"
+          }
+         }
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "description":"Bad request",
+          "value":{
+           "result":"ERROR",
+           "token":"6a31ccca-ceba-4998-a3b0-16ae5e182ab0",
+           "error":{
+            "id":201,
+            "name":"EC_INVALID_TOKEN",
+            "description":"Token is invalid or does not exist"
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "description":"Unauthorized - Platform authentication error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+        },
+        "examples":{
+         "Unauthorized":{
+          "summary":"Unauthorized",
+          "description":"Unauthorized",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHORIZED",
+             "text":"Invalid login details"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "403":{
+      "description":"Permission denied - Platform authorization error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+        },
+        "examples":{
+         "Permission denied":{
+          "summary":"Permission denied",
+          "description":"Permission denied",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHORIZED",
+             "text":"No permission to access resource"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "422":{
+      "description":"Unprocessable content",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "error":{
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.ErrorDto"
+          },
+          "result":{
+           "type":"string",
+           "description":"Verification result.",
+           "enum":[
+            "ERROR"
+           ]
+          },
+          "token":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request ID. The whole flow from the request to response has same token so it can be used for debugging in case of error or matching API request with the callback webhook response.",
+           "example":"123e4567-e89b-12d3-a456-426655440000"
+          }
+         }
+        },
+        "examples":{
+         "Unprocessable content":{
+          "summary":"Unprocessable content",
+          "description":"Unprocessable content",
+          "value":{
+           "result":"ERROR",
+           "token":"6a31ccca-ceba-4998-a3b0-16ae5e182ab0",
+           "error":{
+            "id":400,
+            "name":"EC_UNPROCESSABLE_CONTENT",
+            "description":"Unable to process provided data."
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "description":"Internal server error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "error":{
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.ErrorDto"
+          },
+          "result":{
+           "type":"string",
+           "description":"Verification result.",
+           "enum":[
+            "ERROR"
+           ]
+          },
+          "token":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request ID. The whole flow from the request to response has same token so it can be used for debugging in case of error or matching API request with the callback webhook response.",
+           "example":"123e4567-e89b-12d3-a456-426655440000"
+          }
+         }
+        },
+        "examples":{
+         "Internal server error":{
+          "summary":"Internal server error",
+          "description":"Internal server error",
+          "value":{
+           "error":{
+            "id":1000,
+            "name":"EC_INTERNAL_ERROR",
+            "description":"Internal error in Infobip platform. Contact Support to resolve the issue."
+           },
+           "result":"ERROR",
+           "token":"56693a53-4174-4e81-8e9c-b8863a7ad827"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "mobile-identity:manage"
+    ]
+   }
+  },
+  "/mi/number-intelligence/1/query":{
+   "post":{
+    "tags":[
+     "connectivity",
+     "mobile-identity",
+     "identity-number-intelligence"
+    ],
+    "summary":"Number Intelligence",
+    "description":"Use this method to perform a query by a mobile phone number (MSISDN) for a given attribute name.\nAPI and URL may vary per country. Contact your Account Manager for implementation details.",
+    "operationId":"query-number-intelligence",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.NiQueryRequestDto"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "token":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request identifier."
+          }
+         }
+        },
+        "examples":{
+         "OK":{
+          "summary":"OK",
+          "description":"OK",
+          "value":{
+           "token":"6a31ccca-ceba-4998-a3b0-16ae5e182ab0"
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "error":{
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.ErrorDto"
+          },
+          "token":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request identifier."
+          }
+         }
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "description":"Bad request",
+          "value":{
+           "error":{
+            "id":202,
+            "name":"EC_CONSENT_NOT_GRANTED",
+            "description":"User consent not granted"
+           },
+           "token":"56693a53-4174-4e81-8e9c-b8863a7ad827"
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "description":"Unauthorized - Platform authentication error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+        },
+        "examples":{
+         "Unauthorized":{
+          "summary":"Unauthorized",
+          "description":"Unauthorized",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHORIZED",
+             "text":"Invalid login details"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "403":{
+      "description":"Permission denied - Platform authorization error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+        },
+        "examples":{
+         "Permission denied":{
+          "summary":"Permission denied",
+          "description":"Permission denied",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHORIZED",
+             "text":"No permission to access resource"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "422":{
+      "description":"Unprocessable content",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "error":{
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.ErrorDto"
+          },
+          "token":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request identifier."
+          }
+         }
+        },
+        "examples":{
+         "Unprocessable content":{
+          "summary":"Unprocessable content",
+          "description":"Unprocessable content",
+          "value":{
+           "error":{
+            "id":400,
+            "name":"EC_UNPROCESSABLE_CONTENT",
+            "description":"Unable to process provided data."
+           },
+           "token":"56693a53-4174-4e81-8e9c-b8863a7ad827"
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "description":"Internal server error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "error":{
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.ErrorDto"
+          },
+          "token":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request identifier."
+          }
+         }
+        },
+        "examples":{
+         "Internal server error":{
+          "summary":"Internal server error",
+          "description":"Internal server error",
+          "value":{
+           "error":{
+            "id":1000,
+            "name":"EC_INTERNAL_ERROR",
+            "description":"Internal error in Infobip platform. Contact Support to resolve the issue."
+           },
+           "token":"56693a53-4174-4e81-8e9c-b8863a7ad827"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "mobile-identity:manage"
+    ]
+   }
+  },
+  "/mi/simswap/1/check":{
+   "post":{
+    "tags":[
+     "connectivity",
+     "mobile-identity",
+     "identity-sim-swap-verification"
+    ],
+    "summary":"SIM Swap",
+    "description":"Verify if there was a SIM swap event for a given mobile phone number and period.<br/>\nAPI and URL may vary per country. Contact your Account Manager for implementation details.",
+    "operationId":"check-sim-swap",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.SimSwapCheckRequestDto"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "requestId":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request identifier."
+          },
+          "simSwapOccurred":{
+           "type":[
+            "boolean",
+            "null"
+           ],
+           "description":"Indicates whether SIM swap occurred in the requested period."
+          },
+          "networkInfo":{
+           "type":"object",
+           "description":"Additional network information about the SIM swap."
+          }
+         }
+        },
+        "examples":{
+         "OK":{
+          "summary":"OK",
+          "description":"OK",
+          "value":{
+           "requestId":"665b6d63-0b65-4faf-a499-25530f0e93e0",
+           "simSwapOccurred":false,
+           "networkInfo":{
+            "simSwapTimestamp":null,
+            "simSwapPeriodStartHours":null,
+            "simSwapPeriodEndHours":null
+           }
+          }
+         },
+         "With additional timestamp":{
+          "summary":"With additional timestamp",
+          "description":"With additional timestamp",
+          "value":{
+           "requestId":"665b6d63-0b65-4faf-a499-25530f0e93e0",
+           "simSwapOccurred":true,
+           "networkInfo":{
+            "simSwapTimestamp":"2020-04-15T20:00:00Z",
+            "simSwapPeriodStartHours":null,
+            "simSwapPeriodEndHours":null
+           }
+          }
+         },
+         "With additional period":{
+          "summary":"With additional period",
+          "description":"With additional period",
+          "value":{
+           "requestId":"665b6d63-0b65-4faf-a499-25530f0e93e0",
+           "simSwapOccurred":true,
+           "networkInfo":{
+            "simSwapTimestamp":null,
+            "simSwapPeriodStartHours":24,
+            "simSwapPeriodEndHours":72
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request - no coverage",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "error":{
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.ErrorDto"
+          },
+          "requestId":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request identifier."
+          },
+          "simSwapOccurred":{
+           "type":[
+            "boolean",
+            "null"
+           ],
+           "description":"Always null on error."
+          },
+          "networkInfo":{
+           "type":"object",
+           "description":"Network information (may be empty on error)."
+          }
+         }
+        },
+        "examples":{
+         "Bad request - no coverage":{
+          "summary":"Bad request - no coverage",
+          "description":"Bad request - no coverage",
+          "value":{
+           "error":{
+            "id":100,
+            "name":"EC_NO_COVERAGE",
+            "description":"No coverage for requested mobile phone number"
+           },
+           "requestId":"bfe2be7d-69a0-48e7-9672-e3e0236463c7",
+           "simSwapOccurred":null,
+           "networkInfo":{
+            "simSwapTimestamp":null,
+            "simSwapPeriodStartHours":null,
+            "simSwapPeriodEndHours":null
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "description":"Unauthorized - Platform authentication error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+        },
+        "examples":{
+         "Unauthorized":{
+          "summary":"Unauthorized",
+          "description":"Unauthorized",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHORIZED",
+             "text":"Invalid login details"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "403":{
+      "description":"Permission denied - Platform authorization error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+        },
+        "examples":{
+         "Permission denied":{
+          "summary":"Permission denied",
+          "description":"Permission denied",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHORIZED",
+             "text":"No permission to access resource"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "422":{
+      "description":"Unprocessable content",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "error":{
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.ErrorDto"
+          },
+          "requestId":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request identifier."
+          },
+          "simSwapOccurred":{
+           "type":[
+            "boolean",
+            "null"
+           ],
+           "description":"Always null on error."
+          },
+          "networkInfo":{
+           "type":"object",
+           "description":"Network information (may be empty on error)."
+          }
+         }
+        },
+        "examples":{
+         "Unprocessable content":{
+          "summary":"Unprocessable content",
+          "description":"Unprocessable content",
+          "value":{
+           "error":{
+            "id":400,
+            "name":"EC_UNPROCESSABLE_CONTENT",
+            "description":"Unable to process provided data."
+           },
+           "requestId":"665b6d63-0b65-4faf-a499-25530f0e93e0",
+           "simSwapOccurred":null,
+           "networkInfo":{
+            "simSwapTimestamp":null,
+            "simSwapPeriodStartHours":null,
+            "simSwapPeriodEndHours":null
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "description":"Internal error - operation failed",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "error":{
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.ErrorDto"
+          },
+          "requestId":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request identifier."
+          },
+          "simSwapOccurred":{
+           "type":[
+            "boolean",
+            "null"
+           ],
+           "description":"Always null on error."
+          },
+          "networkInfo":{
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.ErrorDto"
+          }
+         }
+        },
+        "examples":{
+         "Internal error - operation failed":{
+          "summary":"Internal error - operation failed",
+          "description":"Internal error - operation failed",
+          "value":{
+           "error":{
+            "id":1000,
+            "name":"EC_INTERNAL_ERROR",
+            "description":"Internal error in Infobip platform. Contact Support to resolve the issue."
+           },
+           "requestId":"665b6d63-0b65-4faf-a499-25530f0e93e0",
+           "simSwapOccurred":null,
+           "networkInfo":{
+            "simSwapTimestamp":null,
+            "simSwapPeriodStartHours":null,
+            "simSwapPeriodEndHours":null
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "mobile-identity:manage"
+    ]
+   }
+  },
+  "/mi/national-identity-number/1/check":{
+   "post":{
+    "tags":[
+     "connectivity",
+     "mobile-identity",
+     "identity-national-identity-number"
+    ],
+    "summary":"National Identity Number check",
+    "description":"Check if provided mobile phone number (MSISDN) belongs to user with provided national identity number.\n",
+    "operationId":"check-national-identity-number",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.NinCheckRequestDto"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "token":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request identifier."
+          },
+          "match":{
+           "type":"string",
+           "description":"Match result.",
+           "enum":[
+            "MATCHED",
+            "NOT_MATCHED"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "OK":{
+          "summary":"OK",
+          "description":"OK",
+          "value":{
+           "token":"6a31ccca-ceba-4998-a3b0-16ae5e182ab0",
+           "match":"MATCHED"
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "error":{
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.ErrorDto"
+          },
+          "token":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request identifier."
+          }
+         }
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "description":"Bad request",
+          "value":{
+           "error":{
+            "id":202,
+            "name":"EC_CONSENT_NOT_GRANTED",
+            "description":"User consent not granted"
+           },
+           "token":"56693a53-4174-4e81-8e9c-b8863a7ad827"
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "description":"Unauthorized - Platform authentication error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+        },
+        "examples":{
+         "Unauthorized":{
+          "summary":"Unauthorized",
+          "description":"Unauthorized",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHORIZED",
+             "text":"Invalid login details"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "403":{
+      "description":"Permission denied - Platform authorization error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+        },
+        "examples":{
+         "Permission denied":{
+          "summary":"Permission denied",
+          "description":"Permission denied",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHORIZED",
+             "text":"No permission to access resource"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "422":{
+      "description":"Unprocessable content",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "error":{
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.ErrorDto"
+          },
+          "token":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request identifier."
+          }
+         }
+        },
+        "examples":{
+         "Unprocessable content":{
+          "summary":"Unprocessable content",
+          "description":"Unprocessable content",
+          "value":{
+           "error":{
+            "id":400,
+            "name":"EC_UNPROCESSABLE_CONTENT",
+            "description":"Unable to process provided data."
+           },
+           "token":"56693a53-4174-4e81-8e9c-b8863a7ad827"
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "description":"Internal server error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "error":{
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.ErrorDto"
+          },
+          "token":{
+           "type":"string",
+           "format":"uuid",
+           "description":"Unique request identifier."
+          }
+         }
+        },
+        "examples":{
+         "Internal server error":{
+          "summary":"Internal server error",
+          "description":"Internal server error",
+          "value":{
+           "error":{
+            "id":1000,
+            "name":"EC_INTERNAL_ERROR",
+            "description":"Internal error in Infobip platform. Contact Support to resolve the issue."
+           },
+           "token":"56693a53-4174-4e81-8e9c-b8863a7ad827"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "mobile-identity:manage"
+    ]
+   }
+  }
+ },
+ "components":{
+  "schemas":{
+   "4503c9be2d8553d1e8648e283b9ba9017ae14f51177b500d7b5df7dc4842e4d2.ErrorInfoResponse":{
+    "type":"object",
+    "description":"Information about error occurred. If there is no error this object is omitted.",
+    "properties":{
+     "id":{
+      "type":"number",
+      "format":"integer",
+      "description":"Unique identifier of occurred error on Infobip platform."
+     },
+     "name":{
+      "type":"string",
+      "description":"Unique string identifier of occurred error on Mobile Identity platform."
+     },
+     "description":{
+      "type":"string",
+      "description":"Description of error occurred for easier comprehension."
+     }
+    },
+    "title":"MobileIdentityErrorInfoResponse"
+   },
+   "aaab91bc67ad6fdd15298ef61b480f76a93a7cae8c7684c83b1e909cda7f154f.ResultResponse":{
+    "type":"object",
+    "description":"Advanced silent mobile verification request result",
+    "properties":{
+     "token":{
+      "type":"string",
+      "description":"Unique request identifier. This value was returned on advanced silent mobile verification request."
+     },
+     "result":{
+      "type":"string",
+      "description":"Advanced silent mobile verification request result.",
+      "enum":[
+       "UNABLE_TO_VERIFY",
+       "SIM_SWAP_DETECTED",
+       "SIM_SWAP_CHECK_FAILED",
+       "INVALID",
+       "VALID",
+       "OTP_SMS_SENT"
+      ]
+     },
+     "status":{
+      "type":"string",
+      "description":"Advanced silent mobile verification request status.",
+      "enum":[
+       "COMPLETED",
+       "DEVICE_REDIRECT"
+      ]
+     },
+     "error":{
+      "$ref":"#/components/schemas/4503c9be2d8553d1e8648e283b9ba9017ae14f51177b500d7b5df7dc4842e4d2.ErrorInfoResponse"
+     }
+    },
+    "title":"AdvancedSilentMobileVerificationResultResponse"
+   },
+   "acc54cffc2fdf57be1405002c65f11d7bb0b2506a15f7e1c75bb3cbcc41d6219.ResultResponse":{
+    "type":"object",
+    "description":"Silent mobile verification request result",
+    "properties":{
+     "result":{
+      "type":"string",
+      "description":"Silent mobile verification request result.",
+      "enum":[
+       "VALID",
+       "INVALID",
+       "ERROR"
+      ]
+     },
+     "token":{
+      "type":"string",
+      "description":"Unique request identifier. This value was returned on silent mobile verification request."
+     },
+     "error":{
+      "$ref":"#/components/schemas/4503c9be2d8553d1e8648e283b9ba9017ae14f51177b500d7b5df7dc4842e4d2.ErrorInfoResponse"
+     }
+    },
+    "title":"SilentMobileVerificationResultResponse"
+   },
+   "c33580c9fc909cbe636f10f5fddd71adf658d961011f6b0e7df8bbb45e9ab4cb.QueryResultResponse":{
+    "type":"object",
+    "description":"Query result for each attribute sent to number intelligence query request",
+    "properties":{
+     "token":{
+      "type":"string",
+      "description":"Unique request identifier. This value was returned on number intelligence query request."
+     },
+     "niAttributes":{
+      "type":"object",
+      "description":"List of query results for attributes provided on number intelligence query request.",
+      "properties":{
+       "simSwap":{
+        "type":"object",
+        "description":"Object representing SIM swap occurrence.",
+        "properties":{
+         "simSwapOccurred":{
+          "type":"boolean",
+          "description":"Information if SIM swap has occurred or not."
+         },
+         "networkInfo":{
+          "type":"object",
+          "description":"Addition time information about SIM swap occurrence.",
+          "properties":{
+           "simSwapTimestamp":{
+            "type":"string",
+            "description":"Timestamp of SIM swap occurrence. This value will is null in case there is no information about occurrence timestamp."
+           },
+           "simSwapPeriodStartHours":{
+            "type":"number",
+            "format":"integer",
+            "description":"Starting hour of time frame when SIM swap occurred. This value will is null in case there is no information about occurrence timeframe starting hour."
+           },
+           "simSwapPeriodEndHours":{
+            "type":"number",
+            "format":"integer",
+            "description":"Ending hour of time frame when SIM swap occurred. This value will is null in case there is no information about occurrence timeframe ending hour."
+           }
+          }
+         },
+         "error":{
+          "$ref":"#/components/schemas/4503c9be2d8553d1e8648e283b9ba9017ae14f51177b500d7b5df7dc4842e4d2.ErrorInfoResponse"
+         }
+        }
+       },
+       "nationalIdentityNumber":{
+        "type":"object",
+        "description":"Object representing if national identity number and MSISDN matches.",
+        "properties":{
+         "match":{
+          "type":"string",
+          "description":"Information if user with provided national identity number owns provided MSISDN.",
+          "enum":[
+           "MATCHED",
+           "NOT_MATCHED",
+           "NO_DATA"
+          ]
+         },
+         "error":{
+          "$ref":"#/components/schemas/4503c9be2d8553d1e8648e283b9ba9017ae14f51177b500d7b5df7dc4842e4d2.ErrorInfoResponse"
+         }
+        }
+       }
+      }
+     },
+     "error":{
+      "$ref":"#/components/schemas/4503c9be2d8553d1e8648e283b9ba9017ae14f51177b500d7b5df7dc4842e4d2.ErrorInfoResponse"
+     }
+    },
+    "title":"NumberIntelligenceQueryResultResponse"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.AttributesRequestDto":{
+    "type":"object",
+    "description":"Object with parameters per attribute for Number Intelligence to query.<br/>\nAttribute value <strong>MUST NOT</strong> be <strong>null</strong> as in that case it will be ignored.<br/>\nIn some cases where attribute value has no parameters it <strong>NEEDS TO BE</strong> an empty object.",
+    "example":{
+     "simSwap":{
+      "period":24
+     },
+     "nationalIdentityNumber":{
+      "nationalId":"123.456.789-10"
+     }
+    },
+    "properties":{
+     "simSwap":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.SimSwapRequestDto"
+     },
+     "nationalIdentityNumber":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.NationalIdentityNumberDto"
+     },
+     "deviceLocation":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.DeviceLocationRequestDto"
+     }
+    },
+    "title":"AttributesRequestDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.DeviceLocationRequestDto":{
+    "type":"object",
+    "description":"Check if provided MSISDN is in location defined by provided coordinates.",
+    "properties":{
+     "latitude":{
+      "type":"number",
+      "format":"float",
+      "description":"Latitude that will be used to check for location of a mobile phone for provided phone number.",
+      "maximum":90,
+      "minimum":-90
+     },
+     "longitude":{
+      "type":"number",
+      "format":"float",
+      "description":"Longitude that will be used to check for location of a mobile phone for provided phone number.",
+      "maximum":180,
+      "minimum":-180
+     },
+     "accuracy":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Accuracy in km that will be used to check for location of a mobile phone for provided phone number.",
+      "maximum":20,
+      "minimum":2
+     }
+    },
+    "title":"DeviceLocationRequestDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.DltDto":{
+    "type":"object",
+    "description":"Distributed Ledger Technology (DLT) specific parameters required for sending SMS to phone numbers registered in India.",
+    "properties":{
+     "principalEntityId":{
+      "type":"string",
+      "description":"Your assigned DLT principal entity ID."
+     },
+     "contentTemplateId":{
+      "type":"string",
+      "description":"Registered DLT content template ID which matches message you are sending."
+     }
+    },
+    "required":[
+     "principalEntityId"
+    ],
+    "title":"DltDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.ErrorDto":{
+    "type":[
+     "object",
+     "null"
+    ],
+    "description":"Error object describing occurred error, present only if an error has occurred.",
+    "properties":{
+     "id":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Unique identifier of occurred error on Infobip platform.<br/>\nResponse Status and Error Codes documentation page, section [Mobile Identity Error Codes](https://www.infobip.com/docs/essentials/response-status-and-error-codes#mobile-identity-error-codes),\ncontains all available Mobile Identity error IDs."
+     },
+     "name":{
+      "type":"string",
+      "description":"Unique value of occurred error under Mobile Identity product.<br/>\nResponse Status and Error Codes documentation page, section [Mobile Identity Error Codes](https://www.infobip.com/docs/essentials/response-status-and-error-codes#mobile-identity-error-codes),\ncontains all available Mobile Identity error codes."
+     },
+     "description":{
+      "type":"string",
+      "description":"Description of occurred error for easier error comprehension.<br/>\nResponse Status and Error Codes documentation page, section [Mobile Identity Error Codes](https://www.infobip.com/docs/essentials/response-status-and-error-codes#mobile-identity-error-codes),\ncontains descriptions of all errors that can occur on Mobile Identity platform."
+     }
+    },
+    "title":"ErrorDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.InitZeroRatedRequestDto":{
+    "type":"object",
+    "description":"Silent Mobile Verification zero rated request initialization.",
+    "properties":{
+     "consentGranted":{
+      "type":"boolean",
+      "description":"Indicates whether you have consent from mobile phone number's owner to perform this request. All requests that do not have this property set to \"true\" will be rejected.",
+      "example":true
+     },
+     "phoneNumber":{
+      "type":"string",
+      "description":"Mobile phone number (MSISDN) to verify. The number must be in international format.",
+      "example":"441134961234"
+     },
+     "returnUrl":{
+      "type":"string",
+      "description":"An URL to which the mobile device will be redirected to when verification is complete.",
+      "example":"https://api.infobip.com/my-site/my-shop.html"
+     }
+    },
+    "required":[
+     "consentGranted",
+     "phoneNumber"
+    ],
+    "title":"InitZeroRatedRequestDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.NationalIdentityNumberDto":{
+    "type":"object",
+    "description":"Check if provided MSISDN belongs to user with provided national identity number.",
+    "properties":{
+     "nationalId":{
+      "type":"string",
+      "description":"National Identification Number that will be used to check for a match against a mobile phone number.\n",
+      "minLength":1
+     },
+     "documentType":{
+      "type":"string",
+      "description":"Document type that will be used to check for a match against a mobile phone number.\nCurrently, used and mandatory only in Colombia. Available values are `CC`, `CE` and `NIT`.\n"
+     }
+    },
+    "title":"NationalIdentityNumberDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.NiQueryRequestDto":{
+    "type":"object",
+    "description":"Number Intelligence query request object.",
+    "properties":{
+     "consentGranted":{
+      "type":"boolean",
+      "description":"Indicates whether you have consent from mobile phone number's owner to perform this request. All requests that do not have this property set to \"true\" will be rejected.",
+      "example":true
+     },
+     "phoneNumber":{
+      "type":"string",
+      "description":"Mobile phone number (MSISDN) to perform a query by. The number must be in international format.",
+      "example":"441134961234"
+     },
+     "callbackUrl":{
+      "type":"string",
+      "description":"Your URL that will be called to provide [query results](#platform-connectivity/mobile-identity/receive-number-intelligence-query-results) when the process is completed.",
+      "example":"https://api.infobip.com/my-callback-webook/my-path"
+     },
+     "attributes":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.AttributesRequestDto"
+     }
+    },
+    "required":[
+     "attributes",
+     "callbackUrl",
+     "consentGranted",
+     "phoneNumber"
+    ],
+    "title":"NiQueryRequestDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.NinCheckRequestDto":{
+    "type":"object",
+    "description":"National Identity Number check request object.",
+    "properties":{
+     "consentGranted":{
+      "type":"boolean",
+      "description":"Indicates whether you have consent from mobile phone number's owner to perform this request. All requests that do not have this property set to \"true\" will be rejected.",
+      "example":true
+     },
+     "phoneNumber":{
+      "type":"string",
+      "description":"Mobile phone number (MSISDN) to perform a query by. The number must be in international format.",
+      "example":"441134961234"
+     },
+     "nationalId":{
+      "type":"string",
+      "description":"National Identification Number that will be used to check for a match against a mobile phone number.",
+      "example":"123.456.789-10",
+      "maxLength":50,
+      "minLength":1
+     },
+     "documentType":{
+      "type":"string",
+      "description":"Document type that will be used to check for a match against a mobile phone number.\nCurrently, used and mandatory only in Colombia.\n",
+      "enum":[
+       "CC",
+       "CE",
+       "NIT"
+      ]
+     }
+    },
+    "required":[
+     "consentGranted",
+     "nationalId",
+     "phoneNumber"
+    ],
+    "title":"NinCheckRequestDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse":{
+    "type":"object",
+    "description":"Platform error response for authentication and authorization errors.",
+    "properties":{
+     "requestError":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.RequestError"
+     }
+    },
+    "title":"Platform Error Response"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.RegionalDto":{
+    "type":"object",
+    "description":"Region specific parameters, often specified by local laws. Use this if country or region that you are sending SMS to requires some extra parameters.",
+    "properties":{
+     "indiaDlt":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.DltDto"
+     }
+    },
+    "title":"RegionalDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.RequestError":{
+    "type":"object",
+    "description":"Request error object.",
+    "properties":{
+     "serviceException":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.ServiceException"
+     }
+    },
+    "title":"RequestError"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.ServiceException":{
+    "type":"object",
+    "description":"Service exception object containing error details.",
+    "properties":{
+     "messageId":{
+      "type":"string",
+      "description":"Identifier of the error.",
+      "example":"UNAUTHORIZED"
+     },
+     "text":{
+      "type":"string",
+      "description":"Detailed error description.",
+      "example":"Invalid login details"
+     }
+    },
+    "title":"ServiceException"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.SimSwapCheckDto":{
+    "type":"object",
+    "description":"SIM swap check parameters. In case this field is null, no SIM swap checks will be done.",
+    "properties":{
+     "period":{
+      "type":"integer",
+      "format":"int32",
+      "description":"SIM swap check will be verified with MNO in \"period\" amount of hours from when this request was received. The value should be greater than 0.",
+      "example":15,
+      "minimum":0
+     },
+     "proceedOn":{
+      "type":"array",
+      "description":"If specified, proceed to the SMV verify in case:\n- SIM swap check fails\n- There is no SIM swap coverage\n- Result of the SIM swap check was unknown",
+      "items":{
+       "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.SimSwapProceedOnDto"
+      },
+      "uniqueItems":true
+     }
+    },
+    "required":[
+     "period"
+    ],
+    "title":"SimSwapCheckDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.SimSwapCheckRequestDto":{
+    "type":"object",
+    "description":"SIM Swap request object.",
+    "properties":{
+     "consentGranted":{
+      "type":"boolean",
+      "description":"Indicates whether you have consent from mobile phone number's owner to perform this request. All requests that do not have this property set to \"true\" will be rejected.",
+      "example":true
+     },
+     "phoneNumber":{
+      "type":"string",
+      "description":"Mobile phone number (MSISDN) to verify. The number must be in international format.",
+      "example":"441134961234"
+     },
+     "period":{
+      "type":"integer",
+      "format":"int32",
+      "description":"SIM swap check will be verified with MNO in \"period\" amount of hours from when this request was received. The value should be greater than 0.",
+      "example":15,
+      "minimum":0
+     }
+    },
+    "required":[
+     "consentGranted",
+     "period",
+     "phoneNumber"
+    ],
+    "title":"SimSwapCheckRequestDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.SimSwapProceedOnDto":{
+    "type":"string",
+    "description":"If specified, proceed to the SMV verify in case:\n- SIM swap check fails\n- There is no SIM swap coverage\n- Result of the SIM swap check was unknown",
+    "enum":[
+     "ANY_ERROR",
+     "UNKNOWN",
+     "NO_COVERAGE"
+    ],
+    "title":"SimSwapProceedOnDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.SimSwapRequestDto":{
+    "type":"object",
+    "description":"Check if sim swap has occurred for requested MSISDN in provided time period.",
+    "properties":{
+     "period":{
+      "type":"integer",
+      "format":"int32",
+      "description":"If SIM swap attribute is included it will be verified with MNO allowed hour period.\nThe value should be greater than 0.\n",
+      "example":15,
+      "minimum":0
+     }
+    },
+    "title":"SimSwapRequestDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.SmsFailoverDto":{
+    "type":"object",
+    "description":"SMS failover message contents. In case this field is null, no SMS failover will be done.",
+    "properties":{
+     "from":{
+      "type":"string",
+      "description":"Message failover sender.",
+      "example":"441134961234"
+     },
+     "text":{
+      "type":"string",
+      "description":"Message failover text.",
+      "example":"One time verification pin: 1234"
+     },
+     "validityPeriod":{
+      "type":"integer",
+      "format":"int32",
+      "description":"The message validity period in seconds. When the period expires, it will not be allowed for the message to be sent.",
+      "example":5,
+      "minimum":0
+     },
+     "regional":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.RegionalDto"
+     }
+    },
+    "required":[
+     "from",
+     "text"
+    ],
+    "title":"SmsFailoverDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.SmvVerifyAdvancedRequestDto":{
+    "type":"object",
+    "description":"Silent Mobile Verification Advanced request object.",
+    "properties":{
+     "consentGranted":{
+      "type":"boolean",
+      "description":"Indicates whether you have consent from mobile phone number's owner to perform this request. All requests that do not have this property set to \"true\" will be rejected.",
+      "example":true
+     },
+     "phoneNumber":{
+      "type":"string",
+      "description":"Mobile phone number (MSISDN) to verify. The number must be in international format.",
+      "example":"441134961234"
+     },
+     "callbackUrl":{
+      "type":"string",
+      "description":"Your URL that will be called to provide [result](#platform-connectivity/mobile-identity/receive-advanced-silent-mobile-verification-result) when the process is completed.",
+      "example":"https://api.infobip.com/my-callback-webook/my-path"
+     },
+     "returnUrl":{
+      "type":"string",
+      "description":"An URL to which the mobile device will be redirected to when verification is complete.",
+      "example":"https://api.infobip.com/my-site/my-shop.html"
+     },
+     "smsFailover":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.SmsFailoverDto"
+     },
+     "simSwapCheck":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.SimSwapCheckDto"
+     },
+     "deviceIp":{
+      "type":"string",
+      "format":"xxx.xxx.xxx.xxx|xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx",
+      "description":"IPv4 or IPv6 address of the mobile device that will be verified with operator. Currently, can be used only in Brazil.",
+      "example":"10.20.30.100|1111:22222:3333:4444:AAAA:BBBB:CCCC:DDDD"
+     },
+     "devicePort":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Port of the mobile device that will be verified with operator. Can be used only when \"deviceIp\" is also provided. Currently, can be used only in Brazil.",
+      "example":54321
+     }
+    },
+    "required":[
+     "callbackUrl",
+     "consentGranted",
+     "phoneNumber"
+    ],
+    "title":"SmvVerifyAdvancedRequestDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.SmvVerifyRequestDto":{
+    "type":"object",
+    "description":"Silent Mobile Verification request object.",
+    "properties":{
+     "consentGranted":{
+      "type":"boolean",
+      "description":"Indicates whether you have consent from mobile phone number's owner to perform this request. All requests that do not have this property set to \"true\" will be rejected.",
+      "example":true
+     },
+     "phoneNumber":{
+      "type":"string",
+      "description":"Mobile phone number (MSISDN) to verify. The number must be in international format.",
+      "example":"441134961234"
+     },
+     "callbackUrl":{
+      "type":"string",
+      "description":"Your URL that will be called to provide [result](#platform-connectivity/mobile-identity/receive-silent-mobile-verification-result) when the process is completed.",
+      "example":"https://api.infobip.com/my-callback-webook/my-path"
+     },
+     "returnUrl":{
+      "type":"string",
+      "description":"An URL to which the mobile device will be redirected to when verification is complete.",
+      "example":"https://api.infobip.com/my-site/my-shop.html"
+     },
+     "deviceIp":{
+      "type":"string",
+      "format":"xxx.xxx.xxx.xxx|xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx",
+      "description":"IPv4 or IPv6 address of the mobile device that will be verified with operator. Currently, can be used only in Brazil.",
+      "example":"10.20.30.100|1111:22222:3333:4444:AAAA:BBBB:CCCC:DDDD"
+     },
+     "devicePort":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Port of the mobile device that will be verified with operator. Can be used only when \"deviceIp\" is also provided. Currently, can be used only in Brazil.",
+      "example":54321
+     }
+    },
+    "required":[
+     "callbackUrl",
+     "consentGranted",
+     "phoneNumber"
+    ],
+    "title":"SmvVerifyRequestDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.SmvVerifySynchronousRequestDto":{
+    "type":"object",
+    "description":"Silent Mobile Verification Synchronous request object.",
+    "properties":{
+     "consentGranted":{
+      "type":"boolean",
+      "description":"Indicates whether you have consent from mobile phone number's owner to perform this request. All requests that do not have this property set to \"true\" will be rejected.",
+      "example":true
+     },
+     "phoneNumber":{
+      "type":"string",
+      "description":"Mobile phone number (MSISDN) to verify. The number must be in international format.",
+      "example":"441134961234"
+     },
+     "deviceIp":{
+      "type":"string",
+      "format":"xxx.xxx.xxx.xxx|xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx",
+      "description":"IPv4 or IPv6 address of the mobile device that will be verified with operator.",
+      "example":"10.20.30.100|1111:22222:3333:4444:AAAA:BBBB:CCCC:DDDD"
+     },
+     "devicePort":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Port of the mobile device that will be verified with operator. Can be used only when \"deviceIp\" is also provided.",
+      "example":54321
+     }
+    },
+    "required":[
+     "consentGranted",
+     "deviceIp",
+     "devicePort",
+     "phoneNumber"
+    ],
+    "title":"SmvVerifySynchronousRequestDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.VerifyZeroRatedRequestDto":{
+    "type":"object",
+    "description":"Silent Mobile Verification zero rated request verification.",
+    "properties":{
+     "token":{
+      "type":"string",
+      "format":"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+      "description":"Unique request ID.<br>\nThe whole flow from the request to response has same token so it can be used for debugging in case of error or matching API request with the callback webhook response.",
+      "example":"123e4567-e89b-12d3-a456-426655440000"
+     }
+    },
+    "title":"VerifyZeroRatedRequestDto"
+   }
+  },
+  "responses":{},
+  "parameters":{},
+  "examples":{},
+  "requestBodies":{},
+  "headers":{},
+  "securitySchemes":{
+   "APIKeyHeader":{
+    "type":"apiKey",
+    "description":"This is the most secure authorization type and the one with the most flexibility.\n\nAPI keys can be generated by calling the dedicated API method. Furthermore, API keys can have a limited scope and cover only some API methods. Lastly, they can\nbe revoked at any time. This range of possibilities makes API keys well suited for separating the API access rights across multiple applications or use cases.\nFinally, the loss of an API key is easily manageable.\n\nYou can manage your API keys from [GUI](https://portal.infobip.com/settings/accounts/api-keys), or programmatically\nwith [dedicated API](#platform-&-connectivity/settings).\n\nAPI key Authorization header example:\n\n```shell\nAuthorization: App 003026bbc133714df1834b8638bb496e-8f4b3d9a-e931-478d-a994-28a725159ab9\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "Basic":{
+    "type":"http",
+    "description":"Basic authorization type can be used in situations when the API key is not available. For example, API methods for generating API keys should be authenticated\nwith the Basic type.\n\nIn this case, the credentials included in the Authorization header should be a Base64 encoded username and password combination. More formally, basic\nauthentication header can be constructed in three steps:\n\n* Username and password are concatenated using the colon `(:)` as a separator `username:password`.\n* The resulting string is encoded using the [RFC2045-MIME](https://www.ietf.org/rfc/rfc2045.txt) variant of Base64.\n* Encoded string is added as credentials after the `\"Basic \"` type.\n\nExample:\n\n```shell\nUsername: \"Aladdin\"\nPassword: \"openSesame\"\n\nConcatenated string: \"Aladdin:openSesame\"\n\nBase64 encoded string: \"QWxhZGRpbjpvcGVuU2VzYW1l\"\n\nAuthorization header: \"Basic QWxhZGRpbjpvcGVuU2VzYW1l\"\n```\n\n> **Implementation detail**: Base64 encoding is a standard and many available programming languages and frameworks provide convenient methods for encoding\n> strings.\n",
+    "scheme":"basic"
+   },
+   "IBSSOTokenHeader":{
+    "type":"apiKey",
+    "description":"This authorization type is suited for situations when you do not want to store Infobip credentials in your own app. Instead, your users will input their Infobip\ncredentials every time they access your application and the application will use those credentials to create a session. From then on, the session token can be\nused to authenticate subsequent API requests. Note that the session will expire automatically after a predefined period of inactivity, and can also be manually\nterminated by making an appropriate API call.\n\nYou can find more details on the creation and behavior of the session at\nthe [dedicated documentation page](#platform-connectivity/account-management/create-session).\n\nAfter obtaining the session token by calling the above-referenced API method you can include it in the Authorization header like this:\n\n```shell\nAuthorization: IBSSO 2f9b4d31-2d0d-49a8-85f0-9b862bdca394\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "OAuth2":{
+    "type":"oauth2",
+    "description":"Similarly to the IBSSO Token authentication you can use OAuth 2.0 bearer token with Infobip serving both as resource and authorization server. You can obtain\nthe access token using the client credentials grant from `auth/1/oauth2/token` endpoint. It will provide you with your access token, and its expiration period.\nYou can use the token to authorize your API calls until it expires. You can find out more about the process in\nthe [official specification](https://tools.ietf.org/html/rfc6749#section-4.4).\n\nYou can include your access token in the Authorization HTTP request header like this:\n\n```http\nAuthorization: Bearer <access_token>\n```",
+    "flows":{
+     "clientCredentials":{
+      "tokenUrl":"https://api.infobip.com/auth/1/oauth2/token",
+      "scopes":{}
+     }
+    }
+   }
+  },
+  "links":{},
+  "callbacks":{}
+ },
+ "webhooks":{
+  "receive-silent-mobile-verification-result":{
+   "post":{
+    "tags":[
+     "connectivity",
+     "mobile-identity",
+     "identity-verification"
+    ],
+    "summary":"Receive silent mobile verification result",
+    "description":"Silent mobile verification request will be processed asynchronously after the request is made to silent mobile verification API. After processing of the request is done, results will be delivered to the URL provided in silent mobile verification request.",
+    "externalDocs":{
+     "description":"Learn more about the Mobile Identity platform and its use cases.",
+     "url":"https://www.infobip.com/docs/mobile-identity"
+    },
+    "operationId":"receive-silent-mobile-verification-result",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/acc54cffc2fdf57be1405002c65f11d7bb0b2506a15f7e1c75bb3cbcc41d6219.ResultResponse"
+       },
+       "examples":{
+        "Successful response":{
+         "summary":"Successful response",
+         "description":"Successful silent mobile verification result.",
+         "value":{
+          "result":"VALID",
+          "token":"123e4567-e89b-12d3-a456-426655440000",
+          "error":null
+         }
+        },
+        "Unsuccessful response":{
+         "summary":"Unsuccessful response",
+         "description":"Error occurred while processing silent mobile verification request.",
+         "value":{
+          "result":"ERROR",
+          "token":"123e4567-e89b-12d3-a456-426655440000",
+          "error":{
+           "id":202,
+           "name":"EC_CONSENT_NOT_GRANTED",
+           "description":"User consent not granted"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"Your server returns this code if it accepts the callback."
+     }
+    }
+   }
+  },
+  "receive-advanced-silent-mobile-verification-result":{
+   "post":{
+    "tags":[
+     "connectivity",
+     "mobile-identity",
+     "identity-verification"
+    ],
+    "summary":"Receive advanced silent mobile verification result",
+    "description":"Advanced silent mobile verification request will be processed asynchronously after the request is made to advanced silent mobile verification API. After processing of the request is done, results will be delivered to the URL provided in advanced silent mobile verification request.",
+    "externalDocs":{
+     "description":"Learn more about the Mobile Identity platform and its use cases.",
+     "url":"https://www.infobip.com/docs/mobile-identity"
+    },
+    "operationId":"receive-advanced-silent-mobile-verification-result",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/aaab91bc67ad6fdd15298ef61b480f76a93a7cae8c7684c83b1e909cda7f154f.ResultResponse"
+       },
+       "examples":{
+        "Successful response":{
+         "summary":"Successful response",
+         "description":"Successful advanced silent mobile verification result.",
+         "value":{
+          "token":"123e4567-e89b-12d3-a456-426655440000",
+          "result":"VALID",
+          "status":"COMPLETED",
+          "error":null
+         }
+        },
+        "Unsuccessful response":{
+         "summary":"Unsuccessful response",
+         "description":"Error occurred while processing silent mobile verification request.",
+         "value":{
+          "token":"123e4567-e89b-12d3-a456-426655440000",
+          "result":"ERROR",
+          "status":"COMPLETED",
+          "error":{
+           "id":202,
+           "name":"EC_CONSENT_NOT_GRANTED",
+           "description":"User consent not granted"
+          }
+         }
+        },
+        "Unsuccessful response and fallback to SMS":{
+         "summary":"Unsuccessful response and fallback to SMS",
+         "description":"Error occurred while processing silent mobile verification request and fallback to SMS was issued.",
+         "value":{
+          "token":"123e4567-e89b-12d3-a456-426655440000",
+          "result":"OTP_SMS_SENT",
+          "status":"COMPLETED",
+          "error":null
+         }
+        },
+        "Successful response with detected SIM Swap event":{
+         "summary":"Successful response with detected SIM Swap event",
+         "description":"Successful advanced silent mobile verification result of a detected SIM Swap event.",
+         "value":{
+          "token":"123e4567-e89b-12d3-a456-426655440000",
+          "result":"SIM_SWAP_DETECTED",
+          "status":"COMPLETED",
+          "error":null
+         }
+        }
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"Your server returns this code if it accepts the callback."
+     }
+    }
+   }
+  },
+  "receive-number-intelligence-query-results":{
+   "post":{
+    "tags":[
+     "connectivity",
+     "mobile-identity",
+     "identity-number-intelligence"
+    ],
+    "summary":"Receive number intelligence query results",
+    "description":"Number intelligence query request will be processed asynchronously after the request is made to number intelligence API. After processing of the request is done, results will be delivered to the URL provided in number intelligence request.",
+    "externalDocs":{
+     "description":"Learn more about the Mobile Identity platform and its use cases.",
+     "url":"https://www.infobip.com/docs/mobile-identity"
+    },
+    "operationId":"receive-number-intelligence-query-results",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/c33580c9fc909cbe636f10f5fddd71adf658d961011f6b0e7df8bbb45e9ab4cb.QueryResultResponse"
+       },
+       "examples":{
+        "Successful response":{
+         "summary":"Successful response",
+         "description":"Successful SIM swap attribute query result.",
+         "value":{
+          "token":"e1ec531a-1de8-4c2e-8fee-464c7769ce90",
+          "niAttributes":{
+           "simSwap":{
+            "simSwapOccurred":true,
+            "networkInfo":{
+             "simSwapTimestamp":"2020-04-15T20:00:00+02:00",
+             "simSwapPeriodStartHours":null,
+             "simSwapPeriodEndHours":null
+            }
+           },
+           "nationalIdentityNumber":{
+            "match":"MATCHED"
+           }
+          }
+         }
+        },
+        "Error on attribute level":{
+         "summary":"Error on attribute level",
+         "description":"Error occurred while querying SIM swap attribute.",
+         "value":{
+          "token":"e1ec531a-1de8-4c2e-8fee-464c7769ce90",
+          "niAttributes":{
+           "simSwap":{
+            "simSwapOccurred":null,
+            "networkInfo":null,
+            "error":{
+             "id":101,
+             "name":"EC_GATEWAY_OPERATION_FAILED",
+             "description":"Provider service failed"
+            }
+           },
+           "nationalIdentityNumber":{
+            "match":null,
+            "error":{
+             "id":101,
+             "name":"EC_GATEWAY_OPERATION_FAILED",
+             "description":"Provider service failed"
+            }
+           }
+          }
+         }
+        },
+        "Error on number intelligence operation level":{
+         "summary":"Error on number intelligence operation level",
+         "description":"Error occurred while executing number intelligence operation.",
+         "value":{
+          "token":"e1ec531a-1de8-4c2e-8fee-464c7769ce90",
+          "niAttributes":"null",
+          "error":{
+           "id":202,
+           "name":"EC_CONSENT_NOT_GRANTED",
+           "description":"User consent not granted"
+          }
+         }
+        },
+        "National Identity Number NO_DATA match":{
+         "summary":"National Identity Number NO_DATA match",
+         "description":"National Identity Number could not conclude due to insufficient data from a provider.",
+         "value":{
+          "token":"e1ec531a-1de8-4c2e-8fee-464c7769ce90",
+          "niAttributes":{
+           "nationalIdentityNumber":{
+            "match":"NO_DATA",
+            "error":{
+             "id":1,
+             "name":"EC_UNKNOWN_SUBSCRIBER",
+             "description":"The number does not exist or it has not been assigned to any active subscriber in the operator’s user database."
+            }
+           },
+           "simSwap":{
+            "simSwapOccurred":true,
+            "networkInfo":{
+             "simSwapTimestamp":null,
+             "simSwapPeriodStartHours":24,
+             "simSwapPeriodEndHours":48
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"Your server returns this code if it accepts the callback."
+     }
+    }
+   }
+  }
+ }
+}

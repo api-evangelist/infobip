@@ -1,0 +1,3761 @@
+{
+ "openapi":"3.1.0",
+ "info":{
+  "title":"Infobip OpenAPI Specification",
+  "description":"OpenAPI Specification that contains all public endpoints and webhooks.",
+  "contact":{
+   "name":"Infobip support",
+   "email":"support@infobip.com"
+  },
+  "version":"3.210.0",
+  "x-generatedAt":"2026-07-23T15:23:55.97536296Z"
+ },
+ "tags":[
+  {
+   "name":"connectivity",
+   "description":"Powerful infrastructure and tools that connect you to the world.\n",
+   "x-type":"category",
+   "x-displayName":"Connectivity"
+  },
+  {
+   "name":"camara",
+   "description":"**Contact us and get started with CAMARA. Please [fill out the form](https://www.infobip.com/contact), and our experts will contact you shortly.** \\\n\\\n[CAMARA](https://camaraproject.org/) represents a set of services that we offer in cooperation with the mobile network operators. With their capabilities, we are bringing the extensive subscriber data they possess to provide improved authentication methods and enhance the security of online transactions.\n",
+   "x-type":"product",
+   "x-displayName":"CAMARA"
+  },
+  {
+   "name":"network-based-number-verification",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Network based Number Verification"
+  },
+  {
+   "name":"sim-based-number-verification",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"SIM based Number Verification"
+  },
+  {
+   "name":"device-location-verification",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Device location verification"
+  },
+  {
+   "name":"sim-swap",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"SIM swap"
+  },
+  {
+   "name":"know-your-customer",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Know your customer"
+  }
+ ],
+ "paths":{
+  "/camara/number-verification/v0/authorize":{
+   "get":{
+    "tags":[
+     "connectivity",
+     "camara",
+     "network-based-number-verification"
+    ],
+    "summary":"Number verify device authorization",
+    "description":"Use this method to redirect the mobile device on the MNO network for authorization, based on the mobile device IP address.\nUpon authorization, the device is redirected back to the URL specified in `redirectUrl`.\nWhen redirected back, a new query parameter `code` is being added.\nIt needs to be sent in a subsequent verify request to complete verification.\n\n**Error handling behavior:**\n- When `redirectUrl` parameter **is provided**: All errors are returned as a 302 redirect back to the `redirectUrl` with OAuth 2.0 error query parameters (`error`, `error_description` (optional), `state`).\n- When `redirectUrl` parameter **is NOT provided**: A JSON response is returned (see below).\n",
+    "operationId":"authorize-number-verify",
+    "parameters":[
+     {
+      "name":"clientId",
+      "in":"query",
+      "description":"Client ID to identify the client on whose behalf the device is making the request. This is **provided to the client** upon registration. The value is usually the username that is being used to login into Infobip portal when generating [API key header](https://www.infobip.com/docs/essentials/api-essentials/api-authentication#api-key-header) and/or client_id that is being used when [generating OAuth2 token](https://www.infobip.com/docs/api/platform/account-management/create-oauth2-token).",
+      "required":true,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"enterprise-client-id"
+     },
+     {
+      "name":"redirectUrl",
+      "in":"query",
+      "description":"URL to redirect back the device to after authorization on MNO network. **This URL needs to be static**. For request tracking and correlation purposes, the `state` query parameter will be added to this URL before redirecting the device back.",
+      "required":true,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "format":"uri"
+      },
+      "example":"https://enterprise.com/authorization-complete"
+     },
+     {
+      "name":"state",
+      "in":"query",
+      "description":"String that will be returned as a query parameter in the `redirectUrl`.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"51A7_7131"
+     },
+     {
+      "name":"login_hint",
+      "in":"query",
+      "description":"OIDC login hint. Expects a phone number in `tel:+{phone_number_with_country_code}` format.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"tel:+441134961234"
+     }
+    ],
+    "responses":{
+     "302":{
+      "description":" Redirect to MNO authorization endpoint. Response body is empty, information is returned in response headers.",
+      "headers":{
+       "Location":{
+        "description":"MNO authorization endpoint URL\n\n**Error redirect:** When an error occurs and `redirectUrl` was provided, the error is returned as OAuth 2.0 query parameters in the redirect URL.\n\n**Error redirect URL format:** `{redirectUrl}?error={error_code}&error_description={error_description}&state={state}`\n\nNote: `error_description` is optional.\n\n**OAuth error codes:**\n\n- `invalid_request` - The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed.\n- `unauthorized_client` - The client is not authorized to request an authorization code using this method.\n- `access_denied` - The user or authorization server denied the request (for example, the user cannot be authenticated or denied the consent).\n- `unsupported_response_type` - The authorization server does not support obtaining an authorization code using this method.\n- `invalid_scope` - The requested scope is either invalid, unknown, or malformed.\n- `consent_required` - The authorization server requires user consent.\n- `server_error` - The authorization server encountered an unexpected condition that prevented it from fulfilling the request.\n- `temporarily_unavailable` - The authorization server is currently unable to handle the request due to a temporary overloading or maintenance of the server.\n- `invalid_request_object` - The request parameter contains an invalid Request Object.\n- `request_uri_not_supported` - The authorization server does not support use of the request_uri parameter.\n",
+        "style":"simple",
+        "explode":false,
+        "schema":{
+         "type":"string",
+         "format":"uri",
+         "example":"https://mno.example.com/authorize?queryParam=..."
+        }
+       },
+       "x-correlator":{
+        "description":"Correlation ID for tracking the request",
+        "style":"simple",
+        "explode":false,
+        "schema":{
+         "type":"string",
+         "format":"uuid",
+         "example":"6a31ccca-ceba-4998-a3b0-16ae5e182ab0"
+        }
+       }
+      },
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraResponseBaseDto"
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request.\nWhen `redirectUrl` is available, this error is returned via 302 redirect with `error=invalid_request`",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            400
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "INVALID_ARGUMENT"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "Client specified an invalid argument, request body or query param"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "description":"Bad request",
+          "value":{
+           "status":400,
+           "code":"INVALID_ARGUMENT",
+           "message":"Client specified an invalid argument, request body or query param"
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "description":"Unauthenticated",
+      "content":{
+       "application/json":{
+        "schema":{
+         "oneOf":[
+          {
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraUnauthenticatedErrorResponse"
+          },
+          {
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Unauthenticated":{
+          "summary":"Unauthenticated",
+          "description":"Unauthenticated",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHENTICATED",
+             "text":"Invalid login details"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "description":"Internal server error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            500
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "INTERNAL"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "Server error"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Internal server error":{
+          "summary":"Internal server error",
+          "description":"Internal server error",
+          "value":{
+           "status":500,
+           "code":"INTERNAL",
+           "message":"Server error"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/camara/number-verification/v0/verify":{
+   "post":{
+    "tags":[
+     "connectivity",
+     "camara",
+     "network-based-number-verification"
+    ],
+    "summary":"Number Verification",
+    "description":"Use this method to verify possession of the end-user's mobile phone number with the mobile network operator's data connection.",
+    "operationId":"verify-number",
+    "parameters":[
+     {
+      "name":"X-Correlator",
+      "in":"header",
+      "description":"`Code` parameter that was received on `/authorize` request. This header is not required only if OAuth2 `grant_type=authorization_code` was used on token generation.",
+      "required":false,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string",
+       "format":"uuid"
+      }
+     }
+    ],
+    "requestBody":{
+     "description":"Number verification request object.",
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.NumberVerifyRequestDto"
+       },
+       "examples":{
+        "Phone verification":{
+         "summary":"Phone verification",
+         "description":"Phone verification",
+         "value":{
+          "phoneNumber":"+441134961234"
+         }
+        }
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.NumberVerifyResponseDto"
+        },
+        "examples":{
+         "Verified":{
+          "summary":"Verified",
+          "description":"Verified",
+          "value":{
+           "devicePhoneNumberVerified":true
+          }
+         },
+         "Not verified":{
+          "summary":"Not verified",
+          "description":"Not verified",
+          "value":{
+           "devicePhoneNumberVerified":false
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            400
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "INVALID_ARGUMENT"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "Client specified an invalid argument, request body or query param"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "description":"Bad request",
+          "value":{
+           "status":400,
+           "code":"INVALID_ARGUMENT",
+           "message":"Client specified an invalid argument, request body or query param"
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "description":"Unauthenticated",
+      "content":{
+       "application/json":{
+        "schema":{
+         "oneOf":[
+          {
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraUnauthenticatedErrorResponse"
+          },
+          {
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Unauthenticated":{
+          "summary":"Unauthenticated",
+          "description":"Unauthenticated",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHENTICATED",
+             "text":"Invalid login details"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "403":{
+      "description":"Permission denied",
+      "content":{
+       "application/json":{
+        "schema":{
+         "oneOf":[
+          {
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraPermissionDeniedErrorResponse"
+          },
+          {
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Permission denied":{
+          "summary":"Permission denied",
+          "description":"Permission denied",
+          "value":{
+           "status":403,
+           "code":"PERMISSION_DENIED",
+           "message":"Client does not have sufficient permissions to perform this action"
+          }
+         },
+         "Unauthorized":{
+          "summary":"Unauthorized",
+          "description":"Unauthorized",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHORIZED",
+             "text":"Invalid login details"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            404
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "NOT_FOUND"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "Not found"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Not found":{
+          "summary":"Not found",
+          "description":"Not found",
+          "value":{
+           "status":404,
+           "code":"NOT_FOUND",
+           "message":"Not found"
+          }
+         }
+        }
+       }
+      }
+     },
+     "409":{
+      "description":"Conflict",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            409
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "CONFLICT"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "Another request is created for the same MSISDN"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Conflict":{
+          "summary":"Conflict",
+          "description":"Conflict",
+          "value":{
+           "status":409,
+           "code":"CONFLICT",
+           "message":"Another request is created for the same MSISDN"
+          }
+         }
+        }
+       }
+      }
+     },
+     "422":{
+      "description":"Unprocessable content",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            422
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "SERVICE_NOT_APPLICABLE"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "The service is not available for the provided identifier"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Unprocessable content":{
+          "summary":"Unprocessable content",
+          "description":"Unprocessable content",
+          "value":{
+           "status":422,
+           "code":"SERVICE_NOT_APPLICABLE",
+           "message":"The service is not available for the provided identifier"
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "description":"Internal server error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            500
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "INTERNAL"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "Server error"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Internal server error":{
+          "summary":"Internal server error",
+          "description":"Internal server error",
+          "value":{
+           "status":500,
+           "code":"INTERNAL",
+           "message":"Server error"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "mobile-identity:manage"
+    ]
+   }
+  },
+  "/camara/number-verification/v2/dcql":{
+   "post":{
+    "tags":[
+     "connectivity",
+     "camara",
+     "sim-based-number-verification"
+    ],
+    "summary":"Number verification DCQL Request",
+    "description":"Use this method to generate a credential request structure for the Android CredentialManager. The response must be passed to the device for SIM-based (TS.43) authentication.",
+    "operationId":"create-dcql-request",
+    "requestBody":{
+     "description":"DCQL request object specifying the desired use case",
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.DcqlRequestDto"
+       },
+       "examples":{
+        "Get phone number":{
+         "summary":"Get phone number",
+         "description":"Get phone number",
+         "value":{
+          "useCase":"GET_PHONE_NUMBER",
+          "nonce":"a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+          "carrierIds":[
+           123,
+           456
+          ]
+         }
+        },
+        "Verify phone number":{
+         "summary":"Verify phone number",
+         "description":"Verify phone number",
+         "value":{
+          "useCase":"VERIFY_PHONE_NUMBER",
+          "nonce":"a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+          "carrierIds":[
+           123,
+           456
+          ]
+         }
+        }
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK — per-carrier map of DCQL credential objects or error objects",
+      "content":{
+       "application/json":{
+        "schema":{
+         "oneOf":[
+          {
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.DcqlResponseDto"
+          },
+          {
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.DcqlNotFoundErrorResponse"
+          }
+         ]
+        },
+        "examples":{
+         "All carriers successful":{
+          "summary":"All carriers successful",
+          "description":"All carriers successful",
+          "value":{
+           "123":{
+            "id":"miapi.infobip.com",
+            "format":"dc-authorization+sd-jwt",
+            "meta":{
+             "credential_authorization_jwt":"eyJhbGciOiJFUzI1NiIs...",
+             "vct_values":[
+              "number-verification/device-phone-number/ts43"
+             ]
+            },
+            "claims":[
+             {
+              "path":[
+               "android_carrier_hint"
+              ],
+              "values":[
+               123
+              ]
+             }
+            ]
+           },
+           "456":{
+            "id":"miapi.infobip.com",
+            "format":"dc-authorization+sd-jwt",
+            "meta":{
+             "credential_authorization_jwt":"eyJhbGciOiJFUzI1NiIs...",
+             "vct_values":[
+              "number-verification/device-phone-number/ts43"
+             ]
+            },
+            "claims":[
+             {
+              "path":[
+               "android_carrier_hint"
+              ],
+              "values":[
+               456
+              ]
+             }
+            ]
+           }
+          }
+         },
+         "Some carriers failed, some succeeded":{
+          "summary":"Some carriers failed, some succeeded",
+          "description":"Some carriers failed, some succeeded",
+          "value":{
+           "123":{
+            "id":"miapi.infobip.com",
+            "format":"dc-authorization+sd-jwt",
+            "meta":{
+             "credential_authorization_jwt":"eyJhbGciOiJFUzI1NiIs...",
+             "vct_values":[
+              "number-verification/device-phone-number/ts43"
+             ]
+            },
+            "claims":[
+             {
+              "path":[
+               "android_carrier_hint"
+              ],
+              "values":[
+               123
+              ]
+             }
+            ]
+           },
+           "456":{
+            "status":404,
+            "code":"NOT_FOUND",
+            "message":"Not found"
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            400
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "INVALID_ARGUMENT"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "Client specified an invalid argument, request body or query param"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "description":"Bad request",
+          "value":{
+           "status":400,
+           "code":"INVALID_ARGUMENT",
+           "message":"Client specified an invalid argument, request body or query param"
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "description":"Unauthorized - Platform authentication error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+        },
+        "examples":{
+         "Unauthorized":{
+          "summary":"Unauthorized",
+          "description":"Unauthorized",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHORIZED",
+             "text":"Invalid login details"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "403":{
+      "description":"Permission denied",
+      "content":{
+       "application/json":{
+        "schema":{
+         "oneOf":[
+          {
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraPermissionDeniedErrorResponse"
+          },
+          {
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Permission denied":{
+          "summary":"Permission denied",
+          "description":"Permission denied",
+          "value":{
+           "status":403,
+           "code":"PERMISSION_DENIED",
+           "message":"Client does not have sufficient permissions to perform this action"
+          }
+         },
+         "Unauthorized":{
+          "summary":"Unauthorized",
+          "description":"Unauthorized",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHORIZED",
+             "text":"Invalid login details"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "422":{
+      "description":"Unprocessable content",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            422
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "SERVICE_NOT_APPLICABLE"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "The service is not available for the provided identifier"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Unprocessable content":{
+          "summary":"Unprocessable content",
+          "description":"Unprocessable content",
+          "value":{
+           "status":422,
+           "code":"SERVICE_NOT_APPLICABLE",
+           "message":"The service is not available for the provided identifier"
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "description":"Internal server error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            500
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "INTERNAL"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "enum":[
+            "Server error"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Internal server error":{
+          "summary":"Internal server error",
+          "description":"Internal server error",
+          "value":{
+           "status":500,
+           "code":"INTERNAL",
+           "message":"Server error"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "mobile-identity:manage"
+    ]
+   }
+  },
+  "/camara/number-verification/v2/device-phone-number":{
+   "get":{
+    "tags":[
+     "connectivity",
+     "camara",
+     "sim-based-number-verification"
+    ],
+    "summary":"Get Phone Number",
+    "description":"Use this method to retrieve the phone number associated with the device SIM.",
+    "operationId":"get-device-phone-number",
+    "parameters":[
+     {
+      "name":"X-Correlator",
+      "in":"header",
+      "description":"In SIM based (TS.43) verification flow this should be the `vp_token` (SD-JWT) value received from Android Credential Manager.",
+      "required":false,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.DevicePhoneNumberResponseDto"
+        },
+        "examples":{
+         "Verified":{
+          "summary":"Verified",
+          "description":"Verified",
+          "value":{
+           "devicePhoneNumber":"+441134961234"
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            400
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "INVALID_ARGUMENT"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "Client specified an invalid argument, request body or query param"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "description":"Bad request",
+          "value":{
+           "status":400,
+           "code":"INVALID_ARGUMENT",
+           "message":"Client specified an invalid argument, request body or query param"
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "description":"Unauthenticated",
+      "content":{
+       "application/json":{
+        "schema":{
+         "oneOf":[
+          {
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraUnauthenticatedErrorResponse"
+          },
+          {
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Unauthenticated":{
+          "summary":"Unauthenticated",
+          "description":"Unauthenticated",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHENTICATED",
+             "text":"Invalid login details"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "403":{
+      "description":"Permission denied",
+      "content":{
+       "application/json":{
+        "schema":{
+         "oneOf":[
+          {
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraPermissionDeniedErrorResponse"
+          },
+          {
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Permission denied":{
+          "summary":"Permission denied",
+          "description":"Permission denied",
+          "value":{
+           "status":403,
+           "code":"PERMISSION_DENIED",
+           "message":"Client does not have sufficient permissions to perform this action"
+          }
+         },
+         "Unauthorized":{
+          "summary":"Unauthorized",
+          "description":"Unauthorized",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHORIZED",
+             "text":"Invalid login details"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            404
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "NOT_FOUND"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "Not found"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Not found":{
+          "summary":"Not found",
+          "description":"Not found",
+          "value":{
+           "status":404,
+           "code":"NOT_FOUND",
+           "message":"Not found"
+          }
+         }
+        }
+       }
+      }
+     },
+     "409":{
+      "description":"Conflict",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            409
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "CONFLICT"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "Another request is created for the same MSISDN"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Conflict":{
+          "summary":"Conflict",
+          "description":"Conflict",
+          "value":{
+           "status":409,
+           "code":"CONFLICT",
+           "message":"Another request is created for the same MSISDN"
+          }
+         }
+        }
+       }
+      }
+     },
+     "422":{
+      "description":"Unprocessable content",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            422
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "SERVICE_NOT_APPLICABLE"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "The service is not available for the provided identifier"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Unprocessable content":{
+          "summary":"Unprocessable content",
+          "description":"Unprocessable content",
+          "value":{
+           "status":422,
+           "code":"SERVICE_NOT_APPLICABLE",
+           "message":"The service is not available for the provided identifier"
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "description":"Internal server error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            500
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "INTERNAL"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "Server error"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Internal server error":{
+          "summary":"Internal server error",
+          "description":"Internal server error",
+          "value":{
+           "status":500,
+           "code":"INTERNAL",
+           "message":"Server error"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "mobile-identity:manage"
+    ]
+   }
+  },
+  "/camara/number-verification/v2/verify":{
+   "post":{
+    "tags":[
+     "connectivity",
+     "camara",
+     "sim-based-number-verification"
+    ],
+    "summary":"Number Verification",
+    "description":"Use this method to verify possession of the end-user's mobile phone number with the phone SIM card.",
+    "operationId":"verify-number-v2",
+    "parameters":[
+     {
+      "name":"X-Correlator",
+      "in":"header",
+      "description":"In SIM based (TS.43) verification flow this should be the `vp_token` (SD-JWT) value received from Android Credential Manager. If using SIM based (TS.43) verification flow, this header is mandatory.\n",
+      "required":false,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      }
+     }
+    ],
+    "requestBody":{
+     "description":"Number verification request object.",
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.NumberVerifyV2RequestDto"
+       },
+       "examples":{
+        "Phone verification":{
+         "summary":"Phone verification",
+         "description":"Phone verification",
+         "value":{
+          "phoneNumber":"+441134961234"
+         }
+        }
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.NumberVerifyResponseDto"
+        },
+        "examples":{
+         "Verified":{
+          "summary":"Verified",
+          "description":"Verified",
+          "value":{
+           "devicePhoneNumberVerified":true
+          }
+         },
+         "Not verified":{
+          "summary":"Not verified",
+          "description":"Not verified",
+          "value":{
+           "devicePhoneNumberVerified":false
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            400
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "INVALID_ARGUMENT"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "Client specified an invalid argument, request body or query param"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "description":"Bad request",
+          "value":{
+           "status":400,
+           "code":"INVALID_ARGUMENT",
+           "message":"Client specified an invalid argument, request body or query param"
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "description":"Unauthenticated",
+      "content":{
+       "application/json":{
+        "schema":{
+         "oneOf":[
+          {
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraUnauthenticatedErrorResponse"
+          },
+          {
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Unauthenticated":{
+          "summary":"Unauthenticated",
+          "description":"Unauthenticated",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHENTICATED",
+             "text":"Invalid login details"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "403":{
+      "description":"Permission denied",
+      "content":{
+       "application/json":{
+        "schema":{
+         "oneOf":[
+          {
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraPermissionDeniedErrorResponse"
+          },
+          {
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Permission denied":{
+          "summary":"Permission denied",
+          "description":"Permission denied",
+          "value":{
+           "status":403,
+           "code":"PERMISSION_DENIED",
+           "message":"Client does not have sufficient permissions to perform this action"
+          }
+         },
+         "Unauthorized":{
+          "summary":"Unauthorized",
+          "description":"Unauthorized",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHORIZED",
+             "text":"Invalid login details"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            404
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "NOT_FOUND"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "Not found"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Not found":{
+          "summary":"Not found",
+          "description":"Not found",
+          "value":{
+           "status":404,
+           "code":"NOT_FOUND",
+           "message":"Not found"
+          }
+         }
+        }
+       }
+      }
+     },
+     "409":{
+      "description":"Conflict",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            409
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "CONFLICT"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "Another request is created for the same MSISDN"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Conflict":{
+          "summary":"Conflict",
+          "description":"Conflict",
+          "value":{
+           "status":409,
+           "code":"CONFLICT",
+           "message":"Another request is created for the same MSISDN"
+          }
+         }
+        }
+       }
+      }
+     },
+     "422":{
+      "description":"Unprocessable content",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            422
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "SERVICE_NOT_APPLICABLE"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "The service is not available for the provided identifier"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Unprocessable content":{
+          "summary":"Unprocessable content",
+          "description":"Unprocessable content",
+          "value":{
+           "status":422,
+           "code":"SERVICE_NOT_APPLICABLE",
+           "message":"The service is not available for the provided identifier"
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "description":"Internal server error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            500
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "INTERNAL"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "Server error"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Internal server error":{
+          "summary":"Internal server error",
+          "description":"Internal server error",
+          "value":{
+           "status":500,
+           "code":"INTERNAL",
+           "message":"Server error"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "mobile-identity:manage"
+    ]
+   }
+  },
+  "/camara/location/v0/verify":{
+   "post":{
+    "tags":[
+     "connectivity",
+     "camara",
+     "device-location-verification"
+    ],
+    "summary":"Device Location Verification",
+    "description":"Use this method to verify whether the device location is within a requested area.\nA circle with a center specified by the latitude and longitude, and a radius specified by the accuracy.\n",
+    "operationId":"verify-device-location",
+    "requestBody":{
+     "description":"Device location verification request object.",
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraDeviceLocationVerifyRequestDto"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "verificationResult":{
+           "type":"boolean",
+           "description":"Result of the location verification."
+          }
+         }
+        },
+        "examples":{
+         "In requested radius":{
+          "summary":"In requested radius",
+          "description":"In requested radius",
+          "value":{
+           "verificationResult":true
+          }
+         },
+         "Not in requested radius":{
+          "summary":"Not in requested radius",
+          "description":"Not in requested radius",
+          "value":{
+           "verificationResult":false
+          }
+         }
+        }
+       }
+      }
+     },
+     "303":{
+      "description":"Give consent for device location verification",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "consentUrl":{
+           "type":"string",
+           "format":"uri",
+           "description":"URL to redirect user for consent."
+          }
+         }
+        },
+        "examples":{
+         "Consent not given":{
+          "summary":"Consent not given",
+          "description":"Consent not given",
+          "value":{
+           "consentUrl":"https://mno.com/consent-page"
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            400
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "INVALID_ARGUMENT"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "Client specified an invalid argument, request body or query param"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "description":"Bad request",
+          "value":{
+           "status":400,
+           "code":"INVALID_ARGUMENT",
+           "message":"Client specified an invalid argument, request body or query param"
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "description":"Unauthorized - Platform authentication error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+        },
+        "examples":{
+         "Unauthorized":{
+          "summary":"Unauthorized",
+          "description":"Unauthorized",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHORIZED",
+             "text":"Invalid login details"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "403":{
+      "description":"Permission denied",
+      "content":{
+       "application/json":{
+        "schema":{
+         "oneOf":[
+          {
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraPermissionDeniedErrorResponse"
+          },
+          {
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Permission denied":{
+          "summary":"Permission denied",
+          "description":"Permission denied",
+          "value":{
+           "status":403,
+           "code":"PERMISSION_DENIED",
+           "message":"Client does not have sufficient permissions to perform this action"
+          }
+         },
+         "Unauthorized":{
+          "summary":"Unauthorized",
+          "description":"Unauthorized",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHORIZED",
+             "text":"Invalid login details"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            404
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "NOT_FOUND"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "Not found"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Not found":{
+          "summary":"Not found",
+          "description":"Not found",
+          "value":{
+           "status":404,
+           "code":"NOT_FOUND",
+           "message":"Not found"
+          }
+         }
+        }
+       }
+      }
+     },
+     "422":{
+      "description":"Unprocessable content",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            422
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "SERVICE_NOT_APPLICABLE"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "The service is not available for the provided identifier"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Unprocessable content":{
+          "summary":"Unprocessable content",
+          "description":"Unprocessable content",
+          "value":{
+           "status":422,
+           "code":"SERVICE_NOT_APPLICABLE",
+           "message":"The service is not available for the provided identifier"
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "description":"Internal server error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            500
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "INTERNAL"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "Server error"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Internal server error":{
+          "summary":"Internal server error",
+          "description":"Internal server error",
+          "value":{
+           "status":500,
+           "code":"INTERNAL",
+           "message":"Server error"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "mobile-identity:manage"
+    ]
+   }
+  },
+  "/camara/sim-swap/v0/check":{
+   "post":{
+    "tags":[
+     "connectivity",
+     "camara",
+     "sim-swap"
+    ],
+    "summary":"SIM Swap",
+    "description":"Use this method to verify if there was a SIM swap event for a given mobile phone number and period.",
+    "operationId":"sim-swap-check",
+    "requestBody":{
+     "description":"SIM swap check request object.",
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraSimSwapCheckRequestDto"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraSimSwapCheckResponseDto"
+        },
+        "examples":{
+         "OK":{
+          "summary":"OK",
+          "description":"OK",
+          "value":{
+           "swapped":false
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            400
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "INVALID_ARGUMENT"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "Client specified an invalid argument, request body or query param"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "description":"Bad request",
+          "value":{
+           "status":400,
+           "code":"INVALID_ARGUMENT",
+           "message":"Client specified an invalid argument, request body or query param"
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "description":"Unauthorized - Platform authentication error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+        },
+        "examples":{
+         "Unauthorized":{
+          "summary":"Unauthorized",
+          "description":"Unauthorized",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHORIZED",
+             "text":"Invalid login details"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "403":{
+      "description":"Permission denied",
+      "content":{
+       "application/json":{
+        "schema":{
+         "oneOf":[
+          {
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraPermissionDeniedErrorResponse"
+          },
+          {
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Permission denied":{
+          "summary":"Permission denied",
+          "description":"Permission denied",
+          "value":{
+           "status":403,
+           "code":"PERMISSION_DENIED",
+           "message":"Client does not have sufficient permissions to perform this action"
+          }
+         },
+         "Unauthorized":{
+          "summary":"Unauthorized",
+          "description":"Unauthorized",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHORIZED",
+             "text":"Invalid login details"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            404
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "SIM_SWAP.UNKNOWN_PHONE_NUMBER"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "SIM Swap can't be checked because the phone number is unknown"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Not found":{
+          "summary":"Not found",
+          "description":"Not found",
+          "value":{
+           "status":404,
+           "code":"SIM_SWAP.UNKNOWN_PHONE_NUMBER",
+           "message":"SIM Swap can't be checked because the phone number is unknown"
+          }
+         }
+        }
+       }
+      }
+     },
+     "422":{
+      "description":"Unprocessable content",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            422
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "SERVICE_NOT_APPLICABLE"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "The service is not available for the provided identifier"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Unprocessable content":{
+          "summary":"Unprocessable content",
+          "description":"Unprocessable content",
+          "value":{
+           "status":422,
+           "code":"SERVICE_NOT_APPLICABLE",
+           "message":"The service is not available for the provided identifier"
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "description":"Internal server error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            500
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "INTERNAL"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "enum":[
+            "Server error"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Internal server error":{
+          "summary":"Internal server error",
+          "description":"Internal server error",
+          "value":{
+           "status":500,
+           "code":"INTERNAL",
+           "message":"Server error"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "mobile-identity:manage"
+    ]
+   }
+  },
+  "/camara/sim-swap/v0/retrieve-date":{
+   "post":{
+    "tags":[
+     "connectivity",
+     "camara",
+     "sim-swap"
+    ],
+    "summary":"Retrieve SIM Swap date",
+    "description":"Use this method to retrieve the last date when the SIM Swap occurred for a given mobile phone number.",
+    "operationId":"sim-swap-retrieve-date",
+    "requestBody":{
+     "description":"SIM swap retrieve date request object.",
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraSimSwapRetrieveDateRequestDto"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraSimSwapRetrieveDateResponseDto"
+        },
+        "examples":{
+         "OK":{
+          "summary":"OK",
+          "description":"OK",
+          "value":{
+           "latestSimChange":"2024-01-03T02:05:58Z"
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            400
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "INVALID_ARGUMENT"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "Client specified an invalid argument, request body or query param"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "description":"Bad request",
+          "value":{
+           "status":400,
+           "code":"INVALID_ARGUMENT",
+           "message":"Client specified an invalid argument, request body or query param"
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "description":"Unauthorized - Platform authentication error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+        },
+        "examples":{
+         "Unauthorized":{
+          "summary":"Unauthorized",
+          "description":"Unauthorized",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHORIZED",
+             "text":"Invalid login details"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "403":{
+      "description":"Permission denied",
+      "content":{
+       "application/json":{
+        "schema":{
+         "oneOf":[
+          {
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraPermissionDeniedErrorResponse"
+          },
+          {
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Permission denied":{
+          "summary":"Permission denied",
+          "description":"Permission denied",
+          "value":{
+           "status":403,
+           "code":"PERMISSION_DENIED",
+           "message":"Client does not have sufficient permissions to perform this action"
+          }
+         },
+         "Unauthorized":{
+          "summary":"Unauthorized",
+          "description":"Unauthorized",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHORIZED",
+             "text":"Invalid login details"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            404
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "NOT_FOUND"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "Not found"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Not found":{
+          "summary":"Not found",
+          "description":"Not found",
+          "value":{
+           "status":404,
+           "code":"NOT_FOUND",
+           "message":"Not found"
+          }
+         }
+        }
+       }
+      }
+     },
+     "422":{
+      "description":"Unprocessable content",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            422
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "SERVICE_NOT_APPLICABLE"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "The service is not available for the provided identifier"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Unprocessable content":{
+          "summary":"Unprocessable content",
+          "description":"Unprocessable content",
+          "value":{
+           "status":422,
+           "code":"SERVICE_NOT_APPLICABLE",
+           "message":"The service is not available for the provided identifier"
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "description":"Internal server error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            500
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "INTERNAL"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "enum":[
+            "Server error"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Internal server error":{
+          "summary":"Internal server error",
+          "description":"Internal server error",
+          "value":{
+           "status":500,
+           "code":"INTERNAL",
+           "message":"Server error"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "mobile-identity:manage"
+    ]
+   }
+  },
+  "/camara/kyc-match/v0.3/match":{
+   "post":{
+    "tags":[
+     "connectivity",
+     "camara",
+     "know-your-customer"
+    ],
+    "summary":"KYC Match",
+    "description":"Use this method to match customer data against Mobile Operators data.",
+    "operationId":"know-your-customer-match",
+    "requestBody":{
+     "description":"KYC match request object.",
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraKycMatchRequestDto"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraKycMatchResponseDto"
+        },
+        "examples":{
+         "OK":{
+          "summary":"OK",
+          "description":"OK",
+          "value":{
+           "idDocumentMatch":"true",
+           "nameMatch":"false",
+           "nameMatchScore":85,
+           "givenNameMatch":"false",
+           "givenNameMatchScore":90,
+           "familyNameMatch":"true",
+           "nameKanaHankakuMatch":"not_available",
+           "nameKanaZenkakuMatch":"false",
+           "nameKanaZenkakuMatchScore":70,
+           "middleNamesMatch":"true",
+           "familyNameAtBirthMatch":"false",
+           "familyNameAtBirthMatchScore":60,
+           "addressMatch":"false",
+           "addressMatchScore":80,
+           "streetNameMatch":"true",
+           "streetNumberMatch":"false",
+           "streetNumberMatchScore":75,
+           "postalCodeMatch":"true",
+           "regionMatch":"false",
+           "regionMatchScore":65,
+           "localityMatch":"true",
+           "countryMatch":"true",
+           "houseNumberExtensionMatch":"not_available",
+           "birthdateMatch":"true",
+           "emailMatch":"false",
+           "emailMatchScore":88,
+           "genderMatch":"true"
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            400
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "INVALID_ARGUMENT"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "Client specified an invalid argument, request body or query param"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "description":"Bad request",
+          "value":{
+           "status":400,
+           "code":"INVALID_ARGUMENT",
+           "message":"Client specified an invalid argument, request body or query param"
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "description":"Unauthorized - Platform authentication error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+        },
+        "examples":{
+         "Unauthorized":{
+          "summary":"Unauthorized",
+          "description":"Unauthorized",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHORIZED",
+             "text":"Invalid login details"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "403":{
+      "description":"Permission denied",
+      "content":{
+       "application/json":{
+        "schema":{
+         "oneOf":[
+          {
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraPermissionDeniedErrorResponse"
+          },
+          {
+           "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Permission denied":{
+          "summary":"Permission denied",
+          "description":"Permission denied",
+          "value":{
+           "status":403,
+           "code":"PERMISSION_DENIED",
+           "message":"Client does not have sufficient permissions to perform this action"
+          }
+         },
+         "Unauthorized":{
+          "summary":"Unauthorized",
+          "description":"Unauthorized",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"UNAUTHORIZED",
+             "text":"Invalid login details"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            404
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "NOT_FOUND"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "Not found"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Not found":{
+          "summary":"Not found",
+          "description":"Not found",
+          "value":{
+           "status":404,
+           "code":"NOT_FOUND",
+           "message":"Not found"
+          }
+         }
+        }
+       }
+      }
+     },
+     "422":{
+      "description":"Unprocessable content",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            422
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "SERVICE_NOT_APPLICABLE"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "The service is not available for the provided identifier"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Unprocessable content":{
+          "summary":"Unprocessable content",
+          "description":"Unprocessable content",
+          "value":{
+           "status":422,
+           "code":"SERVICE_NOT_APPLICABLE",
+           "message":"The service is not available for the provided identifier"
+          }
+         }
+        }
+       }
+      }
+     },
+     "500":{
+      "description":"Internal server error",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"object",
+         "properties":{
+          "status":{
+           "type":"integer",
+           "description":"HTTP status code.",
+           "enum":[
+            500
+           ]
+          },
+          "code":{
+           "type":"string",
+           "description":"Error code.",
+           "enum":[
+            "INTERNAL"
+           ]
+          },
+          "message":{
+           "type":"string",
+           "description":"Detailed error message.",
+           "enum":[
+            "Server error"
+           ]
+          }
+         }
+        },
+        "examples":{
+         "Internal server error":{
+          "summary":"Internal server error",
+          "description":"Internal server error",
+          "value":{
+           "status":500,
+           "code":"INTERNAL",
+           "message":"Server error"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "mobile-identity:manage"
+    ]
+   }
+  }
+ },
+ "components":{
+  "schemas":{
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraDeviceLocationVerifyRequestDto":{
+    "type":"object",
+    "properties":{
+     "ueId":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraUserEquipmentIdentifierDto"
+     },
+     "uePort":{
+      "type":"integer",
+      "format":"int32",
+      "description":"User equipment port.",
+      "example":8080,
+      "maximum":65535,
+      "minimum":0
+     },
+     "latitude":{
+      "type":"number",
+      "format":"double",
+      "description":"Latitude of the location.",
+      "example":51.5074,
+      "maximum":90,
+      "minimum":-90
+     },
+     "longitude":{
+      "type":"number",
+      "format":"double",
+      "description":"Longitude of the location.",
+      "example":-0.1278,
+      "maximum":180,
+      "minimum":-180
+     },
+     "accuracy":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Radius of the circle in kilometers.",
+      "example":10,
+      "maximum":200,
+      "minimum":2
+     }
+    },
+    "required":[
+     "accuracy",
+     "latitude",
+     "longitude",
+     "ueId"
+    ],
+    "title":"CamaraDeviceLocationVerifyRequestDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraKycMatchRequestDto":{
+    "type":"object",
+    "description":"Camara Know Your Customer Match request object",
+    "properties":{
+     "phoneNumber":{
+      "type":"string",
+      "description":"Mobile phone number (MSISDN) to verify. The number must be in international format.",
+      "example":"+441134961234"
+     },
+     "idDocument":{
+      "type":"string",
+      "description":"Id number associated to the official identity document in the country.",
+      "example":"987654321"
+     },
+     "name":{
+      "type":"string",
+      "description":"Complete name of the customer, usually composed of first/given name and last/family/sur-name in a country.",
+      "example":"Jane Smith"
+     },
+     "givenName":{
+      "type":"string",
+      "description":"First/given name or compound first/given name of the customer.",
+      "example":"Jane"
+     },
+     "familyName":{
+      "type":"string",
+      "description":"Last name, family name, or surname of the customer.",
+      "example":"Smith"
+     },
+     "nameKanaHankaku":{
+      "type":"string",
+      "description":"Complete name of the customer in Hankaku-Kana format (reading of name) for Japan.",
+      "example":"ｼﾞｪｰﾝ ｽﾐｽ"
+     },
+     "nameKanaZenkaku":{
+      "type":"string",
+      "description":"Complete name of the customer in Zenkaku-Kana format (reading of name) for Japan.",
+      "example":"ジェーン スミス"
+     },
+     "middleNames":{
+      "type":"string",
+      "description":"Middle name/s of the customer.",
+      "example":"Marie"
+     },
+     "familyNameAtBirth":{
+      "type":"string",
+      "description":"Last/family/sur-name at birth of the customer.",
+      "example":"Johnson"
+     },
+     "address":{
+      "type":"string",
+      "description":"Complete address of the customer.",
+      "example":"742 Evergreen Terrace, Springfield, IL 62704"
+     },
+     "streetName":{
+      "type":"string",
+      "description":"Name of the street of the customer's address. It should not include the type of the street.",
+      "example":" Evergreen Terrace"
+     },
+     "streetNumber":{
+      "type":"string",
+      "description":"The street number of the customer's address.  Number identifying a specific property on the 'streetName'.",
+      "example":"742"
+     },
+     "postalCode":{
+      "type":"string",
+      "description":"Zip code or postal code.",
+      "example":"62704"
+     },
+     "region":{
+      "type":"string",
+      "description":"Region/prefecture of the customer's address.",
+      "example":"Illinois"
+     },
+     "locality":{
+      "type":"string",
+      "description":"Locality of the customer's address.",
+      "example":"Springfield"
+     },
+     "country":{
+      "type":"string",
+      "description":"Country of the customer's address. Format ISO 3166-1 alpha-2.",
+      "example":"US"
+     },
+     "houseNumberExtension":{
+      "type":"string",
+      "description":"Specific identifier of the house needed depending on the property type. For example, number of apartment in an apartment building.",
+      "example":"Apt 2B"
+     },
+     "birthdate":{
+      "type":"string",
+      "format":"date",
+      "description":"The birthdate of the customer, in RFC 3339 / ISO 8601 calendar date format (YYYY-MM-DD).",
+      "example":"1985-07-15"
+     },
+     "email":{
+      "type":"string",
+      "format":"email",
+      "description":"Email address of the customer in the RFC specified format (local-part@domain).",
+      "example":"jane.smith@example.com"
+     },
+     "gender":{
+      "type":"string",
+      "description":"Gender of the customer.",
+      "enum":[
+       "MALE",
+       "FEMALE",
+       "OTHER"
+      ],
+      "example":"FEMALE"
+     }
+    },
+    "required":[
+     "phoneNumber"
+    ],
+    "title":"CamaraKycMatchRequestDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraKycMatchResponseDto":{
+    "type":"object",
+    "description":"Camara Know Your Customer Match response object",
+    "properties":{
+     "idDocumentMatch":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.MatchResult"
+     },
+     "nameMatch":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.MatchResult"
+     },
+     "nameMatchScore":{
+      "type":"integer",
+      "format":"int32"
+     },
+     "givenNameMatch":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.MatchResult"
+     },
+     "givenNameMatchScore":{
+      "type":"integer",
+      "format":"int32"
+     },
+     "familyNameMatch":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.MatchResult"
+     },
+     "familyNameMatchScore":{
+      "type":"integer",
+      "format":"int32"
+     },
+     "nameKanaHankakuMatch":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.MatchResult"
+     },
+     "nameKanaHankakuMatchScore":{
+      "type":"integer",
+      "format":"int32"
+     },
+     "nameKanaZenkakuMatch":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.MatchResult"
+     },
+     "nameKanaZenkakuMatchScore":{
+      "type":"integer",
+      "format":"int32"
+     },
+     "middleNamesMatch":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.MatchResult"
+     },
+     "middleNamesMatchScore":{
+      "type":"integer",
+      "format":"int32"
+     },
+     "familyNameAtBirthMatch":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.MatchResult"
+     },
+     "familyNameAtBirthMatchScore":{
+      "type":"integer",
+      "format":"int32"
+     },
+     "addressMatch":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.MatchResult"
+     },
+     "addressMatchScore":{
+      "type":"integer",
+      "format":"int32"
+     },
+     "streetNameMatch":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.MatchResult"
+     },
+     "streetNameMatchScore":{
+      "type":"integer",
+      "format":"int32"
+     },
+     "streetNumberMatch":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.MatchResult"
+     },
+     "streetNumberMatchScore":{
+      "type":"integer",
+      "format":"int32"
+     },
+     "postalCodeMatch":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.MatchResult"
+     },
+     "regionMatch":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.MatchResult"
+     },
+     "regionMatchScore":{
+      "type":"integer",
+      "format":"int32"
+     },
+     "localityMatch":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.MatchResult"
+     },
+     "localityMatchScore":{
+      "type":"integer",
+      "format":"int32"
+     },
+     "countryMatch":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.MatchResult"
+     },
+     "houseNumberExtensionMatch":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.MatchResult"
+     },
+     "birthdateMatch":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.MatchResult"
+     },
+     "emailMatch":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.MatchResult"
+     },
+     "emailMatchScore":{
+      "type":"integer",
+      "format":"int32"
+     },
+     "genderMatch":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.MatchResult"
+     }
+    },
+    "title":"CamaraKycMatchResponseDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraNotFoundErrorResponse":{
+    "type":"object",
+    "description":"Camara API error response.",
+    "properties":{
+     "status":{
+      "type":"integer",
+      "format":"int32",
+      "description":"HTTP status code.",
+      "example":404
+     },
+     "code":{
+      "type":"string",
+      "description":"Error code.",
+      "example":"NOT_FOUND"
+     },
+     "message":{
+      "type":"string",
+      "description":"Detailed error message.",
+      "example":"Not found"
+     }
+    },
+    "title":"Camara Error Response"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraPermissionDeniedErrorResponse":{
+    "type":"object",
+    "description":"Camara API error response for permission denied requests.",
+    "properties":{
+     "status":{
+      "type":"integer",
+      "format":"int32",
+      "description":"HTTP status code.",
+      "example":403
+     },
+     "code":{
+      "type":"string",
+      "description":"Error code.",
+      "example":"PERMISSION_DENIED"
+     },
+     "message":{
+      "type":"string",
+      "description":"Detailed error message.",
+      "example":"Client does not have sufficient permissions to perform this action"
+     }
+    },
+    "title":"Camara Error Response"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraResponseBaseDto":{
+    "type":"object",
+    "title":"CamaraResponseBaseDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraSimSwapCheckRequestDto":{
+    "type":"object",
+    "properties":{
+     "phoneNumber":{
+      "type":"string",
+      "description":"Mobile phone number (MSISDN) to verify. The number must be in international format.",
+      "example":"+441134961234"
+     },
+     "maxAge":{
+      "type":"integer",
+      "format":"int32",
+      "default":240,
+      "description":"SIM swap check will be verified with MNO in \"period\" amount of hours from when this request was received. The value should be greater than 0.",
+      "example":15,
+      "maximum":2400,
+      "minimum":1
+     }
+    },
+    "required":[
+     "phoneNumber"
+    ],
+    "title":"CamaraSimSwapCheckRequestDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraSimSwapCheckResponseDto":{
+    "type":"object",
+    "description":"SIM swap check response object.",
+    "properties":{
+     "swapped":{
+      "type":"boolean",
+      "description":"Indicates whether the SIM card has been swapped during the period."
+     }
+    },
+    "title":"CamaraSimSwapCheckResponseDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraSimSwapRetrieveDateRequestDto":{
+    "type":"object",
+    "properties":{
+     "phoneNumber":{
+      "type":"string",
+      "description":"Mobile phone number (MSISDN) to verify. The number must be in international format.",
+      "example":"+441134961234"
+     }
+    },
+    "required":[
+     "phoneNumber"
+    ],
+    "title":"CamaraSimSwapRetrieveDateRequestDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraSimSwapRetrieveDateResponseDto":{
+    "type":"object",
+    "description":"SIM swap retrieve date response object.",
+    "properties":{
+     "latestSimChange":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Timestamp of the latest SIM swap event."
+     }
+    },
+    "title":"CamaraSimSwapRetrieveDateResponseDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraUnauthenticatedErrorResponse":{
+    "type":"object",
+    "description":"Camara API error response for unauthenticated requests.",
+    "properties":{
+     "status":{
+      "type":"integer",
+      "format":"int32",
+      "description":"HTTP status code.",
+      "example":401
+     },
+     "code":{
+      "type":"string",
+      "description":"Error code.",
+      "example":"UNAUTHENTICATED"
+     },
+     "message":{
+      "type":"string",
+      "description":"Detailed error message.",
+      "example":"Request not authenticated due to missing, invalid, or expired credentials"
+     }
+    },
+    "title":"Camara Error Response"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraUserEquipmentIdentifierDto":{
+    "type":"object",
+    "description":"User equipment identifier.",
+    "properties":{
+     "externalId":{
+      "type":"string",
+      "description":"External identifier.",
+      "example":"123456789@domain.com"
+     },
+     "msisdn":{
+      "type":"string",
+      "description":"Mobile phone number (MSISDN) in international format.",
+      "example":"+441134961234"
+     },
+     "ipv4Addr":{
+      "type":"string",
+      "description":"IPv4 address of the device.",
+      "example":"192.168.1.100",
+      "pattern":"^$|^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))"
+     },
+     "ipv6Addr":{
+      "type":"string",
+      "description":"IPv6 address of the device.",
+      "example":"2001:db8::1",
+      "pattern":"^$|^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))"
+     }
+    },
+    "required":[
+     "msisdn"
+    ],
+    "title":"CamaraUserEquipmentIdentifierDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.Claim":{
+    "type":"object",
+    "description":"Claim object containing the optional hint used by Android to suggest the right SIM in dual-SIM devices.",
+    "properties":{
+     "path":{
+      "type":"array",
+      "description":"Name of the hint parameter",
+      "example":[
+       "android_carrier_hint"
+      ],
+      "items":{
+       "type":"string",
+       "description":"Name of the hint parameter",
+       "example":"[\"android_carrier_hint\"]"
+      }
+     },
+     "values":{
+      "type":"array",
+      "description":"Value of the hint parameter",
+      "example":[
+       1234
+      ],
+      "items":{
+       "type":"integer",
+       "format":"int32",
+       "description":"Value of the hint parameter"
+      }
+     }
+    },
+    "title":"Claim"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.DcqlCredentialPerCarrierDtoResponse":{
+    "type":"object",
+    "description":"DCQL credential object per carrier.",
+    "properties":{
+     "id":{
+      "type":"string",
+      "description":"Aggregator ID.",
+      "example":"miapi.infobip.com"
+     },
+     "format":{
+      "type":"string",
+      "description":"Fixed value for the DCQL credential: `dc-authorization+sd-jwt`.",
+      "example":"dc-authorization+sd-jwt"
+     },
+     "meta":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.Meta"
+     },
+     "claims":{
+      "type":"array",
+      "description":"Array of claim objects containing the optional hint used by Android to suggest the right SIM in dual-SIM devices.",
+      "items":{
+       "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.Claim"
+      }
+     }
+    },
+    "title":"DcqlCredentialPerCarrierDtoResponse"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.DcqlNotFoundErrorResponse":{
+    "type":"object",
+    "additionalProperties":{
+     "allOf":[
+      {
+       "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.CamaraNotFoundErrorResponse"
+      }
+     ],
+     "x-additionalPropertiesName":"carrierId"
+    },
+    "description":"Map of DCQL error responses keyed by carrier ID, returned when one or more requested carriers could not be resolved.\nResolved carriers will be returned in the same map. For resolved carrier response structure, see `DCQL Credential Map` section.\n",
+    "title":"DCQL Carrier Error Map"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.DcqlRequestDto":{
+    "type":"object",
+    "properties":{
+     "useCase":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.Ts43UseCase"
+     },
+     "nonce":{
+      "type":"string",
+      "description":"A single-use, client generated value. The client keeps it and uses it to correlate the eventual response. Infobip embeds this same value in the credential_authorization_jwt payload.\n",
+      "example":"2307e608-e619-4df5-a460-a99b4446f3f0"
+     },
+     "carrierIds":{
+      "type":"array",
+      "description":"Array of Android canonical carrier IDs.",
+      "example":[
+       123,
+       456
+      ],
+      "items":{
+       "type":"integer",
+       "format":"int32",
+       "description":"Array of Android canonical carrier IDs."
+      }
+     },
+     "operationType":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.OperationType"
+     }
+    },
+    "required":[
+     "carrierIds",
+     "nonce",
+     "useCase"
+    ],
+    "title":"DcqlRequestDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.DcqlResponseDto":{
+    "type":"object",
+    "additionalProperties":{
+     "allOf":[
+      {
+       "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.DcqlCredentialPerCarrierDtoResponse"
+      }
+     ],
+     "x-additionalPropertiesName":"carrierId"
+    },
+    "description":"Map of resolved DCQL credential objects keyed by carrier ID, used to build the credential request structure for the Android\nCredentialManager (TS.43 SIM-based authentication). If one or more requested carriers could not be resolved, their error responses\nwill be returned in the same map. For unresolved carrier response structure, see `DCQL Carrier Error Map` section.\n",
+    "title":"DCQL Credential Map"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.DevicePhoneNumberResponseDto":{
+    "type":"object",
+    "description":"Device phone number response object.",
+    "properties":{
+     "devicePhoneNumber":{
+      "type":"string",
+      "description":"Device phone number result."
+     }
+    },
+    "title":"DevicePhoneNumberResponseDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.MatchResult":{
+    "type":"string",
+    "enum":[
+     "TRUE",
+     "FALSE",
+     "NOT_AVAILABLE"
+    ],
+    "title":"MatchResult"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.Meta":{
+    "type":"object",
+    "properties":{
+     "credential_authorization_jwt":{
+      "type":"string",
+      "description":"JWT token for credential authorization signed by Infobip.",
+      "example":"eyJhbGciOiJIUzI1NiI..."
+     },
+     "vct_values":{
+      "type":"array",
+      "description":"Array containing the Google-defined TS.43 credential type identifier that corresponds to the CAMARA scope from the request",
+      "items":{
+       "type":"string",
+       "description":"Array containing the Google-defined TS.43 credential type identifier that corresponds to the CAMARA scope from the request"
+      }
+     }
+    },
+    "title":"Meta"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.NumberVerifyRequestDto":{
+    "type":"object",
+    "description":"Number verification request object.",
+    "properties":{
+     "phoneNumber":{
+      "type":"string",
+      "description":"Mobile phone number (MSISDN) to verify. The number must be in international format.",
+      "example":"+441134961234"
+     }
+    },
+    "required":[
+     "phoneNumber"
+    ],
+    "title":"NumberVerifyRequestDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.NumberVerifyResponseDto":{
+    "type":"object",
+    "description":"Number verification response object.",
+    "properties":{
+     "devicePhoneNumberVerified":{
+      "type":"boolean",
+      "description":"Device verification result."
+     }
+    },
+    "title":"NumberVerifyResponseDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.NumberVerifyV2RequestDto":{
+    "type":"object",
+    "properties":{
+     "phoneNumber":{
+      "type":"string",
+      "description":"Mobile phone number (MSISDN) to verify. The number must be in international format.",
+      "example":"+441134961234"
+     }
+    },
+    "required":[
+     "phoneNumber"
+    ],
+    "title":"NumberVerifyV2RequestDto"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.OperationType":{
+    "type":"string",
+    "enum":[
+     "SILENT_MOBILE_VERIFICATION",
+     "KNOW_YOUR_CUSTOMER",
+     "SIM_SWAP",
+     "NUMBER_SHARE",
+     "NUMBER_INTELLIGENCE",
+     "DEVICE_LOCATION",
+     "NATIONAL_IDENTITY_NUMBER"
+    ],
+    "title":"OperationType"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.PlatformErrorResponse":{
+    "type":"object",
+    "description":"Platform error response for authentication and authorization errors.",
+    "properties":{
+     "requestError":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.RequestError"
+     }
+    },
+    "title":"Platform Error Response"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.RequestError":{
+    "type":"object",
+    "description":"Request error object.",
+    "properties":{
+     "serviceException":{
+      "$ref":"#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.ServiceException"
+     }
+    },
+    "title":"RequestError"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.ServiceException":{
+    "type":"object",
+    "description":"Service exception object containing error details.",
+    "properties":{
+     "messageId":{
+      "type":"string",
+      "description":"Identifier of the error.",
+      "example":"UNAUTHORIZED"
+     },
+     "text":{
+      "type":"string",
+      "description":"Detailed error description.",
+      "example":"Invalid login details"
+     }
+    },
+    "title":"ServiceException"
+   },
+   "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.Ts43UseCase":{
+    "type":"string",
+    "description":"The TS.43 operation use case.",
+    "enum":[
+     "GET_PHONE_NUMBER",
+     "VERIFY_PHONE_NUMBER"
+    ],
+    "example":"GET_PHONE_NUMBER",
+    "title":"Ts43UseCase"
+   }
+  },
+  "responses":{},
+  "parameters":{},
+  "examples":{},
+  "requestBodies":{},
+  "headers":{},
+  "securitySchemes":{
+   "APIKeyHeader":{
+    "type":"apiKey",
+    "description":"This is the most secure authorization type and the one with the most flexibility.\n\nAPI keys can be generated by calling the dedicated API method. Furthermore, API keys can have a limited scope and cover only some API methods. Lastly, they can\nbe revoked at any time. This range of possibilities makes API keys well suited for separating the API access rights across multiple applications or use cases.\nFinally, the loss of an API key is easily manageable.\n\nYou can manage your API keys from [GUI](https://portal.infobip.com/settings/accounts/api-keys), or programmatically\nwith [dedicated API](#platform-&-connectivity/settings).\n\nAPI key Authorization header example:\n\n```shell\nAuthorization: App 003026bbc133714df1834b8638bb496e-8f4b3d9a-e931-478d-a994-28a725159ab9\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "Basic":{
+    "type":"http",
+    "description":"Basic authorization type can be used in situations when the API key is not available. For example, API methods for generating API keys should be authenticated\nwith the Basic type.\n\nIn this case, the credentials included in the Authorization header should be a Base64 encoded username and password combination. More formally, basic\nauthentication header can be constructed in three steps:\n\n* Username and password are concatenated using the colon `(:)` as a separator `username:password`.\n* The resulting string is encoded using the [RFC2045-MIME](https://www.ietf.org/rfc/rfc2045.txt) variant of Base64.\n* Encoded string is added as credentials after the `\"Basic \"` type.\n\nExample:\n\n```shell\nUsername: \"Aladdin\"\nPassword: \"openSesame\"\n\nConcatenated string: \"Aladdin:openSesame\"\n\nBase64 encoded string: \"QWxhZGRpbjpvcGVuU2VzYW1l\"\n\nAuthorization header: \"Basic QWxhZGRpbjpvcGVuU2VzYW1l\"\n```\n\n> **Implementation detail**: Base64 encoding is a standard and many available programming languages and frameworks provide convenient methods for encoding\n> strings.\n",
+    "scheme":"basic"
+   },
+   "IBSSOTokenHeader":{
+    "type":"apiKey",
+    "description":"This authorization type is suited for situations when you do not want to store Infobip credentials in your own app. Instead, your users will input their Infobip\ncredentials every time they access your application and the application will use those credentials to create a session. From then on, the session token can be\nused to authenticate subsequent API requests. Note that the session will expire automatically after a predefined period of inactivity, and can also be manually\nterminated by making an appropriate API call.\n\nYou can find more details on the creation and behavior of the session at\nthe [dedicated documentation page](#platform-connectivity/account-management/create-session).\n\nAfter obtaining the session token by calling the above-referenced API method you can include it in the Authorization header like this:\n\n```shell\nAuthorization: IBSSO 2f9b4d31-2d0d-49a8-85f0-9b862bdca394\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "OAuth2":{
+    "type":"oauth2",
+    "description":"Similarly to the IBSSO Token authentication you can use OAuth 2.0 bearer token with Infobip serving both as resource and authorization server. You can obtain\nthe access token using the client credentials grant from `auth/1/oauth2/token` endpoint. It will provide you with your access token, and its expiration period.\nYou can use the token to authorize your API calls until it expires. You can find out more about the process in\nthe [official specification](https://tools.ietf.org/html/rfc6749#section-4.4).\n\nYou can include your access token in the Authorization HTTP request header like this:\n\n```http\nAuthorization: Bearer <access_token>\n```",
+    "flows":{
+     "clientCredentials":{
+      "tokenUrl":"https://api.infobip.com/auth/1/oauth2/token",
+      "scopes":{}
+     }
+    }
+   }
+  },
+  "links":{},
+  "callbacks":{}
+ }
+}

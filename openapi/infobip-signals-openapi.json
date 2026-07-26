@@ -1,0 +1,591 @@
+{
+ "openapi":"3.1.0",
+ "info":{
+  "title":"Infobip OpenAPI Specification",
+  "description":"OpenAPI Specification that contains all public endpoints and webhooks.",
+  "contact":{
+   "name":"Infobip support",
+   "email":"support@infobip.com"
+  },
+  "version":"3.210.0",
+  "x-generatedAt":"2026-07-23T15:24:03.08927289Z"
+ },
+ "tags":[
+  {
+   "name":"platform",
+   "description":"Modular tools to scale and automate your business.\n",
+   "x-type":"category",
+   "x-displayName":"Platform"
+  },
+  {
+   "name":"signals",
+   "description":"Signals is a solution for detecting and blocking artificially generated traffic.\n\nEach mobile device has a unique identifier assigned to it. It's called a Mobile Station International Subscriber Directory Number. \n\nUse this API to create a list of trusted MSISDNs and add/remove numbers from it.\n\nNumbers added to a MSISDN list are excluded from blocking.\n",
+   "x-type":"product",
+   "x-displayName":"Signals"
+  }
+ ],
+ "paths":{
+  "/signals/1/trusted-msisdns":{
+   "post":{
+    "tags":[
+     "platform",
+     "signals"
+    ],
+    "summary":"Add phone numbers to a list",
+    "description":"Add phone numbers to a MSISDN list of trusted numbers so that\n Signals never blocks messages sent to these numbers.\n",
+    "operationId":"trusted-msisdns-add",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/6ac22f6f3346b6db1d4c8464d58b1329c30df516bb4206699a93fd8658df38c7.TrustedMsisdnRequest"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "examples":{
+         "OK":{
+          "summary":"OK",
+          "description":"OK",
+          "value":{}
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/6ac22f6f3346b6db1d4c8464d58b1329c30df516bb4206699a93fd8658df38c7.ErrorResponse"
+        },
+        "examples":{
+         "Too few MSISDNs":{
+          "summary":"Too few MSISDNs",
+          "description":"Too few MSISDNs",
+          "value":{
+           "errorDetails":"At least one MSISDN must be provided."
+          }
+         },
+         "Too many MSISDNs":{
+          "summary":"Too many MSISDNs",
+          "description":"Too many MSISDNs",
+          "value":{
+           "errorDetails":"At most 1000 MSISDN can be provided."
+          }
+         },
+         "Invalid MSISDNs":{
+          "summary":"Invalid MSISDNs",
+          "description":"Invalid MSISDNs",
+          "value":{
+           "errorDetails":"Invalid MSISDNs: abc, +-=, 4"
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "signals:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   },
+   "delete":{
+    "tags":[
+     "platform",
+     "signals"
+    ],
+    "summary":"Remove phone numbers from a list",
+    "description":"Remove phone numbers from a MSISDN list of trusted phone numbers.\n",
+    "operationId":"trusted-msisdns-remove",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/6ac22f6f3346b6db1d4c8464d58b1329c30df516bb4206699a93fd8658df38c7.TrustedMsisdnRequest"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "examples":{
+         "OK":{
+          "summary":"OK",
+          "description":"OK",
+          "value":{}
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/6ac22f6f3346b6db1d4c8464d58b1329c30df516bb4206699a93fd8658df38c7.ErrorResponse"
+        },
+        "examples":{
+         "Too few MSISDNs":{
+          "summary":"Too few MSISDNs",
+          "description":"Too few MSISDNs",
+          "value":{
+           "errorDetails":"At least one MSISDN must be provided."
+          }
+         },
+         "Too many MSISDNs":{
+          "summary":"Too many MSISDNs",
+          "description":"Too many MSISDNs",
+          "value":{
+           "errorDetails":"At most 1000 MSISDN can be provided."
+          }
+         },
+         "Invalid MSISDNs":{
+          "summary":"Invalid MSISDNs",
+          "description":"Invalid MSISDNs",
+          "value":{
+           "errorDetails":"Invalid MSISDNs: abc, +-=, 4"
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "signals:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/signals/1/trusted-msisdns/{msisdn}/check":{
+   "get":{
+    "tags":[
+     "platform",
+     "signals"
+    ],
+    "summary":"Check for phone numbers on a list",
+    "description":"Check whether a phone number exists on a MSISDN list of trusted phone numbers.\n",
+    "operationId":"trusted-msisdns-check",
+    "parameters":[
+     {
+      "name":"msisdn",
+      "in":"path",
+      "description":"Phone number (in MSISDN or international format) for which to check whether it is in the trusted MSISDN list.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"38512345678"
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/6ac22f6f3346b6db1d4c8464d58b1329c30df516bb4206699a93fd8658df38c7.TrustedMsisdnCheckResponse"
+        },
+        "examples":{
+         "OK":{
+          "summary":"OK",
+          "description":"OK",
+          "value":{
+           "exists":false
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/6ac22f6f3346b6db1d4c8464d58b1329c30df516bb4206699a93fd8658df38c7.ErrorResponse"
+        },
+        "examples":{
+         "Invalid MSISDNs":{
+          "summary":"Invalid MSISDNs",
+          "description":"Invalid MSISDNs",
+          "value":{
+           "errorDetails":"Invalid MSISDNs: abc"
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "$ref":"#/components/responses/ApiException404"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "signals:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  }
+ },
+ "components":{
+  "schemas":{
+   "6ac22f6f3346b6db1d4c8464d58b1329c30df516bb4206699a93fd8658df38c7.ErrorResponse":{
+    "type":"object",
+    "description":"Error response object.",
+    "properties":{
+     "errorDetails":{
+      "type":"string",
+      "description":"Details of the error, if the request fails."
+     }
+    },
+    "title":"ErrorResponse"
+   },
+   "6ac22f6f3346b6db1d4c8464d58b1329c30df516bb4206699a93fd8658df38c7.TrustedMsisdnCheckResponse":{
+    "type":"object",
+    "description":"Trusted MSISDN check response object.",
+    "properties":{
+     "exists":{
+      "type":"boolean",
+      "description":"Whether the provided phone number exists in the trusted MSISDN list."
+     }
+    },
+    "title":"TrustedMsisdnCheckResponse"
+   },
+   "6ac22f6f3346b6db1d4c8464d58b1329c30df516bb4206699a93fd8658df38c7.TrustedMsisdnRequest":{
+    "type":"object",
+    "description":"Trusted MSISDN request object.",
+    "properties":{
+     "phoneNumbers":{
+      "type":"array",
+      "description":"Phone numbers (in MSISDN or international format) to add to or remove from the trusted MSISDN list.",
+      "items":{
+       "type":"string",
+       "example":"3851235678"
+      }
+     }
+    },
+    "required":[
+     "phoneNumbers"
+    ],
+    "title":"TrustedMsisdnRequest"
+   },
+   "ApiException":{
+    "type":"object",
+    "properties":{
+     "requestError":{
+      "$ref":"#/components/schemas/ApiRequestError"
+     }
+    },
+    "title":"ApiException"
+   },
+   "ApiRequestError":{
+    "type":"object",
+    "properties":{
+     "serviceException":{
+      "$ref":"#/components/schemas/ApiRequestErrorDetails"
+     }
+    },
+    "title":"ApiRequestError"
+   },
+   "ApiRequestErrorDetails":{
+    "type":"object",
+    "properties":{
+     "messageId":{
+      "type":"string",
+      "description":"Identifier of the error."
+     },
+     "text":{
+      "type":"string",
+      "description":"Detailed error description."
+     },
+     "validationErrors":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"array",
+       "description":"Validation errors.",
+       "items":{
+        "type":"string",
+        "description":"Validation errors."
+       }
+      },
+      "description":"Validation errors."
+     }
+    },
+    "title":"ApiRequestErrorDetails"
+   }
+  },
+  "responses":{
+   "ApiException401":{
+    "description":"Unauthorized",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"UNAUTHORIZED",
+         "text":"Unauthorized"
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>UNAUTHORIZED</messageId>\n      <text>Unauthorized</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   },
+   "ApiException403":{
+    "description":"Forbidden",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"FORBIDDEN",
+         "text":"Forbidden"
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>FORBIDDEN</messageId>\n      <text>Forbidden</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   },
+   "ApiException404":{
+    "description":"Not Found",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"NOT_FOUND",
+         "text":"Not found"
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>NOT_FOUND</messageId>\n      <text>Not found</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   },
+   "ApiException429":{
+    "description":"Too Many Requests",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"TOO_MANY_REQUESTS",
+         "text":"Too many requests"
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>TOO_MANY_REQUESTS</messageId>\n      <text>Too many requests</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   },
+   "ApiException500":{
+    "description":"Internal Server Error",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"GENERAL_ERROR",
+         "text":"Something went wrong. Please contact support."
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>GENERAL_ERROR</messageId>\n      <text>Something went wrong. Please contact support.</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   }
+  },
+  "parameters":{},
+  "examples":{},
+  "requestBodies":{},
+  "headers":{},
+  "securitySchemes":{
+   "APIKeyHeader":{
+    "type":"apiKey",
+    "description":"This is the most secure authorization type and the one with the most flexibility.\n\nAPI keys can be generated by calling the dedicated API method. Furthermore, API keys can have a limited scope and cover only some API methods. Lastly, they can\nbe revoked at any time. This range of possibilities makes API keys well suited for separating the API access rights across multiple applications or use cases.\nFinally, the loss of an API key is easily manageable.\n\nYou can manage your API keys from [GUI](https://portal.infobip.com/settings/accounts/api-keys), or programmatically\nwith [dedicated API](#platform-&-connectivity/settings).\n\nAPI key Authorization header example:\n\n```shell\nAuthorization: App 003026bbc133714df1834b8638bb496e-8f4b3d9a-e931-478d-a994-28a725159ab9\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "Basic":{
+    "type":"http",
+    "description":"Basic authorization type can be used in situations when the API key is not available. For example, API methods for generating API keys should be authenticated\nwith the Basic type.\n\nIn this case, the credentials included in the Authorization header should be a Base64 encoded username and password combination. More formally, basic\nauthentication header can be constructed in three steps:\n\n* Username and password are concatenated using the colon `(:)` as a separator `username:password`.\n* The resulting string is encoded using the [RFC2045-MIME](https://www.ietf.org/rfc/rfc2045.txt) variant of Base64.\n* Encoded string is added as credentials after the `\"Basic \"` type.\n\nExample:\n\n```shell\nUsername: \"Aladdin\"\nPassword: \"openSesame\"\n\nConcatenated string: \"Aladdin:openSesame\"\n\nBase64 encoded string: \"QWxhZGRpbjpvcGVuU2VzYW1l\"\n\nAuthorization header: \"Basic QWxhZGRpbjpvcGVuU2VzYW1l\"\n```\n\n> **Implementation detail**: Base64 encoding is a standard and many available programming languages and frameworks provide convenient methods for encoding\n> strings.\n",
+    "scheme":"basic"
+   },
+   "IBSSOTokenHeader":{
+    "type":"apiKey",
+    "description":"This authorization type is suited for situations when you do not want to store Infobip credentials in your own app. Instead, your users will input their Infobip\ncredentials every time they access your application and the application will use those credentials to create a session. From then on, the session token can be\nused to authenticate subsequent API requests. Note that the session will expire automatically after a predefined period of inactivity, and can also be manually\nterminated by making an appropriate API call.\n\nYou can find more details on the creation and behavior of the session at\nthe [dedicated documentation page](#platform-connectivity/account-management/create-session).\n\nAfter obtaining the session token by calling the above-referenced API method you can include it in the Authorization header like this:\n\n```shell\nAuthorization: IBSSO 2f9b4d31-2d0d-49a8-85f0-9b862bdca394\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "OAuth2":{
+    "type":"oauth2",
+    "description":"Similarly to the IBSSO Token authentication you can use OAuth 2.0 bearer token with Infobip serving both as resource and authorization server. You can obtain\nthe access token using the client credentials grant from `auth/1/oauth2/token` endpoint. It will provide you with your access token, and its expiration period.\nYou can use the token to authorize your API calls until it expires. You can find out more about the process in\nthe [official specification](https://tools.ietf.org/html/rfc6749#section-4.4).\n\nYou can include your access token in the Authorization HTTP request header like this:\n\n```http\nAuthorization: Bearer <access_token>\n```",
+    "flows":{
+     "clientCredentials":{
+      "tokenUrl":"https://api.infobip.com/auth/1/oauth2/token",
+      "scopes":{}
+     }
+    }
+   }
+  },
+  "links":{},
+  "callbacks":{}
+ }
+}

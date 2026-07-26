@@ -1,0 +1,2755 @@
+{
+ "openapi":"3.1.0",
+ "info":{
+  "title":"Infobip OpenAPI Specification",
+  "description":"OpenAPI Specification that contains all public endpoints and webhooks.",
+  "contact":{
+   "name":"Infobip support",
+   "email":"support@infobip.com"
+  },
+  "version":"3.210.0",
+  "x-generatedAt":"2026-07-23T15:23:54.747544207Z"
+ },
+ "tags":[
+  {
+   "name":"channels",
+   "description":"Create a perfect customer experience by using the channels your customer already use and love.\n",
+   "x-type":"category",
+   "x-displayName":"Channels"
+  },
+  {
+   "name":"tiktok",
+   "description":"TikTok Business Messaging enables one-to-one conversations between TikTok users and your TikTok Business Account. With Infobip, you can receive inbound messages through webhooks, reply to users using the API, send events, and track delivery and seen status.\n\n* **User-initiated only:** All conversations must be initiated by the TikTok user. You cannot send a message until the user has messaged your [Business Account](https://ads.tiktok.com/help/article/about-business-registration) first.\n* **Supported message types:** Text (up to 6,000 characters), image (JPG or PNG, max 3 MB), and share post. Outbound messages are valid for up to 48 hours. Messages not delivered within this window are not sent.\n* **Availability:** Not available for Business Accounts registered in the United States, European Economic Area (EEA), Switzerland, or the United Kingdom.\n\nBefore using this API, connect your TikTok Business Account to Infobip and [configure event subscriptions](https://www.infobip.com/docs/api/platform/subscriptions-api/subscription/create-subscription). See [Get started with TikTok](https://www.infobip.com/docs/tiktok/get-started) and [TikTok over API](https://www.infobip.com/docs/tiktok/api).\n\nTo use TikTok in combination with other channels, see [Messages API](https://www.infobip.com/docs/api/platform/messages-api).\n",
+   "x-type":"product",
+   "x-displayName":"TikTok"
+  },
+  {
+   "name":"tiktok-outbound-messages",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Outbound message"
+  },
+  {
+   "name":"tiktok-events",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Events"
+  },
+  {
+   "name":"logs-and-status-reports-tiktok",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Logs and status reports"
+  },
+  {
+   "name":"tiktok-inbound-messages",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Inbound message"
+  }
+ ],
+ "paths":{
+  "/tiktok/1/messages":{
+   "post":{
+    "tags":[
+     "channels",
+     "tiktok",
+     "tiktok-outbound-messages"
+    ],
+    "summary":"Send TikTok messages",
+    "description":"Send one or more text, image, or share-post messages to TikTok users in active conversations with your TikTok Business Account. You can send messages only after the user has messaged your Business Account first.",
+    "externalDocs":{
+     "description":"Learn more about the TikTok channel and its use cases",
+     "url":"https://www.infobip.com/docs/tiktok"
+    },
+    "operationId":"send-tiktok-messages",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokRequest"
+       },
+       "examples":{
+        "Image message":{
+         "summary":"Image message",
+         "value":{
+          "messages":[
+           {
+            "sender":"-000pcMJDSDHK-UvK012b10KKXmCvWmVF8o",
+            "destinations":[
+             {
+              "to":"u5NkbnslAgxpOelvH01Y+rs7Uw="
+             }
+            ],
+            "content":{
+             "mediaUrl":"http://example.com/image.png",
+             "type":"IMAGE"
+            }
+           }
+          ]
+         }
+        },
+        "Text message":{
+         "summary":"Text message",
+         "value":{
+          "messages":[
+           {
+            "sender":"-000pcMJDSDHK-UvK012b10KKXmCvWmVF8o",
+            "destinations":[
+             {
+              "to":"u5NkbnslAgxpOelvH01Y+rs7Uw="
+             }
+            ],
+            "content":{
+             "text":"sample text",
+             "type":"TEXT"
+            }
+           }
+          ]
+         }
+        },
+        "Text message with reply":{
+         "summary":"Text message with reply",
+         "value":{
+          "messages":[
+           {
+            "sender":"-000pcMJDSDHK-UvK012b10KKXmCvWmVF8o",
+            "destinations":[
+             {
+              "to":"u5NkbnslAgxpOelvH01Y+rs7Uw="
+             }
+            ],
+            "content":{
+             "text":"sample reply text",
+             "replyToMessageId":"7199695882537746695",
+             "type":"TEXT"
+            }
+           }
+          ]
+         }
+        },
+        "Share post message":{
+         "summary":"Share post message",
+         "value":{
+          "messages":[
+           {
+            "sender":"-000pcMJDSDHK-UvK012b10KKXmCvWmVF8o",
+            "destinations":[
+             {
+              "to":"u5NkbnslAgxpOelvH01Y+rs7Uw="
+             }
+            ],
+            "content":{
+             "postId":"id123456789",
+             "type":"SHARE_POST"
+            }
+           }
+          ]
+         }
+        }
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.ResponseEnvelopeMessageResponseMessageResponseDetails"
+        },
+        "examples":{
+         "Successful response":{
+          "summary":"Successful response",
+          "value":{
+           "bulkId":"a28dd97c-2222-4fcf-99f1-0b557ed381da",
+           "messages":[
+            {
+             "messageId":"a28dd97c-1ffb-4fcf-99f1-0b557ed381da",
+             "status":{
+              "groupId":1,
+              "groupName":"PENDING",
+              "id":7,
+              "name":"PENDING_ENROUTE",
+              "description":"Message sent to next instance"
+             },
+             "destination":"u5NkbnslAgxpOelvH01Y+rs7Uw="
+            }
+           ]
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "errorCode":"E400",
+           "description":"Request cannot be processed.",
+           "action":"Check the syntax, violations and adjust the request.",
+           "violations":[
+            {
+             "property":"property.path",
+             "violation":"Violation message."
+            }
+           ],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "message:send",
+     "tiktok:message:send",
+     "tiktok:manage"
+    ],
+    "x-is-early-access":true
+   }
+  },
+  "/tiktok/1/events":{
+   "post":{
+    "tags":[
+     "channels",
+     "tiktok",
+     "tiktok-events"
+    ],
+    "summary":"Send TikTok events",
+    "description":"Send typing indicator or mark-as-read events to TikTok users in active conversations with your TikTok Business Account.",
+    "externalDocs":{
+     "description":"Learn more about the TikTok channel and its use cases",
+     "url":"https://www.infobip.com/docs/tiktok"
+    },
+    "operationId":"send-tiktok-events",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokEventRequest"
+       },
+       "examples":{
+        "Typing indicator":{
+         "summary":"Typing indicator",
+         "value":{
+          "events":[
+           {
+            "sender":"-000pcMJDSDHK-UvK012b10KKXmCvWmVF8o",
+            "destinations":[
+             {
+              "to":"u5NkbnslAgxpOelvH01Y+rs7Uw="
+             }
+            ],
+            "content":{
+             "type":"TYPING_INDICATOR"
+            }
+           }
+          ]
+         }
+        },
+        "Mark as read":{
+         "summary":"Mark as read",
+         "value":{
+          "events":[
+           {
+            "sender":"-000pcMJDSDHK-UvK012b10KKXmCvWmVF8o",
+            "destinations":[
+             {
+              "to":"u5NkbnslAgxpOelvH01Y+rs7Uw="
+             }
+            ],
+            "content":{
+             "type":"MARK_AS_READ"
+            }
+           }
+          ]
+         }
+        }
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.ResponseEnvelopeMessageResponseMessageResponseDetails"
+        },
+        "examples":{
+         "Success":{
+          "summary":"Success",
+          "value":{
+           "bulkId":"a28dd97c-2222-4fcf-99f1-0b557ed381da",
+           "messages":[
+            {
+             "messageId":"a28dd97c-1ffb-4fcf-99f1-0b557ed381da",
+             "status":{
+              "groupId":1,
+              "groupName":"PENDING",
+              "id":26,
+              "name":"PENDING_ACCEPTED",
+              "description":"Message sent to next instance"
+             },
+             "destination":"u5NkbnslAgxpOelvH01Y+rs7Uw="
+            }
+           ]
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "errorCode":"E400",
+           "description":"Request cannot be processed.",
+           "action":"Check the syntax, violations and adjust the request.",
+           "violations":[
+            {
+             "property":"property.path",
+             "violation":"Violation message."
+            }
+           ],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "message:send",
+     "tiktok:message:send",
+     "tiktok:manage"
+    ],
+    "x-is-early-access":true
+   }
+  },
+  "/tiktok/1/reports":{
+   "get":{
+    "tags":[
+     "channels",
+     "tiktok",
+     "logs-and-status-reports-tiktok"
+    ],
+    "summary":"Get TikTok delivery reports",
+    "description":"Use this endpoint to pull delivery reports when your endpoint does not receive real-time delivery reports. Each request returns the latest batch of delivery reports from the last 48 hours. Each report is returned only once.",
+    "externalDocs":{
+     "description":"Learn more about the TikTok channel and its use cases",
+     "url":"https://www.infobip.com/docs/tiktok"
+    },
+    "operationId":"get-outbound-tiktok-message-delivery-reports",
+    "parameters":[
+     {
+      "name":"bulkId",
+      "in":"query",
+      "description":"The ID that uniquely identifies the request. Bulk ID will be received only when you send a message to more than one destination address.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      }
+     },
+     {
+      "name":"messageId",
+      "in":"query",
+      "description":"The ID that uniquely identifies the message sent.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      }
+     },
+     {
+      "name":"limit",
+      "in":"query",
+      "description":"Maximum number of delivery reports to be returned. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access reports for the last 48h",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "format":"int32",
+       "default":50,
+       "maximum":1000
+      },
+      "example":1
+     },
+     {
+      "name":"entityId",
+      "in":"query",
+      "description":"Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"promotional-traffic-entity"
+     },
+     {
+      "name":"applicationId",
+      "in":"query",
+      "description":"Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"marketing-automation-application"
+     },
+     {
+      "name":"campaignReferenceId",
+      "in":"query",
+      "description":"ID of a campaign that was sent in the message.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"summersale"
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.DeliveryReports"
+        },
+        "examples":{
+         "Delivery reports":{
+          "summary":"Delivery reports",
+          "value":{
+           "results":[
+            {
+             "bulkId":"a28dd97c-2222-4fcf-99f1-0b557ed381da",
+             "price":{
+              "pricePerMessage":0.01,
+              "currency":"EUR"
+             },
+             "status":{
+              "groupId":3,
+              "groupName":"DELIVERED",
+              "id":5,
+              "name":"DELIVERED_TO_HANDSET",
+              "description":"Message delivered to handset"
+             },
+             "error":{
+              "groupId":0,
+              "groupName":"OK",
+              "id":0,
+              "name":"NO_ERROR",
+              "description":"No Error",
+              "permanent":false
+             },
+             "messageId":"a28dd97c-1ffb-4fcf-99f1-0b557ed381da",
+             "to":"u5NkbnslAgxpOelvH01Y+rs7Uw=",
+             "sender":"-000pcMJDSDHK-UvK012b10KKXmCvWmVF8o",
+             "sentAt":"2023-09-26T10:52:15.457+0000",
+             "doneAt":"2023-09-26T10:52:15.799+0000",
+             "messageCount":1,
+             "platform":{
+              "entityId":"promotional-traffic-entity",
+              "applicationId":"marketing-automation-application"
+             }
+            }
+           ]
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "message:send",
+     "tiktok:message:send",
+     "tiktok:manage"
+    ],
+    "x-is-early-access":true
+   }
+  },
+  "/tiktok/1/logs":{
+   "get":{
+    "tags":[
+     "channels",
+     "tiktok",
+     "logs-and-status-reports-tiktok"
+    ],
+    "summary":"Get TikTok message logs",
+    "description":"Use this endpoint to retrieve outbound TikTok message logs for display in a user interface. Logs are available for the last 48 hours.",
+    "operationId":"get-outbound-tiktok-message-logs",
+    "parameters":[
+     {
+      "name":"sender",
+      "in":"query",
+      "description":"The sender ID which can be alphanumeric or numeric.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      }
+     },
+     {
+      "name":"destination",
+      "in":"query",
+      "description":"Message destination address.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      }
+     },
+     {
+      "name":"bulkId",
+      "in":"query",
+      "description":"Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. May contain multiple comma-separated values. Maximum length 2048 characters.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"array",
+       "items":{
+        "type":"string"
+       }
+      },
+      "example":"BULK-ID-123-xyz"
+     },
+     {
+      "name":"messageId",
+      "in":"query",
+      "description":"Unique message ID for which a log is requested. May contain multiple comma-separated values. Maximum length 2048 characters.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"array",
+       "items":{
+        "type":"string"
+       }
+      },
+      "example":"MESSAGE-ID-123-xyz,MESSAGE-ID-124-xyz"
+     },
+     {
+      "name":"generalStatus",
+      "in":"query",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.MessageGeneralStatus"
+      }
+     },
+     {
+      "name":"sentSince",
+      "in":"query",
+      "description":"The logs will only include messages sent after this date. Use it alongside sentUntil to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "format":"date-time"
+      },
+      "example":"2020-02-22T17:42:05.390+01:00"
+     },
+     {
+      "name":"sentUntil",
+      "in":"query",
+      "description":"The logs will only include messages sent before this date. Use it alongside sentSince to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "format":"date-time",
+       "description":"The logs will only include messages sent before this date. Use it alongside sentSince to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ.",
+       "example":"2020-02-23T17:42:05.39+01:00"
+      },
+      "example":"2020-02-23T17:42:05.390+01:00"
+     },
+     {
+      "name":"limit",
+      "in":"query",
+      "description":"Maximum number of messages to include in logs. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access logs for the last 48h.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "format":"int32",
+       "default":50,
+       "maximum":1000
+      }
+     },
+     {
+      "name":"entityId",
+      "in":"query",
+      "description":"Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"promotional-traffic-entity"
+     },
+     {
+      "name":"applicationId",
+      "in":"query",
+      "description":"Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"marketing-automation-application"
+     },
+     {
+      "name":"campaignReferenceId",
+      "in":"query",
+      "description":"ID of a campaign that was sent in the message. May contain multiple comma-separated values.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"array",
+       "items":{
+        "type":"string"
+       }
+      },
+      "example":"summersale"
+     },
+     {
+      "name":"useCursor",
+      "in":"query",
+      "description":"Flag used to enable cursor-based pagination. When set to true, the system will use the cursor to fetch the next set of logs.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"boolean"
+      }
+     },
+     {
+      "name":"cursor",
+      "in":"query",
+      "description":"Value which represents the current position in the data set. For the first request, this field shouldn't be defined. In subsequent requests, use the `nextCursor` value returned from the previous response to continue fetching data.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.LogResponseLogTikTokOutboundMessageContent"
+        },
+        "examples":{
+         "Log result":{
+          "summary":"Log result",
+          "value":{
+           "results":[
+            {
+             "sender":"-000pcMJDSDHK-UvK012b10KKXmCvWmVF8o",
+             "destination":"u5NkbnslAgxpOelvH01Y+rs7Uw=",
+             "bulkId":"a28dd97c-2222-4fcf-99f1-0b557ed381da",
+             "messageId":"a28dd97c-1ffb-4fcf-99f1-0b557ed381da",
+             "sentAt":"2023-09-26T10:52:15.457+0000",
+             "doneAt":"2023-09-26T10:52:15.799+0000",
+             "messageCount":1,
+             "price":{
+              "pricePerMessage":0.01,
+              "currency":"EUR"
+             },
+             "status":{
+              "groupId":3,
+              "groupName":"DELIVERED",
+              "id":5,
+              "name":"DELIVERED_TO_HANDSET",
+              "description":"Message delivered to handset"
+             },
+             "error":{
+              "groupId":0,
+              "groupName":"OK",
+              "id":0,
+              "name":"NO_ERROR",
+              "description":"No Error",
+              "permanent":false
+             },
+             "platform":{
+              "entityId":"promotional-traffic-entity",
+              "applicationId":"marketing-automation-application"
+             },
+             "content":{
+              "text":"Hello!",
+              "type":"TEXT"
+             }
+            }
+           ]
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "tiktok:logs:read",
+     "tiktok:manage"
+    ],
+    "x-is-early-access":true,
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":120,
+      "numberOfTimeUnits":0,
+      "timeUnit":"m"
+     }
+    ]
+   }
+  }
+ },
+ "components":{
+  "schemas":{
+   "ApiError":{
+    "type":"object",
+    "properties":{
+     "errorCode":{
+      "type":"string",
+      "description":"An error code uniquely identifying the error case."
+     },
+     "description":{
+      "type":"string",
+      "description":"A detailed description of an error."
+     },
+     "action":{
+      "type":"string",
+      "description":"An action that should be taken to recover from the error."
+     },
+     "violations":{
+      "type":"array",
+      "description":"List of violations that caused the error.",
+      "items":{
+       "$ref":"#/components/schemas/ApiErrorViolation"
+      }
+     },
+     "resources":{
+      "type":"array",
+      "description":"List of available resources to recover from the error.",
+      "items":{
+       "$ref":"#/components/schemas/ApiErrorResource"
+      }
+     }
+    },
+    "required":[
+     "action",
+     "description",
+     "errorCode",
+     "resources",
+     "violations"
+    ],
+    "title":"ApiError"
+   },
+   "ApiErrorResource":{
+    "type":"object",
+    "description":"List of available resources to recover from the error.",
+    "properties":{
+     "name":{
+      "type":"string",
+      "description":"Resource name."
+     },
+     "url":{
+      "type":"string",
+      "description":"Resource URL."
+     }
+    },
+    "title":"ApiErrorResource"
+   },
+   "ApiErrorViolation":{
+    "type":"object",
+    "description":"List of violations that caused the error.",
+    "properties":{
+     "property":{
+      "type":"string",
+      "description":"Request property that caused the error."
+     },
+     "violation":{
+      "type":"string",
+      "description":"Detailed violation description."
+     }
+    },
+    "title":"ApiErrorViolation"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.AdvancedMessageDeliveryReporting":{
+    "type":"object",
+    "description":"Provides options for configuring the delivery report behavior.",
+    "properties":{
+     "url":{
+      "type":"string",
+      "description":"The URL on your call back server where a delivery report will be sent. If your URL becomes unavailable then the [retry cycle](https://www.infobip.com/docs/sms/sms-over-api#push-retry-cycle-notify-url) uses the following formula: `1min + (1min * retryNumber * retryNumber)`."
+     },
+     "intermediateReport":{
+      "type":"boolean",
+      "description":"The real-time intermediate delivery report containing GSM error codes, messages status, pricing, network and country codes, etc., which will be sent on your callback server. Defaults to `false`."
+     },
+     "notify":{
+      "type":"boolean",
+      "description":"Notify enables you to specify your preferences for receiving DLRs. If set to false, no DLR will be sent. Note: When no webhook is specified in the request and notify is set to 'true' or not defined, your Subscription settings will apply."
+     },
+     "receiveTriggeredFailoverReports":{
+      "type":"boolean",
+      "description":"Allows you to receive delivery reports for all triggered failover steps, not just the final one (either the first successful or the last failed step). The default setting is `false`."
+     }
+    },
+    "title":"AdvancedMessageDeliveryReporting"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.AdvancedWebhooksWithSeen":{
+    "type":"object",
+    "description":"Provides options for configuring message webhooks.",
+    "properties":{
+     "delivery":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.AdvancedMessageDeliveryReporting"
+     },
+     "contentType":{
+      "type":"string",
+      "description":"Preferred delivery report content type, `application/json` or `application/xml`."
+     },
+     "callbackData":{
+      "type":"string",
+      "description":"Additional data that can be used for identifying, managing, or monitoring a message. Data included here will also be automatically included in the message Delivery Report. The maximum value is 4000 characters.",
+      "maxLength":4000,
+      "minLength":0
+     },
+     "seen":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.SeenStatusReporting"
+     }
+    },
+    "title":"AdvancedWebhooksWithSeen"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.ClientPriority":{
+    "type":"string",
+    "description":"Client priority set on request. Must be 'HIGH', 'STANDARD' or 'LOW'.",
+    "enum":[
+     "HIGH",
+     "STANDARD",
+     "LOW"
+    ],
+    "title":"ClientPriority"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.Context":{
+    "type":"object",
+    "description":"Information about the message to which the end user responded.",
+    "properties":{
+     "id":{
+      "type":"string",
+      "description":"Id of the message to which the end user responded."
+     }
+    },
+    "title":"Context"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.CursorPageInfo":{
+    "type":"object",
+    "description":"Cursor information.",
+    "properties":{
+     "limit":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Requested limit."
+     },
+     "nextCursor":{
+      "type":"string",
+      "description":"The `cursor` value you will use in your next request to fetch the subsequent set of results."
+     }
+    },
+    "readOnly":true,
+    "title":"CursorPageInfo"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.DefaultEventRequestOptions":{
+    "type":"object",
+    "description":"Options applicable to all events in the request.",
+    "properties":{
+     "schedule":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.RequestSchedulingSettings"
+     }
+    },
+    "title":"DefaultEventRequestOptions"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.DefaultSmsFailover":{
+    "type":"object",
+    "description":"Failover SMS message to be sent if the original message could not be delivered.",
+    "properties":{
+     "sender":{
+      "type":"string",
+      "description":"The sender ID. It can be alphanumeric or numeric (e.g., `CompanyName`). Make sure you don't exceed [character limit](https://www.infobip.com/docs/sms/get-started#sender-names)."
+     },
+     "text":{
+      "type":"string",
+      "description":"Content of the message being sent."
+     },
+     "validityPeriod":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.ValidityPeriod"
+     },
+     "regional":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.RegionalOptions"
+     }
+    },
+    "required":[
+     "text"
+    ],
+    "title":"DefaultSmsFailover"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.DeliveryDay":{
+    "type":"string",
+    "description":"Days of the week which are included in the delivery time window. At least one day must be provided. Separate multiple days with a comma.",
+    "enum":[
+     "MONDAY",
+     "TUESDAY",
+     "WEDNESDAY",
+     "THURSDAY",
+     "FRIDAY",
+     "SATURDAY",
+     "SUNDAY"
+    ],
+    "title":"DeliveryDay"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.DeliveryReport":{
+    "type":"object",
+    "description":"Collection of reports, one per every message.",
+    "properties":{
+     "bulkId":{
+      "type":"string",
+      "description":"Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request."
+     },
+     "price":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.MessagePrice"
+     },
+     "status":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.MessageStatus"
+     },
+     "error":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.MessageError"
+     },
+     "messageId":{
+      "type":"string",
+      "description":"Unique message ID."
+     },
+     "to":{
+      "type":"string",
+      "description":"Message destination address."
+     },
+     "sender":{
+      "type":"string",
+      "description":"The sender ID which can be alphanumeric or numeric (e.g., `CompanyName`)."
+     },
+     "sentAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when the message was sent. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+     },
+     "doneAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when the Infobip services finished processing the message (i.e., delivered to the destination, network, etc.). Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+     },
+     "messageCount":{
+      "type":"integer",
+      "format":"int32",
+      "description":"The number of sent messages."
+     },
+     "mccMnc":{
+      "type":"string",
+      "description":"Mobile country and network codes."
+     },
+     "callbackData":{
+      "type":"string",
+      "description":"Callback data sent through ‛callbackData‛ field when sending message."
+     },
+     "platform":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.Platform"
+     },
+     "campaignReferenceId":{
+      "type":"string",
+      "description":"ID of a campaign that was sent in the message."
+     }
+    },
+    "title":"DeliveryReport"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.DeliveryReports":{
+    "type":"object",
+    "properties":{
+     "results":{
+      "type":"array",
+      "description":"Collection of reports, one per every message.",
+      "items":{
+       "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.DeliveryReport"
+      }
+     }
+    },
+    "title":"DeliveryReports"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.DeliveryTime":{
+    "type":"object",
+    "description":"The exact time of the day. The time is expressed in the UTC time zone.",
+    "properties":{
+     "hour":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Hour when the time window opens when used in the `from` property or closes when used in the `to` property.",
+      "maximum":23,
+      "minimum":0
+     },
+     "minute":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Minute when the time window opens when used in the `from` property or closes when used in the `to` property.",
+      "maximum":59,
+      "minimum":0
+     }
+    },
+    "required":[
+     "hour",
+     "minute"
+    ],
+    "title":"DeliveryTime"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.DeliveryTimeWindow":{
+    "type":"object",
+    "description":"Sets specific message delivery window outside of which messages won't be delivered. Often, used when there are restrictions on when messages can be sent. The exact time of the day to start sending messages can be defined using the `from` property. The exact time of the day to end sending messages can be defined using the `to` property. Properties `from` and `to` should be both provided with the minimum 1 hour difference or omitted.",
+    "properties":{
+     "days":{
+      "type":"array",
+      "description":"Days of the week which are included in the delivery time window. At least one day must be provided. Separate multiple days with a comma.",
+      "items":{
+       "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.DeliveryDay"
+      }
+     },
+     "from":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.DeliveryTime"
+     },
+     "to":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.DeliveryTime"
+     }
+    },
+    "required":[
+     "days"
+    ],
+    "title":"DeliveryTimeWindow"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.InboundMessageTikTokInboundContent":{
+    "type":"object",
+    "description":"Collection of mobile originated messages.",
+    "properties":{
+     "entityId":{
+      "type":"string",
+      "description":"Used when specifying an entity in outbound send requests. It is also returned in notification events. For detailed usage, refer to the [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+      "maxLength":255,
+      "minLength":0
+     },
+     "applicationId":{
+      "type":"string",
+      "description":"Used when specifying an entity in outbound send requests. It is also returned in notification events. For detailed usage, refer to the [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+      "maxLength":255,
+      "minLength":0
+     },
+     "sender":{
+      "type":"string",
+      "description":"Number which sent the message."
+     },
+     "to":{
+      "type":"string",
+      "description":"Sender provided during the activation process."
+     },
+     "integrationType":{
+      "type":"string",
+      "description":"Integration type."
+     },
+     "receivedAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when Infobip received the message. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+     },
+     "keyword":{
+      "type":"string",
+      "description":"Keyword extracted from the message text."
+     },
+     "messageId":{
+      "type":"string",
+      "description":"The ID that uniquely identifies the received message."
+     },
+     "pairedMessageId":{
+      "type":"string",
+      "description":"Message ID of paired outgoing message if matched by Infobip platform."
+     },
+     "callbackData":{
+      "type":"string",
+      "description":"Callback data sent through ‛callbackData‛ field when sending message."
+     },
+     "message":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokInboundContent"
+     },
+     "price":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.MessagePrice"
+     }
+    },
+    "required":[
+     "integrationType",
+     "message",
+     "messageId",
+     "price",
+     "receivedAt",
+     "sender",
+     "to"
+    ],
+    "title":"InboundMessageTikTokInboundContent"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.IndiaDltOptions":{
+    "type":"object",
+    "description":"Distributed Ledger Technology (DLT) specific parameters required for sending SMS to phone numbers registered in India.",
+    "properties":{
+     "contentTemplateId":{
+      "type":"string",
+      "description":"Registered DLT content template ID which matches message you are sending."
+     },
+     "principalEntityId":{
+      "type":"string",
+      "description":"Your assigned DLT principal entity ID."
+     },
+     "telemarketerId":{
+      "type":"string",
+      "description":"Your assigned Telemarketer ID. (required for Aggregators)"
+     }
+    },
+    "required":[
+     "principalEntityId"
+    ],
+    "title":"IndiaDltOptions"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.LogResponseLogTikTokOutboundMessageContent":{
+    "type":"object",
+    "properties":{
+     "results":{
+      "type":"array",
+      "description":"An array of message log results, one object per each message log entry.",
+      "items":{
+       "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.LogTikTokOutboundMessageContent"
+      }
+     },
+     "cursor":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.CursorPageInfo"
+     }
+    },
+    "title":"LogResponseLogTikTokOutboundMessageContent"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.LogTikTokOutboundMessageContent":{
+    "type":"object",
+    "description":"An array of message log results, one object per each message log entry.",
+    "properties":{
+     "sender":{
+      "type":"string",
+      "description":"The sender ID which can be alphanumeric or numeric."
+     },
+     "destination":{
+      "type":"string",
+      "description":"Message destination address."
+     },
+     "bulkId":{
+      "type":"string",
+      "description":"Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request.",
+      "example":"BULK-ID-123-xyz"
+     },
+     "messageId":{
+      "type":"string",
+      "description":"Unique message ID for which a log is requested."
+     },
+     "sentAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when the message was sent. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+     },
+     "doneAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when the Infobip services finished processing the message (i.e., delivered to the destination, network, etc.). Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+     },
+     "messageCount":{
+      "type":"integer",
+      "format":"int32",
+      "description":"The number of messages content was split to."
+     },
+     "price":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.MessagePrice"
+     },
+     "status":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.MessageStatus"
+     },
+     "error":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.MessageError"
+     },
+     "platform":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.Platform"
+     },
+     "content":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokOutboundMessageContent"
+     },
+     "campaignReferenceId":{
+      "type":"string",
+      "description":"ID of a campaign that was sent in the message."
+     }
+    },
+    "title":"LogTikTokOutboundMessageContent"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.MessageError":{
+    "type":"object",
+    "description":"Indicates whether an [error](https://www.infobip.com/docs/essentials/response-status-and-error-codes#error-codes) occurred during the query execution.",
+    "properties":{
+     "groupId":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Error group ID."
+     },
+     "groupName":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.MessageErrorGroup"
+     },
+     "id":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Error ID."
+     },
+     "name":{
+      "type":"string",
+      "description":"[Error name](https://www.infobip.com/docs/essentials/response-status-and-error-codes#error-codes)."
+     },
+     "description":{
+      "type":"string",
+      "description":"Human-readable description of the error."
+     },
+     "permanent":{
+      "type":"boolean",
+      "description":"Indicates whether the error is recoverable or not."
+     }
+    },
+    "title":"MessageError"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.MessageErrorGroup":{
+    "type":"string",
+    "description":"Error group name that describes which category the error code belongs to.",
+    "enum":[
+     "OK",
+     "HANDSET_ERRORS",
+     "USER_ERRORS",
+     "OPERATOR_ERRORS"
+    ],
+    "title":"MessageErrorGroup"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.MessageGeneralStatus":{
+    "type":"string",
+    "description":"Status group name that describes which category the status code belongs to, i.e., [PENDING](https://www.infobip.com/docs/essentials/response-status-and-error-codes#pending-general-status-codes), [UNDELIVERABLE](https://www.infobip.com/docs/essentials/response-status-and-error-codes#undeliverable-general-status-codes), [DELIVERED](https://www.infobip.com/docs/essentials/response-status-and-error-codes#delivered-general-status-codes), [EXPIRED](https://www.infobip.com/docs/essentials/response-status-and-error-codes#expired-general-status-codes), [REJECTED](https://www.infobip.com/docs/essentials/response-status-and-error-codes#rejected-general-status-codes).",
+    "enum":[
+     "ACCEPTED",
+     "PENDING",
+     "UNDELIVERABLE",
+     "DELIVERED",
+     "EXPIRED",
+     "REJECTED"
+    ],
+    "title":"MessageGeneralStatus"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.MessagePrice":{
+    "type":"object",
+    "description":"Sent message price.",
+    "properties":{
+     "pricePerMessage":{
+      "type":"number",
+      "description":"Price per one message."
+     },
+     "currency":{
+      "type":"string",
+      "description":"The currency in which the price is expressed."
+     }
+    },
+    "title":"MessagePrice"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.MessageResponseDetails":{
+    "type":"object",
+    "description":"Other details of the message.",
+    "title":"MessageResponseDetails"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.MessageResponseMessageResponseDetails":{
+    "type":"object",
+    "description":"An array of message objects of a single message or multiple messages sent under one bulk ID.",
+    "properties":{
+     "messageId":{
+      "type":"string",
+      "description":"Unique message ID. If not provided, it will be auto-generated and returned in the API response."
+     },
+     "status":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.MessageStatus"
+     },
+     "destination":{
+      "type":"string",
+      "description":"The destination address of the message, i.e., its recipient."
+     },
+     "details":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.MessageResponseDetails"
+     }
+    },
+    "title":"MessageResponseMessageResponseDetails"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.MessageStatus":{
+    "type":"object",
+    "description":"Indicates the [status](https://www.infobip.com/docs/essentials/response-status-and-error-codes#api-status-codes) of the message and how to recover from an error should there be any.",
+    "properties":{
+     "groupId":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Status group ID."
+     },
+     "groupName":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.MessageGeneralStatus"
+     },
+     "id":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Status code ID."
+     },
+     "name":{
+      "type":"string",
+      "description":"[Status code](https://www.infobip.com/docs/essentials/response-status-and-error-codes#api-status-codes) name."
+     },
+     "description":{
+      "type":"string",
+      "description":"Human-readable description of the status."
+     },
+     "action":{
+      "type":"string",
+      "description":"Action to take to recover from the error."
+     }
+    },
+    "title":"MessageStatus"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.Platform":{
+    "type":"object",
+    "description":"Platform options. For more details, see [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+    "properties":{
+     "entityId":{
+      "type":"string",
+      "description":"Used when specifying an entity in outbound send requests. It is also returned in notification events. For detailed usage, refer to the [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+      "maxLength":255,
+      "minLength":0
+     },
+     "applicationId":{
+      "type":"string",
+      "description":"Used when specifying an application in outbound send requests. It is also returned in notification events. For detailed usage, refer to the [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+      "maxLength":255,
+      "minLength":0
+     }
+    },
+    "title":"Platform"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.PrefilledMessageAuditStatusEnum":{
+    "type":"string",
+    "description":"The audit status of the prefilled message. Supported values are: REJECT and PASS.",
+    "enum":[
+     "REJECT",
+     "PASS",
+     "UNKNOWN"
+    ],
+    "title":"PrefilledMessageAuditStatusEnum"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.ReactionAction":{
+    "type":"string",
+    "description":"Reaction action.",
+    "enum":[
+     "ADDED",
+     "REMOVED"
+    ],
+    "title":"ReactionAction"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.ReactionType":{
+    "type":"string",
+    "description":"Reaction type.",
+    "enum":[
+     "EMOJI",
+     "AI_EMOJI"
+    ],
+    "title":"ReactionType"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.RecipientType":{
+    "type":"string",
+    "description":"Recipient Type must be `TACIR` or `BIREYSEL`.",
+    "enum":[
+     "BIREYSEL",
+     "TACIR"
+    ],
+    "title":"RecipientType"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.RegionalOptions":{
+    "type":"object",
+    "description":"Region-specific parameters, often imposed by local laws. Use this, if country or region that you are sending an SMS to requires additional information.",
+    "properties":{
+     "indiaDlt":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.IndiaDltOptions"
+     },
+     "turkeyIys":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TurkeyIysOptions"
+     },
+     "southKorea":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.SouthKoreaOptions"
+     }
+    },
+    "title":"RegionalOptions"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.RequestSchedulingSettings":{
+    "type":"object",
+    "description":"Options for scheduling a message.",
+    "properties":{
+     "bulkId":{
+      "type":"string",
+      "description":"Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. If not provided, it will be auto-generated and returned in the API response.",
+      "maxLength":100,
+      "minLength":0
+     },
+     "sendAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when the message is to be sent. Used for scheduled messages. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`, and can only be scheduled for no later than 180 days in advance."
+     },
+     "sendingSpeedLimit":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.SendingSpeedLimit"
+     }
+    },
+    "title":"RequestSchedulingSettings"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.ResponseEnvelopeMessageResponseMessageResponseDetails":{
+    "type":"object",
+    "properties":{
+     "bulkId":{
+      "type":"string",
+      "description":"Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. If not provided, it will be auto-generated and returned in the API response. Typically used for fetching delivery reports and message logs."
+     },
+     "messages":{
+      "type":"array",
+      "description":"An array of message objects of a single message or multiple messages sent under one bulk ID.",
+      "items":{
+       "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.MessageResponseMessageResponseDetails"
+      }
+     }
+    },
+    "required":[
+     "messages"
+    ],
+    "title":"ResponseEnvelopeMessageResponseMessageResponseDetails"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.SeenReport":{
+    "type":"object",
+    "description":"Collection of reports, one per every message.",
+    "properties":{
+     "messageId":{
+      "type":"string",
+      "description":"The ID of the sent message."
+     },
+     "from":{
+      "type":"string",
+      "description":"Number which sent the message."
+     },
+     "to":{
+      "type":"string",
+      "description":"Sender provided during the activation process."
+     },
+     "sentAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Tells when the message was sent."
+     },
+     "seenAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Tells when the message was seen."
+     },
+     "applicationId":{
+      "type":"string",
+      "description":"Application id that the message is linked to."
+     },
+     "entityId":{
+      "type":"string",
+      "description":"Entity id that the message is linked to."
+     },
+     "campaignReferenceId":{
+      "type":"string",
+      "description":"ID of a campaign that was sent in the message."
+     }
+    },
+    "title":"SeenReport"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.SeenReports":{
+    "type":"object",
+    "properties":{
+     "results":{
+      "type":"array",
+      "description":"Collection of reports, one per every message.",
+      "items":{
+       "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.SeenReport"
+      }
+     }
+    },
+    "title":"SeenReports"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.SeenStatusReporting":{
+    "type":"object",
+    "description":"Provides options for configuring the seen report behavior.",
+    "properties":{
+     "url":{
+      "type":"string",
+      "description":"The URL on your call back server where a seen report will be sent."
+     }
+    },
+    "title":"SeenStatusReporting"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.SendingSpeedLimit":{
+    "type":"object",
+    "description":"Limits the send speed when sending messages in bulk to deliver messages over a longer period of time. You may wish to use this to allow your systems or agents to handle large amounts of incoming traffic, e.g., if you are expecting recipients to follow through with a call-to-action option from a message you sent. Not setting a send speed limit can overwhelm your resources with incoming traffic.",
+    "properties":{
+     "amount":{
+      "type":"integer",
+      "format":"int32",
+      "description":"The number of messages to be sent per timeUnit. By default, the system sends messages as fast as the infrastructure allows. Use this parameter to adapt sending capacity to your needs. The system is only able to work against its maximum capacity for ambitious message batches."
+     },
+     "timeUnit":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.SpeedLimitTimeUnit"
+     }
+    },
+    "required":[
+     "amount"
+    ],
+    "title":"SendingSpeedLimit"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.SouthKoreaOptions":{
+    "type":"object",
+    "description":"Use case dependent parameters for sending SMS to phone numbers registered in South Korea.",
+    "properties":{
+     "title":{
+      "type":"string",
+      "description":"Title of the message.",
+      "maxLength":66,
+      "minLength":0
+     },
+     "resellerCode":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Reseller identification code: 9-digit registration number in the business registration certificate for South Korea. Resellers should submit this when sending."
+     }
+    },
+    "title":"SouthKoreaOptions"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.SpeedLimitTimeUnit":{
+    "type":"string",
+    "default":"MINUTE",
+    "description":"The time unit to define when setting a messaging speed limit. Defaults to `MINUTE`.",
+    "enum":[
+     "MINUTE",
+     "HOUR",
+     "DAY"
+    ],
+    "title":"SpeedLimitTimeUnit"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokEvent":{
+    "type":"object",
+    "description":"An array of event objects of the events to be sent.",
+    "properties":{
+     "sender":{
+      "type":"string",
+      "description":"The sender ID. It can be alphanumeric or numeric (e.g., `CompanyName`). Make sure you don't exceed [character limit](https://www.infobip.com/docs/sms/get-started#sender-names)."
+     },
+     "destinations":{
+      "type":"array",
+      "description":"An array of destination objects for where the event is being sent. A valid destination is required.",
+      "items":{
+       "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.ToDestination"
+      }
+     },
+     "content":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokOutboundEventContent"
+     },
+     "options":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokEventOptions"
+     }
+    },
+    "required":[
+     "content",
+     "destinations",
+     "sender"
+    ],
+    "title":"TikTokEvent"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokEventOptions":{
+    "type":"object",
+    "description":"Event options.",
+    "properties":{
+     "platform":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.Platform"
+     },
+     "validityPeriod":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.ValidityPeriod"
+     }
+    },
+    "title":"TikTokEventOptions"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokEventRequest":{
+    "type":"object",
+    "properties":{
+     "events":{
+      "type":"array",
+      "description":"An array of event objects of the events to be sent.",
+      "items":{
+       "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokEvent"
+      }
+     },
+     "options":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.DefaultEventRequestOptions"
+     }
+    },
+    "required":[
+     "events"
+    ],
+    "title":"TikTokEventRequest"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokInboundContent":{
+    "type":"object",
+    "description":"Message content.",
+    "discriminator":{
+     "propertyName":"type",
+     "mapping":{
+      "TEXT":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokInboundTextContent",
+      "IMAGE":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokInboundImageContent",
+      "SHARE_POST":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokInboundSharePostContent",
+      "REFERRAL_AD":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokInboundReferralAdContent",
+      "REFERRAL_SHORT_LINK":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokInboundReferralShortLinkContent",
+      "REACTION":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokInboundReactionContent"
+     }
+    },
+    "properties":{
+     "type":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokInboundContentType"
+     }
+    },
+    "title":"TikTokInboundContent"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokInboundContentType":{
+    "type":"string",
+    "enum":[
+     "TEXT",
+     "IMAGE",
+     "SHARE_POST",
+     "REFERRAL_AD",
+     "REFERRAL_SHORT_LINK",
+     "REACTION"
+    ],
+    "title":"TikTokInboundContentType"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokInboundImageContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokInboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "context":{
+        "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.Context"
+       },
+       "conversationId":{
+        "type":"string",
+        "description":"The conversation id needed for sending MT message."
+       },
+       "mediaUrl":{
+        "type":"string",
+        "description":"URL of the media file."
+       },
+       "referral":{
+        "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokReferral"
+       }
+      }
+     }
+    ],
+    "required":[
+     "conversationId",
+     "mediaUrl"
+    ],
+    "title":"TikTokInboundImageContent"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokInboundMessage":{
+    "type":"object",
+    "properties":{
+     "results":{
+      "type":"array",
+      "description":"Collection of mobile originated messages.",
+      "items":{
+       "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.InboundMessageTikTokInboundContent"
+      }
+     },
+     "messageCount":{
+      "type":"integer",
+      "format":"int32",
+      "description":"The number of messages returned in the results array."
+     },
+     "pendingMessageCount":{
+      "type":"integer",
+      "format":"int32",
+      "description":"The number of messages that have not been pulled in."
+     }
+    },
+    "title":"TikTokInboundMessage"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokInboundReactionContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokInboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "context":{
+        "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.Context"
+       },
+       "conversationId":{
+        "type":"string",
+        "description":"The conversation id needed for sending MT message."
+       },
+       "action":{
+        "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.ReactionAction"
+       },
+       "reactionType":{
+        "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.ReactionType"
+       },
+       "emoji":{
+        "type":"string",
+        "description":"Text representation of the emoji reaction."
+       },
+       "aiEmojiUrl":{
+        "type":"string",
+        "description":"URL for AI-generated emoji image. Valid for 30 days."
+       }
+      }
+     }
+    ],
+    "required":[
+     "action",
+     "conversationId",
+     "reactionType"
+    ],
+    "title":"TikTokInboundReactionContent"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokInboundReferralAdContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokInboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "conversationId":{
+        "type":"string",
+        "description":"The conversation id needed for sending MT message."
+       },
+       "advertiserId":{
+        "type":"string",
+        "description":"The ID of the advertiser account that is associated with the ad."
+       },
+       "adId":{
+        "type":"string",
+        "description":"Ad ID of the referral ad."
+       },
+       "adName":{
+        "type":"string",
+        "description":"The name of the related ad."
+       },
+       "embedUrl":{
+        "type":"string",
+        "description":"An embeddable link for the TikTok post used in the related ad."
+       },
+       "messageMaterialId":{
+        "type":"string",
+        "description":"The ID is the encoded identifier of a creative from a campaign created via Upgraded Smart+ Ads API or Smart+ API."
+       }
+      }
+     }
+    ],
+    "required":[
+     "conversationId"
+    ],
+    "title":"TikTokInboundReferralAdContent"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokInboundReferralShortLinkContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokInboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "conversationId":{
+        "type":"string",
+        "description":"The conversation id needed for sending MT message."
+       },
+       "ref":{
+        "type":"string",
+        "description":"The ref parameter is a URL-encoded string used to track the context of how users enter a conversation via your TikTok.me link. It supports alphanumeric characters and -, _, = with a maximum length of 2,083 characters. Use it to differentiate links across channels or campaigns for analytics purposes."
+       },
+       "prefilledMessage":{
+        "type":"string",
+        "description":"The prefilled message that is configured in the TikTok.me link."
+       },
+       "prefilledMessageAuditStatus":{
+        "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.PrefilledMessageAuditStatusEnum"
+       }
+      }
+     }
+    ],
+    "required":[
+     "conversationId"
+    ],
+    "title":"TikTokInboundReferralShortLinkContent"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokInboundSharePostContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokInboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "context":{
+        "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.Context"
+       },
+       "conversationId":{
+        "type":"string",
+        "description":"The conversation id needed for sending MT message."
+       },
+       "embedUrl":{
+        "type":"string",
+        "description":"An embeddable link for the TikTok post."
+       },
+       "referral":{
+        "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokReferral"
+       }
+      }
+     }
+    ],
+    "required":[
+     "conversationId",
+     "embedUrl"
+    ],
+    "title":"TikTokInboundSharePostContent"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokInboundTextContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokInboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "context":{
+        "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.Context"
+       },
+       "conversationId":{
+        "type":"string",
+        "description":"The conversation id needed for sending MT message."
+       },
+       "text":{
+        "type":"string",
+        "description":"Content of the end user's message."
+       },
+       "referral":{
+        "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokReferral"
+       }
+      }
+     }
+    ],
+    "required":[
+     "conversationId",
+     "text"
+    ],
+    "title":"TikTokInboundTextContent"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokMessage":{
+    "type":"object",
+    "description":"An array of message objects of a single message or multiple messages sent under one bulk ID.",
+    "properties":{
+     "sender":{
+      "type":"string",
+      "description":"The sender ID. It can be alphanumeric or numeric (e.g., `CompanyName`). Make sure you don't exceed [character limit](https://www.infobip.com/docs/sms/get-started#sender-names)."
+     },
+     "destinations":{
+      "type":"array",
+      "description":"An array of destination objects for where messages are being sent. A valid destination is required.",
+      "items":{
+       "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.ToDestination"
+      }
+     },
+     "content":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokOutboundMessageContent"
+     },
+     "options":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokMessageOptions"
+     },
+     "webhooks":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.AdvancedWebhooksWithSeen"
+     }
+    },
+    "required":[
+     "content",
+     "destinations",
+     "sender"
+    ],
+    "title":"TikTokMessage"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokMessageOptions":{
+    "type":"object",
+    "description":"Message options.",
+    "properties":{
+     "platform":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.Platform"
+     },
+     "validityPeriod":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.ValidityPeriod"
+     },
+     "deliveryTimeWindow":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.DeliveryTimeWindow"
+     },
+     "campaignReferenceId":{
+      "type":"string",
+      "description":"ID that allows you to track, analyze, and show an aggregated overview and the performance of individual campaigns per sending channel.",
+      "maxLength":255,
+      "minLength":0
+     },
+     "smsFailover":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.DefaultSmsFailover"
+     }
+    },
+    "title":"TikTokMessageOptions"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokMessageRequestOptions":{
+    "type":"object",
+    "description":"Options applicable to all messages in the request.",
+    "properties":{
+     "schedule":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.RequestSchedulingSettings"
+     },
+     "priority":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.ClientPriority"
+     }
+    },
+    "title":"TikTokMessageRequestOptions"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokOutboundContentType":{
+    "type":"string",
+    "enum":[
+     "TEXT",
+     "IMAGE",
+     "SHARE_POST"
+    ],
+    "title":"TikTokOutboundContentType"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokOutboundEventContent":{
+    "type":"object",
+    "description":"Event content.",
+    "discriminator":{
+     "propertyName":"type",
+     "mapping":{
+      "TYPING_INDICATOR":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokOutboundEventTypingIndicatorContent",
+      "MARK_AS_READ":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokOutboundEventMarkAsReadContent"
+     }
+    },
+    "properties":{
+     "type":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokOutboundEventContentType"
+     }
+    },
+    "required":[
+     "type"
+    ],
+    "title":"TikTokOutboundEventContent"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokOutboundEventContentType":{
+    "type":"string",
+    "enum":[
+     "TYPING_INDICATOR",
+     "MARK_AS_READ"
+    ],
+    "title":"TikTokOutboundEventContentType"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokOutboundEventMarkAsReadContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokOutboundEventContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "type":{
+        "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokOutboundEventContentType"
+       }
+      }
+     }
+    ],
+    "required":[
+     "type"
+    ],
+    "title":"TikTokOutboundEventMarkAsReadContent"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokOutboundEventTypingIndicatorContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokOutboundEventContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "type":{
+        "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokOutboundEventContentType"
+       }
+      }
+     }
+    ],
+    "required":[
+     "type"
+    ],
+    "title":"TikTokOutboundEventTypingIndicatorContent"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokOutboundImageContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokOutboundMessageContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "mediaUrl":{
+        "type":"string",
+        "description":"URL of an image sent in a TikTok message. Must be a valid URL starting with `https://` or `http://`. Supported image types are `JPG`, `PNG`. Maximum image size is 3MB.",
+        "maxLength":2048,
+        "minLength":0
+       },
+       "type":{
+        "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokOutboundContentType"
+       }
+      }
+     }
+    ],
+    "required":[
+     "mediaUrl",
+     "type"
+    ],
+    "title":"TikTokOutboundImageContent"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokOutboundMessageContent":{
+    "type":"object",
+    "description":"Message content.",
+    "discriminator":{
+     "propertyName":"type",
+     "mapping":{
+      "TEXT":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokOutboundTextContent",
+      "IMAGE":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokOutboundImageContent",
+      "SHARE_POST":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokOutboundSharePostContent"
+     }
+    },
+    "properties":{
+     "type":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokOutboundContentType"
+     }
+    },
+    "required":[
+     "type"
+    ],
+    "title":"TikTokOutboundMessageContent"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokOutboundSharePostContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokOutboundMessageContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "postId":{
+        "type":"string",
+        "description":"The ID of the TikTok post to share with others."
+       },
+       "type":{
+        "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokOutboundContentType"
+       }
+      }
+     }
+    ],
+    "required":[
+     "postId",
+     "type"
+    ],
+    "title":"TikTokOutboundSharePostContent"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokOutboundTextContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokOutboundMessageContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "text":{
+        "type":"string",
+        "description":"Content of the message being sent.",
+        "maxLength":6000,
+        "minLength":0
+       },
+       "replyToMessageId":{
+        "type":"string",
+        "description":"Inbound message ID used for a reply. "
+       },
+       "type":{
+        "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokOutboundContentType"
+       }
+      }
+     }
+    ],
+    "required":[
+     "text",
+     "type"
+    ],
+    "title":"TikTokOutboundTextContent"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokReferral":{
+    "type":"object",
+    "description":"Referral information if the message was triggered by a referral entry point.",
+    "properties":{
+     "sourceType":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokReferralSourceType"
+     },
+     "sourceId":{
+      "type":"string",
+      "description":"Ad ID of the referral ad."
+     },
+     "sourceName":{
+      "type":"string",
+      "description":"The name of the related ad."
+     },
+     "sourceUrl":{
+      "type":"string",
+      "description":"An embeddable link for the TikTok post used in the ad."
+     },
+     "creativeId":{
+      "type":"string",
+      "description":"Material ID — encoded ID of a creative within Upgraded Smart+ Ads."
+     },
+     "advertiserId":{
+      "type":"string",
+      "description":"The ID of the advertiser account associated with the ad."
+     },
+     "trackingRef":{
+      "type":"string",
+      "description":"Tracking reference parameter from TikTok.me short link."
+     },
+     "sourceStatus":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokReferralSourceStatus"
+     }
+    },
+    "title":"TikTokReferral"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokReferralSourceStatus":{
+    "type":"string",
+    "description":"Audit status of the prefilled message for short link referrals.",
+    "enum":[
+     "PASS",
+     "REJECT",
+     "UNKNOWN"
+    ],
+    "title":"TikTokReferralSourceStatus"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokReferralSourceType":{
+    "type":"string",
+    "description":"Referral source type.",
+    "enum":[
+     "AD",
+     "SHORT_LINK"
+    ],
+    "title":"TikTokReferralSourceType"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokRequest":{
+    "type":"object",
+    "properties":{
+     "messages":{
+      "type":"array",
+      "description":"An array of message objects of a single message or multiple messages sent under one bulk ID.",
+      "items":{
+       "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokMessage"
+      }
+     },
+     "options":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokMessageRequestOptions"
+     }
+    },
+    "required":[
+     "messages"
+    ],
+    "title":"TikTokRequest"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.ToDestination":{
+    "type":"object",
+    "description":"An array of destination objects for where messages are being sent. A valid destination is required.",
+    "properties":{
+     "to":{
+      "type":"string",
+      "description":"The destination address of the message."
+     },
+     "messageId":{
+      "type":"string",
+      "description":"The ID that uniquely identifies the message sent.",
+      "maxLength":200,
+      "minLength":0
+     }
+    },
+    "required":[
+     "to"
+    ],
+    "title":"Destination"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TurkeyIysOptions":{
+    "type":"object",
+    "description":"IYS regulations specific parameters required for sending promotional SMS to phone numbers registered in Turkey.",
+    "properties":{
+     "brandCode":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Brand code is an ID of the company based on a company VAT number. If not provided in request, default value is used from your Infobip account."
+     },
+     "recipientType":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.RecipientType"
+     }
+    },
+    "required":[
+     "recipientType"
+    ],
+    "title":"TurkeyIysOptions"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.ValidityPeriod":{
+    "type":"object",
+    "description":"Message validity period. Once expired, the message won't be sent. Validity period longer than 48h is not supported. If exceeded, it will be automatically set to 48h.",
+    "properties":{
+     "amount":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Message validity period's value. If `timeUnit` is not set, it will default to `MINUTES`."
+     },
+     "timeUnit":{
+      "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.ValidityPeriodTimeUnit"
+     }
+    },
+    "required":[
+     "amount"
+    ],
+    "title":"ValidityPeriod"
+   },
+   "e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.ValidityPeriodTimeUnit":{
+    "type":"string",
+    "default":"MINUTES",
+    "description":"Message validity period time unit.",
+    "enum":[
+     "SECONDS",
+     "MINUTES",
+     "HOURS"
+    ],
+    "title":"ValidityPeriodTimeUnit"
+   }
+  },
+  "responses":{
+   "ApiError401":{
+    "description":"Unauthorized",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E401",
+       "description":"The request lacks valid authentication credentials for the requested resource.",
+       "action":"Check the resources and adjust authentication credentials.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"API Authentication",
+         "url":"https://www.infobip.com/docs/essentials/api-authentication"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E401</errorCode>\n  <description>The request lacks valid authentication credentials for the requested resource.</description>\n  <action>Check the resources and adjust authentication credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Authentication</name>\n      <url>https://www.infobip.com/docs/essentials/api-authentication</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError403":{
+    "description":"Forbidden",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E403",
+       "description":"Insufficient permissions to access the requested resource.",
+       "action":"Repeat the request with new or different credentials.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"API Scopes",
+         "url":"https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E403</errorCode>\n  <description>Insufficient permissions to access the requested resource.</description>\n  <action>Repeat the request with new or different credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Scopes</name>\n      <url>https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError429":{
+    "description":"Too Many Requests",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E429",
+       "description":"Too many requests sent.",
+       "action":"Check request rate limit specified in the API endpoint documentation resource.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"Throttling handling errors",
+         "url":"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E429</errorCode>\n  <description>Too many requests sent.</description>\n  <action>Check request rate limit specified in the API endpoint documentation resource.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>Throttling handling errors</name>\n      <url>https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError500":{
+    "description":"Internal Server Error",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E500",
+       "description":"Something went wrong.",
+       "action":"Contact the support.",
+       "violations":[],
+       "resources":[]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E500</errorCode>\n  <description>Something went wrong.</description>\n  <action>Contact the support.</action>\n  <violations/>\n  <resources/>\n</ApiError>\n"
+     }
+    }
+   }
+  },
+  "parameters":{},
+  "examples":{},
+  "requestBodies":{},
+  "headers":{},
+  "securitySchemes":{
+   "APIKeyHeader":{
+    "type":"apiKey",
+    "description":"This is the most secure authorization type and the one with the most flexibility.\n\nAPI keys can be generated by calling the dedicated API method. Furthermore, API keys can have a limited scope and cover only some API methods. Lastly, they can\nbe revoked at any time. This range of possibilities makes API keys well suited for separating the API access rights across multiple applications or use cases.\nFinally, the loss of an API key is easily manageable.\n\nYou can manage your API keys from [GUI](https://portal.infobip.com/settings/accounts/api-keys), or programmatically\nwith [dedicated API](#platform-&-connectivity/settings).\n\nAPI key Authorization header example:\n\n```shell\nAuthorization: App 003026bbc133714df1834b8638bb496e-8f4b3d9a-e931-478d-a994-28a725159ab9\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "Basic":{
+    "type":"http",
+    "description":"Basic authorization type can be used in situations when the API key is not available. For example, API methods for generating API keys should be authenticated\nwith the Basic type.\n\nIn this case, the credentials included in the Authorization header should be a Base64 encoded username and password combination. More formally, basic\nauthentication header can be constructed in three steps:\n\n* Username and password are concatenated using the colon `(:)` as a separator `username:password`.\n* The resulting string is encoded using the [RFC2045-MIME](https://www.ietf.org/rfc/rfc2045.txt) variant of Base64.\n* Encoded string is added as credentials after the `\"Basic \"` type.\n\nExample:\n\n```shell\nUsername: \"Aladdin\"\nPassword: \"openSesame\"\n\nConcatenated string: \"Aladdin:openSesame\"\n\nBase64 encoded string: \"QWxhZGRpbjpvcGVuU2VzYW1l\"\n\nAuthorization header: \"Basic QWxhZGRpbjpvcGVuU2VzYW1l\"\n```\n\n> **Implementation detail**: Base64 encoding is a standard and many available programming languages and frameworks provide convenient methods for encoding\n> strings.\n",
+    "scheme":"basic"
+   },
+   "IBSSOTokenHeader":{
+    "type":"apiKey",
+    "description":"This authorization type is suited for situations when you do not want to store Infobip credentials in your own app. Instead, your users will input their Infobip\ncredentials every time they access your application and the application will use those credentials to create a session. From then on, the session token can be\nused to authenticate subsequent API requests. Note that the session will expire automatically after a predefined period of inactivity, and can also be manually\nterminated by making an appropriate API call.\n\nYou can find more details on the creation and behavior of the session at\nthe [dedicated documentation page](#platform-connectivity/account-management/create-session).\n\nAfter obtaining the session token by calling the above-referenced API method you can include it in the Authorization header like this:\n\n```shell\nAuthorization: IBSSO 2f9b4d31-2d0d-49a8-85f0-9b862bdca394\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "OAuth2":{
+    "type":"oauth2",
+    "description":"Similarly to the IBSSO Token authentication you can use OAuth 2.0 bearer token with Infobip serving both as resource and authorization server. You can obtain\nthe access token using the client credentials grant from `auth/1/oauth2/token` endpoint. It will provide you with your access token, and its expiration period.\nYou can use the token to authorize your API calls until it expires. You can find out more about the process in\nthe [official specification](https://tools.ietf.org/html/rfc6749#section-4.4).\n\nYou can include your access token in the Authorization HTTP request header like this:\n\n```http\nAuthorization: Bearer <access_token>\n```",
+    "flows":{
+     "clientCredentials":{
+      "tokenUrl":"https://api.infobip.com/auth/1/oauth2/token",
+      "scopes":{}
+     }
+    }
+   }
+  },
+  "links":{},
+  "callbacks":{}
+ },
+ "webhooks":{
+  "receive-outbound-tiktok-message-delivery-reports":{
+   "post":{
+    "tags":[
+     "channels",
+     "tiktok",
+     "logs-and-status-reports-tiktok"
+    ],
+    "summary":"Receive TikTok delivery reports",
+    "description":"Use this webhook to receive delivery reports for outbound TikTok messages. To receive delivery reports, configure the webhook URL for each message by using the `webhooks > delivery > url` parameter. Alternatively, contact [Support](mailto:support@infobip.com) to configure the webhook URL for you.",
+    "externalDocs":{
+     "description":"Learn more about the TikTok channel and its use cases",
+     "url":"https://www.infobip.com/docs/tiktok"
+    },
+    "operationId":"receive-outbound-tiktok-message-delivery-reports",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.DeliveryReports"
+       },
+       "examples":{
+        "Received report":{
+         "summary":"Received report",
+         "value":{
+          "results":[
+           {
+            "bulkId":"a28dd97c-2222-4fcf-99f1-0b557ed381da",
+            "price":{
+             "pricePerMessage":0.01,
+             "currency":"EUR"
+            },
+            "status":{
+             "groupId":3,
+             "groupName":"DELIVERED",
+             "id":5,
+             "name":"DELIVERED_TO_HANDSET",
+             "description":"Message delivered to handset"
+            },
+            "error":{
+             "groupId":0,
+             "groupName":"OK",
+             "id":0,
+             "name":"NO_ERROR",
+             "description":"No Error",
+             "permanent":false
+            },
+            "messageId":"a28dd97c-1ffb-4fcf-99f1-0b557ed381da",
+            "to":"u5NkbnslAgxpOelvH01Y+rs7Uw=",
+            "sender":"-000pcMJDSDHK-UvK012b10KKXmCvWmVF8o",
+            "sentAt":"2023-09-26T10:52:15.457+0000",
+            "doneAt":"2023-09-26T10:52:15.799+0000",
+            "messageCount":1,
+            "platform":{
+             "entityId":"promotional-traffic-entity",
+             "applicationId":"marketing-automation-application"
+            }
+           }
+          ]
+         }
+        }
+       }
+      },
+      "application/xml":{
+       "schema":{
+        "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.DeliveryReports"
+       },
+       "examples":{
+        "Received report":{
+         "summary":"Received report",
+         "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><DeliveryReports>\n  <results>\n    <result>\n      <bulkId>a28dd97c-2222-4fcf-99f1-0b557ed381da</bulkId>\n      <price>\n        <pricePerMessage>0.01</pricePerMessage>\n        <currency>EUR</currency>\n      </price>\n      <status>\n        <groupId>3</groupId>\n        <groupName>DELIVERED</groupName>\n        <id>5</id>\n        <name>DELIVERED_TO_HANDSET</name>\n        <description>Message delivered to handset</description>\n      </status>\n      <error>\n        <groupId>0</groupId>\n        <groupName>OK</groupName>\n        <id>0</id>\n        <name>NO_ERROR</name>\n        <description>No Error</description>\n        <permanent>false</permanent>\n      </error>\n      <messageId>a28dd97c-1ffb-4fcf-99f1-0b557ed381da</messageId>\n      <to>u5NkbnslAgxpOelvH01Y+rs7Uw=</to>\n      <sender>-000pcMJDSDHK-UvK012b10KKXmCvWmVF8o</sender>\n      <sentAt>2023-09-26T10:52:15.457+0000</sentAt>\n      <doneAt>2023-09-26T10:52:15.799+0000</doneAt>\n      <messageCount>1</messageCount>\n      <platform>\n        <entityId>promotional-traffic-entity</entityId>\n        <applicationId>marketing-automation-application</applicationId>\n      </platform>\n    </result>\n  </results>\n</DeliveryReports>\n"
+        }
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"Your server returns this code if it accepts the callback."
+     }
+    },
+    "x-is-early-access":true
+   }
+  },
+  "receive-tiktok-seen-reports":{
+   "post":{
+    "tags":[
+     "channels",
+     "tiktok",
+     "logs-and-status-reports-tiktok"
+    ],
+    "summary":"Receive TikTok seen reports",
+    "description":"Use this webhook to receive seen reports for outbound TikTok messages. To receive seen reports, configure the webhook URL for each message by using the `webhooks > seen > url` parameter. Alternatively, contact [Support](mailto:support@infobip.com) to configure the webhook URL for you.",
+    "operationId":"receive-tiktok-seen-reports",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.SeenReports"
+       },
+       "examples":{
+        "Received seen report":{
+         "summary":"Received seen report",
+         "value":{
+          "results":[
+           {
+            "messageId":"45db39c3-7822-4e72-a3ec-c87442c0ffz9",
+            "from":"-000pcMJDSDHK-UvK012b10KKXmCvWmVF8o",
+            "to":"u5NkbnslAgxpOelvH01Y+rs7Uw=",
+            "sentAt":"2019-11-09T16:00:00.000+0000",
+            "seenAt":"2019-11-09T16:00:05.000+0000",
+            "applicationId":"marketing-automation-application",
+            "entityId":"promotional-traffic-entity"
+           }
+          ]
+         }
+        }
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"Your server returns this code if it accepts the callback."
+     }
+    },
+    "x-is-early-access":true
+   }
+  },
+  "receive-inbound-tiktok-messages":{
+   "post":{
+    "tags":[
+     "channels",
+     "tiktok",
+     "tiktok-inbound-messages"
+    ],
+    "summary":"Receive an inbound TikTok message",
+    "description":"Use this webhook to receive inbound TikTok messages in real time. Infobip forwards messages to the webhook URL configured during account setup, so you can process them and continue two-way conversations. The default format for inbound TikTok messages is `MO_OTT_MSISDN`.",
+    "externalDocs":{
+     "description":"Learn more about the TikTok channel and its use cases",
+     "url":"https://www.infobip.com/docs/api/channels/tiktok"
+    },
+    "operationId":"receive-inbound-tiktok-messages",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokInboundMessage"
+       },
+       "examples":{
+        "Received inbound message":{
+         "summary":"Received inbound message",
+         "value":{
+          "results":[
+           {
+            "sender":"u5NkbnslAgxpOelvH01Y+rs7Uw=",
+            "to":"-000pcMJDSDHK-UvK012b10KKXmCvWmVF8o",
+            "integrationType":"TIKTOK",
+            "receivedAt":"2019-11-09T16:00:00.000+0000",
+            "messageId":"a28dd97c-1ffb-4fcf-99f1-0b557ed381da",
+            "message":{
+             "conversationId":"u5NkbnslAgxpOelvH01Y+rs7Uw=",
+             "text":"Hello!",
+             "type":"TEXT"
+            },
+            "price":{
+             "pricePerMessage":0,
+             "currency":"EUR"
+            }
+           }
+          ],
+          "messageCount":1,
+          "pendingMessageCount":0
+         }
+        }
+       }
+      },
+      "application/xml":{
+       "schema":{
+        "$ref":"#/components/schemas/e2cbdd2d36d35e3e9c85bc5344135c1a087d73d9cf6c9dc8cf1c258211186c7c.TikTokInboundMessage"
+       },
+       "examples":{
+        "Received inbound message":{
+         "summary":"Received inbound message",
+         "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><TikTokInboundMessage>\n  <messageCount>1</messageCount>\n  <pendingMessageCount>0</pendingMessageCount>\n  <results>\n    <result>\n      <sender>u5NkbnslAgxpOelvH01Y+rs7Uw=</sender>\n      <to>-000pcMJDSDHK-UvK012b10KKXmCvWmVF8o</to>\n      <integrationType>TIKTOK</integrationType>\n      <receivedAt>2019-11-09T16:00:00.000+0000</receivedAt>\n      <messageId>a28dd97c-1ffb-4fcf-99f1-0b557ed381da</messageId>\n      <message>\n        <conversationId>u5NkbnslAgxpOelvH01Y+rs7Uw=</conversationId>\n        <text>Hello!</text>\n      </message>\n      <price>\n        <pricePerMessage>0</pricePerMessage>\n        <currency>EUR</currency>\n      </price>\n    </result>\n  </results>\n</TikTokInboundMessage>\n"
+        }
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"Your server returns this code if it accepts the callback."
+     }
+    },
+    "x-is-early-access":true
+   }
+  }
+ }
+}

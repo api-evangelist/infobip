@@ -1,0 +1,3848 @@
+{
+ "openapi":"3.1.0",
+ "info":{
+  "title":"Infobip OpenAPI Specification",
+  "description":"OpenAPI Specification that contains all public endpoints and webhooks.",
+  "contact":{
+   "name":"Infobip support",
+   "email":"support@infobip.com"
+  },
+  "version":"3.210.0",
+  "x-generatedAt":"2026-07-23T15:23:55.164948913Z"
+ },
+ "tags":[
+  {
+   "name":"platform",
+   "description":"Modular tools to scale and automate your business.\n",
+   "x-type":"category",
+   "x-displayName":"Platform"
+  },
+  {
+   "name":"catalogs-api",
+   "description":"Create and manage your catalogs to use with other Infobip solutions. Catalogs are similar to databases, you can store and retrieve data sets. \n\nConcepts explained\n* __Catalog__ -  a set of records. Each record can be for a product or service. \n* __Item__ - a record within a catalog. An item could be a product or service. \n* __Field__ - define the data structure for the items in the catalog.\n",
+   "x-type":"product",
+   "x-displayName":"Catalogs"
+  },
+  {
+   "name":"catalogs",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Catalogs"
+  },
+  {
+   "name":"fields",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Catalog Fields"
+  },
+  {
+   "name":"items",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Catalog Items"
+  }
+ ],
+ "paths":{
+  "/catalogs/1/catalogs":{
+   "get":{
+    "tags":[
+     "platform",
+     "catalogs-api",
+     "catalogs"
+    ],
+    "summary":"Get catalogs",
+    "description":"Use this method to get a list of catalogs with pagination. Query parameters are optional and can be used to narrow down the results.",
+    "operationId":"get-catalogs",
+    "parameters":[
+     {
+      "name":"ids",
+      "in":"query",
+      "description":"Catalog IDs.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"array",
+       "items":{
+        "type":"integer",
+        "format":"int64"
+       }
+      },
+      "example":"1,2,3,4,5"
+     },
+     {
+      "name":"name",
+      "in":"query",
+      "description":"Catalog name.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"Catalog name"
+     },
+     {
+      "name":"type",
+      "in":"query",
+      "description":"Catalog type.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"blank"
+     },
+     {
+      "name":"page",
+      "in":"query",
+      "description":"Results page to retrieve (0..N).",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "format":"int32",
+       "default":0,
+       "minimum":0
+      }
+     },
+     {
+      "name":"size",
+      "in":"query",
+      "description":"Number of catalogs per page.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "format":"int32",
+       "default":10,
+       "maximum":100,
+       "minimum":1
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Successful Response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.PageResponseDto"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "results":[
+            {
+             "id":10061,
+             "name":"Catalog-534",
+             "description":"desc",
+             "type":"BLANK"
+            },
+            {
+             "id":10062,
+             "name":"Catalog-535",
+             "description":"desc",
+             "type":"BLANK"
+            }
+           ],
+           "paging":{
+            "page":1,
+            "size":20,
+            "totalPages":1,
+            "totalResults":2
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><root>\n      \n  <results>\n            \n    <id>10061</id>\n            \n    <name>Catalog-534</name>\n            \n    <description>desc</description>\n            \n    <type>BLANK</type>\n        \n  </results>\n      \n  <results>\n            \n    <id>10062</id>\n            \n    <name>Catalog-535</name>\n            \n    <description>desc</description>\n            \n    <type>BLANK</type>\n        \n  </results>\n      \n  <paging>\n            \n    <page>1</page>\n            \n    <size>20</size>\n            \n    <totalPages>1</totalPages>\n            \n    <totalResults>2</totalResults>\n        \n  </paging>\n  \n</root>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>BAD_REQUEST</messageId>\n                  \n      <text>Bad request</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"Catalog is not found"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>NOT_FOUND</messageId>\n                  \n      <text>Catalog is not found</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "catalogs:read",
+     "catalogs:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":5,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   },
+   "post":{
+    "tags":[
+     "platform",
+     "catalogs-api",
+     "catalogs"
+    ],
+    "summary":"Create catalog",
+    "description":"Use this method to create a catalog.",
+    "operationId":"create-catalog",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CreateCatalogDto"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"Successful Response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CatalogDto"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "id":10000,
+           "name":"Blank catalog",
+           "description":"Example of the simple Catalog",
+           "type":"BLANK"
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><root>\n      \n  <id>10000</id>\n      \n  <name>Blank catalog</name>\n      \n  <description>Example of the simple Catalog</description>\n      \n  <type>BLANK</type>\n  \n</root>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>BAD_REQUEST</messageId>\n                  \n      <text>Bad request</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "catalogs:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":5,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/catalogs/1/catalogs/{id}":{
+   "get":{
+    "tags":[
+     "platform",
+     "catalogs-api",
+     "catalogs"
+    ],
+    "summary":"Get catalog",
+    "description":"Use this method to get a specific catalog.",
+    "operationId":"get-catalog",
+    "parameters":[
+     {
+      "name":"id",
+      "in":"path",
+      "description":"Catalog id.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64"
+      },
+      "example":10000
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Successful Response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CatalogDto"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "id":10000,
+           "name":"Blank catalog",
+           "description":"Example of the simple Catalog",
+           "type":"BLANK"
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><root>\n      \n  <id>10000</id>\n      \n  <name>Blank catalog</name>\n      \n  <description>Example of the simple Catalog</description>\n      \n  <type>BLANK</type>\n  \n</root>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>BAD_REQUEST</messageId>\n                  \n      <text>Bad request</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"Catalog is not found"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>NOT_FOUND</messageId>\n                  \n      <text>Catalog is not found</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "catalogs:read",
+     "catalogs:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":5,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   },
+   "delete":{
+    "tags":[
+     "platform",
+     "catalogs-api",
+     "catalogs"
+    ],
+    "summary":"Delete catalog",
+    "description":"Use this method to delete a catalog.",
+    "operationId":"delete-catalog",
+    "parameters":[
+     {
+      "name":"id",
+      "in":"path",
+      "description":"Catalog id.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64"
+      },
+      "example":10000
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Successful Response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CountResponse"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "count":3
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><root>\n      \n  <count>3</count>\n  \n</root>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>BAD_REQUEST</messageId>\n                  \n      <text>Bad request</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"Catalog is not found"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>NOT_FOUND</messageId>\n                  \n      <text>Catalog is not found</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "catalogs:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":5,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   },
+   "patch":{
+    "tags":[
+     "platform",
+     "catalogs-api",
+     "catalogs"
+    ],
+    "summary":"Update catalog",
+    "description":"Use this method to overwrite a catalog with the data passed in the request body.\nNew values replace the existing values from the catalog. If no value is passed in the request,\nthe parameter keeps its value.",
+    "operationId":"update-catalog",
+    "parameters":[
+     {
+      "name":"id",
+      "in":"path",
+      "description":"Catalog id.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64"
+      },
+      "example":10000
+     }
+    ],
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.UpdateCatalogDto"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"Successful Response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CatalogDto"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "id":10000,
+           "name":"Blank catalog",
+           "description":"Example of the simple Catalog",
+           "type":"BLANK"
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "id":10000,
+           "name":"Blank catalog",
+           "description":"Example of the simple Catalog",
+           "type":"BLANK"
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>BAD_REQUEST</messageId>\n                  \n      <text>Bad request</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"Catalog is not found"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>NOT_FOUND</messageId>\n                  \n      <text>Catalog is not found</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "catalogs:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":5,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/catalogs/1/catalogs/{catalogId}/fields":{
+   "get":{
+    "tags":[
+     "platform",
+     "catalogs-api",
+     "fields"
+    ],
+    "summary":"Get fields",
+    "description":"Use this method to get a list of fields for a specific catalog.",
+    "operationId":"get-catalog-fields",
+    "parameters":[
+     {
+      "name":"catalogId",
+      "in":"path",
+      "description":"Catalog id.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64"
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Successful Response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"array",
+         "items":{
+          "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CatalogFieldDto"
+         }
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":[
+           {
+            "id":"8b00a8c6-5302-4fd0-a0cc-bb090b28ac34",
+            "name":"Catalog field #1",
+            "dataType":"TEXT",
+            "isPredefined":false
+           },
+           {
+            "id":"17ceebe0-1900-479f-9432-7865a6c686b6",
+            "name":"Catalog field #2",
+            "dataType":"BOOLEAN",
+            "isPredefined":false
+           }
+          ]
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><root>\n      \n  <fields>\n            \n    <id>8b00a8c6-5302-4fd0-a0cc-bb090b28ac34</id>\n            \n    <name>Catalog field #1</name>\n            \n    <dataType>TEXT</dataType>\n            \n    <isPredefined>false</isPredefined>\n        \n  </fields>\n      \n  <fields>\n            \n    <id>17ceebe0-1900-479f-9432-7865a6c686b6</id>\n            \n    <name>Catalog field #2</name>\n            \n    <dataType>BOOLEAN</dataType>\n            \n    <isPredefined>false</isPredefined>\n        \n  </fields>\n  \n</root>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>BAD_REQUEST</messageId>\n                  \n      <text>Bad request</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"Catalog is not found"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>NOT_FOUND</messageId>\n                  \n      <text>Catalog is not found</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "catalogs:manage",
+     "catalogs:read"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":5,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   },
+   "post":{
+    "tags":[
+     "platform",
+     "catalogs-api",
+     "fields"
+    ],
+    "summary":"Create fields",
+    "description":"Use this method to add catalog fields to a specific catalog.<br><br>\n<strong>NOTE</strong><br><ul><li>Maximum of <code>100</code> catalog fields are allowed.</li></ul>",
+    "operationId":"create-catalog-fields",
+    "parameters":[
+     {
+      "name":"catalogId",
+      "in":"path",
+      "description":"Catalog id.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64"
+      },
+      "example":10000
+     }
+    ],
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "type":"array",
+        "items":{
+         "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CreateCatalogFieldDto"
+        }
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"Successful Response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"array",
+         "items":{
+          "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CatalogFieldDto"
+         }
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":[
+           {
+            "id":"8b00a8c6-5302-4fd0-a0cc-bb090b28ac34",
+            "name":"Catalog field #1",
+            "dataType":"TEXT",
+            "isPredefined":false
+           },
+           {
+            "id":"17ceebe0-1900-479f-9432-7865a6c686b6",
+            "name":"Catalog field #2",
+            "dataType":"BOOLEAN",
+            "isPredefined":false
+           }
+          ]
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><root>\n      \n  <fields>\n            \n    <id>8b00a8c6-5302-4fd0-a0cc-bb090b28ac34</id>\n            \n    <name>Catalog field #1</name>\n            \n    <dataType>TEXT</dataType>\n            \n    <isPredefined>false</isPredefined>\n        \n  </fields>\n      \n  <fields>\n            \n    <id>17ceebe0-1900-479f-9432-7865a6c686b6</id>\n            \n    <name>Catalog field #2</name>\n            \n    <dataType>BOOLEAN</dataType>\n            \n    <isPredefined>false</isPredefined>\n        \n  </fields>\n  \n</root>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>BAD_REQUEST</messageId>\n                  \n      <text>Bad request</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"Catalog is not found"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>NOT_FOUND</messageId>\n                  \n      <text>Catalog is not found</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "catalogs:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":5,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/catalogs/1/catalogs/{catalogId}/fields/{fieldId}":{
+   "get":{
+    "tags":[
+     "platform",
+     "catalogs-api",
+     "fields"
+    ],
+    "summary":"Get field",
+    "description":"Use this method to get a specific catalog field.",
+    "operationId":"get-catalog-field",
+    "parameters":[
+     {
+      "name":"catalogId",
+      "in":"path",
+      "description":"Catalog id.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64"
+      },
+      "example":10000
+     },
+     {
+      "name":"fieldId",
+      "in":"path",
+      "description":"Field id.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"8b00a8c6-5302-4fd0-a0cc-bb090b28ac34"
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Successful Response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CatalogFieldDto"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "id":"8b00a8c6-5302-4fd0-a0cc-bb090b28ac34",
+           "name":"Catalog field #1",
+           "dataType":"TEXT",
+           "isPredefined":false
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><root>\n      \n  <id>8b00a8c6-5302-4fd0-a0cc-bb090b28ac34</id>\n      \n  <name>Catalog field #1</name>\n      \n  <dataType>TEXT</dataType>\n      \n  <isPredefined>false</isPredefined>\n  \n</root>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>BAD_REQUEST</messageId>\n                  \n      <text>Bad request</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"Catalog is not found"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>NOT_FOUND</messageId>\n                  \n      <text>Catalog is not found</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "catalogs:manage",
+     "catalogs:read"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":5,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   },
+   "delete":{
+    "tags":[
+     "platform",
+     "catalogs-api",
+     "fields"
+    ],
+    "summary":"Delete field",
+    "description":"Use this method to delete a field.",
+    "operationId":"delete-catalog-field",
+    "parameters":[
+     {
+      "name":"catalogId",
+      "in":"path",
+      "description":"Catalog id.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64"
+      },
+      "example":10000
+     },
+     {
+      "name":"fieldId",
+      "in":"path",
+      "description":"Field id.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"8b00a8c6-5302-4fd0-a0cc-bb090b28ac34"
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Successful Response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CountResponse"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "count":3
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><root>\n      \n  <count>3</count>\n  \n</root>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>BAD_REQUEST</messageId>\n                  \n      <text>Bad request</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"Catalog is not found"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>NOT_FOUND</messageId>\n                  \n      <text>Catalog is not found</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "catalogs:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":5,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   },
+   "patch":{
+    "tags":[
+     "platform",
+     "catalogs-api",
+     "fields"
+    ],
+    "summary":"Update field",
+    "description":"Use this method to update a catalog field.",
+    "operationId":"update-catalog-field",
+    "parameters":[
+     {
+      "name":"catalogId",
+      "in":"path",
+      "description":"Catalog id.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64"
+      },
+      "example":10000
+     },
+     {
+      "name":"fieldId",
+      "in":"path",
+      "description":"Field id.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"8b00a8c6-5302-4fd0-a0cc-bb090b28ac34"
+     }
+    ],
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.UpdateCatalogFieldDto"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"Successful Response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CatalogFieldDto"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "id":"8b00a8c6-5302-4fd0-a0cc-bb090b28ac34",
+           "name":"Catalog field #1",
+           "dataType":"TEXT",
+           "isPredefined":false
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><root>\n      \n  <id>8b00a8c6-5302-4fd0-a0cc-bb090b28ac34</id>\n      \n  <name>Catalog field #1</name>\n      \n  <dataType>TEXT</dataType>\n      \n  <isPredefined>false</isPredefined>\n  \n</root>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>BAD_REQUEST</messageId>\n                  \n      <text>Bad request</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"Catalog is not found"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"Catalog is not found"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "catalogs:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":5,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/catalogs/1/catalogs/{catalogId}/items":{
+   "get":{
+    "tags":[
+     "platform",
+     "catalogs-api",
+     "items"
+    ],
+    "summary":"Get items",
+    "description":"Use this method  to get a list of items from a catalog with pagination. Query parameters are optional and can be used to narrow list results.",
+    "operationId":"get-items",
+    "parameters":[
+     {
+      "name":"catalogId",
+      "in":"path",
+      "description":"Catalog id.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64"
+      },
+      "example":10000
+     },
+     {
+      "name":"queryFilter",
+      "in":"query",
+      "description":"Enables filtering items using [URL-encoded](https://www.w3schools.com/tags/ref_urlencode.asp) queries passed to a parameter. Wrap a catalog column name in square brackets `[]`, if the name contains UNICODE characters, e.g. `[文 本]` or a space, e.g. `[shirt type]`\n##### List of supported logical operators:\n\n<table>\n<thead>\n<th>Logical Operator</th><th>Description</th>\n</thead>\n<tr>\n<td><code>AND</code></td><td>Joins query clauses with a logical AND. Returns all items that match the conditions of both clauses.<br><b>Example:</b> <code>price > 10.99 AND color == Red</code></td>\n</tr>\n<tr>\n<td><code>OR</code></td><td>Joins query clauses with a logical OR. Returns all items that match the conditions of either clause.<br><b>Example:</b> <code>type == Jeans OR type == Shirt</code></td>\n</tr>\n</table>\n\n##### List of supported comparison operators:\n\n<table>\n<thead>\n<th>Comparison Operator</th><th>Supported Type</th><th>Description</th>\n</thead>\n<tr>\n<td>Greater than: <code>&gt;</code></td><td>integer, decimal</td><td>Matches values that are greater than a specified value.<br><b>Example:</b> <code>price &gt; 99.99</code></td>\n</tr>\n<tr>\n<td>Greater or equal: <code>&ge;</code></td><td>integer, decimal</td><td>Matches all values that are greater than or equal to a specified value.<br><b>Example:</b> <code>price &ge; 99.99</code> </td>\n</tr>\n<tr>\n<td>Less than: <code>&lt;</code></td><td>integer, decimal</td><td>Matches all values that are less than a specified value.<br><b>Example:</b> <code>price &lt; 99.99</code></td>\n</tr>\n<tr>\n<td>Less or equal: <code>&le;</code></td><td>integer, decimal</td><td>Matches all that are values less than or equal to a specified value.<br><b>Example:</b> <code>price &le; 99</code></td>\n</tr>\n<tr>\n<td>Equal: <code>==</code></td><td>integer, decimal, string, date, time, dateTime</td><td>Matches values that are equal to a specified value.<br><b>Example:</b> <code>color == <q>green</q></code></td>\n</tr>\n<tr>\n<td>Not equal: <code>!=</code></td><td>integer, decimal, string, date, time, dateTime</td><td>Matches values that are not equal to a specified value.<br><b>Example:</b> <code>color != <q>green</q></code></td>\n</tr>\n</table>\n\n##### List of supported date/time range operators:\n\n<table>\n<thead>\n<th>Date/time Range Operator</th><th>Supported Type</th><th>Description</th>\n</thead>\n<tr>\n<td><code>BETWEEN</code></td><td>date, time, dateTime</td><td>Specifies date/time range between dates.<br><b>Example:</b> <code>createdAt BETWEEN <q>2023-03-01</q> AND <q>2023-03-30</q></code></td>\n</tr>\n<tr>\n<td><code>NOT BETWEEN</code></td><td>date, time, dateTime</td><td>Specifies date/time range not between dates.<br><b>Example:</b> <code>createdAt NOT BETWEEN <q>2023-03-01</q> AND <q>2023-03-30</q></code></td>\n</tr>\n</table>\n\n##### List of supported string operators:\n\n<table>\n<thead>\n<th>String Operator&nbsp;&nbsp;&nbsp;</th><th>Supported Type</th><th>Description</th>\n</thead>\n<tr>\n<td><code>STARTS WITH</code></td><td>string</td><td>Matches all values starting with specific substring.<br><b>Example:</b> <code>name STARTS WITH <q>Bo</q></code></td>\n</tr>\n<tr>\n<td><code>ENDS WITH</code></td><td>string</td><td>Matches all values ending with specific substring.<br><b>Example:</b> <code>name ENDS WITH <q>an</q></code></td>\n</tr>\n</table>.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"( type == \"Jeans\" AND type == \"Shirt\" ) OR ( price > 10.99 AND color == \"Red\" )"
+     },
+     {
+      "name":"page",
+      "in":"query",
+      "description":"Results page to retrieve (0..N).",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "format":"int32",
+       "default":0,
+       "minimum":0
+      }
+     },
+     {
+      "name":"size",
+      "in":"query",
+      "description":"Number of items per page.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "format":"int32",
+       "default":10,
+       "maximum":100,
+       "minimum":1
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Successful Response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.PageResponseDto"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "results":[
+            {
+             "id":1,
+             "values":[
+              {
+               "fieldName":"Example field 1",
+               "fieldId":"caad56e4-2a1c-4ae8-9717-ebb40d05533d",
+               "value":123
+              },
+              {
+               "fieldName":"Example field 2",
+               "fieldId":"87897d8f-8986-4d70-bdec-f89c3cbf042d",
+               "value":"Example text 1"
+              }
+             ]
+            },
+            {
+             "id":2,
+             "values":[
+              {
+               "fieldName":"Example field 1",
+               "fieldId":"caad56e4-2a1c-4ae8-9717-ebb40d05533d",
+               "value":412
+              },
+              {
+               "fieldName":"Example field 2",
+               "fieldId":"87897d8f-8986-4d70-bdec-f89c3cbf042d",
+               "value":"Example text 2"
+              }
+             ]
+            },
+            {
+             "id":3,
+             "values":[
+              {
+               "fieldName":"Example field 1",
+               "fieldId":"caad56e4-2a1c-4ae8-9717-ebb40d05533d",
+               "value":267
+              },
+              {
+               "fieldName":"Example field 2",
+               "fieldId":"87897d8f-8986-4d70-bdec-f89c3cbf042d",
+               "value":"Example text 3"
+              }
+             ]
+            }
+           ],
+           "paging":{
+            "page":1,
+            "size":20,
+            "totalPages":1,
+            "totalResults":3
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><root>\n    \n  <results>\n        \n    <id>1</id>\n        \n    <values>\n            \n      <fieldName>Example field 1</fieldName>\n            \n      <fieldId>caad56e4-2a1c-4ae8-9717-ebb40d05533d</fieldId>\n            \n      <value>123</value>\n          \n    </values>\n        \n    <values>\n            \n      <fieldName>Example field 2</fieldName>\n            \n      <fieldId>87897d8f-8986-4d70-bdec-f89c3cbf042d</fieldId>\n            \n      <value>Example text 1</value>\n          \n    </values>\n      \n  </results>\n    \n  <results>\n        \n    <id>2</id>\n        \n    <values>\n            \n      <fieldName>Example field 1</fieldName>\n            \n      <fieldId>caad56e4-2a1c-4ae8-9717-ebb40d05533d</fieldId>\n            \n      <value>412</value>\n          \n    </values>\n        \n    <values>\n            \n      <fieldName>Example field 2</fieldName>\n            \n      <fieldId>87897d8f-8986-4d70-bdec-f89c3cbf042d</fieldId>\n            \n      <value>Example text 2</value>\n          \n    </values>\n      \n  </results>\n    \n  <results>\n        \n    <id>3</id>\n        \n    <values>\n            \n      <fieldName>Example field 1</fieldName>\n            \n      <fieldId>caad56e4-2a1c-4ae8-9717-ebb40d05533d</fieldId>\n            \n      <value>267</value>\n          \n    </values>\n        \n    <values>\n            \n      <fieldName>Example field 2</fieldName>\n            \n      <fieldId>87897d8f-8986-4d70-bdec-f89c3cbf042d</fieldId>\n            \n      <value>Example text 3</value>\n          \n    </values>\n      \n  </results>\n    \n  <paging>\n        \n    <page>1</page>\n        \n    <size>20</size>\n        \n    <totalPages>1</totalPages>\n        \n    <totalResults>3</totalResults>\n      \n  </paging>\n  \n</root>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>BAD_REQUEST</messageId>\n                  \n      <text>Bad request</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"Catalog is not found"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>NOT_FOUND</messageId>\n                  \n      <text>Catalog is not found</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "catalogs:manage",
+     "catalogs:read",
+     "catalogs:use"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":5,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   },
+   "post":{
+    "tags":[
+     "platform",
+     "catalogs-api",
+     "items"
+    ],
+    "summary":"Add items",
+    "description":"Use this method to add items to a specific catalog.<br><br>\n<strong>NOTE</strong><br>Response details:<ul><li>This endpoint only returns successful results</li><li>Other results are ignored</li><li>Errors are not returned</li>\n</ul><br><strong>NOTE</strong><br><ul><li>Maximum of <code>1000</code> item field values are allowed.</li></ul>",
+    "operationId":"add-items",
+    "parameters":[
+     {
+      "name":"catalogId",
+      "in":"path",
+      "description":"Catalog id.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64"
+      },
+      "example":10000
+     }
+    ],
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "type":"array",
+        "items":{
+         "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CreateCatalogItemDto"
+        }
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"Successful Response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"array",
+         "items":{
+          "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CatalogItemDto"
+         }
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":[
+           {
+            "id":10000,
+            "values":[
+             {
+              "fieldName":"Text field",
+              "fieldId":"caad56e4-2a1c-4ae8-9717-ebb40d05533d",
+              "value":"Some text value"
+             },
+             {
+              "fieldName":"Number field",
+              "fieldId":"1ab3e732-8986-4d70-bdec-f89c3cbf042d",
+              "value":"2"
+             },
+             {
+              "fieldName":"Decimal field",
+              "fieldId":"87897d8f-07ae-4b51-80a8-84db793144fb",
+              "value":"2,0005"
+             },
+             {
+              "fieldName":"Boolean field",
+              "fieldId":"87897d8f-07ae-4b51-80a8-ebb40d05533d",
+              "value":"false"
+             },
+             {
+              "fieldName":"Date field",
+              "fieldId":"caad56e4-07ae-4ae8-9717-ebb40d05533d",
+              "value":"2022-01-12"
+             },
+             {
+              "fieldName":"Time field",
+              "fieldId":"87897d8f-8986-4d70-bdec-f89c3cbf042d",
+              "value":"10:10:10"
+             },
+             {
+              "fieldName":"Date time field",
+              "fieldId":"87897d8f-07ae-8986-80a8-ebb40d05533d",
+              "value":"2022-01-12 10:10:10"
+             }
+            ]
+           },
+           {
+            "id":10001,
+            "values":[
+             {
+              "fieldName":"Text field",
+              "fieldId":"caad56e4-2a1c-4ae8-9717-ebb40d05533d",
+              "value":"Some text value 3"
+             },
+             {
+              "fieldName":"Number field",
+              "fieldId":"1ab3e732-8986-4d70-bdec-f89c3cbf042d",
+              "value":"23"
+             },
+             {
+              "fieldName":"Decimal field",
+              "fieldId":"87897d8f-07ae-4b51-80a8-84db793144fb",
+              "value":"22,0005"
+             },
+             {
+              "fieldName":"Boolean field",
+              "fieldId":"87897d8f-07ae-4b51-80a8-ebb40d05533d",
+              "value":"false"
+             },
+             {
+              "fieldName":"Date field",
+              "fieldId":"caad56e4-07ae-4ae8-9717-ebb40d05533d",
+              "value":"2022-01-13"
+             },
+             {
+              "fieldName":"Time field",
+              "fieldId":"87897d8f-8986-4d70-bdec-f89c3cbf042d",
+              "value":"12:10:10"
+             },
+             {
+              "fieldName":"Date time field",
+              "fieldId":"87897d8f-07ae-8986-80a8-ebb40d05533d",
+              "value":"2022-01-13 12:10:10"
+             }
+            ]
+           }
+          ]
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><root>\n      \n  <element>\n            \n    <id>10000</id>\n            \n    <values>\n                  \n      <element>\n                        \n        <fieldId>caad56e4-2a1c-4ae8-9717-ebb40d05533d</fieldId>\n                        \n        <fieldName>Text field</fieldName>\n                        \n        <value>Some text value</value>\n                    \n      </element>\n                  \n      <element>\n                        \n        <fieldId>1ab3e732-8986-4d70-bdec-f89c3cbf042d</fieldId>\n                        \n        <fieldName>Whole number field</fieldName>\n                        \n        <value>2</value>\n                    \n      </element>\n                  \n      <element>\n                        \n        <fieldId>87897d8f-07ae-4b51-80a8-84db793144fb</fieldId>\n                        \n        <fieldName>Decimal number field</fieldName>\n                        \n        <value>2,0005</value>\n                    \n      </element>\n                  \n      <element>\n                        \n        <fieldId>87897d8f-07ae-4b51-80a8-ebb40d05533d</fieldId>\n                        \n        <fieldName>Boolean field</fieldName>\n                        \n        <value>false</value>\n                    \n      </element>\n                  \n      <element>\n                        \n        <fieldId>caad56e4-07ae-4ae8-9717-ebb40d05533d</fieldId>\n                        \n        <fieldName>Date field</fieldName>\n                        \n        <value>2022-01-12</value>\n                    \n      </element>\n                  \n      <element>\n                        \n        <fieldId>87897d8f-8986-4d70-bdec-f89c3cbf042d</fieldId>\n                        \n        <fieldName>Time field</fieldName>\n                        \n        <value>10:10:10</value>\n                    \n      </element>\n                  \n      <element>\n                        \n        <fieldId>87897d8f-07ae-8986-80a8-ebb40d05533d</fieldId>\n                        \n        <fieldName>Date time field</fieldName>\n                        \n        <value>2022-01-12 10:10:10</value>\n                    \n      </element>\n              \n    </values>\n        \n  </element>\n      \n  <element>\n            \n    <id>10001</id>\n            \n    <values>\n                  \n      <element>\n                        \n        <fieldId>caad56e4-2a1c-4ae8-9717-ebb40d05533d</fieldId>\n                        \n        <fieldName>Text field</fieldName>\n                        \n        <value>Some text value 2</value>\n                    \n      </element>\n                  \n      <element>\n                        \n        <fieldId>1ab3e732-8986-4d70-bdec-f89c3cbf042d</fieldId>\n                        \n        <fieldName>Whole number field</fieldName>\n                        \n        <value>23</value>\n                    \n      </element>\n                  \n      <element>\n                        \n        <fieldId>87897d8f-07ae-4b51-80a8-84db793144fb</fieldId>\n                        \n        <fieldName>Decimal number field</fieldName>\n                        \n        <value>22,0005</value>\n                    \n      </element>\n                  \n      <element>\n                        \n        <fieldId>87897d8f-07ae-4b51-80a8-ebb40d05533d</fieldId>\n                        \n        <fieldName>Boolean field</fieldName>\n                        \n        <value>false</value>\n                    \n      </element>\n                  \n      <element>\n                        \n        <fieldId>caad56e4-07ae-4ae8-9717-ebb40d05533d</fieldId>\n                        \n        <fieldName>Date field</fieldName>\n                        \n        <value>2022-01-13</value>\n                    \n      </element>\n                  \n      <element>\n                        \n        <fieldId>87897d8f-8986-4d70-bdec-f89c3cbf042d</fieldId>\n                        \n        <fieldName>Time field</fieldName>\n                        \n        <value>12:10:10</value>\n                    \n      </element>\n                  \n      <element>\n                        \n        <fieldId>87897d8f-07ae-8986-80a8-ebb40d05533d</fieldId>\n                        \n        <fieldName>Date time field</fieldName>\n                        \n        <value>2022-01-13 12:10:10</value>\n                    \n      </element>\n              \n    </values>\n        \n  </element>\n  \n</root>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>BAD_REQUEST</messageId>\n                  \n      <text>Bad request</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"Catalog is not found"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>NOT_FOUND</messageId>\n                  \n      <text>Catalog is not found</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "catalogs:manage",
+     "catalogs:use"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":5,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   },
+   "delete":{
+    "tags":[
+     "platform",
+     "catalogs-api",
+     "items"
+    ],
+    "summary":"Delete items",
+    "description":"Use this method to delete a list of filtered items.",
+    "operationId":"delete-items",
+    "parameters":[
+     {
+      "name":"catalogId",
+      "in":"path",
+      "description":"Catalog id.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64"
+      },
+      "example":10000
+     },
+     {
+      "name":"queryFilter",
+      "in":"query",
+      "description":"Enables filtering items using [URL-encoded](https://www.w3schools.com/tags/ref_urlencode.asp) queries passed to a parameter. Wrap a catalog column name in square brackets `[]`, if the name contains UNICODE characters, e.g. `[文 本]` or a space, e.g. `[shirt type]`\n##### List of supported logical operators:\n\n<table>\n<thead>\n<th>Logical Operator</th><th>Description</th>\n</thead>\n<tr>\n<td><code>AND</code></td><td>Joins query clauses with a logical AND. Returns all items that match the conditions of both clauses.<br><b>Example:</b> <code>price > 10.99 AND color == Red</code></td>\n</tr>\n<tr>\n<td><code>OR</code></td><td>Joins query clauses with a logical OR. Returns all items that match the conditions of either clause.<br><b>Example:</b> <code>type == Jeans OR type == Shirt</code></td>\n</tr>\n</table>\n\n##### List of supported comparison operators:\n\n<table>\n<thead>\n<th>Comparison Operator</th><th>Supported Type</th><th>Description</th>\n</thead>\n<tr>\n<td>Greater than: <code>&gt;</code></td><td>integer, decimal</td><td>Matches values that are greater than a specified value.<br><b>Example:</b> <code>price &gt; 99.99</code></td>\n</tr>\n<tr>\n<td>Greater or equal: <code>&ge;</code></td><td>integer, decimal</td><td>Matches all values that are greater than or equal to a specified value.<br><b>Example:</b> <code>price &ge; 99.99</code> </td>\n</tr>\n<tr>\n<td>Less than: <code>&lt;</code></td><td>integer, decimal</td><td>Matches all values that are less than a specified value.<br><b>Example:</b> <code>price &lt; 99.99</code></td>\n</tr>\n<tr>\n<td>Less or equal: <code>&le;</code></td><td>integer, decimal</td><td>Matches all that are values less than or equal to a specified value.<br><b>Example:</b> <code>price &le; 99</code></td>\n</tr>\n<tr>\n<td>Equal: <code>==</code></td><td>integer, decimal, string, date, time, dateTime</td><td>Matches values that are equal to a specified value.<br><b>Example:</b> <code>color == <q>green</q></code></td>\n</tr>\n<tr>\n<td>Not equal: <code>!=</code></td><td>integer, decimal, string, date, time, dateTime</td><td>Matches values that are not equal to a specified value.<br><b>Example:</b> <code>color != <q>green</q></code></td>\n</tr>\n</table>\n\n##### List of supported date/time range operators:\n\n<table>\n<thead>\n<th>Date/time Range Operator</th><th>Supported Type</th><th>Description</th>\n</thead>\n<tr>\n<td><code>BETWEEN</code></td><td>date, time, dateTime</td><td>Specifies date/time range between dates.<br><b>Example:</b> <code>createdAt BETWEEN <q>2023-03-01</q> AND <q>2023-03-30</q></code></td>\n</tr>\n<tr>\n<td><code>NOT BETWEEN</code></td><td>date, time, dateTime</td><td>Specifies date/time range not between dates.<br><b>Example:</b> <code>createdAt NOT BETWEEN <q>2023-03-01</q> AND <q>2023-03-30</q></code></td>\n</tr>\n</table>\n\n##### List of supported string operators:\n\n<table>\n<thead>\n<th>String Operator&nbsp;&nbsp;&nbsp;</th><th>Supported Type</th><th>Description</th>\n</thead>\n<tr>\n<td><code>STARTS WITH</code></td><td>string</td><td>Matches all values starting with specific substring.<br><b>Example:</b> <code>name STARTS WITH <q>Bo</q></code></td>\n</tr>\n<tr>\n<td><code>ENDS WITH</code></td><td>string</td><td>Matches all values ending with specific substring.<br><b>Example:</b> <code>name ENDS WITH <q>an</q></code></td>\n</tr>\n</table>",
+      "required":true,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"( type == \"Jeans\" AND type == \"Shirt\" ) OR ( price > 10.99 AND color == \"Red\" )"
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Successful Response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CountResponse"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "count":3
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><root>\n      \n  <count>3</count>\n  \n</root>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>BAD_REQUEST</messageId>\n                  \n      <text>Bad request</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"Catalog is not found"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>NOT_FOUND</messageId>\n                  \n      <text>Catalog is not found</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "catalogs:manage",
+     "catalogs:use"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":5,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   },
+   "patch":{
+    "tags":[
+     "platform",
+     "catalogs-api",
+     "items"
+    ],
+    "summary":"Update items",
+    "description":"Use this method to update list of filtered items.",
+    "operationId":"patch-items",
+    "parameters":[
+     {
+      "name":"catalogId",
+      "in":"path",
+      "description":"Catalog id.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64"
+      },
+      "example":10000
+     },
+     {
+      "name":"queryFilter",
+      "in":"query",
+      "description":"Enables filtering items using [URL-encoded](https://www.w3schools.com/tags/ref_urlencode.asp) queries passed to a parameter. Wrap a catalog column name in square brackets `[]`, if the name contains UNICODE characters, e.g. `[文 本]` or a space, e.g. `[shirt type]`\n##### List of supported logical operators:\n\n<table>\n<thead>\n<th>Logical Operator</th><th>Description</th>\n</thead>\n<tr>\n<td><code>AND</code></td><td>Joins query clauses with a logical AND. Returns all items that match the conditions of both clauses.<br><b>Example:</b> <code>price > 10.99 AND color == Red</code></td>\n</tr>\n<tr>\n<td><code>OR</code></td><td>Joins query clauses with a logical OR. Returns all items that match the conditions of either clause.<br><b>Example:</b> <code>type == Jeans OR type == Shirt</code></td>\n</tr>\n</table>\n\n##### List of supported comparison operators:\n\n<table>\n<thead>\n<th>Comparison Operator</th><th>Supported Type</th><th>Description</th>\n</thead>\n<tr>\n<td>Greater than: <code>&gt;</code></td><td>integer, decimal</td><td>Matches values that are greater than a specified value.<br><b>Example:</b> <code>price &gt; 99.99</code></td>\n</tr>\n<tr>\n<td>Greater or equal: <code>&ge;</code></td><td>integer, decimal</td><td>Matches all values that are greater than or equal to a specified value.<br><b>Example:</b> <code>price &ge; 99.99</code> </td>\n</tr>\n<tr>\n<td>Less than: <code>&lt;</code></td><td>integer, decimal</td><td>Matches all values that are less than a specified value.<br><b>Example:</b> <code>price &lt; 99.99</code></td>\n</tr>\n<tr>\n<td>Less or equal: <code>&le;</code></td><td>integer, decimal</td><td>Matches all that are values less than or equal to a specified value.<br><b>Example:</b> <code>price &le; 99</code></td>\n</tr>\n<tr>\n<td>Equal: <code>==</code></td><td>integer, decimal, string, date, time, dateTime</td><td>Matches values that are equal to a specified value.<br><b>Example:</b> <code>color == <q>green</q></code></td>\n</tr>\n<tr>\n<td>Not equal: <code>!=</code></td><td>integer, decimal, string, date, time, dateTime</td><td>Matches values that are not equal to a specified value.<br><b>Example:</b> <code>color != <q>green</q></code></td>\n</tr>\n</table>\n\n##### List of supported date/time range operators:\n\n<table>\n<thead>\n<th>Date/time Range Operator</th><th>Supported Type</th><th>Description</th>\n</thead>\n<tr>\n<td><code>BETWEEN</code></td><td>date, time, dateTime</td><td>Specifies date/time range between dates.<br><b>Example:</b> <code>createdAt BETWEEN <q>2023-03-01</q> AND <q>2023-03-30</q></code></td>\n</tr>\n<tr>\n<td><code>NOT BETWEEN</code></td><td>date, time, dateTime</td><td>Specifies date/time range not between dates.<br><b>Example:</b> <code>createdAt NOT BETWEEN <q>2023-03-01</q> AND <q>2023-03-30</q></code></td>\n</tr>\n</table>\n\n##### List of supported string operators:\n\n<table>\n<thead>\n<th>String Operator&nbsp;&nbsp;&nbsp;</th><th>Supported Type</th><th>Description</th>\n</thead>\n<tr>\n<td><code>STARTS WITH</code></td><td>string</td><td>Matches all values starting with specific substring.<br><b>Example:</b> <code>name STARTS WITH <q>Bo</q></code></td>\n</tr>\n<tr>\n<td><code>ENDS WITH</code></td><td>string</td><td>Matches all values ending with specific substring.<br><b>Example:</b> <code>name ENDS WITH <q>an</q></code></td>\n</tr>\n</table>",
+      "required":true,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"( type == \"Jeans\" AND type == \"Shirt\" ) OR ( price > 10.99 AND color == \"Red\" )"
+     }
+    ],
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "type":"array",
+        "items":{
+         "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.UpdateCatalogValueDto"
+        }
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"Successful Response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CountResponse"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "count":3
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><root>\n      \n  <count>3</count>\n  \n</root>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>BAD_REQUEST</messageId>\n                  \n      <text>Bad request</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"Catalog is not found"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>NOT_FOUND</messageId>\n                  \n      <text>Catalog is not found</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "catalogs:manage",
+     "catalogs:use"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":5,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/catalogs/1/catalogs/{catalogId}/items/{itemId}":{
+   "get":{
+    "tags":[
+     "platform",
+     "catalogs-api",
+     "items"
+    ],
+    "summary":"Get item",
+    "description":"Use this method to get a specific item from a catalog.",
+    "operationId":"get-item-by-id",
+    "parameters":[
+     {
+      "name":"catalogId",
+      "in":"path",
+      "description":"Catalog id.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64"
+      },
+      "example":10000
+     },
+     {
+      "name":"itemId",
+      "in":"path",
+      "description":"Item id.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64"
+      },
+      "example":10000
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Successful Response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CatalogItemDto"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "id":10000,
+           "values":[
+            {
+             "fieldName":"Text field",
+             "fieldId":"caad56e4-2a1c-4ae8-9717-ebb40d05533d",
+             "value":"Some text value"
+            },
+            {
+             "fieldName":"Numeric field",
+             "fieldId":"1ab3e732-8986-4d70-bdec-f89c3cbf042d",
+             "value":"2"
+            },
+            {
+             "fieldName":"Decimal field",
+             "fieldId":"87897d8f-07ae-4b51-80a8-84db793144fb",
+             "value":"2,0005"
+            },
+            {
+             "fieldName":"Boolean field",
+             "fieldId":"87897d8f-07ae-4b51-80a8-ebb40d05533d",
+             "value":"false"
+            },
+            {
+             "fieldName":"Date field",
+             "fieldId":"caad56e4-07ae-4ae8-9717-ebb40d05533d",
+             "value":"2022-01-12"
+            },
+            {
+             "fieldName":"Time field",
+             "fieldId":"87897d8f-8986-4d70-bdec-f89c3cbf042d",
+             "value":"10:10:10"
+            },
+            {
+             "fieldName":"Date time field",
+             "fieldId":"87897d8f-07ae-8986-80a8-ebb40d05533d",
+             "value":"2022-01-12 10:10:10"
+            }
+           ]
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<root>\n    <id>10000</id>\n    <values>\n        <element>\n            <fieldName>Text Field</fieldName>\n            <fieldId>caad56e4-2a1c-4ae8-9717-ebb40d05533d</fieldId>\n            <value>Some text value</value>\n        </element>\n        <element>\n            <fieldName>Numeric Field</fieldName>\n            <fieldId>1ab3e732-8986-4d70-bdec-f89c3cbf042d</fieldId>\n            <value>2</value>\n            </element>\n        <element>\n            <fieldName>Decimal Field</fieldName>\n            <fieldId>87897d8f-07ae-4b51-80a8-84db793144fb</fieldId>\n            <value>2,0005</value>\n        </element>\n        <element>\n            <fieldName>Boolean Field</fieldName>\n            <fieldId>87897d8f-07ae-4b51-80a8-ebb40d05533d</fieldId>\n            <value>false</value>\n        </element>\n        <element>\n            <fieldName>Date Field</fieldName>\n            <fieldId>caad56e4-07ae-4ae8-9717-ebb40d05533d</fieldId>\n            <value>2022-01-12</value>\n        </element>\n        <element>\n            <fieldName>Time Field</fieldName>\n            <fieldId>87897d8f-8986-4d70-bdec-f89c3cbf042d</fieldId>\n            <value> 10:10:10 </value>\n        </element>\n        <element>\n            <fieldName>Date time Field</fieldName>\n            <fieldId>87897d8f-07ae-8986-80a8-ebb40d05533d</fieldId>\n            <value>2022-01-12 10:10:10</value>\n        </element>\n    </fields>\n</root>"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>BAD_REQUEST</messageId>\n                  \n      <text>Bad request</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"No records found."
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>NOT_FOUND</messageId>\n                  \n      <text>No records found.</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "catalogs:manage",
+     "catalogs:read",
+     "catalogs:use"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":5,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   },
+   "delete":{
+    "tags":[
+     "platform",
+     "catalogs-api",
+     "items"
+    ],
+    "summary":"Delete item",
+    "description":"Use this method to delete a specific item.",
+    "operationId":"delete-item",
+    "parameters":[
+     {
+      "name":"catalogId",
+      "in":"path",
+      "description":"Catalog id.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64"
+      },
+      "example":10000
+     },
+     {
+      "name":"itemId",
+      "in":"path",
+      "description":"Item id.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64"
+      },
+      "example":10000
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Successful Response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CountResponse"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "count":3
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><root>\n      \n  <count>3</count>\n  \n</root>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>BAD_REQUEST</messageId>\n                  \n      <text>Bad request</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"No records found."
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>NOT_FOUND</messageId>\n                  \n      <text>No records found.</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "catalogs:manage",
+     "catalogs:use"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":5,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   },
+   "patch":{
+    "tags":[
+     "platform",
+     "catalogs-api",
+     "items"
+    ],
+    "summary":"Update item",
+    "description":"Use this method to update the field values of items.",
+    "operationId":"patch-item",
+    "parameters":[
+     {
+      "name":"catalogId",
+      "in":"path",
+      "description":"Catalog id.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64"
+      },
+      "example":10000
+     },
+     {
+      "name":"itemId",
+      "in":"path",
+      "description":"Item id.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64"
+      },
+      "example":10000
+     }
+    ],
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "type":"array",
+        "items":{
+         "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.UpdateCatalogValueDto"
+        }
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"Successful Response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"array",
+         "items":{
+          "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CatalogValueDto"
+         }
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":[
+           {
+            "fieldName":"Updated Name",
+            "fieldId":"caad56e4-2a1c-4ae8-9717-ebb40d05533d",
+            "value":"Updated value"
+           }
+          ]
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><Array>\n      \n  <CatalogValueUpdateDTO>\n            \n    <catalogId>1000</catalogId>\n            \n    <itemId>1000</itemId>\n            \n    <fieldId>caad56e4-2a1c-4ae8-9717-ebb40d05533d</fieldId>\n            \n    <value>updated value</value>\n        \n  </CatalogValueUpdateDTO>\n  \n</Array>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>BAD_REQUEST</messageId>\n                  \n      <text>Bad request</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"No records found."
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>NOT_FOUND</messageId>\n                  \n      <text>No records found.</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "catalogs:manage",
+     "catalogs:use"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":5,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/catalogs/1/catalogs/{catalogId}/items/count":{
+   "get":{
+    "tags":[
+     "platform",
+     "catalogs-api",
+     "items"
+    ],
+    "summary":"Get item count",
+    "description":"Use this method to get the total number of items in a specific catalog.",
+    "operationId":"get-item-count",
+    "parameters":[
+     {
+      "name":"catalogId",
+      "in":"path",
+      "description":"Catalog id.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"integer",
+       "format":"int64"
+      },
+      "example":10000
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Successful Response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CountResponse"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "count":3
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><root>\n      \n  <count>3</count>\n  \n</root>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>BAD_REQUEST</messageId>\n                  \n      <text>Bad request</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"Catalog is not found"
+            }
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n      \n  <requestError>\n            \n    <serviceException>\n                  \n      <messageId>NOT_FOUND</messageId>\n                  \n      <text>Catalog is not found</text>\n              \n    </serviceException>\n        \n  </requestError>\n  \n</ApiException>\n"
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "catalogs:manage",
+     "catalogs:read",
+     "catalogs:use"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":5,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  }
+ },
+ "components":{
+  "schemas":{
+   "8107508a6b6ebe39d7ea5cd4a2338a61e45bf1b939b4ec9bc51846ab35de14ea.ApiException":{
+    "type":"object",
+    "properties":{
+     "requestError":{
+      "$ref":"#/components/schemas/ApiRequestError"
+     }
+    },
+    "required":[
+     "requestError"
+    ],
+    "title":"ApiException"
+   },
+   "ApiException":{
+    "type":"object",
+    "properties":{
+     "requestError":{
+      "$ref":"#/components/schemas/ApiRequestError"
+     }
+    },
+    "title":"ApiException"
+   },
+   "ApiRequestError":{
+    "type":"object",
+    "properties":{
+     "serviceException":{
+      "$ref":"#/components/schemas/ApiRequestErrorDetails"
+     }
+    },
+    "required":[
+     "serviceException"
+    ],
+    "title":"ApiRequestError"
+   },
+   "ApiRequestErrorDetails":{
+    "type":"object",
+    "properties":{
+     "messageId":{
+      "type":"string",
+      "description":"Identifier of the error."
+     },
+     "text":{
+      "type":"string",
+      "description":"Detailed error description."
+     },
+     "validationErrors":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"array",
+       "items":{
+        "type":"string",
+        "description":"Validation errors."
+       }
+      },
+      "description":"Validation errors."
+     }
+    },
+    "required":[
+     "messageId",
+     "text"
+    ],
+    "title":"ApiRequestErrorDetails"
+   },
+   "e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CatalogDto":{
+    "type":"object",
+    "properties":{
+     "id":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Catalog ID.",
+      "example":10000
+     },
+     "name":{
+      "type":"string",
+      "description":"Catalog name.",
+      "example":"Catalog Name"
+     },
+     "description":{
+      "type":"string",
+      "description":"Catalog description.",
+      "example":"Catalog description"
+     },
+     "type":{
+      "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CatalogTypes"
+     }
+    },
+    "required":[
+     "description",
+     "id",
+     "name",
+     "type"
+    ],
+    "title":"CatalogDto"
+   },
+   "e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CatalogFieldDataType":{
+    "type":"string",
+    "description":"Field data type. Note: Once created, you cannot change the data type.",
+    "enum":[
+     "TEXT",
+     "INTEGER",
+     "DECIMAL",
+     "DATE",
+     "TIME",
+     "DATE_TIME",
+     "BOOLEAN"
+    ],
+    "title":"CatalogFieldDataType"
+   },
+   "e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CatalogFieldDto":{
+    "type":"object",
+    "properties":{
+     "id":{
+      "type":"string",
+      "description":"Field ID.",
+      "example":"caad56e4-2a1c-4ae8-9717-ebb40d05533d"
+     },
+     "dataType":{
+      "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CatalogFieldDataType"
+     },
+     "name":{
+      "type":"string",
+      "description":"Field name.",
+      "example":"Custom name"
+     },
+     "isPredefined":{
+      "type":"boolean",
+      "description":"Indicates whether the field is predefined by a catalog type. You cannot create predefined fields.",
+      "example":true
+     }
+    },
+    "required":[
+     "dataType",
+     "id",
+     "isPredefined",
+     "name"
+    ],
+    "title":"CatalogFieldDto"
+   },
+   "e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CatalogItemDto":{
+    "type":"object",
+    "properties":{
+     "id":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Item ID.",
+      "example":10000
+     },
+     "values":{
+      "type":"array",
+      "description":"A list of item field values. Maximum <code>1000</code> values.",
+      "items":{
+       "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CatalogValueDto"
+      }
+     }
+    },
+    "required":[
+     "id",
+     "values"
+    ],
+    "title":"CatalogItemDto"
+   },
+   "e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CatalogTypes":{
+    "type":"string",
+    "description":"Catalog type.",
+    "enum":[
+     "BLANK",
+     "PRODUCTS",
+     "STORES",
+     "ARTICLES"
+    ],
+    "example":"BLANK",
+    "title":"CatalogTypes"
+   },
+   "e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CatalogValueDto":{
+    "type":"object",
+    "description":"A list of item field values. Maximum <code>1000</code> values.",
+    "properties":{
+     "fieldName":{
+      "type":"string",
+      "description":"Field name.",
+      "example":"Custom field name"
+     },
+     "fieldId":{
+      "type":"string",
+      "description":"Field ID.",
+      "example":"8b00a8c6-5302-4fd0-a0cc-bb090b28ac34"
+     },
+     "value":{
+      "type":"string",
+      "description":"Field value.",
+      "example":"Custom field value"
+     }
+    },
+    "required":[
+     "fieldId",
+     "fieldName",
+     "value"
+    ],
+    "title":"CatalogValueDto"
+   },
+   "e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CountResponse":{
+    "type":"object",
+    "properties":{
+     "count":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Number of affected items.",
+      "example":100
+     }
+    },
+    "required":[
+     "count"
+    ],
+    "title":"CountResponse"
+   },
+   "e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CreateCatalogDto":{
+    "type":"object",
+    "properties":{
+     "name":{
+      "type":"string",
+      "description":"Catalog name.",
+      "example":"Catalog Name"
+     },
+     "description":{
+      "type":"string",
+      "description":"Catalog description.",
+      "example":"Catalog description"
+     },
+     "type":{
+      "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CatalogTypes"
+     }
+    },
+    "required":[
+     "description",
+     "name",
+     "type"
+    ],
+    "title":"CreateCatalogDto"
+   },
+   "e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CreateCatalogFieldDto":{
+    "type":"object",
+    "properties":{
+     "id":{
+      "type":"string",
+      "description":"Field ID.",
+      "example":"caad56e4-2a1c-4ae8-9717-ebb40d05533d"
+     },
+     "dataType":{
+      "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CatalogFieldDataType"
+     },
+     "name":{
+      "type":"string",
+      "description":"Field name.",
+      "example":"Custom name"
+     }
+    },
+    "required":[
+     "dataType",
+     "name"
+    ],
+    "title":"CreateCatalogFieldDto"
+   },
+   "e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CreateCatalogItemDto":{
+    "type":"object",
+    "properties":{
+     "values":{
+      "type":"array",
+      "description":"A list of item field values. Maximum <code>1000</code> values.",
+      "items":{
+       "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CreateCatalogValueDto"
+      }
+     }
+    },
+    "required":[
+     "values"
+    ],
+    "title":"CreateCatalogItemDto"
+   },
+   "e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.CreateCatalogValueDto":{
+    "type":"object",
+    "description":"A list of item field values. Maximum <code>1000</code> values.",
+    "properties":{
+     "fieldName":{
+      "type":"string",
+      "description":"Field name.",
+      "example":"Custom field name"
+     },
+     "fieldId":{
+      "type":"string",
+      "description":"Field ID.",
+      "example":"8b00a8c6-5302-4fd0-a0cc-bb090b28ac34"
+     },
+     "value":{
+      "type":"string",
+      "description":"Field value.",
+      "example":"Custom field value"
+     }
+    },
+    "required":[
+     "value"
+    ],
+    "title":"CreateCatalogValueDto"
+   },
+   "e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.PageResponseDto":{
+    "type":"object",
+    "properties":{
+     "results":{
+      "type":"array",
+      "description":"Results on a current page.",
+      "items":{
+       "type":"object",
+       "description":"Results on a current page."
+      }
+     },
+     "paging":{
+      "$ref":"#/components/schemas/e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.Paging"
+     }
+    },
+    "required":[
+     "paging",
+     "results"
+    ],
+    "title":"PageResponseDto"
+   },
+   "e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.Paging":{
+    "type":"object",
+    "description":"Pagination information.",
+    "properties":{
+     "page":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Current page.",
+      "example":1
+     },
+     "size":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Page size.",
+      "example":20
+     },
+     "totalPages":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Total amount of pages.",
+      "example":5
+     },
+     "totalResults":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Total amount of results.",
+      "example":100
+     }
+    },
+    "required":[
+     "page",
+     "size",
+     "totalPages",
+     "totalResults"
+    ],
+    "title":"Paging"
+   },
+   "e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.UpdateCatalogDto":{
+    "type":"object",
+    "properties":{
+     "name":{
+      "type":[
+       "string",
+       "null"
+      ],
+      "description":"Catalog name.",
+      "example":"CatalogName"
+     },
+     "description":{
+      "type":[
+       "string",
+       "null"
+      ],
+      "description":"Catalog description.",
+      "example":"Just a description"
+     }
+    },
+    "title":"UpdateCatalogDto"
+   },
+   "e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.UpdateCatalogFieldDto":{
+    "type":"object",
+    "properties":{
+     "name":{
+      "type":"string",
+      "description":"Field name.",
+      "example":"Custom label"
+     }
+    },
+    "required":[
+     "name"
+    ],
+    "title":"UpdateCatalogFieldDto"
+   },
+   "e6e93dd514df725f71bff0da51b4f6588e807f5cb84f3d1063a226fc7a7537eb.UpdateCatalogValueDto":{
+    "type":"object",
+    "properties":{
+     "fieldId":{
+      "type":"string",
+      "description":"Field ID.",
+      "example":"f5cdcb82-7a5b-4707-b37a-4153da514403"
+     },
+     "value":{
+      "type":"string",
+      "description":"Field value.",
+      "example":"Custom field value"
+     }
+    },
+    "required":[
+     "fieldId",
+     "value"
+    ],
+    "title":"UpdateCatalogValueDto"
+   }
+  },
+  "responses":{
+   "ApiException401":{
+    "description":"Unauthorized",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"UNAUTHORIZED",
+         "text":"Unauthorized"
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>UNAUTHORIZED</messageId>\n      <text>Unauthorized</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   },
+   "ApiException403":{
+    "description":"Forbidden",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"FORBIDDEN",
+         "text":"Forbidden"
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>FORBIDDEN</messageId>\n      <text>Forbidden</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   },
+   "ApiException429":{
+    "description":"Too Many Requests",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"TOO_MANY_REQUESTS",
+         "text":"Too many requests"
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>TOO_MANY_REQUESTS</messageId>\n      <text>Too many requests</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   },
+   "ApiException500":{
+    "description":"Internal Server Error",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"GENERAL_ERROR",
+         "text":"Something went wrong. Please contact support."
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>GENERAL_ERROR</messageId>\n      <text>Something went wrong. Please contact support.</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   }
+  },
+  "parameters":{},
+  "examples":{},
+  "requestBodies":{},
+  "headers":{},
+  "securitySchemes":{
+   "APIKeyHeader":{
+    "type":"apiKey",
+    "description":"This is the most secure authorization type and the one with the most flexibility.\n\nAPI keys can be generated by calling the dedicated API method. Furthermore, API keys can have a limited scope and cover only some API methods. Lastly, they can\nbe revoked at any time. This range of possibilities makes API keys well suited for separating the API access rights across multiple applications or use cases.\nFinally, the loss of an API key is easily manageable.\n\nYou can manage your API keys from [GUI](https://portal.infobip.com/settings/accounts/api-keys), or programmatically\nwith [dedicated API](#platform-&-connectivity/settings).\n\nAPI key Authorization header example:\n\n```shell\nAuthorization: App 003026bbc133714df1834b8638bb496e-8f4b3d9a-e931-478d-a994-28a725159ab9\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "Basic":{
+    "type":"http",
+    "description":"Basic authorization type can be used in situations when the API key is not available. For example, API methods for generating API keys should be authenticated\nwith the Basic type.\n\nIn this case, the credentials included in the Authorization header should be a Base64 encoded username and password combination. More formally, basic\nauthentication header can be constructed in three steps:\n\n* Username and password are concatenated using the colon `(:)` as a separator `username:password`.\n* The resulting string is encoded using the [RFC2045-MIME](https://www.ietf.org/rfc/rfc2045.txt) variant of Base64.\n* Encoded string is added as credentials after the `\"Basic \"` type.\n\nExample:\n\n```shell\nUsername: \"Aladdin\"\nPassword: \"openSesame\"\n\nConcatenated string: \"Aladdin:openSesame\"\n\nBase64 encoded string: \"QWxhZGRpbjpvcGVuU2VzYW1l\"\n\nAuthorization header: \"Basic QWxhZGRpbjpvcGVuU2VzYW1l\"\n```\n\n> **Implementation detail**: Base64 encoding is a standard and many available programming languages and frameworks provide convenient methods for encoding\n> strings.\n",
+    "scheme":"basic"
+   },
+   "IBSSOTokenHeader":{
+    "type":"apiKey",
+    "description":"This authorization type is suited for situations when you do not want to store Infobip credentials in your own app. Instead, your users will input their Infobip\ncredentials every time they access your application and the application will use those credentials to create a session. From then on, the session token can be\nused to authenticate subsequent API requests. Note that the session will expire automatically after a predefined period of inactivity, and can also be manually\nterminated by making an appropriate API call.\n\nYou can find more details on the creation and behavior of the session at\nthe [dedicated documentation page](#platform-connectivity/account-management/create-session).\n\nAfter obtaining the session token by calling the above-referenced API method you can include it in the Authorization header like this:\n\n```shell\nAuthorization: IBSSO 2f9b4d31-2d0d-49a8-85f0-9b862bdca394\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "OAuth2":{
+    "type":"oauth2",
+    "description":"Similarly to the IBSSO Token authentication you can use OAuth 2.0 bearer token with Infobip serving both as resource and authorization server. You can obtain\nthe access token using the client credentials grant from `auth/1/oauth2/token` endpoint. It will provide you with your access token, and its expiration period.\nYou can use the token to authorize your API calls until it expires. You can find out more about the process in\nthe [official specification](https://tools.ietf.org/html/rfc6749#section-4.4).\n\nYou can include your access token in the Authorization HTTP request header like this:\n\n```http\nAuthorization: Bearer <access_token>\n```",
+    "flows":{
+     "clientCredentials":{
+      "tokenUrl":"https://api.infobip.com/auth/1/oauth2/token",
+      "scopes":{}
+     }
+    }
+   }
+  },
+  "links":{},
+  "callbacks":{}
+ }
+}

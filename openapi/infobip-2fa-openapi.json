@@ -1,0 +1,4682 @@
+{
+ "openapi":"3.1.0",
+ "info":{
+  "title":"Infobip OpenAPI Specification",
+  "description":"OpenAPI Specification that contains all public endpoints and webhooks.",
+  "contact":{
+   "name":"Infobip support",
+   "email":"support@infobip.com"
+  },
+  "version":"3.210.0",
+  "x-generatedAt":"2026-07-23T15:24:01.295139008Z"
+ },
+ "tags":[
+  {
+   "name":"platform",
+   "description":"Modular tools to scale and automate your business.\n",
+   "x-type":"category",
+   "x-displayName":"Platform"
+  },
+  {
+   "name":"2fa",
+   "description":"Infobip's Two Factor Authentication API for OTP (One Time Passcode) delivery and verification. OTPs can be delivered over SMS, Voice or Email. [Learn more about the workflow and setup.](https://www.infobip.com/docs/2fa-service/general-2fa-otp-setup) You can use [SDKs and other available tools](https://www.infobip.com/developers/sdks) to help you with integration.\n",
+   "x-type":"product",
+   "x-displayName":"2FA"
+  },
+  {
+   "name":"2fa-configuration",
+   "description":"Before using the 2FA service it is necessary to configure the properties and templates for your use case.  \nConfiguration, such as the number of allowed PIN attempts and PIN time to live are configured by [creating an Application](#channels/sms/2fa/2fa-configuration/create-2fa-application).  \nThe message text that will accompany the PIN and the properties, such as PIN length, are configured by creating either a [message template](#channels/sms/2fa/2fa-configuration/create-2fa-message-template), for SMS and Voice delivery, or an [Email message template](#channels/sms/2fa/2fa-configuration/create-2fa-email-message-template)\n[Learn more about how to create an Email template](https://www.infobip.com/docs/2fa-service/using-2fa-service-with-email) and link it to 2FA API.\n\nThe expected use is to create an Application and apply one or more Message Templates to that Application for a specific authentication scenario. You can create multiple Applications and Message Templates if you have many authentication scenarios, but Application and Message Template creation will be a one-off, infrequent operation.\n",
+   "x-type":"module",
+   "x-displayName":"2FA Configuration"
+  },
+  {
+   "name":"manage-applications",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Manage Applications"
+  },
+  {
+   "name":"manage-message-templates",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Manage Message Templates"
+  },
+  {
+   "name":"pin-sending-and-verification",
+   "description":"When you have configured at least one [Application](#channels/sms/2fa/2fa-configuration/create-2fa-application) and [Message Template](#channels/sms/2fa/2fa-configuration/create-2fa-message-template), \nyou are ready to trigger PIN generation and its delivery by SMS, Voice or Email.\n",
+   "x-type":"module",
+   "x-displayName":"PIN Sending and Verification"
+  },
+  {
+   "name":"send-pin-over-sms",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Send a PIN over SMS"
+  },
+  {
+   "name":"send-pin-over-voice",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Send a PIN over Voice"
+  },
+  {
+   "name":"send-pin-over-email",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Send a PIN over Email"
+  },
+  {
+   "name":"verify-pin",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Verify a PIN"
+  }
+ ],
+ "paths":{
+  "/2fa/2/applications":{
+   "get":{
+    "tags":[
+     "platform",
+     "2fa",
+     "2fa-configuration",
+     "manage-applications"
+    ],
+    "summary":"Get all 2FA applications",
+    "description":"An application is a container for 2FA message templates. Use this method to list your applications.",
+    "externalDocs":{
+     "description":"Learn more about the workflow and setup",
+     "url":"https://www.infobip.com/docs/2fa-service/general-2fa-otp-setup"
+    },
+    "operationId":"get-2fa-applications",
+    "responses":{
+     "200":{
+      "description":"successful response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"array",
+         "items":{
+          "$ref":"#/components/schemas/17363474057d152577564d8587b079aa7bdd070a3f49746aea3319eb57a5830c.ApplicationResponse"
+         }
+        },
+        "examples":{
+         "Multiple applications response":{
+          "summary":"Multiple applications response",
+          "value":[
+           {
+            "applicationId":"0933F3BC087D2A617AC6DCB2EF5B8A61",
+            "name":"Test application BASIC 1",
+            "configuration":{
+             "pinAttempts":10,
+             "allowMultiplePinVerifications":true,
+             "pinTimeToLive":"2h",
+             "verifyPinLimit":"1/3s",
+             "sendPinPerApplicationLimit":"10000/1d",
+             "sendPinPerPhoneNumberLimit":"3/1d"
+            },
+            "enabled":true
+           },
+           {
+            "applicationId":"5F04FACFAA4978F62FCAEBA97B37E90F",
+            "name":"Test application BASIC 2",
+            "configuration":{
+             "pinAttempts":12,
+             "allowMultiplePinVerifications":true,
+             "pinTimeToLive":"10m",
+             "verifyPinLimit":"2/1s",
+             "sendPinPerApplicationLimit":"10000/1d",
+             "sendPinPerPhoneNumberLimit":"5/1h"
+            },
+            "enabled":true
+           },
+           {
+            "applicationId":"B450F966A8EF017180F148AF22C42642",
+            "name":"Test application BASIC 3",
+            "configuration":{
+             "pinAttempts":15,
+             "allowMultiplePinVerifications":true,
+             "pinTimeToLive":"1h",
+             "verifyPinLimit":"30/10s",
+             "sendPinPerApplicationLimit":"10000/3d",
+             "sendPinPerPhoneNumberLimit":"10/20m"
+            },
+            "enabled":true
+           }
+          ]
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "type":"array",
+         "items":{
+          "$ref":"#/components/schemas/17363474057d152577564d8587b079aa7bdd070a3f49746aea3319eb57a5830c.ApplicationResponse"
+         }
+        },
+        "examples":{
+         "Multiple applications response":{
+          "summary":"Multiple applications response",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApplicationResponses>\n  <item>\n    <applicationId>0933F3BC087D2A617AC6DCB2EF5B8A61</applicationId>\n    <name>Test application BASIC 1</name>\n    <configuration>\n      <pinAttempts>10</pinAttempts>\n      <allowMultiplePinVerifications>true</allowMultiplePinVerifications>\n      <pinTimeToLive>2h</pinTimeToLive>\n      <verifyPinLimit>1/3s</verifyPinLimit>\n      <sendPinPerApplicationLimit>10000/1d</sendPinPerApplicationLimit>\n      <sendPinPerPhoneNumberLimit>3/1d</sendPinPerPhoneNumberLimit>\n    </configuration>\n    <enabled>true</enabled>\n  </item>\n  <item>\n    <applicationId>5F04FACFAA4978F62FCAEBA97B37E90F</applicationId>\n    <name>Test application BASIC 2</name>\n    <configuration>\n      <pinAttempts>12</pinAttempts>\n      <allowMultiplePinVerifications>true</allowMultiplePinVerifications>\n      <pinTimeToLive>10m</pinTimeToLive>\n      <verifyPinLimit>2/1s</verifyPinLimit>\n      <sendPinPerApplicationLimit>10000/1d</sendPinPerApplicationLimit>\n      <sendPinPerPhoneNumberLimit>5/1h</sendPinPerPhoneNumberLimit>\n    </configuration>\n    <enabled>true</enabled>\n  </item>\n  <item>\n    <applicationId>B450F966A8EF017180F148AF22C42642</applicationId>\n    <name>Test application BASIC 3</name>\n    <configuration>\n      <pinAttempts>15</pinAttempts>\n      <allowMultiplePinVerifications>true</allowMultiplePinVerifications>\n      <pinTimeToLive>1h</pinTimeToLive>\n      <verifyPinLimit>30/10s</verifyPinLimit>\n      <sendPinPerApplicationLimit>10000/3d</sendPinPerApplicationLimit>\n      <sendPinPerPhoneNumberLimit>10/20m</sendPinPerPhoneNumberLimit>\n    </configuration>\n    <enabled>true</enabled>\n  </item>\n</ApplicationResponses>\n"
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "4XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     },
+     "5XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "Basic":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "2fa:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":50,
+      "numberOfTimeUnits":10,
+      "timeUnit":"m"
+     }
+    ]
+   },
+   "post":{
+    "tags":[
+     "platform",
+     "2fa",
+     "2fa-configuration",
+     "manage-applications"
+    ],
+    "summary":"Create 2FA application",
+    "description":"Create and configure a new 2FA application.",
+    "externalDocs":{
+     "description":"Learn more about the workflow and setup",
+     "url":"https://www.infobip.com/docs/2fa-service/general-2fa-otp-setup"
+    },
+    "operationId":"create-2fa-application",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "allOf":[
+         {
+          "$ref":"#/components/schemas/17363474057d152577564d8587b079aa7bdd070a3f49746aea3319eb57a5830c.ApplicationRequest"
+         }
+        ]
+       },
+       "examples":{
+        "Application request":{
+         "summary":"Application request",
+         "value":{
+          "name":"2fa application name",
+          "enabled":true,
+          "configuration":{
+           "pinAttempts":5,
+           "allowMultiplePinVerifications":true,
+           "pinTimeToLive":"10m",
+           "verifyPinLimit":"2/4s",
+           "sendPinPerApplicationLimit":"5000/12h",
+           "sendPinPerPhoneNumberLimit":"2/1d"
+          }
+         }
+        }
+       }
+      },
+      "application/xml":{
+       "schema":{
+        "allOf":[
+         {
+          "$ref":"#/components/schemas/17363474057d152577564d8587b079aa7bdd070a3f49746aea3319eb57a5830c.ApplicationRequest"
+         }
+        ]
+       },
+       "examples":{
+        "Application request":{
+         "summary":"Application request",
+         "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApplicationRequest>\n  <name>2fa application name</name>\n  <enabled>true</enabled>\n  <configuration>\n    <pinAttempts>5</pinAttempts>\n    <allowMultiplePinVerifications>true</allowMultiplePinVerifications>\n    <pinTimeToLive>10m</pinTimeToLive>\n    <verifyPinLimit>2/4s</verifyPinLimit>\n    <sendPinPerApplicationLimit>5000/12h</sendPinPerApplicationLimit>\n    <sendPinPerPhoneNumberLimit>2/1d</sendPinPerPhoneNumberLimit>\n  </configuration>\n</ApplicationRequest>\n"
+        }
+       }
+      }
+     }
+    },
+    "responses":{
+     "201":{
+      "description":"successful response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/17363474057d152577564d8587b079aa7bdd070a3f49746aea3319eb57a5830c.ApplicationResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Creating new application response":{
+          "summary":"Creating new application response",
+          "value":{
+           "applicationId":"1234567",
+           "name":"Application name",
+           "configuration":{
+            "pinAttempts":5,
+            "allowMultiplePinVerifications":true,
+            "pinTimeToLive":"10m",
+            "verifyPinLimit":"2/4s",
+            "sendPinPerApplicationLimit":"5000/12h",
+            "sendPinPerPhoneNumberLimit":"2/1d"
+           },
+           "enabled":true
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/17363474057d152577564d8587b079aa7bdd070a3f49746aea3319eb57a5830c.ApplicationResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Creating new application response":{
+          "summary":"Creating new application response",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApplicationResponse>\n  <applicationId>1234567</applicationId>\n  <name>Application name</name>\n  <configuration>\n    <pinAttempts>5</pinAttempts>\n    <allowMultiplePinVerifications>true</allowMultiplePinVerifications>\n    <pinTimeToLive>10m</pinTimeToLive>\n    <verifyPinLimit>2/4s</verifyPinLimit>\n    <sendPinPerApplicationLimit>5000/12h</sendPinPerApplicationLimit>\n    <sendPinPerPhoneNumberLimit>2/1d</sendPinPerPhoneNumberLimit>\n  </configuration>\n  <enabled>true</enabled>\n</ApplicationResponse>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "$ref":"#/components/responses/ApiException400"
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "4XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     },
+     "5XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "Basic":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "2fa:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":20,
+      "numberOfTimeUnits":10,
+      "timeUnit":"m"
+     }
+    ]
+   }
+  },
+  "/2fa/2/applications/{appId}":{
+   "get":{
+    "tags":[
+     "platform",
+     "2fa",
+     "2fa-configuration",
+     "manage-applications"
+    ],
+    "summary":"Get 2FA application",
+    "description":"Get a single 2FA application to see its configuration details.",
+    "externalDocs":{
+     "description":"Learn more about the workflow and setup",
+     "url":"https://www.infobip.com/docs/2fa-service/general-2fa-otp-setup"
+    },
+    "operationId":"get-2fa-application",
+    "parameters":[
+     {
+      "name":"appId",
+      "in":"path",
+      "description":"ID of application for which configuration view was requested.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"0933F3BC087D2A617AC6DCB2EF5B8A61"
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"successful response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/17363474057d152577564d8587b079aa7bdd070a3f49746aea3319eb57a5830c.ApplicationResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Single application response":{
+          "summary":"Single application response",
+          "value":{
+           "applicationId":"1234567",
+           "name":"Application name",
+           "configuration":{
+            "pinAttempts":5,
+            "allowMultiplePinVerifications":true,
+            "pinTimeToLive":"10m",
+            "verifyPinLimit":"2/4s",
+            "sendPinPerApplicationLimit":"5000/12h",
+            "sendPinPerPhoneNumberLimit":"2/1d"
+           },
+           "enabled":true
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/17363474057d152577564d8587b079aa7bdd070a3f49746aea3319eb57a5830c.ApplicationResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Single application response":{
+          "summary":"Single application response",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApplicationResponse>\n  <applicationId>1234567</applicationId>\n  <name>Application name</name>\n  <configuration>\n    <pinAttempts>5</pinAttempts>\n    <allowMultiplePinVerifications>true</allowMultiplePinVerifications>\n    <pinTimeToLive>10m</pinTimeToLive>\n    <verifyPinLimit>2/4s</verifyPinLimit>\n    <sendPinPerApplicationLimit>5000/12h</sendPinPerApplicationLimit>\n    <sendPinPerPhoneNumberLimit>2/1d</sendPinPerPhoneNumberLimit>\n  </configuration>\n  <enabled>true</enabled>\n</ApplicationResponse>\n"
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "$ref":"#/components/responses/ApiException404"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "4XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     },
+     "5XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "Basic":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "2fa:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
+      "numberOfTimeUnits":10,
+      "timeUnit":"m"
+     }
+    ]
+   },
+   "put":{
+    "tags":[
+     "platform",
+     "2fa",
+     "2fa-configuration",
+     "manage-applications"
+    ],
+    "summary":"Update 2FA application",
+    "description":"Change configuration options for your existing 2FA application.",
+    "externalDocs":{
+     "description":"Learn more about the workflow and setup",
+     "url":"https://www.infobip.com/docs/2fa-service/general-2fa-otp-setup"
+    },
+    "operationId":"update-2fa-application",
+    "parameters":[
+     {
+      "name":"appId",
+      "in":"path",
+      "description":"ID of application that should be updated.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"0933F3BC087D2A617AC6DCB2EF5B8A61"
+     }
+    ],
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "allOf":[
+         {
+          "$ref":"#/components/schemas/17363474057d152577564d8587b079aa7bdd070a3f49746aea3319eb57a5830c.ApplicationRequest"
+         }
+        ]
+       },
+       "examples":{
+        "Application request":{
+         "summary":"Application request",
+         "value":{
+          "name":"2fa application name",
+          "enabled":true,
+          "configuration":{
+           "pinAttempts":5,
+           "allowMultiplePinVerifications":true,
+           "pinTimeToLive":"10m",
+           "verifyPinLimit":"2/4s",
+           "sendPinPerApplicationLimit":"5000/12h",
+           "sendPinPerPhoneNumberLimit":"2/1d"
+          }
+         }
+        }
+       }
+      },
+      "application/xml":{
+       "schema":{
+        "allOf":[
+         {
+          "$ref":"#/components/schemas/17363474057d152577564d8587b079aa7bdd070a3f49746aea3319eb57a5830c.ApplicationRequest"
+         }
+        ]
+       },
+       "examples":{
+        "Application request":{
+         "summary":"Application request",
+         "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApplicationRequest>\n  <name>2fa application name</name>\n  <enabled>true</enabled>\n  <configuration>\n    <pinAttempts>5</pinAttempts>\n    <allowMultiplePinVerifications>true</allowMultiplePinVerifications>\n    <pinTimeToLive>10m</pinTimeToLive>\n    <verifyPinLimit>2/4s</verifyPinLimit>\n    <sendPinPerApplicationLimit>5000/12h</sendPinPerApplicationLimit>\n    <sendPinPerPhoneNumberLimit>2/1d</sendPinPerPhoneNumberLimit>\n  </configuration>\n</ApplicationRequest>\n"
+        }
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"successful response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/17363474057d152577564d8587b079aa7bdd070a3f49746aea3319eb57a5830c.ApplicationResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Updating application response":{
+          "summary":"Updating application response",
+          "value":{
+           "applicationId":"1234567",
+           "name":"Application name",
+           "configuration":{
+            "pinAttempts":5,
+            "allowMultiplePinVerifications":true,
+            "pinTimeToLive":"10m",
+            "verifyPinLimit":"2/4s",
+            "sendPinPerApplicationLimit":"5000/12h",
+            "sendPinPerPhoneNumberLimit":"2/1d"
+           },
+           "enabled":true
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/17363474057d152577564d8587b079aa7bdd070a3f49746aea3319eb57a5830c.ApplicationResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Updating application response":{
+          "summary":"Updating application response",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApplicationResponse>\n  <applicationId>1234567</applicationId>\n  <name>Application name</name>\n  <configuration>\n    <pinAttempts>5</pinAttempts>\n    <allowMultiplePinVerifications>true</allowMultiplePinVerifications>\n    <pinTimeToLive>10m</pinTimeToLive>\n    <verifyPinLimit>2/4s</verifyPinLimit>\n    <sendPinPerApplicationLimit>5000/12h</sendPinPerApplicationLimit>\n    <sendPinPerPhoneNumberLimit>2/1d</sendPinPerPhoneNumberLimit>\n  </configuration>\n  <enabled>true</enabled>\n</ApplicationResponse>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "$ref":"#/components/responses/ApiException400"
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "$ref":"#/components/responses/ApiException404"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "4XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     },
+     "5XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "Basic":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "2fa:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":40,
+      "numberOfTimeUnits":10,
+      "timeUnit":"m"
+     }
+    ]
+   }
+  },
+  "/2fa/2/applications/{appId}/messages":{
+   "get":{
+    "tags":[
+     "platform",
+     "2fa",
+     "2fa-configuration",
+     "manage-message-templates"
+    ],
+    "summary":"Get all 2FA message templates",
+    "description":"List all message templates in a 2FA application.",
+    "externalDocs":{
+     "description":"Learn more about the workflow and setup",
+     "url":"https://www.infobip.com/docs/2fa-service/general-2fa-otp-setup"
+    },
+    "operationId":"get-2fa-message-templates",
+    "parameters":[
+     {
+      "name":"appId",
+      "in":"path",
+      "description":"ID of application for which requested message was created.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"0933F3BC087D2A617AC6DCB2EF5B8A61"
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"successful response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "type":"array",
+         "items":{
+          "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.Message"
+         }
+        },
+        "examples":{
+         "Multiple message template response":{
+          "summary":"Multiple message template response",
+          "value":[
+           {
+            "messageId":"A89CE542F3F12",
+            "applicationId":"32G5F37A635KJ8BHJ675435E3A6EA434",
+            "messageText":"Your pin is {{pin}}",
+            "pinLength":4,
+            "pinType":"ALPHANUMERIC",
+            "senderId":"Infobip 2FA"
+           },
+           {
+            "messageId":"AF33289C815F8",
+            "applicationId":"A635KJ8BHJ6754432G5F3735E3A6EA43",
+            "messageText":"Your pin is {{pin}}",
+            "pinLength":4,
+            "pinType":"ALPHANUMERIC",
+            "language":"en",
+            "voiceName":"Joanna",
+            "senderId":"Infobip 2FA",
+            "repeatDTMF":"1#",
+            "speechRate":1.0
+           },
+           {
+            "messageId":"9C815F8AF3328",
+            "applicationId":"HJ675435E3A6EA43432G5F37A635KJ8B",
+            "pinLength":4,
+            "pinType":"ALPHANUMERIC",
+            "from":"company@example.com",
+            "emailTemplateId":1234,
+            "landingPageId":"1_23456"
+           }
+          ]
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "type":"array",
+         "items":{
+          "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.Message"
+         }
+        },
+        "examples":{
+         "Multiple message template response":{
+          "summary":"Multiple message template response",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><Messages>\n  <item>\n    <messageId>A89CE542F3F12</messageId>\n    <applicationId>32G5F37A635KJ8BHJ675435E3A6EA434</applicationId>\n    <messageText>Your pin is {{pin}}</messageText>\n    <pinLength>4</pinLength>\n    <pinType>ALPHANUMERIC</pinType>\n    <senderId>Infobip 2FA</senderId>\n  </item>\n  <item>\n    <messageId>AF33289C815F8</messageId>\n    <applicationId>A635KJ8BHJ6754432G5F3735E3A6EA43</applicationId>\n    <messageText>Your pin is {{pin}}</messageText>\n    <pinLength>4</pinLength>\n    <pinType>ALPHANUMERIC</pinType>\n    <language>en</language>\n    <voiceName>Joanna</voiceName>\n    <senderId>Infobip 2FA</senderId>\n    <repeatDTMF>1#</repeatDTMF>\n    <speechRate>1.0</speechRate>\n  </item>\n  <item>\n    <messageId>9C815F8AF3328</messageId>\n    <applicationId>HJ675435E3A6EA43432G5F37A635KJ8B</applicationId>\n    <pinLength>4</pinLength>\n    <pinType>ALPHANUMERIC</pinType>\n    <from>company@example.com</from>\n    <emailTemplateId>1234</emailTemplateId>\n    <landingPageId>1_23456</landingPageId>\n  </item>\n</Messages>\n"
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "$ref":"#/components/responses/ApiException404"
+     },
+     "4XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     },
+     "5XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "Basic":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "2fa:manage"
+    ]
+   },
+   "post":{
+    "tags":[
+     "platform",
+     "2fa",
+     "2fa-configuration",
+     "manage-message-templates"
+    ],
+    "summary":"Create 2FA SMS or Voice message template",
+    "description":"Once you have your [2FA application](#channels/sms/2fa/2fa-configuration/create-2fa-application), create one or more [message templates](#channels/sms/2fa/2fa-configuration/create-2fa-message-template) where your PIN will be dynamically included when you send the PIN message over SMS or Voice.",
+    "externalDocs":{
+     "description":"Learn more about the workflow and setup",
+     "url":"https://www.infobip.com/docs/2fa-service/general-2fa-otp-setup"
+    },
+    "operationId":"create-2fa-message-template",
+    "parameters":[
+     {
+      "name":"appId",
+      "in":"path",
+      "description":"ID of application for which requested message was created.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"0933F3BC087D2A617AC6DCB2EF5B8A61"
+     }
+    ],
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "allOf":[
+         {
+          "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.CreateSmsOrVoiceMessageRequest"
+         }
+        ]
+       },
+       "examples":{
+        "Create message template":{
+         "summary":"Create message template",
+         "value":{
+          "pinType":"NUMERIC",
+          "messageText":"Your pin is {{pin}}",
+          "pinLength":4,
+          "language":"en",
+          "voiceName":"Joanna",
+          "senderId":"Infobip 2FA",
+          "repeatDTMF":"1#",
+          "speechRate":1.0
+         }
+        },
+        "Create message template with placeholders":{
+         "summary":"Create message template with placeholders",
+         "description":"Create a message template with placeholders that can later be filled with different values for each PIN message",
+         "value":{
+          "pinType":"NUMERIC",
+          "messageText":"Hello {{firstName}} your pin is {{pin}}",
+          "pinLength":4,
+          "language":"en",
+          "voiceName":"Joanna",
+          "senderId":"Infobip 2FA",
+          "repeatDTMF":"1#",
+          "speechRate":1.0
+         }
+        },
+        "Create message template with DLT parameters":{
+         "summary":"Create message template with DLT parameters",
+         "description":"Create a message template with Distributed Ledger Technology (DLT) parameters required for sending SMS to India region",
+         "value":{
+          "pinType":"NUMERIC",
+          "messageText":"Your pin is {{pin}}",
+          "pinLength":4,
+          "language":"en",
+          "voiceName":"Joanna",
+          "senderId":"Infobip 2FA",
+          "repeatDTMF":"1#",
+          "speechRate":1.0,
+          "regional":{
+           "indiaDlt":{
+            "contentTemplateId":"your-template-id",
+            "principalEntityId":"your-entity-id",
+            "teleMarketerId":"your-tele-marketer-id"
+           }
+          }
+         }
+        }
+       }
+      },
+      "application/xml":{
+       "schema":{
+        "allOf":[
+         {
+          "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.CreateSmsOrVoiceMessageRequest"
+         }
+        ]
+       },
+       "examples":{
+        "Create message template":{
+         "summary":"Create message template",
+         "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><CreateSmsOrVoiceMessageRequest>\n  <pinType>NUMERIC</pinType>\n  <messageText>Your pin is {{pin}}</messageText>\n  <pinLength>4</pinLength>\n  <language>en</language>\n  <voiceName>Joanna</voiceName>\n  <senderId>Infobip 2FA</senderId>\n  <repeatDTMF>1#</repeatDTMF>\n  <speechRate>1.0</speechRate>\n</CreateSmsOrVoiceMessageRequest>\n"
+        },
+        "Create message template with placeholders":{
+         "summary":"Create message template with placeholders",
+         "description":"Create a message template with placeholders that can later be filled with different values for each PIN message",
+         "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><CreateSmsOrVoiceMessageRequest>\n  <pinType>NUMERIC</pinType>\n  <messageText>Hello {{firstName}} your pin is {{pin}}</messageText>\n  <pinLength>4</pinLength>\n  <language>en</language>\n  <voiceName>Joanna</voiceName>\n  <senderId>Infobip 2FA</senderId>\n  <repeatDTMF>1#</repeatDTMF>\n  <speechRate>1.0</speechRate>\n</CreateSmsOrVoiceMessageRequest>\n"
+        },
+        "Create message template with DLT parameters":{
+         "summary":"Create message template with DLT parameters",
+         "description":"Create a message template with Distributed Ledger Technology (DLT) parameters required for sending SMS to India region",
+         "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><CreateSmsOrVoiceMessageRequest>\n  <pinType>NUMERIC</pinType>\n  <messageText>Your pin is {{pin}}</messageText>\n  <pinLength>4</pinLength>\n  <language>en</language>\n  <voiceName>Joanna</voiceName>\n  <senderId>Infobip 2FA</senderId>\n  <repeatDTMF>1#</repeatDTMF>\n  <speechRate>1.0</speechRate>\n  <regional>\n    <indiaDlt>\n      <contentTemplateId>your-template-id</contentTemplateId>\n      <principalEntityId>your-entity-id</principalEntityId>\n      <teleMarketerId>your-tele-marketer-id</teleMarketerId>\n    </indiaDlt>\n  </regional>\n</CreateSmsOrVoiceMessageRequest>\n"
+        }
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"successful response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.SmsOrVoiceMessage"
+          }
+         ]
+        },
+        "examples":{
+         "Message template response":{
+          "summary":"Message template response",
+          "value":{
+           "messageId":"B628A31410306DDB2BFB0D9CF1F3A3FF",
+           "applicationId":"19F2491982980DBC2C40E1597FD175AB",
+           "pinPlaceholder":"{{pin}}",
+           "messageText":"Your pin is {{pin}}",
+           "pinLength":4,
+           "pinType":"ALPHANUMERIC",
+           "language":"en",
+           "voiceName":"Joanna",
+           "senderId":"Infobip 2FA",
+           "repeatDTMF":"1#",
+           "speechRate":1.0
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.SmsOrVoiceMessage"
+          }
+         ]
+        },
+        "examples":{
+         "Message template response":{
+          "summary":"Message template response",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><SmsOrVoiceMessage>\n  <messageId>B628A31410306DDB2BFB0D9CF1F3A3FF</messageId>\n  <applicationId>19F2491982980DBC2C40E1597FD175AB</applicationId>\n  <pinPlaceholder>{{pin}}</pinPlaceholder>\n  <messageText>Your pin is {{pin}}</messageText>\n  <pinLength>4</pinLength>\n  <pinType>ALPHANUMERIC</pinType>\n  <language>en</language>\n  <voiceName>Joanna</voiceName>\n  <senderId>Infobip 2FA</senderId>\n  <repeatDTMF>1#</repeatDTMF>\n  <speechRate>1.0</speechRate>\n</SmsOrVoiceMessage>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "$ref":"#/components/responses/ApiException400"
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "$ref":"#/components/responses/ApiException404"
+     },
+     "4XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     },
+     "5XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "Basic":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "2fa:manage"
+    ]
+   }
+  },
+  "/2fa/2/applications/{appId}/messages/{msgId}":{
+   "get":{
+    "tags":[
+     "platform",
+     "2fa",
+     "2fa-configuration",
+     "manage-message-templates"
+    ],
+    "summary":"Get 2FA message template",
+    "description":"Get a single 2FA message template from an application to see its configuration details.",
+    "externalDocs":{
+     "description":"Learn more about the workflow and setup",
+     "url":"https://www.infobip.com/docs/2fa-service/general-2fa-otp-setup"
+    },
+    "operationId":"get-2fa-message-template",
+    "parameters":[
+     {
+      "name":"appId",
+      "in":"path",
+      "description":"ID of application for which requested message was created.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"0933F3BC087D2A617AC6DCB2EF5B8A61"
+     },
+     {
+      "name":"msgId",
+      "in":"path",
+      "description":"Requested message ID.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"16A8B5FE2BCD6CA716A2D780CB3F3390"
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"successful response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.Message"
+          }
+         ]
+        },
+        "examples":{
+         "SMS message template response":{
+          "summary":"SMS message template response",
+          "value":{
+           "messageId":"A89CE542F3F12",
+           "applicationId":"32G5F37A635KJ8BHJ675435E3A6EA434",
+           "messageText":"Your pin is {{pin}}",
+           "pinLength":4,
+           "pinType":"ALPHANUMERIC",
+           "senderId":"Infobip 2FA"
+          }
+         },
+         "Voice message template response":{
+          "summary":"Voice message template response",
+          "value":{
+           "messageId":"AF33289C815F8",
+           "applicationId":"A635KJ8BHJ6754432G5F3735E3A6EA43",
+           "messageText":"Your pin is {{pin}}",
+           "pinLength":4,
+           "pinType":"ALPHANUMERIC",
+           "language":"en",
+           "voiceName":"Joanna",
+           "senderId":"Infobip 2FA",
+           "repeatDTMF":"1#",
+           "speechRate":1.0
+          }
+         },
+         "Email message template response":{
+          "summary":"Email message template response",
+          "value":{
+           "messageId":"9C815F8AF3328",
+           "applicationId":"HJ675435E3A6EA43432G5F37A635KJ8B",
+           "pinLength":4,
+           "pinType":"ALPHANUMERIC",
+           "from":"company@example.com",
+           "emailTemplateId":1234,
+           "landingPageId":"1_23456"
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.Message"
+          }
+         ]
+        },
+        "examples":{
+         "SMS message template response":{
+          "summary":"SMS message template response",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><Message>\n  <messageId>A89CE542F3F12</messageId>\n  <applicationId>32G5F37A635KJ8BHJ675435E3A6EA434</applicationId>\n  <messageText>Your pin is {{pin}}</messageText>\n  <pinLength>4</pinLength>\n  <pinType>ALPHANUMERIC</pinType>\n  <senderId>Infobip 2FA</senderId>\n</Message>\n"
+         },
+         "Voice message template response":{
+          "summary":"Voice message template response",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><Message>\n  <messageId>AF33289C815F8</messageId>\n  <applicationId>A635KJ8BHJ6754432G5F3735E3A6EA43</applicationId>\n  <messageText>Your pin is {{pin}}</messageText>\n  <pinLength>4</pinLength>\n  <pinType>ALPHANUMERIC</pinType>\n  <language>en</language>\n  <voiceName>Joanna</voiceName>\n  <senderId>Infobip 2FA</senderId>\n  <repeatDTMF>1#</repeatDTMF>\n  <speechRate>1.0</speechRate>\n</Message>\n"
+         },
+         "Email message template response":{
+          "summary":"Email message template response",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><Message>\n  <messageId>9C815F8AF3328</messageId>\n  <applicationId>HJ675435E3A6EA43432G5F37A635KJ8B</applicationId>\n  <pinLength>4</pinLength>\n  <pinType>ALPHANUMERIC</pinType>\n  <from>company@example.com</from>\n  <emailTemplateId>1234</emailTemplateId>\n  <landingPageId>1_23456</landingPageId>\n</Message>\n"
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "$ref":"#/components/responses/ApiException404"
+     },
+     "4XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     },
+     "5XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "Basic":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "2fa:manage"
+    ]
+   },
+   "put":{
+    "tags":[
+     "platform",
+     "2fa",
+     "2fa-configuration",
+     "manage-message-templates"
+    ],
+    "summary":"Update 2FA SMS or Voice message template",
+    "description":"Change configuration options for your existing 2FA application SMS or Voice message template.",
+    "externalDocs":{
+     "description":"Learn more about the workflow and setup",
+     "url":"https://www.infobip.com/docs/2fa-service/general-2fa-otp-setup"
+    },
+    "operationId":"update-2fa-message-template",
+    "parameters":[
+     {
+      "name":"appId",
+      "in":"path",
+      "description":"ID of application for which requested message was created.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"0933F3BC087D2A617AC6DCB2EF5B8A61"
+     },
+     {
+      "name":"msgId",
+      "in":"path",
+      "description":"Requested message ID.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"16A8B5FE2BCD6CA716A2D780CB3F3390"
+     }
+    ],
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "allOf":[
+         {
+          "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.UpdateSmsOrVoiceMessageRequest"
+         }
+        ]
+       },
+       "examples":{
+        "Update message template":{
+         "summary":"Update message template",
+         "value":{
+          "pinType":"ALPHANUMERIC",
+          "messageText":"Your pin is {{pin}}",
+          "pinLength":6,
+          "language":"en",
+          "voiceName":"Joanna",
+          "senderId":"Infobip 2FA",
+          "repeatDTMF":"1#",
+          "speechRate":1.0
+         }
+        },
+        "Add DLT parameters to message template":{
+         "summary":"Add DLT parameters to message template",
+         "description":"Add Distributed Ledger Technology (DLT) parameters required for sending SMS to India region to an existing message template",
+         "value":{
+          "pinType":"ALPHANUMERIC",
+          "messageText":"Your pin is {{pin}}",
+          "pinLength":6,
+          "language":"en",
+          "voiceName":"Joanna",
+          "senderId":"Infobip 2FA",
+          "repeatDTMF":"1#",
+          "speechRate":1.0,
+          "regional":{
+           "indiaDlt":{
+            "contentTemplateId":"your-template-id",
+            "principalEntityId":"your-entity-id",
+            "teleMarketerId":"your-tele-marketer-id"
+           }
+          }
+         }
+        }
+       }
+      },
+      "application/xml":{
+       "schema":{
+        "allOf":[
+         {
+          "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.UpdateSmsOrVoiceMessageRequest"
+         }
+        ]
+       },
+       "examples":{
+        "Update message template":{
+         "summary":"Update message template",
+         "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><UpdateSmsOrVoiceMessageRequest>\n  <pinType>ALPHANUMERIC</pinType>\n  <messageText>Your pin is {{pin}}</messageText>\n  <pinLength>6</pinLength>\n  <language>en</language>\n  <voiceName>Joanna</voiceName>\n  <senderId>Infobip 2FA</senderId>\n  <repeatDTMF>1#</repeatDTMF>\n  <speechRate>1.0</speechRate>\n</UpdateSmsOrVoiceMessageRequest>\n"
+        },
+        "Add DLT parameters to message template":{
+         "summary":"Add DLT parameters to message template",
+         "description":"Add Distributed Ledger Technology (DLT) parameters required for sending SMS to India region to an existing message template",
+         "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><UpdateSmsOrVoiceMessageRequest>\n  <pinType>ALPHANUMERIC</pinType>\n  <messageText>Your pin is {{pin}}</messageText>\n  <pinLength>6</pinLength>\n  <language>en</language>\n  <voiceName>Joanna</voiceName>\n  <senderId>Infobip 2FA</senderId>\n  <repeatDTMF>1#</repeatDTMF>\n  <speechRate>1.0</speechRate>\n  <regional>\n    <indiaDlt>\n      <contentTemplateId>your-template-id</contentTemplateId>\n      <principalEntityId>your-entity-id</principalEntityId>\n      <teleMarketerId>your-tele-marketer-id</teleMarketerId>\n    </indiaDlt>\n  </regional>\n</UpdateSmsOrVoiceMessageRequest>\n"
+        }
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"successful response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.SmsOrVoiceMessage"
+          }
+         ]
+        },
+        "examples":{
+         "Message template response":{
+          "summary":"Message template response",
+          "value":{
+           "messageId":"B628A31410306DDB2BFB0D9CF1F3A3FF",
+           "applicationId":"19F2491982980DBC2C40E1597FD175AB",
+           "pinPlaceholder":"{{pin}}",
+           "messageText":"Your pin is {{pin}}",
+           "pinLength":4,
+           "pinType":"ALPHANUMERIC",
+           "language":"en",
+           "voiceName":"Joanna",
+           "senderId":"Infobip 2FA",
+           "repeatDTMF":"1#",
+           "speechRate":1.0
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.SmsOrVoiceMessage"
+          }
+         ]
+        },
+        "examples":{
+         "Message template response":{
+          "summary":"Message template response",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><SmsOrVoiceMessage>\n  <messageId>B628A31410306DDB2BFB0D9CF1F3A3FF</messageId>\n  <applicationId>19F2491982980DBC2C40E1597FD175AB</applicationId>\n  <pinPlaceholder>{{pin}}</pinPlaceholder>\n  <messageText>Your pin is {{pin}}</messageText>\n  <pinLength>4</pinLength>\n  <pinType>ALPHANUMERIC</pinType>\n  <language>en</language>\n  <voiceName>Joanna</voiceName>\n  <senderId>Infobip 2FA</senderId>\n  <repeatDTMF>1#</repeatDTMF>\n  <speechRate>1.0</speechRate>\n</SmsOrVoiceMessage>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "$ref":"#/components/responses/ApiException400"
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "$ref":"#/components/responses/ApiException404"
+     },
+     "4XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     },
+     "5XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "Basic":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "2fa:manage"
+    ]
+   }
+  },
+  "/2fa/2/applications/{appId}/email/messages":{
+   "post":{
+    "tags":[
+     "platform",
+     "2fa",
+     "2fa-configuration",
+     "manage-message-templates"
+    ],
+    "summary":"Create 2FA Email message template",
+    "description":"Once you have your [2FA application](#channels/sms/create-2fa-application), create one or more [Email message templates](https://www.infobip.com/docs/email/templates) where your PIN will be dynamically included when you send the PIN message over Email.",
+    "externalDocs":{
+     "description":"Learn more about the workflow and setup",
+     "url":"https://www.infobip.com/docs/2fa-service/general-2fa-otp-setup"
+    },
+    "operationId":"create-2fa-email-message-template",
+    "parameters":[
+     {
+      "name":"appId",
+      "in":"path",
+      "description":"ID of application for which requested message was created.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"0933F3BC087D2A617AC6DCB2EF5B8A61"
+     }
+    ],
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "allOf":[
+         {
+          "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.CreateEmailMessageRequest"
+         }
+        ]
+       },
+       "examples":{
+        "Create message template":{
+         "summary":"Create message template",
+         "value":{
+          "pinType":"NUMERIC",
+          "pinLength":4,
+          "from":"company@example.com",
+          "emailTemplateId":1234,
+          "landingPageId":"1_23456"
+         }
+        }
+       }
+      },
+      "application/xml":{
+       "schema":{
+        "allOf":[
+         {
+          "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.CreateEmailMessageRequest"
+         }
+        ]
+       },
+       "examples":{
+        "Create message template":{
+         "summary":"Create message template",
+         "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><CreateEmailMessageRequest>\n  <pinType>NUMERIC</pinType>\n  <pinLength>4</pinLength>\n  <from>company@example.com</from>\n  <emailTemplateId>1234</emailTemplateId>\n  <landingPageId>1_23456</landingPageId>\n</CreateEmailMessageRequest>\n"
+        }
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"successful response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.EmailMessage"
+          }
+         ]
+        },
+        "examples":{
+         "Email message template response":{
+          "summary":"Email message template response",
+          "value":{
+           "messageId":"9C815F8AF3328",
+           "applicationId":"HJ675435E3A6EA43432G5F37A635KJ8B",
+           "pinLength":4,
+           "pinType":"ALPHANUMERIC",
+           "from":"company@example.com",
+           "emailTemplateId":1234,
+           "landingPageId":"1_23456"
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.EmailMessage"
+          }
+         ]
+        },
+        "examples":{
+         "Email message template response":{
+          "summary":"Email message template response",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><EmailMessage>\n  <messageId>9C815F8AF3328</messageId>\n  <applicationId>HJ675435E3A6EA43432G5F37A635KJ8B</applicationId>\n  <pinLength>4</pinLength>\n  <pinType>ALPHANUMERIC</pinType>\n  <from>company@example.com</from>\n  <emailTemplateId>1234</emailTemplateId>\n  <landingPageId>1_23456</landingPageId>\n</EmailMessage>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "$ref":"#/components/responses/ApiException400"
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "$ref":"#/components/responses/ApiException404"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "4XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     },
+     "5XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "Basic":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "2fa:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":20,
+      "numberOfTimeUnits":10,
+      "timeUnit":"m"
+     }
+    ]
+   }
+  },
+  "/2fa/2/applications/{appId}/email/messages/{msgId}":{
+   "put":{
+    "tags":[
+     "platform",
+     "2fa",
+     "2fa-configuration",
+     "manage-message-templates"
+    ],
+    "summary":"Update 2FA Email message template",
+    "description":"Change configuration options for your existing 2FA application Email message template.",
+    "externalDocs":{
+     "description":"Learn more about the workflow and setup",
+     "url":"https://www.infobip.com/docs/2fa-service/general-2fa-otp-setup"
+    },
+    "operationId":"update-2fa-email-message-template",
+    "parameters":[
+     {
+      "name":"appId",
+      "in":"path",
+      "description":"ID of application for which requested message was created.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"0933F3BC087D2A617AC6DCB2EF5B8A61"
+     },
+     {
+      "name":"msgId",
+      "in":"path",
+      "description":"Requested message ID.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"16A8B5FE2BCD6CA716A2D780CB3F3390"
+     }
+    ],
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "allOf":[
+         {
+          "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.UpdateEmailMessageRequest"
+         }
+        ]
+       },
+       "examples":{
+        "Update message template":{
+         "summary":"Update message template",
+         "value":{
+          "pinType":"ALPHANUMERIC",
+          "pinLength":6,
+          "from":"company@example.com",
+          "emailTemplateId":1234,
+          "landingPageId":"1_23456"
+         }
+        }
+       }
+      },
+      "application/xml":{
+       "schema":{
+        "allOf":[
+         {
+          "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.UpdateEmailMessageRequest"
+         }
+        ]
+       },
+       "examples":{
+        "Update message template":{
+         "summary":"Update message template",
+         "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><UpdateEmailMessageRequest>\n  <pinType>ALPHANUMERIC</pinType>\n  <pinLength>6</pinLength>\n  <from>company@example.com</from>\n  <emailTemplateId>1234</emailTemplateId>\n  <landingPageId>1_23456</landingPageId>\n</UpdateEmailMessageRequest>\n"
+        }
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"successful response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.EmailMessage"
+          }
+         ]
+        },
+        "examples":{
+         "Email message template response":{
+          "summary":"Email message template response",
+          "value":{
+           "messageId":"9C815F8AF3328",
+           "applicationId":"HJ675435E3A6EA43432G5F37A635KJ8B",
+           "pinLength":4,
+           "pinType":"ALPHANUMERIC",
+           "from":"company@example.com",
+           "emailTemplateId":1234,
+           "landingPageId":"1_23456"
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.EmailMessage"
+          }
+         ]
+        },
+        "examples":{
+         "Email message template response":{
+          "summary":"Email message template response",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><EmailMessage>\n  <messageId>9C815F8AF3328</messageId>\n  <applicationId>HJ675435E3A6EA43432G5F37A635KJ8B</applicationId>\n  <pinLength>4</pinLength>\n  <pinType>ALPHANUMERIC</pinType>\n  <from>company@example.com</from>\n  <emailTemplateId>1234</emailTemplateId>\n  <landingPageId>1_23456</landingPageId>\n</EmailMessage>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "$ref":"#/components/responses/ApiException400"
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "$ref":"#/components/responses/ApiException404"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "4XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     },
+     "5XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "Basic":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "2fa:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":40,
+      "numberOfTimeUnits":10,
+      "timeUnit":"m"
+     }
+    ]
+   }
+  },
+  "/2fa/2/pin":{
+   "post":{
+    "tags":[
+     "platform",
+     "2fa",
+     "pin-sending-and-verification",
+     "send-pin-over-sms"
+    ],
+    "summary":"Send 2FA PIN code over SMS",
+    "description":"Send a PIN code over SMS using a previously created [message template](#channels/sms/create-2fa-message-template).",
+    "externalDocs":{
+     "description":"Learn more about the workflow and setup",
+     "url":"https://www.infobip.com/docs/2fa-service/general-2fa-otp-setup"
+    },
+    "operationId":"send-2fa-pin-code-over-sms",
+    "parameters":[
+     {
+      "name":"ncNeeded",
+      "in":"query",
+      "description":"Indicates if [Number Lookup](https://www.infobip.com/docs/api/connectivity/number-lookup) is needed before sending the 2FA message. If the parameter value is true, Number Lookup will be requested before sending the SMS. If the value is false, the SMS will be sent without requesting Number Lookup. Field's default value is `true`.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"boolean"
+      },
+      "example":"true"
+     }
+    ],
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "allOf":[
+         {
+          "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.StartAuthenticationRequest"
+         }
+        ]
+       },
+       "examples":{
+        "Send PIN over SMS":{
+         "summary":"Send PIN over SMS",
+         "value":{
+          "applicationId":"1234567",
+          "messageId":"7654321",
+          "from":"Sender 1",
+          "to":"41793026727",
+          "placeholders":{
+           "firstName":"John"
+          },
+          "trackDelivery":false
+         }
+        },
+        "Send PIN over SMS with delivery report":{
+         "summary":"Send PIN over SMS with delivery report",
+         "value":{
+          "applicationId":"1234567",
+          "messageId":"7654321",
+          "from":"Sender 1",
+          "to":"41793026727",
+          "placeholders":{
+           "firstName":"John"
+          },
+          "trackDelivery":true
+         }
+        }
+       }
+      },
+      "application/xml":{
+       "schema":{
+        "allOf":[
+         {
+          "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.StartAuthenticationRequest"
+         }
+        ]
+       },
+       "examples":{
+        "Send PIN over SMS":{
+         "summary":"Send PIN over SMS",
+         "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><StartAuthenticationRequest>\n  <applicationId>1234567</applicationId>\n  <messageId>7654321</messageId>\n  <from>Sender 1</from>\n  <to>41793026727</to>\n  <placeholders>\n    <firstName>John</firstName>\n  </placeholders>\n  <trackDelivery>false</trackDelivery>\n</StartAuthenticationRequest>\n"
+        },
+        "Send PIN over SMS with delivery report":{
+         "summary":"Send PIN over SMS with delivery report",
+         "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><StartAuthenticationRequest>\n  <applicationId>1234567</applicationId>\n  <messageId>7654321</messageId>\n  <from>Sender 1</from>\n  <to>41793026727</to>\n  <placeholders>\n    <firstName>John</firstName>\n  </placeholders>\n  <trackDelivery>true</trackDelivery>\n</StartAuthenticationRequest>\n"
+        }
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"successful response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.StartAuthenticationResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Send PIN over SMS":{
+          "summary":"Send PIN over SMS",
+          "value":{
+           "pinId":"9C817C6F8AF3D48F9FE553282AFA2B67",
+           "to":"41793026727",
+           "ncStatus":"NC_DESTINATION_REACHABLE",
+           "smsStatus":"MESSAGE_SENT"
+          }
+         },
+         "Send PIN over SMS with delivery report":{
+          "summary":"Send PIN over SMS with delivery report",
+          "value":{
+           "pinId":"9C817C6F8AF3D48F9FE553282AFA2B67",
+           "to":"41793026727",
+           "ncStatus":"NC_DESTINATION_REACHABLE",
+           "smsStatus":"MESSAGE_SENT",
+           "externalMessageId":"32ddd1a1-9ace-4b99-95c0-add44c3363af"
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.StartAuthenticationResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Send PIN over SMS":{
+          "summary":"Send PIN over SMS",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><StartAuthenticationResponse>\n  <pinId>9C817C6F8AF3D48F9FE553282AFA2B67</pinId>\n  <to>41793026727</to>\n  <ncStatus>NC_DESTINATION_REACHABLE</ncStatus>\n  <smsStatus>MESSAGE_SENT</smsStatus>\n</StartAuthenticationResponse>\n"
+         },
+         "Send PIN over SMS with delivery report":{
+          "summary":"Send PIN over SMS with delivery report",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><StartAuthenticationResponse>\n  <pinId>9C817C6F8AF3D48F9FE553282AFA2B67</pinId>\n  <to>41793026727</to>\n  <ncStatus>NC_DESTINATION_REACHABLE</ncStatus>\n  <smsStatus>MESSAGE_SENT</smsStatus>\n  <externalMessageId>32ddd1a1-9ace-4b99-95c0-add44c3363af</externalMessageId>\n</StartAuthenticationResponse>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "$ref":"#/components/responses/ApiException400"
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "4XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     },
+     "5XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "Basic":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "2fa:manage",
+     "2fa:pin:send"
+    ]
+   }
+  },
+  "/2fa/2/pin/{pinId}/resend":{
+   "post":{
+    "tags":[
+     "platform",
+     "2fa",
+     "pin-sending-and-verification",
+     "send-pin-over-sms"
+    ],
+    "summary":"Resend 2FA PIN code over SMS",
+    "description":"If needed, you can resend the same (previously sent) PIN code over SMS.",
+    "externalDocs":{
+     "description":"Learn more about the workflow and setup",
+     "url":"https://www.infobip.com/docs/2fa-service/general-2fa-otp-setup"
+    },
+    "operationId":"resend-2fa-pin-code-over-sms",
+    "parameters":[
+     {
+      "name":"pinId",
+      "in":"path",
+      "description":"ID of the pin code that has to be verified.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"0933F3BC087D2A617AC6DCB2EF5B8A61"
+     }
+    ],
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "allOf":[
+         {
+          "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.ResendPinRequest"
+         }
+        ]
+       },
+       "examples":{
+        "Resend PIN with placeholders":{
+         "summary":"Resend PIN with placeholders",
+         "description":"Resend PIN with custom placeholder values. This request body is optional and you should only use it if your message template contains custom placeholders.",
+         "value":{
+          "placeholders":{
+           "firstName":"John"
+          },
+          "trackDelivery":false
+         }
+        }
+       }
+      },
+      "application/xml":{
+       "schema":{
+        "allOf":[
+         {
+          "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.ResendPinRequest"
+         }
+        ]
+       },
+       "examples":{
+        "Resend PIN with placeholders":{
+         "summary":"Resend PIN with placeholders",
+         "description":"Resend PIN with custom placeholder values. This request body is optional and you should only use it if your message template contains custom placeholders.",
+         "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ResendPinRequest>\n  <placeholders>\n    <firstName>John</firstName>\n  </placeholders>\n  <trackDelivery>false</trackDelivery>\n</ResendPinRequest>\n"
+        }
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"successful response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.StartAuthenticationResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Send PIN over SMS":{
+          "summary":"Send PIN over SMS",
+          "value":{
+           "pinId":"9C817C6F8AF3D48F9FE553282AFA2B67",
+           "to":"41793026727",
+           "ncStatus":"NC_DESTINATION_REACHABLE",
+           "smsStatus":"MESSAGE_SENT"
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.StartAuthenticationResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Send PIN over SMS":{
+          "summary":"Send PIN over SMS",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><StartAuthenticationResponse>\n  <pinId>9C817C6F8AF3D48F9FE553282AFA2B67</pinId>\n  <to>41793026727</to>\n  <ncStatus>NC_DESTINATION_REACHABLE</ncStatus>\n  <smsStatus>MESSAGE_SENT</smsStatus>\n</StartAuthenticationResponse>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "$ref":"#/components/responses/ApiException400"
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "$ref":"#/components/responses/ApiException404"
+     },
+     "4XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     },
+     "5XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "Basic":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "2fa:manage",
+     "2fa:pin:send"
+    ]
+   }
+  },
+  "/2fa/2/pin/voice":{
+   "post":{
+    "tags":[
+     "platform",
+     "2fa",
+     "pin-sending-and-verification",
+     "send-pin-over-voice"
+    ],
+    "summary":"Send 2FA PIN code over Voice",
+    "description":"Send a PIN code over Voice using previously created [message template](#channels/sms/create-2fa-message-template).",
+    "externalDocs":{
+     "description":"Learn more about the workflow and setup",
+     "url":"https://www.infobip.com/docs/2fa-service/general-2fa-otp-setup"
+    },
+    "operationId":"send-2fa-pin-code-over-voice",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "allOf":[
+         {
+          "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.StartAuthenticationRequest"
+         }
+        ]
+       },
+       "examples":{
+        "Send PIN over SMS":{
+         "summary":"Send PIN over SMS",
+         "value":{
+          "applicationId":"1234567",
+          "messageId":"7654321",
+          "from":"Sender 1",
+          "to":"41793026727",
+          "placeholders":{
+           "firstName":"John"
+          },
+          "trackDelivery":false
+         }
+        },
+        "Send PIN over SMS with delivery report":{
+         "summary":"Send PIN over SMS with delivery report",
+         "value":{
+          "applicationId":"1234567",
+          "messageId":"7654321",
+          "from":"Sender 1",
+          "to":"41793026727",
+          "placeholders":{
+           "firstName":"John"
+          },
+          "trackDelivery":true
+         }
+        }
+       }
+      },
+      "application/xml":{
+       "schema":{
+        "allOf":[
+         {
+          "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.StartAuthenticationRequest"
+         }
+        ]
+       },
+       "examples":{
+        "Send PIN over SMS":{
+         "summary":"Send PIN over SMS",
+         "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><StartAuthenticationRequest>\n  <applicationId>1234567</applicationId>\n  <messageId>7654321</messageId>\n  <from>Sender 1</from>\n  <to>41793026727</to>\n  <placeholders>\n    <firstName>John</firstName>\n  </placeholders>\n  <trackDelivery>false</trackDelivery>\n</StartAuthenticationRequest>\n"
+        },
+        "Send PIN over SMS with delivery report":{
+         "summary":"Send PIN over SMS with delivery report",
+         "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><StartAuthenticationRequest>\n  <applicationId>1234567</applicationId>\n  <messageId>7654321</messageId>\n  <from>Sender 1</from>\n  <to>41793026727</to>\n  <placeholders>\n    <firstName>John</firstName>\n  </placeholders>\n  <trackDelivery>true</trackDelivery>\n</StartAuthenticationRequest>\n"
+        }
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"successful response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.StartAuthenticationResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Send PIN over Voice":{
+          "summary":"Send PIN over Voice",
+          "value":{
+           "pinId":"9C817C6F8AF3D48F9FE553282AFA2B67",
+           "to":"41793026727",
+           "callStatus":"PENDING_ACCEPTED"
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.StartAuthenticationResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Send PIN over Voice":{
+          "summary":"Send PIN over Voice",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><StartAuthenticationResponse>\n  <pinId>9C817C6F8AF3D48F9FE553282AFA2B67</pinId>\n  <to>41793026727</to>\n  <callStatus>PENDING_ACCEPTED</callStatus>\n</StartAuthenticationResponse>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "$ref":"#/components/responses/ApiException400"
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "4XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     },
+     "5XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "Basic":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "2fa:manage",
+     "2fa:pin:send"
+    ]
+   }
+  },
+  "/2fa/2/pin/{pinId}/resend/voice":{
+   "post":{
+    "tags":[
+     "platform",
+     "2fa",
+     "pin-sending-and-verification",
+     "send-pin-over-voice"
+    ],
+    "summary":"Resend 2FA PIN code over Voice",
+    "description":"If needed, you can resend the same (previously sent) PIN code over Voice.",
+    "externalDocs":{
+     "description":"Learn more about the workflow and setup",
+     "url":"https://www.infobip.com/docs/2fa-service/general-2fa-otp-setup"
+    },
+    "operationId":"resend-2fa-pin-code-over-voice",
+    "parameters":[
+     {
+      "name":"pinId",
+      "in":"path",
+      "description":"ID of the pin code that has to be verified.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"0933F3BC087D2A617AC6DCB2EF5B8A61"
+     }
+    ],
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "allOf":[
+         {
+          "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.ResendPinRequest"
+         }
+        ]
+       },
+       "examples":{
+        "Resend PIN with placeholders":{
+         "summary":"Resend PIN with placeholders",
+         "description":"Resend PIN with custom placeholder values. This request body is optional and you should only use it if your message template contains custom placeholders.",
+         "value":{
+          "placeholders":{
+           "firstName":"John"
+          },
+          "trackDelivery":false
+         }
+        }
+       }
+      },
+      "application/xml":{
+       "schema":{
+        "allOf":[
+         {
+          "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.ResendPinRequest"
+         }
+        ]
+       },
+       "examples":{
+        "Resend PIN with placeholders":{
+         "summary":"Resend PIN with placeholders",
+         "description":"Resend PIN with custom placeholder values. This request body is optional and you should only use it if your message template contains custom placeholders.",
+         "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ResendPinRequest>\n  <placeholders>\n    <firstName>John</firstName>\n  </placeholders>\n  <trackDelivery>false</trackDelivery>\n</ResendPinRequest>\n"
+        }
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"successful response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.StartAuthenticationResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Send PIN over Voice":{
+          "summary":"Send PIN over Voice",
+          "value":{
+           "pinId":"9C817C6F8AF3D48F9FE553282AFA2B67",
+           "to":"41793026727",
+           "callStatus":"PENDING_ACCEPTED"
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.StartAuthenticationResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Send PIN over Voice":{
+          "summary":"Send PIN over Voice",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><StartAuthenticationResponse>\n  <pinId>9C817C6F8AF3D48F9FE553282AFA2B67</pinId>\n  <to>41793026727</to>\n  <callStatus>PENDING_ACCEPTED</callStatus>\n</StartAuthenticationResponse>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "$ref":"#/components/responses/ApiException400"
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "$ref":"#/components/responses/ApiException404"
+     },
+     "4XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     },
+     "5XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "Basic":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "2fa:manage",
+     "2fa:pin:send"
+    ]
+   }
+  },
+  "/2fa/2/pin/email":{
+   "post":{
+    "tags":[
+     "platform",
+     "2fa",
+     "pin-sending-and-verification",
+     "send-pin-over-email"
+    ],
+    "summary":"Send 2FA PIN code over Email",
+    "description":"Send a PIN code over Email using previously created [Email message template](#channels/sms/2fa/2fa-configuration/create-2fa-email-message-template).",
+    "externalDocs":{
+     "description":"Learn more about the workflow and setup",
+     "url":"https://www.infobip.com/docs/2fa-service/general-2fa-otp-setup"
+    },
+    "operationId":"send-2fa-pin-code-over-email",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "allOf":[
+         {
+          "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.StartEmailAuthenticationRequest"
+         }
+        ]
+       },
+       "examples":{
+        "Send PIN over Email":{
+         "summary":"Send PIN over Email",
+         "value":{
+          "applicationId":"1234567",
+          "messageId":"7654321",
+          "to":"john.smith@example.com",
+          "placeholders":{
+           "firstName":"John"
+          },
+          "landingPagePlaceholders":{
+           "name":"John",
+           "surname":"Smith"
+          }
+         }
+        }
+       }
+      },
+      "application/xml":{
+       "schema":{
+        "allOf":[
+         {
+          "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.StartEmailAuthenticationRequest"
+         }
+        ]
+       },
+       "examples":{
+        "Send PIN over Email":{
+         "summary":"Send PIN over Email",
+         "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><StartEmailAuthenticationRequest>\n  <applicationId>1234567</applicationId>\n  <messageId>7654321</messageId>\n  <to>john.smith@example.com</to>\n  <placeholders>\n    <firstName>John</firstName>\n  </placeholders>\n  <landingPagePlaceholders>\n    <name>John</name>\n    <surname>Smith</surname>\n  </landingPagePlaceholders>\n</StartEmailAuthenticationRequest>\n"
+        }
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"successful response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.StartEmailAuthenticationResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Send PIN over Email":{
+          "summary":"Send PIN over Email",
+          "value":{
+           "pinId":"9C817C6F8AF3D48F9FE553282AFA2B67",
+           "to":"john.smith@example.com",
+           "emailStatus":{
+            "name":"PENDING_ACCEPTED",
+            "description":"Message accepted, pending for delivery."
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.StartEmailAuthenticationResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Send PIN over Email":{
+          "summary":"Send PIN over Email",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><StartEmailAuthenticationResponse>\n  <pinId>9C817C6F8AF3D48F9FE553282AFA2B67</pinId>\n  <to>john.smith@example.com</to>\n  <emailStatus>\n    <name>PENDING_ACCEPTED</name>\n    <description>Message accepted, pending for delivery.</description>\n  </emailStatus>\n</StartEmailAuthenticationResponse>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "$ref":"#/components/responses/ApiException400"
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "4XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     },
+     "5XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "Basic":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "2fa:manage",
+     "2fa:pin:send"
+    ]
+   }
+  },
+  "/2fa/2/pin/{pinId}/resend/email":{
+   "post":{
+    "tags":[
+     "platform",
+     "2fa",
+     "pin-sending-and-verification",
+     "send-pin-over-email"
+    ],
+    "summary":"Resend 2FA PIN code over Email",
+    "description":"If needed, you can resend the same (previously sent) PIN code over Email.",
+    "externalDocs":{
+     "description":"Learn more about the workflow and setup",
+     "url":"https://www.infobip.com/docs/2fa-service/general-2fa-otp-setup"
+    },
+    "operationId":"resend-2fa-pin-code-over-email",
+    "parameters":[
+     {
+      "name":"pinId",
+      "in":"path",
+      "description":"ID of the pin code that has to be verified.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"0933F3BC087D2A617AC6DCB2EF5B8A61"
+     }
+    ],
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "allOf":[
+         {
+          "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.ResendPinRequestViaEmail"
+         }
+        ]
+       },
+       "examples":{
+        "Resend PIN with placeholders":{
+         "summary":"Resend PIN with placeholders",
+         "description":"Resend PIN with custom placeholder values. This request body is optional and you should only use it if your message template contains custom placeholders.",
+         "value":{
+          "placeholders":{
+           "firstName":"John"
+          },
+          "landingPagePlaceholders":{
+           "name":"John",
+           "surname":"Smith"
+          }
+         }
+        }
+       }
+      },
+      "application/xml":{
+       "schema":{
+        "allOf":[
+         {
+          "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.ResendPinRequestViaEmail"
+         }
+        ]
+       },
+       "examples":{
+        "Resend PIN with placeholders":{
+         "summary":"Resend PIN with placeholders",
+         "description":"Resend PIN with custom placeholder values. This request body is optional and you should only use it if your message template contains custom placeholders.",
+         "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ResendPinRequestViaEmail>\n  <placeholders>\n    <firstName>John</firstName>\n  </placeholders>\n  <landingPagePlaceholders>\n    <name>John</name>\n    <surname>Smith</surname>\n  </landingPagePlaceholders>\n</ResendPinRequestViaEmail>\n"
+        }
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"successful response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.StartEmailAuthenticationResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Resend PIN over Email":{
+          "summary":"Resend PIN over Email",
+          "value":{
+           "pinId":"9C817C6F8AF3D48F9FE553282AFA2B67",
+           "to":"john.smith@example.com",
+           "emailStatus":{
+            "name":"PENDING_ACCEPTED",
+            "description":"Message accepted, pending for delivery."
+           }
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.StartEmailAuthenticationResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Resend PIN over Email":{
+          "summary":"Resend PIN over Email",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><StartEmailAuthenticationResponse>\n  <pinId>9C817C6F8AF3D48F9FE553282AFA2B67</pinId>\n  <to>john.smith@example.com</to>\n  <emailStatus>\n    <name>PENDING_ACCEPTED</name>\n    <description>Message accepted, pending for delivery.</description>\n  </emailStatus>\n</StartEmailAuthenticationResponse>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "$ref":"#/components/responses/ApiException400"
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "$ref":"#/components/responses/ApiException404"
+     },
+     "4XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     },
+     "5XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "Basic":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "2fa:pin:manage",
+     "2fa:pin:send"
+    ]
+   }
+  },
+  "/2fa/2/pin/{pinId}/verify":{
+   "post":{
+    "tags":[
+     "platform",
+     "2fa",
+     "pin-sending-and-verification",
+     "verify-pin"
+    ],
+    "summary":"Verify a PIN",
+    "description":"Verify OTP to confirm successful phone number verification. pinId is received in the response after [sending the OTP message](#channels/sms/2fa/pin-sending-and-verification/send-2fa-pin-code-over-voice).",
+    "externalDocs":{
+     "description":"Learn more about the workflow and setup",
+     "url":"https://www.infobip.com/docs/2fa-service/general-2fa-otp-setup"
+    },
+    "operationId":"verify-2fa-phone-number",
+    "parameters":[
+     {
+      "name":"pinId",
+      "in":"path",
+      "description":"ID of the pin code that has to be verified.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"0933F3BC087D2A617AC6DCB2EF5B8A61"
+     }
+    ],
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "allOf":[
+         {
+          "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.VerifyPinRequest"
+         }
+        ]
+       },
+       "examples":{
+        "Verify PIN":{
+         "summary":"Verify PIN",
+         "value":{
+          "pin":"1598"
+         }
+        }
+       }
+      },
+      "application/xml":{
+       "schema":{
+        "allOf":[
+         {
+          "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.VerifyPinRequest"
+         }
+        ]
+       },
+       "examples":{
+        "Verify PIN":{
+         "summary":"Verify PIN",
+         "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><VerifyPinRequest>\n  <pin>1598</pin>\n</VerifyPinRequest>\n"
+        }
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"successful response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.VerifyPinResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Verify PIN response":{
+          "summary":"Verify PIN response",
+          "value":{
+           "pinId":"9C817C6F8AF3D48F9FE553282AFA2B67",
+           "msisdn":"41793026727",
+           "verified":true,
+           "attemptsRemaining":0
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.VerifyPinResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Verify PIN response":{
+          "summary":"Verify PIN response",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><VerifyPinResponse>\n  <pinId>9C817C6F8AF3D48F9FE553282AFA2B67</pinId>\n  <msisdn>41793026727</msisdn>\n  <verified>true</verified>\n  <attemptsRemaining>0</attemptsRemaining>\n</VerifyPinResponse>\n"
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "$ref":"#/components/responses/ApiException400"
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "$ref":"#/components/responses/ApiException404"
+     },
+     "4XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     },
+     "5XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "Basic":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "2fa:manage",
+     "2fa:pin:send"
+    ]
+   }
+  },
+  "/2fa/2/applications/{appId}/verifications":{
+   "get":{
+    "tags":[
+     "platform",
+     "2fa",
+     "pin-sending-and-verification",
+     "verify-pin"
+    ],
+    "summary":"Get 2FA verification status",
+    "description":"Check if a phone number (or email) is already verified for a specific 2FA application.",
+    "externalDocs":{
+     "description":"Learn more about the workflow and setup",
+     "url":"https://www.infobip.com/docs/2fa-service/general-2fa-otp-setup"
+    },
+    "operationId":"get-2fa-verification-status",
+    "parameters":[
+     {
+      "name":"msisdn",
+      "in":"query",
+      "description":"Filter by msisdn (phone number or email) for which verification status is checked.",
+      "required":true,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"385717284759547"
+     },
+     {
+      "name":"verified",
+      "in":"query",
+      "description":"Filter by verified (true or false).",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"boolean"
+      },
+      "example":"false"
+     },
+     {
+      "name":"sent",
+      "in":"query",
+      "description":"Filter by message sent status (true or false).",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"boolean"
+      },
+      "example":"true"
+     },
+     {
+      "name":"appId",
+      "in":"path",
+      "description":"ID of 2-FA application for which phone number verification status is requested.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":"16A8B5FE2BCD6CA716A2D780CB3F3390"
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"successful response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.VerificationResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Verification response list":{
+          "summary":"Verification response list",
+          "value":{
+           "verifications":[
+            {
+             "msisdn":"41793026727",
+             "verified":true,
+             "verifiedAt":1418364366,
+             "sentAt":1418364246
+            },
+            {
+             "msisdn":"41793026746",
+             "verified":false,
+             "verifiedAt":1418364226,
+             "sentAt":1418333246
+            }
+           ]
+          }
+         }
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "allOf":[
+          {
+           "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.VerificationResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Verification response list":{
+          "summary":"Verification response list",
+          "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><VerificationResponse>\n  <verifications>\n    <verifications>\n      <msisdn>41793026727</msisdn>\n      <verified>true</verified>\n      <verifiedAt>1418364366</verifiedAt>\n      <sentAt>1418364246</sentAt>\n    </verifications>\n    <verifications>\n      <msisdn>41793026746</msisdn>\n      <verified>false</verified>\n      <verifiedAt>1418364226</verifiedAt>\n      <sentAt>1418333246</sentAt>\n    </verifications>\n  </verifications>\n</VerificationResponse>\n"
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "$ref":"#/components/responses/ApiException404"
+     },
+     "4XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     },
+     "5XX":{
+      "description":"Error responses",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       },
+       "application/xml":{
+        "schema":{
+         "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException"
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "Basic":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "2fa:manage",
+     "2fa:pin:send"
+    ]
+   }
+  }
+ },
+ "components":{
+  "schemas":{
+   "17363474057d152577564d8587b079aa7bdd070a3f49746aea3319eb57a5830c.ApplicationConfiguration":{
+    "type":"object",
+    "properties":{
+     "allowMultiplePinVerifications":{
+      "type":"boolean",
+      "default":true,
+      "description":"Indicates whether multiple PIN verification is allowed.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "pinAttempts":{
+      "type":"integer",
+      "format":"int32",
+      "default":10,
+      "description":"Number of possible PIN attempts.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "pinTimeToLive":{
+      "type":"string",
+      "default":"15m",
+      "description":"Validity period of PIN in specified time unit. Required format: `{timeLength}{timeUnit}`. `timeLength` is optional with a default value of 1. `timeUnit` can be set to: `ms`, `s`, `m`, `h` or `d` representing milliseconds, seconds, minutes, hours, and days respectively. Must not exceed one year, although much lower value is recommended.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "sendPinPerApplicationLimit":{
+      "type":"string",
+      "default":"10000/1d",
+      "description":"Overall number of requests over a specified time period for generating a PIN and sending a message using a single application. Required format: `{attempts}/{timeLength}{timeUnit}`. `attempts` and `timeunit` are mandatory and `timeLength` is optional with a default value of 1. `timeUnit` is one of: `ms`, `s`, `m`, `h` or `d` representing milliseconds, seconds, minutes, hours, and days respectively. Must not exceed one year, although much lower value is recommended.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "sendPinPerPhoneNumberLimit":{
+      "type":"string",
+      "default":"3/1d",
+      "description":"Number of requests over a specified time period for generating a PIN and sending a message to one destination. Required format: `{attempts}/{timeLength}{timeUnit}`. `attempts` and `timeunit` are mandatory and `timeLength` is optional with a default value of 1. `timeUnit` is one of: `ms`, `s`, `m`, `h` or `d` representing milliseconds, seconds, minutes, hours, and days respectively. Must not exceed one year, although much lower value is recommended.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "verifyPinLimit":{
+      "type":"string",
+      "default":"1/3s",
+      "description":"The number of PIN verification requests over a specififed time period from one phone number (MSISDN). Required format: `{attempts}/{timeLength}{timeUnit}`. `attempts` and `timeunit` are mandatory and `timeLength` is optional with a default value of 1. `timeUnit` is one of: `ms`, `s`, `m`, `h` or `d` representing milliseconds, seconds, minutes, hours, and days respectively. Must not exceed one day, although much lower value is recommended.",
+      "readOnly":false,
+      "writeOnly":false
+     }
+    },
+    "title":"ApplicationConfiguration"
+   },
+   "17363474057d152577564d8587b079aa7bdd070a3f49746aea3319eb57a5830c.ApplicationRequest":{
+    "type":"object",
+    "properties":{
+     "configuration":{
+      "allOf":[
+       {
+        "$ref":"#/components/schemas/17363474057d152577564d8587b079aa7bdd070a3f49746aea3319eb57a5830c.ApplicationConfiguration"
+       }
+      ],
+      "description":"Created 2FA application configuration.",
+      "readOnly":false,
+      "writeOnly":true
+     },
+     "enabled":{
+      "type":"boolean",
+      "description":"Indicates whether the created application is enabled.",
+      "readOnly":false,
+      "writeOnly":true
+     },
+     "name":{
+      "type":"string",
+      "description":"2FA application name.",
+      "readOnly":false,
+      "writeOnly":true
+     }
+    },
+    "required":[
+     "name"
+    ],
+    "title":"ApplicationRequest"
+   },
+   "17363474057d152577564d8587b079aa7bdd070a3f49746aea3319eb57a5830c.ApplicationResponse":{
+    "type":"object",
+    "properties":{
+     "applicationId":{
+      "type":"string",
+      "description":"The ID of the application that represents your service, e.g. 2FA for login, 2FA for changing the password, etc.",
+      "readOnly":true,
+      "writeOnly":false
+     },
+     "configuration":{
+      "allOf":[
+       {
+        "$ref":"#/components/schemas/17363474057d152577564d8587b079aa7bdd070a3f49746aea3319eb57a5830c.ApplicationConfiguration"
+       }
+      ],
+      "description":"Created 2FA application configuration.",
+      "readOnly":true,
+      "writeOnly":false
+     },
+     "enabled":{
+      "type":"boolean",
+      "description":"Indicates whether the created application is enabled.",
+      "readOnly":true,
+      "writeOnly":false
+     },
+     "name":{
+      "type":"string",
+      "description":"2FA application name.",
+      "readOnly":true,
+      "writeOnly":false
+     }
+    },
+    "title":"ApplicationResponse"
+   },
+   "96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiException":{
+    "type":"object",
+    "properties":{
+     "requestError":{
+      "allOf":[
+       {
+        "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiRequestError"
+       }
+      ]
+     }
+    },
+    "title":"ApiException"
+   },
+   "96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiRequestError":{
+    "type":"object",
+    "properties":{
+     "serviceException":{
+      "allOf":[
+       {
+        "$ref":"#/components/schemas/96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiRequestErrorDetails"
+       }
+      ]
+     }
+    },
+    "title":"ApiRequestError"
+   },
+   "96ea7b6cea267e43daadde063d93b8799cdb795baa0e9344573e0f63283595e0.ApiRequestErrorDetails":{
+    "type":"object",
+    "properties":{
+     "messageId":{
+      "type":"string",
+      "description":"Identifier of the error.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "text":{
+      "type":"string",
+      "description":"Detailed error description.",
+      "readOnly":false,
+      "writeOnly":false
+     }
+    },
+    "title":"ApiRequestErrorDetails"
+   },
+   "ApiException":{
+    "type":"object",
+    "properties":{
+     "requestError":{
+      "$ref":"#/components/schemas/ApiRequestError"
+     }
+    },
+    "title":"ApiException"
+   },
+   "ApiRequestError":{
+    "type":"object",
+    "properties":{
+     "serviceException":{
+      "$ref":"#/components/schemas/ApiRequestErrorDetails"
+     }
+    },
+    "title":"ApiRequestError"
+   },
+   "ApiRequestErrorDetails":{
+    "type":"object",
+    "properties":{
+     "messageId":{
+      "type":"string",
+      "description":"Identifier of the error."
+     },
+     "text":{
+      "type":"string",
+      "description":"Detailed error description."
+     },
+     "validationErrors":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"array",
+       "description":"Validation errors.",
+       "items":{
+        "type":"string",
+        "description":"Validation errors."
+       }
+      },
+      "description":"Validation errors."
+     }
+    },
+    "title":"ApiRequestErrorDetails"
+   },
+   "aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.EmailStatus":{
+    "type":"object",
+    "properties":{
+     "description":{
+      "type":"string",
+      "description":"Human-readable description of the status.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "name":{
+      "type":"string",
+      "description":"[Status name](https://www.infobip.com/docs/essentials/response-status-and-error-codes).",
+      "readOnly":false,
+      "writeOnly":false
+     }
+    },
+    "title":"EmailStatus"
+   },
+   "aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.ResendPinRequest":{
+    "type":"object",
+    "properties":{
+     "placeholders":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"string"
+      },
+      "description":"Key value pairs that will be replaced during message sending. Placeholder keys should NOT contain curly brackets and should NOT contain a `pin` placeholder. Valid example: `\"placeholders\":{\"firstName\":\"John\"}`",
+      "readOnly":false,
+      "writeOnly":true
+     },
+     "trackDelivery":{
+      "type":"boolean",
+      "default":false,
+      "description":"Enables sending of delivery reports via [Subscriptions](https://www.infobip.com/docs/cpaas-x/subscriptions-management). The [retry cycle](https://www.infobip.com/docs/sms/sms-over-api#push-retry-cycle-notify-url) for when your URL becomes unavailable uses the following formula: `1min + (1min * retryNumber * retryNumber)`.",
+      "readOnly":false,
+      "writeOnly":true
+     }
+    },
+    "title":"ResendPinRequest"
+   },
+   "aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.ResendPinRequestViaEmail":{
+    "type":"object",
+    "properties":{
+     "landingPagePlaceholders":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"string"
+      },
+      "description":"Key value pairs that will be replaced when using personalized opt out landing page. Placeholder keys should NOT contain curly brackets and should NOT contain a `pin` placeholder. Valid example: `\"landingPagePlaceholders\":{\"name\":\"John\", \"surname\": \"Smith\"}`",
+      "readOnly":false,
+      "writeOnly":true
+     },
+     "placeholders":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"string"
+      },
+      "description":"Key value pairs that will be replaced during message sending. Placeholder keys should NOT contain curly brackets and should NOT contain a `pin` placeholder. Valid example: `\"placeholders\":{\"firstName\":\"John\"}`",
+      "readOnly":false,
+      "writeOnly":true
+     }
+    },
+    "title":"ResendPinRequestViaEmail"
+   },
+   "aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.StartAuthenticationRequest":{
+    "type":"object",
+    "properties":{
+     "applicationId":{
+      "type":"string",
+      "description":"The ID of the application that represents your service, e.g. 2FA for login, 2FA for changing the password, etc.",
+      "readOnly":false,
+      "writeOnly":true
+     },
+     "from":{
+      "type":"string",
+      "description":"Use this parameter if you wish to override the sender ID from the [created](#channels/sms/create-2fa-message-template) message template parameter `senderId`.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "messageId":{
+      "type":"string",
+      "description":"The ID of the message template (message body with the PIN placeholder) that is sent to the recipient.",
+      "readOnly":false,
+      "writeOnly":true
+     },
+     "placeholders":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"string"
+      },
+      "description":"Key value pairs that will be replaced during message sending. Placeholder keys should NOT contain curly brackets and should NOT contain a `pin` placeholder. Valid example: `\"placeholders\":{\"firstName\":\"John\"}`",
+      "readOnly":false,
+      "writeOnly":true
+     },
+     "to":{
+      "type":"string",
+      "description":"Phone number to which the 2FA message will be sent. Example: 41793026727.",
+      "readOnly":false,
+      "writeOnly":true
+     },
+     "trackDelivery":{
+      "type":"boolean",
+      "default":false,
+      "description":"Enables sending of delivery reports via [Subscriptions](https://www.infobip.com/docs/cpaas-x/subscriptions-management). The [retry cycle](https://www.infobip.com/docs/sms/sms-over-api#push-retry-cycle-notify-url) for when your URL becomes unavailable uses the following formula: `1min + (1min * retryNumber * retryNumber)`.",
+      "readOnly":false,
+      "writeOnly":true
+     }
+    },
+    "required":[
+     "applicationId",
+     "messageId",
+     "to"
+    ],
+    "title":"StartAuthenticationRequest"
+   },
+   "aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.StartAuthenticationResponse":{
+    "type":"object",
+    "properties":{
+     "callStatus":{
+      "type":"string",
+      "description":"Call status, e.g. `PENDING_ACCEPTED`.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "externalMessageId":{
+      "type":"string",
+      "description":"Message ID used for delivery tracking.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "ncStatus":{
+      "type":"string",
+      "description":"Status of sent [Number Lookup](https://www.infobip.com/docs/number-lookup). Number Lookup status can have one of the following values: `NC_DESTINATION_UNKNOWN`, `NC_DESTINATION_REACHABLE`, `NC_DESTINATION_NOT_REACHABLE`, `NC_NOT_CONFIGURED`. Contact your Account Manager, if you get the `NC_NOT_CONFIGURED` status. SMS will not be sent only if Number Lookup status is `NC_NOT_REACHABLE`.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "pinId":{
+      "type":"string",
+      "description":"Sent PIN code ID.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "smsStatus":{
+      "type":"string",
+      "description":"Sent SMS status. Can have one of the following values: `MESSAGE_SENT`, `MESSAGE_NOT_SENT`.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "to":{
+      "type":"string",
+      "description":"Phone number to which the 2FA message will be sent. Example: `41793026727`.",
+      "readOnly":false,
+      "writeOnly":false
+     }
+    },
+    "title":"StartAuthenticationResponse"
+   },
+   "aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.StartEmailAuthenticationRequest":{
+    "type":"object",
+    "properties":{
+     "applicationId":{
+      "type":"string",
+      "description":"The ID of the application that represents your service, e.g. 2FA for login, 2FA for changing the password, etc.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "from":{
+      "type":"string",
+      "description":"Use this parameter if you wish to override the sender from the [created](#channels/sms/create-2fa-email-message-template) Email message template parameter `from`.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "landingPagePlaceholders":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"string"
+      },
+      "description":"Key value pairs that will be replaced when using personalized opt out landing page. Placeholder keys should NOT contain curly brackets and should NOT contain a `pin` placeholder. Valid example: `\"landingPagePlaceholders\":{\"name\":\"John\", \"surname\": \"Smith\"}`",
+      "readOnly":false,
+      "writeOnly":true
+     },
+     "messageId":{
+      "type":"string",
+      "description":"The ID of the Email message template (message with the PIN placeholder) that is sent to the recipient.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "placeholders":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"string"
+      },
+      "description":"Key value pairs that will be replaced during message sending. Placeholder keys should NOT contain curly brackets and should NOT contain a `pin` placeholder. Valid example: `\"placeholders\":{\"firstName\":\"John\"}`",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "to":{
+      "type":"string",
+      "description":"Email address to which the 2FA message will be sent. Example: john.smith@example.com.",
+      "readOnly":false,
+      "writeOnly":false
+     }
+    },
+    "required":[
+     "applicationId",
+     "messageId",
+     "to"
+    ],
+    "title":"StartEmailAuthenticationRequest"
+   },
+   "aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.StartEmailAuthenticationResponse":{
+    "type":"object",
+    "properties":{
+     "emailStatus":{
+      "allOf":[
+       {
+        "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.EmailStatus"
+       }
+      ],
+      "description":"Indicates the [status](https://www.infobip.com/docs/essentials/response-status-and-error-codes#api-status-codes) of the message and how to recover from an error should there be any.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "pinId":{
+      "type":"string",
+      "description":"Sent PIN code ID.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "to":{
+      "type":"string",
+      "description":"Email address to which the 2FA message has been sent. Example: john.smith@example.com.",
+      "readOnly":false,
+      "writeOnly":false
+     }
+    },
+    "title":"StartEmailAuthenticationResponse"
+   },
+   "aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.Verification":{
+    "type":"object",
+    "properties":{
+     "msisdn":{
+      "type":"string",
+      "description":"Phone number (MSISDN) for which verification status is checked.",
+      "readOnly":true,
+      "writeOnly":false
+     },
+     "sentAt":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Sent UNIX timestamp (in millis), if the phone number (MSISDN) is verified.",
+      "readOnly":true,
+      "writeOnly":false
+     },
+     "verified":{
+      "type":"boolean",
+      "description":"Indicates if the phone number (MSISDN) is already verified for 2FA application with given ID.",
+      "readOnly":true,
+      "writeOnly":false
+     },
+     "verifiedAt":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Verification UNIX timestamp (in millis), if the phone number (MSISDN) is verified.",
+      "readOnly":true,
+      "writeOnly":false
+     }
+    },
+    "title":"Verification"
+   },
+   "aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.VerificationResponse":{
+    "type":"object",
+    "properties":{
+     "verifications":{
+      "type":"array",
+      "description":"Collection of verifications",
+      "items":{
+       "$ref":"#/components/schemas/aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.Verification"
+      },
+      "readOnly":true,
+      "writeOnly":false
+     }
+    },
+    "title":"VerificationResponse"
+   },
+   "aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.VerifyPinRequest":{
+    "type":"object",
+    "properties":{
+     "pin":{
+      "type":"string",
+      "description":"The PIN code to verify.",
+      "readOnly":false,
+      "writeOnly":true
+     }
+    },
+    "required":[
+     "pin"
+    ],
+    "title":"VerifyPinRequest"
+   },
+   "aa47d40354ee197e21ffad52d2c543bd4f729e250360a844e476aa80deff7b6e.VerifyPinResponse":{
+    "type":"object",
+    "properties":{
+     "attemptsRemaining":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Number of remaining PIN attempts.",
+      "readOnly":true,
+      "writeOnly":false
+     },
+     "msisdn":{
+      "type":"string",
+      "description":"Phone number (`MSISDN`) to which the 2FA message was sent.",
+      "readOnly":true,
+      "writeOnly":false
+     },
+     "pinError":{
+      "type":"string",
+      "description":"Indicates whether an error has occurred during PIN verification.",
+      "readOnly":true,
+      "writeOnly":false
+     },
+     "pinId":{
+      "type":"string",
+      "description":"Sent PIN code ID.",
+      "readOnly":true,
+      "writeOnly":false
+     },
+     "verified":{
+      "type":"boolean",
+      "description":"Indicates whether the phone number (`MSISDN`) was successfully verified.",
+      "readOnly":true,
+      "writeOnly":false
+     }
+    },
+    "title":"VerifyPinResponse"
+   },
+   "c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.CreateEmailMessageRequest":{
+    "type":"object",
+    "properties":{
+     "emailTemplateId":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Email template ID that should reference a previously created [Broadcast template](https://www.infobip.com/docs/email/templates).",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "from":{
+      "type":"string",
+      "description":"The sender of the 2FA message, an email address with an optional sender name (e.g. `company@example.com` or `Jane Smith <jane.smith@somecompany.com>`).",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "landingPageId":{
+      "type":"string",
+      "description":"The ID of an opt out landing page to be used and displayed once an end user clicks the unsubscribe link. If not present, default opt out landing page will be displayed. Create a landing page in your Infobip account and use its ID, e.g., `1_23456`.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "pinLength":{
+      "type":"integer",
+      "format":"int32",
+      "default":4,
+      "description":"PIN code length.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "pinType":{
+      "allOf":[
+       {
+        "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.PinType"
+       }
+      ],
+      "default":"NUMERIC",
+      "description":"Type of PIN code that will be generated and sent as part of 2FA message.",
+      "readOnly":false,
+      "writeOnly":false
+     }
+    },
+    "required":[
+     "emailTemplateId"
+    ],
+    "title":"CreateEmailMessageRequest"
+   },
+   "c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.CreateSmsOrVoiceMessageRequest":{
+    "type":"object",
+    "properties":{
+     "language":{
+      "allOf":[
+       {
+        "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.Language"
+       }
+      ],
+      "description":"The language code which message is written in used when sending text-to-speech messages. If not defined, it will default to English (`en`).",
+      "readOnly":false,
+      "writeOnly":true
+     },
+     "messageText":{
+      "type":"string",
+      "description":"Content of the message being sent which contains at minimum one placeholder for a PIN code (`{{pin}}`). Placeholder format is `{{placeholderName}}`.",
+      "readOnly":false,
+      "writeOnly":true
+     },
+     "pinLength":{
+      "type":"integer",
+      "format":"int32",
+      "description":"PIN code length.",
+      "readOnly":false,
+      "writeOnly":true
+     },
+     "pinType":{
+      "allOf":[
+       {
+        "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.PinType"
+       }
+      ],
+      "description":"Type of PIN code that will be generated and sent as part of 2FA message.",
+      "readOnly":false,
+      "writeOnly":true
+     },
+     "regional":{
+      "allOf":[
+       {
+        "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.RegionalOptions"
+       }
+      ],
+      "description":"Region-specific parameters, often imposed by local laws. Use this, if country or region that you are sending a message to requires additional information.",
+      "readOnly":false,
+      "writeOnly":true
+     },
+     "repeatDTMF":{
+      "type":"string",
+      "description":"If the PIN is sent as a voice message, the DTMF code allows the recipient to replay the message.",
+      "readOnly":false,
+      "writeOnly":true
+     },
+     "senderId":{
+      "type":"string",
+      "description":"The name that will appear as the sender of the 2FA message (Example: CompanyName).",
+      "readOnly":false,
+      "writeOnly":true
+     },
+     "speechRate":{
+      "type":"number",
+      "format":"double",
+      "description":"The speed of narration for messages sent as voice. Supported range is from `0.5` to `2`.",
+      "readOnly":false,
+      "writeOnly":true
+     },
+     "voiceName":{
+      "type":"string",
+      "description":"Defines the voice that will be used for the chosen language (example: Joanna). For each supported language, we may offer different voices (learn more [here](https://www.infobip.com/docs/voice-and-video/reference#text-to-speech-languages)). You can use this [method](https://www.infobip.com/docs/api/channels/voice/voice-message/get-voices) to retrieve all voices for the given language. If not defined, it will default to the standard voice for the selected language (if available). If the standard voice is not available, the request will fail. To avoid that, you can choose one of the neural voices (charges will apply).",
+      "readOnly":false,
+      "writeOnly":true
+     }
+    },
+    "required":[
+     "messageText",
+     "pinType"
+    ],
+    "title":"CreateSmsOrVoiceMessageRequest"
+   },
+   "c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.EmailMessage":{
+    "type":"object",
+    "properties":{
+     "applicationId":{
+      "type":"string",
+      "description":"The ID of the application that represents your service (e.g. 2FA for login, 2FA for changing the password, etc.) for which the requested message has been created.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "emailTemplateId":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Email template ID that should reference a previously created Email template.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "from":{
+      "type":"string",
+      "description":"The sender of the 2FA message, an email address with an optional sender name (e.g. `company@example.com` or `Jane Smith <jane.smith@somecompany.com>`).",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "landingPageId":{
+      "type":"string",
+      "description":"Opt out landing page ID that should reference a previously created landing page template.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "messageId":{
+      "type":"string",
+      "description":"The ID of the message template (message body with the PIN placeholder) that is sent to the recipient.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "pinLength":{
+      "type":"integer",
+      "format":"int32",
+      "description":"PIN code length.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "pinType":{
+      "allOf":[
+       {
+        "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.PinType"
+       }
+      ],
+      "description":"The type of PIN code that will be generated and sent as part of 2FA message. You can set PIN type to numeric, alpha, alphanumeric or hex.",
+      "readOnly":false,
+      "writeOnly":false
+     }
+    },
+    "title":"EmailMessage"
+   },
+   "c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.IndiaDltOptions":{
+    "type":"object",
+    "properties":{
+     "contentTemplateId":{
+      "type":"string",
+      "description":"Registered DLT content template ID which matches message you are sending.",
+      "maxLength":30,
+      "minLength":0,
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "principalEntityId":{
+      "type":"string",
+      "description":"Your assigned DLT principal entity ID.",
+      "maxLength":30,
+      "minLength":0,
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "teleMarketerId":{
+      "type":"string",
+      "description":"Your assigned Telemarketer ID (required for Aggregators).",
+      "maxLength":255,
+      "minLength":0,
+      "readOnly":false,
+      "writeOnly":false
+     }
+    },
+    "required":[
+     "principalEntityId"
+    ],
+    "title":"IndiaDltOptions"
+   },
+   "c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.Language":{
+    "type":"string",
+    "enum":[
+     "en",
+     "es",
+     "ca",
+     "da",
+     "nl",
+     "fr",
+     "de",
+     "it",
+     "ja",
+     "ko",
+     "no",
+     "pl",
+     "ru",
+     "sv",
+     "fi",
+     "hr",
+     "sl",
+     "ro",
+     "pt_pt",
+     "pt_br",
+     "zh_cn",
+     "zh_tw"
+    ],
+    "title":"Language"
+   },
+   "c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.Message":{
+    "type":"object",
+    "properties":{
+     "applicationId":{
+      "type":"string",
+      "description":"The ID of the application that represents your service (e.g. 2FA for login, 2FA for changing the password, etc.) for which the requested message has been created.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "emailTemplateId":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Email template ID that should reference a previously created Email template. This field is present only for [Email message templates](#channels/sms/create-2fa-email-message-template).",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "from":{
+      "type":"string",
+      "description":"The sender of the 2FA message, an email address with an optional sender name (e.g. `company@example.com` or `Jane Smith <jane.smith@somecompany.com>`). This field is present only for [Email message templates](#channels/sms/create-2fa-email-message-template).",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "landingPageId":{
+      "type":"string",
+      "description":"Opt out landing page ID that should reference a previously created landing page template. This field is present only for [Email message templates](#channels/sms/create-2fa-email-message-template).",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "language":{
+      "allOf":[
+       {
+        "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.Language"
+       }
+      ],
+      "description":"The language code which message is written in used when sending text-to-speech messages. If not defined, it will default to English (`en`).",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "messageId":{
+      "type":"string",
+      "description":"The ID of the message template (message body with the PIN placeholder) that is sent to the recipient.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "messageText":{
+      "type":"string",
+      "description":"Text of a message that will be sent. Message text must contain `pinPlaceholder`.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "pinLength":{
+      "type":"integer",
+      "format":"int32",
+      "description":"PIN code length.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "pinPlaceholder":{
+      "type":"string",
+      "description":"The PIN code placeholder that will be replaced with a generated PIN code.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "pinType":{
+      "allOf":[
+       {
+        "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.PinType"
+       }
+      ],
+      "description":"The type of PIN code that will be generated and sent as part of 2FA message. You can set PIN type to numeric, alpha, alphanumeric or hex.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "regional":{
+      "allOf":[
+       {
+        "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.RegionalOptions"
+       }
+      ],
+      "description":"Region specific parameters, often specified by local laws. Use this if country or region that you are sending SMS to requires some extra parameters.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "repeatDTMF":{
+      "type":"string",
+      "description":"In case PIN message is sent by Voice, DTMF code will enable replaying the message.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "senderId":{
+      "type":"string",
+      "description":"The sender of the 2FA message (Example: CompanyName).",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "speechRate":{
+      "type":"number",
+      "format":"double",
+      "description":"In case PIN message is sent by Voice, the speed of speech can be set for the message. Supported range is from `0.5` to `2`.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "voiceName":{
+      "type":"string",
+      "description":"Defines the voice that will be used for the chosen language (example: Joanna). For each supported language, we may offer different voices (learn more [here](https://www.infobip.com/docs/voice-and-video/reference#text-to-speech-languages)). You can use this [method](https://www.infobip.com/docs/api/channels/voice/voice-message/get-voices) to retrieve all voices for the given language. If not defined, it will default to the standard voice for the selected language (if available). If the standard voice is not available, the request will fail. To avoid that, you can choose one of the neural voices (charges will apply).",
+      "readOnly":false,
+      "writeOnly":false
+     }
+    },
+    "title":"Message"
+   },
+   "c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.PinType":{
+    "type":"string",
+    "enum":[
+     "NUMERIC",
+     "ALPHA",
+     "HEX",
+     "ALPHANUMERIC"
+    ],
+    "title":"PinType"
+   },
+   "c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.RegionalOptions":{
+    "type":"object",
+    "properties":{
+     "indiaDlt":{
+      "allOf":[
+       {
+        "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.IndiaDltOptions"
+       }
+      ],
+      "description":"Distributed Ledger Technology (DLT) specific parameters required for sending SMS to phone numbers registered in India.",
+      "readOnly":false,
+      "writeOnly":false
+     }
+    },
+    "title":"RegionalOptions"
+   },
+   "c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.SmsOrVoiceMessage":{
+    "type":"object",
+    "properties":{
+     "applicationId":{
+      "type":"string",
+      "description":"The ID of the application that represents your service (e.g. 2FA for login, 2FA for changing the password, etc.) for which the requested message has been created.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "language":{
+      "allOf":[
+       {
+        "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.Language"
+       }
+      ],
+      "description":"The language code which message is written in used when sending text-to-speech messages. If not defined, it will default to English (`en`).",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "messageId":{
+      "type":"string",
+      "description":"The ID of the message template (message body with the PIN placeholder) that is sent to the recipient.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "messageText":{
+      "type":"string",
+      "description":"Text of a message that will be sent. Message text must contain `pinPlaceholder`.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "pinLength":{
+      "type":"integer",
+      "format":"int32",
+      "description":"PIN code length.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "pinPlaceholder":{
+      "type":"string",
+      "description":"The PIN code placeholder that will be replaced with a generated PIN code.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "pinType":{
+      "allOf":[
+       {
+        "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.PinType"
+       }
+      ],
+      "description":"The type of PIN code that will be generated and sent as part of 2FA message. You can set PIN type to numeric, alpha, alphanumeric or hex.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "regional":{
+      "allOf":[
+       {
+        "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.RegionalOptions"
+       }
+      ],
+      "description":"Region specific parameters, often specified by local laws. Use this if country or region that you are sending SMS to requires some extra parameters.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "repeatDTMF":{
+      "type":"string",
+      "description":"In case PIN message is sent by Voice, DTMF code will enable replaying the message.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "senderId":{
+      "type":"string",
+      "description":"The name that will appear as the sender of the 2FA message (Example: CompanyName).",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "speechRate":{
+      "type":"number",
+      "format":"double",
+      "description":"In case PIN message is sent by Voice, the speed of speech can be set for the message. Supported range is from `0.5` to `2`.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "voiceName":{
+      "type":"string",
+      "description":"Defines the voice that will be used for the chosen language (example: Joanna). For each supported language, we may offer different voices (learn more [here](https://www.infobip.com/docs/voice-and-video/reference#text-to-speech-languages)). You can use this [method](https://www.infobip.com/docs/api/channels/voice/voice-message/get-voices) to retrieve all voices for the given language. If not defined, it will default to the standard voice for the selected language (if available). If the standard voice is not available, the request will fail. To avoid that, you can choose one of the neural voices (charges will apply).",
+      "readOnly":false,
+      "writeOnly":true
+     }
+    },
+    "title":"SmsOrVoiceMessage"
+   },
+   "c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.UpdateEmailMessageRequest":{
+    "type":"object",
+    "properties":{
+     "emailTemplateId":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Email template ID that should reference a previously created Email template.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "from":{
+      "type":"string",
+      "description":"The sender of the 2FA message, an email address with an optional sender name (e.g. `company@example.com` or `Jane Smith <jane.smith@somecompany.com>`).",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "landingPageId":{
+      "type":"string",
+      "description":"Opt out landing page ID that should reference a previously created landing page template.",
+      "readOnly":false,
+      "writeOnly":false
+     },
+     "pinLength":{
+      "type":"integer",
+      "format":"int32",
+      "description":"PIN code length.",
+      "readOnly":false,
+      "writeOnly":true
+     },
+     "pinType":{
+      "allOf":[
+       {
+        "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.PinType"
+       }
+      ],
+      "description":"The type of PIN code that will be generated and sent as part of a 2FA message.",
+      "readOnly":false,
+      "writeOnly":true
+     }
+    },
+    "title":"UpdateEmailMessageRequest"
+   },
+   "c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.UpdateSmsOrVoiceMessageRequest":{
+    "type":"object",
+    "properties":{
+     "language":{
+      "allOf":[
+       {
+        "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.Language"
+       }
+      ],
+      "description":"Language code which message is written in. This is used when sending text-to-speech messages. If not defined, it will default to English (`en`).",
+      "readOnly":false,
+      "writeOnly":true
+     },
+     "messageText":{
+      "type":"string",
+      "description":"Content of the message being sent which contains at minimum one placeholder for a PIN code (`{{pin}}`). Placeholder format is `{{placeholderName}}`.",
+      "readOnly":false,
+      "writeOnly":true
+     },
+     "pinLength":{
+      "type":"integer",
+      "format":"int32",
+      "description":"PIN code length.",
+      "readOnly":false,
+      "writeOnly":true
+     },
+     "pinType":{
+      "allOf":[
+       {
+        "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.PinType"
+       }
+      ],
+      "description":"The type of PIN code that will be generated and sent as part of a 2FA message.",
+      "readOnly":false,
+      "writeOnly":true
+     },
+     "regional":{
+      "allOf":[
+       {
+        "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.RegionalOptions"
+       }
+      ],
+      "description":"Region-specific parameters, often imposed by local laws. Use this, if country or region that you are sending a message to requires additional information.",
+      "readOnly":false,
+      "writeOnly":true
+     },
+     "repeatDTMF":{
+      "type":"string",
+      "description":"If the PIN is sent as a voice message, the DTMF code allows the recipient to replay the message.",
+      "readOnly":false,
+      "writeOnly":true
+     },
+     "senderId":{
+      "type":"string",
+      "description":"The name that will appear as the sender of the 2FA message (e.g. CompanyName).",
+      "readOnly":false,
+      "writeOnly":true
+     },
+     "speechRate":{
+      "type":"number",
+      "format":"double",
+      "description":"The speed of narration for messages sent as voice. Supported range is from `0.5` to `2`.",
+      "readOnly":false,
+      "writeOnly":true
+     },
+     "voiceName":{
+      "type":"string",
+      "description":"Defines the voice that will be used for the chosen language (example: Joanna). For each supported language, we may offer different voices (learn more [here](https://www.infobip.com/docs/voice-and-video/reference#text-to-speech-languages)). You can use this [method](https://www.infobip.com/docs/api/channels/voice/voice-message/get-voices) to retrieve all voices for the given language. If not defined, it will default to the standard voice for the selected language (if available). If the standard voice is not available, the request will fail. To avoid that, you can choose one of the neural voices (charges will apply).",
+      "readOnly":false,
+      "writeOnly":true
+     }
+    },
+    "title":"UpdateSmsOrVoiceMessageRequest"
+   }
+  },
+  "responses":{
+   "ApiException400":{
+    "description":"Bad Request",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"BAD_REQUEST",
+         "text":"Bad request"
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>BAD_REQUEST</messageId>\n      <text>Bad request</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   },
+   "ApiException401":{
+    "description":"Unauthorized",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"UNAUTHORIZED",
+         "text":"Unauthorized"
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>UNAUTHORIZED</messageId>\n      <text>Unauthorized</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   },
+   "ApiException403":{
+    "description":"Forbidden",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"FORBIDDEN",
+         "text":"Forbidden"
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>FORBIDDEN</messageId>\n      <text>Forbidden</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   },
+   "ApiException404":{
+    "description":"Not Found",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"NOT_FOUND",
+         "text":"Not found"
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>NOT_FOUND</messageId>\n      <text>Not found</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   },
+   "ApiException429":{
+    "description":"Too Many Requests",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"TOO_MANY_REQUESTS",
+         "text":"Too many requests"
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>TOO_MANY_REQUESTS</messageId>\n      <text>Too many requests</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   },
+   "ApiException500":{
+    "description":"Internal Server Error",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":{
+       "requestError":{
+        "serviceException":{
+         "messageId":"GENERAL_ERROR",
+         "text":"Something went wrong. Please contact support."
+        }
+       }
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiException"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>GENERAL_ERROR</messageId>\n      <text>Something went wrong. Please contact support.</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
+     }
+    }
+   }
+  },
+  "parameters":{},
+  "examples":{},
+  "requestBodies":{},
+  "headers":{},
+  "securitySchemes":{
+   "APIKeyHeader":{
+    "type":"apiKey",
+    "description":"This is the most secure authorization type and the one with the most flexibility.\n\nAPI keys can be generated by calling the dedicated API method. Furthermore, API keys can have a limited scope and cover only some API methods. Lastly, they can\nbe revoked at any time. This range of possibilities makes API keys well suited for separating the API access rights across multiple applications or use cases.\nFinally, the loss of an API key is easily manageable.\n\nYou can manage your API keys from [GUI](https://portal.infobip.com/settings/accounts/api-keys), or programmatically\nwith [dedicated API](#platform-&-connectivity/settings).\n\nAPI key Authorization header example:\n\n```shell\nAuthorization: App 003026bbc133714df1834b8638bb496e-8f4b3d9a-e931-478d-a994-28a725159ab9\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "Basic":{
+    "type":"http",
+    "description":"Basic authorization type can be used in situations when the API key is not available. For example, API methods for generating API keys should be authenticated\nwith the Basic type.\n\nIn this case, the credentials included in the Authorization header should be a Base64 encoded username and password combination. More formally, basic\nauthentication header can be constructed in three steps:\n\n* Username and password are concatenated using the colon `(:)` as a separator `username:password`.\n* The resulting string is encoded using the [RFC2045-MIME](https://www.ietf.org/rfc/rfc2045.txt) variant of Base64.\n* Encoded string is added as credentials after the `\"Basic \"` type.\n\nExample:\n\n```shell\nUsername: \"Aladdin\"\nPassword: \"openSesame\"\n\nConcatenated string: \"Aladdin:openSesame\"\n\nBase64 encoded string: \"QWxhZGRpbjpvcGVuU2VzYW1l\"\n\nAuthorization header: \"Basic QWxhZGRpbjpvcGVuU2VzYW1l\"\n```\n\n> **Implementation detail**: Base64 encoding is a standard and many available programming languages and frameworks provide convenient methods for encoding\n> strings.\n",
+    "scheme":"basic"
+   },
+   "IBSSOTokenHeader":{
+    "type":"apiKey",
+    "description":"This authorization type is suited for situations when you do not want to store Infobip credentials in your own app. Instead, your users will input their Infobip\ncredentials every time they access your application and the application will use those credentials to create a session. From then on, the session token can be\nused to authenticate subsequent API requests. Note that the session will expire automatically after a predefined period of inactivity, and can also be manually\nterminated by making an appropriate API call.\n\nYou can find more details on the creation and behavior of the session at\nthe [dedicated documentation page](#platform-connectivity/account-management/create-session).\n\nAfter obtaining the session token by calling the above-referenced API method you can include it in the Authorization header like this:\n\n```shell\nAuthorization: IBSSO 2f9b4d31-2d0d-49a8-85f0-9b862bdca394\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "OAuth2":{
+    "type":"oauth2",
+    "description":"Similarly to the IBSSO Token authentication you can use OAuth 2.0 bearer token with Infobip serving both as resource and authorization server. You can obtain\nthe access token using the client credentials grant from `auth/1/oauth2/token` endpoint. It will provide you with your access token, and its expiration period.\nYou can use the token to authorize your API calls until it expires. You can find out more about the process in\nthe [official specification](https://tools.ietf.org/html/rfc6749#section-4.4).\n\nYou can include your access token in the Authorization HTTP request header like this:\n\n```http\nAuthorization: Bearer <access_token>\n```",
+    "flows":{
+     "clientCredentials":{
+      "tokenUrl":"https://api.infobip.com/auth/1/oauth2/token",
+      "scopes":{}
+     }
+    }
+   }
+  },
+  "links":{},
+  "callbacks":{}
+ }
+}

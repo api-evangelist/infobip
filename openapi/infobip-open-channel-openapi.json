@@ -1,0 +1,700 @@
+{
+ "openapi":"3.1.0",
+ "info":{
+  "title":"Infobip OpenAPI Specification",
+  "description":"OpenAPI Specification that contains all public endpoints and webhooks.",
+  "contact":{
+   "name":"Infobip support",
+   "email":"support@infobip.com"
+  },
+  "version":"3.210.0",
+  "x-generatedAt":"2026-07-23T15:23:54.423074966Z"
+ },
+ "tags":[
+  {
+   "name":"channels",
+   "description":"Create a perfect customer experience by using the channels your customer already use and love.\n",
+   "x-type":"category",
+   "x-displayName":"Channels"
+  },
+  {
+   "name":"open-channel",
+   "description":"Open Channel enables your system to exchange messages with Infobip SaaS products through the Infobip public API.\n\nInbound messages are sent through the Infobip API to the Open Channel destination that is registered on the Infobip platform. The messages are sent to a SaaS product, like a chatbot. Outbound responses from a SaaS product are sent by the Infobip platform to your API webhook that is registered for a specific Open Channel sender.\n\nThis feature is in the Early Access stage. Contact your Infobip account manager to configure the Open Channel sender and the webhook for receiving the response. Currently, Open Channel is available for Answers and Conversations. In the future, Open Channel will be available for other Infobip SaaS products like Moments.\n",
+   "x-type":"product",
+   "x-displayName":"Open Channel"
+  },
+  {
+   "name":"receive-open-channel",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Inbound Message"
+  },
+  {
+   "name":"send-open-channel",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Outbound Message"
+  }
+ ],
+ "paths":{
+  "/open-channel/1/messages/inbound":{
+   "post":{
+    "tags":[
+     "channels",
+     "open-channel",
+     "receive-open-channel"
+    ],
+    "summary":"Send Open Channel inbound message",
+    "description":"Sends a message to Open Channel destination registered on Infobip platform.",
+    "operationId":"send-open-channel-inbound-message",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.OpenChannelMessageRequest"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.OpenChannelMessageResponse"
+        },
+        "examples":{
+         "Successful response":{
+          "summary":"Successful response",
+          "description":"Successful response",
+          "value":{
+           "status":"MESSAGE_ACCEPTED"
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "$ref":"#/components/responses/ApiError400"
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Invalid sender":{
+          "summary":"Invalid sender",
+          "description":"Invalid sender",
+          "value":{
+           "errorCode":"E404",
+           "description":"Not found - request URL doesn't exist on the API server or resource is not found.",
+           "action":"Check the resources and adjust your request.",
+           "violations":[
+            {
+             "property":"",
+             "violation":"Destination sender ownership not found for account"
+            }
+           ],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "message:send"
+    ],
+    "x-is-early-access":true
+   }
+  }
+ },
+ "components":{
+  "schemas":{
+   "0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.OpenChannelAudioMessageBody":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.OpenChannelMessageBody"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "url":{
+        "type":"string",
+        "description":"URL for media download."
+       }
+      }
+     }
+    ],
+    "required":[
+     "url"
+    ],
+    "title":"OpenChannelAudioMessageBody"
+   },
+   "0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.OpenChannelFileMessageBody":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.OpenChannelMessageBody"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "url":{
+        "type":"string",
+        "description":"URL for media download."
+       },
+       "filename":{
+        "type":"string",
+        "description":"File name"
+       }
+      }
+     }
+    ],
+    "required":[
+     "url"
+    ],
+    "title":"OpenChannelFileMessageBody"
+   },
+   "0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.OpenChannelImageMessageBody":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.OpenChannelMessageBody"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "url":{
+        "type":"string",
+        "description":"URL for media download."
+       },
+       "caption":{
+        "type":"string",
+        "description":"Media caption."
+       }
+      }
+     }
+    ],
+    "required":[
+     "url"
+    ],
+    "title":"OpenChannelImageMessageBody"
+   },
+   "0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.OpenChannelJsonMessageBody":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.OpenChannelMessageBody"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "json":{
+        "type":"object",
+        "additionalProperties":{
+         "type":"object"
+        },
+        "description":"Json content to be sent."
+       }
+      }
+     }
+    ],
+    "required":[
+     "json"
+    ],
+    "title":"OpenChannelJsonMessageBody"
+   },
+   "0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.OpenChannelMessageBody":{
+    "type":"object",
+    "description":"Body of the message.",
+    "discriminator":{
+     "propertyName":"type",
+     "mapping":{
+      "TEXT":"#/components/schemas/0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.OpenChannelTextMessageBody",
+      "JSON":"#/components/schemas/0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.OpenChannelJsonMessageBody",
+      "AUDIO":"#/components/schemas/0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.OpenChannelAudioMessageBody",
+      "IMAGE":"#/components/schemas/0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.OpenChannelImageMessageBody",
+      "FILE":"#/components/schemas/0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.OpenChannelFileMessageBody"
+     }
+    },
+    "properties":{
+     "type":{
+      "$ref":"#/components/schemas/0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.OpenChannelMessageBodyType"
+     }
+    },
+    "title":"OpenChannelMessageBody"
+   },
+   "0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.OpenChannelMessageBodyType":{
+    "type":"string",
+    "enum":[
+     "TEXT",
+     "JSON",
+     "AUDIO",
+     "IMAGE",
+     "FILE"
+    ],
+    "title":"OpenChannelMessageBodyType"
+   },
+   "0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.OpenChannelMessageContent":{
+    "type":"object",
+    "description":"Content of the message.",
+    "properties":{
+     "body":{
+      "$ref":"#/components/schemas/0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.OpenChannelMessageBody"
+     }
+    },
+    "required":[
+     "body"
+    ],
+    "title":"OpenChannelMessageContent"
+   },
+   "0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.OpenChannelMessageRequest":{
+    "type":"object",
+    "example":{
+     "sender":"2324435353424",
+     "destination":"2235ca45-afdd-47c9-a326-cf66e9872dda",
+     "content":{
+      "body":{
+       "text":"Text of the example message.",
+       "type":"TEXT"
+      }
+     },
+     "responseWebhook":{
+      "callbackData":"exampleCallbackData"
+     },
+     "metadata":{
+      "field":"value"
+     }
+    },
+    "properties":{
+     "sender":{
+      "type":"string",
+      "description":"Unique end user sender ID.",
+      "maxLength":255,
+      "minLength":0
+     },
+     "destination":{
+      "type":"string",
+      "description":"Open Channel destination ID registered on Infobip platform, required to be in UUID format."
+     },
+     "content":{
+      "$ref":"#/components/schemas/0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.OpenChannelMessageContent"
+     },
+     "responseWebhook":{
+      "$ref":"#/components/schemas/0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.OpenChannelWebhookData"
+     },
+     "metadata":{
+      "type":"object",
+      "additionalProperties":{
+       "type":"object"
+      },
+      "description":"Metadata which will be passed through message to be used in product business logic."
+     }
+    },
+    "required":[
+     "content",
+     "destination",
+     "sender"
+    ],
+    "title":"OpenChannelMessageRequest"
+   },
+   "0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.OpenChannelMessageResponse":{
+    "type":"object",
+    "example":{
+     "status":"MESSAGE_ACCEPTED"
+    },
+    "properties":{
+     "status":{
+      "$ref":"#/components/schemas/0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.OpenChannelMessageResponseStatus"
+     }
+    },
+    "title":"OpenChannelMessageResponse"
+   },
+   "0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.OpenChannelMessageResponseStatus":{
+    "type":"string",
+    "description":"Message processing status.",
+    "enum":[
+     "MESSAGE_ACCEPTED"
+    ],
+    "title":"OpenChannelMessageResponseStatus"
+   },
+   "0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.OpenChannelTextMessageBody":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.OpenChannelMessageBody"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "text":{
+        "type":"string",
+        "description":"Text to be sent.",
+        "maxLength":4096,
+        "minLength":1
+       }
+      }
+     }
+    ],
+    "required":[
+     "text"
+    ],
+    "title":"OpenChannelTextMessageBody"
+   },
+   "0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.OpenChannelWebhookData":{
+    "type":"object",
+    "description":"Response webhook data.",
+    "properties":{
+     "url":{
+      "type":"string",
+      "description":"Override URL to which the outbound response will be sent, required to be in HTTPS URL format."
+     },
+     "callbackData":{
+      "type":"object",
+      "description":"Additional data that can be used for identifying a message response. Data contained here will be included in the outbound message sent as response to this inbound message."
+     }
+    },
+    "title":"OpenChannelWebhookData"
+   },
+   "0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.WebhookRequest":{
+    "type":"object",
+    "example":{
+     "sender":"2235ca45-afdd-47c9-a326-cf66e9872dda",
+     "destination":"2324435353424",
+     "content":{
+      "body":{
+       "type":"TEXT",
+       "text":"Text of example message"
+      }
+     },
+     "callbackData":"Example callback data"
+    },
+    "properties":{
+     "sender":{
+      "type":"string",
+      "description":"Open Channel sender ID registered on Infobip platform. In UUID format."
+     },
+     "destination":{
+      "type":"string",
+      "description":"Unique end user destination ID.",
+      "maxLength":255,
+      "minLength":0
+     },
+     "message":{
+      "$ref":"#/components/schemas/0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.OpenChannelMessageContent"
+     },
+     "callbackData":{
+      "type":"object",
+      "description":"Additional data that can be used for identifying a message response. Included in the inbound message request,  sent as response to inbound message."
+     }
+    },
+    "required":[
+     "destination",
+     "message",
+     "sender"
+    ],
+    "title":"WebhookRequest"
+   },
+   "ApiError":{
+    "type":"object",
+    "properties":{
+     "errorCode":{
+      "type":"string",
+      "description":"An error code uniquely identifying the error case."
+     },
+     "description":{
+      "type":"string",
+      "description":"A detailed description of an error."
+     },
+     "action":{
+      "type":"string",
+      "description":"An action that should be taken to recover from the error."
+     },
+     "violations":{
+      "type":"array",
+      "description":"List of violations that caused the error.",
+      "items":{
+       "$ref":"#/components/schemas/ApiErrorViolation"
+      }
+     },
+     "resources":{
+      "type":"array",
+      "description":"List of available resources to recover from the error.",
+      "items":{
+       "$ref":"#/components/schemas/ApiErrorResource"
+      }
+     }
+    },
+    "required":[
+     "action",
+     "description",
+     "errorCode",
+     "resources",
+     "violations"
+    ],
+    "title":"ApiError"
+   },
+   "ApiErrorResource":{
+    "type":"object",
+    "description":"List of available resources to recover from the error.",
+    "properties":{
+     "name":{
+      "type":"string",
+      "description":"Resource name."
+     },
+     "url":{
+      "type":"string",
+      "description":"Resource URL."
+     }
+    },
+    "title":"ApiErrorResource"
+   },
+   "ApiErrorViolation":{
+    "type":"object",
+    "description":"List of violations that caused the error.",
+    "properties":{
+     "property":{
+      "type":"string",
+      "description":"Request property that caused the error."
+     },
+     "violation":{
+      "type":"string",
+      "description":"Detailed violation description."
+     }
+    },
+    "title":"ApiErrorViolation"
+   }
+  },
+  "responses":{
+   "ApiError400":{
+    "description":"Bad Request",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E400",
+       "description":"Request cannot be processed.",
+       "action":"Check the syntax, violations and adjust the request.",
+       "violations":[],
+       "resources":[]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E400</errorCode>\n  <description>Request cannot be processed.</description>\n  <action>Check the syntax, violations and adjust the request.</action>\n  <violations/>\n  <resources/>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError401":{
+    "description":"Unauthorized",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E401",
+       "description":"The request lacks valid authentication credentials for the requested resource.",
+       "action":"Check the resources and adjust authentication credentials.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"API Authentication",
+         "url":"https://www.infobip.com/docs/essentials/api-authentication"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E401</errorCode>\n  <description>The request lacks valid authentication credentials for the requested resource.</description>\n  <action>Check the resources and adjust authentication credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Authentication</name>\n      <url>https://www.infobip.com/docs/essentials/api-authentication</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError403":{
+    "description":"Forbidden",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E403",
+       "description":"Insufficient permissions to access the requested resource.",
+       "action":"Repeat the request with new or different credentials.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"API Scopes",
+         "url":"https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E403</errorCode>\n  <description>Insufficient permissions to access the requested resource.</description>\n  <action>Repeat the request with new or different credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Scopes</name>\n      <url>https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError429":{
+    "description":"Too Many Requests",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E429",
+       "description":"Too many requests sent.",
+       "action":"Check request rate limit specified in the API endpoint documentation resource.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"Throttling handling errors",
+         "url":"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E429</errorCode>\n  <description>Too many requests sent.</description>\n  <action>Check request rate limit specified in the API endpoint documentation resource.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>Throttling handling errors</name>\n      <url>https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError500":{
+    "description":"Internal Server Error",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E500",
+       "description":"Something went wrong.",
+       "action":"Contact the support.",
+       "violations":[],
+       "resources":[]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E500</errorCode>\n  <description>Something went wrong.</description>\n  <action>Contact the support.</action>\n  <violations/>\n  <resources/>\n</ApiError>\n"
+     }
+    }
+   }
+  },
+  "parameters":{},
+  "examples":{},
+  "requestBodies":{},
+  "headers":{},
+  "securitySchemes":{
+   "APIKeyHeader":{
+    "type":"apiKey",
+    "description":"This is the most secure authorization type and the one with the most flexibility.\n\nAPI keys can be generated by calling the dedicated API method. Furthermore, API keys can have a limited scope and cover only some API methods. Lastly, they can\nbe revoked at any time. This range of possibilities makes API keys well suited for separating the API access rights across multiple applications or use cases.\nFinally, the loss of an API key is easily manageable.\n\nYou can manage your API keys from [GUI](https://portal.infobip.com/settings/accounts/api-keys), or programmatically\nwith [dedicated API](#platform-&-connectivity/settings).\n\nAPI key Authorization header example:\n\n```shell\nAuthorization: App 003026bbc133714df1834b8638bb496e-8f4b3d9a-e931-478d-a994-28a725159ab9\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "Basic":{
+    "type":"http",
+    "description":"Basic authorization type can be used in situations when the API key is not available. For example, API methods for generating API keys should be authenticated\nwith the Basic type.\n\nIn this case, the credentials included in the Authorization header should be a Base64 encoded username and password combination. More formally, basic\nauthentication header can be constructed in three steps:\n\n* Username and password are concatenated using the colon `(:)` as a separator `username:password`.\n* The resulting string is encoded using the [RFC2045-MIME](https://www.ietf.org/rfc/rfc2045.txt) variant of Base64.\n* Encoded string is added as credentials after the `\"Basic \"` type.\n\nExample:\n\n```shell\nUsername: \"Aladdin\"\nPassword: \"openSesame\"\n\nConcatenated string: \"Aladdin:openSesame\"\n\nBase64 encoded string: \"QWxhZGRpbjpvcGVuU2VzYW1l\"\n\nAuthorization header: \"Basic QWxhZGRpbjpvcGVuU2VzYW1l\"\n```\n\n> **Implementation detail**: Base64 encoding is a standard and many available programming languages and frameworks provide convenient methods for encoding\n> strings.\n",
+    "scheme":"basic"
+   },
+   "IBSSOTokenHeader":{
+    "type":"apiKey",
+    "description":"This authorization type is suited for situations when you do not want to store Infobip credentials in your own app. Instead, your users will input their Infobip\ncredentials every time they access your application and the application will use those credentials to create a session. From then on, the session token can be\nused to authenticate subsequent API requests. Note that the session will expire automatically after a predefined period of inactivity, and can also be manually\nterminated by making an appropriate API call.\n\nYou can find more details on the creation and behavior of the session at\nthe [dedicated documentation page](#platform-connectivity/account-management/create-session).\n\nAfter obtaining the session token by calling the above-referenced API method you can include it in the Authorization header like this:\n\n```shell\nAuthorization: IBSSO 2f9b4d31-2d0d-49a8-85f0-9b862bdca394\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "OAuth2":{
+    "type":"oauth2",
+    "description":"Similarly to the IBSSO Token authentication you can use OAuth 2.0 bearer token with Infobip serving both as resource and authorization server. You can obtain\nthe access token using the client credentials grant from `auth/1/oauth2/token` endpoint. It will provide you with your access token, and its expiration period.\nYou can use the token to authorize your API calls until it expires. You can find out more about the process in\nthe [official specification](https://tools.ietf.org/html/rfc6749#section-4.4).\n\nYou can include your access token in the Authorization HTTP request header like this:\n\n```http\nAuthorization: Bearer <access_token>\n```",
+    "flows":{
+     "clientCredentials":{
+      "tokenUrl":"https://api.infobip.com/auth/1/oauth2/token",
+      "scopes":{}
+     }
+    }
+   }
+  },
+  "links":{},
+  "callbacks":{}
+ },
+ "webhooks":{
+  "receive-open-channel-outbound-message":{
+   "post":{
+    "tags":[
+     "channels",
+     "open-channel",
+     "send-open-channel"
+    ],
+    "summary":"Receive Open Channel outbound Message",
+    "description":"Set up logic for processing outbound messages to customize two-way communication. Outbound messages are forwarded in real time to the endpoint provided during the account setup.",
+    "operationId":"receive-open-channel-outbound-message",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/0a37b8c521b3309d1bbd0669d19fc7f2f157d68a68747b5e7ad23e5b0f5e47e8.WebhookRequest"
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"Your server returns this code if it accepts the callback."
+     }
+    },
+    "x-is-early-access":true
+   }
+  }
+ }
+}

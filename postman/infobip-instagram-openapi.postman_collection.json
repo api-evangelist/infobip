@@ -1,0 +1,1495 @@
+{
+  "info": {
+    "_postman_id": "d2403f46-ade5-48b3-86cc-c5d546ee824c",
+    "name": "Infobip OpenAPI Specification",
+    "description": "OpenAPI Specification that contains all public endpoints and webhooks.\n\nContact Support:\n Name: Infobip support\n Email: support@infobip.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:58:44.000Z",
+    "updatedAt": "2026-07-28T01:58:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d2403f46-ade5-48b3-86cc-c5d546ee824c"
+  },
+  "item": [
+    {
+      "name": "instagram",
+      "item": [
+        {
+          "name": "1",
+          "item": [
+            {
+              "name": "messages",
+              "item": [
+                {
+                  "name": "Send a Instagram message",
+                  "id": "8efc66dc-7318-4de5-b9c0-db3f907dd0a2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"messages\": [\n    {\n      \"content\": {\n        \"type\": \"CAROUSEL\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        },\n        \"deliveryTimeWindow\": {\n          \"days\": [\n            \"SATURDAY\",\n            \"THURSDAY\"\n          ],\n          \"from\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          },\n          \"to\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          }\n        },\n        \"campaignReferenceId\": \"<string>\"\n      },\n      \"webhooks\": {\n        \"delivery\": {\n          \"url\": \"<string>\",\n          \"intermediateReport\": \"<boolean>\",\n          \"notify\": \"<boolean>\"\n        },\n        \"contentType\": \"<string>\",\n        \"callbackData\": \"<string>\"\n      }\n    },\n    {\n      \"content\": {\n        \"type\": \"TEXT\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        },\n        \"deliveryTimeWindow\": {\n          \"days\": [\n            \"FRIDAY\",\n            \"WEDNESDAY\"\n          ],\n          \"from\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          },\n          \"to\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          }\n        },\n        \"campaignReferenceId\": \"<string>\"\n      },\n      \"webhooks\": {\n        \"delivery\": {\n          \"url\": \"<string>\",\n          \"intermediateReport\": \"<boolean>\",\n          \"notify\": \"<boolean>\"\n        },\n        \"contentType\": \"<string>\",\n        \"callbackData\": \"<string>\"\n      }\n    }\n  ],\n  \"options\": {\n    \"schedule\": {\n      \"bulkId\": \"<string>\",\n      \"sendAt\": \"<dateTime>\",\n      \"sendingSpeedLimit\": {\n        \"amount\": \"<integer>\",\n        \"timeUnit\": \"MINUTE\"\n      }\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/instagram/1/messages",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instagram",
+                        "1",
+                        "messages"
+                      ]
+                    },
+                    "description": "Send one or more messages to multiple recipients."
+                  },
+                  "response": [
+                    {
+                      "id": "2b372aae-dcd4-4200-a79f-f21249ddacea",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"messages\": [\n    {\n      \"content\": {\n        \"type\": \"CAROUSEL\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        },\n        \"deliveryTimeWindow\": {\n          \"days\": [\n            \"SATURDAY\",\n            \"THURSDAY\"\n          ],\n          \"from\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          },\n          \"to\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          }\n        },\n        \"campaignReferenceId\": \"<string>\"\n      },\n      \"webhooks\": {\n        \"delivery\": {\n          \"url\": \"<string>\",\n          \"intermediateReport\": \"<boolean>\",\n          \"notify\": \"<boolean>\"\n        },\n        \"contentType\": \"<string>\",\n        \"callbackData\": \"<string>\"\n      }\n    },\n    {\n      \"content\": {\n        \"type\": \"TEXT\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        },\n        \"deliveryTimeWindow\": {\n          \"days\": [\n            \"FRIDAY\",\n            \"WEDNESDAY\"\n          ],\n          \"from\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          },\n          \"to\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          }\n        },\n        \"campaignReferenceId\": \"<string>\"\n      },\n      \"webhooks\": {\n        \"delivery\": {\n          \"url\": \"<string>\",\n          \"intermediateReport\": \"<boolean>\",\n          \"notify\": \"<boolean>\"\n        },\n        \"contentType\": \"<string>\",\n        \"callbackData\": \"<string>\"\n      }\n    }\n  ],\n  \"options\": {\n    \"schedule\": {\n      \"bulkId\": \"<string>\",\n      \"sendAt\": \"<dateTime>\",\n      \"sendingSpeedLimit\": {\n        \"amount\": \"<integer>\",\n        \"timeUnit\": \"MINUTE\"\n      }\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/instagram/1/messages",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instagram",
+                            "1",
+                            "messages"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"messages\": [\n    {\n      \"messageId\": \"<string>\",\n      \"status\": {\n        \"groupId\": \"<integer>\",\n        \"groupName\": \"UNDELIVERABLE\",\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"action\": \"<string>\"\n      },\n      \"destination\": \"<string>\",\n      \"details\": {}\n    },\n    {\n      \"messageId\": \"<string>\",\n      \"status\": {\n        \"groupId\": \"<integer>\",\n        \"groupName\": \"DELIVERED\",\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"action\": \"<string>\"\n      },\n      \"destination\": \"<string>\",\n      \"details\": {}\n    }\n  ],\n  \"bulkId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:58:44.000Z",
+                      "updatedAt": "2026-07-28T01:58:44.000Z",
+                      "uid": "35240-2b372aae-dcd4-4200-a79f-f21249ddacea"
+                    },
+                    {
+                      "id": "e96703c6-1821-4762-84dc-d8c0ddce57c3",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"messages\": [\n    {\n      \"content\": {\n        \"type\": \"CAROUSEL\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        },\n        \"deliveryTimeWindow\": {\n          \"days\": [\n            \"SATURDAY\",\n            \"THURSDAY\"\n          ],\n          \"from\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          },\n          \"to\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          }\n        },\n        \"campaignReferenceId\": \"<string>\"\n      },\n      \"webhooks\": {\n        \"delivery\": {\n          \"url\": \"<string>\",\n          \"intermediateReport\": \"<boolean>\",\n          \"notify\": \"<boolean>\"\n        },\n        \"contentType\": \"<string>\",\n        \"callbackData\": \"<string>\"\n      }\n    },\n    {\n      \"content\": {\n        \"type\": \"TEXT\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        },\n        \"deliveryTimeWindow\": {\n          \"days\": [\n            \"FRIDAY\",\n            \"WEDNESDAY\"\n          ],\n          \"from\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          },\n          \"to\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          }\n        },\n        \"campaignReferenceId\": \"<string>\"\n      },\n      \"webhooks\": {\n        \"delivery\": {\n          \"url\": \"<string>\",\n          \"intermediateReport\": \"<boolean>\",\n          \"notify\": \"<boolean>\"\n        },\n        \"contentType\": \"<string>\",\n        \"callbackData\": \"<string>\"\n      }\n    }\n  ],\n  \"options\": {\n    \"schedule\": {\n      \"bulkId\": \"<string>\",\n      \"sendAt\": \"<dateTime>\",\n      \"sendingSpeedLimit\": {\n        \"amount\": \"<integer>\",\n        \"timeUnit\": \"MINUTE\"\n      }\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/instagram/1/messages",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instagram",
+                            "1",
+                            "messages"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:58:44.000Z",
+                      "updatedAt": "2026-07-28T01:58:44.000Z",
+                      "uid": "35240-e96703c6-1821-4762-84dc-d8c0ddce57c3"
+                    },
+                    {
+                      "id": "35ca53c1-4485-4855-8f4e-1fc11063e94c",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"messages\": [\n    {\n      \"content\": {\n        \"type\": \"CAROUSEL\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        },\n        \"deliveryTimeWindow\": {\n          \"days\": [\n            \"SATURDAY\",\n            \"THURSDAY\"\n          ],\n          \"from\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          },\n          \"to\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          }\n        },\n        \"campaignReferenceId\": \"<string>\"\n      },\n      \"webhooks\": {\n        \"delivery\": {\n          \"url\": \"<string>\",\n          \"intermediateReport\": \"<boolean>\",\n          \"notify\": \"<boolean>\"\n        },\n        \"contentType\": \"<string>\",\n        \"callbackData\": \"<string>\"\n      }\n    },\n    {\n      \"content\": {\n        \"type\": \"TEXT\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        },\n        \"deliveryTimeWindow\": {\n          \"days\": [\n            \"FRIDAY\",\n            \"WEDNESDAY\"\n          ],\n          \"from\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          },\n          \"to\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          }\n        },\n        \"campaignReferenceId\": \"<string>\"\n      },\n      \"webhooks\": {\n        \"delivery\": {\n          \"url\": \"<string>\",\n          \"intermediateReport\": \"<boolean>\",\n          \"notify\": \"<boolean>\"\n        },\n        \"contentType\": \"<string>\",\n        \"callbackData\": \"<string>\"\n      }\n    }\n  ],\n  \"options\": {\n    \"schedule\": {\n      \"bulkId\": \"<string>\",\n      \"sendAt\": \"<dateTime>\",\n      \"sendingSpeedLimit\": {\n        \"amount\": \"<integer>\",\n        \"timeUnit\": \"MINUTE\"\n      }\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/instagram/1/messages",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instagram",
+                            "1",
+                            "messages"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:58:44.000Z",
+                      "updatedAt": "2026-07-28T01:58:44.000Z",
+                      "uid": "35240-35ca53c1-4485-4855-8f4e-1fc11063e94c"
+                    },
+                    {
+                      "id": "a4eb435d-5390-4277-b8ce-b09b005cffb4",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"messages\": [\n    {\n      \"content\": {\n        \"type\": \"CAROUSEL\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        },\n        \"deliveryTimeWindow\": {\n          \"days\": [\n            \"SATURDAY\",\n            \"THURSDAY\"\n          ],\n          \"from\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          },\n          \"to\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          }\n        },\n        \"campaignReferenceId\": \"<string>\"\n      },\n      \"webhooks\": {\n        \"delivery\": {\n          \"url\": \"<string>\",\n          \"intermediateReport\": \"<boolean>\",\n          \"notify\": \"<boolean>\"\n        },\n        \"contentType\": \"<string>\",\n        \"callbackData\": \"<string>\"\n      }\n    },\n    {\n      \"content\": {\n        \"type\": \"TEXT\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        },\n        \"deliveryTimeWindow\": {\n          \"days\": [\n            \"FRIDAY\",\n            \"WEDNESDAY\"\n          ],\n          \"from\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          },\n          \"to\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          }\n        },\n        \"campaignReferenceId\": \"<string>\"\n      },\n      \"webhooks\": {\n        \"delivery\": {\n          \"url\": \"<string>\",\n          \"intermediateReport\": \"<boolean>\",\n          \"notify\": \"<boolean>\"\n        },\n        \"contentType\": \"<string>\",\n        \"callbackData\": \"<string>\"\n      }\n    }\n  ],\n  \"options\": {\n    \"schedule\": {\n      \"bulkId\": \"<string>\",\n      \"sendAt\": \"<dateTime>\",\n      \"sendingSpeedLimit\": {\n        \"amount\": \"<integer>\",\n        \"timeUnit\": \"MINUTE\"\n      }\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/instagram/1/messages",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instagram",
+                            "1",
+                            "messages"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:58:44.000Z",
+                      "updatedAt": "2026-07-28T01:58:44.000Z",
+                      "uid": "35240-a4eb435d-5390-4277-b8ce-b09b005cffb4"
+                    },
+                    {
+                      "id": "611df2cb-7426-4978-8c35-f4664734f7be",
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"messages\": [\n    {\n      \"content\": {\n        \"type\": \"CAROUSEL\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        },\n        \"deliveryTimeWindow\": {\n          \"days\": [\n            \"SATURDAY\",\n            \"THURSDAY\"\n          ],\n          \"from\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          },\n          \"to\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          }\n        },\n        \"campaignReferenceId\": \"<string>\"\n      },\n      \"webhooks\": {\n        \"delivery\": {\n          \"url\": \"<string>\",\n          \"intermediateReport\": \"<boolean>\",\n          \"notify\": \"<boolean>\"\n        },\n        \"contentType\": \"<string>\",\n        \"callbackData\": \"<string>\"\n      }\n    },\n    {\n      \"content\": {\n        \"type\": \"TEXT\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        },\n        \"deliveryTimeWindow\": {\n          \"days\": [\n            \"FRIDAY\",\n            \"WEDNESDAY\"\n          ],\n          \"from\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          },\n          \"to\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          }\n        },\n        \"campaignReferenceId\": \"<string>\"\n      },\n      \"webhooks\": {\n        \"delivery\": {\n          \"url\": \"<string>\",\n          \"intermediateReport\": \"<boolean>\",\n          \"notify\": \"<boolean>\"\n        },\n        \"contentType\": \"<string>\",\n        \"callbackData\": \"<string>\"\n      }\n    }\n  ],\n  \"options\": {\n    \"schedule\": {\n      \"bulkId\": \"<string>\",\n      \"sendAt\": \"<dateTime>\",\n      \"sendingSpeedLimit\": {\n        \"amount\": \"<integer>\",\n        \"timeUnit\": \"MINUTE\"\n      }\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/instagram/1/messages",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instagram",
+                            "1",
+                            "messages"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:58:44.000Z",
+                      "updatedAt": "2026-07-28T01:58:44.000Z",
+                      "uid": "35240-611df2cb-7426-4978-8c35-f4664734f7be"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:58:44.000Z",
+                  "updatedAt": "2026-07-28T01:58:44.000Z",
+                  "uid": "35240-8efc66dc-7318-4de5-b9c0-db3f907dd0a2"
+                }
+              ],
+              "id": "d9edbc38-c78a-415d-9ba1-2ce72f95711a",
+              "createdAt": "2026-07-28T01:58:44.000Z",
+              "updatedAt": "2026-07-28T01:58:44.000Z",
+              "uid": "35240-d9edbc38-c78a-415d-9ba1-2ce72f95711a"
+            },
+            {
+              "name": "reports",
+              "item": [
+                {
+                  "name": "Get Instagram delivery reports",
+                  "id": "55fd732e-4492-4e4d-a844-1b7942edfcfa",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/instagram/1/reports?bulkId=<string>&messageId=<string>&limit=50&entityId=<string>&applicationId=<string>&campaignReferenceId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instagram",
+                        "1",
+                        "reports"
+                      ],
+                      "query": [
+                        {
+                          "description": "The ID that uniquely identifies the request. Bulk ID will be received only when you send a message to more than one destination address.",
+                          "key": "bulkId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The ID that uniquely identifies the message sent.",
+                          "key": "messageId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of delivery reports to be returned. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access reports for the last 48h.",
+                          "key": "limit",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                          "key": "entityId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                          "key": "applicationId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "ID of a campaign that was sent in the message.",
+                          "key": "campaignReferenceId",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "If you are unable to receive real-time delivery reports towards your endpoint for various reasons, we offer you an API method to fetch batches of delivery reports to confirm whether specific messages have been delivered. Each request towards this endpoint will return batches of the latest delivery reports. Please note they will be returned only once."
+                  },
+                  "response": [
+                    {
+                      "id": "ab2aee1e-1321-4592-ac7d-e66bf44c8ff7",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/instagram/1/reports?bulkId=<string>&messageId=<string>&limit=50&entityId=<string>&applicationId=<string>&campaignReferenceId=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instagram",
+                            "1",
+                            "reports"
+                          ],
+                          "query": [
+                            {
+                              "description": "The ID that uniquely identifies the request. Bulk ID will be received only when you send a message to more than one destination address.",
+                              "key": "bulkId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The ID that uniquely identifies the message sent.",
+                              "key": "messageId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Maximum number of delivery reports to be returned. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access reports for the last 48h.",
+                              "key": "limit",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "entityId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "applicationId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "ID of a campaign that was sent in the message.",
+                              "key": "campaignReferenceId",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"results\": [\n    {\n      \"bulkId\": \"<string>\",\n      \"price\": {\n        \"pricePerMessage\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"status\": {\n        \"groupId\": \"<integer>\",\n        \"groupName\": \"REJECTED\",\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"action\": \"<string>\"\n      },\n      \"error\": {\n        \"groupId\": \"<integer>\",\n        \"groupName\": \"OPERATOR_ERRORS\",\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"permanent\": \"<boolean>\"\n      },\n      \"messageId\": \"<string>\",\n      \"to\": \"<string>\",\n      \"sender\": \"<string>\",\n      \"sentAt\": \"<dateTime>\",\n      \"doneAt\": \"<dateTime>\",\n      \"messageCount\": \"<integer>\",\n      \"mccMnc\": \"<string>\",\n      \"callbackData\": \"<string>\",\n      \"platform\": {\n        \"entityId\": \"<string>\",\n        \"applicationId\": \"<string>\"\n      },\n      \"campaignReferenceId\": \"<string>\"\n    },\n    {\n      \"bulkId\": \"<string>\",\n      \"price\": {\n        \"pricePerMessage\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"status\": {\n        \"groupId\": \"<integer>\",\n        \"groupName\": \"DELIVERED\",\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"action\": \"<string>\"\n      },\n      \"error\": {\n        \"groupId\": \"<integer>\",\n        \"groupName\": \"OK\",\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"permanent\": \"<boolean>\"\n      },\n      \"messageId\": \"<string>\",\n      \"to\": \"<string>\",\n      \"sender\": \"<string>\",\n      \"sentAt\": \"<dateTime>\",\n      \"doneAt\": \"<dateTime>\",\n      \"messageCount\": \"<integer>\",\n      \"mccMnc\": \"<string>\",\n      \"callbackData\": \"<string>\",\n      \"platform\": {\n        \"entityId\": \"<string>\",\n        \"applicationId\": \"<string>\"\n      },\n      \"campaignReferenceId\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:58:44.000Z",
+                      "updatedAt": "2026-07-28T01:58:44.000Z",
+                      "uid": "35240-ab2aee1e-1321-4592-ac7d-e66bf44c8ff7"
+                    },
+                    {
+                      "id": "2b379e62-5abd-42ab-85d8-495d3254b6cf",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/instagram/1/reports?bulkId=<string>&messageId=<string>&limit=50&entityId=<string>&applicationId=<string>&campaignReferenceId=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instagram",
+                            "1",
+                            "reports"
+                          ],
+                          "query": [
+                            {
+                              "description": "The ID that uniquely identifies the request. Bulk ID will be received only when you send a message to more than one destination address.",
+                              "key": "bulkId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The ID that uniquely identifies the message sent.",
+                              "key": "messageId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Maximum number of delivery reports to be returned. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access reports for the last 48h.",
+                              "key": "limit",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "entityId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "applicationId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "ID of a campaign that was sent in the message.",
+                              "key": "campaignReferenceId",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:58:44.000Z",
+                      "updatedAt": "2026-07-28T01:58:44.000Z",
+                      "uid": "35240-2b379e62-5abd-42ab-85d8-495d3254b6cf"
+                    },
+                    {
+                      "id": "8b1bfdd3-4071-4620-995a-4a0d698942cc",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/instagram/1/reports?bulkId=<string>&messageId=<string>&limit=50&entityId=<string>&applicationId=<string>&campaignReferenceId=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instagram",
+                            "1",
+                            "reports"
+                          ],
+                          "query": [
+                            {
+                              "description": "The ID that uniquely identifies the request. Bulk ID will be received only when you send a message to more than one destination address.",
+                              "key": "bulkId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The ID that uniquely identifies the message sent.",
+                              "key": "messageId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Maximum number of delivery reports to be returned. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access reports for the last 48h.",
+                              "key": "limit",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "entityId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "applicationId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "ID of a campaign that was sent in the message.",
+                              "key": "campaignReferenceId",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:58:44.000Z",
+                      "updatedAt": "2026-07-28T01:58:44.000Z",
+                      "uid": "35240-8b1bfdd3-4071-4620-995a-4a0d698942cc"
+                    },
+                    {
+                      "id": "53f6e54b-cee4-4c03-8fb7-c04e421e3489",
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/instagram/1/reports?bulkId=<string>&messageId=<string>&limit=50&entityId=<string>&applicationId=<string>&campaignReferenceId=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instagram",
+                            "1",
+                            "reports"
+                          ],
+                          "query": [
+                            {
+                              "description": "The ID that uniquely identifies the request. Bulk ID will be received only when you send a message to more than one destination address.",
+                              "key": "bulkId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The ID that uniquely identifies the message sent.",
+                              "key": "messageId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Maximum number of delivery reports to be returned. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access reports for the last 48h.",
+                              "key": "limit",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "entityId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "applicationId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "ID of a campaign that was sent in the message.",
+                              "key": "campaignReferenceId",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:58:44.000Z",
+                      "updatedAt": "2026-07-28T01:58:44.000Z",
+                      "uid": "35240-53f6e54b-cee4-4c03-8fb7-c04e421e3489"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:58:44.000Z",
+                  "updatedAt": "2026-07-28T01:58:44.000Z",
+                  "uid": "35240-55fd732e-4492-4e4d-a844-1b7942edfcfa"
+                }
+              ],
+              "id": "e152077e-c155-478c-9047-a0a586f7c50e",
+              "createdAt": "2026-07-28T01:58:44.000Z",
+              "updatedAt": "2026-07-28T01:58:44.000Z",
+              "uid": "35240-e152077e-c155-478c-9047-a0a586f7c50e"
+            },
+            {
+              "name": "logs",
+              "item": [
+                {
+                  "name": "Get outbound Instagram message logs",
+                  "id": "d0a8fb0b-e904-47f5-a459-181aa2e8c5da",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/instagram/1/logs?sender=<string>&destination=<string>&bulkId=<string>&bulkId=<string>&messageId=<string>&messageId=<string>&generalStatus=PENDING&sentSince=<dateTime>&sentUntil=<dateTime>&limit=50&entityId=<string>&applicationId=<string>&campaignReferenceId=<string>&campaignReferenceId=<string>&useCursor=<boolean>&cursor=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instagram",
+                        "1",
+                        "logs"
+                      ],
+                      "query": [
+                        {
+                          "description": "The sender ID which can be alphanumeric or numeric.",
+                          "key": "sender",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Message destination address.",
+                          "key": "destination",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. May contain multiple comma-separated values. Maximum length 2048 characters.",
+                          "key": "bulkId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. May contain multiple comma-separated values. Maximum length 2048 characters.",
+                          "key": "bulkId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Unique message ID for which a log is requested. May contain multiple comma-separated values. Maximum length 2048 characters.",
+                          "key": "messageId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Unique message ID for which a log is requested. May contain multiple comma-separated values. Maximum length 2048 characters.",
+                          "key": "messageId",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "generalStatus",
+                          "value": "PENDING"
+                        },
+                        {
+                          "description": "The logs will only include messages sent after this date. Use it alongside sentUntil to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ.",
+                          "key": "sentSince",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "The logs will only include messages sent before this date. Use it alongside sentSince to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ.",
+                          "key": "sentUntil",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Maximum number of messages to include in logs. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access logs for the last 48h.",
+                          "key": "limit",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                          "key": "entityId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                          "key": "applicationId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "ID of a campaign that was sent in the message. May contain multiple comma-separated values.",
+                          "key": "campaignReferenceId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "ID of a campaign that was sent in the message. May contain multiple comma-separated values.",
+                          "key": "campaignReferenceId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Flag used to enable cursor-based pagination. When set to true, the system will use the cursor to fetch the next set of logs.",
+                          "key": "useCursor",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Value which represents the current position in the data set. For the first request, this field shouldn't be defined. In subsequent requests, use the `nextCursor` value returned from the previous response to continue fetching data.",
+                          "key": "cursor",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Use this method for displaying logs for example in the user interface. Available are the logs for the last 48 hours."
+                  },
+                  "response": [
+                    {
+                      "id": "8c65c5df-64da-4ed3-aa9a-66db1cce376e",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/instagram/1/logs?sender=<string>&destination=<string>&bulkId=<string>&messageId=<string>&generalStatus=PENDING&sentSince=<dateTime>&sentUntil=<dateTime>&limit=50&entityId=<string>&applicationId=<string>&campaignReferenceId=<string>&useCursor=<boolean>&cursor=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instagram",
+                            "1",
+                            "logs"
+                          ],
+                          "query": [
+                            {
+                              "description": "The sender ID which can be alphanumeric or numeric.",
+                              "key": "sender",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Message destination address.",
+                              "key": "destination",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. May contain multiple comma-separated values. Maximum length 2048 characters.",
+                              "key": "bulkId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Unique message ID for which a log is requested. May contain multiple comma-separated values. Maximum length 2048 characters.",
+                              "key": "messageId",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "generalStatus",
+                              "value": "PENDING"
+                            },
+                            {
+                              "description": "The logs will only include messages sent after this date. Use it alongside sentUntil to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ.",
+                              "key": "sentSince",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "The logs will only include messages sent before this date. Use it alongside sentSince to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ.",
+                              "key": "sentUntil",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Maximum number of messages to include in logs. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access logs for the last 48h.",
+                              "key": "limit",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "entityId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "applicationId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "ID of a campaign that was sent in the message. May contain multiple comma-separated values.",
+                              "key": "campaignReferenceId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Flag used to enable cursor-based pagination. When set to true, the system will use the cursor to fetch the next set of logs.",
+                              "key": "useCursor",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Value which represents the current position in the data set. For the first request, this field shouldn't be defined. In subsequent requests, use the `nextCursor` value returned from the previous response to continue fetching data.",
+                              "key": "cursor",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"results\": [\n    {\n      \"sender\": \"<string>\",\n      \"destination\": \"<string>\",\n      \"bulkId\": \"<string>\",\n      \"messageId\": \"<string>\",\n      \"sentAt\": \"<dateTime>\",\n      \"doneAt\": \"<dateTime>\",\n      \"messageCount\": \"<integer>\",\n      \"price\": {\n        \"pricePerMessage\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"status\": {\n        \"groupId\": \"<integer>\",\n        \"groupName\": \"DELIVERED\",\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"action\": \"<string>\"\n      },\n      \"error\": {\n        \"groupId\": \"<integer>\",\n        \"groupName\": \"HANDSET_ERRORS\",\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"permanent\": \"<boolean>\"\n      },\n      \"platform\": {\n        \"entityId\": \"<string>\",\n        \"applicationId\": \"<string>\"\n      },\n      \"content\": {\n        \"type\": \"RICH_CARD\"\n      },\n      \"campaignReferenceId\": \"<string>\"\n    },\n    {\n      \"sender\": \"<string>\",\n      \"destination\": \"<string>\",\n      \"bulkId\": \"<string>\",\n      \"messageId\": \"<string>\",\n      \"sentAt\": \"<dateTime>\",\n      \"doneAt\": \"<dateTime>\",\n      \"messageCount\": \"<integer>\",\n      \"price\": {\n        \"pricePerMessage\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"status\": {\n        \"groupId\": \"<integer>\",\n        \"groupName\": \"ACCEPTED\",\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"action\": \"<string>\"\n      },\n      \"error\": {\n        \"groupId\": \"<integer>\",\n        \"groupName\": \"OPERATOR_ERRORS\",\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"permanent\": \"<boolean>\"\n      },\n      \"platform\": {\n        \"entityId\": \"<string>\",\n        \"applicationId\": \"<string>\"\n      },\n      \"content\": {\n        \"type\": \"IMAGE\"\n      },\n      \"campaignReferenceId\": \"<string>\"\n    }\n  ],\n  \"cursor\": {\n    \"limit\": \"<integer>\",\n    \"nextCursor\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:58:44.000Z",
+                      "updatedAt": "2026-07-28T01:58:44.000Z",
+                      "uid": "35240-8c65c5df-64da-4ed3-aa9a-66db1cce376e"
+                    },
+                    {
+                      "id": "865338cc-bbe9-41ee-ab2f-a86915e96adb",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/instagram/1/logs?sender=<string>&destination=<string>&bulkId=<string>&messageId=<string>&generalStatus=PENDING&sentSince=<dateTime>&sentUntil=<dateTime>&limit=50&entityId=<string>&applicationId=<string>&campaignReferenceId=<string>&useCursor=<boolean>&cursor=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instagram",
+                            "1",
+                            "logs"
+                          ],
+                          "query": [
+                            {
+                              "description": "The sender ID which can be alphanumeric or numeric.",
+                              "key": "sender",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Message destination address.",
+                              "key": "destination",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. May contain multiple comma-separated values. Maximum length 2048 characters.",
+                              "key": "bulkId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Unique message ID for which a log is requested. May contain multiple comma-separated values. Maximum length 2048 characters.",
+                              "key": "messageId",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "generalStatus",
+                              "value": "PENDING"
+                            },
+                            {
+                              "description": "The logs will only include messages sent after this date. Use it alongside sentUntil to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ.",
+                              "key": "sentSince",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "The logs will only include messages sent before this date. Use it alongside sentSince to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ.",
+                              "key": "sentUntil",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Maximum number of messages to include in logs. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access logs for the last 48h.",
+                              "key": "limit",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "entityId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "applicationId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "ID of a campaign that was sent in the message. May contain multiple comma-separated values.",
+                              "key": "campaignReferenceId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Flag used to enable cursor-based pagination. When set to true, the system will use the cursor to fetch the next set of logs.",
+                              "key": "useCursor",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Value which represents the current position in the data set. For the first request, this field shouldn't be defined. In subsequent requests, use the `nextCursor` value returned from the previous response to continue fetching data.",
+                              "key": "cursor",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:58:44.000Z",
+                      "updatedAt": "2026-07-28T01:58:44.000Z",
+                      "uid": "35240-865338cc-bbe9-41ee-ab2f-a86915e96adb"
+                    },
+                    {
+                      "id": "cfc39a10-8c82-4dfa-a91d-54ab3119e77e",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/instagram/1/logs?sender=<string>&destination=<string>&bulkId=<string>&messageId=<string>&generalStatus=PENDING&sentSince=<dateTime>&sentUntil=<dateTime>&limit=50&entityId=<string>&applicationId=<string>&campaignReferenceId=<string>&useCursor=<boolean>&cursor=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instagram",
+                            "1",
+                            "logs"
+                          ],
+                          "query": [
+                            {
+                              "description": "The sender ID which can be alphanumeric or numeric.",
+                              "key": "sender",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Message destination address.",
+                              "key": "destination",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. May contain multiple comma-separated values. Maximum length 2048 characters.",
+                              "key": "bulkId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Unique message ID for which a log is requested. May contain multiple comma-separated values. Maximum length 2048 characters.",
+                              "key": "messageId",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "generalStatus",
+                              "value": "PENDING"
+                            },
+                            {
+                              "description": "The logs will only include messages sent after this date. Use it alongside sentUntil to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ.",
+                              "key": "sentSince",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "The logs will only include messages sent before this date. Use it alongside sentSince to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ.",
+                              "key": "sentUntil",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Maximum number of messages to include in logs. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access logs for the last 48h.",
+                              "key": "limit",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "entityId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "applicationId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "ID of a campaign that was sent in the message. May contain multiple comma-separated values.",
+                              "key": "campaignReferenceId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Flag used to enable cursor-based pagination. When set to true, the system will use the cursor to fetch the next set of logs.",
+                              "key": "useCursor",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Value which represents the current position in the data set. For the first request, this field shouldn't be defined. In subsequent requests, use the `nextCursor` value returned from the previous response to continue fetching data.",
+                              "key": "cursor",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:58:44.000Z",
+                      "updatedAt": "2026-07-28T01:58:44.000Z",
+                      "uid": "35240-cfc39a10-8c82-4dfa-a91d-54ab3119e77e"
+                    },
+                    {
+                      "id": "25dd3e78-9df1-45d0-a243-a16cfb7b58d1",
+                      "name": "Too Many Requests",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/instagram/1/logs?sender=<string>&destination=<string>&bulkId=<string>&messageId=<string>&generalStatus=PENDING&sentSince=<dateTime>&sentUntil=<dateTime>&limit=50&entityId=<string>&applicationId=<string>&campaignReferenceId=<string>&useCursor=<boolean>&cursor=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instagram",
+                            "1",
+                            "logs"
+                          ],
+                          "query": [
+                            {
+                              "description": "The sender ID which can be alphanumeric or numeric.",
+                              "key": "sender",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Message destination address.",
+                              "key": "destination",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. May contain multiple comma-separated values. Maximum length 2048 characters.",
+                              "key": "bulkId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Unique message ID for which a log is requested. May contain multiple comma-separated values. Maximum length 2048 characters.",
+                              "key": "messageId",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "generalStatus",
+                              "value": "PENDING"
+                            },
+                            {
+                              "description": "The logs will only include messages sent after this date. Use it alongside sentUntil to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ.",
+                              "key": "sentSince",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "The logs will only include messages sent before this date. Use it alongside sentSince to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ.",
+                              "key": "sentUntil",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Maximum number of messages to include in logs. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access logs for the last 48h.",
+                              "key": "limit",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "entityId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "applicationId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "ID of a campaign that was sent in the message. May contain multiple comma-separated values.",
+                              "key": "campaignReferenceId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Flag used to enable cursor-based pagination. When set to true, the system will use the cursor to fetch the next set of logs.",
+                              "key": "useCursor",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Value which represents the current position in the data set. For the first request, this field shouldn't be defined. In subsequent requests, use the `nextCursor` value returned from the previous response to continue fetching data.",
+                              "key": "cursor",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:58:44.000Z",
+                      "updatedAt": "2026-07-28T01:58:44.000Z",
+                      "uid": "35240-25dd3e78-9df1-45d0-a243-a16cfb7b58d1"
+                    },
+                    {
+                      "id": "d0e37b12-3d0b-4cfe-9524-a0fdc0332e34",
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/instagram/1/logs?sender=<string>&destination=<string>&bulkId=<string>&messageId=<string>&generalStatus=PENDING&sentSince=<dateTime>&sentUntil=<dateTime>&limit=50&entityId=<string>&applicationId=<string>&campaignReferenceId=<string>&useCursor=<boolean>&cursor=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instagram",
+                            "1",
+                            "logs"
+                          ],
+                          "query": [
+                            {
+                              "description": "The sender ID which can be alphanumeric or numeric.",
+                              "key": "sender",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Message destination address.",
+                              "key": "destination",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. May contain multiple comma-separated values. Maximum length 2048 characters.",
+                              "key": "bulkId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Unique message ID for which a log is requested. May contain multiple comma-separated values. Maximum length 2048 characters.",
+                              "key": "messageId",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "generalStatus",
+                              "value": "PENDING"
+                            },
+                            {
+                              "description": "The logs will only include messages sent after this date. Use it alongside sentUntil to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ.",
+                              "key": "sentSince",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "The logs will only include messages sent before this date. Use it alongside sentSince to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ.",
+                              "key": "sentUntil",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Maximum number of messages to include in logs. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access logs for the last 48h.",
+                              "key": "limit",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "entityId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "applicationId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "ID of a campaign that was sent in the message. May contain multiple comma-separated values.",
+                              "key": "campaignReferenceId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Flag used to enable cursor-based pagination. When set to true, the system will use the cursor to fetch the next set of logs.",
+                              "key": "useCursor",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Value which represents the current position in the data set. For the first request, this field shouldn't be defined. In subsequent requests, use the `nextCursor` value returned from the previous response to continue fetching data.",
+                              "key": "cursor",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:58:44.000Z",
+                      "updatedAt": "2026-07-28T01:58:44.000Z",
+                      "uid": "35240-d0e37b12-3d0b-4cfe-9524-a0fdc0332e34"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:58:44.000Z",
+                  "updatedAt": "2026-07-28T01:58:44.000Z",
+                  "uid": "35240-d0a8fb0b-e904-47f5-a459-181aa2e8c5da"
+                }
+              ],
+              "id": "904228b8-be1b-43cc-ae27-337bd38bdd02",
+              "createdAt": "2026-07-28T01:58:44.000Z",
+              "updatedAt": "2026-07-28T01:58:44.000Z",
+              "uid": "35240-904228b8-be1b-43cc-ae27-337bd38bdd02"
+            }
+          ],
+          "id": "24c5cc5b-d816-4b94-a64d-15b6332afa5d",
+          "createdAt": "2026-07-28T01:58:44.000Z",
+          "updatedAt": "2026-07-28T01:58:44.000Z",
+          "uid": "35240-24c5cc5b-d816-4b94-a64d-15b6332afa5d"
+        }
+      ],
+      "id": "e4467388-eb4d-4113-aa4d-2d38082e36ee",
+      "createdAt": "2026-07-28T01:58:44.000Z",
+      "updatedAt": "2026-07-28T01:58:44.000Z",
+      "uid": "35240-e4467388-eb4d-4113-aa4d-2d38082e36ee"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

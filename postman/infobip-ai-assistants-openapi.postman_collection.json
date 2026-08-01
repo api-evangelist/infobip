@@ -1,0 +1,1138 @@
+{
+  "info": {
+    "_postman_id": "bf726405-89eb-47d6-bbb8-3e99d19e2565",
+    "name": "Infobip OpenAPI Specification",
+    "description": "OpenAPI Specification that contains all public endpoints and webhooks.\n\nContact Support:\n Name: Infobip support\n Email: support@infobip.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:57:33.000Z",
+    "updatedAt": "2026-07-28T01:57:33.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bf726405-89eb-47d6-bbb8-3e99d19e2565"
+  },
+  "item": [
+    {
+      "name": "ai",
+      "item": [
+        {
+          "name": "1",
+          "item": [
+            {
+              "name": "aiassistants",
+              "item": [
+                {
+                  "name": "{assistantId}",
+                  "item": [
+                    {
+                      "name": "query",
+                      "item": [
+                        {
+                          "name": "Query AI Assistant by ID",
+                          "id": "8243a86f-623a-4da8-96ee-1974c79778c1",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "Authorization",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"message\": \"<string>\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"<string>\",\n  \"returnContexts\": false\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/ai/1/aiassistants/:assistantId/query",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "ai",
+                                "1",
+                                "aiassistants",
+                                ":assistantId",
+                                "query"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "4fa3565f-e5b2-426e-8309-7c3f1e4cd59b",
+                                  "key": "assistantId",
+                                  "value": "<string>",
+                                  "description": "(Required) Unique identifier of the AI assistant to query."
+                                }
+                              ]
+                            },
+                            "description": "Forwards a message from a user to a specific AI assistant identified by its unique ID and returns the assistant's response.<br/><br/>This endpoint performs a semantic search over an AI assistant's indexed documents based on configured guidelines. It then generates a response using the LLM connected to the assistant.<br/><br/>The \"use shared history\" feature allowing an AI assistant to utilize the agent's conversation history, is only available if used together with [Infobip AI agents](https://www.infobip.com/docs/ai-agents)."
+                          },
+                          "response": [
+                            {
+                              "id": "18546745-116c-4543-b811-7487c068bd41",
+                              "name": "AI Assistant response retrieved successfully",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"message\": \"<string>\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"<string>\",\n  \"returnContexts\": false\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/ai/1/aiassistants/:assistantId/query",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "ai",
+                                    "1",
+                                    "aiassistants",
+                                    ":assistantId",
+                                    "query"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "assistantId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"response\": \"<string>\",\n  \"context\": {\n    \"originalContexts\": [\n      {\n        \"filename\": \"<string>\",\n        \"text\": \"<string>\"\n      },\n      {\n        \"filename\": \"<string>\",\n        \"text\": \"<string>\"\n      }\n    ],\n    \"rerankedContexts\": [\n      {\n        \"filename\": \"<string>\",\n        \"text\": \"<string>\"\n      },\n      {\n        \"filename\": \"<string>\",\n        \"text\": \"<string>\"\n      }\n    ]\n  }\n}",
+                              "createdAt": "2026-07-28T01:57:33.000Z",
+                              "updatedAt": "2026-07-28T01:57:33.000Z",
+                              "uid": "35240-18546745-116c-4543-b811-7487c068bd41"
+                            },
+                            {
+                              "id": "8da3d25d-d068-4692-aec4-98b9d845138e",
+                              "name": "Bad request",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"message\": \"<string>\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"<string>\",\n  \"returnContexts\": false\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/ai/1/aiassistants/:assistantId/query",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "ai",
+                                    "1",
+                                    "aiassistants",
+                                    ":assistantId",
+                                    "query"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "assistantId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:57:33.000Z",
+                              "updatedAt": "2026-07-28T01:57:33.000Z",
+                              "uid": "35240-8da3d25d-d068-4692-aec4-98b9d845138e"
+                            },
+                            {
+                              "id": "5f780bb3-d4b8-4ff9-852c-130c4c1bd260",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"message\": \"<string>\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"<string>\",\n  \"returnContexts\": false\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/ai/1/aiassistants/:assistantId/query",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "ai",
+                                    "1",
+                                    "aiassistants",
+                                    ":assistantId",
+                                    "query"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "assistantId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:57:33.000Z",
+                              "updatedAt": "2026-07-28T01:57:33.000Z",
+                              "uid": "35240-5f780bb3-d4b8-4ff9-852c-130c4c1bd260"
+                            },
+                            {
+                              "id": "f21d634d-0b48-448d-bd0e-c49c1874ac6a",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"message\": \"<string>\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"<string>\",\n  \"returnContexts\": false\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/ai/1/aiassistants/:assistantId/query",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "ai",
+                                    "1",
+                                    "aiassistants",
+                                    ":assistantId",
+                                    "query"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "assistantId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:57:33.000Z",
+                              "updatedAt": "2026-07-28T01:57:33.000Z",
+                              "uid": "35240-f21d634d-0b48-448d-bd0e-c49c1874ac6a"
+                            },
+                            {
+                              "id": "67f9fd25-d743-4c6b-b6a9-0d7e70b1777f",
+                              "name": "Assistant not found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"message\": \"<string>\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"<string>\",\n  \"returnContexts\": false\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/ai/1/aiassistants/:assistantId/query",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "ai",
+                                    "1",
+                                    "aiassistants",
+                                    ":assistantId",
+                                    "query"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "assistantId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:57:33.000Z",
+                              "updatedAt": "2026-07-28T01:57:33.000Z",
+                              "uid": "35240-67f9fd25-d743-4c6b-b6a9-0d7e70b1777f"
+                            },
+                            {
+                              "id": "c87040d8-4b40-430f-b2be-3baf66cae9a7",
+                              "name": "Too Many Requests",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"message\": \"<string>\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"<string>\",\n  \"returnContexts\": false\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/ai/1/aiassistants/:assistantId/query",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "ai",
+                                    "1",
+                                    "aiassistants",
+                                    ":assistantId",
+                                    "query"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "assistantId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:57:33.000Z",
+                              "updatedAt": "2026-07-28T01:57:33.000Z",
+                              "uid": "35240-c87040d8-4b40-430f-b2be-3baf66cae9a7"
+                            },
+                            {
+                              "id": "e234f160-d86f-409c-9c48-c7bf31a69f97",
+                              "name": "Internal Server Error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"message\": \"<string>\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"<string>\",\n  \"returnContexts\": false\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/ai/1/aiassistants/:assistantId/query",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "ai",
+                                    "1",
+                                    "aiassistants",
+                                    ":assistantId",
+                                    "query"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "assistantId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:57:33.000Z",
+                              "updatedAt": "2026-07-28T01:57:33.000Z",
+                              "uid": "35240-e234f160-d86f-409c-9c48-c7bf31a69f97"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:57:33.000Z",
+                          "updatedAt": "2026-07-28T01:57:33.000Z",
+                          "uid": "35240-8243a86f-623a-4da8-96ee-1974c79778c1"
+                        }
+                      ],
+                      "id": "ca49948c-f436-4cd9-9abb-02609958a5d6",
+                      "createdAt": "2026-07-28T01:57:33.000Z",
+                      "updatedAt": "2026-07-28T01:57:33.000Z",
+                      "uid": "35240-ca49948c-f436-4cd9-9abb-02609958a5d6"
+                    },
+                    {
+                      "name": "retrieve-context",
+                      "item": [
+                        {
+                          "name": "Retrieve Context from AI Assistant",
+                          "id": "01fbad4c-be41-4b25-8209-85f2bb45a913",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "Authorization",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"message\": \"<string>\",\n  \"k\": \"<integer>\",\n  \"reRankK\": \"<integer>\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/ai/1/aiassistants/:assistantId/retrieve-context",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "ai",
+                                "1",
+                                "aiassistants",
+                                ":assistantId",
+                                "retrieve-context"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "0362e7cc-cb4b-45fb-9776-a995b01894f0",
+                                  "key": "assistantId",
+                                  "value": "<string>",
+                                  "description": "(Required) Unique identifier of the AI assistant from which to retrieve context."
+                                }
+                              ]
+                            },
+                            "description": "Retrieves the most relevant context chunks from an AI assistant's knowledge base for a given message.<br/><br/>This endpoint performs a semantic search over the assistant's indexed documents and returns the most relevant text segments (top k chunks). You can specify how many chunks to return and optionally enable re-ranking for more accurate results.<br/><br/>The \"use shared history\" feature allowing an AI assistant to utilize the agent's conversation history, is only available if used together with [Infobip AI agents](https://www.infobip.com/docs/ai-agents)."
+                          },
+                          "response": [
+                            {
+                              "id": "d278dca5-21d8-4b41-a781-222759fab033",
+                              "name": "Context retrieved successfully",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"message\": \"<string>\",\n  \"k\": \"<integer>\",\n  \"reRankK\": \"<integer>\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/ai/1/aiassistants/:assistantId/retrieve-context",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "ai",
+                                    "1",
+                                    "aiassistants",
+                                    ":assistantId",
+                                    "retrieve-context"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "assistantId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"contexts\": [\n    {\n      \"node\": {\n        \"id\": \"<string>\",\n        \"text\": \"<string>\",\n        \"metadata\": {\n          \"ex_3\": {},\n          \"sitb\": {},\n          \"magna_75e\": {},\n          \"ipsum_b96\": {}\n        },\n        \"startCharIdx\": \"<integer>\",\n        \"endCharIdx\": \"<integer>\"\n      },\n      \"score\": \"<double>\"\n    },\n    {\n      \"node\": {\n        \"id\": \"<string>\",\n        \"text\": \"<string>\",\n        \"metadata\": {\n          \"voluptate2\": {},\n          \"Excepteur_0\": {}\n        },\n        \"startCharIdx\": \"<integer>\",\n        \"endCharIdx\": \"<integer>\"\n      },\n      \"score\": \"<double>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:57:33.000Z",
+                              "updatedAt": "2026-07-28T01:57:33.000Z",
+                              "uid": "35240-d278dca5-21d8-4b41-a781-222759fab033"
+                            },
+                            {
+                              "id": "6ba2402e-abab-449e-807f-521f15067ab1",
+                              "name": "Bad request",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"message\": \"<string>\",\n  \"k\": \"<integer>\",\n  \"reRankK\": \"<integer>\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/ai/1/aiassistants/:assistantId/retrieve-context",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "ai",
+                                    "1",
+                                    "aiassistants",
+                                    ":assistantId",
+                                    "retrieve-context"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "assistantId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:57:33.000Z",
+                              "updatedAt": "2026-07-28T01:57:33.000Z",
+                              "uid": "35240-6ba2402e-abab-449e-807f-521f15067ab1"
+                            },
+                            {
+                              "id": "95f6dd37-ba82-4914-aba1-3dc7c159f28e",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"message\": \"<string>\",\n  \"k\": \"<integer>\",\n  \"reRankK\": \"<integer>\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/ai/1/aiassistants/:assistantId/retrieve-context",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "ai",
+                                    "1",
+                                    "aiassistants",
+                                    ":assistantId",
+                                    "retrieve-context"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "assistantId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:57:33.000Z",
+                              "updatedAt": "2026-07-28T01:57:33.000Z",
+                              "uid": "35240-95f6dd37-ba82-4914-aba1-3dc7c159f28e"
+                            },
+                            {
+                              "id": "8ac2c266-f28e-43b6-99d3-f3272a96e7a1",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"message\": \"<string>\",\n  \"k\": \"<integer>\",\n  \"reRankK\": \"<integer>\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/ai/1/aiassistants/:assistantId/retrieve-context",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "ai",
+                                    "1",
+                                    "aiassistants",
+                                    ":assistantId",
+                                    "retrieve-context"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "assistantId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:57:33.000Z",
+                              "updatedAt": "2026-07-28T01:57:33.000Z",
+                              "uid": "35240-8ac2c266-f28e-43b6-99d3-f3272a96e7a1"
+                            },
+                            {
+                              "id": "433bbd83-a7e7-4bfd-9a2c-9e09f6fe35b8",
+                              "name": "Assistant not found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"message\": \"<string>\",\n  \"k\": \"<integer>\",\n  \"reRankK\": \"<integer>\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/ai/1/aiassistants/:assistantId/retrieve-context",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "ai",
+                                    "1",
+                                    "aiassistants",
+                                    ":assistantId",
+                                    "retrieve-context"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "assistantId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:57:33.000Z",
+                              "updatedAt": "2026-07-28T01:57:33.000Z",
+                              "uid": "35240-433bbd83-a7e7-4bfd-9a2c-9e09f6fe35b8"
+                            },
+                            {
+                              "id": "3eb50d4c-2a45-48db-a494-a7aef883461b",
+                              "name": "Too Many Requests",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"message\": \"<string>\",\n  \"k\": \"<integer>\",\n  \"reRankK\": \"<integer>\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/ai/1/aiassistants/:assistantId/retrieve-context",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "ai",
+                                    "1",
+                                    "aiassistants",
+                                    ":assistantId",
+                                    "retrieve-context"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "assistantId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:57:33.000Z",
+                              "updatedAt": "2026-07-28T01:57:33.000Z",
+                              "uid": "35240-3eb50d4c-2a45-48db-a494-a7aef883461b"
+                            },
+                            {
+                              "id": "86fbfd9b-1ee1-4cf8-a3af-b774eb081a8c",
+                              "name": "Internal Server Error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"message\": \"<string>\",\n  \"k\": \"<integer>\",\n  \"reRankK\": \"<integer>\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/ai/1/aiassistants/:assistantId/retrieve-context",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "ai",
+                                    "1",
+                                    "aiassistants",
+                                    ":assistantId",
+                                    "retrieve-context"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "assistantId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:57:33.000Z",
+                              "updatedAt": "2026-07-28T01:57:33.000Z",
+                              "uid": "35240-86fbfd9b-1ee1-4cf8-a3af-b774eb081a8c"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:57:33.000Z",
+                          "updatedAt": "2026-07-28T01:57:33.000Z",
+                          "uid": "35240-01fbad4c-be41-4b25-8209-85f2bb45a913"
+                        }
+                      ],
+                      "id": "a3ac67aa-9071-4901-aa46-19666a33a360",
+                      "createdAt": "2026-07-28T01:57:33.000Z",
+                      "updatedAt": "2026-07-28T01:57:33.000Z",
+                      "uid": "35240-a3ac67aa-9071-4901-aa46-19666a33a360"
+                    }
+                  ],
+                  "id": "43f1541f-7aad-4590-bbf6-880b88a10091",
+                  "createdAt": "2026-07-28T01:57:33.000Z",
+                  "updatedAt": "2026-07-28T01:57:33.000Z",
+                  "uid": "35240-43f1541f-7aad-4590-bbf6-880b88a10091"
+                }
+              ],
+              "id": "b0f58838-5c4c-4d2d-b70d-dd9be4411ec3",
+              "createdAt": "2026-07-28T01:57:33.000Z",
+              "updatedAt": "2026-07-28T01:57:33.000Z",
+              "uid": "35240-b0f58838-5c4c-4d2d-b70d-dd9be4411ec3"
+            }
+          ],
+          "id": "c8953573-a047-4bd3-adf0-0be868c6031d",
+          "createdAt": "2026-07-28T01:57:33.000Z",
+          "updatedAt": "2026-07-28T01:57:33.000Z",
+          "uid": "35240-c8953573-a047-4bd3-adf0-0be868c6031d"
+        }
+      ],
+      "id": "74613441-0093-4eb6-87a8-03b5925f3e73",
+      "createdAt": "2026-07-28T01:57:33.000Z",
+      "updatedAt": "2026-07-28T01:57:33.000Z",
+      "uid": "35240-74613441-0093-4eb6-87a8-03b5925f3e73"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

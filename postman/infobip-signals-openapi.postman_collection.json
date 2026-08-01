@@ -1,0 +1,1315 @@
+{
+  "info": {
+    "_postman_id": "e0718877-ad65-4111-991d-88e05208d9a6",
+    "name": "Infobip OpenAPI Specification",
+    "description": "OpenAPI Specification that contains all public endpoints and webhooks.\n\nContact Support:\n Name: Infobip support\n Email: support@infobip.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:00:14.000Z",
+    "updatedAt": "2026-07-28T02:00:14.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e0718877-ad65-4111-991d-88e05208d9a6"
+  },
+  "item": [
+    {
+      "name": "signals",
+      "item": [
+        {
+          "name": "1",
+          "item": [
+            {
+              "name": "trusted-msisdns",
+              "item": [
+                {
+                  "name": "{msisdn}",
+                  "item": [
+                    {
+                      "name": "check",
+                      "item": [
+                        {
+                          "name": "Check for phone numbers on a list",
+                          "id": "75e401d7-a24a-4e8b-9cf5-3902230cf9db",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "Authorization",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/signals/1/trusted-msisdns/:msisdn/check",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "signals",
+                                "1",
+                                "trusted-msisdns",
+                                ":msisdn",
+                                "check"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "2a609169-0706-49dd-bd5a-9903e23150ae",
+                                  "key": "msisdn",
+                                  "value": "<string>",
+                                  "description": "(Required) Phone number (in MSISDN or international format) for which to check whether it is in the trusted MSISDN list."
+                                }
+                              ]
+                            },
+                            "description": "Check whether a phone number exists on a MSISDN list of trusted phone numbers.\n"
+                          },
+                          "response": [
+                            {
+                              "id": "39526524-7492-4a25-92f5-1d1e9cd4ef2e",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/signals/1/trusted-msisdns/:msisdn/check",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "signals",
+                                    "1",
+                                    "trusted-msisdns",
+                                    ":msisdn",
+                                    "check"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "msisdn"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"exists\": \"<boolean>\"\n}",
+                              "createdAt": "2026-07-28T02:00:15.000Z",
+                              "updatedAt": "2026-07-28T02:00:15.000Z",
+                              "uid": "35240-39526524-7492-4a25-92f5-1d1e9cd4ef2e"
+                            },
+                            {
+                              "id": "50092694-632b-480c-b712-e7e8f23963bc",
+                              "name": "Bad request",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/signals/1/trusted-msisdns/:msisdn/check",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "signals",
+                                    "1",
+                                    "trusted-msisdns",
+                                    ":msisdn",
+                                    "check"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "msisdn"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errorDetails\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:00:15.000Z",
+                              "updatedAt": "2026-07-28T02:00:15.000Z",
+                              "uid": "35240-50092694-632b-480c-b712-e7e8f23963bc"
+                            },
+                            {
+                              "id": "3123267a-a9fc-4fad-98c2-a2169f8884b7",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/signals/1/trusted-msisdns/:msisdn/check",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "signals",
+                                    "1",
+                                    "trusted-msisdns",
+                                    ":msisdn",
+                                    "check"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "msisdn"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"ut317\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T02:00:15.000Z",
+                              "updatedAt": "2026-07-28T02:00:15.000Z",
+                              "uid": "35240-3123267a-a9fc-4fad-98c2-a2169f8884b7"
+                            },
+                            {
+                              "id": "0a836297-dd1a-4f19-bc48-67b7f4a18772",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/signals/1/trusted-msisdns/:msisdn/check",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "signals",
+                                    "1",
+                                    "trusted-msisdns",
+                                    ":msisdn",
+                                    "check"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "msisdn"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"ut317\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T02:00:15.000Z",
+                              "updatedAt": "2026-07-28T02:00:15.000Z",
+                              "uid": "35240-0a836297-dd1a-4f19-bc48-67b7f4a18772"
+                            },
+                            {
+                              "id": "7fc95336-d403-4228-9a62-c56e32433b2a",
+                              "name": "Not Found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/signals/1/trusted-msisdns/:msisdn/check",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "signals",
+                                    "1",
+                                    "trusted-msisdns",
+                                    ":msisdn",
+                                    "check"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "msisdn"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"ut317\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T02:00:15.000Z",
+                              "updatedAt": "2026-07-28T02:00:15.000Z",
+                              "uid": "35240-7fc95336-d403-4228-9a62-c56e32433b2a"
+                            },
+                            {
+                              "id": "383d2926-a5ed-4b29-94aa-82e70a1405cf",
+                              "name": "Too Many Requests",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/signals/1/trusted-msisdns/:msisdn/check",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "signals",
+                                    "1",
+                                    "trusted-msisdns",
+                                    ":msisdn",
+                                    "check"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "msisdn"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"ut317\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T02:00:15.000Z",
+                              "updatedAt": "2026-07-28T02:00:15.000Z",
+                              "uid": "35240-383d2926-a5ed-4b29-94aa-82e70a1405cf"
+                            },
+                            {
+                              "id": "13c6dd38-7fe5-415c-a630-80d1815c6ce5",
+                              "name": "Internal Server Error",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/signals/1/trusted-msisdns/:msisdn/check",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "signals",
+                                    "1",
+                                    "trusted-msisdns",
+                                    ":msisdn",
+                                    "check"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "msisdn"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"ut317\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T02:00:15.000Z",
+                              "updatedAt": "2026-07-28T02:00:15.000Z",
+                              "uid": "35240-13c6dd38-7fe5-415c-a630-80d1815c6ce5"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:00:15.000Z",
+                          "updatedAt": "2026-07-28T02:00:15.000Z",
+                          "uid": "35240-75e401d7-a24a-4e8b-9cf5-3902230cf9db"
+                        }
+                      ],
+                      "id": "69f23deb-969c-4170-a867-32a77f81e812",
+                      "createdAt": "2026-07-28T02:00:15.000Z",
+                      "updatedAt": "2026-07-28T02:00:15.000Z",
+                      "uid": "35240-69f23deb-969c-4170-a867-32a77f81e812"
+                    }
+                  ],
+                  "id": "6fbcfbb6-c1cf-44fa-ab2d-d4f206467431",
+                  "createdAt": "2026-07-28T02:00:15.000Z",
+                  "updatedAt": "2026-07-28T02:00:15.000Z",
+                  "uid": "35240-6fbcfbb6-c1cf-44fa-ab2d-d4f206467431"
+                },
+                {
+                  "name": "Add phone numbers to a list",
+                  "id": "0803cb0b-ae95-4cd0-9cff-518c3b37df83",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"phoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/signals/1/trusted-msisdns",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "signals",
+                        "1",
+                        "trusted-msisdns"
+                      ]
+                    },
+                    "description": "Add phone numbers to a MSISDN list of trusted numbers so that\n Signals never blocks messages sent to these numbers.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "a9ad4e07-eae8-4148-b921-abd457808fe9",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"phoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/signals/1/trusted-msisdns",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "signals",
+                            "1",
+                            "trusted-msisdns"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"examples\": {\n    \"OK\": {\n      \"summary\": \"OK\",\n      \"description\": \"OK\",\n      \"value\": {}\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T02:00:15.000Z",
+                      "updatedAt": "2026-07-28T02:00:15.000Z",
+                      "uid": "35240-a9ad4e07-eae8-4148-b921-abd457808fe9"
+                    },
+                    {
+                      "id": "66b729cd-d967-44c0-88f7-a929b09b223b",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"phoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/signals/1/trusted-msisdns",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "signals",
+                            "1",
+                            "trusted-msisdns"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorDetails\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:00:15.000Z",
+                      "updatedAt": "2026-07-28T02:00:15.000Z",
+                      "uid": "35240-66b729cd-d967-44c0-88f7-a929b09b223b"
+                    },
+                    {
+                      "id": "90f8a84a-da79-433d-a6b6-703e1d4319c0",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"phoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/signals/1/trusted-msisdns",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "signals",
+                            "1",
+                            "trusted-msisdns"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"ut317\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T02:00:15.000Z",
+                      "updatedAt": "2026-07-28T02:00:15.000Z",
+                      "uid": "35240-90f8a84a-da79-433d-a6b6-703e1d4319c0"
+                    },
+                    {
+                      "id": "885adb74-5a63-4c9c-96db-d6b7bd072902",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"phoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/signals/1/trusted-msisdns",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "signals",
+                            "1",
+                            "trusted-msisdns"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"ut317\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T02:00:15.000Z",
+                      "updatedAt": "2026-07-28T02:00:15.000Z",
+                      "uid": "35240-885adb74-5a63-4c9c-96db-d6b7bd072902"
+                    },
+                    {
+                      "id": "8b7b3a81-1125-4602-8d69-9e1c4f2bca8e",
+                      "name": "Too Many Requests",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"phoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/signals/1/trusted-msisdns",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "signals",
+                            "1",
+                            "trusted-msisdns"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"ut317\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T02:00:15.000Z",
+                      "updatedAt": "2026-07-28T02:00:15.000Z",
+                      "uid": "35240-8b7b3a81-1125-4602-8d69-9e1c4f2bca8e"
+                    },
+                    {
+                      "id": "926a8b18-3699-49e9-bfc0-07b6fbfef055",
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"phoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/signals/1/trusted-msisdns",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "signals",
+                            "1",
+                            "trusted-msisdns"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"ut317\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T02:00:15.000Z",
+                      "updatedAt": "2026-07-28T02:00:15.000Z",
+                      "uid": "35240-926a8b18-3699-49e9-bfc0-07b6fbfef055"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:00:15.000Z",
+                  "updatedAt": "2026-07-28T02:00:15.000Z",
+                  "uid": "35240-0803cb0b-ae95-4cd0-9cff-518c3b37df83"
+                },
+                {
+                  "name": "Remove phone numbers from a list",
+                  "id": "0b157d84-1c2b-47db-9d0e-4875e43ba1e4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"phoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/signals/1/trusted-msisdns",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "signals",
+                        "1",
+                        "trusted-msisdns"
+                      ]
+                    },
+                    "description": "Remove phone numbers from a MSISDN list of trusted phone numbers.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "72f749a0-5c13-44ef-be17-8f83a5b90d0a",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"phoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/signals/1/trusted-msisdns",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "signals",
+                            "1",
+                            "trusted-msisdns"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"examples\": {\n    \"OK\": {\n      \"summary\": \"OK\",\n      \"description\": \"OK\",\n      \"value\": {}\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T02:00:15.000Z",
+                      "updatedAt": "2026-07-28T02:00:15.000Z",
+                      "uid": "35240-72f749a0-5c13-44ef-be17-8f83a5b90d0a"
+                    },
+                    {
+                      "id": "e8a29bb4-6406-4155-a8ad-f88ffe87b495",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"phoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/signals/1/trusted-msisdns",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "signals",
+                            "1",
+                            "trusted-msisdns"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errorDetails\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:00:15.000Z",
+                      "updatedAt": "2026-07-28T02:00:15.000Z",
+                      "uid": "35240-e8a29bb4-6406-4155-a8ad-f88ffe87b495"
+                    },
+                    {
+                      "id": "4e127aee-2619-41a4-b2d7-6ea6a2b53a15",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"phoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/signals/1/trusted-msisdns",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "signals",
+                            "1",
+                            "trusted-msisdns"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"ut317\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T02:00:15.000Z",
+                      "updatedAt": "2026-07-28T02:00:15.000Z",
+                      "uid": "35240-4e127aee-2619-41a4-b2d7-6ea6a2b53a15"
+                    },
+                    {
+                      "id": "75928c17-1de1-4bb5-be34-5de4f96a329c",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"phoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/signals/1/trusted-msisdns",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "signals",
+                            "1",
+                            "trusted-msisdns"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"ut317\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T02:00:15.000Z",
+                      "updatedAt": "2026-07-28T02:00:15.000Z",
+                      "uid": "35240-75928c17-1de1-4bb5-be34-5de4f96a329c"
+                    },
+                    {
+                      "id": "ed30c21e-36fb-4bda-beff-768f78b263df",
+                      "name": "Too Many Requests",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"phoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/signals/1/trusted-msisdns",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "signals",
+                            "1",
+                            "trusted-msisdns"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"ut317\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T02:00:15.000Z",
+                      "updatedAt": "2026-07-28T02:00:15.000Z",
+                      "uid": "35240-ed30c21e-36fb-4bda-beff-768f78b263df"
+                    },
+                    {
+                      "id": "ad82a79e-98ed-458e-979d-35f44698fc87",
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"phoneNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/signals/1/trusted-msisdns",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "signals",
+                            "1",
+                            "trusted-msisdns"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"ut317\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T02:00:15.000Z",
+                      "updatedAt": "2026-07-28T02:00:15.000Z",
+                      "uid": "35240-ad82a79e-98ed-458e-979d-35f44698fc87"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:00:15.000Z",
+                  "updatedAt": "2026-07-28T02:00:15.000Z",
+                  "uid": "35240-0b157d84-1c2b-47db-9d0e-4875e43ba1e4"
+                }
+              ],
+              "id": "b748ba6f-bff6-47fc-b1ff-cc0b86d128a9",
+              "createdAt": "2026-07-28T02:00:15.000Z",
+              "updatedAt": "2026-07-28T02:00:15.000Z",
+              "uid": "35240-b748ba6f-bff6-47fc-b1ff-cc0b86d128a9"
+            }
+          ],
+          "id": "5e39abd1-139d-494f-85b1-3ab1ef588557",
+          "createdAt": "2026-07-28T02:00:15.000Z",
+          "updatedAt": "2026-07-28T02:00:15.000Z",
+          "uid": "35240-5e39abd1-139d-494f-85b1-3ab1ef588557"
+        }
+      ],
+      "id": "20c0bf45-310c-4c3b-9569-03d5ab6391f0",
+      "createdAt": "2026-07-28T02:00:15.000Z",
+      "updatedAt": "2026-07-28T02:00:15.000Z",
+      "uid": "35240-20c0bf45-310c-4c3b-9569-03d5ab6391f0"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

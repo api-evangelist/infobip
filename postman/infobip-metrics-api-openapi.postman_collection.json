@@ -1,0 +1,842 @@
+{
+  "info": {
+    "_postman_id": "348db69c-1f2c-42d2-bf67-9796f1b246d4",
+    "name": "Infobip OpenAPI Specification",
+    "description": "OpenAPI Specification that contains all public endpoints and webhooks.\n\nContact Support:\n Name: Infobip support\n Email: support@infobip.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:59:20.000Z",
+    "updatedAt": "2026-07-28T01:59:21.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-348db69c-1f2c-42d2-bf67-9796f1b246d4"
+  },
+  "item": [
+    {
+      "name": "metrics",
+      "item": [
+        {
+          "name": "1",
+          "item": [
+            {
+              "name": "query-aggregate-data",
+              "item": [
+                {
+                  "name": "Query aggregated traffic data",
+                  "id": "0c145615-1c32-4b2e-b1f6-d27ea8bea7b0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"callbackUrl\": \"<string>\",\n  \"request\": {\n    \"aggregateBy\": [\n      \"NETWORK_ID\",\n      \"TIME_TO_ANSWER\"\n    ],\n    \"filterBy\": {\n      \"channelCodes\": [\n        \"EMAIL\",\n        \"SMS\"\n      ],\n      \"sentSince\": \"<dateTime>\",\n      \"sentUntil\": \"<dateTime>\",\n      \"accountKeys\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"includeSubaccounts\": false,\n      \"timeToDeliver\": [\n        {\n          \"from\": \"SECONDS_20\",\n          \"to\": \"SECONDS_1\"\n        },\n        {\n          \"from\": \"SECONDS_2\",\n          \"to\": \"SECONDS_2\"\n        }\n      ],\n      \"timeToAnswer\": [\n        {\n          \"from\": \"SECONDS_10\",\n          \"to\": \"HOURS_18\"\n        },\n        {\n          \"from\": \"SECONDS_4\",\n          \"to\": \"SECONDS_40\"\n        }\n      ],\n      \"timeToClickFromSeen\": [\n        {\n          \"from\": \"SECONDS_50\",\n          \"to\": \"MINUTES_5\"\n        },\n        {\n          \"from\": \"MINUTES_45\",\n          \"to\": \"SECONDS_20\"\n        }\n      ],\n      \"timeToClickFromDelivered\": [\n        {\n          \"from\": \"MINUTES_25\",\n          \"to\": \"HOURS_6\"\n        },\n        {\n          \"from\": \"SECONDS_10\",\n          \"to\": \"MINUTES_3\"\n        }\n      ],\n      \"timeToSeenFromDelivered\": [\n        {\n          \"from\": \"DAYS_2\",\n          \"to\": \"SECONDS_5\"\n        },\n        {\n          \"from\": \"SECONDS_25\",\n          \"to\": \"SECONDS_5\"\n        }\n      ],\n      \"timeToOpenFromDelivered\": [\n        {\n          \"from\": \"SECONDS_3\",\n          \"to\": \"SECONDS_30\"\n        },\n        {\n          \"from\": \"SECONDS_15\",\n          \"to\": \"SECONDS_0\"\n        }\n      ],\n      \"capabilities\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"directions\": [\n        \"INBOUND\",\n        \"INBOUND\"\n      ],\n      \"trafficTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"senders\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"senderTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"communicationIds\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"campaignReferenceIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"networkIds\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"countryIds\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"platforms\": [\n        {\n          \"applicationId\": \"<string>\",\n          \"entityId\": \"<string>\"\n        },\n        {\n          \"applicationId\": \"<string>\",\n          \"entityId\": \"<string>\"\n        }\n      ],\n      \"applicationId\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"statusGroups\": [\n        \"EXPIRED\",\n        \"PENDING\"\n      ],\n      \"statuses\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"errorGroups\": [\n        \"USER_ERRORS\",\n        \"OPERATOR_ERRORS\"\n      ],\n      \"errorCodes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"metrics\": [\n      \"TOTAL_ACCEPTED_TRAFFIC_COUNT\"\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/metrics/1/query-aggregate-data",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "metrics",
+                        "1",
+                        "query-aggregate-data"
+                      ]
+                    },
+                    "description": "Start process for traffic data aggregation. The result will be posted to `callbackURL` provided in the request. The response format is described in [Receive aggregated data result](#platform/metrics-api/receive-aggregate-data-result) operation."
+                  },
+                  "response": [
+                    {
+                      "id": "9521ef09-faca-4254-a16f-4ac3e4e73166",
+                      "name": "Data querying process is started.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"callbackUrl\": \"<string>\",\n  \"request\": {\n    \"aggregateBy\": [\n      \"NETWORK_ID\",\n      \"TIME_TO_ANSWER\"\n    ],\n    \"filterBy\": {\n      \"channelCodes\": [\n        \"EMAIL\",\n        \"SMS\"\n      ],\n      \"sentSince\": \"<dateTime>\",\n      \"sentUntil\": \"<dateTime>\",\n      \"accountKeys\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"includeSubaccounts\": false,\n      \"timeToDeliver\": [\n        {\n          \"from\": \"SECONDS_20\",\n          \"to\": \"SECONDS_1\"\n        },\n        {\n          \"from\": \"SECONDS_2\",\n          \"to\": \"SECONDS_2\"\n        }\n      ],\n      \"timeToAnswer\": [\n        {\n          \"from\": \"SECONDS_10\",\n          \"to\": \"HOURS_18\"\n        },\n        {\n          \"from\": \"SECONDS_4\",\n          \"to\": \"SECONDS_40\"\n        }\n      ],\n      \"timeToClickFromSeen\": [\n        {\n          \"from\": \"SECONDS_50\",\n          \"to\": \"MINUTES_5\"\n        },\n        {\n          \"from\": \"MINUTES_45\",\n          \"to\": \"SECONDS_20\"\n        }\n      ],\n      \"timeToClickFromDelivered\": [\n        {\n          \"from\": \"MINUTES_25\",\n          \"to\": \"HOURS_6\"\n        },\n        {\n          \"from\": \"SECONDS_10\",\n          \"to\": \"MINUTES_3\"\n        }\n      ],\n      \"timeToSeenFromDelivered\": [\n        {\n          \"from\": \"DAYS_2\",\n          \"to\": \"SECONDS_5\"\n        },\n        {\n          \"from\": \"SECONDS_25\",\n          \"to\": \"SECONDS_5\"\n        }\n      ],\n      \"timeToOpenFromDelivered\": [\n        {\n          \"from\": \"SECONDS_3\",\n          \"to\": \"SECONDS_30\"\n        },\n        {\n          \"from\": \"SECONDS_15\",\n          \"to\": \"SECONDS_0\"\n        }\n      ],\n      \"capabilities\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"directions\": [\n        \"INBOUND\",\n        \"INBOUND\"\n      ],\n      \"trafficTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"senders\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"senderTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"communicationIds\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"campaignReferenceIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"networkIds\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"countryIds\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"platforms\": [\n        {\n          \"applicationId\": \"<string>\",\n          \"entityId\": \"<string>\"\n        },\n        {\n          \"applicationId\": \"<string>\",\n          \"entityId\": \"<string>\"\n        }\n      ],\n      \"applicationId\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"statusGroups\": [\n        \"EXPIRED\",\n        \"PENDING\"\n      ],\n      \"statuses\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"errorGroups\": [\n        \"USER_ERRORS\",\n        \"OPERATOR_ERRORS\"\n      ],\n      \"errorCodes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"metrics\": [\n      \"TOTAL_ACCEPTED_TRAFFIC_COUNT\"\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/metrics/1/query-aggregate-data",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "metrics",
+                            "1",
+                            "query-aggregate-data"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:59:21.000Z",
+                      "updatedAt": "2026-07-28T01:59:21.000Z",
+                      "uid": "35240-9521ef09-faca-4254-a16f-4ac3e4e73166"
+                    },
+                    {
+                      "id": "aa8405b1-b5ae-4e82-b29b-55d51904352f",
+                      "name": "Request is malformed or invalid.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"callbackUrl\": \"<string>\",\n  \"request\": {\n    \"aggregateBy\": [\n      \"NETWORK_ID\",\n      \"TIME_TO_ANSWER\"\n    ],\n    \"filterBy\": {\n      \"channelCodes\": [\n        \"EMAIL\",\n        \"SMS\"\n      ],\n      \"sentSince\": \"<dateTime>\",\n      \"sentUntil\": \"<dateTime>\",\n      \"accountKeys\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"includeSubaccounts\": false,\n      \"timeToDeliver\": [\n        {\n          \"from\": \"SECONDS_20\",\n          \"to\": \"SECONDS_1\"\n        },\n        {\n          \"from\": \"SECONDS_2\",\n          \"to\": \"SECONDS_2\"\n        }\n      ],\n      \"timeToAnswer\": [\n        {\n          \"from\": \"SECONDS_10\",\n          \"to\": \"HOURS_18\"\n        },\n        {\n          \"from\": \"SECONDS_4\",\n          \"to\": \"SECONDS_40\"\n        }\n      ],\n      \"timeToClickFromSeen\": [\n        {\n          \"from\": \"SECONDS_50\",\n          \"to\": \"MINUTES_5\"\n        },\n        {\n          \"from\": \"MINUTES_45\",\n          \"to\": \"SECONDS_20\"\n        }\n      ],\n      \"timeToClickFromDelivered\": [\n        {\n          \"from\": \"MINUTES_25\",\n          \"to\": \"HOURS_6\"\n        },\n        {\n          \"from\": \"SECONDS_10\",\n          \"to\": \"MINUTES_3\"\n        }\n      ],\n      \"timeToSeenFromDelivered\": [\n        {\n          \"from\": \"DAYS_2\",\n          \"to\": \"SECONDS_5\"\n        },\n        {\n          \"from\": \"SECONDS_25\",\n          \"to\": \"SECONDS_5\"\n        }\n      ],\n      \"timeToOpenFromDelivered\": [\n        {\n          \"from\": \"SECONDS_3\",\n          \"to\": \"SECONDS_30\"\n        },\n        {\n          \"from\": \"SECONDS_15\",\n          \"to\": \"SECONDS_0\"\n        }\n      ],\n      \"capabilities\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"directions\": [\n        \"INBOUND\",\n        \"INBOUND\"\n      ],\n      \"trafficTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"senders\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"senderTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"communicationIds\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"campaignReferenceIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"networkIds\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"countryIds\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"platforms\": [\n        {\n          \"applicationId\": \"<string>\",\n          \"entityId\": \"<string>\"\n        },\n        {\n          \"applicationId\": \"<string>\",\n          \"entityId\": \"<string>\"\n        }\n      ],\n      \"applicationId\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"statusGroups\": [\n        \"EXPIRED\",\n        \"PENDING\"\n      ],\n      \"statuses\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"errorGroups\": [\n        \"USER_ERRORS\",\n        \"OPERATOR_ERRORS\"\n      ],\n      \"errorCodes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"metrics\": [\n      \"TOTAL_ACCEPTED_TRAFFIC_COUNT\"\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/metrics/1/query-aggregate-data",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "metrics",
+                            "1",
+                            "query-aggregate-data"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:59:21.000Z",
+                      "updatedAt": "2026-07-28T01:59:21.000Z",
+                      "uid": "35240-aa8405b1-b5ae-4e82-b29b-55d51904352f"
+                    },
+                    {
+                      "id": "d4b0d65b-12b9-49bc-a625-87c8d59fc7f1",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"callbackUrl\": \"<string>\",\n  \"request\": {\n    \"aggregateBy\": [\n      \"NETWORK_ID\",\n      \"TIME_TO_ANSWER\"\n    ],\n    \"filterBy\": {\n      \"channelCodes\": [\n        \"EMAIL\",\n        \"SMS\"\n      ],\n      \"sentSince\": \"<dateTime>\",\n      \"sentUntil\": \"<dateTime>\",\n      \"accountKeys\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"includeSubaccounts\": false,\n      \"timeToDeliver\": [\n        {\n          \"from\": \"SECONDS_20\",\n          \"to\": \"SECONDS_1\"\n        },\n        {\n          \"from\": \"SECONDS_2\",\n          \"to\": \"SECONDS_2\"\n        }\n      ],\n      \"timeToAnswer\": [\n        {\n          \"from\": \"SECONDS_10\",\n          \"to\": \"HOURS_18\"\n        },\n        {\n          \"from\": \"SECONDS_4\",\n          \"to\": \"SECONDS_40\"\n        }\n      ],\n      \"timeToClickFromSeen\": [\n        {\n          \"from\": \"SECONDS_50\",\n          \"to\": \"MINUTES_5\"\n        },\n        {\n          \"from\": \"MINUTES_45\",\n          \"to\": \"SECONDS_20\"\n        }\n      ],\n      \"timeToClickFromDelivered\": [\n        {\n          \"from\": \"MINUTES_25\",\n          \"to\": \"HOURS_6\"\n        },\n        {\n          \"from\": \"SECONDS_10\",\n          \"to\": \"MINUTES_3\"\n        }\n      ],\n      \"timeToSeenFromDelivered\": [\n        {\n          \"from\": \"DAYS_2\",\n          \"to\": \"SECONDS_5\"\n        },\n        {\n          \"from\": \"SECONDS_25\",\n          \"to\": \"SECONDS_5\"\n        }\n      ],\n      \"timeToOpenFromDelivered\": [\n        {\n          \"from\": \"SECONDS_3\",\n          \"to\": \"SECONDS_30\"\n        },\n        {\n          \"from\": \"SECONDS_15\",\n          \"to\": \"SECONDS_0\"\n        }\n      ],\n      \"capabilities\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"directions\": [\n        \"INBOUND\",\n        \"INBOUND\"\n      ],\n      \"trafficTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"senders\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"senderTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"communicationIds\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"campaignReferenceIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"networkIds\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"countryIds\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"platforms\": [\n        {\n          \"applicationId\": \"<string>\",\n          \"entityId\": \"<string>\"\n        },\n        {\n          \"applicationId\": \"<string>\",\n          \"entityId\": \"<string>\"\n        }\n      ],\n      \"applicationId\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"statusGroups\": [\n        \"EXPIRED\",\n        \"PENDING\"\n      ],\n      \"statuses\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"errorGroups\": [\n        \"USER_ERRORS\",\n        \"OPERATOR_ERRORS\"\n      ],\n      \"errorCodes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"metrics\": [\n      \"TOTAL_ACCEPTED_TRAFFIC_COUNT\"\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/metrics/1/query-aggregate-data",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "metrics",
+                            "1",
+                            "query-aggregate-data"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:59:21.000Z",
+                      "updatedAt": "2026-07-28T01:59:21.000Z",
+                      "uid": "35240-d4b0d65b-12b9-49bc-a625-87c8d59fc7f1"
+                    },
+                    {
+                      "id": "f873ab31-b297-465f-8697-706ea2f64597",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"callbackUrl\": \"<string>\",\n  \"request\": {\n    \"aggregateBy\": [\n      \"NETWORK_ID\",\n      \"TIME_TO_ANSWER\"\n    ],\n    \"filterBy\": {\n      \"channelCodes\": [\n        \"EMAIL\",\n        \"SMS\"\n      ],\n      \"sentSince\": \"<dateTime>\",\n      \"sentUntil\": \"<dateTime>\",\n      \"accountKeys\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"includeSubaccounts\": false,\n      \"timeToDeliver\": [\n        {\n          \"from\": \"SECONDS_20\",\n          \"to\": \"SECONDS_1\"\n        },\n        {\n          \"from\": \"SECONDS_2\",\n          \"to\": \"SECONDS_2\"\n        }\n      ],\n      \"timeToAnswer\": [\n        {\n          \"from\": \"SECONDS_10\",\n          \"to\": \"HOURS_18\"\n        },\n        {\n          \"from\": \"SECONDS_4\",\n          \"to\": \"SECONDS_40\"\n        }\n      ],\n      \"timeToClickFromSeen\": [\n        {\n          \"from\": \"SECONDS_50\",\n          \"to\": \"MINUTES_5\"\n        },\n        {\n          \"from\": \"MINUTES_45\",\n          \"to\": \"SECONDS_20\"\n        }\n      ],\n      \"timeToClickFromDelivered\": [\n        {\n          \"from\": \"MINUTES_25\",\n          \"to\": \"HOURS_6\"\n        },\n        {\n          \"from\": \"SECONDS_10\",\n          \"to\": \"MINUTES_3\"\n        }\n      ],\n      \"timeToSeenFromDelivered\": [\n        {\n          \"from\": \"DAYS_2\",\n          \"to\": \"SECONDS_5\"\n        },\n        {\n          \"from\": \"SECONDS_25\",\n          \"to\": \"SECONDS_5\"\n        }\n      ],\n      \"timeToOpenFromDelivered\": [\n        {\n          \"from\": \"SECONDS_3\",\n          \"to\": \"SECONDS_30\"\n        },\n        {\n          \"from\": \"SECONDS_15\",\n          \"to\": \"SECONDS_0\"\n        }\n      ],\n      \"capabilities\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"directions\": [\n        \"INBOUND\",\n        \"INBOUND\"\n      ],\n      \"trafficTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"senders\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"senderTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"communicationIds\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"campaignReferenceIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"networkIds\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"countryIds\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"platforms\": [\n        {\n          \"applicationId\": \"<string>\",\n          \"entityId\": \"<string>\"\n        },\n        {\n          \"applicationId\": \"<string>\",\n          \"entityId\": \"<string>\"\n        }\n      ],\n      \"applicationId\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"statusGroups\": [\n        \"EXPIRED\",\n        \"PENDING\"\n      ],\n      \"statuses\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"errorGroups\": [\n        \"USER_ERRORS\",\n        \"OPERATOR_ERRORS\"\n      ],\n      \"errorCodes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"metrics\": [\n      \"TOTAL_ACCEPTED_TRAFFIC_COUNT\"\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/metrics/1/query-aggregate-data",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "metrics",
+                            "1",
+                            "query-aggregate-data"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:59:21.000Z",
+                      "updatedAt": "2026-07-28T01:59:21.000Z",
+                      "uid": "35240-f873ab31-b297-465f-8697-706ea2f64597"
+                    },
+                    {
+                      "id": "91a56cf6-a2c6-4e1e-96d1-6fd2740feef4",
+                      "name": "Too Many Requests",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"callbackUrl\": \"<string>\",\n  \"request\": {\n    \"aggregateBy\": [\n      \"NETWORK_ID\",\n      \"TIME_TO_ANSWER\"\n    ],\n    \"filterBy\": {\n      \"channelCodes\": [\n        \"EMAIL\",\n        \"SMS\"\n      ],\n      \"sentSince\": \"<dateTime>\",\n      \"sentUntil\": \"<dateTime>\",\n      \"accountKeys\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"includeSubaccounts\": false,\n      \"timeToDeliver\": [\n        {\n          \"from\": \"SECONDS_20\",\n          \"to\": \"SECONDS_1\"\n        },\n        {\n          \"from\": \"SECONDS_2\",\n          \"to\": \"SECONDS_2\"\n        }\n      ],\n      \"timeToAnswer\": [\n        {\n          \"from\": \"SECONDS_10\",\n          \"to\": \"HOURS_18\"\n        },\n        {\n          \"from\": \"SECONDS_4\",\n          \"to\": \"SECONDS_40\"\n        }\n      ],\n      \"timeToClickFromSeen\": [\n        {\n          \"from\": \"SECONDS_50\",\n          \"to\": \"MINUTES_5\"\n        },\n        {\n          \"from\": \"MINUTES_45\",\n          \"to\": \"SECONDS_20\"\n        }\n      ],\n      \"timeToClickFromDelivered\": [\n        {\n          \"from\": \"MINUTES_25\",\n          \"to\": \"HOURS_6\"\n        },\n        {\n          \"from\": \"SECONDS_10\",\n          \"to\": \"MINUTES_3\"\n        }\n      ],\n      \"timeToSeenFromDelivered\": [\n        {\n          \"from\": \"DAYS_2\",\n          \"to\": \"SECONDS_5\"\n        },\n        {\n          \"from\": \"SECONDS_25\",\n          \"to\": \"SECONDS_5\"\n        }\n      ],\n      \"timeToOpenFromDelivered\": [\n        {\n          \"from\": \"SECONDS_3\",\n          \"to\": \"SECONDS_30\"\n        },\n        {\n          \"from\": \"SECONDS_15\",\n          \"to\": \"SECONDS_0\"\n        }\n      ],\n      \"capabilities\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"directions\": [\n        \"INBOUND\",\n        \"INBOUND\"\n      ],\n      \"trafficTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"senders\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"senderTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"communicationIds\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"campaignReferenceIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"networkIds\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"countryIds\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"platforms\": [\n        {\n          \"applicationId\": \"<string>\",\n          \"entityId\": \"<string>\"\n        },\n        {\n          \"applicationId\": \"<string>\",\n          \"entityId\": \"<string>\"\n        }\n      ],\n      \"applicationId\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"statusGroups\": [\n        \"EXPIRED\",\n        \"PENDING\"\n      ],\n      \"statuses\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"errorGroups\": [\n        \"USER_ERRORS\",\n        \"OPERATOR_ERRORS\"\n      ],\n      \"errorCodes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"metrics\": [\n      \"TOTAL_ACCEPTED_TRAFFIC_COUNT\"\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/metrics/1/query-aggregate-data",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "metrics",
+                            "1",
+                            "query-aggregate-data"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:59:21.000Z",
+                      "updatedAt": "2026-07-28T01:59:21.000Z",
+                      "uid": "35240-91a56cf6-a2c6-4e1e-96d1-6fd2740feef4"
+                    },
+                    {
+                      "id": "d448dc1f-c5fb-4d37-8486-500b51ef90be",
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"callbackUrl\": \"<string>\",\n  \"request\": {\n    \"aggregateBy\": [\n      \"NETWORK_ID\",\n      \"TIME_TO_ANSWER\"\n    ],\n    \"filterBy\": {\n      \"channelCodes\": [\n        \"EMAIL\",\n        \"SMS\"\n      ],\n      \"sentSince\": \"<dateTime>\",\n      \"sentUntil\": \"<dateTime>\",\n      \"accountKeys\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"includeSubaccounts\": false,\n      \"timeToDeliver\": [\n        {\n          \"from\": \"SECONDS_20\",\n          \"to\": \"SECONDS_1\"\n        },\n        {\n          \"from\": \"SECONDS_2\",\n          \"to\": \"SECONDS_2\"\n        }\n      ],\n      \"timeToAnswer\": [\n        {\n          \"from\": \"SECONDS_10\",\n          \"to\": \"HOURS_18\"\n        },\n        {\n          \"from\": \"SECONDS_4\",\n          \"to\": \"SECONDS_40\"\n        }\n      ],\n      \"timeToClickFromSeen\": [\n        {\n          \"from\": \"SECONDS_50\",\n          \"to\": \"MINUTES_5\"\n        },\n        {\n          \"from\": \"MINUTES_45\",\n          \"to\": \"SECONDS_20\"\n        }\n      ],\n      \"timeToClickFromDelivered\": [\n        {\n          \"from\": \"MINUTES_25\",\n          \"to\": \"HOURS_6\"\n        },\n        {\n          \"from\": \"SECONDS_10\",\n          \"to\": \"MINUTES_3\"\n        }\n      ],\n      \"timeToSeenFromDelivered\": [\n        {\n          \"from\": \"DAYS_2\",\n          \"to\": \"SECONDS_5\"\n        },\n        {\n          \"from\": \"SECONDS_25\",\n          \"to\": \"SECONDS_5\"\n        }\n      ],\n      \"timeToOpenFromDelivered\": [\n        {\n          \"from\": \"SECONDS_3\",\n          \"to\": \"SECONDS_30\"\n        },\n        {\n          \"from\": \"SECONDS_15\",\n          \"to\": \"SECONDS_0\"\n        }\n      ],\n      \"capabilities\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"directions\": [\n        \"INBOUND\",\n        \"INBOUND\"\n      ],\n      \"trafficTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"senders\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"senderTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"communicationIds\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"campaignReferenceIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"networkIds\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"countryIds\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"platforms\": [\n        {\n          \"applicationId\": \"<string>\",\n          \"entityId\": \"<string>\"\n        },\n        {\n          \"applicationId\": \"<string>\",\n          \"entityId\": \"<string>\"\n        }\n      ],\n      \"applicationId\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"statusGroups\": [\n        \"EXPIRED\",\n        \"PENDING\"\n      ],\n      \"statuses\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"errorGroups\": [\n        \"USER_ERRORS\",\n        \"OPERATOR_ERRORS\"\n      ],\n      \"errorCodes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"metrics\": [\n      \"TOTAL_ACCEPTED_TRAFFIC_COUNT\"\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/metrics/1/query-aggregate-data",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "metrics",
+                            "1",
+                            "query-aggregate-data"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:59:21.000Z",
+                      "updatedAt": "2026-07-28T01:59:21.000Z",
+                      "uid": "35240-d448dc1f-c5fb-4d37-8486-500b51ef90be"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:59:21.000Z",
+                  "updatedAt": "2026-07-28T01:59:21.000Z",
+                  "uid": "35240-0c145615-1c32-4b2e-b1f6-d27ea8bea7b0"
+                }
+              ],
+              "id": "fe47f545-d41b-4e1d-a45f-8a3ba7a236d5",
+              "createdAt": "2026-07-28T01:59:21.000Z",
+              "updatedAt": "2026-07-28T01:59:21.000Z",
+              "uid": "35240-fe47f545-d41b-4e1d-a45f-8a3ba7a236d5"
+            },
+            {
+              "name": "requests",
+              "item": [
+                {
+                  "name": "{requestId}",
+                  "item": [
+                    {
+                      "name": "Get status of query aggregate data request",
+                      "id": "7527530d-3385-496c-8b82-555c4029b0b9",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/metrics/1/requests/:requestId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "metrics",
+                            "1",
+                            "requests",
+                            ":requestId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "6ffbc638-aab4-45cf-adea-be48105210d5",
+                              "key": "requestId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Return the status of ongoing request, started by invoking [Query aggregated traffic data](#platform/metrics-api/query-aggregate-data)."
+                      },
+                      "response": [
+                        {
+                          "id": "6a1b600f-ece0-48e7-b1db-0eb42654cc62",
+                          "name": "Request status retrieved.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/metrics/1/requests/:requestId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "metrics",
+                                "1",
+                                "requests",
+                                ":requestId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "requestId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"requestId\": \"<string>\",\n  \"status\": \"IN_PROGRESS\",\n  \"failureMessage\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:59:21.000Z",
+                          "updatedAt": "2026-07-28T01:59:21.000Z",
+                          "uid": "35240-6a1b600f-ece0-48e7-b1db-0eb42654cc62"
+                        },
+                        {
+                          "id": "5744b860-f95e-4c7b-b045-b66b51b50e16",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/metrics/1/requests/:requestId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "metrics",
+                                "1",
+                                "requests",
+                                ":requestId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "requestId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:59:21.000Z",
+                          "updatedAt": "2026-07-28T01:59:21.000Z",
+                          "uid": "35240-5744b860-f95e-4c7b-b045-b66b51b50e16"
+                        },
+                        {
+                          "id": "1d0ee7e3-6302-49f3-ae60-adf077b241e5",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/metrics/1/requests/:requestId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "metrics",
+                                "1",
+                                "requests",
+                                ":requestId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "requestId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:59:21.000Z",
+                          "updatedAt": "2026-07-28T01:59:21.000Z",
+                          "uid": "35240-1d0ee7e3-6302-49f3-ae60-adf077b241e5"
+                        },
+                        {
+                          "id": "6e6dd029-5c3b-4091-bced-fe3363a7fd2c",
+                          "name": "Request with provided id not found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/metrics/1/requests/:requestId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "metrics",
+                                "1",
+                                "requests",
+                                ":requestId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "requestId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:59:21.000Z",
+                          "updatedAt": "2026-07-28T01:59:21.000Z",
+                          "uid": "35240-6e6dd029-5c3b-4091-bced-fe3363a7fd2c"
+                        },
+                        {
+                          "id": "39ef540c-9407-427f-b9cc-0f5cc2e35f30",
+                          "name": "Too Many Requests",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/metrics/1/requests/:requestId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "metrics",
+                                "1",
+                                "requests",
+                                ":requestId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "requestId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:59:21.000Z",
+                          "updatedAt": "2026-07-28T01:59:21.000Z",
+                          "uid": "35240-39ef540c-9407-427f-b9cc-0f5cc2e35f30"
+                        },
+                        {
+                          "id": "18e0519c-0a2e-4e85-ac7b-ebe7d89df29f",
+                          "name": "Internal Server Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/metrics/1/requests/:requestId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "metrics",
+                                "1",
+                                "requests",
+                                ":requestId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "requestId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:59:21.000Z",
+                          "updatedAt": "2026-07-28T01:59:21.000Z",
+                          "uid": "35240-18e0519c-0a2e-4e85-ac7b-ebe7d89df29f"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:59:21.000Z",
+                      "updatedAt": "2026-07-28T01:59:21.000Z",
+                      "uid": "35240-7527530d-3385-496c-8b82-555c4029b0b9"
+                    }
+                  ],
+                  "id": "70991b5a-755a-4cbf-97ed-ac774573f119",
+                  "createdAt": "2026-07-28T01:59:21.000Z",
+                  "updatedAt": "2026-07-28T01:59:21.000Z",
+                  "uid": "35240-70991b5a-755a-4cbf-97ed-ac774573f119"
+                }
+              ],
+              "id": "04636934-fddd-4478-8510-1cca961451c3",
+              "createdAt": "2026-07-28T01:59:21.000Z",
+              "updatedAt": "2026-07-28T01:59:21.000Z",
+              "uid": "35240-04636934-fddd-4478-8510-1cca961451c3"
+            }
+          ],
+          "id": "226bf610-c12c-4319-bb12-f1127cb42425",
+          "createdAt": "2026-07-28T01:59:21.000Z",
+          "updatedAt": "2026-07-28T01:59:21.000Z",
+          "uid": "35240-226bf610-c12c-4319-bb12-f1127cb42425"
+        }
+      ],
+      "id": "466142e4-d188-406f-9618-e15e6a782265",
+      "createdAt": "2026-07-28T01:59:21.000Z",
+      "updatedAt": "2026-07-28T01:59:21.000Z",
+      "uid": "35240-466142e4-d188-406f-9618-e15e6a782265"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

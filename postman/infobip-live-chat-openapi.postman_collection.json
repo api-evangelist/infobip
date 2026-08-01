@@ -1,0 +1,410 @@
+{
+  "info": {
+    "_postman_id": "cb7e9aac-ae78-4e10-a0dc-45dd7e7bbc8e",
+    "name": "Infobip OpenAPI Specification",
+    "description": "OpenAPI Specification that contains all public endpoints and webhooks.\n\nContact Support:\n Name: Infobip support\n Email: support@infobip.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:58:58.000Z",
+    "updatedAt": "2026-07-28T01:58:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cb7e9aac-ae78-4e10-a0dc-45dd7e7bbc8e"
+  },
+  "item": [
+    {
+      "name": "livechat",
+      "item": [
+        {
+          "name": "1",
+          "item": [
+            {
+              "name": "widgets",
+              "item": [
+                {
+                  "name": "{widgetId}",
+                  "item": [
+                    {
+                      "name": "sessions",
+                      "item": [
+                        {
+                          "name": "{sessionId}",
+                          "item": [
+                            {
+                              "name": "Invalidate customer session",
+                              "id": "1a9b6e9e-9910-4865-ad3f-b9b4e0ea7c76",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "apikey",
+                                  "apikey": [
+                                    {
+                                      "key": "key",
+                                      "value": "Authorization",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "value",
+                                      "value": "{{apiKey}}",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "in",
+                                      "value": "header",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/livechat/1/widgets/:widgetId/sessions/:sessionId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "livechat",
+                                    "1",
+                                    "widgets",
+                                    ":widgetId",
+                                    "sessions",
+                                    ":sessionId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "a7a766ba-599a-46ea-b65a-3dc6d6498450",
+                                      "key": "widgetId",
+                                      "value": "<uuid>",
+                                      "description": "(Required) Unique identifier of your widget. You can obtain the identifier from the [widget configuration page](https://portal.infobip.com/apps/livechat) or from the widget installation snippet."
+                                    },
+                                    {
+                                      "id": "19d5533d-9397-4573-8f95-0238d3f3baf1",
+                                      "key": "sessionId",
+                                      "value": "<string>",
+                                      "description": "(Required) Unique identifier of user session to be invalidated. For more information on session identifiers, see the **SID** parameter in [personalization token](https://www.infobip.com/docs/live-chat/users-and-authentication#generate-the-personalization-token-web-authentication) documentation."
+                                    }
+                                  ]
+                                },
+                                "description": "This method enables you to invalidate an [authenticated Live Chat web session](https://www.infobip.com/docs/live-chat/users-and-authentication#web-authentication).\n      Session invalidation is performed whenever you wish to explicitly terminate an authenticated session, for example on user log out or due to security concerns."
+                              },
+                              "response": [
+                                {
+                                  "id": "5759bbe9-ba5e-4841-82ec-dfc5caacd790",
+                                  "name": "No Content",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "Authorization",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/livechat/1/widgets/:widgetId/sessions/:sessionId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "livechat",
+                                        "1",
+                                        "widgets",
+                                        ":widgetId",
+                                        "sessions",
+                                        ":sessionId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "widgetId"
+                                        },
+                                        {
+                                          "key": "sessionId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "No Content",
+                                  "code": 204,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:58:59.000Z",
+                                  "updatedAt": "2026-07-28T01:58:59.000Z",
+                                  "uid": "35240-5759bbe9-ba5e-4841-82ec-dfc5caacd790"
+                                },
+                                {
+                                  "id": "4118cdd6-3678-46fa-8cc2-148d051874a1",
+                                  "name": "Unauthorized",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "Authorization",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/livechat/1/widgets/:widgetId/sessions/:sessionId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "livechat",
+                                        "1",
+                                        "widgets",
+                                        ":widgetId",
+                                        "sessions",
+                                        ":sessionId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "widgetId"
+                                        },
+                                        {
+                                          "key": "sessionId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"doloreccb\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"voluptate_d\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                                  "createdAt": "2026-07-28T01:58:59.000Z",
+                                  "updatedAt": "2026-07-28T01:58:59.000Z",
+                                  "uid": "35240-4118cdd6-3678-46fa-8cc2-148d051874a1"
+                                },
+                                {
+                                  "id": "07039210-5e63-49a1-8d2a-e07bcd256505",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "Authorization",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/livechat/1/widgets/:widgetId/sessions/:sessionId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "livechat",
+                                        "1",
+                                        "widgets",
+                                        ":widgetId",
+                                        "sessions",
+                                        ":sessionId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "widgetId"
+                                        },
+                                        {
+                                          "key": "sessionId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"doloreccb\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"voluptate_d\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                                  "createdAt": "2026-07-28T01:58:59.000Z",
+                                  "updatedAt": "2026-07-28T01:58:59.000Z",
+                                  "uid": "35240-07039210-5e63-49a1-8d2a-e07bcd256505"
+                                },
+                                {
+                                  "id": "c284dc7c-8d9e-4ef1-8e29-58f46c2d2084",
+                                  "name": "Not Found",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "Authorization",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/livechat/1/widgets/:widgetId/sessions/:sessionId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "livechat",
+                                        "1",
+                                        "widgets",
+                                        ":widgetId",
+                                        "sessions",
+                                        ":sessionId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "widgetId"
+                                        },
+                                        {
+                                          "key": "sessionId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"doloreccb\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"voluptate_d\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                                  "createdAt": "2026-07-28T01:58:59.000Z",
+                                  "updatedAt": "2026-07-28T01:58:59.000Z",
+                                  "uid": "35240-c284dc7c-8d9e-4ef1-8e29-58f46c2d2084"
+                                },
+                                {
+                                  "id": "f2854d42-5c8d-4931-a502-9de9ac638182",
+                                  "name": "Internal Server Error",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "Authorization",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/livechat/1/widgets/:widgetId/sessions/:sessionId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "livechat",
+                                        "1",
+                                        "widgets",
+                                        ":widgetId",
+                                        "sessions",
+                                        ":sessionId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "widgetId"
+                                        },
+                                        {
+                                          "key": "sessionId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Internal Server Error",
+                                  "code": 500,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"doloreccb\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"voluptate_d\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                                  "createdAt": "2026-07-28T01:58:59.000Z",
+                                  "updatedAt": "2026-07-28T01:58:59.000Z",
+                                  "uid": "35240-f2854d42-5c8d-4931-a502-9de9ac638182"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:58:59.000Z",
+                              "updatedAt": "2026-07-28T01:58:59.000Z",
+                              "uid": "35240-1a9b6e9e-9910-4865-ad3f-b9b4e0ea7c76"
+                            }
+                          ],
+                          "id": "7729a4bd-74b1-4669-bdf3-fd8c1350d172",
+                          "createdAt": "2026-07-28T01:58:59.000Z",
+                          "updatedAt": "2026-07-28T01:58:59.000Z",
+                          "uid": "35240-7729a4bd-74b1-4669-bdf3-fd8c1350d172"
+                        }
+                      ],
+                      "id": "a88d53cb-d44a-4ddf-94e8-5bb2c8b398aa",
+                      "createdAt": "2026-07-28T01:58:59.000Z",
+                      "updatedAt": "2026-07-28T01:58:59.000Z",
+                      "uid": "35240-a88d53cb-d44a-4ddf-94e8-5bb2c8b398aa"
+                    }
+                  ],
+                  "id": "f638275b-0f8f-4728-a4ea-0a744992fde1",
+                  "createdAt": "2026-07-28T01:58:59.000Z",
+                  "updatedAt": "2026-07-28T01:58:59.000Z",
+                  "uid": "35240-f638275b-0f8f-4728-a4ea-0a744992fde1"
+                }
+              ],
+              "id": "cc8490c7-ffed-431d-9b4b-f8b5f6f4e155",
+              "createdAt": "2026-07-28T01:58:59.000Z",
+              "updatedAt": "2026-07-28T01:58:59.000Z",
+              "uid": "35240-cc8490c7-ffed-431d-9b4b-f8b5f6f4e155"
+            }
+          ],
+          "id": "a1283a43-9ff8-4536-b36d-dbda1a41eb26",
+          "createdAt": "2026-07-28T01:58:59.000Z",
+          "updatedAt": "2026-07-28T01:58:59.000Z",
+          "uid": "35240-a1283a43-9ff8-4536-b36d-dbda1a41eb26"
+        }
+      ],
+      "id": "bec785a2-2899-4940-9c09-bcbfcfa38be8",
+      "createdAt": "2026-07-28T01:58:59.000Z",
+      "updatedAt": "2026-07-28T01:58:59.000Z",
+      "uid": "35240-bec785a2-2899-4940-9c09-bcbfcfa38be8"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

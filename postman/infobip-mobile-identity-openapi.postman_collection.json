@@ -1,0 +1,3526 @@
+{
+  "info": {
+    "_postman_id": "6f1e05b6-a3f8-4157-952b-6f056b469284",
+    "name": "Infobip OpenAPI Specification",
+    "description": "OpenAPI Specification that contains all public endpoints and webhooks.\n\nContact Support:\n Name: Infobip support\n Email: support@infobip.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:59:26.000Z",
+    "updatedAt": "2026-07-28T01:59:26.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6f1e05b6-a3f8-4157-952b-6f056b469284"
+  },
+  "item": [
+    {
+      "name": "mi",
+      "item": [
+        {
+          "name": "verification",
+          "item": [
+            {
+              "name": "1",
+              "item": [
+                {
+                  "name": "verify",
+                  "item": [
+                    {
+                      "name": "advanced",
+                      "item": [
+                        {
+                          "name": "Advanced Silent Mobile Verification",
+                          "id": "b7c63401-68d4-4149-b1b5-216b614c89bf",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "Authorization",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"callbackUrl\": \"<string>\",\n  \"consentGranted\": \"<boolean>\",\n  \"phoneNumber\": \"<string>\",\n  \"returnUrl\": \"<string>\",\n  \"smsFailover\": {\n    \"from\": \"<string>\",\n    \"text\": \"<string>\",\n    \"validityPeriod\": \"<integer>\",\n    \"regional\": {\n      \"indiaDlt\": {\n        \"principalEntityId\": \"<string>\",\n        \"contentTemplateId\": \"<string>\"\n      }\n    }\n  },\n  \"simSwapCheck\": {\n    \"period\": \"<integer>\",\n    \"proceedOn\": [\n      \"NO_COVERAGE\",\n      \"ANY_ERROR\"\n    ]\n  },\n  \"deviceIp\": \"<string>\",\n  \"devicePort\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/mi/verification/1/verify/advanced",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "mi",
+                                "verification",
+                                "1",
+                                "verify",
+                                "advanced"
+                              ]
+                            },
+                            "description": "Verify possession of the end user's mobile phone number with a mobile network operator's data connection.\nIf request body is supplied with additional data, the following can be done:\n- SIM swap check before the mobile phone number verification\n- Fallback SMS message if silent mobile verification fails\n\nAPI and URL may vary per country. Contact your Account Manager for implementation details."
+                          },
+                          "response": [
+                            {
+                              "id": "49ea42f9-5ac3-4573-b813-3634a43f9328",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"callbackUrl\": \"<string>\",\n  \"consentGranted\": \"<boolean>\",\n  \"phoneNumber\": \"<string>\",\n  \"returnUrl\": \"<string>\",\n  \"smsFailover\": {\n    \"from\": \"<string>\",\n    \"text\": \"<string>\",\n    \"validityPeriod\": \"<integer>\",\n    \"regional\": {\n      \"indiaDlt\": {\n        \"principalEntityId\": \"<string>\",\n        \"contentTemplateId\": \"<string>\"\n      }\n    }\n  },\n  \"simSwapCheck\": {\n    \"period\": \"<integer>\",\n    \"proceedOn\": [\n      \"NO_COVERAGE\",\n      \"ANY_ERROR\"\n    ]\n  },\n  \"deviceIp\": \"<string>\",\n  \"devicePort\": \"<integer>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/mi/verification/1/verify/advanced",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "mi",
+                                    "verification",
+                                    "1",
+                                    "verify",
+                                    "advanced"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": \"ACCEPTED\",\n  \"token\": \"<uuid>\"\n}",
+                              "createdAt": "2026-07-28T01:59:26.000Z",
+                              "updatedAt": "2026-07-28T01:59:26.000Z",
+                              "uid": "35240-49ea42f9-5ac3-4573-b813-3634a43f9328"
+                            },
+                            {
+                              "id": "4312b667-73ce-465c-b82b-ad4d343e751f",
+                              "name": "Bad request",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"callbackUrl\": \"<string>\",\n  \"consentGranted\": \"<boolean>\",\n  \"phoneNumber\": \"<string>\",\n  \"returnUrl\": \"<string>\",\n  \"smsFailover\": {\n    \"from\": \"<string>\",\n    \"text\": \"<string>\",\n    \"validityPeriod\": \"<integer>\",\n    \"regional\": {\n      \"indiaDlt\": {\n        \"principalEntityId\": \"<string>\",\n        \"contentTemplateId\": \"<string>\"\n      }\n    }\n  },\n  \"simSwapCheck\": {\n    \"period\": \"<integer>\",\n    \"proceedOn\": [\n      \"NO_COVERAGE\",\n      \"ANY_ERROR\"\n    ]\n  },\n  \"deviceIp\": \"<string>\",\n  \"devicePort\": \"<integer>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/mi/verification/1/verify/advanced",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "mi",
+                                    "verification",
+                                    "1",
+                                    "verify",
+                                    "advanced"
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"status\": \"ERROR\",\n  \"token\": \"<uuid>\"\n}",
+                              "createdAt": "2026-07-28T01:59:26.000Z",
+                              "updatedAt": "2026-07-28T01:59:26.000Z",
+                              "uid": "35240-4312b667-73ce-465c-b82b-ad4d343e751f"
+                            },
+                            {
+                              "id": "6782921d-8efb-4385-9606-e4ad37dfd860",
+                              "name": "Unauthorized - Platform authentication error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"callbackUrl\": \"<string>\",\n  \"consentGranted\": \"<boolean>\",\n  \"phoneNumber\": \"<string>\",\n  \"returnUrl\": \"<string>\",\n  \"smsFailover\": {\n    \"from\": \"<string>\",\n    \"text\": \"<string>\",\n    \"validityPeriod\": \"<integer>\",\n    \"regional\": {\n      \"indiaDlt\": {\n        \"principalEntityId\": \"<string>\",\n        \"contentTemplateId\": \"<string>\"\n      }\n    }\n  },\n  \"simSwapCheck\": {\n    \"period\": \"<integer>\",\n    \"proceedOn\": [\n      \"NO_COVERAGE\",\n      \"ANY_ERROR\"\n    ]\n  },\n  \"deviceIp\": \"<string>\",\n  \"devicePort\": \"<integer>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/mi/verification/1/verify/advanced",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "mi",
+                                    "verification",
+                                    "1",
+                                    "verify",
+                                    "advanced"
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:59:26.000Z",
+                              "updatedAt": "2026-07-28T01:59:26.000Z",
+                              "uid": "35240-6782921d-8efb-4385-9606-e4ad37dfd860"
+                            },
+                            {
+                              "id": "71e73d01-8318-42f4-b993-15656901479d",
+                              "name": "Permission denied - Platform authorization error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"callbackUrl\": \"<string>\",\n  \"consentGranted\": \"<boolean>\",\n  \"phoneNumber\": \"<string>\",\n  \"returnUrl\": \"<string>\",\n  \"smsFailover\": {\n    \"from\": \"<string>\",\n    \"text\": \"<string>\",\n    \"validityPeriod\": \"<integer>\",\n    \"regional\": {\n      \"indiaDlt\": {\n        \"principalEntityId\": \"<string>\",\n        \"contentTemplateId\": \"<string>\"\n      }\n    }\n  },\n  \"simSwapCheck\": {\n    \"period\": \"<integer>\",\n    \"proceedOn\": [\n      \"NO_COVERAGE\",\n      \"ANY_ERROR\"\n    ]\n  },\n  \"deviceIp\": \"<string>\",\n  \"devicePort\": \"<integer>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/mi/verification/1/verify/advanced",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "mi",
+                                    "verification",
+                                    "1",
+                                    "verify",
+                                    "advanced"
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:59:26.000Z",
+                              "updatedAt": "2026-07-28T01:59:26.000Z",
+                              "uid": "35240-71e73d01-8318-42f4-b993-15656901479d"
+                            },
+                            {
+                              "id": "daeb67d4-ff4c-4096-bb35-3ac78d0ae23d",
+                              "name": "Unprocessable content",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"callbackUrl\": \"<string>\",\n  \"consentGranted\": \"<boolean>\",\n  \"phoneNumber\": \"<string>\",\n  \"returnUrl\": \"<string>\",\n  \"smsFailover\": {\n    \"from\": \"<string>\",\n    \"text\": \"<string>\",\n    \"validityPeriod\": \"<integer>\",\n    \"regional\": {\n      \"indiaDlt\": {\n        \"principalEntityId\": \"<string>\",\n        \"contentTemplateId\": \"<string>\"\n      }\n    }\n  },\n  \"simSwapCheck\": {\n    \"period\": \"<integer>\",\n    \"proceedOn\": [\n      \"NO_COVERAGE\",\n      \"ANY_ERROR\"\n    ]\n  },\n  \"deviceIp\": \"<string>\",\n  \"devicePort\": \"<integer>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/mi/verification/1/verify/advanced",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "mi",
+                                    "verification",
+                                    "1",
+                                    "verify",
+                                    "advanced"
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"status\": \"ERROR\",\n  \"token\": \"<uuid>\"\n}",
+                              "createdAt": "2026-07-28T01:59:26.000Z",
+                              "updatedAt": "2026-07-28T01:59:26.000Z",
+                              "uid": "35240-daeb67d4-ff4c-4096-bb35-3ac78d0ae23d"
+                            },
+                            {
+                              "id": "d4ea0e4c-b740-4b7e-8fe2-d63b385c4f2f",
+                              "name": "Internal server error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"callbackUrl\": \"<string>\",\n  \"consentGranted\": \"<boolean>\",\n  \"phoneNumber\": \"<string>\",\n  \"returnUrl\": \"<string>\",\n  \"smsFailover\": {\n    \"from\": \"<string>\",\n    \"text\": \"<string>\",\n    \"validityPeriod\": \"<integer>\",\n    \"regional\": {\n      \"indiaDlt\": {\n        \"principalEntityId\": \"<string>\",\n        \"contentTemplateId\": \"<string>\"\n      }\n    }\n  },\n  \"simSwapCheck\": {\n    \"period\": \"<integer>\",\n    \"proceedOn\": [\n      \"NO_COVERAGE\",\n      \"ANY_ERROR\"\n    ]\n  },\n  \"deviceIp\": \"<string>\",\n  \"devicePort\": \"<integer>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/mi/verification/1/verify/advanced",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "mi",
+                                    "verification",
+                                    "1",
+                                    "verify",
+                                    "advanced"
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"status\": \"ERROR\",\n  \"token\": \"<uuid>\"\n}",
+                              "createdAt": "2026-07-28T01:59:26.000Z",
+                              "updatedAt": "2026-07-28T01:59:26.000Z",
+                              "uid": "35240-d4ea0e4c-b740-4b7e-8fe2-d63b385c4f2f"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:59:26.000Z",
+                          "updatedAt": "2026-07-28T01:59:26.000Z",
+                          "uid": "35240-b7c63401-68d4-4149-b1b5-216b614c89bf"
+                        }
+                      ],
+                      "id": "256919ee-966b-40b2-b75c-796c2f4fe903",
+                      "createdAt": "2026-07-28T01:59:26.000Z",
+                      "updatedAt": "2026-07-28T01:59:26.000Z",
+                      "uid": "35240-256919ee-966b-40b2-b75c-796c2f4fe903"
+                    },
+                    {
+                      "name": "synchronous",
+                      "item": [
+                        {
+                          "name": "Synchronous Silent Mobile Verification",
+                          "id": "a29d579a-2450-42dc-ad1f-563f149f6d56",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "Authorization",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"consentGranted\": \"<boolean>\",\n  \"deviceIp\": \"<string>\",\n  \"devicePort\": \"<integer>\",\n  \"phoneNumber\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/mi/verification/1/verify/synchronous",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "mi",
+                                "verification",
+                                "1",
+                                "verify",
+                                "synchronous"
+                              ]
+                            },
+                            "description": "Verify possession of end-user's mobile phone number with the mobile network operator's data connection.\nThis API endpoint is available only in Brazil. Please contact your sales for more details."
+                          },
+                          "response": [
+                            {
+                              "id": "982925f5-37aa-4cd1-8595-2b8032d7a227",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"consentGranted\": \"<boolean>\",\n  \"deviceIp\": \"<string>\",\n  \"devicePort\": \"<integer>\",\n  \"phoneNumber\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/mi/verification/1/verify/synchronous",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "mi",
+                                    "verification",
+                                    "1",
+                                    "verify",
+                                    "synchronous"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"result\": \"INVALID\",\n  \"token\": \"<uuid>\"\n}",
+                              "createdAt": "2026-07-28T01:59:26.000Z",
+                              "updatedAt": "2026-07-28T01:59:26.000Z",
+                              "uid": "35240-982925f5-37aa-4cd1-8595-2b8032d7a227"
+                            },
+                            {
+                              "id": "e2a5d61d-8e4a-48e4-8790-8acb07e2007c",
+                              "name": "Bad request",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"consentGranted\": \"<boolean>\",\n  \"deviceIp\": \"<string>\",\n  \"devicePort\": \"<integer>\",\n  \"phoneNumber\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/mi/verification/1/verify/synchronous",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "mi",
+                                    "verification",
+                                    "1",
+                                    "verify",
+                                    "synchronous"
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"result\": \"ERROR\",\n  \"token\": \"<uuid>\"\n}",
+                              "createdAt": "2026-07-28T01:59:26.000Z",
+                              "updatedAt": "2026-07-28T01:59:26.000Z",
+                              "uid": "35240-e2a5d61d-8e4a-48e4-8790-8acb07e2007c"
+                            },
+                            {
+                              "id": "e89d2bca-f48a-4ec2-9f99-98fdc41e1b75",
+                              "name": "Unauthorized - Platform authentication error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"consentGranted\": \"<boolean>\",\n  \"deviceIp\": \"<string>\",\n  \"devicePort\": \"<integer>\",\n  \"phoneNumber\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/mi/verification/1/verify/synchronous",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "mi",
+                                    "verification",
+                                    "1",
+                                    "verify",
+                                    "synchronous"
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:59:26.000Z",
+                              "updatedAt": "2026-07-28T01:59:26.000Z",
+                              "uid": "35240-e89d2bca-f48a-4ec2-9f99-98fdc41e1b75"
+                            },
+                            {
+                              "id": "bef537db-7e33-42c6-b4b3-7fb6999be12a",
+                              "name": "Permission denied - Platform authorization error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"consentGranted\": \"<boolean>\",\n  \"deviceIp\": \"<string>\",\n  \"devicePort\": \"<integer>\",\n  \"phoneNumber\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/mi/verification/1/verify/synchronous",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "mi",
+                                    "verification",
+                                    "1",
+                                    "verify",
+                                    "synchronous"
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:59:26.000Z",
+                              "updatedAt": "2026-07-28T01:59:26.000Z",
+                              "uid": "35240-bef537db-7e33-42c6-b4b3-7fb6999be12a"
+                            },
+                            {
+                              "id": "7fbd46e5-45e7-45ad-9ce5-4af4fef1e880",
+                              "name": "Unprocessable content",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"consentGranted\": \"<boolean>\",\n  \"deviceIp\": \"<string>\",\n  \"devicePort\": \"<integer>\",\n  \"phoneNumber\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/mi/verification/1/verify/synchronous",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "mi",
+                                    "verification",
+                                    "1",
+                                    "verify",
+                                    "synchronous"
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"result\": \"ERROR\",\n  \"token\": \"<uuid>\"\n}",
+                              "createdAt": "2026-07-28T01:59:26.000Z",
+                              "updatedAt": "2026-07-28T01:59:26.000Z",
+                              "uid": "35240-7fbd46e5-45e7-45ad-9ce5-4af4fef1e880"
+                            },
+                            {
+                              "id": "eb428b2c-be61-4f52-a7d5-65d3175b827c",
+                              "name": "Internal server error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"consentGranted\": \"<boolean>\",\n  \"deviceIp\": \"<string>\",\n  \"devicePort\": \"<integer>\",\n  \"phoneNumber\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/mi/verification/1/verify/synchronous",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "mi",
+                                    "verification",
+                                    "1",
+                                    "verify",
+                                    "synchronous"
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"result\": \"ERROR\",\n  \"token\": \"<uuid>\"\n}",
+                              "createdAt": "2026-07-28T01:59:26.000Z",
+                              "updatedAt": "2026-07-28T01:59:26.000Z",
+                              "uid": "35240-eb428b2c-be61-4f52-a7d5-65d3175b827c"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:59:26.000Z",
+                          "updatedAt": "2026-07-28T01:59:26.000Z",
+                          "uid": "35240-a29d579a-2450-42dc-ad1f-563f149f6d56"
+                        }
+                      ],
+                      "id": "d81919ea-8ba1-42ff-8517-66a33e4b687c",
+                      "createdAt": "2026-07-28T01:59:26.000Z",
+                      "updatedAt": "2026-07-28T01:59:26.000Z",
+                      "uid": "35240-d81919ea-8ba1-42ff-8517-66a33e4b687c"
+                    },
+                    {
+                      "name": "zero-rated",
+                      "item": [
+                        {
+                          "name": "Zero rated request verify",
+                          "id": "50d656d7-11ed-4813-856f-1f8eb6bad8f1",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "Authorization",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"token\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/mi/verification/1/verify/zero-rated",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "mi",
+                                "verification",
+                                "1",
+                                "verify",
+                                "zero-rated"
+                              ]
+                            },
+                            "description": "Verify possession of end-user's mobile phone number with the mobile network operator's data connection.\nThis API endpoint is available only in Brazil. Please contact your sales for more details."
+                          },
+                          "response": [
+                            {
+                              "id": "45bc61b7-1f55-46a1-a4ca-c84dcfa02761",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"token\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/mi/verification/1/verify/zero-rated",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "mi",
+                                    "verification",
+                                    "1",
+                                    "verify",
+                                    "zero-rated"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"result\": \"INVALID\",\n  \"token\": \"<uuid>\"\n}",
+                              "createdAt": "2026-07-28T01:59:26.000Z",
+                              "updatedAt": "2026-07-28T01:59:26.000Z",
+                              "uid": "35240-45bc61b7-1f55-46a1-a4ca-c84dcfa02761"
+                            },
+                            {
+                              "id": "5c8d4005-4a8f-4e4d-8841-00824dfa1a2b",
+                              "name": "Bad request",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"token\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/mi/verification/1/verify/zero-rated",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "mi",
+                                    "verification",
+                                    "1",
+                                    "verify",
+                                    "zero-rated"
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"result\": \"ERROR\",\n  \"token\": \"<uuid>\"\n}",
+                              "createdAt": "2026-07-28T01:59:26.000Z",
+                              "updatedAt": "2026-07-28T01:59:26.000Z",
+                              "uid": "35240-5c8d4005-4a8f-4e4d-8841-00824dfa1a2b"
+                            },
+                            {
+                              "id": "360a7001-c42d-4bcc-b11a-b4c91b7089e7",
+                              "name": "Unauthorized - Platform authentication error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"token\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/mi/verification/1/verify/zero-rated",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "mi",
+                                    "verification",
+                                    "1",
+                                    "verify",
+                                    "zero-rated"
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:59:26.000Z",
+                              "updatedAt": "2026-07-28T01:59:26.000Z",
+                              "uid": "35240-360a7001-c42d-4bcc-b11a-b4c91b7089e7"
+                            },
+                            {
+                              "id": "dad38217-cc7b-4d86-983a-e1bdf33d9792",
+                              "name": "Permission denied - Platform authorization error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"token\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/mi/verification/1/verify/zero-rated",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "mi",
+                                    "verification",
+                                    "1",
+                                    "verify",
+                                    "zero-rated"
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:59:26.000Z",
+                              "updatedAt": "2026-07-28T01:59:26.000Z",
+                              "uid": "35240-dad38217-cc7b-4d86-983a-e1bdf33d9792"
+                            },
+                            {
+                              "id": "c0c304aa-c50a-470e-bfb9-a0777465e6a9",
+                              "name": "Unprocessable content",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"token\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/mi/verification/1/verify/zero-rated",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "mi",
+                                    "verification",
+                                    "1",
+                                    "verify",
+                                    "zero-rated"
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"result\": \"ERROR\",\n  \"token\": \"<uuid>\"\n}",
+                              "createdAt": "2026-07-28T01:59:26.000Z",
+                              "updatedAt": "2026-07-28T01:59:26.000Z",
+                              "uid": "35240-c0c304aa-c50a-470e-bfb9-a0777465e6a9"
+                            },
+                            {
+                              "id": "cf364fd0-b6b1-43b8-9344-cee8341c4a5b",
+                              "name": "Internal server error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"token\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/mi/verification/1/verify/zero-rated",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "mi",
+                                    "verification",
+                                    "1",
+                                    "verify",
+                                    "zero-rated"
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"result\": \"ERROR\",\n  \"token\": \"<uuid>\"\n}",
+                              "createdAt": "2026-07-28T01:59:26.000Z",
+                              "updatedAt": "2026-07-28T01:59:26.000Z",
+                              "uid": "35240-cf364fd0-b6b1-43b8-9344-cee8341c4a5b"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:59:26.000Z",
+                          "updatedAt": "2026-07-28T01:59:26.000Z",
+                          "uid": "35240-50d656d7-11ed-4813-856f-1f8eb6bad8f1"
+                        }
+                      ],
+                      "id": "5f4e9955-b937-492a-86db-a465171374f9",
+                      "createdAt": "2026-07-28T01:59:26.000Z",
+                      "updatedAt": "2026-07-28T01:59:26.000Z",
+                      "uid": "35240-5f4e9955-b937-492a-86db-a465171374f9"
+                    },
+                    {
+                      "name": "Silent Mobile Verification",
+                      "id": "772b23e5-0574-48d3-b506-06946895fcc3",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"callbackUrl\": \"<string>\",\n  \"consentGranted\": \"<boolean>\",\n  \"phoneNumber\": \"<string>\",\n  \"returnUrl\": \"<string>\",\n  \"deviceIp\": \"<string>\",\n  \"devicePort\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/mi/verification/1/verify",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "mi",
+                            "verification",
+                            "1",
+                            "verify"
+                          ]
+                        },
+                        "description": "Verify possession of end-user's mobile phone number with the mobile network operator's data connection.\nAPI and URL may vary per country. Please contact your sales for more details."
+                      },
+                      "response": [
+                        {
+                          "id": "d996d220-aaa9-4cfd-89c5-95c12ffe76da",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"callbackUrl\": \"<string>\",\n  \"consentGranted\": \"<boolean>\",\n  \"phoneNumber\": \"<string>\",\n  \"returnUrl\": \"<string>\",\n  \"deviceIp\": \"<string>\",\n  \"devicePort\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/mi/verification/1/verify",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "mi",
+                                "verification",
+                                "1",
+                                "verify"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"REDIRECT\",\n  \"token\": \"<uuid>\",\n  \"deviceRedirectUrl\": \"<uri>\"\n}",
+                          "createdAt": "2026-07-28T01:59:26.000Z",
+                          "updatedAt": "2026-07-28T01:59:26.000Z",
+                          "uid": "35240-d996d220-aaa9-4cfd-89c5-95c12ffe76da"
+                        },
+                        {
+                          "id": "61eac674-4624-4941-a2d7-88561f96d83d",
+                          "name": "Bad request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"callbackUrl\": \"<string>\",\n  \"consentGranted\": \"<boolean>\",\n  \"phoneNumber\": \"<string>\",\n  \"returnUrl\": \"<string>\",\n  \"deviceIp\": \"<string>\",\n  \"devicePort\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/mi/verification/1/verify",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "mi",
+                                "verification",
+                                "1",
+                                "verify"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"status\": \"ERROR\",\n  \"token\": \"<uuid>\"\n}",
+                          "createdAt": "2026-07-28T01:59:26.000Z",
+                          "updatedAt": "2026-07-28T01:59:26.000Z",
+                          "uid": "35240-61eac674-4624-4941-a2d7-88561f96d83d"
+                        },
+                        {
+                          "id": "3e7e3bb1-5fe1-4c8f-a5cd-6dc889a4bab7",
+                          "name": "Unauthorized - Platform authentication error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"callbackUrl\": \"<string>\",\n  \"consentGranted\": \"<boolean>\",\n  \"phoneNumber\": \"<string>\",\n  \"returnUrl\": \"<string>\",\n  \"deviceIp\": \"<string>\",\n  \"devicePort\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/mi/verification/1/verify",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "mi",
+                                "verification",
+                                "1",
+                                "verify"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:59:26.000Z",
+                          "updatedAt": "2026-07-28T01:59:26.000Z",
+                          "uid": "35240-3e7e3bb1-5fe1-4c8f-a5cd-6dc889a4bab7"
+                        },
+                        {
+                          "id": "4cb8b0b2-052e-41c0-9626-a0e47a78887a",
+                          "name": "Permission denied - Platform authorization error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"callbackUrl\": \"<string>\",\n  \"consentGranted\": \"<boolean>\",\n  \"phoneNumber\": \"<string>\",\n  \"returnUrl\": \"<string>\",\n  \"deviceIp\": \"<string>\",\n  \"devicePort\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/mi/verification/1/verify",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "mi",
+                                "verification",
+                                "1",
+                                "verify"
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:59:26.000Z",
+                          "updatedAt": "2026-07-28T01:59:26.000Z",
+                          "uid": "35240-4cb8b0b2-052e-41c0-9626-a0e47a78887a"
+                        },
+                        {
+                          "id": "b361aeeb-b210-4227-b07d-13ff9696aa19",
+                          "name": "Unprocessable content",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"callbackUrl\": \"<string>\",\n  \"consentGranted\": \"<boolean>\",\n  \"phoneNumber\": \"<string>\",\n  \"returnUrl\": \"<string>\",\n  \"deviceIp\": \"<string>\",\n  \"devicePort\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/mi/verification/1/verify",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "mi",
+                                "verification",
+                                "1",
+                                "verify"
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"status\": \"ERROR\",\n  \"token\": \"<uuid>\"\n}",
+                          "createdAt": "2026-07-28T01:59:26.000Z",
+                          "updatedAt": "2026-07-28T01:59:26.000Z",
+                          "uid": "35240-b361aeeb-b210-4227-b07d-13ff9696aa19"
+                        },
+                        {
+                          "id": "2bcf1e53-ec87-456d-9165-21eb2c8701d9",
+                          "name": "Internal server error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"callbackUrl\": \"<string>\",\n  \"consentGranted\": \"<boolean>\",\n  \"phoneNumber\": \"<string>\",\n  \"returnUrl\": \"<string>\",\n  \"deviceIp\": \"<string>\",\n  \"devicePort\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/mi/verification/1/verify",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "mi",
+                                "verification",
+                                "1",
+                                "verify"
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"status\": \"ERROR\",\n  \"token\": \"<uuid>\"\n}",
+                          "createdAt": "2026-07-28T01:59:26.000Z",
+                          "updatedAt": "2026-07-28T01:59:26.000Z",
+                          "uid": "35240-2bcf1e53-ec87-456d-9165-21eb2c8701d9"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:59:26.000Z",
+                      "updatedAt": "2026-07-28T01:59:26.000Z",
+                      "uid": "35240-772b23e5-0574-48d3-b506-06946895fcc3"
+                    }
+                  ],
+                  "id": "6d3d7302-7406-49fb-a819-8844439a3c30",
+                  "createdAt": "2026-07-28T01:59:26.000Z",
+                  "updatedAt": "2026-07-28T01:59:26.000Z",
+                  "uid": "35240-6d3d7302-7406-49fb-a819-8844439a3c30"
+                },
+                {
+                  "name": "zero-rated",
+                  "item": [
+                    {
+                      "name": "init",
+                      "item": [
+                        {
+                          "name": "Zero rated request initialization",
+                          "id": "4ef80d6b-6c34-43b6-9055-e7ad4546794e",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "Authorization",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"consentGranted\": \"<boolean>\",\n  \"phoneNumber\": \"<string>\",\n  \"returnUrl\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/mi/verification/1/zero-rated/init",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "mi",
+                                "verification",
+                                "1",
+                                "zero-rated",
+                                "init"
+                              ]
+                            },
+                            "description": "Initialise zero rated request.\nThis API endpoint is available only in Brazil. Please contact your sales for more details."
+                          },
+                          "response": [
+                            {
+                              "id": "17b6bbe0-aa15-4412-b1eb-b0035a6b7cf4",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"consentGranted\": \"<boolean>\",\n  \"phoneNumber\": \"<string>\",\n  \"returnUrl\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/mi/verification/1/zero-rated/init",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "mi",
+                                    "verification",
+                                    "1",
+                                    "zero-rated",
+                                    "init"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"token\": \"<uuid>\",\n  \"deviceRedirectUrl\": \"<uri>\"\n}",
+                              "createdAt": "2026-07-28T01:59:26.000Z",
+                              "updatedAt": "2026-07-28T01:59:26.000Z",
+                              "uid": "35240-17b6bbe0-aa15-4412-b1eb-b0035a6b7cf4"
+                            },
+                            {
+                              "id": "52eaf0b7-cff6-44d5-a13d-71db4de8a931",
+                              "name": "Bad request",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"consentGranted\": \"<boolean>\",\n  \"phoneNumber\": \"<string>\",\n  \"returnUrl\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/mi/verification/1/zero-rated/init",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "mi",
+                                    "verification",
+                                    "1",
+                                    "zero-rated",
+                                    "init"
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"token\": \"<uuid>\"\n}",
+                              "createdAt": "2026-07-28T01:59:26.000Z",
+                              "updatedAt": "2026-07-28T01:59:26.000Z",
+                              "uid": "35240-52eaf0b7-cff6-44d5-a13d-71db4de8a931"
+                            },
+                            {
+                              "id": "25ffd038-7d13-4dd6-b631-695865003493",
+                              "name": "Unauthorized - Platform authentication error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"consentGranted\": \"<boolean>\",\n  \"phoneNumber\": \"<string>\",\n  \"returnUrl\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/mi/verification/1/zero-rated/init",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "mi",
+                                    "verification",
+                                    "1",
+                                    "zero-rated",
+                                    "init"
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:59:26.000Z",
+                              "updatedAt": "2026-07-28T01:59:26.000Z",
+                              "uid": "35240-25ffd038-7d13-4dd6-b631-695865003493"
+                            },
+                            {
+                              "id": "a7238254-d87b-413a-b213-e0b879525fea",
+                              "name": "Permission denied - Platform authorization error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"consentGranted\": \"<boolean>\",\n  \"phoneNumber\": \"<string>\",\n  \"returnUrl\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/mi/verification/1/zero-rated/init",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "mi",
+                                    "verification",
+                                    "1",
+                                    "zero-rated",
+                                    "init"
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:59:26.000Z",
+                              "updatedAt": "2026-07-28T01:59:26.000Z",
+                              "uid": "35240-a7238254-d87b-413a-b213-e0b879525fea"
+                            },
+                            {
+                              "id": "a3cb4afd-200d-4f85-85c1-e1d071247ded",
+                              "name": "Internal server error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"consentGranted\": \"<boolean>\",\n  \"phoneNumber\": \"<string>\",\n  \"returnUrl\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/mi/verification/1/zero-rated/init",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "mi",
+                                    "verification",
+                                    "1",
+                                    "zero-rated",
+                                    "init"
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"token\": \"<uuid>\"\n}",
+                              "createdAt": "2026-07-28T01:59:26.000Z",
+                              "updatedAt": "2026-07-28T01:59:26.000Z",
+                              "uid": "35240-a3cb4afd-200d-4f85-85c1-e1d071247ded"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:59:26.000Z",
+                          "updatedAt": "2026-07-28T01:59:26.000Z",
+                          "uid": "35240-4ef80d6b-6c34-43b6-9055-e7ad4546794e"
+                        }
+                      ],
+                      "id": "4cdeb9dd-9197-45c4-9a59-7c597c556c06",
+                      "createdAt": "2026-07-28T01:59:26.000Z",
+                      "updatedAt": "2026-07-28T01:59:26.000Z",
+                      "uid": "35240-4cdeb9dd-9197-45c4-9a59-7c597c556c06"
+                    }
+                  ],
+                  "id": "2011eec8-09e7-4edc-b18a-265d88332916",
+                  "createdAt": "2026-07-28T01:59:26.000Z",
+                  "updatedAt": "2026-07-28T01:59:26.000Z",
+                  "uid": "35240-2011eec8-09e7-4edc-b18a-265d88332916"
+                }
+              ],
+              "id": "9af2bddc-42c2-4421-8b4b-bc01f26c4843",
+              "createdAt": "2026-07-28T01:59:26.000Z",
+              "updatedAt": "2026-07-28T01:59:26.000Z",
+              "uid": "35240-9af2bddc-42c2-4421-8b4b-bc01f26c4843"
+            }
+          ],
+          "id": "eae23728-b219-4346-a586-5cbc0d37439d",
+          "createdAt": "2026-07-28T01:59:26.000Z",
+          "updatedAt": "2026-07-28T01:59:26.000Z",
+          "uid": "35240-eae23728-b219-4346-a586-5cbc0d37439d"
+        },
+        {
+          "name": "number-intelligence",
+          "item": [
+            {
+              "name": "1",
+              "item": [
+                {
+                  "name": "query",
+                  "item": [
+                    {
+                      "name": "Number Intelligence",
+                      "id": "87e66091-a381-403d-bbfb-b4f1426b2c4f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"attributes\": {\n    \"simSwap\": {\n      \"period\": \"<integer>\"\n    },\n    \"nationalIdentityNumber\": {\n      \"nationalId\": \"<string>\",\n      \"documentType\": \"<string>\"\n    },\n    \"deviceLocation\": {\n      \"latitude\": \"<float>\",\n      \"longitude\": \"<float>\",\n      \"accuracy\": \"<integer>\"\n    }\n  },\n  \"callbackUrl\": \"<string>\",\n  \"consentGranted\": \"<boolean>\",\n  \"phoneNumber\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/mi/number-intelligence/1/query",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "mi",
+                            "number-intelligence",
+                            "1",
+                            "query"
+                          ]
+                        },
+                        "description": "Use this method to perform a query by a mobile phone number (MSISDN) for a given attribute name.\nAPI and URL may vary per country. Contact your Account Manager for implementation details."
+                      },
+                      "response": [
+                        {
+                          "id": "29681672-76bf-4dbd-878c-3776e95ca195",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"attributes\": {\n    \"simSwap\": {\n      \"period\": \"<integer>\"\n    },\n    \"nationalIdentityNumber\": {\n      \"nationalId\": \"<string>\",\n      \"documentType\": \"<string>\"\n    },\n    \"deviceLocation\": {\n      \"latitude\": \"<float>\",\n      \"longitude\": \"<float>\",\n      \"accuracy\": \"<integer>\"\n    }\n  },\n  \"callbackUrl\": \"<string>\",\n  \"consentGranted\": \"<boolean>\",\n  \"phoneNumber\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/mi/number-intelligence/1/query",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "mi",
+                                "number-intelligence",
+                                "1",
+                                "query"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"token\": \"<uuid>\"\n}",
+                          "createdAt": "2026-07-28T01:59:26.000Z",
+                          "updatedAt": "2026-07-28T01:59:26.000Z",
+                          "uid": "35240-29681672-76bf-4dbd-878c-3776e95ca195"
+                        },
+                        {
+                          "id": "cc9e4a5d-7d2f-4fd0-b64f-a3bdcd93be31",
+                          "name": "Bad request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"attributes\": {\n    \"simSwap\": {\n      \"period\": \"<integer>\"\n    },\n    \"nationalIdentityNumber\": {\n      \"nationalId\": \"<string>\",\n      \"documentType\": \"<string>\"\n    },\n    \"deviceLocation\": {\n      \"latitude\": \"<float>\",\n      \"longitude\": \"<float>\",\n      \"accuracy\": \"<integer>\"\n    }\n  },\n  \"callbackUrl\": \"<string>\",\n  \"consentGranted\": \"<boolean>\",\n  \"phoneNumber\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/mi/number-intelligence/1/query",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "mi",
+                                "number-intelligence",
+                                "1",
+                                "query"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": null,\n  \"token\": \"<uuid>\"\n}",
+                          "createdAt": "2026-07-28T01:59:26.000Z",
+                          "updatedAt": "2026-07-28T01:59:26.000Z",
+                          "uid": "35240-cc9e4a5d-7d2f-4fd0-b64f-a3bdcd93be31"
+                        },
+                        {
+                          "id": "1c9ed068-05d1-4783-87bf-ed9f09f1e9c3",
+                          "name": "Unauthorized - Platform authentication error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"attributes\": {\n    \"simSwap\": {\n      \"period\": \"<integer>\"\n    },\n    \"nationalIdentityNumber\": {\n      \"nationalId\": \"<string>\",\n      \"documentType\": \"<string>\"\n    },\n    \"deviceLocation\": {\n      \"latitude\": \"<float>\",\n      \"longitude\": \"<float>\",\n      \"accuracy\": \"<integer>\"\n    }\n  },\n  \"callbackUrl\": \"<string>\",\n  \"consentGranted\": \"<boolean>\",\n  \"phoneNumber\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/mi/number-intelligence/1/query",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "mi",
+                                "number-intelligence",
+                                "1",
+                                "query"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:59:26.000Z",
+                          "updatedAt": "2026-07-28T01:59:26.000Z",
+                          "uid": "35240-1c9ed068-05d1-4783-87bf-ed9f09f1e9c3"
+                        },
+                        {
+                          "id": "ae44e601-c1bb-45c5-8419-85879b2ab531",
+                          "name": "Permission denied - Platform authorization error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"attributes\": {\n    \"simSwap\": {\n      \"period\": \"<integer>\"\n    },\n    \"nationalIdentityNumber\": {\n      \"nationalId\": \"<string>\",\n      \"documentType\": \"<string>\"\n    },\n    \"deviceLocation\": {\n      \"latitude\": \"<float>\",\n      \"longitude\": \"<float>\",\n      \"accuracy\": \"<integer>\"\n    }\n  },\n  \"callbackUrl\": \"<string>\",\n  \"consentGranted\": \"<boolean>\",\n  \"phoneNumber\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/mi/number-intelligence/1/query",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "mi",
+                                "number-intelligence",
+                                "1",
+                                "query"
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:59:26.000Z",
+                          "updatedAt": "2026-07-28T01:59:26.000Z",
+                          "uid": "35240-ae44e601-c1bb-45c5-8419-85879b2ab531"
+                        },
+                        {
+                          "id": "7923a382-bcfe-457c-bafe-8fcdd72cc696",
+                          "name": "Unprocessable content",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"attributes\": {\n    \"simSwap\": {\n      \"period\": \"<integer>\"\n    },\n    \"nationalIdentityNumber\": {\n      \"nationalId\": \"<string>\",\n      \"documentType\": \"<string>\"\n    },\n    \"deviceLocation\": {\n      \"latitude\": \"<float>\",\n      \"longitude\": \"<float>\",\n      \"accuracy\": \"<integer>\"\n    }\n  },\n  \"callbackUrl\": \"<string>\",\n  \"consentGranted\": \"<boolean>\",\n  \"phoneNumber\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/mi/number-intelligence/1/query",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "mi",
+                                "number-intelligence",
+                                "1",
+                                "query"
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": null,\n  \"token\": \"<uuid>\"\n}",
+                          "createdAt": "2026-07-28T01:59:26.000Z",
+                          "updatedAt": "2026-07-28T01:59:26.000Z",
+                          "uid": "35240-7923a382-bcfe-457c-bafe-8fcdd72cc696"
+                        },
+                        {
+                          "id": "5e80c949-85c6-4b39-b0b9-ba36ac54d874",
+                          "name": "Internal server error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"attributes\": {\n    \"simSwap\": {\n      \"period\": \"<integer>\"\n    },\n    \"nationalIdentityNumber\": {\n      \"nationalId\": \"<string>\",\n      \"documentType\": \"<string>\"\n    },\n    \"deviceLocation\": {\n      \"latitude\": \"<float>\",\n      \"longitude\": \"<float>\",\n      \"accuracy\": \"<integer>\"\n    }\n  },\n  \"callbackUrl\": \"<string>\",\n  \"consentGranted\": \"<boolean>\",\n  \"phoneNumber\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/mi/number-intelligence/1/query",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "mi",
+                                "number-intelligence",
+                                "1",
+                                "query"
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": null,\n  \"token\": \"<uuid>\"\n}",
+                          "createdAt": "2026-07-28T01:59:26.000Z",
+                          "updatedAt": "2026-07-28T01:59:26.000Z",
+                          "uid": "35240-5e80c949-85c6-4b39-b0b9-ba36ac54d874"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:59:26.000Z",
+                      "updatedAt": "2026-07-28T01:59:26.000Z",
+                      "uid": "35240-87e66091-a381-403d-bbfb-b4f1426b2c4f"
+                    }
+                  ],
+                  "id": "f2619615-59fb-47e6-b8bc-5407fc3e1b7b",
+                  "createdAt": "2026-07-28T01:59:26.000Z",
+                  "updatedAt": "2026-07-28T01:59:26.000Z",
+                  "uid": "35240-f2619615-59fb-47e6-b8bc-5407fc3e1b7b"
+                }
+              ],
+              "id": "0363885e-fcf2-4c1e-bf60-094fcdff40f1",
+              "createdAt": "2026-07-28T01:59:26.000Z",
+              "updatedAt": "2026-07-28T01:59:26.000Z",
+              "uid": "35240-0363885e-fcf2-4c1e-bf60-094fcdff40f1"
+            }
+          ],
+          "id": "7e3dabdc-283c-45f4-b885-25db9d24a0d5",
+          "createdAt": "2026-07-28T01:59:26.000Z",
+          "updatedAt": "2026-07-28T01:59:26.000Z",
+          "uid": "35240-7e3dabdc-283c-45f4-b885-25db9d24a0d5"
+        },
+        {
+          "name": "simswap",
+          "item": [
+            {
+              "name": "1",
+              "item": [
+                {
+                  "name": "check",
+                  "item": [
+                    {
+                      "name": "SIM Swap",
+                      "id": "094ac461-200a-4484-b158-c78cc40fac93",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"consentGranted\": \"<boolean>\",\n  \"period\": \"<integer>\",\n  \"phoneNumber\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/mi/simswap/1/check",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "mi",
+                            "simswap",
+                            "1",
+                            "check"
+                          ]
+                        },
+                        "description": "Verify if there was a SIM swap event for a given mobile phone number and period.<br/>\nAPI and URL may vary per country. Contact your Account Manager for implementation details."
+                      },
+                      "response": [
+                        {
+                          "id": "e2afac9c-4548-49cf-b983-048acecc6f5c",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"consentGranted\": \"<boolean>\",\n  \"period\": \"<integer>\",\n  \"phoneNumber\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/mi/simswap/1/check",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "mi",
+                                "simswap",
+                                "1",
+                                "check"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"requestId\": \"<uuid>\",\n  \"simSwapOccurred\": \"<boolean,null>\",\n  \"networkInfo\": {}\n}",
+                          "createdAt": "2026-07-28T01:59:26.000Z",
+                          "updatedAt": "2026-07-28T01:59:26.000Z",
+                          "uid": "35240-e2afac9c-4548-49cf-b983-048acecc6f5c"
+                        },
+                        {
+                          "id": "9f312cf9-e8fa-43e4-a2a1-5456fcf4ab3a",
+                          "name": "Bad request - no coverage",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"consentGranted\": \"<boolean>\",\n  \"period\": \"<integer>\",\n  \"phoneNumber\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/mi/simswap/1/check",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "mi",
+                                "simswap",
+                                "1",
+                                "check"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": null,\n  \"requestId\": \"<uuid>\",\n  \"simSwapOccurred\": \"<boolean,null>\",\n  \"networkInfo\": {}\n}",
+                          "createdAt": "2026-07-28T01:59:26.000Z",
+                          "updatedAt": "2026-07-28T01:59:26.000Z",
+                          "uid": "35240-9f312cf9-e8fa-43e4-a2a1-5456fcf4ab3a"
+                        },
+                        {
+                          "id": "62b58028-f02a-4453-8c88-312741876760",
+                          "name": "Unauthorized - Platform authentication error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"consentGranted\": \"<boolean>\",\n  \"period\": \"<integer>\",\n  \"phoneNumber\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/mi/simswap/1/check",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "mi",
+                                "simswap",
+                                "1",
+                                "check"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:59:26.000Z",
+                          "updatedAt": "2026-07-28T01:59:26.000Z",
+                          "uid": "35240-62b58028-f02a-4453-8c88-312741876760"
+                        },
+                        {
+                          "id": "9cc4b477-a636-48dc-94fb-6a5359d4797f",
+                          "name": "Permission denied - Platform authorization error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"consentGranted\": \"<boolean>\",\n  \"period\": \"<integer>\",\n  \"phoneNumber\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/mi/simswap/1/check",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "mi",
+                                "simswap",
+                                "1",
+                                "check"
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:59:26.000Z",
+                          "updatedAt": "2026-07-28T01:59:26.000Z",
+                          "uid": "35240-9cc4b477-a636-48dc-94fb-6a5359d4797f"
+                        },
+                        {
+                          "id": "eb658037-ec85-4448-ac2c-4a0a7b905288",
+                          "name": "Unprocessable content",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"consentGranted\": \"<boolean>\",\n  \"period\": \"<integer>\",\n  \"phoneNumber\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/mi/simswap/1/check",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "mi",
+                                "simswap",
+                                "1",
+                                "check"
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": null,\n  \"requestId\": \"<uuid>\",\n  \"simSwapOccurred\": \"<boolean,null>\",\n  \"networkInfo\": {}\n}",
+                          "createdAt": "2026-07-28T01:59:26.000Z",
+                          "updatedAt": "2026-07-28T01:59:26.000Z",
+                          "uid": "35240-eb658037-ec85-4448-ac2c-4a0a7b905288"
+                        },
+                        {
+                          "id": "ef430e69-f64b-4a39-bb13-f3bb2e4cc992",
+                          "name": "Internal error - operation failed",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"consentGranted\": \"<boolean>\",\n  \"period\": \"<integer>\",\n  \"phoneNumber\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/mi/simswap/1/check",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "mi",
+                                "simswap",
+                                "1",
+                                "check"
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": null,\n  \"requestId\": \"<uuid>\",\n  \"simSwapOccurred\": \"<boolean,null>\",\n  \"networkInfo\": null\n}",
+                          "createdAt": "2026-07-28T01:59:26.000Z",
+                          "updatedAt": "2026-07-28T01:59:26.000Z",
+                          "uid": "35240-ef430e69-f64b-4a39-bb13-f3bb2e4cc992"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:59:26.000Z",
+                      "updatedAt": "2026-07-28T01:59:26.000Z",
+                      "uid": "35240-094ac461-200a-4484-b158-c78cc40fac93"
+                    }
+                  ],
+                  "id": "ccfe8a6b-5ebd-4621-8e15-9a7f63dc9fa8",
+                  "createdAt": "2026-07-28T01:59:26.000Z",
+                  "updatedAt": "2026-07-28T01:59:26.000Z",
+                  "uid": "35240-ccfe8a6b-5ebd-4621-8e15-9a7f63dc9fa8"
+                }
+              ],
+              "id": "24028bfc-b251-41c1-919a-8f4142680328",
+              "createdAt": "2026-07-28T01:59:26.000Z",
+              "updatedAt": "2026-07-28T01:59:26.000Z",
+              "uid": "35240-24028bfc-b251-41c1-919a-8f4142680328"
+            }
+          ],
+          "id": "196864a3-f8d5-4060-9c88-bb6019d05e7e",
+          "createdAt": "2026-07-28T01:59:26.000Z",
+          "updatedAt": "2026-07-28T01:59:26.000Z",
+          "uid": "35240-196864a3-f8d5-4060-9c88-bb6019d05e7e"
+        },
+        {
+          "name": "national-identity-number",
+          "item": [
+            {
+              "name": "1",
+              "item": [
+                {
+                  "name": "check",
+                  "item": [
+                    {
+                      "name": "National Identity Number check",
+                      "id": "8598cd84-86a5-40e0-ade9-e29029a97685",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"consentGranted\": \"<boolean>\",\n  \"nationalId\": \"<string>\",\n  \"phoneNumber\": \"<string>\",\n  \"documentType\": \"NIT\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/mi/national-identity-number/1/check",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "mi",
+                            "national-identity-number",
+                            "1",
+                            "check"
+                          ]
+                        },
+                        "description": "Check if provided mobile phone number (MSISDN) belongs to user with provided national identity number.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "b76902e0-eb50-4ea4-b41e-dbfdfcda05f5",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"consentGranted\": \"<boolean>\",\n  \"nationalId\": \"<string>\",\n  \"phoneNumber\": \"<string>\",\n  \"documentType\": \"NIT\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/mi/national-identity-number/1/check",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "mi",
+                                "national-identity-number",
+                                "1",
+                                "check"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"token\": \"<uuid>\",\n  \"match\": \"NOT_MATCHED\"\n}",
+                          "createdAt": "2026-07-28T01:59:26.000Z",
+                          "updatedAt": "2026-07-28T01:59:26.000Z",
+                          "uid": "35240-b76902e0-eb50-4ea4-b41e-dbfdfcda05f5"
+                        },
+                        {
+                          "id": "e7f86bc8-9d52-479c-bd9b-6234e6cbc864",
+                          "name": "Bad request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"consentGranted\": \"<boolean>\",\n  \"nationalId\": \"<string>\",\n  \"phoneNumber\": \"<string>\",\n  \"documentType\": \"NIT\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/mi/national-identity-number/1/check",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "mi",
+                                "national-identity-number",
+                                "1",
+                                "check"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": null,\n  \"token\": \"<uuid>\"\n}",
+                          "createdAt": "2026-07-28T01:59:26.000Z",
+                          "updatedAt": "2026-07-28T01:59:26.000Z",
+                          "uid": "35240-e7f86bc8-9d52-479c-bd9b-6234e6cbc864"
+                        },
+                        {
+                          "id": "91a06078-cf1a-464c-971e-d0611d6b62d5",
+                          "name": "Unauthorized - Platform authentication error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"consentGranted\": \"<boolean>\",\n  \"nationalId\": \"<string>\",\n  \"phoneNumber\": \"<string>\",\n  \"documentType\": \"NIT\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/mi/national-identity-number/1/check",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "mi",
+                                "national-identity-number",
+                                "1",
+                                "check"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:59:26.000Z",
+                          "updatedAt": "2026-07-28T01:59:26.000Z",
+                          "uid": "35240-91a06078-cf1a-464c-971e-d0611d6b62d5"
+                        },
+                        {
+                          "id": "eb4ba3e6-ec28-41dc-89a9-f0d31aef1961",
+                          "name": "Permission denied - Platform authorization error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"consentGranted\": \"<boolean>\",\n  \"nationalId\": \"<string>\",\n  \"phoneNumber\": \"<string>\",\n  \"documentType\": \"NIT\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/mi/national-identity-number/1/check",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "mi",
+                                "national-identity-number",
+                                "1",
+                                "check"
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:59:26.000Z",
+                          "updatedAt": "2026-07-28T01:59:26.000Z",
+                          "uid": "35240-eb4ba3e6-ec28-41dc-89a9-f0d31aef1961"
+                        },
+                        {
+                          "id": "c0ebca0d-22d0-4e07-9ff9-9daf26232152",
+                          "name": "Unprocessable content",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"consentGranted\": \"<boolean>\",\n  \"nationalId\": \"<string>\",\n  \"phoneNumber\": \"<string>\",\n  \"documentType\": \"NIT\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/mi/national-identity-number/1/check",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "mi",
+                                "national-identity-number",
+                                "1",
+                                "check"
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": null,\n  \"token\": \"<uuid>\"\n}",
+                          "createdAt": "2026-07-28T01:59:26.000Z",
+                          "updatedAt": "2026-07-28T01:59:26.000Z",
+                          "uid": "35240-c0ebca0d-22d0-4e07-9ff9-9daf26232152"
+                        },
+                        {
+                          "id": "aa879340-ef25-4bb4-b7b5-8b2475e4fec0",
+                          "name": "Internal server error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"consentGranted\": \"<boolean>\",\n  \"nationalId\": \"<string>\",\n  \"phoneNumber\": \"<string>\",\n  \"documentType\": \"NIT\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/mi/national-identity-number/1/check",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "mi",
+                                "national-identity-number",
+                                "1",
+                                "check"
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": null,\n  \"token\": \"<uuid>\"\n}",
+                          "createdAt": "2026-07-28T01:59:26.000Z",
+                          "updatedAt": "2026-07-28T01:59:26.000Z",
+                          "uid": "35240-aa879340-ef25-4bb4-b7b5-8b2475e4fec0"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:59:26.000Z",
+                      "updatedAt": "2026-07-28T01:59:26.000Z",
+                      "uid": "35240-8598cd84-86a5-40e0-ade9-e29029a97685"
+                    }
+                  ],
+                  "id": "60d09a2a-bed0-4a54-a1f9-76476b5aa1c0",
+                  "createdAt": "2026-07-28T01:59:26.000Z",
+                  "updatedAt": "2026-07-28T01:59:26.000Z",
+                  "uid": "35240-60d09a2a-bed0-4a54-a1f9-76476b5aa1c0"
+                }
+              ],
+              "id": "73aeed2f-0871-489d-bace-48902666dbb6",
+              "createdAt": "2026-07-28T01:59:26.000Z",
+              "updatedAt": "2026-07-28T01:59:26.000Z",
+              "uid": "35240-73aeed2f-0871-489d-bace-48902666dbb6"
+            }
+          ],
+          "id": "746a64ff-7010-4918-a220-d7c36bfe04c3",
+          "createdAt": "2026-07-28T01:59:26.000Z",
+          "updatedAt": "2026-07-28T01:59:26.000Z",
+          "uid": "35240-746a64ff-7010-4918-a220-d7c36bfe04c3"
+        }
+      ],
+      "id": "75670997-6638-416d-9115-1cd530c9d10a",
+      "createdAt": "2026-07-28T01:59:26.000Z",
+      "updatedAt": "2026-07-28T01:59:26.000Z",
+      "uid": "35240-75670997-6638-416d-9115-1cd530c9d10a"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

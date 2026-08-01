@@ -1,0 +1,1575 @@
+{
+  "info": {
+    "_postman_id": "6df02ce5-c0a0-4e32-b55b-1088cfea97a5",
+    "name": "Infobip OpenAPI Specification",
+    "description": "OpenAPI Specification that contains all public endpoints and webhooks.\n\nContact Support:\n Name: Infobip support\n Email: support@infobip.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:58:23.000Z",
+    "updatedAt": "2026-07-28T01:58:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6df02ce5-c0a0-4e32-b55b-1088cfea97a5"
+  },
+  "item": [
+    {
+      "name": "platform",
+      "item": [
+        {
+          "name": "1",
+          "item": [
+            {
+              "name": "blocklists",
+              "item": [
+                {
+                  "name": "Get all blocklists",
+                  "id": "506cf0eb-6f3a-49aa-87ed-a838bf6e5541",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/platform/1/blocklists?sender=<string>&destination=<string>&channel=MMS&sourceType=URL_OPT_OUT&accountKey=<string>&getAllAccountKeysBlocklists=<boolean>&createdDateFrom=<dateTime>&createdDateTo=<dateTime>&campaign=<string>&page=0&size=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "platform",
+                        "1",
+                        "blocklists"
+                      ],
+                      "query": [
+                        {
+                          "description": "The sender ID for which blocklist happened.",
+                          "key": "sender",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Blocklisted destination address.",
+                          "key": "destination",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Channel used for sending for which blocklist happened.\n\nIf you want to check blocklist records for all channels, this field can be left out.",
+                          "key": "channel",
+                          "value": "MMS"
+                        },
+                        {
+                          "description": "Represents the way blocklist record was created:\n\nCUSTOM - blocklist record that was created manually\n\nMO - blocklist record automatically created once an end user unsubscribes by replying with a specific keyword (e.g.: STOP). This is applicable for the following channels: SMS, MMS.\n\nURL_OPT_OUT - blocklist record automatically created once an end user clicks an opt-out link included in the message.\n\nCAMPAIGN - blocklist record automatically created through a triggered event in the Flow (e.g., if the message was not opened in 24h, add to blocklist).",
+                          "key": "sourceType",
+                          "value": "URL_OPT_OUT"
+                        },
+                        {
+                          "description": "Account connected with a blocklist record. Main account has access to blocklist records of their subaccounts. Subaccounts can only access blocklist records specific to them. [API to retrieve account key](https://www.infobip.com/docs/api/platform/account-management/get-all-accounts).",
+                          "key": "accountKey",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "If set to `true`, blocklist records for subaccounts will be returned as well.",
+                          "key": "getAllAccountKeysBlocklists",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Use with `createDateTo` to search for blocklists for a particular date range.",
+                          "key": "createdDateFrom",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Use with `createDateFrom` to search for blocklists for a particular date range.",
+                          "key": "createdDateTo",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "ID that allows you to track, analyze, and show an aggregated overview and the performance of individual campaigns per sending channel.",
+                          "key": "campaign",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Requested page number.",
+                          "key": "page",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Requested page size.",
+                          "key": "size",
+                          "value": "100"
+                        }
+                      ]
+                    },
+                    "description": "This method allows you to get all blocklist records or filter them based on specific parameters."
+                  },
+                  "response": [
+                    {
+                      "id": "57f48cee-dde1-4b17-8092-15c0541d56d8",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/platform/1/blocklists?sender=<string>&destination=<string>&channel=MMS&sourceType=URL_OPT_OUT&accountKey=<string>&getAllAccountKeysBlocklists=<boolean>&createdDateFrom=<dateTime>&createdDateTo=<dateTime>&campaign=<string>&page=0&size=100",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "platform",
+                            "1",
+                            "blocklists"
+                          ],
+                          "query": [
+                            {
+                              "description": "The sender ID for which blocklist happened.",
+                              "key": "sender",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Blocklisted destination address.",
+                              "key": "destination",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Channel used for sending for which blocklist happened.\n\nIf you want to check blocklist records for all channels, this field can be left out.",
+                              "key": "channel",
+                              "value": "MMS"
+                            },
+                            {
+                              "description": "Represents the way blocklist record was created:\n\nCUSTOM - blocklist record that was created manually\n\nMO - blocklist record automatically created once an end user unsubscribes by replying with a specific keyword (e.g.: STOP). This is applicable for the following channels: SMS, MMS.\n\nURL_OPT_OUT - blocklist record automatically created once an end user clicks an opt-out link included in the message.\n\nCAMPAIGN - blocklist record automatically created through a triggered event in the Flow (e.g., if the message was not opened in 24h, add to blocklist).",
+                              "key": "sourceType",
+                              "value": "URL_OPT_OUT"
+                            },
+                            {
+                              "description": "Account connected with a blocklist record. Main account has access to blocklist records of their subaccounts. Subaccounts can only access blocklist records specific to them. [API to retrieve account key](https://www.infobip.com/docs/api/platform/account-management/get-all-accounts).",
+                              "key": "accountKey",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "If set to `true`, blocklist records for subaccounts will be returned as well.",
+                              "key": "getAllAccountKeysBlocklists",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Use with `createDateTo` to search for blocklists for a particular date range.",
+                              "key": "createdDateFrom",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Use with `createDateFrom` to search for blocklists for a particular date range.",
+                              "key": "createdDateTo",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "ID that allows you to track, analyze, and show an aggregated overview and the performance of individual campaigns per sending channel.",
+                              "key": "campaign",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Requested page number.",
+                              "key": "page",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Requested page size.",
+                              "key": "size",
+                              "value": "100"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"paging\": {\n    \"page\": \"<integer>\",\n    \"size\": \"<integer>\",\n    \"totalPages\": \"<integer>\",\n    \"totalResults\": \"<integer>\"\n  },\n  \"results\": [\n    {\n      \"accountKey\": \"<string>\",\n      \"createdDate\": \"<dateTime>\",\n      \"destination\": \"<string>\",\n      \"sourceType\": \"URL_OPT_OUT\",\n      \"sender\": \"<string>\",\n      \"channel\": \"VIBER\",\n      \"campaign\": \"<string>\"\n    },\n    {\n      \"accountKey\": \"<string>\",\n      \"createdDate\": \"<dateTime>\",\n      \"destination\": \"<string>\",\n      \"sourceType\": \"CAMPAIGN\",\n      \"sender\": \"<string>\",\n      \"channel\": \"MMS\",\n      \"campaign\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:58:23.000Z",
+                      "updatedAt": "2026-07-28T01:58:23.000Z",
+                      "uid": "35240-57f48cee-dde1-4b17-8092-15c0541d56d8"
+                    },
+                    {
+                      "id": "d3b86d27-1a81-4b99-a1c9-834331cd5152",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/platform/1/blocklists?sender=<string>&destination=<string>&channel=MMS&sourceType=URL_OPT_OUT&accountKey=<string>&getAllAccountKeysBlocklists=<boolean>&createdDateFrom=<dateTime>&createdDateTo=<dateTime>&campaign=<string>&page=0&size=100",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "platform",
+                            "1",
+                            "blocklists"
+                          ],
+                          "query": [
+                            {
+                              "description": "The sender ID for which blocklist happened.",
+                              "key": "sender",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Blocklisted destination address.",
+                              "key": "destination",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Channel used for sending for which blocklist happened.\n\nIf you want to check blocklist records for all channels, this field can be left out.",
+                              "key": "channel",
+                              "value": "MMS"
+                            },
+                            {
+                              "description": "Represents the way blocklist record was created:\n\nCUSTOM - blocklist record that was created manually\n\nMO - blocklist record automatically created once an end user unsubscribes by replying with a specific keyword (e.g.: STOP). This is applicable for the following channels: SMS, MMS.\n\nURL_OPT_OUT - blocklist record automatically created once an end user clicks an opt-out link included in the message.\n\nCAMPAIGN - blocklist record automatically created through a triggered event in the Flow (e.g., if the message was not opened in 24h, add to blocklist).",
+                              "key": "sourceType",
+                              "value": "URL_OPT_OUT"
+                            },
+                            {
+                              "description": "Account connected with a blocklist record. Main account has access to blocklist records of their subaccounts. Subaccounts can only access blocklist records specific to them. [API to retrieve account key](https://www.infobip.com/docs/api/platform/account-management/get-all-accounts).",
+                              "key": "accountKey",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "If set to `true`, blocklist records for subaccounts will be returned as well.",
+                              "key": "getAllAccountKeysBlocklists",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Use with `createDateTo` to search for blocklists for a particular date range.",
+                              "key": "createdDateFrom",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Use with `createDateFrom` to search for blocklists for a particular date range.",
+                              "key": "createdDateTo",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "ID that allows you to track, analyze, and show an aggregated overview and the performance of individual campaigns per sending channel.",
+                              "key": "campaign",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Requested page number.",
+                              "key": "page",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Requested page size.",
+                              "key": "size",
+                              "value": "100"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"aute6e\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"aute_a1c\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"labore_aeb\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exercitation_b28\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"Duis2\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:58:23.000Z",
+                      "updatedAt": "2026-07-28T01:58:23.000Z",
+                      "uid": "35240-d3b86d27-1a81-4b99-a1c9-834331cd5152"
+                    },
+                    {
+                      "id": "23ec2985-89bb-446b-8b2a-108f14253513",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/platform/1/blocklists?sender=<string>&destination=<string>&channel=MMS&sourceType=URL_OPT_OUT&accountKey=<string>&getAllAccountKeysBlocklists=<boolean>&createdDateFrom=<dateTime>&createdDateTo=<dateTime>&campaign=<string>&page=0&size=100",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "platform",
+                            "1",
+                            "blocklists"
+                          ],
+                          "query": [
+                            {
+                              "description": "The sender ID for which blocklist happened.",
+                              "key": "sender",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Blocklisted destination address.",
+                              "key": "destination",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Channel used for sending for which blocklist happened.\n\nIf you want to check blocklist records for all channels, this field can be left out.",
+                              "key": "channel",
+                              "value": "MMS"
+                            },
+                            {
+                              "description": "Represents the way blocklist record was created:\n\nCUSTOM - blocklist record that was created manually\n\nMO - blocklist record automatically created once an end user unsubscribes by replying with a specific keyword (e.g.: STOP). This is applicable for the following channels: SMS, MMS.\n\nURL_OPT_OUT - blocklist record automatically created once an end user clicks an opt-out link included in the message.\n\nCAMPAIGN - blocklist record automatically created through a triggered event in the Flow (e.g., if the message was not opened in 24h, add to blocklist).",
+                              "key": "sourceType",
+                              "value": "URL_OPT_OUT"
+                            },
+                            {
+                              "description": "Account connected with a blocklist record. Main account has access to blocklist records of their subaccounts. Subaccounts can only access blocklist records specific to them. [API to retrieve account key](https://www.infobip.com/docs/api/platform/account-management/get-all-accounts).",
+                              "key": "accountKey",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "If set to `true`, blocklist records for subaccounts will be returned as well.",
+                              "key": "getAllAccountKeysBlocklists",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Use with `createDateTo` to search for blocklists for a particular date range.",
+                              "key": "createdDateFrom",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Use with `createDateFrom` to search for blocklists for a particular date range.",
+                              "key": "createdDateTo",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "ID that allows you to track, analyze, and show an aggregated overview and the performance of individual campaigns per sending channel.",
+                              "key": "campaign",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Requested page number.",
+                              "key": "page",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Requested page size.",
+                              "key": "size",
+                              "value": "100"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"aute6e\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"aute_a1c\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"labore_aeb\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exercitation_b28\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"Duis2\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:58:23.000Z",
+                      "updatedAt": "2026-07-28T01:58:23.000Z",
+                      "uid": "35240-23ec2985-89bb-446b-8b2a-108f14253513"
+                    },
+                    {
+                      "id": "2c593875-bd11-4b15-a169-f3092f0c2aa3",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/platform/1/blocklists?sender=<string>&destination=<string>&channel=MMS&sourceType=URL_OPT_OUT&accountKey=<string>&getAllAccountKeysBlocklists=<boolean>&createdDateFrom=<dateTime>&createdDateTo=<dateTime>&campaign=<string>&page=0&size=100",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "platform",
+                            "1",
+                            "blocklists"
+                          ],
+                          "query": [
+                            {
+                              "description": "The sender ID for which blocklist happened.",
+                              "key": "sender",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Blocklisted destination address.",
+                              "key": "destination",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Channel used for sending for which blocklist happened.\n\nIf you want to check blocklist records for all channels, this field can be left out.",
+                              "key": "channel",
+                              "value": "MMS"
+                            },
+                            {
+                              "description": "Represents the way blocklist record was created:\n\nCUSTOM - blocklist record that was created manually\n\nMO - blocklist record automatically created once an end user unsubscribes by replying with a specific keyword (e.g.: STOP). This is applicable for the following channels: SMS, MMS.\n\nURL_OPT_OUT - blocklist record automatically created once an end user clicks an opt-out link included in the message.\n\nCAMPAIGN - blocklist record automatically created through a triggered event in the Flow (e.g., if the message was not opened in 24h, add to blocklist).",
+                              "key": "sourceType",
+                              "value": "URL_OPT_OUT"
+                            },
+                            {
+                              "description": "Account connected with a blocklist record. Main account has access to blocklist records of their subaccounts. Subaccounts can only access blocklist records specific to them. [API to retrieve account key](https://www.infobip.com/docs/api/platform/account-management/get-all-accounts).",
+                              "key": "accountKey",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "If set to `true`, blocklist records for subaccounts will be returned as well.",
+                              "key": "getAllAccountKeysBlocklists",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Use with `createDateTo` to search for blocklists for a particular date range.",
+                              "key": "createdDateFrom",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Use with `createDateFrom` to search for blocklists for a particular date range.",
+                              "key": "createdDateTo",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "ID that allows you to track, analyze, and show an aggregated overview and the performance of individual campaigns per sending channel.",
+                              "key": "campaign",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Requested page number.",
+                              "key": "page",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Requested page size.",
+                              "key": "size",
+                              "value": "100"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"aute6e\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"aute_a1c\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"labore_aeb\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exercitation_b28\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"Duis2\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:58:23.000Z",
+                      "updatedAt": "2026-07-28T01:58:23.000Z",
+                      "uid": "35240-2c593875-bd11-4b15-a169-f3092f0c2aa3"
+                    },
+                    {
+                      "id": "aafaefe5-9f49-423b-b6ca-99e98e9fbff8",
+                      "name": "Too Many Requests",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/platform/1/blocklists?sender=<string>&destination=<string>&channel=MMS&sourceType=URL_OPT_OUT&accountKey=<string>&getAllAccountKeysBlocklists=<boolean>&createdDateFrom=<dateTime>&createdDateTo=<dateTime>&campaign=<string>&page=0&size=100",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "platform",
+                            "1",
+                            "blocklists"
+                          ],
+                          "query": [
+                            {
+                              "description": "The sender ID for which blocklist happened.",
+                              "key": "sender",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Blocklisted destination address.",
+                              "key": "destination",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Channel used for sending for which blocklist happened.\n\nIf you want to check blocklist records for all channels, this field can be left out.",
+                              "key": "channel",
+                              "value": "MMS"
+                            },
+                            {
+                              "description": "Represents the way blocklist record was created:\n\nCUSTOM - blocklist record that was created manually\n\nMO - blocklist record automatically created once an end user unsubscribes by replying with a specific keyword (e.g.: STOP). This is applicable for the following channels: SMS, MMS.\n\nURL_OPT_OUT - blocklist record automatically created once an end user clicks an opt-out link included in the message.\n\nCAMPAIGN - blocklist record automatically created through a triggered event in the Flow (e.g., if the message was not opened in 24h, add to blocklist).",
+                              "key": "sourceType",
+                              "value": "URL_OPT_OUT"
+                            },
+                            {
+                              "description": "Account connected with a blocklist record. Main account has access to blocklist records of their subaccounts. Subaccounts can only access blocklist records specific to them. [API to retrieve account key](https://www.infobip.com/docs/api/platform/account-management/get-all-accounts).",
+                              "key": "accountKey",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "If set to `true`, blocklist records for subaccounts will be returned as well.",
+                              "key": "getAllAccountKeysBlocklists",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Use with `createDateTo` to search for blocklists for a particular date range.",
+                              "key": "createdDateFrom",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Use with `createDateFrom` to search for blocklists for a particular date range.",
+                              "key": "createdDateTo",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "ID that allows you to track, analyze, and show an aggregated overview and the performance of individual campaigns per sending channel.",
+                              "key": "campaign",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Requested page number.",
+                              "key": "page",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Requested page size.",
+                              "key": "size",
+                              "value": "100"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"aute6e\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"aute_a1c\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"labore_aeb\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exercitation_b28\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"Duis2\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:58:23.000Z",
+                      "updatedAt": "2026-07-28T01:58:23.000Z",
+                      "uid": "35240-aafaefe5-9f49-423b-b6ca-99e98e9fbff8"
+                    },
+                    {
+                      "id": "288724f1-8379-4448-938d-30397e69f88f",
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/platform/1/blocklists?sender=<string>&destination=<string>&channel=MMS&sourceType=URL_OPT_OUT&accountKey=<string>&getAllAccountKeysBlocklists=<boolean>&createdDateFrom=<dateTime>&createdDateTo=<dateTime>&campaign=<string>&page=0&size=100",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "platform",
+                            "1",
+                            "blocklists"
+                          ],
+                          "query": [
+                            {
+                              "description": "The sender ID for which blocklist happened.",
+                              "key": "sender",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Blocklisted destination address.",
+                              "key": "destination",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Channel used for sending for which blocklist happened.\n\nIf you want to check blocklist records for all channels, this field can be left out.",
+                              "key": "channel",
+                              "value": "MMS"
+                            },
+                            {
+                              "description": "Represents the way blocklist record was created:\n\nCUSTOM - blocklist record that was created manually\n\nMO - blocklist record automatically created once an end user unsubscribes by replying with a specific keyword (e.g.: STOP). This is applicable for the following channels: SMS, MMS.\n\nURL_OPT_OUT - blocklist record automatically created once an end user clicks an opt-out link included in the message.\n\nCAMPAIGN - blocklist record automatically created through a triggered event in the Flow (e.g., if the message was not opened in 24h, add to blocklist).",
+                              "key": "sourceType",
+                              "value": "URL_OPT_OUT"
+                            },
+                            {
+                              "description": "Account connected with a blocklist record. Main account has access to blocklist records of their subaccounts. Subaccounts can only access blocklist records specific to them. [API to retrieve account key](https://www.infobip.com/docs/api/platform/account-management/get-all-accounts).",
+                              "key": "accountKey",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "If set to `true`, blocklist records for subaccounts will be returned as well.",
+                              "key": "getAllAccountKeysBlocklists",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Use with `createDateTo` to search for blocklists for a particular date range.",
+                              "key": "createdDateFrom",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Use with `createDateFrom` to search for blocklists for a particular date range.",
+                              "key": "createdDateTo",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "ID that allows you to track, analyze, and show an aggregated overview and the performance of individual campaigns per sending channel.",
+                              "key": "campaign",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Requested page number.",
+                              "key": "page",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Requested page size.",
+                              "key": "size",
+                              "value": "100"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"aute6e\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"aute_a1c\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"labore_aeb\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exercitation_b28\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"Duis2\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:58:23.000Z",
+                      "updatedAt": "2026-07-28T01:58:23.000Z",
+                      "uid": "35240-288724f1-8379-4448-938d-30397e69f88f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:58:23.000Z",
+                  "updatedAt": "2026-07-28T01:58:23.000Z",
+                  "uid": "35240-506cf0eb-6f3a-49aa-87ed-a838bf6e5541"
+                },
+                {
+                  "name": "Create blocklists",
+                  "id": "81fadf79-0199-44fb-8790-fe5c03ef2541",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"SMS\",\n      \"accountKey\": \"<string>\"\n    },\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"SMS\",\n      \"accountKey\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/platform/1/blocklists",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "platform",
+                        "1",
+                        "blocklists"
+                      ]
+                    },
+                    "description": "This method allows you to add someone to blocklist. It accepts create request with blocklists and asynchronously saves them, leaving out duplicate entries."
+                  },
+                  "response": [
+                    {
+                      "id": "94abf9bb-8853-4fdb-b972-80039381e095",
+                      "name": "Accepted",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"SMS\",\n      \"accountKey\": \"<string>\"\n    },\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"SMS\",\n      \"accountKey\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/platform/1/blocklists",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "platform",
+                            "1",
+                            "blocklists"
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:58:23.000Z",
+                      "updatedAt": "2026-07-28T01:58:23.000Z",
+                      "uid": "35240-94abf9bb-8853-4fdb-b972-80039381e095"
+                    },
+                    {
+                      "id": "14f113c0-4ebe-4887-93a6-23ff5f52a430",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"SMS\",\n      \"accountKey\": \"<string>\"\n    },\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"SMS\",\n      \"accountKey\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/platform/1/blocklists",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "platform",
+                            "1",
+                            "blocklists"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"aute6e\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"aute_a1c\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"labore_aeb\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exercitation_b28\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"Duis2\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:58:23.000Z",
+                      "updatedAt": "2026-07-28T01:58:23.000Z",
+                      "uid": "35240-14f113c0-4ebe-4887-93a6-23ff5f52a430"
+                    },
+                    {
+                      "id": "4abe5ebd-55f8-4b9c-94cb-85b65e806fa7",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"SMS\",\n      \"accountKey\": \"<string>\"\n    },\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"SMS\",\n      \"accountKey\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/platform/1/blocklists",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "platform",
+                            "1",
+                            "blocklists"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"aute6e\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"aute_a1c\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"labore_aeb\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exercitation_b28\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"Duis2\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:58:23.000Z",
+                      "updatedAt": "2026-07-28T01:58:23.000Z",
+                      "uid": "35240-4abe5ebd-55f8-4b9c-94cb-85b65e806fa7"
+                    },
+                    {
+                      "id": "bdd72c94-8f9b-4023-829f-9877a9feb27e",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"SMS\",\n      \"accountKey\": \"<string>\"\n    },\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"SMS\",\n      \"accountKey\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/platform/1/blocklists",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "platform",
+                            "1",
+                            "blocklists"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"aute6e\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"aute_a1c\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"labore_aeb\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exercitation_b28\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"Duis2\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:58:23.000Z",
+                      "updatedAt": "2026-07-28T01:58:23.000Z",
+                      "uid": "35240-bdd72c94-8f9b-4023-829f-9877a9feb27e"
+                    },
+                    {
+                      "id": "18a75cde-4601-4f4a-9302-7919178db26a",
+                      "name": "Too Many Requests",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"SMS\",\n      \"accountKey\": \"<string>\"\n    },\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"SMS\",\n      \"accountKey\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/platform/1/blocklists",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "platform",
+                            "1",
+                            "blocklists"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"aute6e\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"aute_a1c\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"labore_aeb\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exercitation_b28\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"Duis2\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:58:23.000Z",
+                      "updatedAt": "2026-07-28T01:58:23.000Z",
+                      "uid": "35240-18a75cde-4601-4f4a-9302-7919178db26a"
+                    },
+                    {
+                      "id": "d5f90a83-0ae4-422c-b72a-12a33b3ea57d",
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"SMS\",\n      \"accountKey\": \"<string>\"\n    },\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"SMS\",\n      \"accountKey\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/platform/1/blocklists",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "platform",
+                            "1",
+                            "blocklists"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"aute6e\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"aute_a1c\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"labore_aeb\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exercitation_b28\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"Duis2\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:58:23.000Z",
+                      "updatedAt": "2026-07-28T01:58:23.000Z",
+                      "uid": "35240-d5f90a83-0ae4-422c-b72a-12a33b3ea57d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:58:23.000Z",
+                  "updatedAt": "2026-07-28T01:58:23.000Z",
+                  "uid": "35240-81fadf79-0199-44fb-8790-fe5c03ef2541"
+                },
+                {
+                  "name": "Delete blocklists",
+                  "id": "7a8c4311-f6e5-4ccb-80f8-9cd563fff765",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"MMS\",\n      \"accountKey\": \"<string>\",\n      \"sourceType\": \"MO\"\n    },\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"<string>\",\n      \"sourceType\": \"URL_OPT_OUT\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/platform/1/blocklists",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "platform",
+                        "1",
+                        "blocklists"
+                      ]
+                    },
+                    "description": "This method allows you to remove someone from blocklist. It accepts delete request and asynchronously deletes all blocklists that match given properties. \n\nNote: To delete a blocklist, you must list all properties that were defined in the create request. For example, to delete the blocklist with the following properties: \n\n`{\"sender\": \"10950\", \"destination\": \"12022921990\", \"sourceType\": \"CUSTOM\", \"channel\": \"MMS\", \"createdDate\": \"2022-08-18T12:36:42.123Z\"}` \n\nThe delete request must contain all present properties, like this: \n\n`{\"blocklist\": [{\"destinations\": [{\"to\": \"12022921990\"}], \"sender\": \"10950\", \"channel\": \"MMS\", \"sourceType\": \"CUSTOM\"}`. \n\nOnly when all properties are listed will the blocklist be removed."
+                  },
+                  "response": [
+                    {
+                      "id": "4f129cfe-8bf3-4d87-a181-cbb1f3bdfb19",
+                      "name": "Accepted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"MMS\",\n      \"accountKey\": \"<string>\",\n      \"sourceType\": \"MO\"\n    },\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"<string>\",\n      \"sourceType\": \"URL_OPT_OUT\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/platform/1/blocklists",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "platform",
+                            "1",
+                            "blocklists"
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:58:23.000Z",
+                      "updatedAt": "2026-07-28T01:58:23.000Z",
+                      "uid": "35240-4f129cfe-8bf3-4d87-a181-cbb1f3bdfb19"
+                    },
+                    {
+                      "id": "ee44a36c-4981-4c38-9782-a797c9a4aa3c",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"MMS\",\n      \"accountKey\": \"<string>\",\n      \"sourceType\": \"MO\"\n    },\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"<string>\",\n      \"sourceType\": \"URL_OPT_OUT\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/platform/1/blocklists",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "platform",
+                            "1",
+                            "blocklists"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"aute6e\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"aute_a1c\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"labore_aeb\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exercitation_b28\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"Duis2\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:58:23.000Z",
+                      "updatedAt": "2026-07-28T01:58:23.000Z",
+                      "uid": "35240-ee44a36c-4981-4c38-9782-a797c9a4aa3c"
+                    },
+                    {
+                      "id": "ffdd02cb-463c-485f-bb34-13c3da4db428",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"MMS\",\n      \"accountKey\": \"<string>\",\n      \"sourceType\": \"MO\"\n    },\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"<string>\",\n      \"sourceType\": \"URL_OPT_OUT\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/platform/1/blocklists",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "platform",
+                            "1",
+                            "blocklists"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"aute6e\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"aute_a1c\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"labore_aeb\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exercitation_b28\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"Duis2\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:58:23.000Z",
+                      "updatedAt": "2026-07-28T01:58:23.000Z",
+                      "uid": "35240-ffdd02cb-463c-485f-bb34-13c3da4db428"
+                    },
+                    {
+                      "id": "018ee821-e7f2-4cc0-80a8-6071bd71c4f2",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"MMS\",\n      \"accountKey\": \"<string>\",\n      \"sourceType\": \"MO\"\n    },\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"<string>\",\n      \"sourceType\": \"URL_OPT_OUT\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/platform/1/blocklists",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "platform",
+                            "1",
+                            "blocklists"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"aute6e\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"aute_a1c\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"labore_aeb\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exercitation_b28\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"Duis2\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:58:23.000Z",
+                      "updatedAt": "2026-07-28T01:58:23.000Z",
+                      "uid": "35240-018ee821-e7f2-4cc0-80a8-6071bd71c4f2"
+                    },
+                    {
+                      "id": "2971361b-f6ae-49ac-aefa-daef57add957",
+                      "name": "Too Many Requests",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"MMS\",\n      \"accountKey\": \"<string>\",\n      \"sourceType\": \"MO\"\n    },\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"<string>\",\n      \"sourceType\": \"URL_OPT_OUT\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/platform/1/blocklists",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "platform",
+                            "1",
+                            "blocklists"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"aute6e\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"aute_a1c\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"labore_aeb\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exercitation_b28\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"Duis2\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:58:23.000Z",
+                      "updatedAt": "2026-07-28T01:58:23.000Z",
+                      "uid": "35240-2971361b-f6ae-49ac-aefa-daef57add957"
+                    },
+                    {
+                      "id": "efec4679-a750-4780-b4dd-4746c989b904",
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"MMS\",\n      \"accountKey\": \"<string>\",\n      \"sourceType\": \"MO\"\n    },\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"<string>\",\n      \"sourceType\": \"URL_OPT_OUT\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/platform/1/blocklists",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "platform",
+                            "1",
+                            "blocklists"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"aute6e\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"aute_a1c\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"labore_aeb\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exercitation_b28\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"Duis2\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:58:23.000Z",
+                      "updatedAt": "2026-07-28T01:58:23.000Z",
+                      "uid": "35240-efec4679-a750-4780-b4dd-4746c989b904"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:58:23.000Z",
+                  "updatedAt": "2026-07-28T01:58:23.000Z",
+                  "uid": "35240-7a8c4311-f6e5-4ccb-80f8-9cd563fff765"
+                }
+              ],
+              "id": "b9e4abd3-feef-4c4f-ad1d-e9f4cc01a64a",
+              "createdAt": "2026-07-28T01:58:23.000Z",
+              "updatedAt": "2026-07-28T01:58:23.000Z",
+              "uid": "35240-b9e4abd3-feef-4c4f-ad1d-e9f4cc01a64a"
+            }
+          ],
+          "id": "82c40f10-5cf4-4537-842d-5af31e6372cc",
+          "createdAt": "2026-07-28T01:58:23.000Z",
+          "updatedAt": "2026-07-28T01:58:23.000Z",
+          "uid": "35240-82c40f10-5cf4-4537-842d-5af31e6372cc"
+        }
+      ],
+      "id": "149fa396-d9d2-464b-90b7-121fa416e7a6",
+      "createdAt": "2026-07-28T01:58:23.000Z",
+      "updatedAt": "2026-07-28T01:58:23.000Z",
+      "uid": "35240-149fa396-d9d2-464b-90b7-121fa416e7a6"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

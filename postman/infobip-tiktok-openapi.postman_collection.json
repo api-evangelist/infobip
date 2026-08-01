@@ -1,0 +1,1861 @@
+{
+  "info": {
+    "_postman_id": "51d605d7-50c7-4492-a6b0-c7cba9a464f5",
+    "name": "Infobip OpenAPI Specification",
+    "description": "OpenAPI Specification that contains all public endpoints and webhooks.\n\nContact Support:\n Name: Infobip support\n Email: support@infobip.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:00:37.000Z",
+    "updatedAt": "2026-07-28T02:00:37.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-51d605d7-50c7-4492-a6b0-c7cba9a464f5"
+  },
+  "item": [
+    {
+      "name": "tiktok",
+      "item": [
+        {
+          "name": "1",
+          "item": [
+            {
+              "name": "messages",
+              "item": [
+                {
+                  "name": "Send TikTok messages",
+                  "id": "a9aef877-0e1a-4de0-a304-275162d86e20",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"messages\": [\n    {\n      \"content\": {\n        \"type\": \"IMAGE\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        },\n        \"deliveryTimeWindow\": {\n          \"days\": [\n            \"TUESDAY\",\n            \"MONDAY\"\n          ],\n          \"from\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          },\n          \"to\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          }\n        },\n        \"campaignReferenceId\": \"<string>\",\n        \"smsFailover\": {\n          \"text\": \"<string>\",\n          \"sender\": \"<string>\",\n          \"validityPeriod\": {\n            \"amount\": \"<integer>\",\n            \"timeUnit\": \"MINUTES\"\n          },\n          \"regional\": {\n            \"indiaDlt\": {\n              \"principalEntityId\": \"<string>\",\n              \"contentTemplateId\": \"<string>\",\n              \"telemarketerId\": \"<string>\"\n            },\n            \"turkeyIys\": {\n              \"recipientType\": \"BIREYSEL\",\n              \"brandCode\": \"<integer>\"\n            },\n            \"southKorea\": {\n              \"title\": \"<string>\",\n              \"resellerCode\": \"<integer>\"\n            }\n          }\n        }\n      },\n      \"webhooks\": {\n        \"delivery\": {\n          \"url\": \"<string>\",\n          \"intermediateReport\": \"<boolean>\",\n          \"notify\": \"<boolean>\",\n          \"receiveTriggeredFailoverReports\": \"<boolean>\"\n        },\n        \"contentType\": \"<string>\",\n        \"callbackData\": \"<string>\",\n        \"seen\": {\n          \"url\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"content\": {\n        \"type\": \"SHARE_POST\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        },\n        \"deliveryTimeWindow\": {\n          \"days\": [\n            \"MONDAY\",\n            \"SUNDAY\"\n          ],\n          \"from\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          },\n          \"to\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          }\n        },\n        \"campaignReferenceId\": \"<string>\",\n        \"smsFailover\": {\n          \"text\": \"<string>\",\n          \"sender\": \"<string>\",\n          \"validityPeriod\": {\n            \"amount\": \"<integer>\",\n            \"timeUnit\": \"MINUTES\"\n          },\n          \"regional\": {\n            \"indiaDlt\": {\n              \"principalEntityId\": \"<string>\",\n              \"contentTemplateId\": \"<string>\",\n              \"telemarketerId\": \"<string>\"\n            },\n            \"turkeyIys\": {\n              \"recipientType\": \"TACIR\",\n              \"brandCode\": \"<integer>\"\n            },\n            \"southKorea\": {\n              \"title\": \"<string>\",\n              \"resellerCode\": \"<integer>\"\n            }\n          }\n        }\n      },\n      \"webhooks\": {\n        \"delivery\": {\n          \"url\": \"<string>\",\n          \"intermediateReport\": \"<boolean>\",\n          \"notify\": \"<boolean>\",\n          \"receiveTriggeredFailoverReports\": \"<boolean>\"\n        },\n        \"contentType\": \"<string>\",\n        \"callbackData\": \"<string>\",\n        \"seen\": {\n          \"url\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"options\": {\n    \"schedule\": {\n      \"bulkId\": \"<string>\",\n      \"sendAt\": \"<dateTime>\",\n      \"sendingSpeedLimit\": {\n        \"amount\": \"<integer>\",\n        \"timeUnit\": \"MINUTE\"\n      }\n    },\n    \"priority\": \"HIGH\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tiktok/1/messages",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tiktok",
+                        "1",
+                        "messages"
+                      ]
+                    },
+                    "description": "Send one or more text, image, or share-post messages to TikTok users in active conversations with your TikTok Business Account. You can send messages only after the user has messaged your Business Account first."
+                  },
+                  "response": [
+                    {
+                      "id": "d257a1a4-1be2-4786-9f59-72deac457920",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"messages\": [\n    {\n      \"content\": {\n        \"type\": \"IMAGE\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        },\n        \"deliveryTimeWindow\": {\n          \"days\": [\n            \"TUESDAY\",\n            \"MONDAY\"\n          ],\n          \"from\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          },\n          \"to\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          }\n        },\n        \"campaignReferenceId\": \"<string>\",\n        \"smsFailover\": {\n          \"text\": \"<string>\",\n          \"sender\": \"<string>\",\n          \"validityPeriod\": {\n            \"amount\": \"<integer>\",\n            \"timeUnit\": \"MINUTES\"\n          },\n          \"regional\": {\n            \"indiaDlt\": {\n              \"principalEntityId\": \"<string>\",\n              \"contentTemplateId\": \"<string>\",\n              \"telemarketerId\": \"<string>\"\n            },\n            \"turkeyIys\": {\n              \"recipientType\": \"BIREYSEL\",\n              \"brandCode\": \"<integer>\"\n            },\n            \"southKorea\": {\n              \"title\": \"<string>\",\n              \"resellerCode\": \"<integer>\"\n            }\n          }\n        }\n      },\n      \"webhooks\": {\n        \"delivery\": {\n          \"url\": \"<string>\",\n          \"intermediateReport\": \"<boolean>\",\n          \"notify\": \"<boolean>\",\n          \"receiveTriggeredFailoverReports\": \"<boolean>\"\n        },\n        \"contentType\": \"<string>\",\n        \"callbackData\": \"<string>\",\n        \"seen\": {\n          \"url\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"content\": {\n        \"type\": \"SHARE_POST\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        },\n        \"deliveryTimeWindow\": {\n          \"days\": [\n            \"MONDAY\",\n            \"SUNDAY\"\n          ],\n          \"from\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          },\n          \"to\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          }\n        },\n        \"campaignReferenceId\": \"<string>\",\n        \"smsFailover\": {\n          \"text\": \"<string>\",\n          \"sender\": \"<string>\",\n          \"validityPeriod\": {\n            \"amount\": \"<integer>\",\n            \"timeUnit\": \"MINUTES\"\n          },\n          \"regional\": {\n            \"indiaDlt\": {\n              \"principalEntityId\": \"<string>\",\n              \"contentTemplateId\": \"<string>\",\n              \"telemarketerId\": \"<string>\"\n            },\n            \"turkeyIys\": {\n              \"recipientType\": \"TACIR\",\n              \"brandCode\": \"<integer>\"\n            },\n            \"southKorea\": {\n              \"title\": \"<string>\",\n              \"resellerCode\": \"<integer>\"\n            }\n          }\n        }\n      },\n      \"webhooks\": {\n        \"delivery\": {\n          \"url\": \"<string>\",\n          \"intermediateReport\": \"<boolean>\",\n          \"notify\": \"<boolean>\",\n          \"receiveTriggeredFailoverReports\": \"<boolean>\"\n        },\n        \"contentType\": \"<string>\",\n        \"callbackData\": \"<string>\",\n        \"seen\": {\n          \"url\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"options\": {\n    \"schedule\": {\n      \"bulkId\": \"<string>\",\n      \"sendAt\": \"<dateTime>\",\n      \"sendingSpeedLimit\": {\n        \"amount\": \"<integer>\",\n        \"timeUnit\": \"MINUTE\"\n      }\n    },\n    \"priority\": \"HIGH\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/tiktok/1/messages",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tiktok",
+                            "1",
+                            "messages"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"messages\": [\n    {\n      \"messageId\": \"<string>\",\n      \"status\": {\n        \"groupId\": \"<integer>\",\n        \"groupName\": \"DELIVERED\",\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"action\": \"<string>\"\n      },\n      \"destination\": \"<string>\",\n      \"details\": {}\n    },\n    {\n      \"messageId\": \"<string>\",\n      \"status\": {\n        \"groupId\": \"<integer>\",\n        \"groupName\": \"PENDING\",\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"action\": \"<string>\"\n      },\n      \"destination\": \"<string>\",\n      \"details\": {}\n    }\n  ],\n  \"bulkId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:00:38.000Z",
+                      "updatedAt": "2026-07-28T02:00:38.000Z",
+                      "uid": "35240-d257a1a4-1be2-4786-9f59-72deac457920"
+                    },
+                    {
+                      "id": "19342b21-9971-4f3a-86a4-05afe0d7e9b0",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"messages\": [\n    {\n      \"content\": {\n        \"type\": \"IMAGE\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        },\n        \"deliveryTimeWindow\": {\n          \"days\": [\n            \"TUESDAY\",\n            \"MONDAY\"\n          ],\n          \"from\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          },\n          \"to\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          }\n        },\n        \"campaignReferenceId\": \"<string>\",\n        \"smsFailover\": {\n          \"text\": \"<string>\",\n          \"sender\": \"<string>\",\n          \"validityPeriod\": {\n            \"amount\": \"<integer>\",\n            \"timeUnit\": \"MINUTES\"\n          },\n          \"regional\": {\n            \"indiaDlt\": {\n              \"principalEntityId\": \"<string>\",\n              \"contentTemplateId\": \"<string>\",\n              \"telemarketerId\": \"<string>\"\n            },\n            \"turkeyIys\": {\n              \"recipientType\": \"BIREYSEL\",\n              \"brandCode\": \"<integer>\"\n            },\n            \"southKorea\": {\n              \"title\": \"<string>\",\n              \"resellerCode\": \"<integer>\"\n            }\n          }\n        }\n      },\n      \"webhooks\": {\n        \"delivery\": {\n          \"url\": \"<string>\",\n          \"intermediateReport\": \"<boolean>\",\n          \"notify\": \"<boolean>\",\n          \"receiveTriggeredFailoverReports\": \"<boolean>\"\n        },\n        \"contentType\": \"<string>\",\n        \"callbackData\": \"<string>\",\n        \"seen\": {\n          \"url\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"content\": {\n        \"type\": \"SHARE_POST\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        },\n        \"deliveryTimeWindow\": {\n          \"days\": [\n            \"MONDAY\",\n            \"SUNDAY\"\n          ],\n          \"from\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          },\n          \"to\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          }\n        },\n        \"campaignReferenceId\": \"<string>\",\n        \"smsFailover\": {\n          \"text\": \"<string>\",\n          \"sender\": \"<string>\",\n          \"validityPeriod\": {\n            \"amount\": \"<integer>\",\n            \"timeUnit\": \"MINUTES\"\n          },\n          \"regional\": {\n            \"indiaDlt\": {\n              \"principalEntityId\": \"<string>\",\n              \"contentTemplateId\": \"<string>\",\n              \"telemarketerId\": \"<string>\"\n            },\n            \"turkeyIys\": {\n              \"recipientType\": \"TACIR\",\n              \"brandCode\": \"<integer>\"\n            },\n            \"southKorea\": {\n              \"title\": \"<string>\",\n              \"resellerCode\": \"<integer>\"\n            }\n          }\n        }\n      },\n      \"webhooks\": {\n        \"delivery\": {\n          \"url\": \"<string>\",\n          \"intermediateReport\": \"<boolean>\",\n          \"notify\": \"<boolean>\",\n          \"receiveTriggeredFailoverReports\": \"<boolean>\"\n        },\n        \"contentType\": \"<string>\",\n        \"callbackData\": \"<string>\",\n        \"seen\": {\n          \"url\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"options\": {\n    \"schedule\": {\n      \"bulkId\": \"<string>\",\n      \"sendAt\": \"<dateTime>\",\n      \"sendingSpeedLimit\": {\n        \"amount\": \"<integer>\",\n        \"timeUnit\": \"MINUTE\"\n      }\n    },\n    \"priority\": \"HIGH\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/tiktok/1/messages",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tiktok",
+                            "1",
+                            "messages"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:00:38.000Z",
+                      "updatedAt": "2026-07-28T02:00:38.000Z",
+                      "uid": "35240-19342b21-9971-4f3a-86a4-05afe0d7e9b0"
+                    },
+                    {
+                      "id": "f578ee0c-2911-4666-aa16-ffe7b924cecb",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"messages\": [\n    {\n      \"content\": {\n        \"type\": \"IMAGE\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        },\n        \"deliveryTimeWindow\": {\n          \"days\": [\n            \"TUESDAY\",\n            \"MONDAY\"\n          ],\n          \"from\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          },\n          \"to\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          }\n        },\n        \"campaignReferenceId\": \"<string>\",\n        \"smsFailover\": {\n          \"text\": \"<string>\",\n          \"sender\": \"<string>\",\n          \"validityPeriod\": {\n            \"amount\": \"<integer>\",\n            \"timeUnit\": \"MINUTES\"\n          },\n          \"regional\": {\n            \"indiaDlt\": {\n              \"principalEntityId\": \"<string>\",\n              \"contentTemplateId\": \"<string>\",\n              \"telemarketerId\": \"<string>\"\n            },\n            \"turkeyIys\": {\n              \"recipientType\": \"BIREYSEL\",\n              \"brandCode\": \"<integer>\"\n            },\n            \"southKorea\": {\n              \"title\": \"<string>\",\n              \"resellerCode\": \"<integer>\"\n            }\n          }\n        }\n      },\n      \"webhooks\": {\n        \"delivery\": {\n          \"url\": \"<string>\",\n          \"intermediateReport\": \"<boolean>\",\n          \"notify\": \"<boolean>\",\n          \"receiveTriggeredFailoverReports\": \"<boolean>\"\n        },\n        \"contentType\": \"<string>\",\n        \"callbackData\": \"<string>\",\n        \"seen\": {\n          \"url\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"content\": {\n        \"type\": \"SHARE_POST\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        },\n        \"deliveryTimeWindow\": {\n          \"days\": [\n            \"MONDAY\",\n            \"SUNDAY\"\n          ],\n          \"from\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          },\n          \"to\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          }\n        },\n        \"campaignReferenceId\": \"<string>\",\n        \"smsFailover\": {\n          \"text\": \"<string>\",\n          \"sender\": \"<string>\",\n          \"validityPeriod\": {\n            \"amount\": \"<integer>\",\n            \"timeUnit\": \"MINUTES\"\n          },\n          \"regional\": {\n            \"indiaDlt\": {\n              \"principalEntityId\": \"<string>\",\n              \"contentTemplateId\": \"<string>\",\n              \"telemarketerId\": \"<string>\"\n            },\n            \"turkeyIys\": {\n              \"recipientType\": \"TACIR\",\n              \"brandCode\": \"<integer>\"\n            },\n            \"southKorea\": {\n              \"title\": \"<string>\",\n              \"resellerCode\": \"<integer>\"\n            }\n          }\n        }\n      },\n      \"webhooks\": {\n        \"delivery\": {\n          \"url\": \"<string>\",\n          \"intermediateReport\": \"<boolean>\",\n          \"notify\": \"<boolean>\",\n          \"receiveTriggeredFailoverReports\": \"<boolean>\"\n        },\n        \"contentType\": \"<string>\",\n        \"callbackData\": \"<string>\",\n        \"seen\": {\n          \"url\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"options\": {\n    \"schedule\": {\n      \"bulkId\": \"<string>\",\n      \"sendAt\": \"<dateTime>\",\n      \"sendingSpeedLimit\": {\n        \"amount\": \"<integer>\",\n        \"timeUnit\": \"MINUTE\"\n      }\n    },\n    \"priority\": \"HIGH\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/tiktok/1/messages",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tiktok",
+                            "1",
+                            "messages"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:00:38.000Z",
+                      "updatedAt": "2026-07-28T02:00:38.000Z",
+                      "uid": "35240-f578ee0c-2911-4666-aa16-ffe7b924cecb"
+                    },
+                    {
+                      "id": "0cc21dba-e598-4a57-b7af-32f274ab739e",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"messages\": [\n    {\n      \"content\": {\n        \"type\": \"IMAGE\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        },\n        \"deliveryTimeWindow\": {\n          \"days\": [\n            \"TUESDAY\",\n            \"MONDAY\"\n          ],\n          \"from\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          },\n          \"to\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          }\n        },\n        \"campaignReferenceId\": \"<string>\",\n        \"smsFailover\": {\n          \"text\": \"<string>\",\n          \"sender\": \"<string>\",\n          \"validityPeriod\": {\n            \"amount\": \"<integer>\",\n            \"timeUnit\": \"MINUTES\"\n          },\n          \"regional\": {\n            \"indiaDlt\": {\n              \"principalEntityId\": \"<string>\",\n              \"contentTemplateId\": \"<string>\",\n              \"telemarketerId\": \"<string>\"\n            },\n            \"turkeyIys\": {\n              \"recipientType\": \"BIREYSEL\",\n              \"brandCode\": \"<integer>\"\n            },\n            \"southKorea\": {\n              \"title\": \"<string>\",\n              \"resellerCode\": \"<integer>\"\n            }\n          }\n        }\n      },\n      \"webhooks\": {\n        \"delivery\": {\n          \"url\": \"<string>\",\n          \"intermediateReport\": \"<boolean>\",\n          \"notify\": \"<boolean>\",\n          \"receiveTriggeredFailoverReports\": \"<boolean>\"\n        },\n        \"contentType\": \"<string>\",\n        \"callbackData\": \"<string>\",\n        \"seen\": {\n          \"url\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"content\": {\n        \"type\": \"SHARE_POST\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        },\n        \"deliveryTimeWindow\": {\n          \"days\": [\n            \"MONDAY\",\n            \"SUNDAY\"\n          ],\n          \"from\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          },\n          \"to\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          }\n        },\n        \"campaignReferenceId\": \"<string>\",\n        \"smsFailover\": {\n          \"text\": \"<string>\",\n          \"sender\": \"<string>\",\n          \"validityPeriod\": {\n            \"amount\": \"<integer>\",\n            \"timeUnit\": \"MINUTES\"\n          },\n          \"regional\": {\n            \"indiaDlt\": {\n              \"principalEntityId\": \"<string>\",\n              \"contentTemplateId\": \"<string>\",\n              \"telemarketerId\": \"<string>\"\n            },\n            \"turkeyIys\": {\n              \"recipientType\": \"TACIR\",\n              \"brandCode\": \"<integer>\"\n            },\n            \"southKorea\": {\n              \"title\": \"<string>\",\n              \"resellerCode\": \"<integer>\"\n            }\n          }\n        }\n      },\n      \"webhooks\": {\n        \"delivery\": {\n          \"url\": \"<string>\",\n          \"intermediateReport\": \"<boolean>\",\n          \"notify\": \"<boolean>\",\n          \"receiveTriggeredFailoverReports\": \"<boolean>\"\n        },\n        \"contentType\": \"<string>\",\n        \"callbackData\": \"<string>\",\n        \"seen\": {\n          \"url\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"options\": {\n    \"schedule\": {\n      \"bulkId\": \"<string>\",\n      \"sendAt\": \"<dateTime>\",\n      \"sendingSpeedLimit\": {\n        \"amount\": \"<integer>\",\n        \"timeUnit\": \"MINUTE\"\n      }\n    },\n    \"priority\": \"HIGH\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/tiktok/1/messages",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tiktok",
+                            "1",
+                            "messages"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:00:38.000Z",
+                      "updatedAt": "2026-07-28T02:00:38.000Z",
+                      "uid": "35240-0cc21dba-e598-4a57-b7af-32f274ab739e"
+                    },
+                    {
+                      "id": "01725ae8-85a1-4f06-bef2-e3f8d2f9aff4",
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"messages\": [\n    {\n      \"content\": {\n        \"type\": \"IMAGE\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        },\n        \"deliveryTimeWindow\": {\n          \"days\": [\n            \"TUESDAY\",\n            \"MONDAY\"\n          ],\n          \"from\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          },\n          \"to\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          }\n        },\n        \"campaignReferenceId\": \"<string>\",\n        \"smsFailover\": {\n          \"text\": \"<string>\",\n          \"sender\": \"<string>\",\n          \"validityPeriod\": {\n            \"amount\": \"<integer>\",\n            \"timeUnit\": \"MINUTES\"\n          },\n          \"regional\": {\n            \"indiaDlt\": {\n              \"principalEntityId\": \"<string>\",\n              \"contentTemplateId\": \"<string>\",\n              \"telemarketerId\": \"<string>\"\n            },\n            \"turkeyIys\": {\n              \"recipientType\": \"BIREYSEL\",\n              \"brandCode\": \"<integer>\"\n            },\n            \"southKorea\": {\n              \"title\": \"<string>\",\n              \"resellerCode\": \"<integer>\"\n            }\n          }\n        }\n      },\n      \"webhooks\": {\n        \"delivery\": {\n          \"url\": \"<string>\",\n          \"intermediateReport\": \"<boolean>\",\n          \"notify\": \"<boolean>\",\n          \"receiveTriggeredFailoverReports\": \"<boolean>\"\n        },\n        \"contentType\": \"<string>\",\n        \"callbackData\": \"<string>\",\n        \"seen\": {\n          \"url\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"content\": {\n        \"type\": \"SHARE_POST\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        },\n        \"deliveryTimeWindow\": {\n          \"days\": [\n            \"MONDAY\",\n            \"SUNDAY\"\n          ],\n          \"from\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          },\n          \"to\": {\n            \"hour\": \"<integer>\",\n            \"minute\": \"<integer>\"\n          }\n        },\n        \"campaignReferenceId\": \"<string>\",\n        \"smsFailover\": {\n          \"text\": \"<string>\",\n          \"sender\": \"<string>\",\n          \"validityPeriod\": {\n            \"amount\": \"<integer>\",\n            \"timeUnit\": \"MINUTES\"\n          },\n          \"regional\": {\n            \"indiaDlt\": {\n              \"principalEntityId\": \"<string>\",\n              \"contentTemplateId\": \"<string>\",\n              \"telemarketerId\": \"<string>\"\n            },\n            \"turkeyIys\": {\n              \"recipientType\": \"TACIR\",\n              \"brandCode\": \"<integer>\"\n            },\n            \"southKorea\": {\n              \"title\": \"<string>\",\n              \"resellerCode\": \"<integer>\"\n            }\n          }\n        }\n      },\n      \"webhooks\": {\n        \"delivery\": {\n          \"url\": \"<string>\",\n          \"intermediateReport\": \"<boolean>\",\n          \"notify\": \"<boolean>\",\n          \"receiveTriggeredFailoverReports\": \"<boolean>\"\n        },\n        \"contentType\": \"<string>\",\n        \"callbackData\": \"<string>\",\n        \"seen\": {\n          \"url\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"options\": {\n    \"schedule\": {\n      \"bulkId\": \"<string>\",\n      \"sendAt\": \"<dateTime>\",\n      \"sendingSpeedLimit\": {\n        \"amount\": \"<integer>\",\n        \"timeUnit\": \"MINUTE\"\n      }\n    },\n    \"priority\": \"HIGH\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/tiktok/1/messages",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tiktok",
+                            "1",
+                            "messages"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:00:38.000Z",
+                      "updatedAt": "2026-07-28T02:00:38.000Z",
+                      "uid": "35240-01725ae8-85a1-4f06-bef2-e3f8d2f9aff4"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:00:38.000Z",
+                  "updatedAt": "2026-07-28T02:00:38.000Z",
+                  "uid": "35240-a9aef877-0e1a-4de0-a304-275162d86e20"
+                }
+              ],
+              "id": "441b76dc-9849-421c-a348-ffbccb413d50",
+              "createdAt": "2026-07-28T02:00:38.000Z",
+              "updatedAt": "2026-07-28T02:00:38.000Z",
+              "uid": "35240-441b76dc-9849-421c-a348-ffbccb413d50"
+            },
+            {
+              "name": "events",
+              "item": [
+                {
+                  "name": "Send TikTok events",
+                  "id": "c78eda5c-1618-458a-b7af-8c3fd4d02f5d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"events\": [\n    {\n      \"content\": {\n        \"type\": \"MARK_AS_READ\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        }\n      }\n    },\n    {\n      \"content\": {\n        \"type\": \"TYPING_INDICATOR\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        }\n      }\n    }\n  ],\n  \"options\": {\n    \"schedule\": {\n      \"bulkId\": \"<string>\",\n      \"sendAt\": \"<dateTime>\",\n      \"sendingSpeedLimit\": {\n        \"amount\": \"<integer>\",\n        \"timeUnit\": \"MINUTE\"\n      }\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tiktok/1/events",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tiktok",
+                        "1",
+                        "events"
+                      ]
+                    },
+                    "description": "Send typing indicator or mark-as-read events to TikTok users in active conversations with your TikTok Business Account."
+                  },
+                  "response": [
+                    {
+                      "id": "9893add6-281e-4c56-8145-cce7967e5336",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"events\": [\n    {\n      \"content\": {\n        \"type\": \"MARK_AS_READ\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        }\n      }\n    },\n    {\n      \"content\": {\n        \"type\": \"TYPING_INDICATOR\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        }\n      }\n    }\n  ],\n  \"options\": {\n    \"schedule\": {\n      \"bulkId\": \"<string>\",\n      \"sendAt\": \"<dateTime>\",\n      \"sendingSpeedLimit\": {\n        \"amount\": \"<integer>\",\n        \"timeUnit\": \"MINUTE\"\n      }\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/tiktok/1/events",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tiktok",
+                            "1",
+                            "events"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"messages\": [\n    {\n      \"messageId\": \"<string>\",\n      \"status\": {\n        \"groupId\": \"<integer>\",\n        \"groupName\": \"DELIVERED\",\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"action\": \"<string>\"\n      },\n      \"destination\": \"<string>\",\n      \"details\": {}\n    },\n    {\n      \"messageId\": \"<string>\",\n      \"status\": {\n        \"groupId\": \"<integer>\",\n        \"groupName\": \"PENDING\",\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"action\": \"<string>\"\n      },\n      \"destination\": \"<string>\",\n      \"details\": {}\n    }\n  ],\n  \"bulkId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:00:38.000Z",
+                      "updatedAt": "2026-07-28T02:00:38.000Z",
+                      "uid": "35240-9893add6-281e-4c56-8145-cce7967e5336"
+                    },
+                    {
+                      "id": "943f407c-9cbf-4b25-a442-c4b5f24a7828",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"events\": [\n    {\n      \"content\": {\n        \"type\": \"MARK_AS_READ\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        }\n      }\n    },\n    {\n      \"content\": {\n        \"type\": \"TYPING_INDICATOR\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        }\n      }\n    }\n  ],\n  \"options\": {\n    \"schedule\": {\n      \"bulkId\": \"<string>\",\n      \"sendAt\": \"<dateTime>\",\n      \"sendingSpeedLimit\": {\n        \"amount\": \"<integer>\",\n        \"timeUnit\": \"MINUTE\"\n      }\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/tiktok/1/events",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tiktok",
+                            "1",
+                            "events"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:00:38.000Z",
+                      "updatedAt": "2026-07-28T02:00:38.000Z",
+                      "uid": "35240-943f407c-9cbf-4b25-a442-c4b5f24a7828"
+                    },
+                    {
+                      "id": "1564651c-0ca1-49ec-8765-79bc014173d9",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"events\": [\n    {\n      \"content\": {\n        \"type\": \"MARK_AS_READ\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        }\n      }\n    },\n    {\n      \"content\": {\n        \"type\": \"TYPING_INDICATOR\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        }\n      }\n    }\n  ],\n  \"options\": {\n    \"schedule\": {\n      \"bulkId\": \"<string>\",\n      \"sendAt\": \"<dateTime>\",\n      \"sendingSpeedLimit\": {\n        \"amount\": \"<integer>\",\n        \"timeUnit\": \"MINUTE\"\n      }\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/tiktok/1/events",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tiktok",
+                            "1",
+                            "events"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:00:38.000Z",
+                      "updatedAt": "2026-07-28T02:00:38.000Z",
+                      "uid": "35240-1564651c-0ca1-49ec-8765-79bc014173d9"
+                    },
+                    {
+                      "id": "6c138e86-a707-46c0-9977-d28300a58d5a",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"events\": [\n    {\n      \"content\": {\n        \"type\": \"MARK_AS_READ\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        }\n      }\n    },\n    {\n      \"content\": {\n        \"type\": \"TYPING_INDICATOR\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        }\n      }\n    }\n  ],\n  \"options\": {\n    \"schedule\": {\n      \"bulkId\": \"<string>\",\n      \"sendAt\": \"<dateTime>\",\n      \"sendingSpeedLimit\": {\n        \"amount\": \"<integer>\",\n        \"timeUnit\": \"MINUTE\"\n      }\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/tiktok/1/events",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tiktok",
+                            "1",
+                            "events"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:00:38.000Z",
+                      "updatedAt": "2026-07-28T02:00:38.000Z",
+                      "uid": "35240-6c138e86-a707-46c0-9977-d28300a58d5a"
+                    },
+                    {
+                      "id": "a20c56b8-dd5f-4557-b657-0b6d99279219",
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"events\": [\n    {\n      \"content\": {\n        \"type\": \"MARK_AS_READ\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        }\n      }\n    },\n    {\n      \"content\": {\n        \"type\": \"TYPING_INDICATOR\"\n      },\n      \"destinations\": [\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\",\n          \"messageId\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"options\": {\n        \"platform\": {\n          \"entityId\": \"<string>\",\n          \"applicationId\": \"<string>\"\n        },\n        \"validityPeriod\": {\n          \"amount\": \"<integer>\",\n          \"timeUnit\": \"MINUTES\"\n        }\n      }\n    }\n  ],\n  \"options\": {\n    \"schedule\": {\n      \"bulkId\": \"<string>\",\n      \"sendAt\": \"<dateTime>\",\n      \"sendingSpeedLimit\": {\n        \"amount\": \"<integer>\",\n        \"timeUnit\": \"MINUTE\"\n      }\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/tiktok/1/events",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tiktok",
+                            "1",
+                            "events"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:00:38.000Z",
+                      "updatedAt": "2026-07-28T02:00:38.000Z",
+                      "uid": "35240-a20c56b8-dd5f-4557-b657-0b6d99279219"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:00:38.000Z",
+                  "updatedAt": "2026-07-28T02:00:38.000Z",
+                  "uid": "35240-c78eda5c-1618-458a-b7af-8c3fd4d02f5d"
+                }
+              ],
+              "id": "d1577870-a6e4-4eb6-b954-af8fdf523784",
+              "createdAt": "2026-07-28T02:00:38.000Z",
+              "updatedAt": "2026-07-28T02:00:38.000Z",
+              "uid": "35240-d1577870-a6e4-4eb6-b954-af8fdf523784"
+            },
+            {
+              "name": "reports",
+              "item": [
+                {
+                  "name": "Get TikTok delivery reports",
+                  "id": "2043a21a-4b49-415a-9331-0cd11db9bddc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tiktok/1/reports?bulkId=<string>&messageId=<string>&limit=50&entityId=<string>&applicationId=<string>&campaignReferenceId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tiktok",
+                        "1",
+                        "reports"
+                      ],
+                      "query": [
+                        {
+                          "description": "The ID that uniquely identifies the request. Bulk ID will be received only when you send a message to more than one destination address.",
+                          "key": "bulkId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The ID that uniquely identifies the message sent.",
+                          "key": "messageId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of delivery reports to be returned. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access reports for the last 48h",
+                          "key": "limit",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                          "key": "entityId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                          "key": "applicationId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "ID of a campaign that was sent in the message.",
+                          "key": "campaignReferenceId",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Use this endpoint to pull delivery reports when your endpoint does not receive real-time delivery reports. Each request returns the latest batch of delivery reports from the last 48 hours. Each report is returned only once."
+                  },
+                  "response": [
+                    {
+                      "id": "b7084823-7ade-4e27-9d53-99418e67d6e7",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tiktok/1/reports?bulkId=<string>&messageId=<string>&limit=50&entityId=<string>&applicationId=<string>&campaignReferenceId=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tiktok",
+                            "1",
+                            "reports"
+                          ],
+                          "query": [
+                            {
+                              "description": "The ID that uniquely identifies the request. Bulk ID will be received only when you send a message to more than one destination address.",
+                              "key": "bulkId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The ID that uniquely identifies the message sent.",
+                              "key": "messageId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Maximum number of delivery reports to be returned. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access reports for the last 48h",
+                              "key": "limit",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "entityId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "applicationId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "ID of a campaign that was sent in the message.",
+                              "key": "campaignReferenceId",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"results\": [\n    {\n      \"bulkId\": \"<string>\",\n      \"price\": {\n        \"pricePerMessage\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"status\": {\n        \"groupId\": \"<integer>\",\n        \"groupName\": \"REJECTED\",\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"action\": \"<string>\"\n      },\n      \"error\": {\n        \"groupId\": \"<integer>\",\n        \"groupName\": \"USER_ERRORS\",\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"permanent\": \"<boolean>\"\n      },\n      \"messageId\": \"<string>\",\n      \"to\": \"<string>\",\n      \"sender\": \"<string>\",\n      \"sentAt\": \"<dateTime>\",\n      \"doneAt\": \"<dateTime>\",\n      \"messageCount\": \"<integer>\",\n      \"mccMnc\": \"<string>\",\n      \"callbackData\": \"<string>\",\n      \"platform\": {\n        \"entityId\": \"<string>\",\n        \"applicationId\": \"<string>\"\n      },\n      \"campaignReferenceId\": \"<string>\"\n    },\n    {\n      \"bulkId\": \"<string>\",\n      \"price\": {\n        \"pricePerMessage\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"status\": {\n        \"groupId\": \"<integer>\",\n        \"groupName\": \"ACCEPTED\",\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"action\": \"<string>\"\n      },\n      \"error\": {\n        \"groupId\": \"<integer>\",\n        \"groupName\": \"OPERATOR_ERRORS\",\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"permanent\": \"<boolean>\"\n      },\n      \"messageId\": \"<string>\",\n      \"to\": \"<string>\",\n      \"sender\": \"<string>\",\n      \"sentAt\": \"<dateTime>\",\n      \"doneAt\": \"<dateTime>\",\n      \"messageCount\": \"<integer>\",\n      \"mccMnc\": \"<string>\",\n      \"callbackData\": \"<string>\",\n      \"platform\": {\n        \"entityId\": \"<string>\",\n        \"applicationId\": \"<string>\"\n      },\n      \"campaignReferenceId\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:00:38.000Z",
+                      "updatedAt": "2026-07-28T02:00:38.000Z",
+                      "uid": "35240-b7084823-7ade-4e27-9d53-99418e67d6e7"
+                    },
+                    {
+                      "id": "2296bab3-e539-40a3-908f-84fdf324c13b",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tiktok/1/reports?bulkId=<string>&messageId=<string>&limit=50&entityId=<string>&applicationId=<string>&campaignReferenceId=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tiktok",
+                            "1",
+                            "reports"
+                          ],
+                          "query": [
+                            {
+                              "description": "The ID that uniquely identifies the request. Bulk ID will be received only when you send a message to more than one destination address.",
+                              "key": "bulkId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The ID that uniquely identifies the message sent.",
+                              "key": "messageId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Maximum number of delivery reports to be returned. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access reports for the last 48h",
+                              "key": "limit",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "entityId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "applicationId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "ID of a campaign that was sent in the message.",
+                              "key": "campaignReferenceId",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:00:38.000Z",
+                      "updatedAt": "2026-07-28T02:00:38.000Z",
+                      "uid": "35240-2296bab3-e539-40a3-908f-84fdf324c13b"
+                    },
+                    {
+                      "id": "cb7e53f0-6b10-4880-b2c6-59052c125c98",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tiktok/1/reports?bulkId=<string>&messageId=<string>&limit=50&entityId=<string>&applicationId=<string>&campaignReferenceId=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tiktok",
+                            "1",
+                            "reports"
+                          ],
+                          "query": [
+                            {
+                              "description": "The ID that uniquely identifies the request. Bulk ID will be received only when you send a message to more than one destination address.",
+                              "key": "bulkId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The ID that uniquely identifies the message sent.",
+                              "key": "messageId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Maximum number of delivery reports to be returned. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access reports for the last 48h",
+                              "key": "limit",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "entityId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "applicationId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "ID of a campaign that was sent in the message.",
+                              "key": "campaignReferenceId",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:00:38.000Z",
+                      "updatedAt": "2026-07-28T02:00:38.000Z",
+                      "uid": "35240-cb7e53f0-6b10-4880-b2c6-59052c125c98"
+                    },
+                    {
+                      "id": "cce10ec6-946d-43be-8d41-983fb544f3b8",
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tiktok/1/reports?bulkId=<string>&messageId=<string>&limit=50&entityId=<string>&applicationId=<string>&campaignReferenceId=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tiktok",
+                            "1",
+                            "reports"
+                          ],
+                          "query": [
+                            {
+                              "description": "The ID that uniquely identifies the request. Bulk ID will be received only when you send a message to more than one destination address.",
+                              "key": "bulkId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The ID that uniquely identifies the message sent.",
+                              "key": "messageId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Maximum number of delivery reports to be returned. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access reports for the last 48h",
+                              "key": "limit",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "entityId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "applicationId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "ID of a campaign that was sent in the message.",
+                              "key": "campaignReferenceId",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:00:38.000Z",
+                      "updatedAt": "2026-07-28T02:00:38.000Z",
+                      "uid": "35240-cce10ec6-946d-43be-8d41-983fb544f3b8"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:00:38.000Z",
+                  "updatedAt": "2026-07-28T02:00:38.000Z",
+                  "uid": "35240-2043a21a-4b49-415a-9331-0cd11db9bddc"
+                }
+              ],
+              "id": "785ced53-d986-4657-9799-3d3022aa60ad",
+              "createdAt": "2026-07-28T02:00:38.000Z",
+              "updatedAt": "2026-07-28T02:00:38.000Z",
+              "uid": "35240-785ced53-d986-4657-9799-3d3022aa60ad"
+            },
+            {
+              "name": "logs",
+              "item": [
+                {
+                  "name": "Get TikTok message logs",
+                  "id": "25a072e1-35ec-4503-92e8-9684330e11df",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tiktok/1/logs?sender=<string>&destination=<string>&bulkId=<string>&bulkId=<string>&messageId=<string>&messageId=<string>&generalStatus=UNDELIVERABLE&sentSince=<dateTime>&sentUntil=<dateTime>&limit=50&entityId=<string>&applicationId=<string>&campaignReferenceId=<string>&campaignReferenceId=<string>&useCursor=<boolean>&cursor=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tiktok",
+                        "1",
+                        "logs"
+                      ],
+                      "query": [
+                        {
+                          "description": "The sender ID which can be alphanumeric or numeric.",
+                          "key": "sender",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Message destination address.",
+                          "key": "destination",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. May contain multiple comma-separated values. Maximum length 2048 characters.",
+                          "key": "bulkId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. May contain multiple comma-separated values. Maximum length 2048 characters.",
+                          "key": "bulkId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Unique message ID for which a log is requested. May contain multiple comma-separated values. Maximum length 2048 characters.",
+                          "key": "messageId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Unique message ID for which a log is requested. May contain multiple comma-separated values. Maximum length 2048 characters.",
+                          "key": "messageId",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "generalStatus",
+                          "value": "UNDELIVERABLE"
+                        },
+                        {
+                          "description": "The logs will only include messages sent after this date. Use it alongside sentUntil to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ.",
+                          "key": "sentSince",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "The logs will only include messages sent before this date. Use it alongside sentSince to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ.",
+                          "key": "sentUntil",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Maximum number of messages to include in logs. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access logs for the last 48h.",
+                          "key": "limit",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                          "key": "entityId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                          "key": "applicationId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "ID of a campaign that was sent in the message. May contain multiple comma-separated values.",
+                          "key": "campaignReferenceId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "ID of a campaign that was sent in the message. May contain multiple comma-separated values.",
+                          "key": "campaignReferenceId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Flag used to enable cursor-based pagination. When set to true, the system will use the cursor to fetch the next set of logs.",
+                          "key": "useCursor",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Value which represents the current position in the data set. For the first request, this field shouldn't be defined. In subsequent requests, use the `nextCursor` value returned from the previous response to continue fetching data.",
+                          "key": "cursor",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Use this endpoint to retrieve outbound TikTok message logs for display in a user interface. Logs are available for the last 48 hours."
+                  },
+                  "response": [
+                    {
+                      "id": "1f292f14-483e-48a0-bc3c-90d802ee6382",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tiktok/1/logs?sender=<string>&destination=<string>&bulkId=<string>&messageId=<string>&generalStatus=UNDELIVERABLE&sentSince=<dateTime>&sentUntil=<dateTime>&limit=50&entityId=<string>&applicationId=<string>&campaignReferenceId=<string>&useCursor=<boolean>&cursor=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tiktok",
+                            "1",
+                            "logs"
+                          ],
+                          "query": [
+                            {
+                              "description": "The sender ID which can be alphanumeric or numeric.",
+                              "key": "sender",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Message destination address.",
+                              "key": "destination",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. May contain multiple comma-separated values. Maximum length 2048 characters.",
+                              "key": "bulkId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Unique message ID for which a log is requested. May contain multiple comma-separated values. Maximum length 2048 characters.",
+                              "key": "messageId",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "generalStatus",
+                              "value": "UNDELIVERABLE"
+                            },
+                            {
+                              "description": "The logs will only include messages sent after this date. Use it alongside sentUntil to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ.",
+                              "key": "sentSince",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "The logs will only include messages sent before this date. Use it alongside sentSince to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ.",
+                              "key": "sentUntil",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Maximum number of messages to include in logs. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access logs for the last 48h.",
+                              "key": "limit",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "entityId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "applicationId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "ID of a campaign that was sent in the message. May contain multiple comma-separated values.",
+                              "key": "campaignReferenceId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Flag used to enable cursor-based pagination. When set to true, the system will use the cursor to fetch the next set of logs.",
+                              "key": "useCursor",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Value which represents the current position in the data set. For the first request, this field shouldn't be defined. In subsequent requests, use the `nextCursor` value returned from the previous response to continue fetching data.",
+                              "key": "cursor",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"results\": [\n    {\n      \"sender\": \"<string>\",\n      \"destination\": \"<string>\",\n      \"bulkId\": \"<string>\",\n      \"messageId\": \"<string>\",\n      \"sentAt\": \"<dateTime>\",\n      \"doneAt\": \"<dateTime>\",\n      \"messageCount\": \"<integer>\",\n      \"price\": {\n        \"pricePerMessage\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"status\": {\n        \"groupId\": \"<integer>\",\n        \"groupName\": \"PENDING\",\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"action\": \"<string>\"\n      },\n      \"error\": {\n        \"groupId\": \"<integer>\",\n        \"groupName\": \"OPERATOR_ERRORS\",\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"permanent\": \"<boolean>\"\n      },\n      \"platform\": {\n        \"entityId\": \"<string>\",\n        \"applicationId\": \"<string>\"\n      },\n      \"content\": {\n        \"type\": \"SHARE_POST\"\n      },\n      \"campaignReferenceId\": \"<string>\"\n    },\n    {\n      \"sender\": \"<string>\",\n      \"destination\": \"<string>\",\n      \"bulkId\": \"<string>\",\n      \"messageId\": \"<string>\",\n      \"sentAt\": \"<dateTime>\",\n      \"doneAt\": \"<dateTime>\",\n      \"messageCount\": \"<integer>\",\n      \"price\": {\n        \"pricePerMessage\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"status\": {\n        \"groupId\": \"<integer>\",\n        \"groupName\": \"PENDING\",\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"action\": \"<string>\"\n      },\n      \"error\": {\n        \"groupId\": \"<integer>\",\n        \"groupName\": \"USER_ERRORS\",\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"permanent\": \"<boolean>\"\n      },\n      \"platform\": {\n        \"entityId\": \"<string>\",\n        \"applicationId\": \"<string>\"\n      },\n      \"content\": {\n        \"type\": \"TEXT\"\n      },\n      \"campaignReferenceId\": \"<string>\"\n    }\n  ],\n  \"cursor\": {\n    \"limit\": \"<integer>\",\n    \"nextCursor\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:00:38.000Z",
+                      "updatedAt": "2026-07-28T02:00:38.000Z",
+                      "uid": "35240-1f292f14-483e-48a0-bc3c-90d802ee6382"
+                    },
+                    {
+                      "id": "37754adf-d35d-4bce-bcb1-385277d06f10",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tiktok/1/logs?sender=<string>&destination=<string>&bulkId=<string>&messageId=<string>&generalStatus=UNDELIVERABLE&sentSince=<dateTime>&sentUntil=<dateTime>&limit=50&entityId=<string>&applicationId=<string>&campaignReferenceId=<string>&useCursor=<boolean>&cursor=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tiktok",
+                            "1",
+                            "logs"
+                          ],
+                          "query": [
+                            {
+                              "description": "The sender ID which can be alphanumeric or numeric.",
+                              "key": "sender",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Message destination address.",
+                              "key": "destination",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. May contain multiple comma-separated values. Maximum length 2048 characters.",
+                              "key": "bulkId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Unique message ID for which a log is requested. May contain multiple comma-separated values. Maximum length 2048 characters.",
+                              "key": "messageId",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "generalStatus",
+                              "value": "UNDELIVERABLE"
+                            },
+                            {
+                              "description": "The logs will only include messages sent after this date. Use it alongside sentUntil to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ.",
+                              "key": "sentSince",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "The logs will only include messages sent before this date. Use it alongside sentSince to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ.",
+                              "key": "sentUntil",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Maximum number of messages to include in logs. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access logs for the last 48h.",
+                              "key": "limit",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "entityId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "applicationId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "ID of a campaign that was sent in the message. May contain multiple comma-separated values.",
+                              "key": "campaignReferenceId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Flag used to enable cursor-based pagination. When set to true, the system will use the cursor to fetch the next set of logs.",
+                              "key": "useCursor",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Value which represents the current position in the data set. For the first request, this field shouldn't be defined. In subsequent requests, use the `nextCursor` value returned from the previous response to continue fetching data.",
+                              "key": "cursor",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:00:38.000Z",
+                      "updatedAt": "2026-07-28T02:00:38.000Z",
+                      "uid": "35240-37754adf-d35d-4bce-bcb1-385277d06f10"
+                    },
+                    {
+                      "id": "9046ca8d-c0a7-4fd2-bbf8-ed0ecdc8b0d3",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tiktok/1/logs?sender=<string>&destination=<string>&bulkId=<string>&messageId=<string>&generalStatus=UNDELIVERABLE&sentSince=<dateTime>&sentUntil=<dateTime>&limit=50&entityId=<string>&applicationId=<string>&campaignReferenceId=<string>&useCursor=<boolean>&cursor=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tiktok",
+                            "1",
+                            "logs"
+                          ],
+                          "query": [
+                            {
+                              "description": "The sender ID which can be alphanumeric or numeric.",
+                              "key": "sender",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Message destination address.",
+                              "key": "destination",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. May contain multiple comma-separated values. Maximum length 2048 characters.",
+                              "key": "bulkId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Unique message ID for which a log is requested. May contain multiple comma-separated values. Maximum length 2048 characters.",
+                              "key": "messageId",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "generalStatus",
+                              "value": "UNDELIVERABLE"
+                            },
+                            {
+                              "description": "The logs will only include messages sent after this date. Use it alongside sentUntil to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ.",
+                              "key": "sentSince",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "The logs will only include messages sent before this date. Use it alongside sentSince to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ.",
+                              "key": "sentUntil",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Maximum number of messages to include in logs. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access logs for the last 48h.",
+                              "key": "limit",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "entityId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "applicationId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "ID of a campaign that was sent in the message. May contain multiple comma-separated values.",
+                              "key": "campaignReferenceId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Flag used to enable cursor-based pagination. When set to true, the system will use the cursor to fetch the next set of logs.",
+                              "key": "useCursor",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Value which represents the current position in the data set. For the first request, this field shouldn't be defined. In subsequent requests, use the `nextCursor` value returned from the previous response to continue fetching data.",
+                              "key": "cursor",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:00:38.000Z",
+                      "updatedAt": "2026-07-28T02:00:38.000Z",
+                      "uid": "35240-9046ca8d-c0a7-4fd2-bbf8-ed0ecdc8b0d3"
+                    },
+                    {
+                      "id": "52d39fca-c9fe-4c07-81ee-c74e5f2dff14",
+                      "name": "Too Many Requests",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tiktok/1/logs?sender=<string>&destination=<string>&bulkId=<string>&messageId=<string>&generalStatus=UNDELIVERABLE&sentSince=<dateTime>&sentUntil=<dateTime>&limit=50&entityId=<string>&applicationId=<string>&campaignReferenceId=<string>&useCursor=<boolean>&cursor=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tiktok",
+                            "1",
+                            "logs"
+                          ],
+                          "query": [
+                            {
+                              "description": "The sender ID which can be alphanumeric or numeric.",
+                              "key": "sender",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Message destination address.",
+                              "key": "destination",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. May contain multiple comma-separated values. Maximum length 2048 characters.",
+                              "key": "bulkId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Unique message ID for which a log is requested. May contain multiple comma-separated values. Maximum length 2048 characters.",
+                              "key": "messageId",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "generalStatus",
+                              "value": "UNDELIVERABLE"
+                            },
+                            {
+                              "description": "The logs will only include messages sent after this date. Use it alongside sentUntil to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ.",
+                              "key": "sentSince",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "The logs will only include messages sent before this date. Use it alongside sentSince to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ.",
+                              "key": "sentUntil",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Maximum number of messages to include in logs. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access logs for the last 48h.",
+                              "key": "limit",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "entityId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "applicationId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "ID of a campaign that was sent in the message. May contain multiple comma-separated values.",
+                              "key": "campaignReferenceId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Flag used to enable cursor-based pagination. When set to true, the system will use the cursor to fetch the next set of logs.",
+                              "key": "useCursor",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Value which represents the current position in the data set. For the first request, this field shouldn't be defined. In subsequent requests, use the `nextCursor` value returned from the previous response to continue fetching data.",
+                              "key": "cursor",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:00:38.000Z",
+                      "updatedAt": "2026-07-28T02:00:38.000Z",
+                      "uid": "35240-52d39fca-c9fe-4c07-81ee-c74e5f2dff14"
+                    },
+                    {
+                      "id": "8c33d988-bdf2-4ed2-b5b8-3d0b6ce47547",
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tiktok/1/logs?sender=<string>&destination=<string>&bulkId=<string>&messageId=<string>&generalStatus=UNDELIVERABLE&sentSince=<dateTime>&sentUntil=<dateTime>&limit=50&entityId=<string>&applicationId=<string>&campaignReferenceId=<string>&useCursor=<boolean>&cursor=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tiktok",
+                            "1",
+                            "logs"
+                          ],
+                          "query": [
+                            {
+                              "description": "The sender ID which can be alphanumeric or numeric.",
+                              "key": "sender",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Message destination address.",
+                              "key": "destination",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. May contain multiple comma-separated values. Maximum length 2048 characters.",
+                              "key": "bulkId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Unique message ID for which a log is requested. May contain multiple comma-separated values. Maximum length 2048 characters.",
+                              "key": "messageId",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "generalStatus",
+                              "value": "UNDELIVERABLE"
+                            },
+                            {
+                              "description": "The logs will only include messages sent after this date. Use it alongside sentUntil to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ.",
+                              "key": "sentSince",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "The logs will only include messages sent before this date. Use it alongside sentSince to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ.",
+                              "key": "sentUntil",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Maximum number of messages to include in logs. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access logs for the last 48h.",
+                              "key": "limit",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "entityId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+                              "key": "applicationId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "ID of a campaign that was sent in the message. May contain multiple comma-separated values.",
+                              "key": "campaignReferenceId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Flag used to enable cursor-based pagination. When set to true, the system will use the cursor to fetch the next set of logs.",
+                              "key": "useCursor",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Value which represents the current position in the data set. For the first request, this field shouldn't be defined. In subsequent requests, use the `nextCursor` value returned from the previous response to continue fetching data.",
+                              "key": "cursor",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"resources\": [\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"violation\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:00:38.000Z",
+                      "updatedAt": "2026-07-28T02:00:38.000Z",
+                      "uid": "35240-8c33d988-bdf2-4ed2-b5b8-3d0b6ce47547"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:00:38.000Z",
+                  "updatedAt": "2026-07-28T02:00:38.000Z",
+                  "uid": "35240-25a072e1-35ec-4503-92e8-9684330e11df"
+                }
+              ],
+              "id": "a818aef7-d55c-4205-965a-470835826b66",
+              "createdAt": "2026-07-28T02:00:38.000Z",
+              "updatedAt": "2026-07-28T02:00:38.000Z",
+              "uid": "35240-a818aef7-d55c-4205-965a-470835826b66"
+            }
+          ],
+          "id": "eaa7c8b0-015e-494d-8191-24939e2ec125",
+          "createdAt": "2026-07-28T02:00:38.000Z",
+          "updatedAt": "2026-07-28T02:00:38.000Z",
+          "uid": "35240-eaa7c8b0-015e-494d-8191-24939e2ec125"
+        }
+      ],
+      "id": "93f8fad0-292e-4073-b2f0-291cc7ad5ef0",
+      "createdAt": "2026-07-28T02:00:38.000Z",
+      "updatedAt": "2026-07-28T02:00:38.000Z",
+      "uid": "35240-93f8fad0-292e-4073-b2f0-291cc7ad5ef0"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

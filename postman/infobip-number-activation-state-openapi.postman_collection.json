@@ -1,0 +1,1073 @@
+{
+  "info": {
+    "_postman_id": "24cc0d6c-bc2d-43a5-b629-6b1ef5f28da8",
+    "name": "Infobip OpenAPI Specification",
+    "description": "OpenAPI Specification that contains all public endpoints and webhooks.\n\nContact Support:\n Name: Infobip support\n Email: support@infobip.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:59:28.000Z",
+    "updatedAt": "2026-07-28T01:59:29.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-24cc0d6c-bc2d-43a5-b629-6b1ef5f28da8"
+  },
+  "item": [
+    {
+      "name": "number-activation-state",
+      "item": [
+        {
+          "name": "1",
+          "item": [
+            {
+              "name": "network-reports",
+              "item": [
+                {
+                  "name": "{reportId}",
+                  "item": [
+                    {
+                      "name": "records",
+                      "item": [
+                        {
+                          "name": "Get Network Report content",
+                          "id": "e87818c9-a655-42eb-acea-d19767ea35c6",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "Authorization",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/number-activation-state/1/network-reports/:reportId/records?page=0&size=20",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "number-activation-state",
+                                "1",
+                                "network-reports",
+                                ":reportId",
+                                "records"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Results page to retrieve (0..N).",
+                                  "key": "page",
+                                  "value": "0"
+                                },
+                                {
+                                  "description": "Number of records per page.",
+                                  "key": "size",
+                                  "value": "20"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "44a2ee9c-9d73-421b-8a3e-ddf6dc73b041",
+                                  "key": "reportId",
+                                  "value": "<string>",
+                                  "description": "(Required) The reportId to retrieve"
+                                }
+                              ]
+                            },
+                            "description": "Get a paginated list of destination number activation state changes from a given Report."
+                          },
+                          "response": [
+                            {
+                              "id": "a47a5076-e4e8-4f07-89f5-37b6db016baa",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/number-activation-state/1/network-reports/:reportId/records?page=0&size=20",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "number-activation-state",
+                                    "1",
+                                    "network-reports",
+                                    ":reportId",
+                                    "records"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Results page to retrieve (0..N).",
+                                      "key": "page",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "description": "Number of records per page.",
+                                      "key": "size",
+                                      "value": "20"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "reportId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"results\": [\n    {\n      \"date\": \"<string>\",\n      \"destination\": \"<string>\",\n      \"type\": \"REACTIVATION\",\n      \"newDestination\": \"<string>\"\n    },\n    {\n      \"date\": \"<string>\",\n      \"destination\": \"<string>\",\n      \"type\": \"SUSPENSION\",\n      \"newDestination\": \"<string>\"\n    }\n  ],\n  \"paging\": {\n    \"page\": \"<integer>\",\n    \"size\": \"<integer>\",\n    \"totalPages\": \"<integer>\",\n    \"totalResults\": \"<long>\"\n  }\n}",
+                              "createdAt": "2026-07-28T01:59:29.000Z",
+                              "updatedAt": "2026-07-28T01:59:29.000Z",
+                              "uid": "35240-a47a5076-e4e8-4f07-89f5-37b6db016baa"
+                            },
+                            {
+                              "id": "4790e2df-3d9d-4c4a-83b4-a4f50a87f484",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/number-activation-state/1/network-reports/:reportId/records?page=0&size=20",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "number-activation-state",
+                                    "1",
+                                    "network-reports",
+                                    ":reportId",
+                                    "records"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Results page to retrieve (0..N).",
+                                      "key": "page",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "description": "Number of records per page.",
+                                      "key": "size",
+                                      "value": "20"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "reportId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"ea_b1\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:59:29.000Z",
+                              "updatedAt": "2026-07-28T01:59:29.000Z",
+                              "uid": "35240-4790e2df-3d9d-4c4a-83b4-a4f50a87f484"
+                            },
+                            {
+                              "id": "c12d3056-4c6e-4ab5-860f-d6a8e50a2d70",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/number-activation-state/1/network-reports/:reportId/records?page=0&size=20",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "number-activation-state",
+                                    "1",
+                                    "network-reports",
+                                    ":reportId",
+                                    "records"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Results page to retrieve (0..N).",
+                                      "key": "page",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "description": "Number of records per page.",
+                                      "key": "size",
+                                      "value": "20"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "reportId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"ea_b1\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:59:29.000Z",
+                              "updatedAt": "2026-07-28T01:59:29.000Z",
+                              "uid": "35240-c12d3056-4c6e-4ab5-860f-d6a8e50a2d70"
+                            },
+                            {
+                              "id": "1011e3db-c9ca-413d-bc3d-e6483dd343e8",
+                              "name": "Not Found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "*/*"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/number-activation-state/1/network-reports/:reportId/records?page=0&size=20",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "number-activation-state",
+                                    "1",
+                                    "network-reports",
+                                    ":reportId",
+                                    "records"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Results page to retrieve (0..N).",
+                                      "key": "page",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "description": "Number of records per page.",
+                                      "key": "size",
+                                      "value": "20"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "reportId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "*/*"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{}",
+                              "createdAt": "2026-07-28T01:59:29.000Z",
+                              "updatedAt": "2026-07-28T01:59:29.000Z",
+                              "uid": "35240-1011e3db-c9ca-413d-bc3d-e6483dd343e8"
+                            },
+                            {
+                              "id": "fda3ef6b-5d21-4e63-8857-bc4096bd5969",
+                              "name": "Too Many Requests",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/number-activation-state/1/network-reports/:reportId/records?page=0&size=20",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "number-activation-state",
+                                    "1",
+                                    "network-reports",
+                                    ":reportId",
+                                    "records"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Results page to retrieve (0..N).",
+                                      "key": "page",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "description": "Number of records per page.",
+                                      "key": "size",
+                                      "value": "20"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "reportId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"ea_b1\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:59:29.000Z",
+                              "updatedAt": "2026-07-28T01:59:29.000Z",
+                              "uid": "35240-fda3ef6b-5d21-4e63-8857-bc4096bd5969"
+                            },
+                            {
+                              "id": "489ef944-723f-468a-a8aa-acc32f48c67a",
+                              "name": "Internal Server Error",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/number-activation-state/1/network-reports/:reportId/records?page=0&size=20",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "number-activation-state",
+                                    "1",
+                                    "network-reports",
+                                    ":reportId",
+                                    "records"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Results page to retrieve (0..N).",
+                                      "key": "page",
+                                      "value": "0"
+                                    },
+                                    {
+                                      "description": "Number of records per page.",
+                                      "key": "size",
+                                      "value": "20"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "reportId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"ea_b1\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:59:29.000Z",
+                              "updatedAt": "2026-07-28T01:59:29.000Z",
+                              "uid": "35240-489ef944-723f-468a-a8aa-acc32f48c67a"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:59:29.000Z",
+                          "updatedAt": "2026-07-28T01:59:29.000Z",
+                          "uid": "35240-e87818c9-a655-42eb-acea-d19767ea35c6"
+                        }
+                      ],
+                      "id": "819a744f-f154-4cc0-997e-73ff27d513b4",
+                      "createdAt": "2026-07-28T01:59:29.000Z",
+                      "updatedAt": "2026-07-28T01:59:29.000Z",
+                      "uid": "35240-819a744f-f154-4cc0-997e-73ff27d513b4"
+                    }
+                  ],
+                  "id": "0abfe745-35f6-4400-84a9-aacdbd57fdc1",
+                  "createdAt": "2026-07-28T01:59:29.000Z",
+                  "updatedAt": "2026-07-28T01:59:29.000Z",
+                  "uid": "35240-0abfe745-35f6-4400-84a9-aacdbd57fdc1"
+                },
+                {
+                  "name": "Get Network Reports metadata",
+                  "id": "6a7e8d23-49c4-4e14-a879-ff72087b934b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/number-activation-state/1/network-reports?page=0&size=20&dateFrom=<string>&dateTo=<string>&reportId=<string>&networkId=<integer>&networkName=<string>&generatedDateFrom=<string>&generatedDateTo=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "number-activation-state",
+                        "1",
+                        "network-reports"
+                      ],
+                      "query": [
+                        {
+                          "description": "Results page to retrieve (0..N).",
+                          "key": "page",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Number of records per page.",
+                          "key": "size",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Date in UTC that exactly defines the dateFrom property of the reports. <br />Format: yyyy-MM-dd <br />When both dateFrom and dateTo are provided then a list of reports between those two dates are returned.",
+                          "key": "dateFrom",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Date in UTC that exactly defines the dateTo property of the reports. <br />Format: yyyy-MM-dd <br />When both dateFrom and dateTo are provided then a list of reports between those two dates are returned.",
+                          "key": "dateTo",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The reportId to find",
+                          "key": "reportId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The networkId of network that provided the report content.",
+                          "key": "networkId",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "The name of network that provided the report content.",
+                          "key": "networkName",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by report generation date (inclusive lower bound)",
+                          "key": "generatedDateFrom",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by report generation date (inclusive upper bound)",
+                          "key": "generatedDateTo",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Get a paginated list of Network Reports metadata."
+                  },
+                  "response": [
+                    {
+                      "id": "9f3a59a5-8e84-4bfe-a6bf-44e46799e214",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/number-activation-state/1/network-reports?page=0&size=20&dateFrom=<string>&dateTo=<string>&reportId=<string>&networkId=<integer>&networkName=<string>&generatedDateFrom=<string>&generatedDateTo=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "number-activation-state",
+                            "1",
+                            "network-reports"
+                          ],
+                          "query": [
+                            {
+                              "description": "Results page to retrieve (0..N).",
+                              "key": "page",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Number of records per page.",
+                              "key": "size",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Date in UTC that exactly defines the dateFrom property of the reports. <br />Format: yyyy-MM-dd <br />When both dateFrom and dateTo are provided then a list of reports between those two dates are returned.",
+                              "key": "dateFrom",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Date in UTC that exactly defines the dateTo property of the reports. <br />Format: yyyy-MM-dd <br />When both dateFrom and dateTo are provided then a list of reports between those two dates are returned.",
+                              "key": "dateTo",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The reportId to find",
+                              "key": "reportId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The networkId of network that provided the report content.",
+                              "key": "networkId",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "The name of network that provided the report content.",
+                              "key": "networkName",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by report generation date (inclusive lower bound)",
+                              "key": "generatedDateFrom",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by report generation date (inclusive upper bound)",
+                              "key": "generatedDateTo",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"results\": [\n    {\n      \"dateFrom\": \"<string>\",\n      \"dateTo\": \"<string>\",\n      \"expiryDate\": \"<string>\",\n      \"generatedDate\": \"<string>\",\n      \"networkId\": \"<integer>\",\n      \"networkName\": \"<string>\",\n      \"reportId\": \"<string>\"\n    },\n    {\n      \"dateFrom\": \"<string>\",\n      \"dateTo\": \"<string>\",\n      \"expiryDate\": \"<string>\",\n      \"generatedDate\": \"<string>\",\n      \"networkId\": \"<integer>\",\n      \"networkName\": \"<string>\",\n      \"reportId\": \"<string>\"\n    }\n  ],\n  \"paging\": {\n    \"page\": \"<integer>\",\n    \"size\": \"<integer>\",\n    \"totalPages\": \"<integer>\",\n    \"totalResults\": \"<long>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:59:29.000Z",
+                      "updatedAt": "2026-07-28T01:59:29.000Z",
+                      "uid": "35240-9f3a59a5-8e84-4bfe-a6bf-44e46799e214"
+                    },
+                    {
+                      "id": "96386e55-80b0-450d-9310-5ded841b44c8",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/number-activation-state/1/network-reports?page=0&size=20&dateFrom=<string>&dateTo=<string>&reportId=<string>&networkId=<integer>&networkName=<string>&generatedDateFrom=<string>&generatedDateTo=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "number-activation-state",
+                            "1",
+                            "network-reports"
+                          ],
+                          "query": [
+                            {
+                              "description": "Results page to retrieve (0..N).",
+                              "key": "page",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Number of records per page.",
+                              "key": "size",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Date in UTC that exactly defines the dateFrom property of the reports. <br />Format: yyyy-MM-dd <br />When both dateFrom and dateTo are provided then a list of reports between those two dates are returned.",
+                              "key": "dateFrom",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Date in UTC that exactly defines the dateTo property of the reports. <br />Format: yyyy-MM-dd <br />When both dateFrom and dateTo are provided then a list of reports between those two dates are returned.",
+                              "key": "dateTo",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The reportId to find",
+                              "key": "reportId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The networkId of network that provided the report content.",
+                              "key": "networkId",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "The name of network that provided the report content.",
+                              "key": "networkName",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by report generation date (inclusive lower bound)",
+                              "key": "generatedDateFrom",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by report generation date (inclusive upper bound)",
+                              "key": "generatedDateTo",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"ea_b1\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:59:29.000Z",
+                      "updatedAt": "2026-07-28T01:59:29.000Z",
+                      "uid": "35240-96386e55-80b0-450d-9310-5ded841b44c8"
+                    },
+                    {
+                      "id": "78442822-fe75-4e2b-ae5a-d7c970db1f16",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/number-activation-state/1/network-reports?page=0&size=20&dateFrom=<string>&dateTo=<string>&reportId=<string>&networkId=<integer>&networkName=<string>&generatedDateFrom=<string>&generatedDateTo=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "number-activation-state",
+                            "1",
+                            "network-reports"
+                          ],
+                          "query": [
+                            {
+                              "description": "Results page to retrieve (0..N).",
+                              "key": "page",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Number of records per page.",
+                              "key": "size",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Date in UTC that exactly defines the dateFrom property of the reports. <br />Format: yyyy-MM-dd <br />When both dateFrom and dateTo are provided then a list of reports between those two dates are returned.",
+                              "key": "dateFrom",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Date in UTC that exactly defines the dateTo property of the reports. <br />Format: yyyy-MM-dd <br />When both dateFrom and dateTo are provided then a list of reports between those two dates are returned.",
+                              "key": "dateTo",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The reportId to find",
+                              "key": "reportId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The networkId of network that provided the report content.",
+                              "key": "networkId",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "The name of network that provided the report content.",
+                              "key": "networkName",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by report generation date (inclusive lower bound)",
+                              "key": "generatedDateFrom",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by report generation date (inclusive upper bound)",
+                              "key": "generatedDateTo",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"ea_b1\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:59:29.000Z",
+                      "updatedAt": "2026-07-28T01:59:29.000Z",
+                      "uid": "35240-78442822-fe75-4e2b-ae5a-d7c970db1f16"
+                    },
+                    {
+                      "id": "8dfb092d-ed1b-40ec-9c09-a2d72ad93b54",
+                      "name": "Too Many Requests",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/number-activation-state/1/network-reports?page=0&size=20&dateFrom=<string>&dateTo=<string>&reportId=<string>&networkId=<integer>&networkName=<string>&generatedDateFrom=<string>&generatedDateTo=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "number-activation-state",
+                            "1",
+                            "network-reports"
+                          ],
+                          "query": [
+                            {
+                              "description": "Results page to retrieve (0..N).",
+                              "key": "page",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Number of records per page.",
+                              "key": "size",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Date in UTC that exactly defines the dateFrom property of the reports. <br />Format: yyyy-MM-dd <br />When both dateFrom and dateTo are provided then a list of reports between those two dates are returned.",
+                              "key": "dateFrom",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Date in UTC that exactly defines the dateTo property of the reports. <br />Format: yyyy-MM-dd <br />When both dateFrom and dateTo are provided then a list of reports between those two dates are returned.",
+                              "key": "dateTo",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The reportId to find",
+                              "key": "reportId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The networkId of network that provided the report content.",
+                              "key": "networkId",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "The name of network that provided the report content.",
+                              "key": "networkName",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by report generation date (inclusive lower bound)",
+                              "key": "generatedDateFrom",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by report generation date (inclusive upper bound)",
+                              "key": "generatedDateTo",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"ea_b1\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:59:29.000Z",
+                      "updatedAt": "2026-07-28T01:59:29.000Z",
+                      "uid": "35240-8dfb092d-ed1b-40ec-9c09-a2d72ad93b54"
+                    },
+                    {
+                      "id": "b063dd0c-7617-45f7-88a8-e7324f797eae",
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/number-activation-state/1/network-reports?page=0&size=20&dateFrom=<string>&dateTo=<string>&reportId=<string>&networkId=<integer>&networkName=<string>&generatedDateFrom=<string>&generatedDateTo=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "number-activation-state",
+                            "1",
+                            "network-reports"
+                          ],
+                          "query": [
+                            {
+                              "description": "Results page to retrieve (0..N).",
+                              "key": "page",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Number of records per page.",
+                              "key": "size",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Date in UTC that exactly defines the dateFrom property of the reports. <br />Format: yyyy-MM-dd <br />When both dateFrom and dateTo are provided then a list of reports between those two dates are returned.",
+                              "key": "dateFrom",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Date in UTC that exactly defines the dateTo property of the reports. <br />Format: yyyy-MM-dd <br />When both dateFrom and dateTo are provided then a list of reports between those two dates are returned.",
+                              "key": "dateTo",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The reportId to find",
+                              "key": "reportId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The networkId of network that provided the report content.",
+                              "key": "networkId",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "The name of network that provided the report content.",
+                              "key": "networkName",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by report generation date (inclusive lower bound)",
+                              "key": "generatedDateFrom",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by report generation date (inclusive upper bound)",
+                              "key": "generatedDateTo",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"<string>\",\n      \"text\": \"<string>\",\n      \"validationErrors\": {\n        \"ea_b1\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:59:29.000Z",
+                      "updatedAt": "2026-07-28T01:59:29.000Z",
+                      "uid": "35240-b063dd0c-7617-45f7-88a8-e7324f797eae"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:59:29.000Z",
+                  "updatedAt": "2026-07-28T01:59:29.000Z",
+                  "uid": "35240-6a7e8d23-49c4-4e14-a879-ff72087b934b"
+                }
+              ],
+              "id": "606523e8-a371-4d2f-be88-e0bc7d8717c5",
+              "createdAt": "2026-07-28T01:59:29.000Z",
+              "updatedAt": "2026-07-28T01:59:29.000Z",
+              "uid": "35240-606523e8-a371-4d2f-be88-e0bc7d8717c5"
+            }
+          ],
+          "id": "2cdf8dd1-2864-4441-8069-937b6f228335",
+          "createdAt": "2026-07-28T01:59:29.000Z",
+          "updatedAt": "2026-07-28T01:59:29.000Z",
+          "uid": "35240-2cdf8dd1-2864-4441-8069-937b6f228335"
+        }
+      ],
+      "id": "e5b42b61-6856-4b53-b729-294ca9033447",
+      "createdAt": "2026-07-28T01:59:29.000Z",
+      "updatedAt": "2026-07-28T01:59:29.000Z",
+      "uid": "35240-e5b42b61-6856-4b53-b729-294ca9033447"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

@@ -1,0 +1,432 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "platform",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get inbound configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/resource-management/1/inbound-message-configurations",
+            "params": [
+              {
+                "name": "configurationKey",
+                "value": "58BC6DB7966CB9F69A91EB956DF73239",
+                "type": "query",
+                "description": "Unique ID of configuration."
+              },
+              {
+                "name": "number",
+                "value": "41793026727",
+                "type": "query"
+              },
+              {
+                "name": "numberKey",
+                "value": "58BC6DB7966CB9F69A91EB956DF73239",
+                "type": "query",
+                "description": "Unique ID of a number."
+              },
+              {
+                "name": "resource",
+                "value": "41793026727",
+                "type": "query"
+              },
+              {
+                "name": "resourceKey",
+                "value": "58BC6DB7966CB9F69A91EB956DF73239",
+                "type": "query",
+                "description": "Unique ID of a resource."
+              },
+              {
+                "name": "keyword",
+                "value": "STARTKW",
+                "type": "query",
+                "description": "Configuration keyword."
+              },
+              {
+                "name": "channel",
+                "value": "SMS",
+                "type": "query",
+                "description": "Required if <code>number, numberKey, resource</code> or <code>resourceKey</code> present."
+              },
+              {
+                "name": "countryCode",
+                "value": "GB",
+                "type": "query",
+                "description": "Country code in two-letter ISO standard. Required for identifying country specific resources (for instance, short code number types)."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get all configurations using a filter.<br/>\nIf you want configuration for a specific number or resource, then one of the following parameters is required: <code>number, numberKey, resource</code> or <code>resourceKey</code>.<br/>\nIf you are using <code>configurationKey</code> none of previously mentioned parameters are needed."
+        },
+        {
+          "info": {
+            "name": "Manage inbound configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/resource-management/1/inbound-message-configurations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create and update configuration details for incoming messages. Each action type and channel will require different parameters."
+        },
+        {
+          "info": {
+            "name": "Delete inbound configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/resource-management/1/inbound-message-configurations/:configurationKey",
+            "params": [
+              {
+                "name": "configurationKey",
+                "value": "58BC6DB7966CB9F69A91EB956DF73239",
+                "type": "path",
+                "description": "Unique ID of configuration."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method will delete the configuration."
+        },
+        {
+          "info": {
+            "name": "Search resources",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/resources/1/resources",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Search resources already owned by your account, such as senders and usable numbers, using filters. This endpoint does not return available resources for purchase or request, it only lists resources that are currently assigned to you.<br/>\nPagination is supported; however, if no pagination arguments are supplied, the full unpaginated result set will be returned.\n"
+        },
+        {
+          "info": {
+            "name": "Lookup coverage for a resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/resources/1/coverage-lookup",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Look up the coverage for a single resource by specifying the resource type, identifier (such as sender name or phone number), and associated country code.<br/>\n"
+        },
+        {
+          "info": {
+            "name": "Get resource requirements",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/resources/1/requirements-lookup",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a list of requirements needed for requesting a specific resource."
+        },
+        {
+          "info": {
+            "name": "Get resource requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/resources/1/requests",
+            "params": [
+              {
+                "name": "countryCode",
+                "value": "US,HR",
+                "type": "query",
+                "description": "Filters resources to those that match the supplied country code."
+              },
+              {
+                "name": "status",
+                "value": "IN_REVIEW,UPDATE_REQUESTED_BY_INTERNAL_REVIEWER,IN_PROGRESS,COMPLETED,REJECTED",
+                "type": "query",
+                "description": "Filters resources to those that match the resource request status."
+              },
+              {
+                "name": "type",
+                "value": "ALPHANUMERIC_REGISTRATION,NUMBER_PURCHASE,RCS_SENDER_LAUNCH",
+                "type": "query",
+                "description": "Filters resources to those that match the supplied resource type."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page you want to retrieve (0..N). The default value is 0."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page (0..2000). The default value is 20. The maximum value is 2000."
+              },
+              {
+                "name": "sort",
+                "value": "requestedDate,desc",
+                "type": "query",
+                "description": "Sorting criteria in the format: property(,asc|desc). Default sort order is descending by last modified date. Sortable Properties: 'status', 'requestedDate'."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Gets a page of resource requests, using query parameters to filter results."
+        },
+        {
+          "info": {
+            "name": "Submit resource request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/resources/1/requests",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Submits a resource request with Infobip. Please note that costs may apply."
+        },
+        {
+          "info": {
+            "name": "Get resource request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/resources/1/requests/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the desired resource."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves a previously submitted resource request by its ID."
+        },
+        {
+          "info": {
+            "name": "Update resource request",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/resources/1/requests/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the resource request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates an existing resource request with Infobip. Resource request may only be updated when in UPDATE_REQUESTED and UPDATE_REQUESTED_BY_INTERNAL_REVIEWER status.\nLimited to ALPHANUMERIC_REGISTRATION, NUMBER_PURCHASE and RCS_SENDER_LAUNCH requests only.\n**All requirements data must be provided within the request, not just the incorrect or changed ones.**\n"
+        },
+        {
+          "info": {
+            "name": "Cancel resource request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/resources/1/requests/:id/cancel",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the resource request."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Cancels an existing resource request with Infobip. Resource request may only be canceled when in UPDATE_REQUESTED and UPDATE_REQUESTED_BY_INTERNAL_REVIEWER status.\nLimited to ALPHANUMERIC_REGISTRATION, NUMBER_PURCHASE and RCS_SENDER_LAUNCH requests only.\n"
+        },
+        {
+          "info": {
+            "name": "Upload document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/resources/1/documents",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Upload a document prior to providing it as a requirement within a resource request."
+        },
+        {
+          "info": {
+            "name": "Download document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/resources/1/documents/:documentId",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the desired document."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Download a requirement supporting document (template or sample) or a document you have previously uploaded."
+        },
+        {
+          "info": {
+            "name": "Delete document",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/resources/1/documents/:documentId",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document for deletion."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete a document you have previously uploaded."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

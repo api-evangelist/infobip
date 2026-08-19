@@ -1,0 +1,2520 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "customer-engagement",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a single person or a list of people",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/people/2/persons",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "370329180020364",
+                "type": "query",
+                "description": "Person ID. ID type must match the `type` parameter. Some channels (e,g., Apple Business Chat) use identifiers that contain unsafe characters. Make sure you URL-encode them in your API request"
+              },
+              {
+                "name": "sender",
+                "value": "2094832040560427",
+                "type": "query",
+                "description": "Sender or application ID. `sender` is required for all identifier types except `ID`, `EXTERNAL_ID`, `PHONE`, `EMAIL`"
+              },
+              {
+                "name": "type",
+                "value": "PHONE",
+                "type": "query",
+                "description": "Type of the person ID"
+              },
+              {
+                "name": "limit",
+                "value": "20",
+                "type": "query",
+                "description": "Number of persons to return per page. Default - 20. Maximum - 1000."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "Page of results to return. Default - 1."
+              },
+              {
+                "name": "includeTotalCount",
+                "value": "false",
+                "type": "query",
+                "description": "Returns total count of persons, if set to `true`."
+              },
+              {
+                "name": "orderBy",
+                "value": "modifiedAt:desc",
+                "type": "query",
+                "description": "Results ordering. Possible ordering fields are `firstName`, `lastName`, `createdAt` and `modifiedAt`. Ordering direction can be specified with modifiers `asc` for the ascending ordering or `desc` for the descending one."
+              },
+              {
+                "name": "filter",
+                "value": "{\"#and\":[{\"firstName\":\"Alex\"},{\"#contains\": { \"tags\":\"VIP Client\"}}]}}",
+                "type": "query",
+                "description": "Allows to filter persons using simple queries. Just pass to the parameter [URL encoded](https://www.w3schools.com/tags/ref_urlencode.asp) query.\n##### List of supported logical operators:\n\n<table>\n<thead>\n<th>Logical Operator</th><th>Description</th>\n</thead>\n<tr>\n<td><code>#and</code></td><td>Joins query clauses with a logical AND returns all records that match the conditions of both clauses.</td>\n</tr>\n<tr>\n<td><code>#or</code></td><td>Joins query clauses with a logical OR returns all records that match the conditions of either clause.</td>\n</tr>\n</table>\n\n##### List of supported comparison operators:\n\n<table>\n<thead>\n<th>Comparison Operator</th><th>Supported Type</th><th>Description</th>\n</thead>\n<tr>\n<td><code>#eq</code></td><td>string, integer, decimal, date</td><td>Matches values that are equal to a specified value.</td>\n</tr>\n<tr>\n<td><code>#ne</code></td><td>string, integer, decimal, date</td><td>Matches all values that are not equal to a specified value.</td>\n</tr>\n<tr>\n<td><code>#contains</code></td><td>string</td><td>Matches the records that contain the specified value.</td>\n</tr>\n<tr>\n<td><code>#notContain</code></td><td>string</td><td>Matches the records that does not contain the specified value.</td>\n</tr>\n<tr>\n<td><code>#startsWith</code></td><td>string</td><td>Matches the records that start with a specified value.</td>\n</tr>\n<tr>\n<td><code>#endsWith</code></td><td>string</td><td>Matches the records that end with a specified value.</td>\n</tr>\n<tr>\n<td><code>#gt</code></td><td>integer, decimal, date</td><td>Matches values that are greater than a specified value.</td>\n</tr>\n<tr>\n<td><code>#lt</code></td><td>integer, decimal, date</td><td>Matches values that are less than a specified value.</td>\n</tr>\n<tr>\n<td><code>#gte</code></td><td>integer, decimal, date</td><td>Matches values that are greater than or equal to a specified value.</td>\n</tr>\n<tr>\n<td><code>#lte</code></td><td>integer, decimal, date</td><td>Matches values that are less than or equal to a specified value.</td>\n</tr>\n</table>\n"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Use this method with a unique person identifier to get a single person. Skip the identifier to return all people or use the `filter` parameter to return a list of people matching your specific conditions."
+        },
+        {
+          "info": {
+            "name": "Create a new person",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/people/2/persons",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Use this method to create a new person."
+        },
+        {
+          "info": {
+            "name": "Update a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/people/2/persons",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "370329180020364",
+                "type": "query",
+                "description": "Person ID. ID type must match the `type` parameter. Some channels (e,g., Apple Business Chat) use identifiers that contain unsafe characters. Make sure you URL-encode them in your API request"
+              },
+              {
+                "name": "sender",
+                "value": "2094832040560427",
+                "type": "query",
+                "description": "Sender or application ID. `sender` is required for all identifier types except `ID`, `EXTERNAL_ID`, `PHONE`, `EMAIL`"
+              },
+              {
+                "name": "type",
+                "value": "PHONE",
+                "type": "query",
+                "description": "Type of the person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Use this method to overwrite a person profile with the data passed in the request body as follows:<br>1. New values for standard and custom profile attributes replace existing values on the profile. If no value is passed in the request, the attribute is set to empty.<br>2. Tags in the request replace the existing profile tags. If no tags are passed, the existing profile tag list is cleared.<br>3. New contact information (email addresses and phone numbers) in the request replaces the current info"
+        },
+        {
+          "info": {
+            "name": "Partial person update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/people/2/persons",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "370329180020364",
+                "type": "query",
+                "description": "Person ID. ID type must match the `type` parameter. Some channels (e,g., Apple Business Chat) use identifiers that contain unsafe characters. Make sure you URL-encode them in your API request"
+              },
+              {
+                "name": "sender",
+                "value": "2094832040560427",
+                "type": "query",
+                "description": "Sender or application ID. `sender` is required for all identifier types except `ID`, `EXTERNAL_ID`, `PHONE`, `EMAIL`"
+              },
+              {
+                "name": "type",
+                "value": "PHONE",
+                "type": "query",
+                "description": "Type of the person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Use this method to update a person profile with the data passed in the request body as follows:<br>1. New values for standard and custom profile attributes replace existing values on the profile. If no value is passed in the request, the attribute keeps its value.<br>2. Tags in the request are appended to the profile tag list.<br>3. New contact information (email addresses and phone numbers) in the request is appended to the contact list of the profile."
+        },
+        {
+          "info": {
+            "name": "Delete a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/people/2/persons",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "370329180020364",
+                "type": "query",
+                "description": "Person ID. ID type must match the `type` parameter. Some channels (e,g., Apple Business Chat) use identifiers that contain unsafe characters. Make sure you URL-encode them in your API request"
+              },
+              {
+                "name": "sender",
+                "value": "2094832040560427",
+                "type": "query",
+                "description": "Sender or application ID. `sender` is required for all identifier types except `ID`, `EXTERNAL_ID`, `PHONE`, `EMAIL`"
+              },
+              {
+                "name": "type",
+                "value": "PHONE",
+                "type": "query",
+                "description": "Type of the person ID"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Use this method to delete a person."
+        },
+        {
+          "info": {
+            "name": "Set contact information to person",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/people/2/persons/contactInformation",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "370329180020364",
+                "type": "query",
+                "description": "Person ID. ID type must match the `type` parameter. Some channels (e,g., Apple Business Chat) use identifiers that contain unsafe characters. Make sure you URL-encode them in your API request"
+              },
+              {
+                "name": "sender",
+                "value": "2094832040560427",
+                "type": "query",
+                "description": "Sender or application ID. `sender` is required for all identifier types except `ID`, `EXTERNAL_ID`, `PHONE`, `EMAIL`"
+              },
+              {
+                "name": "type",
+                "value": "PHONE",
+                "type": "query",
+                "description": "Type of the person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Use this method to replace contact information for a particular person. This methods will replace all existing emails and mobile phones with new contact information."
+        },
+        {
+          "info": {
+            "name": "Add contact information to person",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/people/2/persons/contactInformation",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "370329180020364",
+                "type": "query",
+                "description": "Person ID. ID type must match the `type` parameter. Some channels (e,g., Apple Business Chat) use identifiers that contain unsafe characters. Make sure you URL-encode them in your API request"
+              },
+              {
+                "name": "sender",
+                "value": "2094832040560427",
+                "type": "query",
+                "description": "Sender or application ID. `sender` is required for all identifier types except `ID`, `EXTERNAL_ID`, `PHONE`, `EMAIL`"
+              },
+              {
+                "name": "type",
+                "value": "PHONE",
+                "type": "query",
+                "description": "Type of the person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Use this method to add emails and mobile phones to a particular person."
+        },
+        {
+          "info": {
+            "name": "Delete contact information from person",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/people/2/persons/contactInformation",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "370329180020364",
+                "type": "query",
+                "description": "Person ID. ID type must match the `type` parameter. Some channels (e,g., Apple Business Chat) use identifiers that contain unsafe characters. Make sure you URL-encode them in your API request"
+              },
+              {
+                "name": "sender",
+                "value": "2094832040560427",
+                "type": "query",
+                "description": "Sender or application ID. `sender` is required for all identifier types except `ID`, `EXTERNAL_ID`, `PHONE`, `EMAIL`"
+              },
+              {
+                "name": "type",
+                "value": "PHONE",
+                "type": "query",
+                "description": "Type of the person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Use this method to delete specified emails and mobile phones from a particular person."
+        },
+        {
+          "info": {
+            "name": "Batch people create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/people/2/persons/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Use this method to create multiple persons.<br>**NOTE** Array size of the batch create request is limited to `1000` persons."
+        },
+        {
+          "info": {
+            "name": "Batch people update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/people/2/persons/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Use this method to update multiple person profiles with the data passed in the request body as follows:<br>1. New values for standard and custom profile attributes replace existing values on the profile. If no value is passed in the request, the attribute keeps its value.<br>2. Tags in the request are appended to the profile tag list.<br>3. New contact information (email addresses and phone numbers) in the request is appended to the contact list of the profile.<br>**NOTE** Array size of the batc"
+        },
+        {
+          "info": {
+            "name": "Batch people delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/people/2/persons/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Use this method to delete multiple persons.<br>**NOTE** Array size of the batch delete request is limited to `1000` persons."
+        },
+        {
+          "info": {
+            "name": "Match profiles",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/people/2/persons/match",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to match a list of identities against existing person profiles in People. For each successfully matched identity the internal ID of the person profile will be returned.  Duplicate identities will fetch a single profile reference."
+        },
+        {
+          "info": {
+            "name": "Batch merge profiles",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/people/3/persons/merge",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to merge multiple person profiles belonging to the same user based on matching identifiers such as external ID, email, phone, and other contact information. The standard merge logic applies: the system selects a primary profile and consolidates fields and events from the secondary profiles into it. More information about the merge logic is available in the [People documentation](https://www.infobip.com/docs/people/synchronize-your-audience#merge-duplicate). <br>Any data included "
+        },
+        {
+          "info": {
+            "name": "Batch full people upsert",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/people/3/persons/upsert",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to create or fully replace person profiles by matching on identifiers such as external ID, email, or phone. If a match is identified, the existing profile is entirely replaced with the provided data; any fields excluded from the request will be cleared. If no match is identified, a new profile is created. The operation returns a status for each profile: CREATED, UPDATED, or NOT_MODIFIED.<br>**Notes:** <br>1. The batch size limit is 1000 persons. <br>2. Contact information (emails"
+        },
+        {
+          "info": {
+            "name": "Batch partial people upsert",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/people/3/persons/upsert",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to create or partially update person profiles by matching on identifiers such as external ID, email, or phone. If a match is identified, the existing profile is updated only with the provided data; any fields excluded from the request remain unchanged. If no match is identified, a new profile is created. The operation returns a status for each profile: CREATED, UPDATED, or NOT_MODIFIED. <br>**Notes:** <br>1. The batch size limit is 1000 persons. <br>2. Contact information (emails"
+        },
+        {
+          "info": {
+            "name": "Get a single company or a list of companies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/people/2/companies",
+            "params": [
+              {
+                "name": "name",
+                "value": "Infobip",
+                "type": "query",
+                "description": "Name of company you want to get."
+              },
+              {
+                "name": "id",
+                "value": "11351351",
+                "type": "query",
+                "description": "ID of company you want to get."
+              },
+              {
+                "name": "externalId",
+                "value": "11351351",
+                "type": "query",
+                "description": "External ID of company you want to get."
+              },
+              {
+                "name": "domain",
+                "value": "www.infobip.com",
+                "type": "query",
+                "description": "Domain of company you want to get."
+              },
+              {
+                "name": "limit",
+                "value": "20",
+                "type": "query",
+                "description": "Number of companies to return per page. Default - 20. Maximum - 1000."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "Page of results to return. Default - 1."
+              },
+              {
+                "name": "includeTotalCount",
+                "value": "false",
+                "type": "query",
+                "description": "Returns total count of companies, if set to `true`."
+              },
+              {
+                "name": "orderBy",
+                "value": "modifiedAt:desc",
+                "type": "query",
+                "description": "Results ordering. Possible ordering fields are `name`, `createdAt` and `modifiedAt`. Ordering direction can be specified with modifiers `asc` for the ascending ordering or `desc` for the descending one."
+              },
+              {
+                "name": "filter",
+                "value": "{\"#or\":[{\"name\":\"infobip\"},{\"#contains\":{\"notes\":\"another\"}}]}",
+                "type": "query",
+                "description": "Allows to filter companies using simple queries. Just pass to the parameter [URL encoded](https://www.w3schools.com/tags/ref_urlencode.asp) query.\n##### List of supported logical operators:\n\n<table>\n<thead>\n<th>Logical Operator</th><th>Description</th>\n</thead>\n<tr>\n<td><code>#and</code></td><td>Joins query clauses with a logical AND returns all records that match the conditions of both clauses.</td>\n</tr>\n<tr>\n<td><code>#or</code></td><td>Joins query clauses with a logical OR returns all records that match the conditions of either clause.</td>\n</tr>\n</table>\n\n##### List of supported comparison operators:\n\n<table>\n<thead>\n<th>Comparison Operator</th><th>Supported Type</th><th>Description</th>\n</thead>\n<tr>\n<td><code>#eq</code></td><td>string, integer, decimal, date</td><td>Matches values that are equal to a specified value.</td>\n</tr>\n<tr>\n<td><code>#ne</code></td><td>string, integer, decimal, date</td><td>Matches all values that are not equal to a specified value.</td>\n</tr>\n<tr>\n<td><code>#contains</code></td><td>string</td><td>Matches the records that contain a specified value.</td>\n</tr>\n<tr>\n<td><code>#startsWith</code></td><td>string</td><td>Matches the records that start with a specified value.</td>\n</tr>\n<tr>\n<td><code>#endsWith</code></td><td>string</td><td>Matches the records that end with a specified value.</td>\n</tr>\n<tr>\n<td><code>#gt</code></td><td>integer, decimal, date</td><td>Matches values that are greater than a specified value.</td>\n</tr>\n<tr>\n<td><code>#lt</code></td><td>integer, decimal, date</td><td>Matches values that are less than a specified value.</td>\n</tr>\n<tr>\n<td><code>#gte</code></td><td>integer, decimal, date</td><td>Matches values that are greater than or equal to a specified value.</td>\n</tr>\n<tr>\n<td><code>#lte</code></td><td>integer, decimal, date</td><td>Matches values that are less than or equal to a specified value.</td>\n</tr>\n</table>\n"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Use this method with a query parameter to get a single company. If the query parameter is not specified, this method will return a list of companies."
+        },
+        {
+          "info": {
+            "name": "Create a new company",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/people/2/companies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Use this method to create a new company."
+        },
+        {
+          "info": {
+            "name": "Partial company update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/people/2/companies",
+            "params": [
+              {
+                "name": "id",
+                "value": "11351351",
+                "type": "query",
+                "description": "ID of company you want to update."
+              },
+              {
+                "name": "externalId",
+                "value": "11351351",
+                "type": "query",
+                "description": "External ID of company you want to update."
+              },
+              {
+                "name": "name",
+                "value": "Infobip",
+                "type": "query",
+                "description": "Name of company you want to update."
+              },
+              {
+                "name": "domain",
+                "value": "company-domain.com",
+                "type": "query",
+                "description": "Domain of company you want to update."
+              },
+              {
+                "name": "replaceTags",
+                "value": "false",
+                "type": "query",
+                "description": "Flag which indicates tag replacement operation."
+              },
+              {
+                "name": "replaceDomains",
+                "value": "false",
+                "type": "query",
+                "description": "Flag which indicates domain replacement operation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Partial company update method is used for updating a part of the company information. Exactly one of the query parameters must be included in the query."
+        },
+        {
+          "info": {
+            "name": "Delete a company",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/people/2/companies",
+            "params": [
+              {
+                "name": "id",
+                "value": "11351351",
+                "type": "query",
+                "description": "ID of company you want to delete."
+              },
+              {
+                "name": "externalId",
+                "value": "11351351",
+                "type": "query",
+                "description": "External ID of company you want to delete."
+              },
+              {
+                "name": "name",
+                "value": "Infobip",
+                "type": "query",
+                "description": "Name of company you want to delete."
+              },
+              {
+                "name": "domain",
+                "value": "company-domain.com",
+                "type": "query",
+                "description": "Domain of company you want to delete."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Use this method with a query parameter to delete a company. Exactly one of the query parameters must be included in the query."
+        },
+        {
+          "info": {
+            "name": "Batch companies create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/people/2/companies/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Use this method to create multiple companies.<br>**NOTE** Array size of the batch create request is limited to `1000` companies."
+        },
+        {
+          "info": {
+            "name": "Batch companies update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/people/2/companies/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Use this method to update multiple companies.<br>**NOTE** Array size of the batch update request is limited to `1000` companies."
+        },
+        {
+          "info": {
+            "name": "Batch companies delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/people/2/companies/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Use this method to delete multiple companies.<br>**NOTE** Array size of the batch delete request is limited to `1000` companies."
+        },
+        {
+          "info": {
+            "name": "Add persons to company batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/people/2/companies/persons",
+            "params": [
+              {
+                "name": "id",
+                "value": "11351351",
+                "type": "query",
+                "description": "ID of company you want to assign persons to."
+              },
+              {
+                "name": "externalId",
+                "value": "11351351",
+                "type": "query",
+                "description": "External ID of company you want to assign persons to."
+              },
+              {
+                "name": "name",
+                "value": "Infobip",
+                "type": "query",
+                "description": "Name of company you want to assign persons to."
+              },
+              {
+                "name": "domain",
+                "value": "www.infobip.com",
+                "type": "query",
+                "description": "Domain of company you want to assign persons to."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Use this method to add persons to a company.<br>**NOTE** Array size is limited to `1000` persons."
+        },
+        {
+          "info": {
+            "name": "Remove persons from company batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/people/2/companies/persons",
+            "params": [
+              {
+                "name": "id",
+                "value": "11351351",
+                "type": "query",
+                "description": "ID of company you want to remove persons from."
+              },
+              {
+                "name": "externalId",
+                "value": "11351351",
+                "type": "query",
+                "description": "External ID of company you want to remove persons from."
+              },
+              {
+                "name": "name",
+                "value": "Infobip",
+                "type": "query",
+                "description": "Name of company you want to remove persons from."
+              },
+              {
+                "name": "domain",
+                "value": "www.infobip.com",
+                "type": "query",
+                "description": "Domain of company you want to remove persons from."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Use this method to remove persons from a company.<br>**NOTE** Array size is limited to `1000` persons."
+        },
+        {
+          "info": {
+            "name": "Get list of tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/people/2/tags",
+            "params": [
+              {
+                "name": "limit",
+                "value": "100",
+                "type": "query",
+                "description": "Number of tags to return per page. Default - 20. Maximum - 1000."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "Page of results to return. Default - 1."
+              },
+              {
+                "name": "orderBy",
+                "value": "name:asc",
+                "type": "query",
+                "description": "Results ordering. Possible ordering fields are `name`, `createdAt` and `modifiedAt`. Ordering direction can be specified with modifiers `asc` for the ascending ordering or `desc` for the descending one."
+              },
+              {
+                "name": "includeTotalCount",
+                "value": "false",
+                "type": "query",
+                "description": "Returns total count of tags, if set to `true`."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Use this method to get a list of tags with pagination."
+        },
+        {
+          "info": {
+            "name": "Create a new tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/people/2/tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Use this method to create a new tag."
+        },
+        {
+          "info": {
+            "name": "Get a tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/people/2/tags/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "Vip",
+                "type": "path",
+                "description": "Name of the tag."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Use this method to get a single tag."
+        },
+        {
+          "info": {
+            "name": "Delete a tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/people/2/tags/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "Vip",
+                "type": "path",
+                "description": "Name of the tag."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Use this method to delete the existing tag."
+        },
+        {
+          "info": {
+            "name": "Add tag to people batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/people/2/tags/:name/persons",
+            "params": [
+              {
+                "name": "name",
+                "value": "Vip",
+                "type": "path",
+                "description": "Name of the tag."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "This method allows you to assign tag to multiple people.<br>**NOTE** Array size of the batch add request is limited to `1000` people."
+        },
+        {
+          "info": {
+            "name": "Remove tag from people batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/people/2/tags/:name/persons",
+            "params": [
+              {
+                "name": "name",
+                "value": "Vip",
+                "type": "path",
+                "description": "Name of the tag."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "This method allows you to remove tag from multiple people.<br>**NOTE** Array size of the batch remove request is limited to `1000` people."
+        },
+        {
+          "info": {
+            "name": "Get a list of custom attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/people/2/customAttributes",
+            "params": [
+              {
+                "name": "limit",
+                "value": "100",
+                "type": "query",
+                "description": "Number of custom attributes to return per page. Default - 20. Maximum - 1000."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "Page of results to return. Default - 1."
+              },
+              {
+                "name": "includeTotalCount",
+                "value": "false",
+                "type": "query",
+                "description": "Returns total count of custom attributes, if set to `true`."
+              },
+              {
+                "name": "orderBy",
+                "value": "name:asc",
+                "type": "query",
+                "description": "Results ordering. Possible ordering fields are `name`, `createdAt` and `modifiedAt`. Ordering direction can be specified with modifiers `asc` for the ascending ordering or `desc` for the descending one."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Get a list of custom attributes using this method."
+        },
+        {
+          "info": {
+            "name": "Create a custom attribute",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/people/2/customAttributes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Create a new custom attribute by using this method."
+        },
+        {
+          "info": {
+            "name": "Get a single custom attribute",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/people/2/customAttributes/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "Contract Expiry Date",
+                "type": "path",
+                "description": "Name of the attribute."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Get a single custom attribute using this method."
+        },
+        {
+          "info": {
+            "name": "Delete a custom attribute",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/people/2/customAttributes/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "Attribute",
+                "type": "path",
+                "description": "Name of the attribute you want to delete."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Use this method to delete the custom attribute"
+        },
+        {
+          "info": {
+            "name": "Append item to custom attribute",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/people/2/customAttributes/:name/append",
+            "params": [
+              {
+                "name": "identifier",
+                "value": "370329180020364",
+                "type": "query",
+                "description": "Person ID. ID type must match the `type` parameter. Some channels (e,g., Apple Business Chat) use identifiers that contain unsafe characters. Make sure you URL-encode them in your API request"
+              },
+              {
+                "name": "sender",
+                "value": "2094832040560427",
+                "type": "query",
+                "description": "Sender or application ID. `sender` is required for all identifier types except `ID`, `EXTERNAL_ID`, `PHONE`, `EMAIL`"
+              },
+              {
+                "name": "type",
+                "value": "PHONE",
+                "type": "query",
+                "description": "Type of the person ID"
+              },
+              {
+                "name": "name",
+                "value": "ShoppingCartList",
+                "type": "path",
+                "description": "Name of the list type custom attribute"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Custom attributes with `LIST_OF_OBJECTS` type contain an array of items as a value. Using this API method, you can add a new item to the specified list type custom attribute of a specific person. The item you want to add should match the defined list schema."
+        },
+        {
+          "info": {
+            "name": "Get items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/people/3/lists/:listName/items",
+            "params": [
+              {
+                "name": "listName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the list attribute."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of the person ID. Can be one of the above."
+              },
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "query",
+                "description": "Person ID. ID type must match the `type` parameter."
+              },
+              {
+                "name": "sender",
+                "value": "",
+                "type": "query",
+                "description": "Sender or application ID.`sender` is required for all identifier types except `ID`, `EXTERNAL_ID`, `PHONE`, `EMAIL`"
+              },
+              {
+                "name": "itemIds",
+                "value": "",
+                "type": "query",
+                "description": "UUIDs of list items to return, separated by commas (,)."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a single item or a list of items of a list attribute."
+        },
+        {
+          "info": {
+            "name": "Append items",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/people/3/lists/:listName/items",
+            "params": [
+              {
+                "name": "listName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the list attribute."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of the person ID. Can be one of the above."
+              },
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "query",
+                "description": "Person ID. ID type must match the `type` parameter."
+              },
+              {
+                "name": "sender",
+                "value": "",
+                "type": "query",
+                "description": "Sender or application ID.`sender` is required for all identifier types except `ID`, `EXTERNAL_ID`, `PHONE`, `EMAIL`"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Adds new items to a list attribute and returns all items of the updated list."
+        },
+        {
+          "info": {
+            "name": "Delete items",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/people/3/lists/:listName/items",
+            "params": [
+              {
+                "name": "listName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the list attribute."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of the person ID. Can be one of the above."
+              },
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "query",
+                "description": "Person ID. ID type must match the `type` parameter."
+              },
+              {
+                "name": "sender",
+                "value": "",
+                "type": "query",
+                "description": "Sender or application ID.`sender` is required for all identifier types except `ID`, `EXTERNAL_ID`, `PHONE`, `EMAIL`"
+              },
+              {
+                "name": "itemIds",
+                "value": "",
+                "type": "query",
+                "description": "UUIDs of list items to delete, separated by commas (,)."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes items in a list attribute and returns all items of the updated list."
+        },
+        {
+          "info": {
+            "name": "Replace an item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/people/3/lists/:listName/items/:itemId",
+            "params": [
+              {
+                "name": "listName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the list attribute."
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "UUID of the list item to replace."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of the person ID. Can be one of the above."
+              },
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "query",
+                "description": "Person ID. ID type must match the `type` parameter."
+              },
+              {
+                "name": "sender",
+                "value": "",
+                "type": "query",
+                "description": "Sender or application ID.`sender` is required for all identifier types except `ID`, `EXTERNAL_ID`, `PHONE`, `EMAIL`"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Replaces an item of a list attribute and returns all items of the updated list."
+        },
+        {
+          "info": {
+            "name": "Update an item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/people/3/lists/:listName/items/:itemId",
+            "params": [
+              {
+                "name": "listName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the list attribute."
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "UUID of the list item to update."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of the person ID. Can be one of the above."
+              },
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "query",
+                "description": "Person ID. ID type must match the `type` parameter."
+              },
+              {
+                "name": "sender",
+                "value": "",
+                "type": "query",
+                "description": "Sender or application ID.`sender` is required for all identifier types except `ID`, `EXTERNAL_ID`, `PHONE`, `EMAIL`"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates the fields of a list item that are passed in the request.\nMissing fields will keep their values.\nReturns all items of the updated list attribute."
+        },
+        {
+          "info": {
+            "name": "Get lists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/people/3/lists",
+            "params": [
+              {
+                "name": "listNames",
+                "value": "",
+                "type": "query",
+                "description": "Names of list attributes to return, separated by commas (,)."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of the person ID. Can be one of the above."
+              },
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "query",
+                "description": "Person ID. ID type must match the `type` parameter."
+              },
+              {
+                "name": "sender",
+                "value": "",
+                "type": "query",
+                "description": "Sender or application ID.`sender` is required for all identifier types except `ID`, `EXTERNAL_ID`, `PHONE`, `EMAIL`"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all items of a single or multiple list attributes."
+        },
+        {
+          "info": {
+            "name": "Delete lists",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/people/3/lists",
+            "params": [
+              {
+                "name": "listNames",
+                "value": "",
+                "type": "query",
+                "description": "Names of list attributes to delete, separated by commas (,)."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of the person ID. Can be one of the above."
+              },
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "query",
+                "description": "Person ID. ID type must match the `type` parameter."
+              },
+              {
+                "name": "sender",
+                "value": "",
+                "type": "query",
+                "description": "Sender or application ID.`sender` is required for all identifier types except `ID`, `EXTERNAL_ID`, `PHONE`, `EMAIL`"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes a single or multiple list attributes of a profile."
+        },
+        {
+          "info": {
+            "name": "Replace a list",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/people/3/lists/:listName",
+            "params": [
+              {
+                "name": "listName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the list attribute."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of the person ID. Can be one of the above."
+              },
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "query",
+                "description": "Person ID. ID type must match the `type` parameter."
+              },
+              {
+                "name": "sender",
+                "value": "",
+                "type": "query",
+                "description": "Sender or application ID.`sender` is required for all identifier types except `ID`, `EXTERNAL_ID`, `PHONE`, `EMAIL`"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Replaces all items in a list attribute and returns all items of the updated list."
+        },
+        {
+          "info": {
+            "name": "Update a list",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/people/3/lists/:listName",
+            "params": [
+              {
+                "name": "listName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the list attribute."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of the person ID. Can be one of the above."
+              },
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "query",
+                "description": "Person ID. ID type must match the `type` parameter."
+              },
+              {
+                "name": "sender",
+                "value": "",
+                "type": "query",
+                "description": "Sender or application ID.`sender` is required for all identifier types except `ID`, `EXTERNAL_ID`, `PHONE`, `EMAIL`"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates the fields of list items passed in the request.\nMissing items and fields will keep their values.\nReturns all items of the updated list."
+        },
+        {
+          "info": {
+            "name": "Get items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/people/2/persons/:personId/lists/:listName/items",
+            "params": [
+              {
+                "name": "personId",
+                "value": "",
+                "type": "path",
+                "description": "Person's internal ID."
+              },
+              {
+                "name": "listName",
+                "value": "",
+                "type": "path",
+                "description": "Name given to a list."
+              },
+              {
+                "name": "itemIds",
+                "value": "",
+                "type": "query",
+                "description": "List of identifiers for items. Every identifier should be UUID."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a single item or set of items of a list."
+        },
+        {
+          "info": {
+            "name": "Append items",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/people/2/persons/:personId/lists/:listName/items",
+            "params": [
+              {
+                "name": "personId",
+                "value": "",
+                "type": "path",
+                "description": "Person's internal ID."
+              },
+              {
+                "name": "listName",
+                "value": "",
+                "type": "path",
+                "description": "Name given to a list.<br>If an instance of a list doesn't exist for a person, the list instance will be created."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Adds new items to a list and returns all items of the updated list."
+        },
+        {
+          "info": {
+            "name": "Delete items",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/people/2/persons/:personId/lists/:listName/items",
+            "params": [
+              {
+                "name": "personId",
+                "value": "",
+                "type": "path",
+                "description": "Person's internal ID."
+              },
+              {
+                "name": "listName",
+                "value": "",
+                "type": "path",
+                "description": "Name given to a list."
+              },
+              {
+                "name": "itemIds",
+                "value": "",
+                "type": "query",
+                "description": "List of identifiers for items. Every identifier should be UUID."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes items with given identifiers and returns rest items of the updated list."
+        },
+        {
+          "info": {
+            "name": "Replace an item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/people/2/persons/:personId/lists/:listName/items/:itemId",
+            "params": [
+              {
+                "name": "personId",
+                "value": "",
+                "type": "path",
+                "description": "Person's internal ID."
+              },
+              {
+                "name": "listName",
+                "value": "",
+                "type": "path",
+                "description": "Name given to a list.<br>If an instance of a list doesn't exist for a person, the list instance will be created."
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an item to replace.<br>Identifier should be UUID.<br>Value of __id-field passed in a body will be replaced by the current value.<br>If an item with a given identifier doesn't exist, it will be created."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Replaces an item of a list and returns all items of the updated list."
+        },
+        {
+          "info": {
+            "name": "Update an item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/people/2/persons/:personId/lists/:listName/items/:itemId",
+            "params": [
+              {
+                "name": "personId",
+                "value": "",
+                "type": "path",
+                "description": "Person's internal ID."
+              },
+              {
+                "name": "listName",
+                "value": "",
+                "type": "path",
+                "description": "Name given to a list."
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of an item to update.<br>Identifier should be UUID.<br>Value of __id-field passed in a body will be replaced by the current value."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates only fields of the item that are presented in a given data.<br>Missing fields will be preserved.<br>Returns all items of the updated list."
+        },
+        {
+          "info": {
+            "name": "Get lists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/people/2/persons/:personId/lists",
+            "params": [
+              {
+                "name": "personId",
+                "value": "",
+                "type": "path",
+                "description": "Person's internal ID."
+              },
+              {
+                "name": "listNames",
+                "value": "",
+                "type": "query",
+                "description": "Names given to lists."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all items of a single list or sets of items of a set of lists."
+        },
+        {
+          "info": {
+            "name": "Delete lists",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/people/2/persons/:personId/lists",
+            "params": [
+              {
+                "name": "personId",
+                "value": "",
+                "type": "path",
+                "description": "Person's internal ID."
+              },
+              {
+                "name": "listNames",
+                "value": "",
+                "type": "query",
+                "description": "Names given to lists."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes a single list instance or set of lists instanses for a person."
+        },
+        {
+          "info": {
+            "name": "Replace a list",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/people/2/persons/:personId/lists/:listName",
+            "params": [
+              {
+                "name": "personId",
+                "value": "",
+                "type": "path",
+                "description": "Person's internal ID."
+              },
+              {
+                "name": "listName",
+                "value": "",
+                "type": "path",
+                "description": "Name given to a list.<br>If an instance of a list doesn't exist for a person, the list instance will be created."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Replaces a list and returns all items of the updated list."
+        },
+        {
+          "info": {
+            "name": "Update a list",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/people/2/persons/:personId/lists/:listName",
+            "params": [
+              {
+                "name": "personId",
+                "value": "",
+                "type": "path",
+                "description": "Person's internal ID."
+              },
+              {
+                "name": "listName",
+                "value": "",
+                "type": "path",
+                "description": "Name given to a list."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates only items and fields for a given data set.<br>Missing items and fields will be preserved.<br>Returns all items of the updated list."
+        },
+        {
+          "info": {
+            "name": "Get push device registration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/people/2/contactInformation/push/:pushRegId",
+            "headers": [
+              {
+                "name": "AppCode",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "pushRegId",
+                "value": "",
+                "type": "path",
+                "description": "Registration identifier of a particular push device registration"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get device data"
+        },
+        {
+          "info": {
+            "name": "Update push device registration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/people/2/contactInformation/push/:pushRegId",
+            "headers": [
+              {
+                "name": "AppCode",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "pushRegId",
+                "value": "",
+                "type": "path",
+                "description": "Registration identifier of a particular push device registration"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to update device data"
+        },
+        {
+          "info": {
+            "name": "Depersonalize push instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/people/2/contactInformation/push/:pushRegId/depersonalize",
+            "headers": [
+              {
+                "name": "AppCode",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "pushRegId",
+                "value": "",
+                "type": "path",
+                "description": "Registration identifier of a particular push device registration"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "You can depersonalize a device to detach it from a current person profile so that the device won’t receive messages when targeted by any of the person attributes"
+        },
+        {
+          "info": {
+            "name": "Personalize push instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/people/2/contactInformation/push/:pushRegId/personalize",
+            "headers": [
+              {
+                "name": "AppCode",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "forceDepersonalize",
+                "value": "",
+                "type": "query",
+                "description": "You can set this parameter to true if you want previous personalization to be always reset. Do not use this parameter if you want to know when there’s an attempt to personalize already personalized registration."
+              },
+              {
+                "name": "keepAsLead",
+                "value": "",
+                "type": "query",
+                "description": "You can set this parameter to true if you want to prevent the promotion from Lead to Customer. Only for specific use cases where the default behaviour wants to be avoided."
+              },
+              {
+                "name": "returnPush",
+                "value": "",
+                "type": "query",
+                "description": "You can set this parameter to true if you want the response to include \"push\" mobile app contact information for the person."
+              },
+              {
+                "name": "setDeviceAsPrimary",
+                "value": "",
+                "type": "query",
+                "description": "You can set this parameter to true if you want to set the device associated with the \"pushRegId\" as primary device for the person."
+              },
+              {
+                "name": "pushRegId",
+                "value": "",
+                "type": "path",
+                "description": "Registration identifier of a particular push device registration"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Each person can have Phone numbers, Emails or External ID. These fields are unique identifiers of a person on Infobip platform and provide a capability to personalize any push device registration with a person profile. The platform provides data grouping functions based on these parameters. For example, if two devices will try to save the same Phone number, then both of them will be collected under a single person. Phone number, Email and External ID are also widely used when targeting users wit"
+        },
+        {
+          "info": {
+            "name": "Batch Send Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/people/3/events",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Use this endpoint to batch import People events, including historical events that occurred up to `30` days ago. Batch items must reference an existing person profile and predefined [event type](https://portal.infobip.com/people/events/definitions). You can send up to `5000` events in a single batch. Each individual item within a batch must not exceed `512,000` bytes. The entire batch, which includes all items combined, must not exceed `15,728,640` bytes.<br>Each event in the batch must reference"
+        },
+        {
+          "info": {
+            "name": "Send Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/peopleevents/2/persons/:personId/definitions/:definitionId/events",
+            "params": [
+              {
+                "name": "definitionId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the custom event definition. Event properties are passed in the request body."
+              },
+              {
+                "name": "personId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the person who performed the event. The `identifierType` query parameter specifies the type of the ID."
+              },
+              {
+                "name": "identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Person's identifier type."
+              },
+              {
+                "name": "createPerson",
+                "value": "",
+                "type": "query",
+                "description": "Set this parameter to `true` to automatically create a person profile with the specified `personId` and `identifierType` if no existing profile matches the provided identifier. The default value is `false`.<br>**Note**: New profiles can only be created for the following identifier types: `PHONE`, `EMAIL`, or `EXTERNAL_ID`."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Use this endpoint to track events that persons perform. Your request must refer to existing person profile and [event definition](https://portal.infobip.com/people/events/definitions)."
+        },
+        {
+          "info": {
+            "name": "List Event Definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/peopleevents/2/definitions",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "A pagination parameter that specifies the number of records to skip before starting to return results."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "A pagination parameter that specifies the maximum number of records to return in a single response."
+              },
+              {
+                "name": "orderType",
+                "value": "",
+                "type": "query",
+                "description": "Defines the sort direction for the results.<br>**Note**: If `orderField` is not provided, this parameter will not have any effect."
+              },
+              {
+                "name": "orderField",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the field by which the results should be ordered.<br>**Note**: If `orderType` is not provided, ordering will not work."
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Filters results by one or more event definition categories."
+              },
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query",
+                "description": "Text used for searching event definitions by definition ID, title, or description."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Retrieve a paginated list of event definitions, including standard, custom, and template definitions. Use query parameters to filter by category (`External`, `Person`, `Channel`, `Product`, `Template`) or search by definition ID, title, or description. Results can be ordered by definition ID or title."
+        },
+        {
+          "info": {
+            "name": "Create Event Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/peopleevents/2/definitions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Create a new custom event definition either from scratch or from a template. When creating from scratch, specify a unique definition ID (alphanumeric only, max `36` characters), title, description, and up to `120` fields. When using a template, only provide the template ID and optional additional fields—the title, description, and default fields are inherited from the template. Supports various field types including `String`, `Boolean`, `DateTime`, `Numeric`, `Decimal`, and `List` (with nested o"
+        },
+        {
+          "info": {
+            "name": "Get Event Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/peopleevents/2/definitions/:definitionId",
+            "params": [
+              {
+                "name": "definitionId",
+                "value": "",
+                "type": "path",
+                "description": "Event definition identifier."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Retrieve complete details of a specific event definition, including its fields, data types, category, and whether it's a standard or custom definition. Useful for understanding the schema before sending events or for validating your event data structure."
+        },
+        {
+          "info": {
+            "name": "Update Event Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/peopleevents/2/definitions/:definitionId",
+            "params": [
+              {
+                "name": "definitionId",
+                "value": "",
+                "type": "path",
+                "description": "Event definition identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Update an existing custom event definition by adding new fields or modifying the title and description. Only supports additive changes—you can add new fields but **cannot** remove existing fields or change their types. This ensures backward compatibility with historical events. Standard (internal) definitions and template-inherited properties cannot be modified."
+        },
+        {
+          "info": {
+            "name": "Submit event export request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/peopleevents/1/export",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Events export allows you to asynchronously export People Events data to a compressed file or multiple files in your AWS S3 bucket.\n\nRefer to [product documentation](https://www.infobip.com/docs/people/events#events-in-external-systems) for detailed information on configuring AWS S3 for export, export file format and event data schema. \n\n**Throttling**\n\nYou can have maximum of 72 hours worth of export requests in progress at one time.\n\n"
+        },
+        {
+          "info": {
+            "name": "Check status of event export request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/peopleevents/1/export/status/:requestId",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path",
+                "description": "Request ID (unique identifier) of a previously submitted data export request."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves the status of a previously submitted data export request by the request ID."
+        },
+        {
+          "info": {
+            "name": "Asynchronous cancellation of an event export request",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/peopleevents/1/export/:requestId",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path",
+                "description": "Request ID (unique identifier) of a previously submitted data export request."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Requests asynchronous cancellation of a previously submitted data export request by the request ID."
+        },
+        {
+          "info": {
+            "name": "Get list of event definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/peopleevents/1/export/definitions",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves a list of all available event definitions, including custom events. \nThe event definitions can be then used as a filter in the \n[Event Export API](https://www.infobip.com/docs/api#customer-engagement/people/create-events-export-request)."
+        },
+        {
+          "info": {
+            "name": "Get a list of segments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/people/3/segments",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Zero-based page index (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "The size of the page to be returned."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a list of segments."
+        },
+        {
+          "info": {
+            "name": "Create a segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/people/3/segments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to create a segment."
+        },
+        {
+          "info": {
+            "name": "Get a segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/people/3/segments/:segmentId",
+            "params": [
+              {
+                "name": "segmentId",
+                "value": "42",
+                "type": "path",
+                "description": "A unique segment identifier."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a segment by ID."
+        },
+        {
+          "info": {
+            "name": "Update a segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/people/3/segments/:segmentId",
+            "params": [
+              {
+                "name": "segmentId",
+                "value": "42",
+                "type": "path",
+                "description": "A unique segment identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to update a segment."
+        },
+        {
+          "info": {
+            "name": "Delete a segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/people/3/segments/:segmentId",
+            "params": [
+              {
+                "name": "segmentId",
+                "value": "42",
+                "type": "path",
+                "description": "A unique segment identifier."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to delete a segment by ID."
+        },
+        {
+          "info": {
+            "name": "Get persons in a segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/people/3/segments/:segmentId/persons",
+            "params": [
+              {
+                "name": "segmentId",
+                "value": "42",
+                "type": "path",
+                "description": "A unique segment identifier."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Zero-based page index (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "The size of the page to be returned."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get persons in a segment by ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

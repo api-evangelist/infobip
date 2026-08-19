@@ -1,0 +1,432 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "platform",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/provisioning/1/applications",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a paginated list of applications."
+        },
+        {
+          "info": {
+            "name": "Create application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/provisioning/1/applications",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create an application associated with the specified `applicationId`."
+        },
+        {
+          "info": {
+            "name": "Get application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/provisioning/1/applications/:applicationId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "test-application",
+                "type": "path",
+                "description": "The unique identifier of the application. This ID will be a URL path parameter. We recommend using values that do not need URL encoding for easier interaction with other API endpoints."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get an application for the specified `applicationId`."
+        },
+        {
+          "info": {
+            "name": "Modify application",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/provisioning/1/applications/:applicationId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "test-application",
+                "type": "path",
+                "description": "The unique identifier of the application. This ID will be a URL path parameter. We recommend using values that do not need URL encoding for easier interaction with other API endpoints."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Modify a resource `name` property."
+        },
+        {
+          "info": {
+            "name": "Delete application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/provisioning/1/applications/:applicationId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "test-application",
+                "type": "path",
+                "description": "The unique identifier of the application. This ID will be a URL path parameter. We recommend using values that do not need URL encoding for easier interaction with other API endpoints."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete an application associated with the specified `applicationId`. <br>Deleting an application will reset all resources that were linked to that application to application = default and entity = null. You should ensure that any configuration (like resource associations, inbound message configurations, subscriptions, bots, API Keys etc) related to given application are appropriately reassigned to other applications before attempting to delete the application."
+        },
+        {
+          "info": {
+            "name": "Get entities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/provisioning/1/entities",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a paginated list of entities."
+        },
+        {
+          "info": {
+            "name": "Create entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/provisioning/1/entities",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create an entity associated with the specified `entityId`. <br>An entity attached to a submitted message will get auto created if it doesn't exit yet. It will get the entityId and entityName being the value passed on a message. "
+        },
+        {
+          "info": {
+            "name": "Get entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/provisioning/1/entities/:entityId",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "test-entity",
+                "type": "path",
+                "description": "The unique identifier of the entity. This ID will be a URL path parameter. We recommend using values that do not need URL encoding for easier interaction with other API endpoints."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get an entity for the specified `entityId`."
+        },
+        {
+          "info": {
+            "name": "Modify entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/provisioning/1/entities/:entityId",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "test-entity",
+                "type": "path",
+                "description": "The unique identifier of the entity. This ID will be a URL path parameter. We recommend using values that do not need URL encoding for easier interaction with other API endpoints."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Modify a resource `name` property."
+        },
+        {
+          "info": {
+            "name": "Delete entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/provisioning/1/entities/:entityId",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "test-entity",
+                "type": "path",
+                "description": "The unique identifier of the entity. This ID will be a URL path parameter. We recommend using values that do not need URL encoding for easier interaction with other API endpoints."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete an entity associated with the specified `entityId`. <br> Deleting an entity will reset all resources that were linked to that entity to application = default and entity = null. You should ensure that any configuration (like resource associations, inbound message configurations, subscriptions, bots, API Keys etc) related to given entity are appropriately reassigned to other entities before attempting to delete the entity."
+        },
+        {
+          "info": {
+            "name": "Get resource associations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/provisioning/1/associations",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              },
+              {
+                "name": "resourceType",
+                "value": "",
+                "type": "query",
+                "description": "The type of resource to be used."
+              },
+              {
+                "name": "channel",
+                "value": "",
+                "type": "query",
+                "description": "The channel for which the resource will be used."
+              },
+              {
+                "name": "applicationId",
+                "value": "test-application",
+                "type": "query",
+                "description": "The unique identifier of the application. This ID will be a URL path parameter. We recommend using values that do not need URL encoding for easier interaction with other API endpoints."
+              },
+              {
+                "name": "entityId",
+                "value": "test-entity",
+                "type": "query",
+                "description": "The unique identifier of the entity. This ID will be a URL path parameter. We recommend using values that do not need URL encoding for easier interaction with other API endpoints."
+              },
+              {
+                "name": "resourceId",
+                "value": "test-resource",
+                "type": "query",
+                "description": "The unique identifier of the resource. It depends on both the `resourceType` and `channel`.<br/>Use [numberKey](https://www.infobip.com/docs/api/platform-connectivity/numbers/phone-numbers/list-purchased-numbers) for the NUMBER `resourceType`.<br/>Use [domainName](https://www.infobip.com/docs/api/channels/email/get-all-domains) for the DOMAIN `resourceType`, which is available only for the Email channel."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a paginated list of resource associations."
+        },
+        {
+          "info": {
+            "name": "Create resource association",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/provisioning/1/associations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a resource association."
+        },
+        {
+          "info": {
+            "name": "Delete resource association",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/provisioning/1/associations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete a resource association."
+        },
+        {
+          "info": {
+            "name": "Get resource association",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/provisioning/1/associations/single",
+            "params": [
+              {
+                "name": "resourceType",
+                "value": "",
+                "type": "query",
+                "description": "The type of resource to be used."
+              },
+              {
+                "name": "channel",
+                "value": "",
+                "type": "query",
+                "description": "The channel for which the resource will be used."
+              },
+              {
+                "name": "applicationId",
+                "value": "test-application",
+                "type": "query",
+                "description": "The unique identifier of the application. This ID will be a URL path parameter. We recommend using values that do not need URL encoding for easier interaction with other API endpoints."
+              },
+              {
+                "name": "entityId",
+                "value": "test-entity",
+                "type": "query",
+                "description": "The unique identifier of the entity. This ID will be a URL path parameter. We recommend using values that do not need URL encoding for easier interaction with other API endpoints. If no entity is associated with this resource, set the entityId to `null`."
+              },
+              {
+                "name": "resourceId",
+                "value": "test-resource",
+                "type": "query",
+                "description": "The unique identifier of the resource. It depends on both the `resourceType` and `channel`.<br/>Use [numberKey](https://www.infobip.com/docs/api/platform-connectivity/numbers/phone-numbers/list-purchased-numbers) for the NUMBER `resourceType`.<br/>Use [domainName](https://www.infobip.com/docs/api/channels/email/get-all-domains) for the DOMAIN `resourceType`, which is available only for the Email channel."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get an exact resource association."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

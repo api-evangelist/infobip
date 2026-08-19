@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "connectivity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Network Reports metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/number-activation-state/1/network-reports",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              },
+              {
+                "name": "dateFrom",
+                "value": "2024-03-02",
+                "type": "query",
+                "description": "Date in UTC that exactly defines the dateFrom property of the reports. <br />Format: yyyy-MM-dd <br />When both dateFrom and dateTo are provided then a list of reports between those two dates are returned."
+              },
+              {
+                "name": "dateTo",
+                "value": "2024-03-03",
+                "type": "query",
+                "description": "Date in UTC that exactly defines the dateTo property of the reports. <br />Format: yyyy-MM-dd <br />When both dateFrom and dateTo are provided then a list of reports between those two dates are returned."
+              },
+              {
+                "name": "reportId",
+                "value": "1f7a9938-0e3b-4e20-bb69-4968dca75078",
+                "type": "query",
+                "description": "The reportId to find"
+              },
+              {
+                "name": "networkId",
+                "value": "1717",
+                "type": "query",
+                "description": "The networkId of network that provided the report content."
+              },
+              {
+                "name": "networkName",
+                "value": "Verizon Wireless",
+                "type": "query",
+                "description": "The name of network that provided the report content."
+              },
+              {
+                "name": "generatedDateFrom",
+                "value": "2024-03-01",
+                "type": "query",
+                "description": "Filter by report generation date (inclusive lower bound)"
+              },
+              {
+                "name": "generatedDateTo",
+                "value": "2024-03-31",
+                "type": "query",
+                "description": "Filter by report generation date (inclusive upper bound)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a paginated list of Network Reports metadata."
+        },
+        {
+          "info": {
+            "name": "Get Network Report content",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/number-activation-state/1/network-reports/:reportId/records",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              },
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "The reportId to retrieve"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a paginated list of destination number activation state changes from a given Report."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

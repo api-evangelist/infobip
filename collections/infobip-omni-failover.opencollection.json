@@ -1,0 +1,279 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "channels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all OMNI failover scenarios",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/omni/1/scenarios",
+            "params": [
+              {
+                "name": "isDefault",
+                "value": "true",
+                "type": "query",
+                "description": "Get default scenario."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximal number of scenarios that will be returned, defaults to __100__."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Indexed page of scenarios that will be returned, defaults to 0."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "See all failover scenarios that you have created."
+        },
+        {
+          "info": {
+            "name": "Create new OMNI failover scenario",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/omni/1/scenarios",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Define which channels, and in which order, would you like to use in your message failover scenario. If the delivery of the message fails for the first channel, we will use the next channel in your scenario, and so on."
+        },
+        {
+          "info": {
+            "name": "Get specific OMNI failover scenario",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/omni/1/scenarios/:scenarioKey",
+            "params": [
+              {
+                "name": "scenarioKey",
+                "value": "AD9E01A5DC7BEE2C2B828D208182A611",
+                "type": "path",
+                "description": "Key used to uniquely identify OMNI scenario."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "See configuration of a specific failover scenario."
+        },
+        {
+          "info": {
+            "name": "Update OMNI failover scenario",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/omni/1/scenarios/:scenarioKey",
+            "params": [
+              {
+                "name": "scenarioKey",
+                "value": "CD265875E3A6EA43478D5F37A635BE4A",
+                "type": "path",
+                "description": "Key used to uniquely identify OMNI scenario."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Change configuration of a specific failover scenario."
+        },
+        {
+          "info": {
+            "name": "Send OMNI failover message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/omni/1/advanced",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Send one or multiple messages over WhatsApp, Viber, Voice, VKontakte, Line, SMS or Push, with automatic failover to another channel according to the specific scenario."
+        },
+        {
+          "info": {
+            "name": "Get OMNI failover delivery reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/omni/1/reports",
+            "params": [
+              {
+                "name": "bulkId",
+                "value": "",
+                "type": "query",
+                "description": "The ID that uniquely identifies the request. Bulk ID will be received only when you send a message to more than one destination address."
+              },
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "query",
+                "description": "The ID that uniquely identifies the message sent."
+              },
+              {
+                "name": "limit",
+                "value": "1",
+                "type": "query",
+                "description": "Maximal number of messages in returned reports. Default value is __50__ and maximal value is __1000__."
+              },
+              {
+                "name": "channel",
+                "value": "PUSH",
+                "type": "query",
+                "description": "Channel that was used for message delivering."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get one-time delivery reports to see which channel was used to deliver the failover message."
+        },
+        {
+          "info": {
+            "name": "Get OMNI failover message logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/omni/1/logs",
+            "params": [
+              {
+                "name": "from",
+                "value": "DemoViberApp",
+                "type": "query",
+                "description": "Sender that can be alphanumeric or numeric."
+              },
+              {
+                "name": "to",
+                "value": "41793026727",
+                "type": "query",
+                "description": "The message destination address."
+              },
+              {
+                "name": "bulkId",
+                "value": "1dece649-6c8f-404e-8c6e-c7e073be509a,bafdeb3d-719b-4cce-8762-54d47b40f3c5",
+                "type": "query",
+                "description": "The ID that uniquely identifies the request. Bulk ID will be received only when you send a message to more than one destination address."
+              },
+              {
+                "name": "messageId",
+                "value": "1,2,3",
+                "type": "query",
+                "description": "The ID that uniquely identifies the message sent."
+              },
+              {
+                "name": "generalStatus",
+                "value": "",
+                "type": "query",
+                "description": "Sent message status group. Indicates whether the message is successfully sent, not sent, delivered, not delivered, waiting for delivery or any other possible status."
+              },
+              {
+                "name": "channel",
+                "value": "PUSH",
+                "type": "query",
+                "description": "Channel that was used for message delivering."
+              },
+              {
+                "name": "sentSince",
+                "value": "2015-02-22T17:42:05.390+01:00",
+                "type": "query",
+                "description": "Lower limit on date and time of sending messages."
+              },
+              {
+                "name": "sentUntil",
+                "value": "2015-02-22T17:44:05.390+01:00",
+                "type": "query",
+                "description": "Upper limit on date and time of sending messages."
+              },
+              {
+                "name": "limit",
+                "value": "1",
+                "type": "query",
+                "description": "Maximal number of messages in returned logs. Default value is __50__. Maximum value is __1000__."
+              },
+              {
+                "name": "mcc",
+                "value": "",
+                "type": "query",
+                "description": "Mobile country code."
+              },
+              {
+                "name": "mnc",
+                "value": "",
+                "type": "query",
+                "description": "Mobile network code."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "If you need to show message logs in some GUI use this method. For message delivery status use [OMNI failover delivery reports](#programmable-communications/omni-failover/get-omni-failover-delivery-reports)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

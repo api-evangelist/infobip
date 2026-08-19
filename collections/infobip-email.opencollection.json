@@ -1,0 +1,1663 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "channels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send email messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/email/4/messages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "99% of all use cases can be achieved by using this API method. Everything from sending a simple single message to a single destination, up to batch sending of personalized messages to the thousands of recipients with a single API request. Scheduling and every advanced feature you can think of is supported."
+        },
+        {
+          "info": {
+            "name": "Upload binary content",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/email/1/content",
+            "headers": [
+              {
+                "name": "X-Content-Id",
+                "value": "image_1_jpg"
+              },
+              {
+                "name": "X-Media-Type",
+                "value": "image/jpeg"
+              },
+              {
+                "name": "X-Validity-Period-Minutes",
+                "value": "3000"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method allows you to upload binary content that you can reference when sending Email messages."
+        },
+        {
+          "info": {
+            "name": "Send fully featured email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/email/3/send",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Send an email or multiple emails to a recipient or multiple recipients with CC/BCC enabled."
+        },
+        {
+          "info": {
+            "name": "Send MIME email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/email/4/mime",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Send an email where you can specify the content as MIME message."
+        },
+        {
+          "info": {
+            "name": "Get scheduled bulks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/email/1/bulks",
+            "params": [
+              {
+                "name": "bulkId",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "The ID that uniquely identifies the sent bulk."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "See the scheduled time of your Email messages."
+        },
+        {
+          "info": {
+            "name": "Reschedule messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/email/1/bulks",
+            "params": [
+              {
+                "name": "bulkId",
+                "value": "BULK-ID-123-xyz",
+                "type": "query",
+                "description": "The ID that uniquely identifies the sent bulk."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Change the date and time for sending scheduled messages."
+        },
+        {
+          "info": {
+            "name": "Get scheduled bulk statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/email/1/bulks/status",
+            "params": [
+              {
+                "name": "bulkId",
+                "value": "BULK-ID-123-xyz",
+                "type": "query",
+                "description": "The ID that uniquely identifies the sent bulk."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "See the status of scheduled email messages."
+        },
+        {
+          "info": {
+            "name": "Update scheduled message statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/email/1/bulks/status",
+            "params": [
+              {
+                "name": "bulkId",
+                "value": "BULK-ID-123-xyz",
+                "type": "query",
+                "description": "The ID that uniquely identifies the sent bulk."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Change status or completely cancel sending of scheduled messages."
+        },
+        {
+          "info": {
+            "name": "Get email message logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/email/4/logs",
+            "params": [
+              {
+                "name": "sender",
+                "value": "",
+                "type": "query",
+                "description": "The sender ID which can be alphanumeric or numeric."
+              },
+              {
+                "name": "destination",
+                "value": "",
+                "type": "query",
+                "description": "Message destination address."
+              },
+              {
+                "name": "bulkId",
+                "value": "BULK-ID-123-xyz",
+                "type": "query",
+                "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. May contain multiple comma-separated values. Maximum length 2048 characters."
+              },
+              {
+                "name": "messageId",
+                "value": "MESSAGE-ID-123-xyz,MESSAGE-ID-124-xyz",
+                "type": "query",
+                "description": "Unique message ID for which a log is requested. May contain multiple comma-separated values. Maximum length 2048 characters."
+              },
+              {
+                "name": "generalStatus",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sentSince",
+                "value": "2020-02-22T17:42:05.390+01:00",
+                "type": "query",
+                "description": "The logs will only include messages sent after this date. Use it alongside sentUntil to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+              },
+              {
+                "name": "sentUntil",
+                "value": "2020-02-23T17:42:05.390+01:00",
+                "type": "query",
+                "description": "The logs will only include messages sent before this date. Use it alongside sentSince to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of messages to include in logs. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access logs for the last 48h."
+              },
+              {
+                "name": "entityId",
+                "value": "promotional-traffic-entity",
+                "type": "query",
+                "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "applicationId",
+                "value": "marketing-automation-application",
+                "type": "query",
+                "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "campaignReferenceId",
+                "value": "summersale",
+                "type": "query",
+                "description": "ID of a campaign that was sent in the message. May contain multiple comma-separated values."
+              },
+              {
+                "name": "useCursor",
+                "value": "",
+                "type": "query",
+                "description": "Flag used to enable cursor-based pagination. When set to true, the system will use the cursor to fetch the next set of logs."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Value which represents the current position in the data set. For the first request, this field shouldn't be defined. In subsequent requests, use the `nextCursor` value returned from the previous response to continue fetching data."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method for displaying logs for example in the user interface. Available are the logs for the last 48 hours."
+        },
+        {
+          "info": {
+            "name": "Get email delivery reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/email/4/reports",
+            "params": [
+              {
+                "name": "bulkId",
+                "value": "",
+                "type": "query",
+                "description": "The ID that uniquely identifies the request."
+              },
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "query",
+                "description": "The ID that uniquely identifies the message sent."
+              },
+              {
+                "name": "limit",
+                "value": "1",
+                "type": "query",
+                "description": "Maximum number of delivery reports to be returned. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access reports for the last 48h."
+              },
+              {
+                "name": "entityId",
+                "value": "promotional-traffic-entity",
+                "type": "query",
+                "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "applicationId",
+                "value": "marketing-automation-application",
+                "type": "query",
+                "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "campaignReferenceId",
+                "value": "summersale",
+                "type": "query",
+                "description": "ID of a campaign that was sent in the message."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get one-time delivery reports for all sent emails."
+        },
+        {
+          "info": {
+            "name": "Get email message logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/email/1/logs",
+            "params": [
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "query",
+                "description": "The ID that uniquely identifies the sent email."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "From email address."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The recipient email address."
+              },
+              {
+                "name": "bulkId",
+                "value": "",
+                "type": "query",
+                "description": "Bulk ID that uniquely identifies the request."
+              },
+              {
+                "name": "campaignReferenceId",
+                "value": "",
+                "type": "query",
+                "description": "The ID that allows you to track, analyze, and show an aggregated overview and the performance of individual campaigns."
+              },
+              {
+                "name": "generalStatus",
+                "value": "",
+                "type": "query",
+                "description": "Indicates whether the initiated email has been successfully sent, not sent, delivered, not delivered, waiting for delivery or any other possible status."
+              },
+              {
+                "name": "sentSince",
+                "value": "",
+                "type": "query",
+                "description": "Tells when the email was initiated. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`."
+              },
+              {
+                "name": "sentUntil",
+                "value": "",
+                "type": "query",
+                "description": "Tells when the email request was processed by Infobip.Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of logs."
+              },
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "query",
+                "description": "[Application](https://www.infobip.com/docs/cpaas-x/application-and-entity-management#application) identifier used for filtering."
+              },
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "query",
+                "description": "[Entity](https://www.infobip.com/docs/cpaas-x/application-and-entity-management#entity) identifier used for filtering."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method allows you to get logs for sent emails using their messageId. Email logs are available for the last 48 hours."
+        },
+        {
+          "info": {
+            "name": "Get email delivery reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/email/1/reports",
+            "params": [
+              {
+                "name": "bulkId",
+                "value": "",
+                "type": "query",
+                "description": "Bulk ID for which report is requested."
+              },
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "query",
+                "description": "The ID that uniquely identifies the sent email."
+              },
+              {
+                "name": "campaignReferenceId",
+                "value": "",
+                "type": "query",
+                "description": "The ID that allows you to track, analyze, and show an aggregated overview and the performance of individual campaigns."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of reports."
+              },
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "query",
+                "description": "[Application](https://www.infobip.com/docs/cpaas-x/application-and-entity-management#application) identifier used for filtering."
+              },
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "query",
+                "description": "[Entity](https://www.infobip.com/docs/cpaas-x/application-and-entity-management#entity) identifier used for filtering."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get one-time delivery reports for all sent emails."
+        },
+        {
+          "info": {
+            "name": "Validate email address",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/email/2/validation",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method lets you request validation of a single email address in real-time,\nhelping you to identify and remove poor-quality emails from your list.\n"
+        },
+        {
+          "info": {
+            "name": "Get email validations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/email/2/validations",
+            "params": [
+              {
+                "name": "validationRequestId",
+                "value": "2034072219640523000",
+                "type": "query",
+                "description": "Unique identifier for the bulk email validation request. Provide your own or leave it blank to have one generated automatically.\n"
+              },
+              {
+                "name": "destination",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "validMailbox",
+                "value": "true",
+                "type": "query",
+                "description": "Indicates whether email address is valid."
+              },
+              {
+                "name": "validSyntax",
+                "value": "true",
+                "type": "query",
+                "description": "Indicates whether email address syntax is valid."
+              },
+              {
+                "name": "catchAll",
+                "value": "false",
+                "type": "query",
+                "description": "Indicates catch all status of email address."
+              },
+              {
+                "name": "disposable",
+                "value": "false",
+                "type": "query",
+                "description": "Indicates whether email address is disposable.\nA disposable email address is a temporary address that is often used for short-term purposes and can be discarded after use.\n"
+              },
+              {
+                "name": "roleBased",
+                "value": "false",
+                "type": "query",
+                "description": "Indicates whether email address is role-based.\nA role-based email address is one that is associated with a specific function or group within an organization,\nsuch as marketing@example.org, rather than an individual person.\n"
+              },
+              {
+                "name": "risk",
+                "value": "LOW",
+                "type": "query"
+              },
+              {
+                "name": "validatedDateFrom",
+                "value": "2025-03-01T12:03:15.120Z",
+                "type": "query",
+                "description": "Start date for searching validations.\nIf not specified, defaults to 7 days before the current date.\nThe date cannot be more than 1 month in the past.\n"
+              },
+              {
+                "name": "validatedDateTo",
+                "value": "2025-03-04T15:02:11.400Z",
+                "type": "query",
+                "description": "End date for searching validations."
+              },
+              {
+                "name": "cursor",
+                "value": "A1F3B5C7D9E2F4A6B8C0D1E3F5A7B9C1D3E5F7A9B2C4D6E8F0A1B3C5D7E9F2A4",
+                "type": "query",
+                "description": "A pagination token for navigating through bulk email validation results.\nInitially empty, it updates with each API response to fetch the next set of results, ensuring efficient data retrieval.\n"
+              },
+              {
+                "name": "size",
+                "value": "100",
+                "type": "query",
+                "description": "Number of records per page."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method lets you review and analyze the outcomes of your\nsubmitted bulk email validations to gain insights into the quality of your email list.\n"
+        },
+        {
+          "info": {
+            "name": "Validate email addresses",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/email/2/validations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method lets you request a bulk email address validation,\nhelping you to detect low-quality emails and tidy up your recipient list.\n"
+        },
+        {
+          "info": {
+            "name": "Get domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/email/1/domains",
+            "params": [
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of domains to be viewed per page. Default value is 10 with a maximum of 20 records per page."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number you want to see. Default is 0."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API is to get all domain associated with the account. It also provides details of the retrieved domain like the DNS records, Tracking details, Active/Blocked status,etc."
+        },
+        {
+          "info": {
+            "name": "Add domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/email/1/domains",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method allows you to add new domains with a limit to create a maximum of 1000 domains in a day."
+        },
+        {
+          "info": {
+            "name": "Get domain details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/email/1/domains/:domainName",
+            "params": [
+              {
+                "name": "domainName",
+                "value": "",
+                "type": "path",
+                "description": "Domain for which the details need to be viewed."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This API provides with the details of the domain like the DNS records, Tracking details, Active/Blocked status,etc."
+        },
+        {
+          "info": {
+            "name": "Delete domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/email/1/domains/:domainName",
+            "params": [
+              {
+                "name": "domainName",
+                "value": "",
+                "type": "path",
+                "description": "Domain name which needs to be deleted."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method allows you to delete an existing domain."
+        },
+        {
+          "info": {
+            "name": "Update domain tracking events",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/email/1/domains/:domainName/tracking",
+            "params": [
+              {
+                "name": "domainName",
+                "value": "",
+                "type": "path",
+                "description": "Domain for which the tracking events need to be updated."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "API to update tracking events for the provided domain. Tracking events can be updated only for CLICKS, OPENS and UNSUBSCRIBES."
+        },
+        {
+          "info": {
+            "name": "Verify domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/email/1/domains/:domainName/verify",
+            "params": [
+              {
+                "name": "domainName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the domain that has to be verified."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "API request to verify records(TXT, MX, DKIM) associated with the provided domain."
+        },
+        {
+          "info": {
+            "name": "Get suppressions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/email/1/suppressions",
+            "params": [
+              {
+                "name": "domainName",
+                "value": "",
+                "type": "query",
+                "description": "Name of the requested domain."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of suppression."
+              },
+              {
+                "name": "emailAddress",
+                "value": "",
+                "type": "query",
+                "description": "Email address that is suppressed."
+              },
+              {
+                "name": "recipientDomain",
+                "value": "",
+                "type": "query",
+                "description": "Recipient domain that is suppressed."
+              },
+              {
+                "name": "createdDateFrom",
+                "value": "",
+                "type": "query",
+                "description": "Start date for searching suppressions."
+              },
+              {
+                "name": "createdDateTo",
+                "value": "",
+                "type": "query",
+                "description": "End date for searching suppressions."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Requested page number."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Requested page size."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method retrieves the suppressions for domains that are owned or have permissions granted."
+        },
+        {
+          "info": {
+            "name": "Add suppressions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/email/1/suppressions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method allows you to add email addresses to the suppression list. It accepts suppression requests, saves them asynchronously, and automatically ignores any duplicate entries."
+        },
+        {
+          "info": {
+            "name": "Delete suppressions",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/email/1/suppressions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method allows you to delete email addresses from the suppression list. It accepts delete suppression requests and asynchronously deletes them."
+        },
+        {
+          "info": {
+            "name": "Get suppression domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/email/1/suppressions/domains",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Requested page number."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Requested page size."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method allows you to get domains that can be managed for suppressions and are either owned or have granted permissions."
+        },
+        {
+          "info": {
+            "name": "Get IPs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/email/1/ip-management/ips",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all the dedicated IP addresses owned by this account."
+        },
+        {
+          "info": {
+            "name": "Commission IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/email/1/ip-management/ips/commission",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Commission a new Dedicated IP.\nDisaster Recovery is enabled by default for email traffic in the US and EU regions.Each dedicated IP is paired with a corresponding IP from a different data center within the same region. This pairing ensures that if one data center becomes unavailable, the paired IP can seamlessly take over full sending responsibilities, maintaining uninterrupted traffic flow.\nStandard pricing for dedicated IPs applies. Charges are incurred at the time of commissioning and recur m"
+        },
+        {
+          "info": {
+            "name": "Get IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/email/1/ip-management/ips/:ipId",
+            "params": [
+              {
+                "name": "ipId",
+                "value": "",
+                "type": "path",
+                "description": "Dedicated IP identifier."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get detailed information about provided dedicated IP."
+        },
+        {
+          "info": {
+            "name": "Decommission IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/email/1/ip-management/ips/:ipId",
+            "params": [
+              {
+                "name": "ipId",
+                "value": "",
+                "type": "path",
+                "description": "Dedicated IP identifier."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Decommission a Dedicated IP\nOnce a dedicated IP is decommissioned, billing for that IP will end at the start of the next billing cycle (on the 1st of the following month). For accounts with Disaster Recovery enabled in the US and EU regions, paired dedicated IPs will be decommissioned together.\n"
+        },
+        {
+          "info": {
+            "name": "Get IP pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/email/1/ip-management/pools",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "IP pool name."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all the pools that are owned (created) by this account."
+        },
+        {
+          "info": {
+            "name": "Create IP pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/email/1/ip-management/pools",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new IP pool."
+        },
+        {
+          "info": {
+            "name": "Get IP pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/email/1/ip-management/pools/:poolId",
+            "params": [
+              {
+                "name": "poolId",
+                "value": "",
+                "type": "path",
+                "description": "IP pool identifier."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get detailed information about a provided IP pool."
+        },
+        {
+          "info": {
+            "name": "Update IP pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/email/1/ip-management/pools/:poolId",
+            "params": [
+              {
+                "name": "poolId",
+                "value": "",
+                "type": "path",
+                "description": "IP pool identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update a provided IP pool."
+        },
+        {
+          "info": {
+            "name": "Delete IP pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/email/1/ip-management/pools/:poolId",
+            "params": [
+              {
+                "name": "poolId",
+                "value": "",
+                "type": "path",
+                "description": "IP pool identifier."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete provided IP pool. Deleting an IP pool also deletes any assigned IPs and any assignments to domains."
+        },
+        {
+          "info": {
+            "name": "Assign IP to pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/email/1/ip-management/pools/:poolId/ips",
+            "params": [
+              {
+                "name": "poolId",
+                "value": "",
+                "type": "path",
+                "description": "IP pool identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Assign provided dedicated IP to the provided IP pool."
+        },
+        {
+          "info": {
+            "name": "Unassign IP from pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/email/1/ip-management/pools/:poolId/ips/:ipId",
+            "params": [
+              {
+                "name": "poolId",
+                "value": "",
+                "type": "path",
+                "description": "IP pool identifier."
+              },
+              {
+                "name": "ipId",
+                "value": "",
+                "type": "path",
+                "description": "Dedicated IP identifier."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Unassign provided IP from the specific pool."
+        },
+        {
+          "info": {
+            "name": "Get IPs (paginated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/email/1/ip-management/paginated/ips",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns paginated dedicated IP addresses owned by this account."
+        },
+        {
+          "info": {
+            "name": "Get IP pools (paginated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/email/1/ip-management/paginated/pools",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns paginated IP pools owned by this account."
+        },
+        {
+          "info": {
+            "name": "Get domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/email/1/ip-management/domains/:domainId",
+            "params": [
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path",
+                "description": "Domain identifier."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get detailed information for provided domain such as assigned pools and their IPs."
+        },
+        {
+          "info": {
+            "name": "Assign IP pool to domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/email/1/ip-management/domains/:domainId/pools",
+            "params": [
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path",
+                "description": "Domain identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Assign an IP pool to the provided domain."
+        },
+        {
+          "info": {
+            "name": "Update IP pool sending priority",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/email/1/ip-management/domains/:domainId/pools/:poolId",
+            "params": [
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path",
+                "description": "Domain identifier."
+              },
+              {
+                "name": "poolId",
+                "value": "",
+                "type": "path",
+                "description": "IP pool identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update specified pool's sending priority for the provided domain."
+        },
+        {
+          "info": {
+            "name": "Unassign IP pool from domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/email/1/ip-management/domains/:domainId/pools/:poolId",
+            "params": [
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path",
+                "description": "Domain identifier."
+              },
+              {
+                "name": "poolId",
+                "value": "",
+                "type": "path",
+                "description": "IP pool identifier."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Unassign a specified pool from the provided domain."
+        },
+        {
+          "info": {
+            "name": "Get email templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/email/1/templates",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Identifies a specific page number from which to retrieve the email template details."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Identifies the maximum number of email templates returned in the list."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves a list of available email templates."
+        },
+        {
+          "info": {
+            "name": "Create email template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/email/1/templates",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new email template with the provided details."
+        },
+        {
+          "info": {
+            "name": "Get email template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/email/1/templates/:templateId",
+            "params": [
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (ID) of the email template."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves the details of a specific email template by its identifier (ID)."
+        },
+        {
+          "info": {
+            "name": "Update email template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/email/1/templates/:templateId",
+            "params": [
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (ID) of the email template."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates an existing email template with new data."
+        },
+        {
+          "info": {
+            "name": "Patch email template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/email/1/templates/:templateId",
+            "params": [
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (ID) of the email template."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Partially updates an existing email template with the provided changes."
+        },
+        {
+          "info": {
+            "name": "Delete email template",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/email/1/templates/:templateId",
+            "params": [
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (ID) of the email template."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes a specific email template by its ID."
+        },
+        {
+          "info": {
+            "name": "Generate email template preview",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/email/1/templates/:templateId/preview",
+            "params": [
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (ID) of the email template."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Generates a rendered preview of an email template by replacing placeholders with the provided key-value data."
+        },
+        {
+          "info": {
+            "name": "Get email template attachments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/email/1/templates/:templateId/attachments",
+            "params": [
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (ID) of the email template."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves a list of attachments associated with a specific email template."
+        },
+        {
+          "info": {
+            "name": "Upload email template attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/email/1/templates/:templateId/attachments",
+            "params": [
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (ID) of the email template."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Uploads an attachment to a specific email template."
+        },
+        {
+          "info": {
+            "name": "Delete email template attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/email/1/templates/:templateId/attachments/:attachmentId",
+            "params": [
+              {
+                "name": "attachmentId",
+                "value": "",
+                "type": "path",
+                "description": "Attachment ID."
+              },
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path",
+                "description": "Template ID."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Removes a specific attachment from an email template."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

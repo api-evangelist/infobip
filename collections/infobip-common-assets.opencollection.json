@@ -1,0 +1,144 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "customer-engagement",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Export SaaS resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/saas/1/:resourceType/:resourceId/export",
+            "params": [
+              {
+                "name": "resourceType",
+                "value": "",
+                "type": "path",
+                "description": "Type of SaaS resource."
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "SaaS resource identifier."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Choose a Saas resource to export and receive the file in the API response."
+        },
+        {
+          "info": {
+            "name": "Import SaaS resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/saas/1/:resourceType/import",
+            "params": [
+              {
+                "name": "resourceType",
+                "value": "",
+                "type": "path",
+                "description": "Type of SaaS resource."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Import a SaaS resource to your account."
+        },
+        {
+          "info": {
+            "name": "Share SaaS resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/saas/1/:resourceType/:resourceId/share",
+            "params": [
+              {
+                "name": "resourceType",
+                "value": "",
+                "type": "path",
+                "description": "Type of SaaS resource."
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "SaaS resource identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this endpoint to share a SaaS resource with other accounts. You can check the status of your share request [here](https://www.infobip.com/docs/api/customer-engagement/common-assets/saas-request-status)."
+        },
+        {
+          "info": {
+            "name": "Get SaaS request status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/saas/1/request/:requestId/status",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of user request on SaaS."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get the status of your share request."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,311 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "connectivity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Scenarios",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/biometrics/1/scenarios",
+            "params": [
+              {
+                "name": "applicationTypes",
+                "value": "",
+                "type": "query",
+                "description": "One or more application types to filter scenarios. If none is set, then scenarios for all application types are returned in the response. Example: `?applicationTypes=extraction,kyc`."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This function is used to retrieve all scenarios enabled for your account."
+        },
+        {
+          "info": {
+            "name": "Get Extraction Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/biometrics/1/extraction/sessions",
+            "headers": [
+              {
+                "name": "X-Session-Id",
+                "value": "efc373be-ab6d-4c63-b798-1f65b7b4b2b3"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This function is used to retrieve a session by `sessionId` received in [Create Extraction Session](#platform-connectivity/biometrics/create-biometrics-extraction-session) response."
+        },
+        {
+          "info": {
+            "name": "Create Extraction Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/biometrics/1/extraction/sessions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This function is used to initiate a session. It is the very first step for extraction application."
+        },
+        {
+          "info": {
+            "name": "Abort Extraction Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/biometrics/1/extraction/sessions",
+            "headers": [
+              {
+                "name": "X-Session-Id",
+                "value": "efc373be-ab6d-4c63-b798-1f65b7b4b2b3"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This function is used to abort the session. Use `sessionId` received in the [Create Extraction Session](#platform-connectivity/biometrics/create-biometrics-extraction-session) response."
+        },
+        {
+          "info": {
+            "name": "Get KYC Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/biometrics/1/kyc/sessions",
+            "headers": [
+              {
+                "name": "X-Session-Id",
+                "value": "efc373be-ab6d-4c63-b798-1f65b7b4b2b3"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This function is used to retrieve a session by `sessionId` received in the [Create KYC Session](#platform-connectivity/biometrics/create-biometrics-kyc-session) response."
+        },
+        {
+          "info": {
+            "name": "Create KYC Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/biometrics/1/kyc/sessions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This function is used to initiate a session. It is the very first step for KYC application."
+        },
+        {
+          "info": {
+            "name": "Abort KYC Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/biometrics/1/kyc/sessions",
+            "headers": [
+              {
+                "name": "X-Session-Id",
+                "value": "efc373be-ab6d-4c63-b798-1f65b7b4b2b3"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This function is used to abort the session. Use `sessionId` received in the [Create KYC Session](#platform-connectivity/biometrics/create-biometrics-kyc-session) response."
+        },
+        {
+          "info": {
+            "name": "Get Enrollment Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/biometrics/1/enrollment/sessions",
+            "headers": [
+              {
+                "name": "X-Session-Id",
+                "value": "efc373be-ab6d-4c63-b798-1f65b7b4b2b3"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This function is used to retrieve a session by `sessionId` received in the [Create Enrollment Session](#platform-connectivity/biometrics/create-biometrics-enrollment-session) response."
+        },
+        {
+          "info": {
+            "name": "Create Enrollment Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/biometrics/1/enrollment/sessions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This function is used to initiate a session. It is the very first step for Enrollment application."
+        },
+        {
+          "info": {
+            "name": "Abort Enrollment Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/biometrics/1/enrollment/sessions",
+            "headers": [
+              {
+                "name": "X-Session-Id",
+                "value": "efc373be-ab6d-4c63-b798-1f65b7b4b2b3"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This function is used to abort the session. Use `sessionId` received in the [Create Enrollment Session](#platform-connectivity/biometrics/create-biometrics-enrollment-session) response."
+        },
+        {
+          "info": {
+            "name": "Get Verification Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/biometrics/1/verification/sessions",
+            "headers": [
+              {
+                "name": "X-Session-Id",
+                "value": "efc373be-ab6d-4c63-b798-1f65b7b4b2b3"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This function is used to retrieve a session by `sessionId` received in the [Create Verification Session](#platform-connectivity/biometrics/create-biometrics-verification-session) response."
+        },
+        {
+          "info": {
+            "name": "Create Verification Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/biometrics/1/verification/sessions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This function is used to initiate a session. It is the very first step for Verification application."
+        },
+        {
+          "info": {
+            "name": "Abort Verification Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/biometrics/1/verification/sessions",
+            "headers": [
+              {
+                "name": "X-Session-Id",
+                "value": "efc373be-ab6d-4c63-b798-1f65b7b4b2b3"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This function is used to abort the session. Use `sessionId` received in the [Create Verification Session](#platform-connectivity/biometrics/create-biometrics-verification-session) response."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

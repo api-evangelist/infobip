@@ -1,0 +1,237 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "connectivity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Number verify device authorization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/camara/number-verification/v0/authorize",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "enterprise-client-id",
+                "type": "query",
+                "description": "Client ID to identify the client on whose behalf the device is making the request. This is **provided to the client** upon registration. The value is usually the username that is being used to login into Infobip portal when generating [API key header](https://www.infobip.com/docs/essentials/api-essentials/api-authentication#api-key-header) and/or client_id that is being used when [generating OAuth2 token](https://www.infobip.com/docs/api/platform/account-management/create-oauth2-token)."
+              },
+              {
+                "name": "redirectUrl",
+                "value": "https://enterprise.com/authorization-complete",
+                "type": "query",
+                "description": "URL to redirect back the device to after authorization on MNO network. **This URL needs to be static**. For request tracking and correlation purposes, the `state` query parameter will be added to this URL before redirecting the device back."
+              },
+              {
+                "name": "state",
+                "value": "51A7_7131",
+                "type": "query",
+                "description": "String that will be returned as a query parameter in the `redirectUrl`."
+              },
+              {
+                "name": "login_hint",
+                "value": "tel:+441134961234",
+                "type": "query",
+                "description": "OIDC login hint. Expects a phone number in `tel:+{phone_number_with_country_code}` format."
+              }
+            ]
+          },
+          "docs": "Use this method to redirect the mobile device on the MNO network for authorization, based on the mobile device IP address.\nUpon authorization, the device is redirected back to the URL specified in `redirectUrl`.\nWhen redirected back, a new query parameter `code` is being added.\nIt needs to be sent in a subsequent verify request to complete verification.\n\n**Error handling behavior:**\n- When `redirectUrl` parameter **is provided**: All errors are returned as a 302 redirect back to the `redirectUrl"
+        },
+        {
+          "info": {
+            "name": "Number Verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/camara/number-verification/v0/verify",
+            "headers": [
+              {
+                "name": "X-Correlator",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to verify possession of the end-user's mobile phone number with the mobile network operator's data connection."
+        },
+        {
+          "info": {
+            "name": "Number verification DCQL Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/camara/number-verification/v2/dcql",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to generate a credential request structure for the Android CredentialManager. The response must be passed to the device for SIM-based (TS.43) authentication."
+        },
+        {
+          "info": {
+            "name": "Get Phone Number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/camara/number-verification/v2/device-phone-number",
+            "headers": [
+              {
+                "name": "X-Correlator",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to retrieve the phone number associated with the device SIM."
+        },
+        {
+          "info": {
+            "name": "Number Verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/camara/number-verification/v2/verify",
+            "headers": [
+              {
+                "name": "X-Correlator",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to verify possession of the end-user's mobile phone number with the phone SIM card."
+        },
+        {
+          "info": {
+            "name": "Device Location Verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/camara/location/v0/verify",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to verify whether the device location is within a requested area.\nA circle with a center specified by the latitude and longitude, and a radius specified by the accuracy.\n"
+        },
+        {
+          "info": {
+            "name": "SIM Swap",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/camara/sim-swap/v0/check",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to verify if there was a SIM swap event for a given mobile phone number and period."
+        },
+        {
+          "info": {
+            "name": "Retrieve SIM Swap date",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/camara/sim-swap/v0/retrieve-date",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to retrieve the last date when the SIM Swap occurred for a given mobile phone number."
+        },
+        {
+          "info": {
+            "name": "KYC Match",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/camara/kyc-match/v0.3/match",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to match customer data against Mobile Operators data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

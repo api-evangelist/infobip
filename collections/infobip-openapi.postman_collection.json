@@ -1,0 +1,1103 @@
+{
+  "item": [
+    {
+      "id": "4c26fb66-b5ca-483f-a295-83e193f8ba82",
+      "name": "tools",
+      "description": {
+        "content": "Developer utilities to help you integrate and work with Infobip APIs more efficiently.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "22c1d0d7-1fb0-4fa7-b882-9b01b9af4146",
+          "name": "Get OpenAPI Specification",
+          "request": {
+            "name": "Get OpenAPI Specification",
+            "description": {
+              "content": "Returns the complete OpenAPI Specification for the Infobip platform.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "platform",
+                "1",
+                "openapi"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d417b740-9651-4e54-a14f-10b94a553ee8",
+              "name": "OpenAPI Specification",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "openapi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"openapi\": \"3.1.0\",\n  \"info\": {\n    \"title\": \"Infobip OpenAPI Specification\",\n    \"description\": \"OpenAPI Specification that contains all public endpoints and webhooks.\",\n    \"contact\": {\n      \"name\": \"Infobip support\",\n      \"email\": \"support@infobip.com\"\n    },\n    \"version\": \"2.1.0\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "51fea53d-5ff0-4d8b-b7e5-a5572b776642",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "openapi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E429\",\n  \"description\": \"Too many requests sent.\",\n  \"action\": \"Check request rate limit specified in the API endpoint documentation resource.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"Throttling handling errors\",\n      \"url\": \"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e17eec0a-f017-4683-97ca-a9198add720f",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "openapi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E500\",\n  \"description\": \"Something went wrong.\",\n  \"action\": \"Contact the support.\",\n  \"violations\": [],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7554c6d0-9e4d-4f05-8e6f-ef8ea86dac04",
+          "name": "Get OpenAPI Specification for a specific product",
+          "request": {
+            "name": "Get OpenAPI Specification for a specific product",
+            "description": {
+              "content": "Returns the OpenAPI specification for a specific Infobip product, such as SMS, Email, or WhatsApp. To get the correct product identifier, [view the list of available products](https://www.infobip.com/docs/api/tools/openapi/get-available-products).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "platform",
+                "1",
+                "openapi",
+                ":product"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "product",
+                  "description": "(Required) Product identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a3f5880c-d382-418e-85a8-1b9e74ed615e",
+              "name": "OpenAPI Specification",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "openapi",
+                    ":product"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product",
+                      "description": "(Required) Product identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"openapi\": \"3.1.0\",\n  \"info\": {\n    \"title\": \"Infobip OpenAPI Specification\",\n    \"description\": \"OpenAPI Specification that contains all public endpoints and webhooks.\",\n    \"contact\": {\n      \"name\": \"Infobip support\",\n      \"email\": \"support@infobip.com\"\n    },\n    \"version\": \"2.1.0\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "02d47284-3924-4770-ac5d-b9a3db36f54d",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "openapi",
+                    ":product"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product",
+                      "description": "(Required) Product identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"OPENAPI404\",\n  \"description\": \"The requested OpenAPI Specification does not exist.\",\n  \"action\": \"Make sure that you provided the correct product identifier in the URL and check the provided resource for more information.\",\n  \"violations\": [],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7206c084-539b-48c6-9e2d-61cefec9a43e",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "openapi",
+                    ":product"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product",
+                      "description": "(Required) Product identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E429\",\n  \"description\": \"Too many requests sent.\",\n  \"action\": \"Check request rate limit specified in the API endpoint documentation resource.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"Throttling handling errors\",\n      \"url\": \"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "753ffedd-683f-455a-8533-e80142f3b195",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "openapi",
+                    ":product"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product",
+                      "description": "(Required) Product identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E500\",\n  \"description\": \"Something went wrong.\",\n  \"action\": \"Contact the support.\",\n  \"violations\": [],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6b1b62b2-a922-4093-88e6-abb32bbc134c",
+          "name": "Get a list of available products",
+          "request": {
+            "name": "Get a list of available products",
+            "description": {
+              "content": "Returns a list of all available Infobip products that can be used to fetch the [OpenAPI Specification for a specific product](https://www.infobip.com/docs/api/tools/openapi/get-product-level-openapi). Use this list to find the correct value for the product path parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "platform",
+                "1",
+                "openapi",
+                "available-products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8fd6b401-b74a-439f-954d-c11b6fe23a1b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "openapi",
+                    "available-products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"products\": [\n    {\n      \"id\": \"sms\"\n    },\n    {\n      \"id\": \"whatsapp\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be71e941-d23d-4a9c-b254-b1193c9b16cf",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "openapi",
+                    "available-products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E429\",\n  \"description\": \"Too many requests sent.\",\n  \"action\": \"Check request rate limit specified in the API endpoint documentation resource.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"Throttling handling errors\",\n      \"url\": \"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "329e9dbe-1ff2-4f01-8361-67cc8d8411c2",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "openapi",
+                    "available-products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E500\",\n  \"description\": \"Something went wrong.\",\n  \"action\": \"Contact the support.\",\n  \"violations\": [],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "9e86ad7b-e008-4d7c-8ebd-61adc849627e",
+      "name": "openapi",
+      "description": {
+        "content": "[OpenAPI](https://swagger.io/specification/) is an industry-standard specification for defining REST APIs. It allows you to generate client libraries, automate API testing, and streamline integration workflows.\n\n[Infobip OpenAPI specification](https://api.infobip.com/platform/1/openapi) is publicly available as a complete OpenAPI specification with all Infobip products. You can also access a product-level specification that includes only the endpoints relevant to that product. All specifications follow semantic versioning to ensure clarity, stability, and consistent integrations.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6ee08736-b21a-4b5d-b296-9b4b102932e4",
+          "name": "Get OpenAPI Specification",
+          "request": {
+            "name": "Get OpenAPI Specification",
+            "description": {
+              "content": "Returns the complete OpenAPI Specification for the Infobip platform.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "platform",
+                "1",
+                "openapi"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "25728a0b-290f-4e15-937e-28d649c72a49",
+              "name": "OpenAPI Specification",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "openapi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"openapi\": \"3.1.0\",\n  \"info\": {\n    \"title\": \"Infobip OpenAPI Specification\",\n    \"description\": \"OpenAPI Specification that contains all public endpoints and webhooks.\",\n    \"contact\": {\n      \"name\": \"Infobip support\",\n      \"email\": \"support@infobip.com\"\n    },\n    \"version\": \"2.1.0\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd4ecc39-a3fa-4bd4-acf7-fec960bad026",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "openapi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E429\",\n  \"description\": \"Too many requests sent.\",\n  \"action\": \"Check request rate limit specified in the API endpoint documentation resource.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"Throttling handling errors\",\n      \"url\": \"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "35dfe56b-2452-4b2c-8b7e-86dfd74aa42d",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "openapi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E500\",\n  \"description\": \"Something went wrong.\",\n  \"action\": \"Contact the support.\",\n  \"violations\": [],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4773023b-7780-4f7e-8373-53dcf8962286",
+          "name": "Get OpenAPI Specification for a specific product",
+          "request": {
+            "name": "Get OpenAPI Specification for a specific product",
+            "description": {
+              "content": "Returns the OpenAPI specification for a specific Infobip product, such as SMS, Email, or WhatsApp. To get the correct product identifier, [view the list of available products](https://www.infobip.com/docs/api/tools/openapi/get-available-products).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "platform",
+                "1",
+                "openapi",
+                ":product"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "product",
+                  "description": "(Required) Product identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3059ad64-5c13-4ef5-a29f-badea50eca07",
+              "name": "OpenAPI Specification",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "openapi",
+                    ":product"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product",
+                      "description": "(Required) Product identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"openapi\": \"3.1.0\",\n  \"info\": {\n    \"title\": \"Infobip OpenAPI Specification\",\n    \"description\": \"OpenAPI Specification that contains all public endpoints and webhooks.\",\n    \"contact\": {\n      \"name\": \"Infobip support\",\n      \"email\": \"support@infobip.com\"\n    },\n    \"version\": \"2.1.0\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "251ed6e5-97f5-4ad9-bf01-1a7034e9e6e0",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "openapi",
+                    ":product"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product",
+                      "description": "(Required) Product identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"OPENAPI404\",\n  \"description\": \"The requested OpenAPI Specification does not exist.\",\n  \"action\": \"Make sure that you provided the correct product identifier in the URL and check the provided resource for more information.\",\n  \"violations\": [],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "695b29a6-f78f-47b1-8032-779cdf85fbd1",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "openapi",
+                    ":product"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product",
+                      "description": "(Required) Product identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E429\",\n  \"description\": \"Too many requests sent.\",\n  \"action\": \"Check request rate limit specified in the API endpoint documentation resource.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"Throttling handling errors\",\n      \"url\": \"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c365efc-ae7c-43fa-bc63-26e43deb4123",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "openapi",
+                    ":product"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product",
+                      "description": "(Required) Product identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E500\",\n  \"description\": \"Something went wrong.\",\n  \"action\": \"Contact the support.\",\n  \"violations\": [],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a8cf6597-1577-4ee5-b371-1183e8302efb",
+          "name": "Get a list of available products",
+          "request": {
+            "name": "Get a list of available products",
+            "description": {
+              "content": "Returns a list of all available Infobip products that can be used to fetch the [OpenAPI Specification for a specific product](https://www.infobip.com/docs/api/tools/openapi/get-product-level-openapi). Use this list to find the correct value for the product path parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "platform",
+                "1",
+                "openapi",
+                "available-products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "72f41a68-8bc1-453d-a450-44136d5ccf44",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "openapi",
+                    "available-products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"products\": [\n    {\n      \"id\": \"sms\"\n    },\n    {\n      \"id\": \"whatsapp\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "45ef974e-bd87-47ce-80f1-a9cf227faad6",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "openapi",
+                    "available-products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E429\",\n  \"description\": \"Too many requests sent.\",\n  \"action\": \"Check request rate limit specified in the API endpoint documentation resource.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"Throttling handling errors\",\n      \"url\": \"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a4343993-6ede-4ef6-8733-b71d0d49562f",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "openapi",
+                    "available-products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E500\",\n  \"description\": \"Something went wrong.\",\n  \"action\": \"Contact the support.\",\n  \"violations\": [],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "634e9d60-e6a6-4d9c-80bb-5bf5d22cc711",
+    "name": "Infobip OpenAPI Specification",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI Specification that contains all public endpoints and webhooks.\n\nContact Support:\n Name: Infobip support\n Email: support@infobip.com",
+      "type": "text/plain"
+    }
+  }
+}

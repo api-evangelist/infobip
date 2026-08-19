@@ -1,0 +1,3951 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "customer-engagement",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get conversations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/1/conversations",
+            "params": [
+              {
+                "name": "conversationIds",
+                "value": "",
+                "type": "query",
+                "description": "Optional. List of conversation Ids."
+              },
+              {
+                "name": "queueIds",
+                "value": "",
+                "type": "query",
+                "description": "Optional. List of queue Ids."
+              },
+              {
+                "name": "tagNames",
+                "value": "",
+                "type": "query",
+                "description": "Optional. List of tag names."
+              },
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Id of an agent assigned to conversations."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Conversation status."
+              },
+              {
+                "name": "priority",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Conversation priority."
+              },
+              {
+                "name": "createdAfter",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Filter results created after specific date and time. Format: yyyy-MM-dd'T'HH:mm:ss.SSS+0000"
+              },
+              {
+                "name": "createdBefore",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Filter results created before specific date and time. Format: yyyy-MM-dd'T'HH:mm:ss.SSS+0000"
+              },
+              {
+                "name": "updatedAfter",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Filter results updated after specific date and time. Format: yyyy-MM-dd'T'HH:mm:ss.SSS+0000"
+              },
+              {
+                "name": "updatedBefore",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Filter results updated before specific date and time. Format: yyyy-MM-dd'T'HH:mm:ss.SSS+0000"
+              },
+              {
+                "name": "closedAfter",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Filter results closed after specific date and time. Format: yyyy-MM-dd'T'HH:mm:ss.SSS+0000"
+              },
+              {
+                "name": "closedBefore",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Filter results closed before specific date and time. Format: yyyy-MM-dd'T'HH:mm:ss.SSS+0000"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Size of the result page."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number of the current page."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used to order your results.\nIf an order is not given, the default order id:asc will be applied.\nPossible ordering fields are properties.\nOrdering direction can be specified with modifiers asc for the ascending ordering or desc for the descending one."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a list of conversations with pagination and filtering option. Using the filter is optional. The result can be filtered by one or many optional filters described in parameters. <a href=\"https://www.infobip.com/docs/conversations-api\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Create conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ccaas/1/conversations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to create a new conversation. All conversation parameters are optional. <a href=\"https://www.infobip.com/docs/conversations-api\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Get conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/1/conversations/:conversationId",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the conversation to get."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a single conversation. <a href=\"https://www.infobip.com/docs/conversations-api\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Update conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/ccaas/1/conversations/:conversationId",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the conversation being updated."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to update a conversation. Closed conversations cannot be changed. To change an assignment to another agent or a bot, use [Change conversation assignment](https://www.infobip.com/docs/api/customer-engagement/conversations/change-conversation-assignment).<a href=\"https://www.infobip.com/docs/conversations-api\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Patch conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/ccaas/1/conversations/:conversationId",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the conversation being patched."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to patch a conversation. Closed conversations cannot be changed. To change an assignment to another agent or a bot, use [Change conversation assignment](https://www.infobip.com/docs/api/customer-engagement/conversations/change-conversation-assignment).<a href=\"https://www.infobip.com/docs/conversations-api\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Add tag to conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ccaas/1/conversations/:conversationId/tags",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the conversation the tag is added to."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to add a tag to the conversation. With tag(s) you can categorize conversations for assignment and/or reporting purposes. <a href=\"https://www.infobip.com/docs/conversations-api/tags\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Change conversation assignment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/ccaas/1/conversations/:conversationId/assignee",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the conversation for which the assignment is to be updated."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to update a conversation assignee. Assignee cannot be updated in closed conversations. For Agent Takeovers (bot replaced by an agent), the Infobip platform will additionally update [Answers](https://www.infobip.com/docs/answers) that a bot is no longer in control of the conversation. <a href=\"https://www.infobip.com/docs/conversations-api\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Unassign conversation agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/ccaas/1/conversations/:conversationId/assignee",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the conversation to unassign agent from."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to remove an assigned agent from conversation. <a href=\"https://www.infobip.com/docs/conversations-api\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Remove tag from conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/ccaas/1/conversations/:conversationId/tags/:tagName",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the conversation to remove/unlink the tag from."
+              },
+              {
+                "name": "tagName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the tag to remove/unlink from conversation. This value must be URL-encoded."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to remove the tag from the conversation. Operation only deletes the link between a tag and the conversation. <a href=\"https://www.infobip.com/docs/conversations-api/tags\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Route conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ccaas/1/conversations/:conversationId/route",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the conversation being routed."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to route the existing conversation.\nThis method will remove the assigned agent from a conversation (if one exists), and send the conversation to the [routing process](../#customer-engagement/conversations/update-routing).\nClosed Conversations cannot be routed."
+        },
+        {
+          "info": {
+            "name": "Simulate routing result for conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/1/conversations/:conversationId/simulate-routing",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the conversation on which routing is simulated."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to simulate routing for an existing conversation.\nThis method will resolve the routing rule applicable to the current conversation state and return the queue ID and priority\nthat would be applied if the conversation was actually routed at this moment.\nClosed conversations cannot be routed.\n"
+        },
+        {
+          "info": {
+            "name": "Get related comments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/1/conversations/:conversationId/related-comments",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the conversation to get."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to return social comments related to a specified inbound comment within a conversation.\nIt returns up to 50 older and 50 newer comments that are on the same hierarchy level as the inbound comment.\n"
+        },
+        {
+          "info": {
+            "name": "Get linked conversations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/1/conversations/:conversationId/links",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the conversation to get links for."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a list of conversations linked to the specified conversation. <a href=\"https://www.infobip.com/docs/conversations-api/linked-conversations\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Get tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/1/tags",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Conversation Ids linked to tags."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Tag name."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Size of the result page."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number of the current page."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used to order your results.\nIf an order is not given, the default order id:asc will be applied.\nPossible ordering fields are properties.\nOrdering direction can be specified with modifiers asc for the ascending ordering or desc for the descending one."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a list of tags with pagination and filtering options. Using a filter is optional. The result can be filtered only by conversation Id so the result list will be tagged for a specific conversation. <a href=\"https://www.infobip.com/docs/conversations-api/tags\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Create tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ccaas/1/tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to create a new tag. Tags can be assigned to the conversations to categorize them into topics or customer intents. Tags can be created ad hoc over the create tag method or automatically within the journey automation flow when a conversation is transferred to Agents. <a href=\"https://www.infobip.com/docs/conversations-api/tags\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Delete tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/ccaas/1/tags/:tagName",
+            "params": [
+              {
+                "name": "tagName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Tag being deleted. This value must be URL-encoded."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to delete the tag.\nDeleting tag will remove the tag from all associated conversations. This operation cannot be reverted! <a href=\"https://www.infobip.com/docs/conversations-api/tags\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Get messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/1/conversations/:conversationId/messages",
+            "params": [
+              {
+                "name": "messageIds",
+                "value": "",
+                "type": "query",
+                "description": "Optional. List of messages Ids."
+              },
+              {
+                "name": "channel",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Message chanel."
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Message direction."
+              },
+              {
+                "name": "createdAfter",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Filter results created after specific date and time. Format: yyyy-MM-dd'T'HH:mm:ss.SSS+0000"
+              },
+              {
+                "name": "createdBefore",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Filter results created before specific date and time. Format: yyyy-MM-dd'T'HH:mm:ss.SSS+0000"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Size of the result page."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number of the current page."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used to order your results.\nIf an order is not given, the default order id:asc will be applied.\nPossible ordering fields are properties.\nOrdering direction can be specified with modifiers asc for the ascending ordering or desc for the descending one."
+              },
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the conversation to get messages from."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a list of messages from a conversation with pagination and filtering option. Using a filter is optional. The result can be filtered by one or many optional filters described in the parameters."
+        },
+        {
+          "info": {
+            "name": "Create message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ccaas/1/conversations/:conversationId/messages",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the conversation to set message for."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Inbound messages are automatically threaded in conversations if the channels and senders are configured for using Conversations.\nTo send an outbound message use this method with the following parameters, adding it to an existing conversation.\nPlease note that the response from sending a TEMPLATE content type is a message of the TEXT content type, containing the\ntemplate content filled with parameters. \n\nAlso, HTTP header should contain parameter \"x-agent-id\" as agent identifier,\nbut only in case"
+        },
+        {
+          "info": {
+            "name": "Send a conversation event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ccaas/1/conversations/:conversationId/events",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the conversation to set event for."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this endpoint to send an event to a conversation. E.g. indication when typing started or ended.<a href=\"https://www.infobip.com/docs/conversations-api\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Get notes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/1/conversations/:conversationId/notes",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Size of the result page."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number of the current page."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used to order your results.\nIf an order is not given, the default order id:asc will be applied.\nPossible ordering fields are properties.\nOrdering direction can be specified with modifiers asc for the ascending ordering or desc for the descending one."
+              },
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the conversation to get notes from."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a list of notes from conversation with pagination. <a href=\"https://www.infobip.com/docs/conversations-api/notes\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Create note",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ccaas/1/conversations/:conversationId/notes",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the conversation to set note to."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to create a new note. Use notes to notify your team on important matters regarding a conversation with a customer. <a href=\"https://www.infobip.com/docs/conversations-api/notes\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Get note",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/1/conversations/:conversationId/notes/:noteId",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the conversation to get a note from."
+              },
+              {
+                "name": "noteId",
+                "value": "",
+                "type": "path",
+                "description": "Note Id."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to retrieve a note. <a href=\"https://www.infobip.com/docs/conversations-api/notes\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Get agents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/1/agents",
+            "params": [
+              {
+                "name": "agentIds",
+                "value": "",
+                "type": "query",
+                "description": "Optional filter. List of agents Id to match result."
+              },
+              {
+                "name": "queueIds",
+                "value": "",
+                "type": "query",
+                "description": "Optional filter. List of queues Id to match result."
+              },
+              {
+                "name": "displayName",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Agent display name. This is case insensitive and will search for substring anywhere within string, 255 characters max."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Agent email."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Indicates a status set by the agent reflecting their availability preferences."
+              },
+              {
+                "name": "availability",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Indicates the agent status set by the system reflecting the actual availability."
+              },
+              {
+                "name": "role",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Agent role."
+              },
+              {
+                "name": "enabled",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Agent enable/disable toggle."
+              },
+              {
+                "name": "createdAfter",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Filter results created after specific date and time. Format: yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+              },
+              {
+                "name": "createdBefore",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Filter results created before specific date and time. Format: yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+              },
+              {
+                "name": "updatedAfter",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Filter results updated after specific date and time. Format: yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+              },
+              {
+                "name": "updatedBefore",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Filter results updated before specific date and time. Format: yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Size of the result page."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number of the current page."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used to order your results.\nIf an order is not given, the default order id:asc will be applied.\nPossible ordering fields are properties.\nOrdering direction can be specified with modifiers asc for the ascending ordering or desc for the descending one."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a list of agents with pagination and filtering options. Using a filter is optional. The result can be filtered by one or many optional filters described in parameters. <a href=\"https://www.infobip.com/docs/conversations/get-started\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Create agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ccaas/1/agents",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to add a new agent. <a href=\"https://www.infobip.com/docs/conversations/get-started\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Get agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/1/agents/:agentId",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the agent we want to retrieve."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a single agent. <a href=\"https://www.infobip.com/docs/conversations/get-started\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Update agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/ccaas/1/agents/:agentId",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the Agent we want to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to update an agent. <a href=\"https://www.infobip.com/docs/conversations/get-started\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Get agent conversations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/1/agents/:agentId/conversations",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Size of the result page."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number of the current page."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used to order your results.\nIf an order is not given, the default order id:asc will be applied.\nPossible ordering fields are properties.\nOrdering direction can be specified with modifiers asc for the ascending ordering or desc for the descending one."
+              },
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path",
+                "description": "Agent id to get conversations."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a list of conversations, an agent is assigned on, with pagination."
+        },
+        {
+          "info": {
+            "name": "Change agents status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/ccaas/1/agents/:agentId/status",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the Agent we want to change status."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to change agents status. <a href=\"https://www.infobip.com/docs/conversations/get-started\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Add agent to queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ccaas/1/agents/:agentId/queues",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the Agent which should be assign to Queue."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to add an agent to a queue."
+        },
+        {
+          "info": {
+            "name": "Remove agent from queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/ccaas/1/agents/:agentId/queues/:queueId",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the Agent which should be unlinked from queue."
+              },
+              {
+                "name": "queueId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the Queue which should be unlinked from agent."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to remove an agent from a queue.\nOperation only deletes the link between a queue and the agent."
+        },
+        {
+          "info": {
+            "name": "Set agents heartbeat",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/ccaas/1/agents/:agentId/heartbeat",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the Agent we want to set heartbeat."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to set agents heartbeat. <a href=\"https://www.infobip.com/docs/conversations/get-started\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Get queues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/1/queues",
+            "params": [
+              {
+                "name": "queueIds",
+                "value": "",
+                "type": "query",
+                "description": "Optional filter. List of queue Ids."
+              },
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "query",
+                "description": "Optional filter. Agent Id."
+              },
+              {
+                "name": "workingHoursId",
+                "value": "",
+                "type": "query",
+                "description": "Optional filter. Working Hours Id."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Size of the result page."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number of the current page."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used to order your results.\nIf an order is not given, the default order id:asc will be applied.\nPossible ordering fields are properties.\nOrdering direction can be specified with modifiers asc for the ascending ordering or desc for the descending one."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Queue name."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a list of queues with pagination and filtering options. Using a filter is optional.\nThe result can be filtered by one or many optional filters described in the parameters.\n<a href=\"https://www.infobip.com/docs/conversations/supervisor-guide#queues-and-routing\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Create queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ccaas/1/queues",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to create a queue.\nQueues help manage conversations in a timely manner by organizing the team based on workload and knowledge.\n<a href=\"https://www.infobip.com/docs/conversations/supervisor-guide#queues-and-routing\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Update queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/ccaas/1/queues/:queueId",
+            "params": [
+              {
+                "name": "queueId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the queue being updated."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to update the queue. <a href=\"https://www.infobip.com/docs/conversations/supervisor-guide#queues-and-routing\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Delete queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/ccaas/1/queues/:queueId",
+            "params": [
+              {
+                "name": "queueId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the queue to be deleted."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to delete a queue. <a href=\"https://www.infobip.com/docs/conversations/supervisor-guide#queues-and-routing\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Get routing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/1/routing",
+            "params": [
+              {
+                "name": "ruleIds",
+                "value": "",
+                "type": "query",
+                "description": "Optional. List of rule Ids."
+              },
+              {
+                "name": "enabled",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Rule enable/disable toggle."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a list of rules within the routing. Pagination is set to single page result with a maximum of 999 items ordered by \"order\". As rules inside routing are stored, executed and retrieved in provided order with the SET method, that order can't be changed. <a href=\"https://www.infobip.com/docs/conversations/supervisor-guide#queues-and-routing\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Create routing",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/ccaas/1/routing",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create routing method creates a new routing setup if it does not exist or replaces the existing setup. As rules inside routing are stored, executed, and retrieved in the provided order with this method, that order cannot be changed. Every expression within routing can be constructed with at least one or more available operators. The result of the expression will be a success (TRUE) only if all results of operations are TRUE. The query will be executed, one expression after another, in the order "
+        },
+        {
+          "info": {
+            "name": "Delete routing",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/ccaas/1/routing",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to delete routing. No parameters are required for this action.\n\nThis operation will delete routing with all rules inside, so all new inbound messages destined to routing will be routed to the default queue.\n<a href=\"https://www.infobip.com/docs/conversations/supervisor-guide#queues-and-routing\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Get Bots",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/1/bots",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Size of the result page."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number of the current page."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used to order your results.\nIf an order is not given, the default order id:asc will be applied.\nPossible ordering fields are properties.\nOrdering direction can be specified with modifiers asc for the ascending ordering or desc for the descending one."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get bots with pagination. <a href=\"https://www.infobip.com/docs/conversations/supervisor-guide#connect-external-bots-self-service-automation\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Create bot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ccaas/1/bots",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to create a bot. <a href=\"https://www.infobip.com/docs/conversations/supervisor-guide#connect-external-bots-self-service-automation\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Get bot",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/1/bots/:botId",
+            "params": [
+              {
+                "name": "botId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the Bot to get."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a bot. <a href=\"https://www.infobip.com/docs/conversations/supervisor-guide#connect-external-bots-self-service-automation\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Update bot",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/ccaas/1/bots/:botId",
+            "params": [
+              {
+                "name": "botId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the Bot being updated."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to update a bot. <a href=\"https://www.infobip.com/docs/conversations/supervisor-guide#connect-external-bots-self-service-automation\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Delete bot",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/ccaas/1/bots/:botId",
+            "params": [
+              {
+                "name": "botId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the Bot being deleted."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to delete a bot.\nAll open conversations assigned to a bot will be rerouted. <a href=\"https://www.infobip.com/docs/conversations/supervisor-guide#connect-external-bots-self-service-automation\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Get metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/1/conversations/:conversationId/metadata",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the conversation to retrieve metadata for."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to retrieve conversation metadata. <a href=\"https://www.infobip.com/docs/conversations-api\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Put metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/ccaas/1/conversations/:conversationId/metadata",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the conversation for which we are upserting metadata."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to create or update conversation metadata. Method overwrites old metadata. <a href=\"https://www.infobip.com/docs/conversations-api\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Patch metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/ccaas/1/conversations/:conversationId/metadata",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the conversation to update metadata for."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method for metadata partial updating. If there is no present metadata, one will be created from request. <a href=\"https://www.infobip.com/docs/conversations-api\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Delete metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/ccaas/1/conversations/:conversationId/metadata",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the conversation to delete metadata for."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to delete conversation metadata. <a href=\"https://www.infobip.com/docs/conversations-api\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Get templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/1/templates",
+            "params": [
+              {
+                "name": "channel",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Template channel."
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Template language."
+              },
+              {
+                "name": "createdAfter",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Filter results created after specific date and time. Format: yyyy-MM-dd'T'HH:mm:ss.SSS+0000"
+              },
+              {
+                "name": "createdBefore",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Filter results created before specific date and time. Format: yyyy-MM-dd'T'HH:mm:ss.SSS+0000"
+              },
+              {
+                "name": "updatedAfter",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Filter results updated after specific date and time. Format: yyyy-MM-dd'T'HH:mm:ss.SSS+0000"
+              },
+              {
+                "name": "updatedBefore",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Filter results updated before specific date and time. Format: yyyy-MM-dd'T'HH:mm:ss.SSS+0000"
+              },
+              {
+                "name": "contentType",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a list of templates with pagination and filtering options. Using the filter is optional.\nThe result can be filtered by one or many optional filters described in the parameters.\nResults are ordered by creation in descending order by default, meaning the newest template will be returned first.\n<a href=\"https://www.infobip.com/docs/conversations-api/templates\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Get template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/1/templates/:templateId",
+            "params": [
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the template to get."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a single template. <a href=\"https://www.infobip.com/docs/conversations-api/templates\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Get conversation forms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/2/conversation-forms/forms",
+            "params": [
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Optional filter. Form title."
+              },
+              {
+                "name": "isEnabled",
+                "value": "",
+                "type": "query",
+                "description": "Optional filter. Enabled status."
+              },
+              {
+                "name": "isDefault",
+                "value": "",
+                "type": "query",
+                "description": "Optional filter. Default status."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Size of the result page."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number of the current page."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used to order your results. If an order is not given, the default order id:asc will be applied. Possible ordering fields are properties. Ordering direction can be specified with modifiers asc for the ascending ordering or desc for the descending one."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a list of forms with pagination and filtering options. Using a filter is optional. The result can be filtered by one or many optional filters described in the parameters."
+        },
+        {
+          "info": {
+            "name": "Create conversation form",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ccaas/2/conversation-forms/forms",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to create a form."
+        },
+        {
+          "info": {
+            "name": "Get conversation form",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/2/conversation-forms/forms/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a single form. "
+        },
+        {
+          "info": {
+            "name": "Update conversation form",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/ccaas/2/conversation-forms/forms/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the form to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to update a form."
+        },
+        {
+          "info": {
+            "name": "Delete conversation form",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/ccaas/2/conversation-forms/forms/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the form to delete."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to delete the form."
+        },
+        {
+          "info": {
+            "name": "Get fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/2/conversation-forms/fields",
+            "params": [
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Optional filter. Field title."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Size of the result page."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number of the current page."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used to order your results. If an order is not given, the default order id:asc will be applied. Possible ordering fields are properties. Ordering direction can be specified with modifiers asc for the ascending ordering or desc for the descending one."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a list of fields with pagination and filtering options. Using a filter is optional. The result can be filtered by one or many optional filters described in the parameters."
+        },
+        {
+          "info": {
+            "name": "Create field",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ccaas/2/conversation-forms/fields",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to create a field."
+        },
+        {
+          "info": {
+            "name": "Get field",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/2/conversation-forms/fields/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a single field. "
+        },
+        {
+          "info": {
+            "name": "Update field",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/ccaas/2/conversation-forms/fields/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the field being updated."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to update a field."
+        },
+        {
+          "info": {
+            "name": "Delete field",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/ccaas/2/conversation-forms/fields/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the field being deleted."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to delete the field. \nDeleting a field will remove associated agent inputs in all non-closed conversations. This operation cannot be reverted!"
+        },
+        {
+          "info": {
+            "name": "Get triggers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/2/conversation-forms/triggers",
+            "params": [
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Optional filter. Trigger title."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Size of the result page."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number of the current page."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used to order your results. If an order is not given, the default order id:asc will be applied. Possible ordering fields are properties. Ordering direction can be specified with modifiers asc for the ascending ordering or desc for the descending one."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a list of triggers with pagination and filtering options. Using a filter is optional. The result can be filtered by one or many optional filter described in the parameters."
+        },
+        {
+          "info": {
+            "name": "Create trigger",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ccaas/2/conversation-forms/triggers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "The create trigger method creates a new trigger at the first order position in the existing setup. Triggers are used to assign proper form to a conversation, based on an expression. Every expression can be constructed with at least one or more available operators. The result of the expression will be a success (TRUE) only if all results of operations are TRUE. Order of triggers is essential in the form assignment process, as triggers are match the provided order. First trigger matching the conve"
+        },
+        {
+          "info": {
+            "name": "Get trigger",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/2/conversation-forms/triggers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the trigger."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a single trigger. "
+        },
+        {
+          "info": {
+            "name": "Update trigger",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/ccaas/2/conversation-forms/triggers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the trigger to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to update a trigger. Triggers between 'old' and 'new' position will be set automatically ± one position. <a href=\"https://www.infobip.com/docs/conversations/supervisor-guide\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Patch trigger",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/ccaas/2/conversation-forms/triggers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the trigger to patch."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to patch a trigger. Triggers between 'old' and 'new' position will be set automatically ± one position.\n <a href=\"https://www.infobip.com/docs/conversations/supervisor-guide\" target=\"_blank\">More info</a>"
+        },
+        {
+          "info": {
+            "name": "Delete trigger",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/ccaas/2/conversation-forms/triggers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the trigger to delete."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to delete a trigger."
+        },
+        {
+          "info": {
+            "name": "Get dispositions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/2/conversations/:conversationId/form",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the conversation."
+              },
+              {
+                "name": "formId",
+                "value": "",
+                "type": "query",
+                "description": "Id of the form. If none provided, the one currently assigned to a conversation is used."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a conversation form with attached fields and values. "
+        },
+        {
+          "info": {
+            "name": "Update or insert dispositions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/ccaas/2/conversations/:conversationId/form",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the conversation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to create or update field value for a conversation. Method overwrites old dispositions."
+        },
+        {
+          "info": {
+            "name": "Delete disposition",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/ccaas/2/conversations/:conversationId/form/:id",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the conversation."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the disposition being deleted."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to delete an agent input to a field from a conversation."
+        },
+        {
+          "info": {
+            "name": "Assign form to conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ccaas/2/conversations/:conversationId/form/assign",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the conversation."
+              },
+              {
+                "name": "formId",
+                "value": "",
+                "type": "query",
+                "description": "Id of the form to assign."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to assign form to a conversation. "
+        },
+        {
+          "info": {
+            "name": "Un-assign form from conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ccaas/2/conversations/:conversationId/form/unassign",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the conversation."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to remove a form from a given conversation. Un-assign is implemented by setting the formId property of the Conversation to null."
+        },
+        {
+          "info": {
+            "name": "Update account configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/ccaas/1/account/configuration",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint is deprecated as of March 12, 2025, meaning no fixes or updates will be provided. It will be completely removed on December 31, 2026. Configure the webhooks through the <a href=\"https://www.infobip.com/docs/conversations-api\" target=\"_blank\">Subscription management</a> section in your Infobip account or the existing <a href=\"https://www.infobip.com/docs/api/platform/subscriptions-api\" target=\"_blank\">Subscriptions management API</a>."
+        },
+        {
+          "info": {
+            "name": "Get agent configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccca/1/agent-configs/:agentId",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path",
+                "description": "Agent ID used to retrieve the configuration."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to retrieve the current agent-specific configuration."
+        },
+        {
+          "info": {
+            "name": "Create outbound call conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ccaas/voice/2/outbound-call-conversation",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to create a conversation associated with an outbound call. Expected usage is to trigger this endpoint and then start a call using the RTC SDK callConversations method. The created conversation ID is required when using the callConversations method to trigger an outbound call. Another option is to use the ID of a previously created call conversation. <a href=\"https://www.infobip.com/docs/conversations/calls#make-a-call-agent-guide\"\n target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Get all waiting strategies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/voice/2/waiting-strategies",
+            "params": [
+              {
+                "name": "queueId",
+                "value": "",
+                "type": "query",
+                "description": "Optional filter. Queue id."
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Optional filter. Page number."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Optional filter. Page size."
+              },
+              {
+                "name": "sortDirection",
+                "value": "",
+                "type": "query",
+                "description": "Optional filter. This parameter is used to order your results. If an order is not given, the default order DESC will be applied. Supported values are ASC and DESC."
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Optional filter. This parameter is used to specify sort criteria. If a criteria is not given, the default criteria CREATED_AT will be applied. Supported values are NAME and CREATED_AT."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to retrieve all waiting strategies. <a href=\"https://www.infobip.com/docs/conversations/supervisor-guide#waiting-strategy-digital-channels\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Create waiting strategy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ccaas/voice/2/waiting-strategies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to add a new waiting strategy. To upload an audio file and get value for fileDescriptor field, use <a href=\"https://www.infobip.com/docs/api#customer-engagement/anonymize/upload-audio-files\" target=\"_blank\">Upload audio files endpoint</a>. <a href=\"https://www.infobip.com/docs/conversations/supervisor-guide#waiting-strategy-digital-channels\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Get waiting strategy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/voice/2/waiting-strategies/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the Waiting Strategy to get."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to retrieve a waiting strategy by its Id. <a href=\"https://www.infobip.com/docs/conversations/supervisor-guide#waiting-strategy-digital-channels\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Update waiting strategy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/ccaas/voice/2/waiting-strategies/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the Waiting Strategy being updated."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to update a waiting strategy. To upload an audio file and get value for fileDescriptor field, use <a href=\"https://www.infobip.com/docs/api#customer-engagement/anonymize/upload-audio-files\" target=\"_blank\">Upload audio files endpoint</a>. <a href=\"https://www.infobip.com/docs/conversations/supervisor-guide#waiting-strategy-digital-channels\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Delete waiting strategy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/ccaas/voice/2/waiting-strategies/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the Waiting Strategy being deleted."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to delete a waiting strategy by its Id. <a href=\"https://www.infobip.com/docs/conversations/supervisor-guide#waiting-strategy-digital-channels\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Get account recording configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/voice/2/account-recording-config",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to retrieve the account recording configuration. <a href=\"https://www.infobip.com/docs/conversations/calls#recording-set-up-calls\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Create account recording configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ccaas/voice/2/account-recording-config",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to create an account recording configuration. <a href=\"https://www.infobip.com/docs/conversations/calls#recording-set-up-calls\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Update account recording configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/ccaas/voice/2/account-recording-config",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to create or update an account recording configuration. <a href=\"https://www.infobip.com/docs/conversations/calls#recording-set-up-calls\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Get agent recording configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/voice/2/agent-recording-configs",
+            "params": [
+              {
+                "name": "agentIds",
+                "value": "",
+                "type": "query",
+                "description": "Agent ids of agent recording configs to get."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to retrieve agent recording configurations. <a href=\"https://www.infobip.com/docs/conversations/calls#recording-set-up-calls\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Get agent recording configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/voice/2/agent-recording-configs/:agentId",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path",
+                "description": "Agent id of agent recording config to get."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to retrieve the agent recording configuration. <a href=\"https://www.infobip.com/docs/conversations/calls#recording-set-up-calls\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Create agent recording configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ccaas/voice/2/agent-recording-configs/:agentId",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path",
+                "description": "Agent id of agent recording config to create."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to create an agent recording configuration. <a href=\"https://www.infobip.com/docs/conversations/calls#recording-set-up-calls\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Update agent recording configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/ccaas/voice/2/agent-recording-configs/:agentId",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path",
+                "description": "Agent id of agent recording config to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to create or update an agent recording configuration. <a href=\"https://www.infobip.com/docs/conversations/calls#recording-set-up-calls\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Get recording metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/voice/2/recording/metadata",
+            "params": [
+              {
+                "name": "recordingId",
+                "value": "",
+                "type": "query",
+                "description": "Unique id of the recorded file."
+              },
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "query",
+                "description": "Unique id of the conversation."
+              },
+              {
+                "name": "conferenceId",
+                "value": "",
+                "type": "query",
+                "description": "Unique id of the conference."
+              },
+              {
+                "name": "callId",
+                "value": "",
+                "type": "query",
+                "description": "Unique id of the call."
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Call direction of recorded file."
+              },
+              {
+                "name": "filename",
+                "value": "",
+                "type": "query",
+                "description": "Filename of recorded file."
+              },
+              {
+                "name": "participantId",
+                "value": "",
+                "type": "query",
+                "description": "Participant id associated with the recorded file."
+              },
+              {
+                "name": "participantIdentity",
+                "value": "",
+                "type": "query",
+                "description": "Participant identity associated with the recorded file."
+              },
+              {
+                "name": "participantName",
+                "value": "",
+                "type": "query",
+                "description": "Participant name associated with the recorded file."
+              },
+              {
+                "name": "participantType",
+                "value": "",
+                "type": "query",
+                "description": "Participant type associated with the recorded file."
+              },
+              {
+                "name": "mediaType",
+                "value": "",
+                "type": "query",
+                "description": "Media type of recorded file."
+              },
+              {
+                "name": "deletedBy",
+                "value": "",
+                "type": "query",
+                "description": "Identity of the user who deleted the recorded file."
+              },
+              {
+                "name": "transferredFrom",
+                "value": "",
+                "type": "query",
+                "description": "Identity of the user who has transferred the call."
+              },
+              {
+                "name": "transferredTo",
+                "value": "",
+                "type": "query",
+                "description": "Identity of the user to whom the call has been transferred."
+              },
+              {
+                "name": "transferredFromQueue",
+                "value": "",
+                "type": "query",
+                "description": "Queue id from which the call has been transferred."
+              },
+              {
+                "name": "transferredToQueue",
+                "value": "",
+                "type": "query",
+                "description": "Queue id to which the call has been transferred."
+              },
+              {
+                "name": "durationFrom",
+                "value": "",
+                "type": "query",
+                "description": "Minimum duration to filter recorded files."
+              },
+              {
+                "name": "durationTo",
+                "value": "",
+                "type": "query",
+                "description": "Maximum duration to filter recorded files."
+              },
+              {
+                "name": "startedAtFrom",
+                "value": "",
+                "type": "query",
+                "description": "Lower bound for filtering by recording start time."
+              },
+              {
+                "name": "startedAtTo",
+                "value": "",
+                "type": "query",
+                "description": "Upper bound for filtering by recording start time."
+              },
+              {
+                "name": "deletedAtFrom",
+                "value": "",
+                "type": "query",
+                "description": "Lower bound for filtering by deleted at time."
+              },
+              {
+                "name": "deletedAtTo",
+                "value": "",
+                "type": "query",
+                "description": "Upper bound for filtering by deleted at time."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Page size."
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Field by which the sorting will be done."
+              },
+              {
+                "name": "sortDirection",
+                "value": "",
+                "type": "query",
+                "description": "Type of sorting."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to retrieve a pageable list of recording metadata based on parameters."
+        },
+        {
+          "info": {
+            "name": "Download call recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/voice/2/recording/download/:recordingId",
+            "headers": [
+              {
+                "name": "Range",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "recordingId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the recording to download."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this endpoint to download a call recording using recordingId."
+        },
+        {
+          "info": {
+            "name": "Get account wrap up configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/voice/2/account-wrap-up-config",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to retrieve the current account wrap up configuration. Wrap up is the time after a call during which an agent's status is still BUSY. Default wrap up time is 30 seconds. <a href=\"https://www.infobip.com/docs/conversations/calls#wrap-up-window-agent-guide\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Update account wrap up configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/ccaas/voice/2/account-wrap-up-config",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to update account wrap up configuration. Wrap up is the time after a call during which an agent's status is still BUSY. Default wrap up time is 30 seconds. <a href=\"https://www.infobip.com/docs/conversations/calls#wrap-up-window-agent-guide\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Update agent wrap up configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/ccca/1/agent-configs/:agentId/wrap-up",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path",
+                "description": "Agent ID used to update the configuration."
+              },
+              {
+                "name": "wrapUpSeconds",
+                "value": "",
+                "type": "query",
+                "description": "Wrap up duration in seconds for agent. Setting null will default to account wrap up duration. Send this parameter in request body instead.<a href=\"https://www.infobip.com/docs/conversations/calls#wrap-up-window-agent-guide\" target=\"_blank\">More info</a>."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to create or update agent wrap up configuration."
+        },
+        {
+          "info": {
+            "name": "Add agent wrap up time",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/ccaas/voice/2/agent/:agentId/wrap-up-time/add/:seconds",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path",
+                "description": "Agent id of agent wrap up to add."
+              },
+              {
+                "name": "seconds",
+                "value": "",
+                "type": "path",
+                "description": "Number of seconds to extend wrap up time."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to extend the agent wrap up time after a call, by specified number of seconds. Number of seconds should be a positive number. Agent should be in Wrapping status. Wrap up is the time after a call during which an agent's status is still BUSY. <a href=\"https://www.infobip.com/docs/conversations/calls#wrap-up-window-agent-guide\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Clear agent wrap up time",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/ccaas/voice/2/agent/:agentId/wrap-up-time/clear",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path",
+                "description": "Agent id of agent wrap up to clear."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to clear the agent wrap up time after a call. After that, the agent will no longer have Wrapping status. Wrap up is the time after a call during which an agent's status is still BUSY. <a href=\"https://www.infobip.com/docs/conversations/calls#wrap-up-window-agent-guide\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Transfer call to another agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/ccaas/voice/2/conversation/:conversationId/transfer/agent",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "82f57414-b989-4856-ac9f-32a54e9ee86b",
+                "type": "path",
+                "description": "Conversation ID whose call is being transferred."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to transfer a call to another agent. Please note that the targeted agent must be available for the transfer to succeed. The conversation will be assigned to the targeted agent once they answer the call. <a href=\"https://www.infobip.com/docs/conversations/calls#transfer-to-agent-agent-guide\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Fetch queues eligible as transfer destination",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/voice/2/transfer/queues",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method retrieves a list of all queues and returns them along with their current activity status. The activity status indicates whether or not a queue is currently inside of working hours. The list of queues and their activity can be used to determine which queues are currently able to receive incoming transfer requests. <a href=\"https://www.infobip.com/docs/conversations/calls#transfer-to-queue-agent-guide\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Transfer call to another queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/ccaas/voice/2/conversation/:conversationId/transfer/queue",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "82f57414-b989-4856-ac9f-32a54e9ee86b",
+                "type": "path",
+                "description": "Conversation ID whose call is being transferred."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to transfer a call to another queue. Please note that the targeted queue must be within working hours and have auto-assignment enabled for the transfer to succeed. The agent selection process will be run, and the conversation will be assigned to the agent who answers the call. <a href=\"https://www.infobip.com/docs/conversations/calls#transfer-to-queue-agent-guide\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Transfer call to external number",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/ccaas/voice/2/conversation/:conversationId/transfer/external-number",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "82f57414-b989-4856-ac9f-32a54e9ee86b",
+                "type": "path",
+                "description": "Conversation ID whose call is being transferred."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to transfer the call to an external phone number. Depending on the Transfer to External Number configuration, the Agent can transfer the call to any valid phone number or only to the numbers in the People with the external_number tag. <a href=\"https://www.infobip.com/docs/conversations/calls#transfer-to-external-number-agent-guide\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Get transfer to external number configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/voice/2/transfer-configs/external-number",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this endpoint to get a Transfer to external number configuration. <a href=\"https://www.infobip.com/docs/conversations/calls#transfer-to-external-number-set-up-calls\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Update transfer to external number configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/ccaas/voice/2/transfer-configs/external-number",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this endpoint to update an already existing transfer to external number configuration. <a href=\"https://www.infobip.com/docs/conversations/calls#transfer-to-external-number-set-up-calls\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Get transfer strategy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/voice/2/transfer-configs/transfer-strategy",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this endpoint to get a Transfer Strategy. <a href=\"https://www.infobip.com/docs/conversations/calls#custom-transfer-music-and-message-set-up-calls\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Update transfer strategy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/ccaas/voice/2/transfer-configs/transfer-strategy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this endpoint to update an already existing Transfer Strategy. <a href=\"https://www.infobip.com/docs/conversations/calls#custom-transfer-music-and-message-set-up-calls\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Put client on hold",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/ccaas/voice/2/:conversationId/hold",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "Conversation id of the conversation which you want to put on hold."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to put your client on hold. <a href=\"https://www.infobip.com/docs/conversations/calls#call-on-hold-agent-guide\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Put client off hold",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/ccaas/voice/2/:conversationId/unhold",
+            "params": [
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path",
+                "description": "Conversation id of the conversation which you want to put off hold."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to release your client from hold. <a href=\"https://www.infobip.com/docs/conversations/calls#call-on-hold-agent-guide\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Get hold configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/voice/2/hold-configs-per-queue",
+            "params": [
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Number of the page to show."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Size of a single page."
+              },
+              {
+                "name": "sortDirection",
+                "value": "",
+                "type": "query",
+                "description": "Type of sorting (ASC or DESC)."
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Field by which the sorting will be done."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this endpoint to retrieve multiple hold configurations based on the page number and page size parameters. <a href=\"https://www.infobip.com/docs/conversations/calls#call-on-hold-set-up-calls\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Create hold configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ccaas/voice/2/hold-configs-per-queue",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this endpoint to create a new hold configuration, together with queues it is applied to. <a href=\"https://www.infobip.com/docs/conversations/calls#call-on-hold-set-up-calls\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Get hold configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/voice/2/hold-configs-per-queue/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the Hold Configuration to get."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this endpoint to get a single hold configuration by its id. <a href=\"https://www.infobip.com/docs/conversations/calls#call-on-hold-set-up-calls\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Update hold configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/ccaas/voice/2/hold-configs-per-queue/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the Hold Configuration being updated."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this endpoint to update an already existing hold configuration. <a href=\"https://www.infobip.com/docs/conversations/calls#call-on-hold-set-up-calls\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Delete hold configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/ccaas/voice/2/hold-configs-per-queue/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the Hold Configuration to be deleted."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this endpoint to delete a single, already existing hold configuration by its id. <a href=\"https://www.infobip.com/docs/conversations/calls#call-on-hold-set-up-calls\" target=\"_blank\">More info</a>."
+        },
+        {
+          "info": {
+            "name": "Get call timeout",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/voice/2/call-timeouts",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to retrieve call timeout configuration."
+        },
+        {
+          "info": {
+            "name": "Update call timeout",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/ccaas/voice/2/call-timeouts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to update call timeout configuration. Null field will resolve to default value."
+        },
+        {
+          "info": {
+            "name": "Remove custom call timeout",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/ccaas/voice/2/call-timeouts",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to remove the custom inbound call timeout configuration."
+        },
+        {
+          "info": {
+            "name": "Get filtered working hours",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/1/working-hours",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Working hours that contain a name case-insensitive."
+              },
+              {
+                "name": "enabled",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Working hours enable/disable toggle."
+              },
+              {
+                "name": "isDefault",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Default working hours."
+              },
+              {
+                "name": "createdAfter",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Filter results created after specific date and time.\nFormat: yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+              },
+              {
+                "name": "createdBefore",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Filter results created before specific date and time.\nFormat: yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+              },
+              {
+                "name": "updatedAfter",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Filter results updated after specific date and time.\nFormat: yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+              },
+              {
+                "name": "updatedBefore",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Filter results updated before specific date and time.\nFormat: yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Size of the result page."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number of the current page."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "This parameter is used to order your results.\nIf an order is not given, the default order id:asc will be applied.\nPossible ordering fields are properties.\nOrdering direction can be specified with modifiers asc for the ascending ordering or desc for the descending one."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a list of working hours with pagination and filtering options. Using filter is optional.\nThe result can be filtered by one or many optional filters described in the parameters."
+        },
+        {
+          "info": {
+            "name": "Create working hours",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ccaas/1/working-hours",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to create new working hours.\nAn auto-reply message will be sent to the customer when working hours are set and enabled and a new conversation is created outside of working hours,\nor a holiday is set for the enabled working hours and a new conversation is created during the holiday."
+        },
+        {
+          "info": {
+            "name": "Get working hours",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/1/working-hours/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Working hours Id to get."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get single working hours."
+        },
+        {
+          "info": {
+            "name": "Update working hours",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/ccaas/1/working-hours/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Working hours Id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to update working hours."
+        },
+        {
+          "info": {
+            "name": "Patch working hours",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/ccaas/1/working-hours/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Working hours Id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method for working hours partial updating."
+        },
+        {
+          "info": {
+            "name": "Delete working hours",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/ccaas/1/working-hours/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Working hours id."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to delete working hours."
+        },
+        {
+          "info": {
+            "name": "Get working hours status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/1/working-hours/:id/status",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Working hours Id."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get current status of working hours."
+        },
+        {
+          "info": {
+            "name": "Create working hours holiday",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ccaas/1/working-hours/:workingHoursId/holiday",
+            "params": [
+              {
+                "name": "workingHoursId",
+                "value": "",
+                "type": "path",
+                "description": "Working hours id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to create a holiday on working hours.\nAn auto-reply message will be sent to the customer when working hours are set and enabled and a new conversation is created outside of working hours,\nor a holiday is set for the enabled working hours and a new conversation is created during the holiday.\nThis method will return a full working hours object with a created holiday in it."
+        },
+        {
+          "info": {
+            "name": "Remove working hours holiday",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/ccaas/1/working-hours/:workingHoursId/holiday/:id",
+            "params": [
+              {
+                "name": "workingHoursId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the working hours to delete holiday from."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Holiday Id to delete."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to remove a holiday from working hours."
+        },
+        {
+          "info": {
+            "name": "Get supported TTS placeholders for purpose",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/voice/2/tts/options/placeholders/:ttsPurpose",
+            "params": [
+              {
+                "name": "ttsPurpose",
+                "value": "",
+                "type": "path",
+                "description": "Purpose for which placeholders will be used in text-to-speech."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to retrieve supported TTS placeholders for specified purpose."
+        },
+        {
+          "info": {
+            "name": "Get away audio message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/voice/2/away-audio-message/:workingHoursConfigId",
+            "params": [
+              {
+                "name": "workingHoursConfigId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the working hours configuration whose away audio message needs to be retrieved."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to retrieve an away audio message by its working hours configuration id."
+        },
+        {
+          "info": {
+            "name": "Delete away audio message",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/ccaas/voice/2/away-audio-message/:workingHoursConfigId",
+            "params": [
+              {
+                "name": "workingHoursConfigId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the working hours configuration whose away audio message needs to be deleted."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to delete an away audio message by its working hours configuration id."
+        },
+        {
+          "info": {
+            "name": "Submit web form data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ccaas/1/web-forms/:id/submissions",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the Web Form which will be used to create a conversation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to submit a new set of data of the given web form. This will create a new conversation with the channel specified in the web form."
+        },
+        {
+          "info": {
+            "name": "Get web form",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ccaas/1/web-forms/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Web Form Id."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get an existing web form."
+        },
+        {
+          "info": {
+            "name": "Update web form",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/ccaas/1/web-forms/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Web Form Id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to update an existing web form."
+        },
+        {
+          "info": {
+            "name": "Patch web form",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/ccaas/1/web-forms/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Web Form Id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to patch an existing web form."
+        },
+        {
+          "info": {
+            "name": "Delete web form",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/ccaas/1/web-forms/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Web Form Id."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to delete an existing web form."
+        },
+        {
+          "info": {
+            "name": "Create web form",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ccaas/1/web-forms",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to create a new web form."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

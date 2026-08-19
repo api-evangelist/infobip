@@ -1,0 +1,807 @@
+{
+  "item": [
+    {
+      "id": "33ef2fa0-92f9-43d6-a76a-7646a8021c73",
+      "name": "channels",
+      "description": {
+        "content": "Create a perfect customer experience by using the channels your customer already use and love.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e21b0865-f83c-46a0-85e0-4f5b1be31f11",
+          "name": "Invalidate customer session",
+          "request": {
+            "name": "Invalidate customer session",
+            "description": {
+              "content": "This method enables you to invalidate an [authenticated Live Chat web session](https://www.infobip.com/docs/live-chat/users-and-authentication#web-authentication).\n      Session invalidation is performed whenever you wish to explicitly terminate an authenticated session, for example on user log out or due to security concerns.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "livechat",
+                "1",
+                "widgets",
+                ":widgetId",
+                "sessions",
+                ":sessionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "widgetId",
+                  "description": "(Required) Unique identifier of your widget. You can obtain the identifier from the [widget configuration page](https://portal.infobip.com/apps/livechat) or from the widget installation snippet."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sessionId",
+                  "description": "(Required) Unique identifier of user session to be invalidated. For more information on session identifiers, see the **SID** parameter in [personalization token](https://www.infobip.com/docs/live-chat/users-and-authentication#generate-the-personalization-token-web-authentication) documentation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3e8864d0-6bda-48c3-a121-1d7e539ce4e6",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "livechat",
+                    "1",
+                    "widgets",
+                    ":widgetId",
+                    "sessions",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "widgetId",
+                      "description": "(Required) Unique identifier of your widget. You can obtain the identifier from the [widget configuration page](https://portal.infobip.com/apps/livechat) or from the widget installation snippet."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) Unique identifier of user session to be invalidated. For more information on session identifiers, see the **SID** parameter in [personalization token](https://www.infobip.com/docs/live-chat/users-and-authentication#generate-the-personalization-token-web-authentication) documentation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9d116820-e8b5-410a-8a0a-7d1e1dad19e6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "livechat",
+                    "1",
+                    "widgets",
+                    ":widgetId",
+                    "sessions",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "widgetId",
+                      "description": "(Required) Unique identifier of your widget. You can obtain the identifier from the [widget configuration page](https://portal.infobip.com/apps/livechat) or from the widget installation snippet."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) Unique identifier of user session to be invalidated. For more information on session identifiers, see the **SID** parameter in [personalization token](https://www.infobip.com/docs/live-chat/users-and-authentication#generate-the-personalization-token-web-authentication) documentation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"UNAUTHORIZED\",\n      \"text\": \"Unauthorized\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "639478d1-7891-4b77-aa1e-de1d30507fd6",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "livechat",
+                    "1",
+                    "widgets",
+                    ":widgetId",
+                    "sessions",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "widgetId",
+                      "description": "(Required) Unique identifier of your widget. You can obtain the identifier from the [widget configuration page](https://portal.infobip.com/apps/livechat) or from the widget installation snippet."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) Unique identifier of user session to be invalidated. For more information on session identifiers, see the **SID** parameter in [personalization token](https://www.infobip.com/docs/live-chat/users-and-authentication#generate-the-personalization-token-web-authentication) documentation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"FORBIDDEN\",\n      \"text\": \"Forbidden\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "563ddd36-1bcd-4087-8922-69bf905c72de",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "livechat",
+                    "1",
+                    "widgets",
+                    ":widgetId",
+                    "sessions",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "widgetId",
+                      "description": "(Required) Unique identifier of your widget. You can obtain the identifier from the [widget configuration page](https://portal.infobip.com/apps/livechat) or from the widget installation snippet."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) Unique identifier of user session to be invalidated. For more information on session identifiers, see the **SID** parameter in [personalization token](https://www.infobip.com/docs/live-chat/users-and-authentication#generate-the-personalization-token-web-authentication) documentation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"NOT_FOUND\",\n      \"text\": \"Not found\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3db4e23a-dd2f-4496-bbcc-5b312f8f27f4",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "livechat",
+                    "1",
+                    "widgets",
+                    ":widgetId",
+                    "sessions",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "widgetId",
+                      "description": "(Required) Unique identifier of your widget. You can obtain the identifier from the [widget configuration page](https://portal.infobip.com/apps/livechat) or from the widget installation snippet."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) Unique identifier of user session to be invalidated. For more information on session identifiers, see the **SID** parameter in [personalization token](https://www.infobip.com/docs/live-chat/users-and-authentication#generate-the-personalization-token-web-authentication) documentation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"GENERAL_ERROR\",\n      \"text\": \"Something went wrong. Please contact support.\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "676ca9ca-7550-400c-9b96-eec124132ad9",
+      "name": "live-chat",
+      "description": {
+        "content": "Infobip Live Chat product offers real-time chat communication with customer on your website or in through your mobile app. More information about the product you can find at [Live Chat product documentation](https://www.infobip.com/docs/live-chat).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6b47b12a-236f-4fa2-8fc6-863b5124d407",
+          "name": "Invalidate customer session",
+          "request": {
+            "name": "Invalidate customer session",
+            "description": {
+              "content": "This method enables you to invalidate an [authenticated Live Chat web session](https://www.infobip.com/docs/live-chat/users-and-authentication#web-authentication).\n      Session invalidation is performed whenever you wish to explicitly terminate an authenticated session, for example on user log out or due to security concerns.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "livechat",
+                "1",
+                "widgets",
+                ":widgetId",
+                "sessions",
+                ":sessionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "widgetId",
+                  "description": "(Required) Unique identifier of your widget. You can obtain the identifier from the [widget configuration page](https://portal.infobip.com/apps/livechat) or from the widget installation snippet."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sessionId",
+                  "description": "(Required) Unique identifier of user session to be invalidated. For more information on session identifiers, see the **SID** parameter in [personalization token](https://www.infobip.com/docs/live-chat/users-and-authentication#generate-the-personalization-token-web-authentication) documentation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "83f9bbe9-3330-4a32-b1aa-d26ba8fe85a2",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "livechat",
+                    "1",
+                    "widgets",
+                    ":widgetId",
+                    "sessions",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "widgetId",
+                      "description": "(Required) Unique identifier of your widget. You can obtain the identifier from the [widget configuration page](https://portal.infobip.com/apps/livechat) or from the widget installation snippet."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) Unique identifier of user session to be invalidated. For more information on session identifiers, see the **SID** parameter in [personalization token](https://www.infobip.com/docs/live-chat/users-and-authentication#generate-the-personalization-token-web-authentication) documentation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3162780e-a373-4f40-bf1b-d5f2b2fdc7bb",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "livechat",
+                    "1",
+                    "widgets",
+                    ":widgetId",
+                    "sessions",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "widgetId",
+                      "description": "(Required) Unique identifier of your widget. You can obtain the identifier from the [widget configuration page](https://portal.infobip.com/apps/livechat) or from the widget installation snippet."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) Unique identifier of user session to be invalidated. For more information on session identifiers, see the **SID** parameter in [personalization token](https://www.infobip.com/docs/live-chat/users-and-authentication#generate-the-personalization-token-web-authentication) documentation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"UNAUTHORIZED\",\n      \"text\": \"Unauthorized\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "790f3a90-fa37-443a-bedf-2e7da1e19f6c",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "livechat",
+                    "1",
+                    "widgets",
+                    ":widgetId",
+                    "sessions",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "widgetId",
+                      "description": "(Required) Unique identifier of your widget. You can obtain the identifier from the [widget configuration page](https://portal.infobip.com/apps/livechat) or from the widget installation snippet."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) Unique identifier of user session to be invalidated. For more information on session identifiers, see the **SID** parameter in [personalization token](https://www.infobip.com/docs/live-chat/users-and-authentication#generate-the-personalization-token-web-authentication) documentation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"FORBIDDEN\",\n      \"text\": \"Forbidden\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96551cc3-94f7-41a2-bb44-28c7b3a92a43",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "livechat",
+                    "1",
+                    "widgets",
+                    ":widgetId",
+                    "sessions",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "widgetId",
+                      "description": "(Required) Unique identifier of your widget. You can obtain the identifier from the [widget configuration page](https://portal.infobip.com/apps/livechat) or from the widget installation snippet."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) Unique identifier of user session to be invalidated. For more information on session identifiers, see the **SID** parameter in [personalization token](https://www.infobip.com/docs/live-chat/users-and-authentication#generate-the-personalization-token-web-authentication) documentation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"NOT_FOUND\",\n      \"text\": \"Not found\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "755a8a1d-8c38-44f3-9000-a9dee25d4073",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "livechat",
+                    "1",
+                    "widgets",
+                    ":widgetId",
+                    "sessions",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "widgetId",
+                      "description": "(Required) Unique identifier of your widget. You can obtain the identifier from the [widget configuration page](https://portal.infobip.com/apps/livechat) or from the widget installation snippet."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) Unique identifier of user session to be invalidated. For more information on session identifiers, see the **SID** parameter in [personalization token](https://www.infobip.com/docs/live-chat/users-and-authentication#generate-the-personalization-token-web-authentication) documentation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"GENERAL_ERROR\",\n      \"text\": \"Something went wrong. Please contact support.\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "542100cc-59cf-4887-89a6-9d89f79c41b0",
+    "name": "Infobip OpenAPI Specification",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI Specification that contains all public endpoints and webhooks.\n\nContact Support:\n Name: Infobip support\n Email: support@infobip.com",
+      "type": "text/plain"
+    }
+  }
+}

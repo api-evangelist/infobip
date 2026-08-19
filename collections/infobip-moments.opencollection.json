@@ -1,0 +1,310 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "customer-engagement",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add participants to flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/moments/1/flows/:campaignId/participants",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "200000000000001",
+                "type": "path",
+                "description": "Unique identifier of the flow that participant will be added to."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this endpoint to add participants to a flow, accommodating anywhere from 1 to 1000 persons.\n                When participants are added, their profiles in People are automatically created, updated or merged based on the identifiers provided.<br>\n                If identifiers are unique, a new profile is created.<br>\n                If identifiers match an existing profile, then that profile is updated.<br>\n                If identifiers refer to multiple existing profiles or are not unique "
+        },
+        {
+          "info": {
+            "name": "Get a report on participants added to flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/moments/1/flows/:campaignId/participants/report",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "200000000000001",
+                "type": "path",
+                "description": "Unique identifier of the flow that participant will be added to."
+              },
+              {
+                "name": "operationId",
+                "value": "03f2d474-0508-46bf-9f3d-d8e2c28adaea",
+                "type": "query",
+                "description": "Unique identifier of the operation."
+              },
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this API endpoint to fetch a report to confirm that all persons have been successfully added to the flow.\n                Please note that report is stored for 30 days."
+        },
+        {
+          "info": {
+            "name": "Add Person to Flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/communication/1/flows/:campaignId/participants",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "10159347",
+                "type": "path",
+                "description": "Unique identifier of the flow that person will be added to"
+              },
+              {
+                "name": "phone",
+                "value": "19123456789",
+                "type": "query",
+                "description": "Person's phone number"
+              },
+              {
+                "name": "email",
+                "value": "janewilliams@example.com",
+                "type": "query",
+                "description": "Person's email address"
+              },
+              {
+                "name": "externalId",
+                "value": "8edb24b5-0319-48cd-a1d9-1e8bc5d577ab",
+                "type": "query",
+                "description": "Unique ID for the person from an external system"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates or updates a person and adds it to Flow"
+        },
+        {
+          "info": {
+            "name": "Remove person from flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/communication/1/flows/:campaignId/participants",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "10159347",
+                "type": "path",
+                "description": "Unique identifier of the flow that person will be removed from."
+              },
+              {
+                "name": "phone",
+                "value": "19123456789",
+                "type": "query",
+                "description": "Person's phone number."
+              },
+              {
+                "name": "email",
+                "value": "janewilliams@example.com",
+                "type": "query",
+                "description": "Person's email address."
+              },
+              {
+                "name": "externalId",
+                "value": "8edb24b5-0319-48cd-a1d9-1e8bc5d577ab",
+                "type": "query",
+                "description": "Unique ID for the person from an external system."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Removes a participant with given identifier from the flow."
+        },
+        {
+          "info": {
+            "name": "Get forms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/forms/1/forms",
+            "params": [
+              {
+                "name": "offset",
+                "value": "60",
+                "type": "query",
+                "description": "Skip first {offset} forms of the list."
+              },
+              {
+                "name": "limit",
+                "value": "30",
+                "type": "query",
+                "description": "The maximum number of returned forms. Maximum value is `100`."
+              },
+              {
+                "name": "formType",
+                "value": "APPLE",
+                "type": "query",
+                "description": "The type of returned forms."
+              },
+              {
+                "name": "formStatus",
+                "value": "ACTIVE",
+                "type": "query",
+                "description": "The status of returned forms."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a list of forms."
+        },
+        {
+          "info": {
+            "name": "Get form",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/forms/1/forms/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "f7cf1606-e155-40eb-9721-78183d268d24",
+                "type": "path",
+                "description": "ID of a form"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a form by its ID."
+        },
+        {
+          "info": {
+            "name": "Increment form view count",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/forms/1/forms/:id/views",
+            "params": [
+              {
+                "name": "id",
+                "value": "cec5dfd2-4238-48e0-933b-9acbdb2e6f5f",
+                "type": "path",
+                "description": "ID of a form"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to increase the view counter of a specific form. It's used for proper statistics calculation. Statistics are available on the form performance page on the Portal."
+        },
+        {
+          "info": {
+            "name": "Submit form data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/forms/1/forms/:id/data",
+            "headers": [
+              {
+                "name": "ib-submission-source",
+                "value": ""
+              },
+              {
+                "name": "ib-submission-form-campaign",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "f7cf1606-e155-40eb-9721-78183d268d24",
+                "type": "path",
+                "description": "ID of a form"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to submit form data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1999 @@
+{
+  "item": [
+    {
+      "id": "f63cee43-41d4-4111-93b1-81ff4c0d95bf",
+      "name": "connectivity",
+      "description": {
+        "content": "Powerful infrastructure and tools that connect you to the world.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5e2c5085-8607-45f4-beac-560597faa8f8",
+          "name": "Get Network Reports metadata",
+          "request": {
+            "name": "Get Network Reports metadata",
+            "description": {
+              "content": "Get a paginated list of Network Reports metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "number-activation-state",
+                "1",
+                "network-reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Results page to retrieve (0..N)."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "20",
+                  "description": "Number of records per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "dateFrom",
+                  "value": "<string>",
+                  "description": "Date in UTC that exactly defines the dateFrom property of the reports. <br />Format: yyyy-MM-dd <br />When both dateFrom and dateTo are provided then a list of reports between those two dates are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "dateTo",
+                  "value": "<string>",
+                  "description": "Date in UTC that exactly defines the dateTo property of the reports. <br />Format: yyyy-MM-dd <br />When both dateFrom and dateTo are provided then a list of reports between those two dates are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "reportId",
+                  "value": "<string>",
+                  "description": "The reportId to find"
+                },
+                {
+                  "disabled": false,
+                  "key": "networkId",
+                  "value": "<integer>",
+                  "description": "The networkId of network that provided the report content."
+                },
+                {
+                  "disabled": false,
+                  "key": "networkName",
+                  "value": "<string>",
+                  "description": "The name of network that provided the report content."
+                },
+                {
+                  "disabled": false,
+                  "key": "generatedDateFrom",
+                  "value": "<string>",
+                  "description": "Filter by report generation date (inclusive lower bound)"
+                },
+                {
+                  "disabled": false,
+                  "key": "generatedDateTo",
+                  "value": "<string>",
+                  "description": "Filter by report generation date (inclusive upper bound)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "42ea9f98-3199-4390-a2c4-643c055b5188",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number-activation-state",
+                    "1",
+                    "network-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "dateFrom",
+                      "value": "2024-03-02"
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "2024-03-03"
+                    },
+                    {
+                      "key": "reportId",
+                      "value": "1f7a9938-0e3b-4e20-bb69-4968dca75078"
+                    },
+                    {
+                      "key": "networkId",
+                      "value": "1717"
+                    },
+                    {
+                      "key": "networkName",
+                      "value": "Verizon Wireless"
+                    },
+                    {
+                      "key": "generatedDateFrom",
+                      "value": "2024-03-01"
+                    },
+                    {
+                      "key": "generatedDateTo",
+                      "value": "2024-03-31"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"reportId\": \"1f7a9938-0e3b-4e20-bb69-4968dca75078\",\n      \"networkName\": \"Verizon Wireless\",\n      \"networkId\": 1717,\n      \"generatedDate\": \"2024-03-19T00:00:00Z\",\n      \"dateFrom\": \"2024-03-19T00:00:00Z\",\n      \"dateTo\": \"2024-03-20T00:00:00Z\",\n      \"expiryDate\": \"2024-05-18T00:00:00Z\"\n    },\n    {\n      \"reportId\": \"534a3153-0b3d-4408-9bc5-121d3e9c6537\",\n      \"networkName\": \"AT&T Mobility\",\n      \"networkId\": 1733,\n      \"generatedDate\": \"2024-03-19T00:00:00Z\",\n      \"dateFrom\": \"2024-03-19T00:00:00Z\",\n      \"dateTo\": \"2024-03-20T00:00:00Z\",\n      \"expiryDate\": \"2024-05-18T00:00:00Z\"\n    }\n  ],\n  \"paging\": {\n    \"page\": 0,\n    \"size\": 2,\n    \"totalPages\": 30,\n    \"totalResults\": 61\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f41c7746-d3af-4390-ae0e-7ebc09e4266f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number-activation-state",
+                    "1",
+                    "network-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "dateFrom",
+                      "value": "2024-03-02"
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "2024-03-03"
+                    },
+                    {
+                      "key": "reportId",
+                      "value": "1f7a9938-0e3b-4e20-bb69-4968dca75078"
+                    },
+                    {
+                      "key": "networkId",
+                      "value": "1717"
+                    },
+                    {
+                      "key": "networkName",
+                      "value": "Verizon Wireless"
+                    },
+                    {
+                      "key": "generatedDateFrom",
+                      "value": "2024-03-01"
+                    },
+                    {
+                      "key": "generatedDateTo",
+                      "value": "2024-03-31"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"UNAUTHORIZED\",\n      \"text\": \"Unauthorized\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3df6360d-5e3a-4b67-ab51-c99ca400d066",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number-activation-state",
+                    "1",
+                    "network-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "dateFrom",
+                      "value": "2024-03-02"
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "2024-03-03"
+                    },
+                    {
+                      "key": "reportId",
+                      "value": "1f7a9938-0e3b-4e20-bb69-4968dca75078"
+                    },
+                    {
+                      "key": "networkId",
+                      "value": "1717"
+                    },
+                    {
+                      "key": "networkName",
+                      "value": "Verizon Wireless"
+                    },
+                    {
+                      "key": "generatedDateFrom",
+                      "value": "2024-03-01"
+                    },
+                    {
+                      "key": "generatedDateTo",
+                      "value": "2024-03-31"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"FORBIDDEN\",\n      \"text\": \"Forbidden\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "751c9aac-7463-432a-87c5-4e4267eb1f18",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number-activation-state",
+                    "1",
+                    "network-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "dateFrom",
+                      "value": "2024-03-02"
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "2024-03-03"
+                    },
+                    {
+                      "key": "reportId",
+                      "value": "1f7a9938-0e3b-4e20-bb69-4968dca75078"
+                    },
+                    {
+                      "key": "networkId",
+                      "value": "1717"
+                    },
+                    {
+                      "key": "networkName",
+                      "value": "Verizon Wireless"
+                    },
+                    {
+                      "key": "generatedDateFrom",
+                      "value": "2024-03-01"
+                    },
+                    {
+                      "key": "generatedDateTo",
+                      "value": "2024-03-31"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"TOO_MANY_REQUESTS\",\n      \"text\": \"Too many requests\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a2e17b01-8317-4bf0-a8ca-82cb050ecd03",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number-activation-state",
+                    "1",
+                    "network-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "dateFrom",
+                      "value": "2024-03-02"
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "2024-03-03"
+                    },
+                    {
+                      "key": "reportId",
+                      "value": "1f7a9938-0e3b-4e20-bb69-4968dca75078"
+                    },
+                    {
+                      "key": "networkId",
+                      "value": "1717"
+                    },
+                    {
+                      "key": "networkName",
+                      "value": "Verizon Wireless"
+                    },
+                    {
+                      "key": "generatedDateFrom",
+                      "value": "2024-03-01"
+                    },
+                    {
+                      "key": "generatedDateTo",
+                      "value": "2024-03-31"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"GENERAL_ERROR\",\n      \"text\": \"Something went wrong. Please contact support.\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0a140098-0c3e-4f03-ba3d-ac656f56b30f",
+          "name": "Get Network Report content",
+          "request": {
+            "name": "Get Network Report content",
+            "description": {
+              "content": "Get a paginated list of destination number activation state changes from a given Report.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "number-activation-state",
+                "1",
+                "network-reports",
+                ":reportId",
+                "records"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Results page to retrieve (0..N)."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "20",
+                  "description": "Number of records per page."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportId",
+                  "description": "(Required) The reportId to retrieve"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4462392d-504f-4ab1-9dad-3d964b8d0c51",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number-activation-state",
+                    "1",
+                    "network-reports",
+                    ":reportId",
+                    "records"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) The reportId to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"date\": \"2024-03-05T00:00:00.000+0000\",\n      \"destination\": \"15123456789\",\n      \"type\": \"DEACTIVATION\"\n    },\n    {\n      \"date\": \"2024-03-05T11:00:00.000+0000\",\n      \"destination\": \"15222222222\",\n      \"type\": \"DEACTIVATION\",\n      \"newDestination\": \"15777777777\"\n    }\n  ],\n  \"paging\": {\n    \"page\": 1,\n    \"size\": 2,\n    \"totalPages\": 10,\n    \"totalResults\": 21\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fce3c2c1-7c60-4c3e-a478-4277f0a74400",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number-activation-state",
+                    "1",
+                    "network-reports",
+                    ":reportId",
+                    "records"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) The reportId to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"UNAUTHORIZED\",\n      \"text\": \"Unauthorized\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07a44e8b-6f6c-4f49-af70-22f995630e12",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number-activation-state",
+                    "1",
+                    "network-reports",
+                    ":reportId",
+                    "records"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) The reportId to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"FORBIDDEN\",\n      \"text\": \"Forbidden\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86659924-5d3a-4e7b-aae1-bfc9e2443e6a",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number-activation-state",
+                    "1",
+                    "network-reports",
+                    ":reportId",
+                    "records"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) The reportId to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc586d34-af05-456a-af7a-4afa8f8744e9",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number-activation-state",
+                    "1",
+                    "network-reports",
+                    ":reportId",
+                    "records"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) The reportId to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"TOO_MANY_REQUESTS\",\n      \"text\": \"Too many requests\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1986d9f-d62d-4d98-88aa-aff2590597c2",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number-activation-state",
+                    "1",
+                    "network-reports",
+                    ":reportId",
+                    "records"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) The reportId to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"GENERAL_ERROR\",\n      \"text\": \"Something went wrong. Please contact support.\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "8dfcc660-41e0-4003-bb9c-7c8667d7b3fe",
+      "name": "number-activation-state",
+      "description": {
+        "content": "Number Activation State are reports with end user numbers that had a change in their activation status. Those would be usually numbers that become deactivated, however sometimes they would also have information about temporary suspensions or re-activations.\n\nNumber state information is provided by our suppliers. To access this information, your business and traffic must be analyzed and approved. This process ensures compliance with regulations. Please contact your Account Manager to request access.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f1bb5d85-cf3d-4f3b-a3d3-eae7df861f15",
+          "name": "Get Network Reports metadata",
+          "request": {
+            "name": "Get Network Reports metadata",
+            "description": {
+              "content": "Get a paginated list of Network Reports metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "number-activation-state",
+                "1",
+                "network-reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Results page to retrieve (0..N)."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "20",
+                  "description": "Number of records per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "dateFrom",
+                  "value": "<string>",
+                  "description": "Date in UTC that exactly defines the dateFrom property of the reports. <br />Format: yyyy-MM-dd <br />When both dateFrom and dateTo are provided then a list of reports between those two dates are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "dateTo",
+                  "value": "<string>",
+                  "description": "Date in UTC that exactly defines the dateTo property of the reports. <br />Format: yyyy-MM-dd <br />When both dateFrom and dateTo are provided then a list of reports between those two dates are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "reportId",
+                  "value": "<string>",
+                  "description": "The reportId to find"
+                },
+                {
+                  "disabled": false,
+                  "key": "networkId",
+                  "value": "<integer>",
+                  "description": "The networkId of network that provided the report content."
+                },
+                {
+                  "disabled": false,
+                  "key": "networkName",
+                  "value": "<string>",
+                  "description": "The name of network that provided the report content."
+                },
+                {
+                  "disabled": false,
+                  "key": "generatedDateFrom",
+                  "value": "<string>",
+                  "description": "Filter by report generation date (inclusive lower bound)"
+                },
+                {
+                  "disabled": false,
+                  "key": "generatedDateTo",
+                  "value": "<string>",
+                  "description": "Filter by report generation date (inclusive upper bound)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bfb6a4b0-e049-4a78-b049-db40e91fcf06",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number-activation-state",
+                    "1",
+                    "network-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "dateFrom",
+                      "value": "2024-03-02"
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "2024-03-03"
+                    },
+                    {
+                      "key": "reportId",
+                      "value": "1f7a9938-0e3b-4e20-bb69-4968dca75078"
+                    },
+                    {
+                      "key": "networkId",
+                      "value": "1717"
+                    },
+                    {
+                      "key": "networkName",
+                      "value": "Verizon Wireless"
+                    },
+                    {
+                      "key": "generatedDateFrom",
+                      "value": "2024-03-01"
+                    },
+                    {
+                      "key": "generatedDateTo",
+                      "value": "2024-03-31"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"reportId\": \"1f7a9938-0e3b-4e20-bb69-4968dca75078\",\n      \"networkName\": \"Verizon Wireless\",\n      \"networkId\": 1717,\n      \"generatedDate\": \"2024-03-19T00:00:00Z\",\n      \"dateFrom\": \"2024-03-19T00:00:00Z\",\n      \"dateTo\": \"2024-03-20T00:00:00Z\",\n      \"expiryDate\": \"2024-05-18T00:00:00Z\"\n    },\n    {\n      \"reportId\": \"534a3153-0b3d-4408-9bc5-121d3e9c6537\",\n      \"networkName\": \"AT&T Mobility\",\n      \"networkId\": 1733,\n      \"generatedDate\": \"2024-03-19T00:00:00Z\",\n      \"dateFrom\": \"2024-03-19T00:00:00Z\",\n      \"dateTo\": \"2024-03-20T00:00:00Z\",\n      \"expiryDate\": \"2024-05-18T00:00:00Z\"\n    }\n  ],\n  \"paging\": {\n    \"page\": 0,\n    \"size\": 2,\n    \"totalPages\": 30,\n    \"totalResults\": 61\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb74cffa-46f2-4b36-9272-b68124572e7c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number-activation-state",
+                    "1",
+                    "network-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "dateFrom",
+                      "value": "2024-03-02"
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "2024-03-03"
+                    },
+                    {
+                      "key": "reportId",
+                      "value": "1f7a9938-0e3b-4e20-bb69-4968dca75078"
+                    },
+                    {
+                      "key": "networkId",
+                      "value": "1717"
+                    },
+                    {
+                      "key": "networkName",
+                      "value": "Verizon Wireless"
+                    },
+                    {
+                      "key": "generatedDateFrom",
+                      "value": "2024-03-01"
+                    },
+                    {
+                      "key": "generatedDateTo",
+                      "value": "2024-03-31"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"UNAUTHORIZED\",\n      \"text\": \"Unauthorized\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa1a6d8d-7b32-4e86-ab15-65a2f5d176e1",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number-activation-state",
+                    "1",
+                    "network-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "dateFrom",
+                      "value": "2024-03-02"
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "2024-03-03"
+                    },
+                    {
+                      "key": "reportId",
+                      "value": "1f7a9938-0e3b-4e20-bb69-4968dca75078"
+                    },
+                    {
+                      "key": "networkId",
+                      "value": "1717"
+                    },
+                    {
+                      "key": "networkName",
+                      "value": "Verizon Wireless"
+                    },
+                    {
+                      "key": "generatedDateFrom",
+                      "value": "2024-03-01"
+                    },
+                    {
+                      "key": "generatedDateTo",
+                      "value": "2024-03-31"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"FORBIDDEN\",\n      \"text\": \"Forbidden\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2fa95f03-4301-4793-9ac8-202e8f43d175",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number-activation-state",
+                    "1",
+                    "network-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "dateFrom",
+                      "value": "2024-03-02"
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "2024-03-03"
+                    },
+                    {
+                      "key": "reportId",
+                      "value": "1f7a9938-0e3b-4e20-bb69-4968dca75078"
+                    },
+                    {
+                      "key": "networkId",
+                      "value": "1717"
+                    },
+                    {
+                      "key": "networkName",
+                      "value": "Verizon Wireless"
+                    },
+                    {
+                      "key": "generatedDateFrom",
+                      "value": "2024-03-01"
+                    },
+                    {
+                      "key": "generatedDateTo",
+                      "value": "2024-03-31"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"TOO_MANY_REQUESTS\",\n      \"text\": \"Too many requests\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc746e82-86e0-45b5-8ffd-03efa6f9bc58",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number-activation-state",
+                    "1",
+                    "network-reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "dateFrom",
+                      "value": "2024-03-02"
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "2024-03-03"
+                    },
+                    {
+                      "key": "reportId",
+                      "value": "1f7a9938-0e3b-4e20-bb69-4968dca75078"
+                    },
+                    {
+                      "key": "networkId",
+                      "value": "1717"
+                    },
+                    {
+                      "key": "networkName",
+                      "value": "Verizon Wireless"
+                    },
+                    {
+                      "key": "generatedDateFrom",
+                      "value": "2024-03-01"
+                    },
+                    {
+                      "key": "generatedDateTo",
+                      "value": "2024-03-31"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"GENERAL_ERROR\",\n      \"text\": \"Something went wrong. Please contact support.\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dea1b0d9-a725-44a2-a92f-5effab3bde82",
+          "name": "Get Network Report content",
+          "request": {
+            "name": "Get Network Report content",
+            "description": {
+              "content": "Get a paginated list of destination number activation state changes from a given Report.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "number-activation-state",
+                "1",
+                "network-reports",
+                ":reportId",
+                "records"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Results page to retrieve (0..N)."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "20",
+                  "description": "Number of records per page."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportId",
+                  "description": "(Required) The reportId to retrieve"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e6491076-a2e5-4d4a-a2a4-64b11c8235f3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number-activation-state",
+                    "1",
+                    "network-reports",
+                    ":reportId",
+                    "records"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) The reportId to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"date\": \"2024-03-05T00:00:00.000+0000\",\n      \"destination\": \"15123456789\",\n      \"type\": \"DEACTIVATION\"\n    },\n    {\n      \"date\": \"2024-03-05T11:00:00.000+0000\",\n      \"destination\": \"15222222222\",\n      \"type\": \"DEACTIVATION\",\n      \"newDestination\": \"15777777777\"\n    }\n  ],\n  \"paging\": {\n    \"page\": 1,\n    \"size\": 2,\n    \"totalPages\": 10,\n    \"totalResults\": 21\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8530f019-68ff-4ef0-88f4-e8f157d4dae8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number-activation-state",
+                    "1",
+                    "network-reports",
+                    ":reportId",
+                    "records"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) The reportId to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"UNAUTHORIZED\",\n      \"text\": \"Unauthorized\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c86fdac-5c20-4daa-9a23-44283b6ed4ed",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number-activation-state",
+                    "1",
+                    "network-reports",
+                    ":reportId",
+                    "records"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) The reportId to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"FORBIDDEN\",\n      \"text\": \"Forbidden\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "405f8b80-9e7c-4a7f-9045-4afb5b37726e",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number-activation-state",
+                    "1",
+                    "network-reports",
+                    ":reportId",
+                    "records"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) The reportId to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "09f0ac88-6e98-424c-ba5e-05ecbfafd623",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number-activation-state",
+                    "1",
+                    "network-reports",
+                    ":reportId",
+                    "records"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) The reportId to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"TOO_MANY_REQUESTS\",\n      \"text\": \"Too many requests\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf5f48dd-92b8-4a20-b5cd-e5d5d81bf299",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number-activation-state",
+                    "1",
+                    "network-reports",
+                    ":reportId",
+                    "records"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) The reportId to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"GENERAL_ERROR\",\n      \"text\": \"Something went wrong. Please contact support.\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1a762b13-6bc9-47e2-a001-08d4726440d2",
+    "name": "Infobip OpenAPI Specification",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI Specification that contains all public endpoints and webhooks.\n\nContact Support:\n Name: Infobip support\n Email: support@infobip.com",
+      "type": "text/plain"
+    }
+  }
+}

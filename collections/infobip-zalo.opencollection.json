@@ -1,0 +1,342 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "channels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send Zalo messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/zalo/2/messages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Send messages to multiple recipients. Only [template messages](https://www.infobip.com/docs/zalo/message-types) registered with Zalo can be sent. The API response will not contain the final delivery status, use [Delivery Reports](/docs/api/channels/zalo/zalo-logs-and-status-reports/receive-outbound-zalo-delivery-reports) instead."
+        },
+        {
+          "info": {
+            "name": "Get Zalo logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/zalo/1/logs",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Message sender."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Message destination."
+              },
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "query",
+                "description": "List of message IDs (separated by comma) for which logs are requested."
+              },
+              {
+                "name": "generalStatus",
+                "value": "",
+                "type": "query",
+                "description": "Sent Message status."
+              },
+              {
+                "name": "sentSince",
+                "value": "",
+                "type": "query",
+                "description": "Lower limit on date and time of sending message. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`."
+              },
+              {
+                "name": "sentUntil",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on date and time of sending message. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximal number of messages in returned logs. If you want to fetch more than 1000 logs you can retrieve them in pages using `sentSince` and `sentUntil` parameters."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "You should use this method for displaying logs in the user interface or for some other less frequent usage."
+        },
+        {
+          "info": {
+            "name": "Get Zalo templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/zalo/1/sender/:sender/templates",
+            "params": [
+              {
+                "name": "sender",
+                "value": "",
+                "type": "path",
+                "description": "Sender ID."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter templates by status. Use ALL to return all templates regardless of status. Defaults to ENABLE."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all templates for a given sender filtered by status."
+        },
+        {
+          "info": {
+            "name": "Get Zalo template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/zalo/1/sender/:sender/templates/:templateName",
+            "params": [
+              {
+                "name": "sender",
+                "value": "",
+                "type": "path",
+                "description": "Sender ID."
+              },
+              {
+                "name": "templateName",
+                "value": "",
+                "type": "path",
+                "description": "Name identifying the template. Must be the same as registered template_id."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns template's info for given template name."
+        },
+        {
+          "info": {
+            "name": "Create Zalo template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/zalo/2/sender/:sender/templates",
+            "params": [
+              {
+                "name": "sender",
+                "value": "",
+                "type": "path",
+                "description": "Sender ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new template for the given sender. The template will be submitted for review and must be approved before it can be used."
+        },
+        {
+          "info": {
+            "name": "Edit Zalo template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/zalo/2/sender/:sender/templates",
+            "params": [
+              {
+                "name": "sender",
+                "value": "",
+                "type": "path",
+                "description": "Sender ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Edits an existing template that has REJECTED status. The template will be resubmitted for review."
+        },
+        {
+          "info": {
+            "name": "Upload Zalo media",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/zalo/1/sender/:sender/media",
+            "params": [
+              {
+                "name": "sender",
+                "value": "",
+                "type": "path",
+                "description": "Sender ID."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Uploads an image file to Zalo and returns the media ID that can be referenced in template content."
+        },
+        {
+          "info": {
+            "name": "Get Zalo quota",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/zalo/1/sender/:sender/quota",
+            "params": [
+              {
+                "name": "sender",
+                "value": "",
+                "type": "path",
+                "description": "Sender ID."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the quota (number) of Zalo notifications sent per day."
+        },
+        {
+          "info": {
+            "name": "Get Zalo sender public key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/zalo/1/sender/:sender/public-key",
+            "params": [
+              {
+                "name": "sender",
+                "value": "",
+                "type": "path",
+                "description": "Sender ID."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns previously generated public RSA key. In case you haven't already generated an RSA key, you need to do that using the \"Create Zalo sender public key\" method. To use the public RSA key, please *Base64 decode* the provided value!"
+        },
+        {
+          "info": {
+            "name": "Create Zalo sender public key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/zalo/1/sender/:sender/public-key",
+            "params": [
+              {
+                "name": "sender",
+                "value": "",
+                "type": "path",
+                "description": "Sender ID."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "The RSA key generation API allows you to generate a key pair consisting of a public key and a private key.<br />Only the public key will be returned by this method. The private key will be stored by Zalo to decrypt the content.<br />In case you've already generated an RSA key, please use the public key get API to get the public key.<br />To use the public RSA key, please *Base64 decode* the provided value!"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

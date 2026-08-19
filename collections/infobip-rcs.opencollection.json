@@ -1,0 +1,1004 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "channels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send RCS messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/rcs/2/messages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Send RCS messages or RCS template messages to multiple recipients. Maximum request size is 10MB. Including some fields will affect [billing type](https://www.infobip.com/docs/rcs/billing-types)."
+        },
+        {
+          "info": {
+            "name": "Send RCS message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ott/rcs/1/message",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Used for sending single RCS messages"
+        },
+        {
+          "info": {
+            "name": "Send bulk RCS message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ott/rcs/1/message/bulk",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Used for sending bulk RCS messages"
+        },
+        {
+          "info": {
+            "name": "Send RCS template message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ott/rcs/1/message/template",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Used for sending single RCS template messages (only for Vodafone Idea Limited, India)"
+        },
+        {
+          "info": {
+            "name": "Send bulk RCS template message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ott/rcs/1/message/template/bulk",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Used for sending bulk RCS template messages (only for Vodafone Idea Limited, India)"
+        },
+        {
+          "info": {
+            "name": "Send RCS events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/rcs/1/events",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Send RCS events to multiple recipients. Maximum request size is 10MB."
+        },
+        {
+          "info": {
+            "name": "Get RCS delivery reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/rcs/2/reports",
+            "params": [
+              {
+                "name": "bulkId",
+                "value": "",
+                "type": "query",
+                "description": "The ID that uniquely identifies the request. Bulk ID will be received only when you send a message to more than one destination address."
+              },
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "query",
+                "description": "The ID that uniquely identifies the message sent."
+              },
+              {
+                "name": "limit",
+                "value": "1",
+                "type": "query",
+                "description": "Maximum number of delivery reports to be returned. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access reports for the last 48h."
+              },
+              {
+                "name": "entityId",
+                "value": "promotional-traffic-entity",
+                "type": "query",
+                "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "applicationId",
+                "value": "marketing-automation-application",
+                "type": "query",
+                "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "campaignReferenceId",
+                "value": "summersale",
+                "type": "query",
+                "description": "ID of a campaign that was sent in the message."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "If you are unable to receive real-time delivery reports towards your endpoint for various reasons, we offer you an API method to fetch batches of delivery reports to confirm whether specific messages have been delivered. Each request towards this endpoint will return batches of the latest delivery reports. Please note they will be returned only once."
+        },
+        {
+          "info": {
+            "name": "Get RCS message logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/rcs/2/logs",
+            "params": [
+              {
+                "name": "sender",
+                "value": "",
+                "type": "query",
+                "description": "The sender ID which can be alphanumeric or numeric."
+              },
+              {
+                "name": "destination",
+                "value": "",
+                "type": "query",
+                "description": "Message destination address."
+              },
+              {
+                "name": "bulkId",
+                "value": "BULK-ID-123-xyz",
+                "type": "query",
+                "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. May contain multiple comma-separated values. Maximum length 2048 characters."
+              },
+              {
+                "name": "messageId",
+                "value": "MESSAGE-ID-123-xyz,MESSAGE-ID-124-xyz",
+                "type": "query",
+                "description": "Unique message ID for which a log is requested. May contain multiple comma-separated values. Maximum length 2048 characters."
+              },
+              {
+                "name": "generalStatus",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sentSince",
+                "value": "2020-02-22T17:42:05.390+01:00",
+                "type": "query",
+                "description": "The logs will only include messages sent after this date. Use it alongside sentUntil to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+              },
+              {
+                "name": "sentUntil",
+                "value": "2020-02-23T17:42:05.390+01:00",
+                "type": "query",
+                "description": "The logs will only include messages sent before this date. Use it alongside sentSince to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of messages to include in logs. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access logs for the last 48h."
+              },
+              {
+                "name": "entityId",
+                "value": "promotional-traffic-entity",
+                "type": "query",
+                "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "applicationId",
+                "value": "marketing-automation-application",
+                "type": "query",
+                "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "campaignReferenceId",
+                "value": "summersale",
+                "type": "query",
+                "description": "ID of a campaign that was sent in the message. May contain multiple comma-separated values."
+              },
+              {
+                "name": "useCursor",
+                "value": "",
+                "type": "query",
+                "description": "Flag used to enable cursor-based pagination. When set to true, the system will use the cursor to fetch the next set of logs."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Value which represents the current position in the data set. For the first request, this field shouldn't be defined. In subsequent requests, use the `nextCursor` value returned from the previous response to continue fetching data."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method for displaying logs for example in the user interface. Available are the logs for the last 48 hours."
+        },
+        {
+          "info": {
+            "name": "Check RCS capability",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/rcs/2/capability-check/query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this endpoint to verify whether the phone numbers in a given list can receive RCS messages from the specified sender. You can check up to 500 phone numbers in a single request; however, for improved efficiency, performance, and response time, we recommend using smaller batches of 1 to 10 numbers in a single request. This synchronous API is typically used for routing purposes when verifying a number’s RCS capability immediately before sending a message. This API supports up to a 100 requests "
+        },
+        {
+          "info": {
+            "name": "Check RCS capability (async)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/rcs/2/capability-check/notify",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this endpoint to verify whether the phone numbers in a given list can receive RCS messages from the specified sender. You can check up to 10,000 phone numbers in a single request. The [Capability Check result](#channels/rcs/receive-capability-check-result) returns asynchronously and provides the capability status for each phone number individually.\n\nEnsure the sender is configured and launched on the mobile network/carrier that manages the phone numbers being tested for RCS capability. If th"
+        },
+        {
+          "info": {
+            "name": "Get RCS senders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/rcs/1/senders",
+            "params": [
+              {
+                "name": "page",
+                "value": "0",
+                "type": "query",
+                "description": "Results page you want to retrieve (0..N). The default value is 0."
+              },
+              {
+                "name": "size",
+                "value": "20",
+                "type": "query",
+                "description": "Number of records per page (1..100). The default value is 20."
+              },
+              {
+                "name": "sort",
+                "value": "updatedAt,desc",
+                "type": "query",
+                "description": "Sorting criteria in the format: property(,asc|desc). Default sort order is descending by 'updatedAt'. Sortable Properties: 'updatedAt', 'senderName'."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve list of RCS senders."
+        },
+        {
+          "info": {
+            "name": "Create an RCS sender",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/rcs/1/senders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create an RCS sender. Created RCS sender can immediately be used to send test messages to test numbers. See [Add RCS test number](#channels/rcs/add-rcs-test-number) operation for more details about adding test numbers for sender. Please note that following limits will apply when creating RCS sender:\n* It is allowed to add up to 10 senders in total.\n\nPlease contact your account manager if you need to add more senders."
+        },
+        {
+          "info": {
+            "name": "Get RCS sender",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/rcs/1/senders/:senderName",
+            "params": [
+              {
+                "name": "senderName",
+                "value": "DemoSender",
+                "type": "path",
+                "description": "Sender identifier."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a single RCS sender by sender name."
+        },
+        {
+          "info": {
+            "name": "Update an RCS sender",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/rcs/1/senders/:senderName",
+            "params": [
+              {
+                "name": "senderName",
+                "value": "DemoSender",
+                "type": "path",
+                "description": "Sender identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update an RCS sender. Please note that once sender is locked, it's not possible to update sender data anymore."
+        },
+        {
+          "info": {
+            "name": "Update RCS sender platform parameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/rcs/1/senders/:senderName/platform-parameters",
+            "params": [
+              {
+                "name": "senderName",
+                "value": "DemoSender",
+                "type": "path",
+                "description": "Sender identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update platform parameters associated with RCS sender. These parameters can be edited at any point of time."
+        },
+        {
+          "info": {
+            "name": "Get RCS sender launch status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/rcs/1/senders/:senderName/launch-status",
+            "params": [
+              {
+                "name": "senderName",
+                "value": "DemoSender",
+                "type": "path",
+                "description": "Sender identifier."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get detailed launch status information for an RCS sender, including coverage details by country and provider. This endpoint provides granular information about the launch progress across different carriers and regions."
+        },
+        {
+          "info": {
+            "name": "Get RCS available providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/rcs/1/senders/providers",
+            "params": [
+              {
+                "name": "countryCode",
+                "value": "IN",
+                "type": "query",
+                "description": "Country code in two-letter ISO 3166-1 alpha 2 standard. If set, only providers available in the specified country will be returned."
+              },
+              {
+                "name": "page",
+                "value": "0",
+                "type": "query",
+                "description": "Results page you want to retrieve (0..N)."
+              },
+              {
+                "name": "pageSize",
+                "value": "20",
+                "type": "query",
+                "description": "Number of records per page (1..200)."
+              },
+              {
+                "name": "sortDirection",
+                "value": "ASC",
+                "type": "query",
+                "description": "Sorting order by property 'countryCode'. Sorting orders: ASC, DESC."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve a list of RCS available providers specified by countries."
+        },
+        {
+          "info": {
+            "name": "Get RCS test numbers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/rcs/1/senders/:senderName/test-numbers",
+            "params": [
+              {
+                "name": "senderName",
+                "value": "DemoSender",
+                "type": "path",
+                "description": "Identifier of a sender for which test number is requested."
+              },
+              {
+                "name": "page",
+                "value": "0",
+                "type": "query",
+                "description": "Results page you want to retrieve (0..N). The default value is 0."
+              },
+              {
+                "name": "size",
+                "value": "20",
+                "type": "query",
+                "description": "Number of records per page (1..100). The default value is 20."
+              },
+              {
+                "name": "sort",
+                "value": "updatedAt,desc",
+                "type": "query",
+                "description": "Sorting criteria in the format: property(,asc|desc). Default sort order is descending by 'updatedAt'. Sortable Properties: 'updatedAt'."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get RCS test numbers for given sender. Please note that information about status of test number was correct at the moment when test number was last time updated. If latest status for some test number is needed, [Get RCS test number](#channels/rcs/get-rcs-test-number) operation can be used."
+        },
+        {
+          "info": {
+            "name": "Add RCS test number",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/rcs/1/senders/:senderName/test-numbers",
+            "params": [
+              {
+                "name": "senderName",
+                "value": "DemoSender",
+                "type": "path",
+                "description": "Identifier of a sender for which test number is requested."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Add test number for given RCS sender. Invitation to become tester will be sent to given number and once user accepts invitation it will be possible to send test traffic to given test number using given sender. Please note that following limits will apply when adding test number for RCS sender:\n* It is allowed to add up to 20 test numbers per sender per day.\n* It is allowed to add up to 200 test number per sender in total."
+        },
+        {
+          "info": {
+            "name": "Get RCS test number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/rcs/1/senders/:senderName/test-numbers/:testNumber",
+            "params": [
+              {
+                "name": "senderName",
+                "value": "DemoSender",
+                "type": "path",
+                "description": "Identifier of a sender for which test number is requested."
+              },
+              {
+                "name": "testNumber",
+                "value": "+441134960001",
+                "type": "path",
+                "description": "Full number in E.164 format, e.g. +1234567890. Leading '+' is optional."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get RCS test number. This operation will check current status of given test number and return most up to date result."
+        },
+        {
+          "info": {
+            "name": "Update primary flag of RCS test number",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/rcs/1/senders/:senderName/test-numbers/:testNumber",
+            "params": [
+              {
+                "name": "senderName",
+                "value": "DemoSender",
+                "type": "path",
+                "description": "Identifier of a sender for which test number is requested."
+              },
+              {
+                "name": "testNumber",
+                "value": "+441134960001",
+                "type": "path",
+                "description": "Full number in E.164 format, e.g. +1234567890. Leading '+' is optional."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update primary flag of RCS test number."
+        },
+        {
+          "info": {
+            "name": "Refresh RCS test number",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/rcs/1/senders/:senderName/test-numbers/:testNumber/refresh",
+            "params": [
+              {
+                "name": "senderName",
+                "value": "DemoSender",
+                "type": "path",
+                "description": "Identifier of a sender for which test number is requested."
+              },
+              {
+                "name": "testNumber",
+                "value": "+441134960001",
+                "type": "path",
+                "description": "Full number in E.164 format, e.g. +1234567890. Leading '+' is optional."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Status of RCS test number is automatically refreshed for 24 hours after it was added. If user does not accept invitation to become a tester in that period, test number will be marked as EXPIRED. Use this endpoint in order to start new 24 hours cycle in which system will periodically check if user has accepted to become a tester."
+        },
+        {
+          "info": {
+            "name": "Get RCS templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/rcs/1/senders/:sender/templates",
+            "params": [
+              {
+                "name": "sender",
+                "value": "Demo",
+                "type": "path",
+                "description": "The sender whose templates will be retrieved."
+              },
+              {
+                "name": "status",
+                "value": "APPROVED",
+                "type": "query",
+                "description": "The status used to filter and retrieve templates with the specified state. If the status is not specified, all templates are returned."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve all RCS templates and their statuses for a specified sender. Available only for senders that support templates."
+        },
+        {
+          "info": {
+            "name": "Create an RCS template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/rcs/1/senders/:sender/templates",
+            "params": [
+              {
+                "name": "sender",
+                "value": "Demo",
+                "type": "path",
+                "description": "The sender for whom the template will be created."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create an RCS template for a specified sender. The template will be submitted for review and approval. Once approved, the template can be used for messaging. Available only for senders that support templates."
+        },
+        {
+          "info": {
+            "name": "Get RCS template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/rcs/1/senders/:sender/templates/:templateName",
+            "params": [
+              {
+                "name": "sender",
+                "value": "Demo",
+                "type": "path",
+                "description": "The sender whose specific template will be retrieved."
+              },
+              {
+                "name": "templateName",
+                "value": "demo_template",
+                "type": "path",
+                "description": "The unique name of the template that will be retrieved for the specified sender."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve a single RCS template with its status for a given sender and template name. Available only for senders that support templates."
+        },
+        {
+          "info": {
+            "name": "Create an RCS template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/rcs/1/senders/:sender/templates/:templateName",
+            "params": [
+              {
+                "name": "sender",
+                "value": "Demo",
+                "type": "path",
+                "description": "The sender for whom the template will be created."
+              },
+              {
+                "name": "templateName",
+                "value": "demo_template",
+                "type": "path",
+                "description": "The unique name of the template that will be created for the specified sender. Must contain only alphanumeric characters and underscores."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create an RCS template for a specified sender. The template will be submitted for review and approval. Once approved, the template can be used for messaging. Available only for senders that support templates. Please note that this endpoint is deprecated and will be removed in future versions."
+        },
+        {
+          "info": {
+            "name": "Edit an RCS template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/rcs/1/senders/:sender/templates/:templateName",
+            "params": [
+              {
+                "name": "sender",
+                "value": "Demo",
+                "type": "path",
+                "description": "The sender whose template will be updated."
+              },
+              {
+                "name": "templateName",
+                "value": "demo_template",
+                "type": "path",
+                "description": "The unique name of the template that will be updated for the specified sender."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Edit an RCS template. Only PENDING, SUSPENDED or REJECTED templates can be edited. APPROVED templates cannot be modified. Available only for senders that support templates.."
+        },
+        {
+          "info": {
+            "name": "Delete an RCS template",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/rcs/1/senders/:sender/templates/:templateName",
+            "params": [
+              {
+                "name": "sender",
+                "value": "Demo",
+                "type": "path",
+                "description": "The sender whose template will be deleted."
+              },
+              {
+                "name": "templateName",
+                "value": "demo_template",
+                "type": "path",
+                "description": "The unique name of the template that will be deleted for the specified sender."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete an RCS template. Any messages sent using a deleted template will be rejected. Available only for senders that support templates."
+        },
+        {
+          "info": {
+            "name": "Get RCS template status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/rcs/1/senders/:sender/templates/:templateName/status",
+            "params": [
+              {
+                "name": "sender",
+                "value": "Demo",
+                "type": "path",
+                "description": "The sender whose template status will be retrieved."
+              },
+              {
+                "name": "templateName",
+                "value": "demo_template",
+                "type": "path",
+                "description": "The unique name of the template for which the status will be retrieved."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve the detailed status of a specified RCS template for a given sender. Available only for senders that support templates."
+        },
+        {
+          "info": {
+            "name": "Register an RCS template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/rcs/1/senders/:sender/templates/:templateName/register",
+            "params": [
+              {
+                "name": "sender",
+                "value": "Demo",
+                "type": "path",
+                "description": "The sender whose template should be registered with additional providers."
+              },
+              {
+                "name": "templateName",
+                "value": "demo_template",
+                "type": "path",
+                "description": "The unique name of the template that should be registered with additional providers."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Registers an RCS template with additional providers. Available only for senders that support templates."
+        },
+        {
+          "info": {
+            "name": "Get RCS template providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/rcs/1/templates/template-providers",
+            "params": [
+              {
+                "name": "sender",
+                "value": "Demo",
+                "type": "query",
+                "description": "The sender for which the list of available template providers should be retrieved."
+              },
+              {
+                "name": "countryCode",
+                "value": "IN",
+                "type": "query",
+                "description": "Country code in two-letter ISO standard. If set, only providers available in the specified country will be returned."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get list of available template providers. List can be filtered by sender and country code."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

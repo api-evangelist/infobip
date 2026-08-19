@@ -1,0 +1,670 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "channels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send a Kakao Alim message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/kakao-alim/1/messages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Send one or more messages to multiple recipients."
+        },
+        {
+          "info": {
+            "name": "Get Kakao Alim delivery reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/kakao-alim/1/reports",
+            "params": [
+              {
+                "name": "bulkId",
+                "value": "",
+                "type": "query",
+                "description": "The ID that uniquely identifies the request. Bulk ID will be received only when you send a message to more than one destination address."
+              },
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "query",
+                "description": "The ID that uniquely identifies the message sent."
+              },
+              {
+                "name": "limit",
+                "value": "1",
+                "type": "query",
+                "description": "Maximum number of delivery reports to be returned. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access reports for the last 48h."
+              },
+              {
+                "name": "entityId",
+                "value": "promotional-traffic-entity",
+                "type": "query",
+                "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "applicationId",
+                "value": "marketing-automation-application",
+                "type": "query",
+                "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "campaignReferenceId",
+                "value": "summersale",
+                "type": "query",
+                "description": "ID of a campaign that was sent in the message."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "If you are unable to receive real-time delivery reports towards your endpoint for various reasons, we offer you an API method to fetch batches of delivery reports to confirm whether specific messages have been delivered. Each request towards this endpoint will return batches of the latest delivery reports. Please note they will be returned only once."
+        },
+        {
+          "info": {
+            "name": "Get outbound Kakao Alim message logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/kakao-alim/1/logs",
+            "params": [
+              {
+                "name": "sender",
+                "value": "",
+                "type": "query",
+                "description": "The sender ID which can be alphanumeric or numeric."
+              },
+              {
+                "name": "destination",
+                "value": "",
+                "type": "query",
+                "description": "Message destination address."
+              },
+              {
+                "name": "bulkId",
+                "value": "BULK-ID-123-xyz",
+                "type": "query",
+                "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. May contain multiple comma-separated values. Maximum length 2048 characters."
+              },
+              {
+                "name": "messageId",
+                "value": "MESSAGE-ID-123-xyz,MESSAGE-ID-124-xyz",
+                "type": "query",
+                "description": "Unique message ID for which a log is requested. May contain multiple comma-separated values. Maximum length 2048 characters."
+              },
+              {
+                "name": "generalStatus",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sentSince",
+                "value": "2020-02-22T17:42:05.390+01:00",
+                "type": "query",
+                "description": "The logs will only include messages sent after this date. Use it alongside sentUntil to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+              },
+              {
+                "name": "sentUntil",
+                "value": "2020-02-23T17:42:05.390+01:00",
+                "type": "query",
+                "description": "The logs will only include messages sent before this date. Use it alongside sentSince to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of messages to include in logs. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access logs for the last 48h."
+              },
+              {
+                "name": "entityId",
+                "value": "promotional-traffic-entity",
+                "type": "query",
+                "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "applicationId",
+                "value": "marketing-automation-application",
+                "type": "query",
+                "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "campaignReferenceId",
+                "value": "summersale",
+                "type": "query",
+                "description": "ID of a campaign that was sent in the message. May contain multiple comma-separated values."
+              },
+              {
+                "name": "useCursor",
+                "value": "",
+                "type": "query",
+                "description": "Flag used to enable cursor-based pagination. When set to true, the system will use the cursor to fetch the next set of logs."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Value which represents the current position in the data set. For the first request, this field shouldn't be defined. In subsequent requests, use the `nextCursor` value returned from the previous response to continue fetching data."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method for displaying logs for example in the user interface. Available are the logs for the last 48 hours."
+        },
+        {
+          "info": {
+            "name": "Send a Kakao Sangdam message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/kakao-sangdam/1/messages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Send one or more messages to multiple recipients."
+        },
+        {
+          "info": {
+            "name": "Get Kakao Sangdam delivery reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/kakao-sangdam/1/reports",
+            "params": [
+              {
+                "name": "bulkId",
+                "value": "",
+                "type": "query",
+                "description": "The ID that uniquely identifies the request. Bulk ID will be received only when you send a message to more than one destination address."
+              },
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "query",
+                "description": "The ID that uniquely identifies the message sent."
+              },
+              {
+                "name": "limit",
+                "value": "1",
+                "type": "query",
+                "description": "Maximum number of delivery reports to be returned. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access reports for the last 48h"
+              },
+              {
+                "name": "entityId",
+                "value": "promotional-traffic-entity",
+                "type": "query",
+                "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "applicationId",
+                "value": "marketing-automation-application",
+                "type": "query",
+                "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "campaignReferenceId",
+                "value": "summersale",
+                "type": "query",
+                "description": "ID of a campaign that was sent in the message."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "If you are unable to receive real-time delivery reports towards your endpoint for various reasons, we offer you an API method to fetch batches of delivery reports to confirm whether specific messages have been delivered. Each request towards this endpoint will return batches of the latest delivery reports. Please note they will be returned only once."
+        },
+        {
+          "info": {
+            "name": "Get outbound Kakao Sangdam message logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/kakao-sangdam/1/logs",
+            "params": [
+              {
+                "name": "sender",
+                "value": "",
+                "type": "query",
+                "description": "The sender ID which can be alphanumeric or numeric."
+              },
+              {
+                "name": "destination",
+                "value": "",
+                "type": "query",
+                "description": "Message destination address."
+              },
+              {
+                "name": "bulkId",
+                "value": "BULK-ID-123-xyz",
+                "type": "query",
+                "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. May contain multiple comma-separated values. Maximum length 2048 characters."
+              },
+              {
+                "name": "messageId",
+                "value": "MESSAGE-ID-123-xyz,MESSAGE-ID-124-xyz",
+                "type": "query",
+                "description": "Unique message ID for which a log is requested. May contain multiple comma-separated values. Maximum length 2048 characters."
+              },
+              {
+                "name": "generalStatus",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sentSince",
+                "value": "2020-02-22T17:42:05.390+01:00",
+                "type": "query",
+                "description": "The logs will only include messages sent after this date. Use it alongside sentUntil to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+              },
+              {
+                "name": "sentUntil",
+                "value": "2020-02-23T17:42:05.390+01:00",
+                "type": "query",
+                "description": "The logs will only include messages sent before this date. Use it alongside sentSince to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of messages to include in logs. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access logs for the last 48h."
+              },
+              {
+                "name": "entityId",
+                "value": "promotional-traffic-entity",
+                "type": "query",
+                "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "applicationId",
+                "value": "marketing-automation-application",
+                "type": "query",
+                "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "campaignReferenceId",
+                "value": "summersale",
+                "type": "query",
+                "description": "ID of a campaign that was sent in the message. May contain multiple comma-separated values."
+              },
+              {
+                "name": "useCursor",
+                "value": "",
+                "type": "query",
+                "description": "Flag used to enable cursor-based pagination. When set to true, the system will use the cursor to fetch the next set of logs."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Value which represents the current position in the data set. For the first request, this field shouldn't be defined. In subsequent requests, use the `nextCursor` value returned from the previous response to continue fetching data."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method for displaying logs for example in the user interface. Available are the logs for the last 48 hours."
+        },
+        {
+          "info": {
+            "name": "Send a brand message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/kakao-chingu/1/messages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Send one or more messages to multiple recipients.\nKakao Chingu will be deprecated on January 1, 2026, and Brand Messaging will replace it. Make sure to adjust your API connection to use only new content types that include _FREE_FORM or _VARIABLE in the content type name."
+        },
+        {
+          "info": {
+            "name": "Get brand message delivery reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/kakao-chingu/1/reports",
+            "params": [
+              {
+                "name": "bulkId",
+                "value": "",
+                "type": "query",
+                "description": "The ID that uniquely identifies the request. Bulk ID will be received only when you send a message to more than one destination address."
+              },
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "query",
+                "description": "The ID that uniquely identifies the message sent."
+              },
+              {
+                "name": "limit",
+                "value": "1",
+                "type": "query",
+                "description": "Maximum number of delivery reports to be returned. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access reports for the last 48h."
+              },
+              {
+                "name": "entityId",
+                "value": "promotional-traffic-entity",
+                "type": "query",
+                "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "applicationId",
+                "value": "marketing-automation-application",
+                "type": "query",
+                "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "campaignReferenceId",
+                "value": "summersale",
+                "type": "query",
+                "description": "ID of a campaign that was sent in the message."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "If you are unable to receive real-time delivery reports towards your endpoint for various reasons, we offer you an API method to fetch batches of delivery reports to confirm whether specific messages have been delivered. Each request towards this endpoint will return batches of the latest delivery reports. Please note they will be returned only once."
+        },
+        {
+          "info": {
+            "name": "Get message logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/kakao-chingu/1/logs",
+            "params": [
+              {
+                "name": "sender",
+                "value": "",
+                "type": "query",
+                "description": "The sender ID which can be alphanumeric or numeric."
+              },
+              {
+                "name": "destination",
+                "value": "",
+                "type": "query",
+                "description": "Message destination address."
+              },
+              {
+                "name": "bulkId",
+                "value": "BULK-ID-123-xyz",
+                "type": "query",
+                "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. May contain multiple comma-separated values. Maximum length 2048 characters."
+              },
+              {
+                "name": "messageId",
+                "value": "MESSAGE-ID-123-xyz,MESSAGE-ID-124-xyz",
+                "type": "query",
+                "description": "Unique message ID for which a log is requested. May contain multiple comma-separated values. Maximum length 2048 characters."
+              },
+              {
+                "name": "generalStatus",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sentSince",
+                "value": "2020-02-22T17:42:05.390+01:00",
+                "type": "query",
+                "description": "The logs will only include messages sent after this date. Use it alongside sentUntil to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+              },
+              {
+                "name": "sentUntil",
+                "value": "2020-02-23T17:42:05.390+01:00",
+                "type": "query",
+                "description": "The logs will only include messages sent before this date. Use it alongside sentSince to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of messages to include in logs. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access logs for the last 48h."
+              },
+              {
+                "name": "entityId",
+                "value": "promotional-traffic-entity",
+                "type": "query",
+                "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "applicationId",
+                "value": "marketing-automation-application",
+                "type": "query",
+                "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "campaignReferenceId",
+                "value": "summersale",
+                "type": "query",
+                "description": "ID of a campaign that was sent in the message. May contain multiple comma-separated values."
+              },
+              {
+                "name": "useCursor",
+                "value": "",
+                "type": "query",
+                "description": "Flag used to enable cursor-based pagination. When set to true, the system will use the cursor to fetch the next set of logs."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Value which represents the current position in the data set. For the first request, this field shouldn't be defined. In subsequent requests, use the `nextCursor` value returned from the previous response to continue fetching data."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method for displaying logs for example in the user interface. Available are the logs for the last 48 hours."
+        },
+        {
+          "info": {
+            "name": "Get Brand Message templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/kakao-brand-messages/1/templates",
+            "params": [
+              {
+                "name": "senderKey",
+                "value": "123456789",
+                "type": "query",
+                "description": "Sender profile key."
+              },
+              {
+                "name": "senderGroupKey",
+                "value": "",
+                "type": "query",
+                "description": "Sender group profile key."
+              },
+              {
+                "name": "since",
+                "value": "2025-09-26T14:52:14.000+0200",
+                "type": "query",
+                "description": "Start date in format `yyyy-MM-dd'T'HH:mm:ss.SSSZ`. Defaults to 1 hour before the time of the request."
+              },
+              {
+                "name": "page",
+                "value": "5",
+                "type": "query",
+                "description": "Current page number."
+              },
+              {
+                "name": "size",
+                "value": "10",
+                "type": "query",
+                "description": "Number of items per page."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get Brand Message templates with an optional time range filter to include only those modified within that period."
+        },
+        {
+          "info": {
+            "name": "Create Brand Message template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/kakao-brand-messages/1/templates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create Brand Message template."
+        },
+        {
+          "info": {
+            "name": "Get Brand Message template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/kakao-brand-messages/1/templates/single",
+            "params": [
+              {
+                "name": "sender",
+                "value": "123456789",
+                "type": "query",
+                "description": "Must be provided if senderGroup is not provided."
+              },
+              {
+                "name": "senderGroup",
+                "value": "",
+                "type": "query",
+                "description": "Must be provided if sender is not provided."
+              },
+              {
+                "name": "templateCode",
+                "value": "abc123dfg345",
+                "type": "query",
+                "description": "Template code."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get Brand Message template"
+        },
+        {
+          "info": {
+            "name": "Update Brand Message template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/kakao-brand-messages/1/templates/:templateCode",
+            "params": [
+              {
+                "name": "templateCode",
+                "value": "TEMPLATE_001",
+                "type": "path",
+                "description": "Template code to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update an existing Brand Message template by template code."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

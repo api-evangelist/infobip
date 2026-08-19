@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "platform",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add phone numbers to a list",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/signals/1/trusted-msisdns",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Add phone numbers to a MSISDN list of trusted numbers so that\n Signals never blocks messages sent to these numbers.\n"
+        },
+        {
+          "info": {
+            "name": "Remove phone numbers from a list",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/signals/1/trusted-msisdns",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Remove phone numbers from a MSISDN list of trusted phone numbers.\n"
+        },
+        {
+          "info": {
+            "name": "Check for phone numbers on a list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/signals/1/trusted-msisdns/:msisdn/check",
+            "params": [
+              {
+                "name": "msisdn",
+                "value": "38512345678",
+                "type": "path",
+                "description": "Phone number (in MSISDN or international format) for which to check whether it is in the trusted MSISDN list."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Check whether a phone number exists on a MSISDN list of trusted phone numbers.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1583 @@
+{
+  "item": [
+    {
+      "id": "54b72cc6-36f2-4b78-8530-da93e8f25671",
+      "name": "platform",
+      "description": {
+        "content": "Modular tools to scale and automate your business.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f643bcfc-f5e3-4ace-9482-ed2faf476513",
+          "name": "Query aggregated traffic data",
+          "request": {
+            "name": "Query aggregated traffic data",
+            "description": {
+              "content": "Start process for traffic data aggregation. The result will be posted to `callbackURL` provided in the request. The response format is described in [Receive aggregated data result](#platform/metrics-api/receive-aggregate-data-result) operation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metrics",
+                "1",
+                "query-aggregate-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"callbackUrl\": \"<string>\",\n  \"request\": {\n    \"aggregateBy\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"filterBy\": {\n      \"channelCodes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"sentSince\": \"<dateTime>\",\n      \"sentUntil\": \"<dateTime>\",\n      \"accountKeys\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"includeSubaccounts\": false,\n      \"timeToDeliver\": [\n        {\n          \"from\": \"<string>\",\n          \"to\": \"<string>\"\n        },\n        {\n          \"from\": \"<string>\",\n          \"to\": \"<string>\"\n        }\n      ],\n      \"timeToAnswer\": [\n        {\n          \"from\": \"<string>\",\n          \"to\": \"<string>\"\n        },\n        {\n          \"from\": \"<string>\",\n          \"to\": \"<string>\"\n        }\n      ],\n      \"timeToClickFromSeen\": [\n        {\n          \"from\": \"<string>\",\n          \"to\": \"<string>\"\n        },\n        {\n          \"from\": \"<string>\",\n          \"to\": \"<string>\"\n        }\n      ],\n      \"timeToClickFromDelivered\": [\n        {\n          \"from\": \"<string>\",\n          \"to\": \"<string>\"\n        },\n        {\n          \"from\": \"<string>\",\n          \"to\": \"<string>\"\n        }\n      ],\n      \"timeToSeenFromDelivered\": [\n        {\n          \"from\": \"<string>\",\n          \"to\": \"<string>\"\n        },\n        {\n          \"from\": \"<string>\",\n          \"to\": \"<string>\"\n        }\n      ],\n      \"timeToOpenFromDelivered\": [\n        {\n          \"from\": \"<string>\",\n          \"to\": \"<string>\"\n        },\n        {\n          \"from\": \"<string>\",\n          \"to\": \"<string>\"\n        }\n      ],\n      \"capabilities\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"directions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"trafficTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"senders\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"senderTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"communicationIds\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"campaignReferenceIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"networkIds\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"countryIds\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"platforms\": [\n        {\n          \"applicationId\": \"<string>\",\n          \"entityId\": \"<string>\"\n        },\n        {\n          \"applicationId\": \"<string>\",\n          \"entityId\": \"<string>\"\n        }\n      ],\n      \"applicationId\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"statusGroups\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"statuses\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"errorGroups\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"errorCodes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"metrics\": [\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4ffeabd7-b0de-49f3-b2b5-de4de224f258",
+              "name": "Data querying process is started.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics",
+                    "1",
+                    "query-aggregate-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"callbackUrl\": \"https://example.com/receive\",\n  \"request\": {\n    \"filterBy\": {\n      \"accountKeys\": [\n        \"565C2852060F94BC771F692C04C055E1\"\n      ],\n      \"includeSubaccounts\": true,\n      \"sentSince\": \"2023-04-01T00:00:00.000+0000\",\n      \"sentUntil\": \"2023-04-01T01:00:00.000+0000\",\n      \"channelCodes\": [\n        \"SMS\"\n      ],\n      \"directions\": [\n        \"OUTBOUND\"\n      ],\n      \"communicationIds\": [\n        12354646546,\n        45534466546,\n        754564654689\n      ],\n      \"campaignReferenceIds\": [\n        \"CAMPAIGNNAME-20240612-001\",\n        \"CAMPAIGNNAME-20240612-002\"\n      ],\n      \"entityId\": \"\",\n      \"statusGroups\": [\n        \"REJECTED\",\n        \"UNDELIVERABLE\"\n      ],\n      \"statuses\": [\n        \"UNDELIVERABLE_REJECTED_OPERATOR\",\n        \"REJECTED_NETWORK\",\n        \"REJECTED_SENDER\"\n      ],\n      \"errorGroups\": [\n        \"OPERATOR_ERRORS\",\n        \"USER_ERRORS\"\n      ],\n      \"errorCodes\": [\n        \"NO_ERROR\",\n        \"EC_UNKNOWN_SUBSCRIBER\",\n        \"EC_UNKNOWN_BASE_STATION\"\n      ]\n    },\n    \"aggregateBy\": [\n      \"ACCOUNT_KEY\",\n      \"HOUR\",\n      \"DIRECTION\",\n      \"STATUS\"\n    ],\n    \"metrics\": [\n      \"TOTAL_TRAFFIC_COUNT\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"B61D150B0F6596F68D88D253886432B5\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ea8419f-b4ec-4fea-a05a-5a7a6aaead99",
+              "name": "Request is malformed or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics",
+                    "1",
+                    "query-aggregate-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"callbackUrl\": \"https://example.com/receive\",\n  \"request\": {\n    \"filterBy\": {\n      \"accountKeys\": [\n        \"565C2852060F94BC771F692C04C055E1\"\n      ],\n      \"includeSubaccounts\": true,\n      \"sentSince\": \"2023-04-01T00:00:00.000+0000\",\n      \"sentUntil\": \"2023-04-01T01:00:00.000+0000\",\n      \"channelCodes\": [\n        \"SMS\"\n      ],\n      \"directions\": [\n        \"OUTBOUND\"\n      ],\n      \"communicationIds\": [\n        12354646546,\n        45534466546,\n        754564654689\n      ],\n      \"campaignReferenceIds\": [\n        \"CAMPAIGNNAME-20240612-001\",\n        \"CAMPAIGNNAME-20240612-002\"\n      ],\n      \"entityId\": \"\",\n      \"statusGroups\": [\n        \"REJECTED\",\n        \"UNDELIVERABLE\"\n      ],\n      \"statuses\": [\n        \"UNDELIVERABLE_REJECTED_OPERATOR\",\n        \"REJECTED_NETWORK\",\n        \"REJECTED_SENDER\"\n      ],\n      \"errorGroups\": [\n        \"OPERATOR_ERRORS\",\n        \"USER_ERRORS\"\n      ],\n      \"errorCodes\": [\n        \"NO_ERROR\",\n        \"EC_UNKNOWN_SUBSCRIBER\",\n        \"EC_UNKNOWN_BASE_STATION\"\n      ]\n    },\n    \"aggregateBy\": [\n      \"ACCOUNT_KEY\",\n      \"HOUR\",\n      \"DIRECTION\",\n      \"STATUS\"\n    ],\n    \"metrics\": [\n      \"TOTAL_TRAFFIC_COUNT\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E400\",\n  \"description\": \"Request cannot be processed.\",\n  \"action\": \"Check the syntax, violations and adjust the request.\",\n  \"violations\": [\n    {\n      \"property\": \"property.path\",\n      \"violation\": \"Violation message.\"\n    }\n  ],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba5e2316-df42-40ee-82a2-57dfeec9a7da",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics",
+                    "1",
+                    "query-aggregate-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"callbackUrl\": \"https://example.com/receive\",\n  \"request\": {\n    \"filterBy\": {\n      \"accountKeys\": [\n        \"565C2852060F94BC771F692C04C055E1\"\n      ],\n      \"includeSubaccounts\": true,\n      \"sentSince\": \"2023-04-01T00:00:00.000+0000\",\n      \"sentUntil\": \"2023-04-01T01:00:00.000+0000\",\n      \"channelCodes\": [\n        \"SMS\"\n      ],\n      \"directions\": [\n        \"OUTBOUND\"\n      ],\n      \"communicationIds\": [\n        12354646546,\n        45534466546,\n        754564654689\n      ],\n      \"campaignReferenceIds\": [\n        \"CAMPAIGNNAME-20240612-001\",\n        \"CAMPAIGNNAME-20240612-002\"\n      ],\n      \"entityId\": \"\",\n      \"statusGroups\": [\n        \"REJECTED\",\n        \"UNDELIVERABLE\"\n      ],\n      \"statuses\": [\n        \"UNDELIVERABLE_REJECTED_OPERATOR\",\n        \"REJECTED_NETWORK\",\n        \"REJECTED_SENDER\"\n      ],\n      \"errorGroups\": [\n        \"OPERATOR_ERRORS\",\n        \"USER_ERRORS\"\n      ],\n      \"errorCodes\": [\n        \"NO_ERROR\",\n        \"EC_UNKNOWN_SUBSCRIBER\",\n        \"EC_UNKNOWN_BASE_STATION\"\n      ]\n    },\n    \"aggregateBy\": [\n      \"ACCOUNT_KEY\",\n      \"HOUR\",\n      \"DIRECTION\",\n      \"STATUS\"\n    ],\n    \"metrics\": [\n      \"TOTAL_TRAFFIC_COUNT\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E401\",\n  \"description\": \"The request lacks valid authentication credentials for the requested resource.\",\n  \"action\": \"Check the resources and adjust authentication credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Authentication\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-authentication\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "002ab055-da0f-4204-b5b3-80aa8158147b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics",
+                    "1",
+                    "query-aggregate-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"callbackUrl\": \"https://example.com/receive\",\n  \"request\": {\n    \"filterBy\": {\n      \"accountKeys\": [\n        \"565C2852060F94BC771F692C04C055E1\"\n      ],\n      \"includeSubaccounts\": true,\n      \"sentSince\": \"2023-04-01T00:00:00.000+0000\",\n      \"sentUntil\": \"2023-04-01T01:00:00.000+0000\",\n      \"channelCodes\": [\n        \"SMS\"\n      ],\n      \"directions\": [\n        \"OUTBOUND\"\n      ],\n      \"communicationIds\": [\n        12354646546,\n        45534466546,\n        754564654689\n      ],\n      \"campaignReferenceIds\": [\n        \"CAMPAIGNNAME-20240612-001\",\n        \"CAMPAIGNNAME-20240612-002\"\n      ],\n      \"entityId\": \"\",\n      \"statusGroups\": [\n        \"REJECTED\",\n        \"UNDELIVERABLE\"\n      ],\n      \"statuses\": [\n        \"UNDELIVERABLE_REJECTED_OPERATOR\",\n        \"REJECTED_NETWORK\",\n        \"REJECTED_SENDER\"\n      ],\n      \"errorGroups\": [\n        \"OPERATOR_ERRORS\",\n        \"USER_ERRORS\"\n      ],\n      \"errorCodes\": [\n        \"NO_ERROR\",\n        \"EC_UNKNOWN_SUBSCRIBER\",\n        \"EC_UNKNOWN_BASE_STATION\"\n      ]\n    },\n    \"aggregateBy\": [\n      \"ACCOUNT_KEY\",\n      \"HOUR\",\n      \"DIRECTION\",\n      \"STATUS\"\n    ],\n    \"metrics\": [\n      \"TOTAL_TRAFFIC_COUNT\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E403\",\n  \"description\": \"Insufficient permissions to access the requested resource.\",\n  \"action\": \"Repeat the request with new or different credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Scopes\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6976846a-372e-4865-86ec-810e4296db57",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics",
+                    "1",
+                    "query-aggregate-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"callbackUrl\": \"https://example.com/receive\",\n  \"request\": {\n    \"filterBy\": {\n      \"accountKeys\": [\n        \"565C2852060F94BC771F692C04C055E1\"\n      ],\n      \"includeSubaccounts\": true,\n      \"sentSince\": \"2023-04-01T00:00:00.000+0000\",\n      \"sentUntil\": \"2023-04-01T01:00:00.000+0000\",\n      \"channelCodes\": [\n        \"SMS\"\n      ],\n      \"directions\": [\n        \"OUTBOUND\"\n      ],\n      \"communicationIds\": [\n        12354646546,\n        45534466546,\n        754564654689\n      ],\n      \"campaignReferenceIds\": [\n        \"CAMPAIGNNAME-20240612-001\",\n        \"CAMPAIGNNAME-20240612-002\"\n      ],\n      \"entityId\": \"\",\n      \"statusGroups\": [\n        \"REJECTED\",\n        \"UNDELIVERABLE\"\n      ],\n      \"statuses\": [\n        \"UNDELIVERABLE_REJECTED_OPERATOR\",\n        \"REJECTED_NETWORK\",\n        \"REJECTED_SENDER\"\n      ],\n      \"errorGroups\": [\n        \"OPERATOR_ERRORS\",\n        \"USER_ERRORS\"\n      ],\n      \"errorCodes\": [\n        \"NO_ERROR\",\n        \"EC_UNKNOWN_SUBSCRIBER\",\n        \"EC_UNKNOWN_BASE_STATION\"\n      ]\n    },\n    \"aggregateBy\": [\n      \"ACCOUNT_KEY\",\n      \"HOUR\",\n      \"DIRECTION\",\n      \"STATUS\"\n    ],\n    \"metrics\": [\n      \"TOTAL_TRAFFIC_COUNT\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E429\",\n  \"description\": \"Too many requests sent.\",\n  \"action\": \"Check request rate limit specified in the API endpoint documentation resource.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"Throttling handling errors\",\n      \"url\": \"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b8fedc8-84c4-428e-b9ed-404d2c35c019",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics",
+                    "1",
+                    "query-aggregate-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"callbackUrl\": \"https://example.com/receive\",\n  \"request\": {\n    \"filterBy\": {\n      \"accountKeys\": [\n        \"565C2852060F94BC771F692C04C055E1\"\n      ],\n      \"includeSubaccounts\": true,\n      \"sentSince\": \"2023-04-01T00:00:00.000+0000\",\n      \"sentUntil\": \"2023-04-01T01:00:00.000+0000\",\n      \"channelCodes\": [\n        \"SMS\"\n      ],\n      \"directions\": [\n        \"OUTBOUND\"\n      ],\n      \"communicationIds\": [\n        12354646546,\n        45534466546,\n        754564654689\n      ],\n      \"campaignReferenceIds\": [\n        \"CAMPAIGNNAME-20240612-001\",\n        \"CAMPAIGNNAME-20240612-002\"\n      ],\n      \"entityId\": \"\",\n      \"statusGroups\": [\n        \"REJECTED\",\n        \"UNDELIVERABLE\"\n      ],\n      \"statuses\": [\n        \"UNDELIVERABLE_REJECTED_OPERATOR\",\n        \"REJECTED_NETWORK\",\n        \"REJECTED_SENDER\"\n      ],\n      \"errorGroups\": [\n        \"OPERATOR_ERRORS\",\n        \"USER_ERRORS\"\n      ],\n      \"errorCodes\": [\n        \"NO_ERROR\",\n        \"EC_UNKNOWN_SUBSCRIBER\",\n        \"EC_UNKNOWN_BASE_STATION\"\n      ]\n    },\n    \"aggregateBy\": [\n      \"ACCOUNT_KEY\",\n      \"HOUR\",\n      \"DIRECTION\",\n      \"STATUS\"\n    ],\n    \"metrics\": [\n      \"TOTAL_TRAFFIC_COUNT\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E500\",\n  \"description\": \"Something went wrong.\",\n  \"action\": \"Contact the support.\",\n  \"violations\": [],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8c7d05cd-3ee6-4b99-b7d6-a36ebe3c541c",
+          "name": "Get status of query aggregate data request",
+          "request": {
+            "name": "Get status of query aggregate data request",
+            "description": {
+              "content": "Return the status of ongoing request, started by invoking [Query aggregated traffic data](#platform/metrics-api/query-aggregate-data).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metrics",
+                "1",
+                "requests",
+                ":requestId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0bb6ff23-b12c-462d-b2b9-ed28dcb66fd2",
+              "name": "Request status retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics",
+                    "1",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"B61D150B0F6596F68D88D253886432B5\",\n  \"status\": \"SUCCESS\",\n  \"failureMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cace09dd-b300-40df-8790-52b54f22e950",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics",
+                    "1",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E401\",\n  \"description\": \"The request lacks valid authentication credentials for the requested resource.\",\n  \"action\": \"Check the resources and adjust authentication credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Authentication\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-authentication\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b46bbf79-c379-424e-aa26-7c35cb677729",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics",
+                    "1",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E403\",\n  \"description\": \"Insufficient permissions to access the requested resource.\",\n  \"action\": \"Repeat the request with new or different credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Scopes\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5700b303-1e14-43f2-ba9a-a6e94b6c9974",
+              "name": "Request with provided id not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics",
+                    "1",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E404\",\n  \"description\": \"Not found - request URL doesn't exist on the API server or resource is not found.\",\n  \"action\": \"Check the resources and adjust your request.\",\n  \"violations\": [\n    {\n      \"property\": \"requestId\",\n      \"violation\": \"Request with id \\\"B61D150B0F6596F68D88D253886432B5\\\" not found\"\n    }\n  ],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b354726-af97-4b59-b670-905cc92856d0",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics",
+                    "1",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E429\",\n  \"description\": \"Too many requests sent.\",\n  \"action\": \"Check request rate limit specified in the API endpoint documentation resource.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"Throttling handling errors\",\n      \"url\": \"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b639d93d-3237-434a-994f-f1ed8fc2ef75",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics",
+                    "1",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E500\",\n  \"description\": \"Something went wrong.\",\n  \"action\": \"Contact the support.\",\n  \"violations\": [],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "c0c9fee4-7335-44e6-81e8-4b7a8e8352af",
+      "name": "metrics-api",
+      "description": {
+        "content": "Metrics API is a way to access aggregated traffic information. By integrating this API, you can retrieve analytics related to your communications and build your own reporting facilities.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c6678804-dda9-4619-ac98-7c05df073f96",
+          "name": "Query aggregated traffic data",
+          "request": {
+            "name": "Query aggregated traffic data",
+            "description": {
+              "content": "Start process for traffic data aggregation. The result will be posted to `callbackURL` provided in the request. The response format is described in [Receive aggregated data result](#platform/metrics-api/receive-aggregate-data-result) operation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metrics",
+                "1",
+                "query-aggregate-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"callbackUrl\": \"<string>\",\n  \"request\": {\n    \"aggregateBy\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"filterBy\": {\n      \"channelCodes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"sentSince\": \"<dateTime>\",\n      \"sentUntil\": \"<dateTime>\",\n      \"accountKeys\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"includeSubaccounts\": false,\n      \"timeToDeliver\": [\n        {\n          \"from\": \"<string>\",\n          \"to\": \"<string>\"\n        },\n        {\n          \"from\": \"<string>\",\n          \"to\": \"<string>\"\n        }\n      ],\n      \"timeToAnswer\": [\n        {\n          \"from\": \"<string>\",\n          \"to\": \"<string>\"\n        },\n        {\n          \"from\": \"<string>\",\n          \"to\": \"<string>\"\n        }\n      ],\n      \"timeToClickFromSeen\": [\n        {\n          \"from\": \"<string>\",\n          \"to\": \"<string>\"\n        },\n        {\n          \"from\": \"<string>\",\n          \"to\": \"<string>\"\n        }\n      ],\n      \"timeToClickFromDelivered\": [\n        {\n          \"from\": \"<string>\",\n          \"to\": \"<string>\"\n        },\n        {\n          \"from\": \"<string>\",\n          \"to\": \"<string>\"\n        }\n      ],\n      \"timeToSeenFromDelivered\": [\n        {\n          \"from\": \"<string>\",\n          \"to\": \"<string>\"\n        },\n        {\n          \"from\": \"<string>\",\n          \"to\": \"<string>\"\n        }\n      ],\n      \"timeToOpenFromDelivered\": [\n        {\n          \"from\": \"<string>\",\n          \"to\": \"<string>\"\n        },\n        {\n          \"from\": \"<string>\",\n          \"to\": \"<string>\"\n        }\n      ],\n      \"capabilities\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"directions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"trafficTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"senders\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"senderTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"communicationIds\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"campaignReferenceIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"networkIds\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"countryIds\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"platforms\": [\n        {\n          \"applicationId\": \"<string>\",\n          \"entityId\": \"<string>\"\n        },\n        {\n          \"applicationId\": \"<string>\",\n          \"entityId\": \"<string>\"\n        }\n      ],\n      \"applicationId\": \"<string>\",\n      \"entityId\": \"<string>\",\n      \"statusGroups\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"statuses\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"errorGroups\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"errorCodes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"metrics\": [\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5a5e5a71-704c-4600-8c2f-7c3855dc56d6",
+              "name": "Data querying process is started.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics",
+                    "1",
+                    "query-aggregate-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"callbackUrl\": \"https://example.com/receive\",\n  \"request\": {\n    \"filterBy\": {\n      \"accountKeys\": [\n        \"565C2852060F94BC771F692C04C055E1\"\n      ],\n      \"includeSubaccounts\": true,\n      \"sentSince\": \"2023-04-01T00:00:00.000+0000\",\n      \"sentUntil\": \"2023-04-01T01:00:00.000+0000\",\n      \"channelCodes\": [\n        \"SMS\"\n      ],\n      \"directions\": [\n        \"OUTBOUND\"\n      ],\n      \"communicationIds\": [\n        12354646546,\n        45534466546,\n        754564654689\n      ],\n      \"campaignReferenceIds\": [\n        \"CAMPAIGNNAME-20240612-001\",\n        \"CAMPAIGNNAME-20240612-002\"\n      ],\n      \"entityId\": \"\",\n      \"statusGroups\": [\n        \"REJECTED\",\n        \"UNDELIVERABLE\"\n      ],\n      \"statuses\": [\n        \"UNDELIVERABLE_REJECTED_OPERATOR\",\n        \"REJECTED_NETWORK\",\n        \"REJECTED_SENDER\"\n      ],\n      \"errorGroups\": [\n        \"OPERATOR_ERRORS\",\n        \"USER_ERRORS\"\n      ],\n      \"errorCodes\": [\n        \"NO_ERROR\",\n        \"EC_UNKNOWN_SUBSCRIBER\",\n        \"EC_UNKNOWN_BASE_STATION\"\n      ]\n    },\n    \"aggregateBy\": [\n      \"ACCOUNT_KEY\",\n      \"HOUR\",\n      \"DIRECTION\",\n      \"STATUS\"\n    ],\n    \"metrics\": [\n      \"TOTAL_TRAFFIC_COUNT\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"B61D150B0F6596F68D88D253886432B5\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "042f966f-b2e7-4ddc-b2f8-28c74346a9d5",
+              "name": "Request is malformed or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics",
+                    "1",
+                    "query-aggregate-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"callbackUrl\": \"https://example.com/receive\",\n  \"request\": {\n    \"filterBy\": {\n      \"accountKeys\": [\n        \"565C2852060F94BC771F692C04C055E1\"\n      ],\n      \"includeSubaccounts\": true,\n      \"sentSince\": \"2023-04-01T00:00:00.000+0000\",\n      \"sentUntil\": \"2023-04-01T01:00:00.000+0000\",\n      \"channelCodes\": [\n        \"SMS\"\n      ],\n      \"directions\": [\n        \"OUTBOUND\"\n      ],\n      \"communicationIds\": [\n        12354646546,\n        45534466546,\n        754564654689\n      ],\n      \"campaignReferenceIds\": [\n        \"CAMPAIGNNAME-20240612-001\",\n        \"CAMPAIGNNAME-20240612-002\"\n      ],\n      \"entityId\": \"\",\n      \"statusGroups\": [\n        \"REJECTED\",\n        \"UNDELIVERABLE\"\n      ],\n      \"statuses\": [\n        \"UNDELIVERABLE_REJECTED_OPERATOR\",\n        \"REJECTED_NETWORK\",\n        \"REJECTED_SENDER\"\n      ],\n      \"errorGroups\": [\n        \"OPERATOR_ERRORS\",\n        \"USER_ERRORS\"\n      ],\n      \"errorCodes\": [\n        \"NO_ERROR\",\n        \"EC_UNKNOWN_SUBSCRIBER\",\n        \"EC_UNKNOWN_BASE_STATION\"\n      ]\n    },\n    \"aggregateBy\": [\n      \"ACCOUNT_KEY\",\n      \"HOUR\",\n      \"DIRECTION\",\n      \"STATUS\"\n    ],\n    \"metrics\": [\n      \"TOTAL_TRAFFIC_COUNT\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E400\",\n  \"description\": \"Request cannot be processed.\",\n  \"action\": \"Check the syntax, violations and adjust the request.\",\n  \"violations\": [\n    {\n      \"property\": \"property.path\",\n      \"violation\": \"Violation message.\"\n    }\n  ],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "798d5222-e13d-468c-acf0-bd673d40528f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics",
+                    "1",
+                    "query-aggregate-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"callbackUrl\": \"https://example.com/receive\",\n  \"request\": {\n    \"filterBy\": {\n      \"accountKeys\": [\n        \"565C2852060F94BC771F692C04C055E1\"\n      ],\n      \"includeSubaccounts\": true,\n      \"sentSince\": \"2023-04-01T00:00:00.000+0000\",\n      \"sentUntil\": \"2023-04-01T01:00:00.000+0000\",\n      \"channelCodes\": [\n        \"SMS\"\n      ],\n      \"directions\": [\n        \"OUTBOUND\"\n      ],\n      \"communicationIds\": [\n        12354646546,\n        45534466546,\n        754564654689\n      ],\n      \"campaignReferenceIds\": [\n        \"CAMPAIGNNAME-20240612-001\",\n        \"CAMPAIGNNAME-20240612-002\"\n      ],\n      \"entityId\": \"\",\n      \"statusGroups\": [\n        \"REJECTED\",\n        \"UNDELIVERABLE\"\n      ],\n      \"statuses\": [\n        \"UNDELIVERABLE_REJECTED_OPERATOR\",\n        \"REJECTED_NETWORK\",\n        \"REJECTED_SENDER\"\n      ],\n      \"errorGroups\": [\n        \"OPERATOR_ERRORS\",\n        \"USER_ERRORS\"\n      ],\n      \"errorCodes\": [\n        \"NO_ERROR\",\n        \"EC_UNKNOWN_SUBSCRIBER\",\n        \"EC_UNKNOWN_BASE_STATION\"\n      ]\n    },\n    \"aggregateBy\": [\n      \"ACCOUNT_KEY\",\n      \"HOUR\",\n      \"DIRECTION\",\n      \"STATUS\"\n    ],\n    \"metrics\": [\n      \"TOTAL_TRAFFIC_COUNT\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E401\",\n  \"description\": \"The request lacks valid authentication credentials for the requested resource.\",\n  \"action\": \"Check the resources and adjust authentication credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Authentication\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-authentication\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f2894467-687c-4c66-8e2e-927c272984e0",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics",
+                    "1",
+                    "query-aggregate-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"callbackUrl\": \"https://example.com/receive\",\n  \"request\": {\n    \"filterBy\": {\n      \"accountKeys\": [\n        \"565C2852060F94BC771F692C04C055E1\"\n      ],\n      \"includeSubaccounts\": true,\n      \"sentSince\": \"2023-04-01T00:00:00.000+0000\",\n      \"sentUntil\": \"2023-04-01T01:00:00.000+0000\",\n      \"channelCodes\": [\n        \"SMS\"\n      ],\n      \"directions\": [\n        \"OUTBOUND\"\n      ],\n      \"communicationIds\": [\n        12354646546,\n        45534466546,\n        754564654689\n      ],\n      \"campaignReferenceIds\": [\n        \"CAMPAIGNNAME-20240612-001\",\n        \"CAMPAIGNNAME-20240612-002\"\n      ],\n      \"entityId\": \"\",\n      \"statusGroups\": [\n        \"REJECTED\",\n        \"UNDELIVERABLE\"\n      ],\n      \"statuses\": [\n        \"UNDELIVERABLE_REJECTED_OPERATOR\",\n        \"REJECTED_NETWORK\",\n        \"REJECTED_SENDER\"\n      ],\n      \"errorGroups\": [\n        \"OPERATOR_ERRORS\",\n        \"USER_ERRORS\"\n      ],\n      \"errorCodes\": [\n        \"NO_ERROR\",\n        \"EC_UNKNOWN_SUBSCRIBER\",\n        \"EC_UNKNOWN_BASE_STATION\"\n      ]\n    },\n    \"aggregateBy\": [\n      \"ACCOUNT_KEY\",\n      \"HOUR\",\n      \"DIRECTION\",\n      \"STATUS\"\n    ],\n    \"metrics\": [\n      \"TOTAL_TRAFFIC_COUNT\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E403\",\n  \"description\": \"Insufficient permissions to access the requested resource.\",\n  \"action\": \"Repeat the request with new or different credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Scopes\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4474277e-01db-4a61-995e-74e04438b2b1",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics",
+                    "1",
+                    "query-aggregate-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"callbackUrl\": \"https://example.com/receive\",\n  \"request\": {\n    \"filterBy\": {\n      \"accountKeys\": [\n        \"565C2852060F94BC771F692C04C055E1\"\n      ],\n      \"includeSubaccounts\": true,\n      \"sentSince\": \"2023-04-01T00:00:00.000+0000\",\n      \"sentUntil\": \"2023-04-01T01:00:00.000+0000\",\n      \"channelCodes\": [\n        \"SMS\"\n      ],\n      \"directions\": [\n        \"OUTBOUND\"\n      ],\n      \"communicationIds\": [\n        12354646546,\n        45534466546,\n        754564654689\n      ],\n      \"campaignReferenceIds\": [\n        \"CAMPAIGNNAME-20240612-001\",\n        \"CAMPAIGNNAME-20240612-002\"\n      ],\n      \"entityId\": \"\",\n      \"statusGroups\": [\n        \"REJECTED\",\n        \"UNDELIVERABLE\"\n      ],\n      \"statuses\": [\n        \"UNDELIVERABLE_REJECTED_OPERATOR\",\n        \"REJECTED_NETWORK\",\n        \"REJECTED_SENDER\"\n      ],\n      \"errorGroups\": [\n        \"OPERATOR_ERRORS\",\n        \"USER_ERRORS\"\n      ],\n      \"errorCodes\": [\n        \"NO_ERROR\",\n        \"EC_UNKNOWN_SUBSCRIBER\",\n        \"EC_UNKNOWN_BASE_STATION\"\n      ]\n    },\n    \"aggregateBy\": [\n      \"ACCOUNT_KEY\",\n      \"HOUR\",\n      \"DIRECTION\",\n      \"STATUS\"\n    ],\n    \"metrics\": [\n      \"TOTAL_TRAFFIC_COUNT\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E429\",\n  \"description\": \"Too many requests sent.\",\n  \"action\": \"Check request rate limit specified in the API endpoint documentation resource.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"Throttling handling errors\",\n      \"url\": \"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee4780dc-d368-46ff-981e-052f196c7749",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics",
+                    "1",
+                    "query-aggregate-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"callbackUrl\": \"https://example.com/receive\",\n  \"request\": {\n    \"filterBy\": {\n      \"accountKeys\": [\n        \"565C2852060F94BC771F692C04C055E1\"\n      ],\n      \"includeSubaccounts\": true,\n      \"sentSince\": \"2023-04-01T00:00:00.000+0000\",\n      \"sentUntil\": \"2023-04-01T01:00:00.000+0000\",\n      \"channelCodes\": [\n        \"SMS\"\n      ],\n      \"directions\": [\n        \"OUTBOUND\"\n      ],\n      \"communicationIds\": [\n        12354646546,\n        45534466546,\n        754564654689\n      ],\n      \"campaignReferenceIds\": [\n        \"CAMPAIGNNAME-20240612-001\",\n        \"CAMPAIGNNAME-20240612-002\"\n      ],\n      \"entityId\": \"\",\n      \"statusGroups\": [\n        \"REJECTED\",\n        \"UNDELIVERABLE\"\n      ],\n      \"statuses\": [\n        \"UNDELIVERABLE_REJECTED_OPERATOR\",\n        \"REJECTED_NETWORK\",\n        \"REJECTED_SENDER\"\n      ],\n      \"errorGroups\": [\n        \"OPERATOR_ERRORS\",\n        \"USER_ERRORS\"\n      ],\n      \"errorCodes\": [\n        \"NO_ERROR\",\n        \"EC_UNKNOWN_SUBSCRIBER\",\n        \"EC_UNKNOWN_BASE_STATION\"\n      ]\n    },\n    \"aggregateBy\": [\n      \"ACCOUNT_KEY\",\n      \"HOUR\",\n      \"DIRECTION\",\n      \"STATUS\"\n    ],\n    \"metrics\": [\n      \"TOTAL_TRAFFIC_COUNT\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E500\",\n  \"description\": \"Something went wrong.\",\n  \"action\": \"Contact the support.\",\n  \"violations\": [],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ced27e9a-5dc3-4e28-a0ae-3f753c82950a",
+          "name": "Get status of query aggregate data request",
+          "request": {
+            "name": "Get status of query aggregate data request",
+            "description": {
+              "content": "Return the status of ongoing request, started by invoking [Query aggregated traffic data](#platform/metrics-api/query-aggregate-data).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metrics",
+                "1",
+                "requests",
+                ":requestId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f3cb8339-018d-488a-b1ba-c61bd70a81e7",
+              "name": "Request status retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics",
+                    "1",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"B61D150B0F6596F68D88D253886432B5\",\n  \"status\": \"SUCCESS\",\n  \"failureMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2c78352-0076-4d76-86d2-4f260790273c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics",
+                    "1",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E401\",\n  \"description\": \"The request lacks valid authentication credentials for the requested resource.\",\n  \"action\": \"Check the resources and adjust authentication credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Authentication\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-authentication\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1930fe7d-5ee0-4a05-ac51-04afcd35370a",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics",
+                    "1",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E403\",\n  \"description\": \"Insufficient permissions to access the requested resource.\",\n  \"action\": \"Repeat the request with new or different credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Scopes\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "02cfdd70-c9f1-45e6-80df-15ef9d78f612",
+              "name": "Request with provided id not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics",
+                    "1",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E404\",\n  \"description\": \"Not found - request URL doesn't exist on the API server or resource is not found.\",\n  \"action\": \"Check the resources and adjust your request.\",\n  \"violations\": [\n    {\n      \"property\": \"requestId\",\n      \"violation\": \"Request with id \\\"B61D150B0F6596F68D88D253886432B5\\\" not found\"\n    }\n  ],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a34349a-e492-45d7-85ad-7657b3c1ce8a",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics",
+                    "1",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E429\",\n  \"description\": \"Too many requests sent.\",\n  \"action\": \"Check request rate limit specified in the API endpoint documentation resource.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"Throttling handling errors\",\n      \"url\": \"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c1cc451-5f68-4990-b653-baaf22c83322",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics",
+                    "1",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E500\",\n  \"description\": \"Something went wrong.\",\n  \"action\": \"Contact the support.\",\n  \"violations\": [],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c9b2c0bb-f1d9-4503-937d-a7203eb03bc4",
+    "name": "Infobip OpenAPI Specification",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI Specification that contains all public endpoints and webhooks.\n\nContact Support:\n Name: Infobip support\n Email: support@infobip.com",
+      "type": "text/plain"
+    }
+  }
+}

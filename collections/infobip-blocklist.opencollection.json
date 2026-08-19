@@ -1,0 +1,145 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "platform",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all blocklists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/platform/1/blocklists",
+            "params": [
+              {
+                "name": "sender",
+                "value": "",
+                "type": "query",
+                "description": "The sender ID for which blocklist happened."
+              },
+              {
+                "name": "destination",
+                "value": "",
+                "type": "query",
+                "description": "Blocklisted destination address."
+              },
+              {
+                "name": "channel",
+                "value": "",
+                "type": "query",
+                "description": "Channel used for sending for which blocklist happened.\n\nIf you want to check blocklist records for all channels, this field can be left out."
+              },
+              {
+                "name": "sourceType",
+                "value": "",
+                "type": "query",
+                "description": "Represents the way blocklist record was created:\n\nCUSTOM - blocklist record that was created manually\n\nMO - blocklist record automatically created once an end user unsubscribes by replying with a specific keyword (e.g.: STOP). This is applicable for the following channels: SMS, MMS.\n\nURL_OPT_OUT - blocklist record automatically created once an end user clicks an opt-out link included in the message.\n\nCAMPAIGN - blocklist record automatically created through a triggered event in the Flow (e.g., if the message was not opened in 24h, add to blocklist)."
+              },
+              {
+                "name": "accountKey",
+                "value": "",
+                "type": "query",
+                "description": "Account connected with a blocklist record. Main account has access to blocklist records of their subaccounts. Subaccounts can only access blocklist records specific to them. [API to retrieve account key](https://www.infobip.com/docs/api/platform/account-management/get-all-accounts)."
+              },
+              {
+                "name": "getAllAccountKeysBlocklists",
+                "value": "",
+                "type": "query",
+                "description": "If set to `true`, blocklist records for subaccounts will be returned as well."
+              },
+              {
+                "name": "createdDateFrom",
+                "value": "",
+                "type": "query",
+                "description": "Use with `createDateTo` to search for blocklists for a particular date range."
+              },
+              {
+                "name": "createdDateTo",
+                "value": "",
+                "type": "query",
+                "description": "Use with `createDateFrom` to search for blocklists for a particular date range."
+              },
+              {
+                "name": "campaign",
+                "value": "",
+                "type": "query",
+                "description": "ID that allows you to track, analyze, and show an aggregated overview and the performance of individual campaigns per sending channel."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Requested page number."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Requested page size."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method allows you to get all blocklist records or filter them based on specific parameters."
+        },
+        {
+          "info": {
+            "name": "Create blocklists",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/platform/1/blocklists",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method allows you to add someone to blocklist. It accepts create request with blocklists and asynchronously saves them, leaving out duplicate entries."
+        },
+        {
+          "info": {
+            "name": "Delete blocklists",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/platform/1/blocklists",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method allows you to remove someone from blocklist. It accepts delete request and asynchronously deletes all blocklists that match given properties. \n\nNote: To delete a blocklist, you must list all properties that were defined in the create request. For example, to delete the blocklist with the following properties: \n\n`{\"sender\": \"10950\", \"destination\": \"12022921990\", \"sourceType\": \"CUSTOM\", \"channel\": \"MMS\", \"createdDate\": \"2022-08-18T12:36:42.123Z\"}` \n\nThe delete request must contain all "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

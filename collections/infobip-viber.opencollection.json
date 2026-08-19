@@ -1,0 +1,580 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "channels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send Viber messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/viber/2/messages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Send text, image, video or file messages to a multiple recipients."
+        },
+        {
+          "info": {
+            "name": "Send Viber text message(s)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/viber/1/message/text",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Send one or many text message(s) possibly to multiple recipients."
+        },
+        {
+          "info": {
+            "name": "Send Viber image message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/viber/1/message/image",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Send an image message to a single recipient."
+        },
+        {
+          "info": {
+            "name": "Send Viber file message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/viber/1/message/file",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Send a file message to a single recipient."
+        },
+        {
+          "info": {
+            "name": "Send Viber video message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/viber/1/message/video",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Send a video message to a single recipient."
+        },
+        {
+          "info": {
+            "name": "Get Viber delivery reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/viber/2/reports",
+            "params": [
+              {
+                "name": "bulkId",
+                "value": "",
+                "type": "query",
+                "description": "The ID that uniquely identifies the request. Bulk ID will be received only when you send a message to more than one destination address."
+              },
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "query",
+                "description": "The ID that uniquely identifies the message sent."
+              },
+              {
+                "name": "limit",
+                "value": "1",
+                "type": "query",
+                "description": "Maximum number of delivery reports to be returned. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access reports for the last 48h."
+              },
+              {
+                "name": "entityId",
+                "value": "promotional-traffic-entity",
+                "type": "query",
+                "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "applicationId",
+                "value": "marketing-automation-application",
+                "type": "query",
+                "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "campaignReferenceId",
+                "value": "summersale",
+                "type": "query",
+                "description": "ID of a campaign that was sent in the message."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "If you are unable to receive real-time delivery reports towards your endpoint for various reasons, we offer you an API method to fetch batches of delivery reports to confirm whether specific messages have been delivered. Each request towards this endpoint will return batches of the latest delivery reports. Please note they will be returned only once."
+        },
+        {
+          "info": {
+            "name": "Get Viber message logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/viber/2/logs",
+            "params": [
+              {
+                "name": "sender",
+                "value": "",
+                "type": "query",
+                "description": "The sender ID which can be alphanumeric or numeric."
+              },
+              {
+                "name": "destination",
+                "value": "",
+                "type": "query",
+                "description": "Message destination address."
+              },
+              {
+                "name": "bulkId",
+                "value": "BULK-ID-123-xyz",
+                "type": "query",
+                "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. May contain multiple comma-separated values. Maximum length 2048 characters."
+              },
+              {
+                "name": "messageId",
+                "value": "MESSAGE-ID-123-xyz,MESSAGE-ID-124-xyz",
+                "type": "query",
+                "description": "Unique message ID for which a log is requested. May contain multiple comma-separated values. Maximum length 2048 characters."
+              },
+              {
+                "name": "generalStatus",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sentSince",
+                "value": "2020-02-22T17:42:05.390+01:00",
+                "type": "query",
+                "description": "The logs will only include messages sent after this date. Use it alongside sentUntil to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+              },
+              {
+                "name": "sentUntil",
+                "value": "2020-02-23T17:42:05.390+01:00",
+                "type": "query",
+                "description": "The logs will only include messages sent before this date. Use it alongside sentSince to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of messages to include in logs. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access logs for the last 48h."
+              },
+              {
+                "name": "entityId",
+                "value": "promotional-traffic-entity",
+                "type": "query",
+                "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "applicationId",
+                "value": "marketing-automation-application",
+                "type": "query",
+                "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "campaignReferenceId",
+                "value": "summersale",
+                "type": "query",
+                "description": "ID of a campaign that was sent in the message. May contain multiple comma-separated values."
+              },
+              {
+                "name": "useCursor",
+                "value": "",
+                "type": "query",
+                "description": "Flag used to enable cursor-based pagination. When set to true, the system will use the cursor to fetch the next set of logs."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Value which represents the current position in the data set. For the first request, this field shouldn't be defined. In subsequent requests, use the `nextCursor` value returned from the previous response to continue fetching data."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method for displaying logs for example in the user interface. Available are the logs for the last 48 hours."
+        },
+        {
+          "info": {
+            "name": "Get Viber templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/viber/1/senders/:sender/templates",
+            "params": [
+              {
+                "name": "sender",
+                "value": "",
+                "type": "path",
+                "description": "Sender id."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Current page number."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page."
+              },
+              {
+                "name": "orderBy",
+                "value": "name,ASC",
+                "type": "query",
+                "description": "Sorting criteria in the format `property,direction`. Can be ascending (ASC) or descending (DESC). Available properties: id, sender, channel, templateId, name, createdAt."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve Viber templates available for specific sender."
+        },
+        {
+          "info": {
+            "name": "Create Viber template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/viber/1/senders/:sender/templates",
+            "params": [
+              {
+                "name": "sender",
+                "value": "",
+                "type": "path",
+                "description": "Sender id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new Viber template for a given sender. Templates must be approved by Viber before they can be used for sending messages."
+        },
+        {
+          "info": {
+            "name": "Get Viber template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/viber/1/senders/:sender/templates/:templateId",
+            "params": [
+              {
+                "name": "sender",
+                "value": "",
+                "type": "path",
+                "description": "Sender id."
+              },
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path",
+                "description": "Id of existing template."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve details of a specific Viber template by its ID and associated sender."
+        },
+        {
+          "info": {
+            "name": "Delete Viber template",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/viber/1/senders/:sender/templates/:templateId",
+            "params": [
+              {
+                "name": "sender",
+                "value": "",
+                "type": "path",
+                "description": "Sender id."
+              },
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path",
+                "description": "Id of existing template."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete a specific Viber template. Deleted templates can no longer be used for sending messages."
+        },
+        {
+          "info": {
+            "name": "Send a Viber Bot message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/viber-bot/1/messages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Send one or more messages to multiple recipients."
+        },
+        {
+          "info": {
+            "name": "Get outbound Viber bot message logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/viber-bot/1/logs",
+            "params": [
+              {
+                "name": "sender",
+                "value": "",
+                "type": "query",
+                "description": "The sender ID which can be alphanumeric or numeric."
+              },
+              {
+                "name": "destination",
+                "value": "",
+                "type": "query",
+                "description": "Message destination address."
+              },
+              {
+                "name": "bulkId",
+                "value": "BULK-ID-123-xyz",
+                "type": "query",
+                "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. May contain multiple comma-separated values. Maximum length 2048 characters."
+              },
+              {
+                "name": "messageId",
+                "value": "MESSAGE-ID-123-xyz,MESSAGE-ID-124-xyz",
+                "type": "query",
+                "description": "Unique message ID for which a log is requested. May contain multiple comma-separated values. Maximum length 2048 characters."
+              },
+              {
+                "name": "generalStatus",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sentSince",
+                "value": "2020-02-22T17:42:05.390+01:00",
+                "type": "query",
+                "description": "The logs will only include messages sent after this date. Use it alongside sentUntil to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+              },
+              {
+                "name": "sentUntil",
+                "value": "2020-02-23T17:42:05.390+01:00",
+                "type": "query",
+                "description": "The logs will only include messages sent before this date. Use it alongside sentSince to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of messages to include in logs. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access logs for the last 48h."
+              },
+              {
+                "name": "entityId",
+                "value": "promotional-traffic-entity",
+                "type": "query",
+                "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "applicationId",
+                "value": "marketing-automation-application",
+                "type": "query",
+                "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "campaignReferenceId",
+                "value": "summersale",
+                "type": "query",
+                "description": "ID of a campaign that was sent in the message. May contain multiple comma-separated values."
+              },
+              {
+                "name": "useCursor",
+                "value": "",
+                "type": "query",
+                "description": "Flag used to enable cursor-based pagination. When set to true, the system will use the cursor to fetch the next set of logs."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Value which represents the current position in the data set. For the first request, this field shouldn't be defined. In subsequent requests, use the `nextCursor` value returned from the previous response to continue fetching data."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method for displaying logs for example in the user interface. Available are the logs for the last 48 hours."
+        },
+        {
+          "info": {
+            "name": "Get Viber Bot delivery reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/viber-bot/1/reports",
+            "params": [
+              {
+                "name": "bulkId",
+                "value": "",
+                "type": "query",
+                "description": "The ID that uniquely identifies the request. Bulk ID will be received only when you send a message to more than one destination address."
+              },
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "query",
+                "description": "The ID that uniquely identifies the message sent."
+              },
+              {
+                "name": "limit",
+                "value": "1",
+                "type": "query",
+                "description": "Maximum number of delivery reports to be returned. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access reports for the last 48h."
+              },
+              {
+                "name": "entityId",
+                "value": "promotional-traffic-entity",
+                "type": "query",
+                "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "applicationId",
+                "value": "marketing-automation-application",
+                "type": "query",
+                "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "campaignReferenceId",
+                "value": "summersale",
+                "type": "query",
+                "description": "ID of a campaign that was sent in the message."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "If you are unable to receive real-time delivery reports towards your endpoint for various reasons, we offer you an API method to fetch batches of delivery reports to confirm whether specific messages have been delivered. Each request towards this endpoint will return batches of the latest delivery reports. Please note they will be returned only once."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

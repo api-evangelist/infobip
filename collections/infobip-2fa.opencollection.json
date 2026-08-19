@@ -1,0 +1,506 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "platform",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all 2FA applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/2fa/2/applications",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "An application is a container for 2FA message templates. Use this method to list your applications."
+        },
+        {
+          "info": {
+            "name": "Create 2FA application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/2fa/2/applications",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Create and configure a new 2FA application."
+        },
+        {
+          "info": {
+            "name": "Get 2FA application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/2fa/2/applications/:appId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "0933F3BC087D2A617AC6DCB2EF5B8A61",
+                "type": "path",
+                "description": "ID of application for which configuration view was requested."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Get a single 2FA application to see its configuration details."
+        },
+        {
+          "info": {
+            "name": "Update 2FA application",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/2fa/2/applications/:appId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "0933F3BC087D2A617AC6DCB2EF5B8A61",
+                "type": "path",
+                "description": "ID of application that should be updated."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Change configuration options for your existing 2FA application."
+        },
+        {
+          "info": {
+            "name": "Get all 2FA message templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/2fa/2/applications/:appId/messages",
+            "params": [
+              {
+                "name": "appId",
+                "value": "0933F3BC087D2A617AC6DCB2EF5B8A61",
+                "type": "path",
+                "description": "ID of application for which requested message was created."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "List all message templates in a 2FA application."
+        },
+        {
+          "info": {
+            "name": "Create 2FA SMS or Voice message template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/2fa/2/applications/:appId/messages",
+            "params": [
+              {
+                "name": "appId",
+                "value": "0933F3BC087D2A617AC6DCB2EF5B8A61",
+                "type": "path",
+                "description": "ID of application for which requested message was created."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Once you have your [2FA application](#channels/sms/2fa/2fa-configuration/create-2fa-application), create one or more [message templates](#channels/sms/2fa/2fa-configuration/create-2fa-message-template) where your PIN will be dynamically included when you send the PIN message over SMS or Voice."
+        },
+        {
+          "info": {
+            "name": "Get 2FA message template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/2fa/2/applications/:appId/messages/:msgId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "0933F3BC087D2A617AC6DCB2EF5B8A61",
+                "type": "path",
+                "description": "ID of application for which requested message was created."
+              },
+              {
+                "name": "msgId",
+                "value": "16A8B5FE2BCD6CA716A2D780CB3F3390",
+                "type": "path",
+                "description": "Requested message ID."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Get a single 2FA message template from an application to see its configuration details."
+        },
+        {
+          "info": {
+            "name": "Update 2FA SMS or Voice message template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/2fa/2/applications/:appId/messages/:msgId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "0933F3BC087D2A617AC6DCB2EF5B8A61",
+                "type": "path",
+                "description": "ID of application for which requested message was created."
+              },
+              {
+                "name": "msgId",
+                "value": "16A8B5FE2BCD6CA716A2D780CB3F3390",
+                "type": "path",
+                "description": "Requested message ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Change configuration options for your existing 2FA application SMS or Voice message template."
+        },
+        {
+          "info": {
+            "name": "Create 2FA Email message template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/2fa/2/applications/:appId/email/messages",
+            "params": [
+              {
+                "name": "appId",
+                "value": "0933F3BC087D2A617AC6DCB2EF5B8A61",
+                "type": "path",
+                "description": "ID of application for which requested message was created."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Once you have your [2FA application](#channels/sms/create-2fa-application), create one or more [Email message templates](https://www.infobip.com/docs/email/templates) where your PIN will be dynamically included when you send the PIN message over Email."
+        },
+        {
+          "info": {
+            "name": "Update 2FA Email message template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/2fa/2/applications/:appId/email/messages/:msgId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "0933F3BC087D2A617AC6DCB2EF5B8A61",
+                "type": "path",
+                "description": "ID of application for which requested message was created."
+              },
+              {
+                "name": "msgId",
+                "value": "16A8B5FE2BCD6CA716A2D780CB3F3390",
+                "type": "path",
+                "description": "Requested message ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Change configuration options for your existing 2FA application Email message template."
+        },
+        {
+          "info": {
+            "name": "Send 2FA PIN code over SMS",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/2fa/2/pin",
+            "params": [
+              {
+                "name": "ncNeeded",
+                "value": "true",
+                "type": "query",
+                "description": "Indicates if [Number Lookup](https://www.infobip.com/docs/api/connectivity/number-lookup) is needed before sending the 2FA message. If the parameter value is true, Number Lookup will be requested before sending the SMS. If the value is false, the SMS will be sent without requesting Number Lookup. Field's default value is `true`."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Send a PIN code over SMS using a previously created [message template](#channels/sms/create-2fa-message-template)."
+        },
+        {
+          "info": {
+            "name": "Resend 2FA PIN code over SMS",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/2fa/2/pin/:pinId/resend",
+            "params": [
+              {
+                "name": "pinId",
+                "value": "0933F3BC087D2A617AC6DCB2EF5B8A61",
+                "type": "path",
+                "description": "ID of the pin code that has to be verified."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "If needed, you can resend the same (previously sent) PIN code over SMS."
+        },
+        {
+          "info": {
+            "name": "Send 2FA PIN code over Voice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/2fa/2/pin/voice",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Send a PIN code over Voice using previously created [message template](#channels/sms/create-2fa-message-template)."
+        },
+        {
+          "info": {
+            "name": "Resend 2FA PIN code over Voice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/2fa/2/pin/:pinId/resend/voice",
+            "params": [
+              {
+                "name": "pinId",
+                "value": "0933F3BC087D2A617AC6DCB2EF5B8A61",
+                "type": "path",
+                "description": "ID of the pin code that has to be verified."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "If needed, you can resend the same (previously sent) PIN code over Voice."
+        },
+        {
+          "info": {
+            "name": "Send 2FA PIN code over Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/2fa/2/pin/email",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Send a PIN code over Email using previously created [Email message template](#channels/sms/2fa/2fa-configuration/create-2fa-email-message-template)."
+        },
+        {
+          "info": {
+            "name": "Resend 2FA PIN code over Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/2fa/2/pin/:pinId/resend/email",
+            "params": [
+              {
+                "name": "pinId",
+                "value": "0933F3BC087D2A617AC6DCB2EF5B8A61",
+                "type": "path",
+                "description": "ID of the pin code that has to be verified."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "If needed, you can resend the same (previously sent) PIN code over Email."
+        },
+        {
+          "info": {
+            "name": "Verify a PIN",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/2fa/2/pin/:pinId/verify",
+            "params": [
+              {
+                "name": "pinId",
+                "value": "0933F3BC087D2A617AC6DCB2EF5B8A61",
+                "type": "path",
+                "description": "ID of the pin code that has to be verified."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Verify OTP to confirm successful phone number verification. pinId is received in the response after [sending the OTP message](#channels/sms/2fa/pin-sending-and-verification/send-2fa-pin-code-over-voice)."
+        },
+        {
+          "info": {
+            "name": "Get 2FA verification status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/2fa/2/applications/:appId/verifications",
+            "params": [
+              {
+                "name": "msisdn",
+                "value": "385717284759547",
+                "type": "query",
+                "description": "Filter by msisdn (phone number or email) for which verification status is checked."
+              },
+              {
+                "name": "verified",
+                "value": "false",
+                "type": "query",
+                "description": "Filter by verified (true or false)."
+              },
+              {
+                "name": "sent",
+                "value": "true",
+                "type": "query",
+                "description": "Filter by message sent status (true or false)."
+              },
+              {
+                "name": "appId",
+                "value": "16A8B5FE2BCD6CA716A2D780CB3F3390",
+                "type": "path",
+                "description": "ID of 2-FA application for which phone number verification status is requested."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Check if a phone number (or email) is already verified for a specific 2FA application."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

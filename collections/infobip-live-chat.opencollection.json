@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "channels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Invalidate customer session",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/livechat/1/widgets/:widgetId/sessions/:sessionId",
+            "params": [
+              {
+                "name": "widgetId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of your widget. You can obtain the identifier from the [widget configuration page](https://portal.infobip.com/apps/livechat) or from the widget installation snippet."
+              },
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of user session to be invalidated. For more information on session identifiers, see the **SID** parameter in [personalization token](https://www.infobip.com/docs/live-chat/users-and-authentication#generate-the-personalization-token-web-authentication) documentation."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method enables you to invalidate an [authenticated Live Chat web session](https://www.infobip.com/docs/live-chat/users-and-authentication#web-authentication).\n      Session invalidation is performed whenever you wish to explicitly terminate an authenticated session, for example on user log out or due to security concerns."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

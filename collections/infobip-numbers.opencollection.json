@@ -1,0 +1,2179 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "platform",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get available numbers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/numbers/1/numbers/available",
+            "params": [
+              {
+                "name": "capabilities",
+                "value": "",
+                "type": "query",
+                "description": "An array of communication channels the number is able to support."
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "The number's country code."
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "US Numbers only: US state"
+              },
+              {
+                "name": "npa",
+                "value": "",
+                "type": "query",
+                "description": "US numbers only: area code."
+              },
+              {
+                "name": "nxx",
+                "value": "",
+                "type": "query",
+                "description": "US numbers only: the 3 digits following the area code."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of records returned per page."
+              },
+              {
+                "name": "number",
+                "value": "",
+                "type": "query",
+                "description": "Searched number."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number. Use it with `limit` for paging purposes."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get all the numbers available to buy. Use the query parameters to filter the returned numbers for specific details."
+        },
+        {
+          "info": {
+            "name": "List owned numbers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/numbers/1/numbers",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of records returned per page."
+              },
+              {
+                "name": "number",
+                "value": "",
+                "type": "query",
+                "description": "Searched number."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number. Use with `limit` for paging purposes."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get all the owned numbers for this account."
+        },
+        {
+          "info": {
+            "name": "Purchase number",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/numbers/1/numbers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Using the number ID or number, this method enables you to buy a new number. For buying a US number, only the number should be provided. For all other purchases, only the numberKey must be provided."
+        },
+        {
+          "info": {
+            "name": "Get single owned number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/numbers/1/numbers/:numberKey",
+            "params": [
+              {
+                "name": "numberKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the number for which information is requested."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get information about an owned number using the unique ID of the number."
+        },
+        {
+          "info": {
+            "name": "Update owned number",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/numbers/1/numbers/:numberKey",
+            "params": [
+              {
+                "name": "numberKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID of a number."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to update the application and the entity, if required, that is linked to a number."
+        },
+        {
+          "info": {
+            "name": "Cancel number",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/numbers/1/numbers/:numberKey",
+            "params": [
+              {
+                "name": "numberKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID of a number."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method will cancel your number. Any number purchased from Infobip Numbers inventory you cancel will become available in the numbers pool for anyone to buy."
+        },
+        {
+          "info": {
+            "name": "Get all number configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/numbers/2/numbers/:numberKey/sms",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of records returned per page."
+              },
+              {
+                "name": "numberKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID of a number."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number. Use with `limit` for paging purposes."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List all configurations set up for a number."
+        },
+        {
+          "info": {
+            "name": "Create number configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/numbers/2/numbers/:numberKey/sms",
+            "params": [
+              {
+                "name": "numberKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID of a number."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new configuration for the number. The parameters used for setting up a configuration depend on the action type. Check the examples for more details."
+        },
+        {
+          "info": {
+            "name": "Update number configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/numbers/2/numbers/:numberKey/sms",
+            "params": [
+              {
+                "name": "numberKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID of a number."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update configuration details. Parameters used vary depending on the action type, the same as with the Create a new configuration method."
+        },
+        {
+          "info": {
+            "name": "Get single number configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/numbers/2/numbers/:numberKey/sms/:configurationKey",
+            "params": [
+              {
+                "name": "configurationKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID of configuration."
+              },
+              {
+                "name": "numberKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID of a number."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method fetches a single configuration details set up for the number."
+        },
+        {
+          "info": {
+            "name": "Delete number configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/numbers/2/numbers/:numberKey/sms/:configurationKey",
+            "params": [
+              {
+                "name": "configurationKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID of configuration."
+              },
+              {
+                "name": "numberKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID of a number."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method will delete the configuration. If there are no configurations, you can still retrieve any incoming message by using a Get received messages method."
+        },
+        {
+          "info": {
+            "name": "Get all number MMS configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/numbers/2/numbers/:numberKey/mms",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of records returned per page."
+              },
+              {
+                "name": "numberKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID of a number."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number. Use with `limit` for paging purposes."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List all MMS configurations set up for a number."
+        },
+        {
+          "info": {
+            "name": "Create number MMS configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/numbers/2/numbers/:numberKey/mms",
+            "params": [
+              {
+                "name": "numberKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID of a number."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new MMS configuration for the number. The parameters used for setting up a configuration depend on the action type. Check the examples for more details."
+        },
+        {
+          "info": {
+            "name": "Get number MMS configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/numbers/2/numbers/:numberKey/mms/:configurationKey",
+            "params": [
+              {
+                "name": "configurationKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID of configuration."
+              },
+              {
+                "name": "numberKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID of a number."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method fetches a single MMS configuration details set up for the number."
+        },
+        {
+          "info": {
+            "name": "Update number MMS configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/numbers/2/numbers/:numberKey/mms/:configurationKey",
+            "params": [
+              {
+                "name": "numberKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID of a number."
+              },
+              {
+                "name": "configurationKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID of configuration."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update MMS configuration details. Parameters used vary depending on the action type, the same as with the Create a new MMS configuration method."
+        },
+        {
+          "info": {
+            "name": "Delete number MMS configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/numbers/2/numbers/:numberKey/mms/:configurationKey",
+            "params": [
+              {
+                "name": "configurationKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID of configuration."
+              },
+              {
+                "name": "numberKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID of a number."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method will delete MMS configuration. If there are no configurations, you can still retrieve any incoming message by using a Get received messages method."
+        },
+        {
+          "info": {
+            "name": "Get voice setup on number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/numbers/2/numbers/:numberKey/voice",
+            "params": [
+              {
+                "name": "numberKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID of a number."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method fetches the voice setup on a number."
+        },
+        {
+          "info": {
+            "name": "Create voice setup on number",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/numbers/2/numbers/:numberKey/voice",
+            "params": [
+              {
+                "name": "numberKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID of a number."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method will create a new voice setup on a number. There can be only one voice action set for the number."
+        },
+        {
+          "info": {
+            "name": "Update voice setup on number",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/numbers/2/numbers/:numberKey/voice",
+            "params": [
+              {
+                "name": "numberKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID of a number."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method updates voice setup previously created on a number."
+        },
+        {
+          "info": {
+            "name": "Delete voice setup on number",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/numbers/2/numbers/:numberKey/voice",
+            "params": [
+              {
+                "name": "numberKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID of a number."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method removes voice setup from a number."
+        },
+        {
+          "info": {
+            "name": "Get CNAM",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/numbers/2/numbers/:numberKey/voice/cnam",
+            "params": [
+              {
+                "name": "numberKey",
+                "value": "E9FCDCA496035F08EEA5933702EDF745",
+                "type": "path",
+                "description": "Unique ID of a number."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get CNAM configuration."
+        },
+        {
+          "info": {
+            "name": "Create CNAM",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/numbers/2/numbers/:numberKey/voice/cnam",
+            "params": [
+              {
+                "name": "numberKey",
+                "value": "E9FCDCA496035F08EEA5933702EDF745",
+                "type": "path",
+                "description": "Unique ID of a number."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create CNAM configuration.\n\nThis is currently available only for United States and Canada numbers.\n"
+        },
+        {
+          "info": {
+            "name": "Update CNAM",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/numbers/2/numbers/:numberKey/voice/cnam",
+            "params": [
+              {
+                "name": "numberKey",
+                "value": "E9FCDCA496035F08EEA5933702EDF745",
+                "type": "path",
+                "description": "Unique ID of a number."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update a CNAM configuration."
+        },
+        {
+          "info": {
+            "name": "Delete CNAM",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/numbers/2/numbers/:numberKey/voice/cnam",
+            "params": [
+              {
+                "name": "numberKey",
+                "value": "E9FCDCA496035F08EEA5933702EDF745",
+                "type": "path",
+                "description": "Unique ID of a number."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete CNAM configuration."
+        },
+        {
+          "info": {
+            "name": "Get CNAM status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/numbers/2/numbers/:numberKey/voice/cnam/status",
+            "params": [
+              {
+                "name": "numberKey",
+                "value": "E9FCDCA496035F08EEA5933702EDF745",
+                "type": "path",
+                "description": "Unique ID of a number."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a CNAM configuration status."
+        },
+        {
+          "info": {
+            "name": "Validate Emergency Service Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/numbers/2/numbers/:numberKey/voice/emergency-service/validate-address",
+            "params": [
+              {
+                "name": "numberKey",
+                "value": "E9FCDCA496035F08EEA5933702EDF745",
+                "type": "path",
+                "description": "Unique ID of a number."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Validate a Emergency Service Address"
+        },
+        {
+          "info": {
+            "name": "Get Emergency Service Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/numbers/2/numbers/:numberKey/voice/emergency-service",
+            "params": [
+              {
+                "name": "numberKey",
+                "value": "E9FCDCA496035F08EEA5933702EDF745",
+                "type": "path",
+                "description": "Unique ID of a number."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a Emergency Service Address"
+        },
+        {
+          "info": {
+            "name": "Create Emergency Service Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/numbers/2/numbers/:numberKey/voice/emergency-service",
+            "params": [
+              {
+                "name": "numberKey",
+                "value": "E9FCDCA496035F08EEA5933702EDF745",
+                "type": "path",
+                "description": "Unique ID of a number."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create Emergency Service Address\n\nEmergency Service Address allows you to set any physical address in the United States as your address to be transmitted on emergency number calls.\nThis means your calls to the emergency number will route to the closest PSAP (Public Safety Answering Point) to your registered address on our system. \n\nThat address will also appear on the emergency services operator’s screen when you call.\n"
+        },
+        {
+          "info": {
+            "name": "Update Emergency Service Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/numbers/2/numbers/:numberKey/voice/emergency-service",
+            "params": [
+              {
+                "name": "numberKey",
+                "value": "E9FCDCA496035F08EEA5933702EDF745",
+                "type": "path",
+                "description": "Unique ID of a number."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update a Emergency Service Address"
+        },
+        {
+          "info": {
+            "name": "Delete Emergency Service Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/numbers/2/numbers/:numberKey/voice/emergency-service",
+            "params": [
+              {
+                "name": "numberKey",
+                "value": "E9FCDCA496035F08EEA5933702EDF745",
+                "type": "path",
+                "description": "Unique ID of a number."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete a Emergency Service Address"
+        },
+        {
+          "info": {
+            "name": "Get Emergency Service Address status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/numbers/2/numbers/:numberKey/voice/emergency-service/status",
+            "params": [
+              {
+                "name": "numberKey",
+                "value": "E9FCDCA496035F08EEA5933702EDF745",
+                "type": "path",
+                "description": "Unique ID of a number."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a Emergency Service Address status."
+        },
+        {
+          "info": {
+            "name": "Get Brands",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/number-registration/1/brands",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Filters brands to those that match the supplied ID(s)."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filters brands to those that match the supplied brand types(s)."
+              },
+              {
+                "name": "nameLike",
+                "value": "",
+                "type": "query",
+                "description": "Filters brands to those whose names contain the supplied name."
+              },
+              {
+                "name": "referenceId",
+                "value": "",
+                "type": "query",
+                "description": "Filters brands to those that match the supplied referenceId(s)."
+              },
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "query",
+                "description": "Filters brands to those whose application ID contains the supplied value."
+              },
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "query",
+                "description": "Filters brands to those whose entity ID contains the supplied value."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page you want to retrieve (0..N). The default value is 0."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page (0..2000). The default value is 20. The maximum value is 2000."
+              },
+              {
+                "name": "sort",
+                "value": "createdDate,desc",
+                "type": "query",
+                "description": "Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Sortable Properties: 'id', 'name', 'type', 'createdDate', 'lastModifiedDate'."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a page of brands, using query parameters to filter results."
+        },
+        {
+          "info": {
+            "name": "Create Brand",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/number-registration/1/brands",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a brand within the Infobip platform. This operation does not register the brand with any registrars. Registration can be done using created brand's ID with the 'Register Brand' endpoint."
+        },
+        {
+          "info": {
+            "name": "Get Brand",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/number-registration/1/brands/:brandId",
+            "params": [
+              {
+                "name": "brandId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the desired brand."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves a previously created brand by its ID."
+        },
+        {
+          "info": {
+            "name": "Update Brand",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/number-registration/1/brands/:brandId",
+            "params": [
+              {
+                "name": "brandId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the desired brand."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates a brand that has not yet been registered within the Infobip platform (response 200) or that has a successful or failed registration\n(response 202). This method will not support a brand update with pending registration status and will return a 400 Bad Request.\nAlso for successfully registered brands, updates to the legalName, type, taxId, and taxIdIssuingCountry are restricted\nand will also return a 400 Bad Request."
+        },
+        {
+          "info": {
+            "name": "Delete Brand",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/number-registration/1/brands/:brandId",
+            "params": [
+              {
+                "name": "brandId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the brand to delete."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Removes a previously created brand by its ID.\nThis operation is only supported if all associated campaigns are in a stage that allows deletion (applies to vetted and non-vetted brands).\n"
+        },
+        {
+          "info": {
+            "name": "Register Brand",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/number-registration/1/brands/:brandId/register",
+            "params": [
+              {
+                "name": "brandId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the desired brand."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Registers the brand with the given ID with all available registrars. Each registered brand incurs a cost, consult your contract for pricing details.\nWhen registering brands of type TENDLC_PUBLIC_COMPANY brands, brand authentication+ verification are automatically triggered.\nThis is only available for 10DLC Brands"
+        },
+        {
+          "info": {
+            "name": "Get Brand Registrar Statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/number-registration/1/brands/:brandId/registrar-statuses",
+            "params": [
+              {
+                "name": "brandId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the desired brand."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves status of a registered brand for each registrar."
+        },
+        {
+          "info": {
+            "name": "Request Brand Authentication+ Verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/number-registration/1/brands/:brandId/brand-auth-verification",
+            "params": [
+              {
+                "name": "brandId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the desired brand."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Request brand authentication+ verification to finalize brand registration process.\nThis operation can be executed for TENDLC_PUBLIC_COMPANY brand type only when Brand authentication is not in progress."
+        },
+        {
+          "info": {
+            "name": "Resend 2FA Email For Brand Authentication",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/number-registration/1/brands/:brandId/resend2fa",
+            "params": [
+              {
+                "name": "brandId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the desired brand."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Resend 2FA email to proceed with Brand authentication.\nThis operation can be executed for TENDLC_PUBLIC_COMPANY brand type only when Brand authentication is in progress.\nIn 2 hour time window can resend only one 2FA email."
+        },
+        {
+          "info": {
+            "name": "Submit Brand Identity Appeal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/number-registration/1/brands/:brandId/appeal",
+            "params": [
+              {
+                "name": "brandId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the desired brand."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Submit an appeal for a 10DLC brand with REJECTED registration status.\nAppeal can be submitted inside 45 calendar days after rejection happen.\nOnly one pending appeal per brand is allowed at a time.\nCharges apply only if the appeal is processed by TCR. Appeals rejected internally are not charged and can be resubmitted."
+        },
+        {
+          "info": {
+            "name": "Get Brand Appeals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/number-registration/1/brands/:brandId/appeals",
+            "params": [
+              {
+                "name": "brandId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the desired brand."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves the list of all appeals submitted for the specified brand."
+        },
+        {
+          "info": {
+            "name": "Get Brand Vets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/number-registration/1/brands/:brandId/vets",
+            "params": [
+              {
+                "name": "brandId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the desired brand."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page you want to retrieve (0..N). The default value is 0."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page (0..2000). The default value is 20. The maximum value is 2000."
+              },
+              {
+                "name": "sort",
+                "value": "vettedDate,desc",
+                "type": "query",
+                "description": "Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Sortable Properties: 'vetId', 'type', 'vettedDate', 'enhancedVettedDate'."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves all vets done for the brand with the given ID."
+        },
+        {
+          "info": {
+            "name": "Vet Brand",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/number-registration/1/brands/:brandId/vets",
+            "params": [
+              {
+                "name": "brandId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the desired brand."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Vets the brand with the given ID. Vetting a brand may only be performed once every 30 days.\nCan be created as vet type standard or enhanced.\nEach vet of a brand incurs a cost, consult your contract for pricing information."
+        },
+        {
+          "info": {
+            "name": "Get Brand Vet",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/number-registration/1/brands/:brandId/vets/:vetId",
+            "params": [
+              {
+                "name": "brandId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the desired brand."
+              },
+              {
+                "name": "vetId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the desired vet."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves brand vet done for the brand with the given ID."
+        },
+        {
+          "info": {
+            "name": "Update Brand Vet",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/number-registration/1/brands/:brandId/vets/:vetId",
+            "params": [
+              {
+                "name": "brandId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the desired brand."
+              },
+              {
+                "name": "vetId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the brand active vet."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates a brand vetting type.\nProvided vet must be current active standard vet and it may only be updated to an enhanced vet if it was performed within the last 30 days.\nAll other attempts to update a vet are considered an error."
+        },
+        {
+          "info": {
+            "name": "Import Existing Brand Vet",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/number-registration/1/brands/:brandId/vets/import",
+            "params": [
+              {
+                "name": "brandId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the desired brand."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Imports Existing Brand Vet provider"
+        },
+        {
+          "info": {
+            "name": "Get Brand Enhanced Vet Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/number-registration/1/brands/:brandId/vets/:vetId/report",
+            "params": [
+              {
+                "name": "brandId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the desired brand."
+              },
+              {
+                "name": "vetId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the desired vet."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves brand enhanced vet report by given vetId."
+        },
+        {
+          "info": {
+            "name": "Get Campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/number-registration/1/campaigns",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Filters campaigns to those that match the supplied ID(s)."
+              },
+              {
+                "name": "brandId",
+                "value": "",
+                "type": "query",
+                "description": "Filters campaigns to those that match the supplied brand ID(s)."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filters campaigns to those that match the supplied campaign type(s)."
+              },
+              {
+                "name": "nameLike",
+                "value": "",
+                "type": "query",
+                "description": "Filters campaigns to those whose names contain the supplied name."
+              },
+              {
+                "name": "referenceId",
+                "value": "",
+                "type": "query",
+                "description": "Filters campaigns to those that match the supplied referenceId(s)."
+              },
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "query",
+                "description": "Filters campaigns to those whose application ID contains the supplied value."
+              },
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "query",
+                "description": "Filters campaigns to those whose entity ID contains the supplied value."
+              },
+              {
+                "name": "stage",
+                "value": "",
+                "type": "query",
+                "description": "Filters campaigns to those that match the campaign stage(s)."
+              },
+              {
+                "name": "number",
+                "value": "",
+                "type": "query",
+                "description": "Filters campaigns to those that match the number(s)."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page you want to retrieve (0..N). The default value is 0."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page (0..2000). The default value is 20. The maximum value is 2000."
+              },
+              {
+                "name": "sort",
+                "value": "createdDate,desc",
+                "type": "query",
+                "description": "Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Sortable Properties: 'id', 'name', 'type', 'createdDate', 'lastModifiedDate'."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Gets a page of campaigns, using query parameters to filter results."
+        },
+        {
+          "info": {
+            "name": "Create Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/number-registration/1/campaigns",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a campaign within the Infobip platform. This operation does not register the campaign with any networks. Registration can be done using created campaign's ID with the 'Register Campaign' endpoint."
+        },
+        {
+          "info": {
+            "name": "Create Toll Free Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/number-registration/1/campaigns/toll-free",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a toll free campaign within the Infobip platform."
+        },
+        {
+          "info": {
+            "name": "Get Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/number-registration/1/campaigns/:campaignId",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the desired campaign."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves a previously created campaign by its ID."
+        },
+        {
+          "info": {
+            "name": "Update Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/number-registration/1/campaigns/:campaignId",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the desired campaign."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates a campaign that has not yet been registered within the Infobip platform or has been rejected by Infobip. This operation is only supported for campaigns that are in DRAFT or REJECTED stage."
+        },
+        {
+          "info": {
+            "name": "Delete Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/number-registration/1/campaigns/:campaignId",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign to delete."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Removes a previously created campaign by its ID.\nThis operation is only supported for campaigns that are in DRAFT, DEREGISTERED or REJECTED stage.\n"
+        },
+        {
+          "info": {
+            "name": "Submit Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/number-registration/1/campaigns/:campaignId/register",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the desired campaign."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Submits the campaign with the given ID for Infobip review. If a campaign gets approved by Infobip, it will get registered with carriers, and submitted for underlying connectivity provider's review. Each registered campaign incurs a cost, consult your contract for pricing information."
+        },
+        {
+          "info": {
+            "name": "Get Campaign Network Statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/number-registration/1/campaigns/:campaignId/network-statuses",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the desired campaign."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves status of a registered campaign for each network."
+        },
+        {
+          "info": {
+            "name": "Deregister Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/number-registration/1/campaigns/:campaignId/deregister",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the desired campaign."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deregisters the campaign with the given ID with all available networks."
+        },
+        {
+          "info": {
+            "name": "Update Registered Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/number-registration/1/campaigns/:campaignId/update-registration",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the desired campaign."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates a campaign that has already been registered. If the campaign registration has not been completed, attempting to update via this api will result in a 400 Bad Request. Numbers which require OSR to be updated in advance could be identified by using Numbers API's \"List owned number\" GET endpoint."
+        },
+        {
+          "info": {
+            "name": "Add Numbers to Registered Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/number-registration/1/campaigns/:campaignId/add-numbers",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the desired campaign."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Adds numbers to campaign that has already been registered. If the campaign registration has not been completed or numbers size exceeds the limit, attempting to update via this api will result in a 400 Bad Request. Numbers which require OSR to be updated in advance could be identified by using Numbers API's \"List owned number\" GET endpoint."
+        },
+        {
+          "info": {
+            "name": "Remove Numbers from Registered Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/number-registration/1/campaigns/:campaignId/remove-numbers",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the desired campaign."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Removes numbers from campaign that has already been registered. If the campaign registration has not been completed or numbers size exceeds the limit, attempting to update via this api will result in a 400 Bad Request."
+        },
+        {
+          "info": {
+            "name": "Get Campaign numbers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/number-registration/1/campaigns/:campaignId/numbers",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign for which the numbers should be fetched."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves all the numbers associated with a campaign, regardless of the stage, by its ID."
+        },
+        {
+          "info": {
+            "name": "Appeal Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/number-registration/1/campaigns/:campaignId/appeal",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the desired campaign."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Appeals a rejected 10DLC campaign within the Infobip platform. Campaigns are eligible for appeal if they were rejected within the past 3 months and can be appealed up to five times."
+        },
+        {
+          "info": {
+            "name": "Get Campaign Priorities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/number-registration/1/campaigns/priorities",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves campaign priority levels for your account(if applicable). Please contact your account manager to learn more about priorities."
+        },
+        {
+          "info": {
+            "name": "Attach Number Pool to Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/number-registration/1/campaigns/:campaignId/number-pool/attach",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the desired campaign."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Associates an existing number pool with a campaign. Number pooling is required when a campaign utilizes more than 49 numbers. This is common in high-throughput environments such as call centers. Attaching a number pool ensures proper provisioning and compliance with carrier requirements."
+        },
+        {
+          "info": {
+            "name": "Detach Number Pool from Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/number-registration/1/campaigns/:campaignId/number-pool/detach",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the desired campaign."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Detaches an existing number pool from the specified campaign. This operation is subject to validation: the campaign must have fewer than 50 assigned numbers at the time of detachment."
+        },
+        {
+          "info": {
+            "name": "Get Owned Number Pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/number-registration/1/number-pools",
+            "params": [
+              {
+                "name": "availability",
+                "value": "",
+                "type": "query",
+                "description": "Filters number pools to those that match the supplied availability."
+              },
+              {
+                "name": "registrarRecordId",
+                "value": "",
+                "type": "query",
+                "description": "Filters number pools to those that match the supplied referenceId."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page you want to retrieve (0..N). The default value is 0."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page (0..2000). The default value is 10. The maximum value is 1000."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a paginated list of number pools owned by the authenticated account."
+        },
+        {
+          "info": {
+            "name": "Upload Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/number-registration/1/documents",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Uploads a document file to the system and returns the document metadata. The uploaded document can be used for 10DLC campaign registration purposes. Documents not attached to a campaign within 7 days will be automatically deleted. Supported file types: .bmp, .dib, .docx, .gif, .htm, .html, .jpeg, .jpg, .m2a, .m4a, .m4b, .m4p, .m4r, .m4v, .mp1, .mp2, .mp3, .mp4, .mpa, .oga, .ogg, .ogm, .ogv, .ogx, .odt, .pdf, .png, .raw, .rtf, .spx, .tif, .tiff, .txt, .wav, .webm, .xml, Maximum file size: 10MB."
+        },
+        {
+          "info": {
+            "name": "Download Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/number-registration/1/documents/:documentId",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the document."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Downloads a document file by its unique identifier. Access to the document is restricted based on account ownership."
+        },
+        {
+          "info": {
+            "name": "Submit Existing Campaign for AI Review",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/number-registration/1/automatic-review/campaigns/:campaignUuid",
+            "params": [
+              {
+                "name": "campaignUuid",
+                "value": "4d3601ed-c632-4979-ae22-43854ef4ffaf",
+                "type": "path",
+                "description": "The UUID assigned to the campaign when it was created or imported into the infobip platform. This identifier is returned during campaign creation."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Submits an existing campaign for automatic AI compliance review. Returns a request UUID that can be used to fetch the review results. Contact your account manager to learn more."
+        },
+        {
+          "info": {
+            "name": "Submit Campaign Info for AI Review",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/number-registration/1/automatic-review",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Submits new campaign information for automatic AI compliance review. Returns a request UUID that can be used to fetch the review results. Contact your account manager to learn more."
+        },
+        {
+          "info": {
+            "name": "Get AI Review Results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/number-registration/1/automatic-review/:requestUuid",
+            "params": [
+              {
+                "name": "requestUuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the AI review request."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves the results of a campaign AI compliance review by its request UUID. Contact your account manager to learn more."
+        },
+        {
+          "info": {
+            "name": "Start Campaign Builder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/number-registration/1/campaign-builder",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Submits a request to build a campaign based on the provided brand and campaign information.\nReturns a request UUID that can be used to track the job status."
+        },
+        {
+          "info": {
+            "name": "Get Campaign Builder Results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/number-registration/1/campaign-builder/:requestUuid",
+            "params": [
+              {
+                "name": "requestUuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the campaign builder request."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves the results of a campaign builder by its request UUID.\nThe result structure varies based on the campaign type used when starting the builder."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

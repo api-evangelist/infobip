@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ai-hub",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query AI Assistant by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ai/1/aiassistants/:assistantId/query",
+            "params": [
+              {
+                "name": "assistantId",
+                "value": "1ad5a87f-a6cd-3cc0-58c5-317db01440fd",
+                "type": "path",
+                "description": "Unique identifier of the AI assistant to query."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Forwards a message from a user to a specific AI assistant identified by its unique ID and returns the assistant's response.<br/><br/>This endpoint performs a semantic search over an AI assistant's indexed documents based on configured guidelines. It then generates a response using the LLM connected to the assistant.<br/><br/>The \"use shared history\" feature allowing an AI assistant to utilize the agent's conversation history, is only available if used together with [Infobip AI agents](https://ww"
+        },
+        {
+          "info": {
+            "name": "Retrieve Context from AI Assistant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ai/1/aiassistants/:assistantId/retrieve-context",
+            "params": [
+              {
+                "name": "assistantId",
+                "value": "1ad5a87f-a6cd-3cc0-58c5-317db01440fd",
+                "type": "path",
+                "description": "Unique identifier of the AI assistant from which to retrieve context."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves the most relevant context chunks from an AI assistant's knowledge base for a given message.<br/><br/>This endpoint performs a semantic search over the assistant's indexed documents and returns the most relevant text segments (top k chunks). You can specify how many chunks to return and optionally enable re-ranking for more accurate results.<br/><br/>The \"use shared history\" feature allowing an AI assistant to utilize the agent's conversation history, is only available if used together "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

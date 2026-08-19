@@ -1,0 +1,190 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "channels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send a Instagram message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/instagram/1/messages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Send one or more messages to multiple recipients."
+        },
+        {
+          "info": {
+            "name": "Get Instagram delivery reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/instagram/1/reports",
+            "params": [
+              {
+                "name": "bulkId",
+                "value": "",
+                "type": "query",
+                "description": "The ID that uniquely identifies the request. Bulk ID will be received only when you send a message to more than one destination address."
+              },
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "query",
+                "description": "The ID that uniquely identifies the message sent."
+              },
+              {
+                "name": "limit",
+                "value": "1",
+                "type": "query",
+                "description": "Maximum number of delivery reports to be returned. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access reports for the last 48h."
+              },
+              {
+                "name": "entityId",
+                "value": "promotional-traffic-entity",
+                "type": "query",
+                "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "applicationId",
+                "value": "marketing-automation-application",
+                "type": "query",
+                "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "campaignReferenceId",
+                "value": "summersale",
+                "type": "query",
+                "description": "ID of a campaign that was sent in the message."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "If you are unable to receive real-time delivery reports towards your endpoint for various reasons, we offer you an API method to fetch batches of delivery reports to confirm whether specific messages have been delivered. Each request towards this endpoint will return batches of the latest delivery reports. Please note they will be returned only once."
+        },
+        {
+          "info": {
+            "name": "Get outbound Instagram message logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/instagram/1/logs",
+            "params": [
+              {
+                "name": "sender",
+                "value": "",
+                "type": "query",
+                "description": "The sender ID which can be alphanumeric or numeric."
+              },
+              {
+                "name": "destination",
+                "value": "",
+                "type": "query",
+                "description": "Message destination address."
+              },
+              {
+                "name": "bulkId",
+                "value": "BULK-ID-123-xyz",
+                "type": "query",
+                "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. May contain multiple comma-separated values. Maximum length 2048 characters."
+              },
+              {
+                "name": "messageId",
+                "value": "MESSAGE-ID-123-xyz,MESSAGE-ID-124-xyz",
+                "type": "query",
+                "description": "Unique message ID for which a log is requested. May contain multiple comma-separated values. Maximum length 2048 characters."
+              },
+              {
+                "name": "generalStatus",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sentSince",
+                "value": "2020-02-22T17:42:05.390+01:00",
+                "type": "query",
+                "description": "The logs will only include messages sent after this date. Use it alongside sentUntil to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+              },
+              {
+                "name": "sentUntil",
+                "value": "2020-02-23T17:42:05.390+01:00",
+                "type": "query",
+                "description": "The logs will only include messages sent before this date. Use it alongside sentSince to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of messages to include in logs. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access logs for the last 48h."
+              },
+              {
+                "name": "entityId",
+                "value": "promotional-traffic-entity",
+                "type": "query",
+                "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "applicationId",
+                "value": "marketing-automation-application",
+                "type": "query",
+                "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "campaignReferenceId",
+                "value": "summersale",
+                "type": "query",
+                "description": "ID of a campaign that was sent in the message. May contain multiple comma-separated values."
+              },
+              {
+                "name": "useCursor",
+                "value": "",
+                "type": "query",
+                "description": "Flag used to enable cursor-based pagination. When set to true, the system will use the cursor to fetch the next set of logs."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Value which represents the current position in the data set. For the first request, this field shouldn't be defined. In subsequent requests, use the `nextCursor` value returned from the previous response to continue fetching data."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method for displaying logs for example in the user interface. Available are the logs for the last 48 hours."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

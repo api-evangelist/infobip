@@ -1,0 +1,578 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "platform",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get catalogs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/catalogs/1/catalogs",
+            "params": [
+              {
+                "name": "ids",
+                "value": "1,2,3,4,5",
+                "type": "query",
+                "description": "Catalog IDs."
+              },
+              {
+                "name": "name",
+                "value": "Catalog name",
+                "type": "query",
+                "description": "Catalog name."
+              },
+              {
+                "name": "type",
+                "value": "blank",
+                "type": "query",
+                "description": "Catalog type."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of catalogs per page."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a list of catalogs with pagination. Query parameters are optional and can be used to narrow down the results."
+        },
+        {
+          "info": {
+            "name": "Create catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/catalogs/1/catalogs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to create a catalog."
+        },
+        {
+          "info": {
+            "name": "Get catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/catalogs/1/catalogs/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "10000",
+                "type": "path",
+                "description": "Catalog id."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a specific catalog."
+        },
+        {
+          "info": {
+            "name": "Update catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/catalogs/1/catalogs/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "10000",
+                "type": "path",
+                "description": "Catalog id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to overwrite a catalog with the data passed in the request body.\nNew values replace the existing values from the catalog. If no value is passed in the request,\nthe parameter keeps its value."
+        },
+        {
+          "info": {
+            "name": "Delete catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/catalogs/1/catalogs/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "10000",
+                "type": "path",
+                "description": "Catalog id."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to delete a catalog."
+        },
+        {
+          "info": {
+            "name": "Get fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/catalogs/1/catalogs/:catalogId/fields",
+            "params": [
+              {
+                "name": "catalogId",
+                "value": "",
+                "type": "path",
+                "description": "Catalog id."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a list of fields for a specific catalog."
+        },
+        {
+          "info": {
+            "name": "Create fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/catalogs/1/catalogs/:catalogId/fields",
+            "params": [
+              {
+                "name": "catalogId",
+                "value": "10000",
+                "type": "path",
+                "description": "Catalog id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to add catalog fields to a specific catalog.<br><br>\n<strong>NOTE</strong><br><ul><li>Maximum of <code>100</code> catalog fields are allowed.</li></ul>"
+        },
+        {
+          "info": {
+            "name": "Get field",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/catalogs/1/catalogs/:catalogId/fields/:fieldId",
+            "params": [
+              {
+                "name": "catalogId",
+                "value": "10000",
+                "type": "path",
+                "description": "Catalog id."
+              },
+              {
+                "name": "fieldId",
+                "value": "8b00a8c6-5302-4fd0-a0cc-bb090b28ac34",
+                "type": "path",
+                "description": "Field id."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a specific catalog field."
+        },
+        {
+          "info": {
+            "name": "Update field",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/catalogs/1/catalogs/:catalogId/fields/:fieldId",
+            "params": [
+              {
+                "name": "catalogId",
+                "value": "10000",
+                "type": "path",
+                "description": "Catalog id."
+              },
+              {
+                "name": "fieldId",
+                "value": "8b00a8c6-5302-4fd0-a0cc-bb090b28ac34",
+                "type": "path",
+                "description": "Field id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to update a catalog field."
+        },
+        {
+          "info": {
+            "name": "Delete field",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/catalogs/1/catalogs/:catalogId/fields/:fieldId",
+            "params": [
+              {
+                "name": "catalogId",
+                "value": "10000",
+                "type": "path",
+                "description": "Catalog id."
+              },
+              {
+                "name": "fieldId",
+                "value": "8b00a8c6-5302-4fd0-a0cc-bb090b28ac34",
+                "type": "path",
+                "description": "Field id."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to delete a field."
+        },
+        {
+          "info": {
+            "name": "Get items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/catalogs/1/catalogs/:catalogId/items",
+            "params": [
+              {
+                "name": "catalogId",
+                "value": "10000",
+                "type": "path",
+                "description": "Catalog id."
+              },
+              {
+                "name": "queryFilter",
+                "value": "( type == \"Jeans\" AND type == \"Shirt\" ) OR ( price > 10.99 AND color == \"Red\" )",
+                "type": "query",
+                "description": "Enables filtering items using [URL-encoded](https://www.w3schools.com/tags/ref_urlencode.asp) queries passed to a parameter. Wrap a catalog column name in square brackets `[]`, if the name contains UNICODE characters, e.g. `[文 本]` or a space, e.g. `[shirt type]`\n##### List of supported logical operators:\n\n<table>\n<thead>\n<th>Logical Operator</th><th>Description</th>\n</thead>\n<tr>\n<td><code>AND</code></td><td>Joins query clauses with a logical AND. Returns all items that match the conditions of both clauses.<br><b>Example:</b> <code>price > 10.99 AND color == Red</code></td>\n</tr>\n<tr>\n<td><code>OR</code></td><td>Joins query clauses with a logical OR. Returns all items that match the conditions of either clause.<br><b>Example:</b> <code>type == Jeans OR type == Shirt</code></td>\n</tr>\n</table>\n\n##### List of supported comparison operators:\n\n<table>\n<thead>\n<th>Comparison Operator</th><th>Supported Type</th><th>Description</th>\n</thead>\n<tr>\n<td>Greater than: <code>&gt;</code></td><td>integer, decimal</td><td>Matches values that are greater than a specified value.<br><b>Example:</b> <code>price &gt; 99.99</code></td>\n</tr>\n<tr>\n<td>Greater or equal: <code>&ge;</code></td><td>integer, decimal</td><td>Matches all values that are greater than or equal to a specified value.<br><b>Example:</b> <code>price &ge; 99.99</code> </td>\n</tr>\n<tr>\n<td>Less than: <code>&lt;</code></td><td>integer, decimal</td><td>Matches all values that are less than a specified value.<br><b>Example:</b> <code>price &lt; 99.99</code></td>\n</tr>\n<tr>\n<td>Less or equal: <code>&le;</code></td><td>integer, decimal</td><td>Matches all that are values less than or equal to a specified value.<br><b>Example:</b> <code>price &le; 99</code></td>\n</tr>\n<tr>\n<td>Equal: <code>==</code></td><td>integer, decimal, string, date, time, dateTime</td><td>Matches values that are equal to a specified value.<br><b>Example:</b> <code>color == <q>green</q></code></td>\n</tr>\n<tr>\n<td>Not equal: <code>!=</code></td><td>integer, decimal, string, date, time, dateTime</td><td>Matches values that are not equal to a specified value.<br><b>Example:</b> <code>color != <q>green</q></code></td>\n</tr>\n</table>\n\n##### List of supported date/time range operators:\n\n<table>\n<thead>\n<th>Date/time Range Operator</th><th>Supported Type</th><th>Description</th>\n</thead>\n<tr>\n<td><code>BETWEEN</code></td><td>date, time, dateTime</td><td>Specifies date/time range between dates.<br><b>Example:</b> <code>createdAt BETWEEN <q>2023-03-01</q> AND <q>2023-03-30</q></code></td>\n</tr>\n<tr>\n<td><code>NOT BETWEEN</code></td><td>date, time, dateTime</td><td>Specifies date/time range not between dates.<br><b>Example:</b> <code>createdAt NOT BETWEEN <q>2023-03-01</q> AND <q>2023-03-30</q></code></td>\n</tr>\n</table>\n\n##### List of supported string operators:\n\n<table>\n<thead>\n<th>String Operator&nbsp;&nbsp;&nbsp;</th><th>Supported Type</th><th>Description</th>\n</thead>\n<tr>\n<td><code>STARTS WITH</code></td><td>string</td><td>Matches all values starting with specific substring.<br><b>Example:</b> <code>name STARTS WITH <q>Bo</q></code></td>\n</tr>\n<tr>\n<td><code>ENDS WITH</code></td><td>string</td><td>Matches all values ending with specific substring.<br><b>Example:</b> <code>name ENDS WITH <q>an</q></code></td>\n</tr>\n</table>."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method  to get a list of items from a catalog with pagination. Query parameters are optional and can be used to narrow list results."
+        },
+        {
+          "info": {
+            "name": "Add items",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/catalogs/1/catalogs/:catalogId/items",
+            "params": [
+              {
+                "name": "catalogId",
+                "value": "10000",
+                "type": "path",
+                "description": "Catalog id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to add items to a specific catalog.<br><br>\n<strong>NOTE</strong><br>Response details:<ul><li>This endpoint only returns successful results</li><li>Other results are ignored</li><li>Errors are not returned</li>\n</ul><br><strong>NOTE</strong><br><ul><li>Maximum of <code>1000</code> item field values are allowed.</li></ul>"
+        },
+        {
+          "info": {
+            "name": "Update items",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/catalogs/1/catalogs/:catalogId/items",
+            "params": [
+              {
+                "name": "catalogId",
+                "value": "10000",
+                "type": "path",
+                "description": "Catalog id."
+              },
+              {
+                "name": "queryFilter",
+                "value": "( type == \"Jeans\" AND type == \"Shirt\" ) OR ( price > 10.99 AND color == \"Red\" )",
+                "type": "query",
+                "description": "Enables filtering items using [URL-encoded](https://www.w3schools.com/tags/ref_urlencode.asp) queries passed to a parameter. Wrap a catalog column name in square brackets `[]`, if the name contains UNICODE characters, e.g. `[文 本]` or a space, e.g. `[shirt type]`\n##### List of supported logical operators:\n\n<table>\n<thead>\n<th>Logical Operator</th><th>Description</th>\n</thead>\n<tr>\n<td><code>AND</code></td><td>Joins query clauses with a logical AND. Returns all items that match the conditions of both clauses.<br><b>Example:</b> <code>price > 10.99 AND color == Red</code></td>\n</tr>\n<tr>\n<td><code>OR</code></td><td>Joins query clauses with a logical OR. Returns all items that match the conditions of either clause.<br><b>Example:</b> <code>type == Jeans OR type == Shirt</code></td>\n</tr>\n</table>\n\n##### List of supported comparison operators:\n\n<table>\n<thead>\n<th>Comparison Operator</th><th>Supported Type</th><th>Description</th>\n</thead>\n<tr>\n<td>Greater than: <code>&gt;</code></td><td>integer, decimal</td><td>Matches values that are greater than a specified value.<br><b>Example:</b> <code>price &gt; 99.99</code></td>\n</tr>\n<tr>\n<td>Greater or equal: <code>&ge;</code></td><td>integer, decimal</td><td>Matches all values that are greater than or equal to a specified value.<br><b>Example:</b> <code>price &ge; 99.99</code> </td>\n</tr>\n<tr>\n<td>Less than: <code>&lt;</code></td><td>integer, decimal</td><td>Matches all values that are less than a specified value.<br><b>Example:</b> <code>price &lt; 99.99</code></td>\n</tr>\n<tr>\n<td>Less or equal: <code>&le;</code></td><td>integer, decimal</td><td>Matches all that are values less than or equal to a specified value.<br><b>Example:</b> <code>price &le; 99</code></td>\n</tr>\n<tr>\n<td>Equal: <code>==</code></td><td>integer, decimal, string, date, time, dateTime</td><td>Matches values that are equal to a specified value.<br><b>Example:</b> <code>color == <q>green</q></code></td>\n</tr>\n<tr>\n<td>Not equal: <code>!=</code></td><td>integer, decimal, string, date, time, dateTime</td><td>Matches values that are not equal to a specified value.<br><b>Example:</b> <code>color != <q>green</q></code></td>\n</tr>\n</table>\n\n##### List of supported date/time range operators:\n\n<table>\n<thead>\n<th>Date/time Range Operator</th><th>Supported Type</th><th>Description</th>\n</thead>\n<tr>\n<td><code>BETWEEN</code></td><td>date, time, dateTime</td><td>Specifies date/time range between dates.<br><b>Example:</b> <code>createdAt BETWEEN <q>2023-03-01</q> AND <q>2023-03-30</q></code></td>\n</tr>\n<tr>\n<td><code>NOT BETWEEN</code></td><td>date, time, dateTime</td><td>Specifies date/time range not between dates.<br><b>Example:</b> <code>createdAt NOT BETWEEN <q>2023-03-01</q> AND <q>2023-03-30</q></code></td>\n</tr>\n</table>\n\n##### List of supported string operators:\n\n<table>\n<thead>\n<th>String Operator&nbsp;&nbsp;&nbsp;</th><th>Supported Type</th><th>Description</th>\n</thead>\n<tr>\n<td><code>STARTS WITH</code></td><td>string</td><td>Matches all values starting with specific substring.<br><b>Example:</b> <code>name STARTS WITH <q>Bo</q></code></td>\n</tr>\n<tr>\n<td><code>ENDS WITH</code></td><td>string</td><td>Matches all values ending with specific substring.<br><b>Example:</b> <code>name ENDS WITH <q>an</q></code></td>\n</tr>\n</table>"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to update list of filtered items."
+        },
+        {
+          "info": {
+            "name": "Delete items",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/catalogs/1/catalogs/:catalogId/items",
+            "params": [
+              {
+                "name": "catalogId",
+                "value": "10000",
+                "type": "path",
+                "description": "Catalog id."
+              },
+              {
+                "name": "queryFilter",
+                "value": "( type == \"Jeans\" AND type == \"Shirt\" ) OR ( price > 10.99 AND color == \"Red\" )",
+                "type": "query",
+                "description": "Enables filtering items using [URL-encoded](https://www.w3schools.com/tags/ref_urlencode.asp) queries passed to a parameter. Wrap a catalog column name in square brackets `[]`, if the name contains UNICODE characters, e.g. `[文 本]` or a space, e.g. `[shirt type]`\n##### List of supported logical operators:\n\n<table>\n<thead>\n<th>Logical Operator</th><th>Description</th>\n</thead>\n<tr>\n<td><code>AND</code></td><td>Joins query clauses with a logical AND. Returns all items that match the conditions of both clauses.<br><b>Example:</b> <code>price > 10.99 AND color == Red</code></td>\n</tr>\n<tr>\n<td><code>OR</code></td><td>Joins query clauses with a logical OR. Returns all items that match the conditions of either clause.<br><b>Example:</b> <code>type == Jeans OR type == Shirt</code></td>\n</tr>\n</table>\n\n##### List of supported comparison operators:\n\n<table>\n<thead>\n<th>Comparison Operator</th><th>Supported Type</th><th>Description</th>\n</thead>\n<tr>\n<td>Greater than: <code>&gt;</code></td><td>integer, decimal</td><td>Matches values that are greater than a specified value.<br><b>Example:</b> <code>price &gt; 99.99</code></td>\n</tr>\n<tr>\n<td>Greater or equal: <code>&ge;</code></td><td>integer, decimal</td><td>Matches all values that are greater than or equal to a specified value.<br><b>Example:</b> <code>price &ge; 99.99</code> </td>\n</tr>\n<tr>\n<td>Less than: <code>&lt;</code></td><td>integer, decimal</td><td>Matches all values that are less than a specified value.<br><b>Example:</b> <code>price &lt; 99.99</code></td>\n</tr>\n<tr>\n<td>Less or equal: <code>&le;</code></td><td>integer, decimal</td><td>Matches all that are values less than or equal to a specified value.<br><b>Example:</b> <code>price &le; 99</code></td>\n</tr>\n<tr>\n<td>Equal: <code>==</code></td><td>integer, decimal, string, date, time, dateTime</td><td>Matches values that are equal to a specified value.<br><b>Example:</b> <code>color == <q>green</q></code></td>\n</tr>\n<tr>\n<td>Not equal: <code>!=</code></td><td>integer, decimal, string, date, time, dateTime</td><td>Matches values that are not equal to a specified value.<br><b>Example:</b> <code>color != <q>green</q></code></td>\n</tr>\n</table>\n\n##### List of supported date/time range operators:\n\n<table>\n<thead>\n<th>Date/time Range Operator</th><th>Supported Type</th><th>Description</th>\n</thead>\n<tr>\n<td><code>BETWEEN</code></td><td>date, time, dateTime</td><td>Specifies date/time range between dates.<br><b>Example:</b> <code>createdAt BETWEEN <q>2023-03-01</q> AND <q>2023-03-30</q></code></td>\n</tr>\n<tr>\n<td><code>NOT BETWEEN</code></td><td>date, time, dateTime</td><td>Specifies date/time range not between dates.<br><b>Example:</b> <code>createdAt NOT BETWEEN <q>2023-03-01</q> AND <q>2023-03-30</q></code></td>\n</tr>\n</table>\n\n##### List of supported string operators:\n\n<table>\n<thead>\n<th>String Operator&nbsp;&nbsp;&nbsp;</th><th>Supported Type</th><th>Description</th>\n</thead>\n<tr>\n<td><code>STARTS WITH</code></td><td>string</td><td>Matches all values starting with specific substring.<br><b>Example:</b> <code>name STARTS WITH <q>Bo</q></code></td>\n</tr>\n<tr>\n<td><code>ENDS WITH</code></td><td>string</td><td>Matches all values ending with specific substring.<br><b>Example:</b> <code>name ENDS WITH <q>an</q></code></td>\n</tr>\n</table>"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to delete a list of filtered items."
+        },
+        {
+          "info": {
+            "name": "Get item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/catalogs/1/catalogs/:catalogId/items/:itemId",
+            "params": [
+              {
+                "name": "catalogId",
+                "value": "10000",
+                "type": "path",
+                "description": "Catalog id."
+              },
+              {
+                "name": "itemId",
+                "value": "10000",
+                "type": "path",
+                "description": "Item id."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a specific item from a catalog."
+        },
+        {
+          "info": {
+            "name": "Update item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/catalogs/1/catalogs/:catalogId/items/:itemId",
+            "params": [
+              {
+                "name": "catalogId",
+                "value": "10000",
+                "type": "path",
+                "description": "Catalog id."
+              },
+              {
+                "name": "itemId",
+                "value": "10000",
+                "type": "path",
+                "description": "Item id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to update the field values of items."
+        },
+        {
+          "info": {
+            "name": "Delete item",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/catalogs/1/catalogs/:catalogId/items/:itemId",
+            "params": [
+              {
+                "name": "catalogId",
+                "value": "10000",
+                "type": "path",
+                "description": "Catalog id."
+              },
+              {
+                "name": "itemId",
+                "value": "10000",
+                "type": "path",
+                "description": "Item id."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to delete a specific item."
+        },
+        {
+          "info": {
+            "name": "Get item count",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/catalogs/1/catalogs/:catalogId/items/count",
+            "params": [
+              {
+                "name": "catalogId",
+                "value": "10000",
+                "type": "path",
+                "description": "Catalog id."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get the total number of items in a specific catalog."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

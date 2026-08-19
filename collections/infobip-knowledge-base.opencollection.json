@@ -1,0 +1,896 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "customer-engagement",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search knowledge base",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/knowledge-base/1/search",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Performs a full-text search across all knowledge base content using filter criteria provided in the request body. Results are paginated."
+        },
+        {
+          "info": {
+            "name": "Get articles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/knowledge-base/1/articles",
+            "params": [
+              {
+                "name": "searchExp",
+                "value": "SMS API",
+                "type": "query",
+                "description": "Search expression to filter articles by name or content."
+              },
+              {
+                "name": "tag",
+                "value": "sms",
+                "type": "query",
+                "description": "Filter articles by tag name."
+              },
+              {
+                "name": "status",
+                "value": "PUBLISHED",
+                "type": "query",
+                "description": "Filter by workflow status."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              },
+              {
+                "name": "sort",
+                "value": "lastUpdatedAt,desc",
+                "type": "query",
+                "description": "Sort criteria in format 'field,direction'. Sortable fields: name, createdAt, lastUpdatedAt, workflowStatus, lastPublishedAt."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a paginated list of articles. Optionally filter by search expression, tag, or workflow status. Results are sorted by last updated date in descending order by default."
+        },
+        {
+          "info": {
+            "name": "Create article",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/knowledge-base/1/articles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new knowledge base article with the provided content, tags, and category assignment."
+        },
+        {
+          "info": {
+            "name": "Get article",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/knowledge-base/1/articles/:articleId",
+            "params": [
+              {
+                "name": "articleId",
+                "value": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "type": "path",
+                "description": "Unique identifier of the article."
+              },
+              {
+                "name": "recordView",
+                "value": "true",
+                "type": "query",
+                "description": "Whether to record a page view for analytics."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the full details of a specific article including its content, metadata, and tags. Optionally records a view for analytics."
+        },
+        {
+          "info": {
+            "name": "Update article",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/knowledge-base/1/articles/:articleId",
+            "params": [
+              {
+                "name": "articleId",
+                "value": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "type": "path",
+                "description": "Unique identifier of the article."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates an existing knowledge base article with the provided content, tags, and category assignment."
+        },
+        {
+          "info": {
+            "name": "Delete article",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/knowledge-base/1/articles/:articleId",
+            "params": [
+              {
+                "name": "articleId",
+                "value": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "type": "path",
+                "description": "Unique identifier of the article."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Soft-deletes a knowledge base article by its identifier."
+        },
+        {
+          "info": {
+            "name": "Update article status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/knowledge-base/1/articles/:articleId/status",
+            "params": [
+              {
+                "name": "articleId",
+                "value": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "type": "path",
+                "description": "Unique identifier of the article."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Changes the workflow status of an article to PUBLISHED or DRAFT."
+        },
+        {
+          "info": {
+            "name": "Get article versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/knowledge-base/1/articles/:articleId/history",
+            "params": [
+              {
+                "name": "articleId",
+                "value": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "type": "path",
+                "description": "Unique identifier of the article."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              },
+              {
+                "name": "sort",
+                "value": "catalogRecordVersionId,desc",
+                "type": "query",
+                "description": "Sort criteria in format 'field,direction'."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a paginated list of historical versions for a specific article, sorted by version ID in descending order by default."
+        },
+        {
+          "info": {
+            "name": "Get article comments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/knowledge-base/1/articles/:articleId/comments",
+            "params": [
+              {
+                "name": "articleId",
+                "value": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "type": "path",
+                "description": "Unique identifier of the article."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all comments for a specific article."
+        },
+        {
+          "info": {
+            "name": "Create comment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/knowledge-base/1/articles/:articleId/comments",
+            "params": [
+              {
+                "name": "articleId",
+                "value": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "type": "path",
+                "description": "Unique identifier of the article."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Adds a new comment to a specific article."
+        },
+        {
+          "info": {
+            "name": "Update comment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/knowledge-base/1/articles/:articleId/comments/:commentId",
+            "params": [
+              {
+                "name": "articleId",
+                "value": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "type": "path",
+                "description": "Unique identifier of the article."
+              },
+              {
+                "name": "commentId",
+                "value": "1fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "type": "path",
+                "description": "Unique identifier of the comment."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates the content of a specific comment on an article."
+        },
+        {
+          "info": {
+            "name": "Delete comment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/knowledge-base/1/articles/:articleId/comments/:commentId",
+            "params": [
+              {
+                "name": "articleId",
+                "value": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "type": "path",
+                "description": "Unique identifier of the article."
+              },
+              {
+                "name": "commentId",
+                "value": "1fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "type": "path",
+                "description": "Unique identifier of the comment."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes a specific comment from an article. Only the comment author or users with manage permissions can delete."
+        },
+        {
+          "info": {
+            "name": "Get categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/knowledge-base/1/categories",
+            "params": [
+              {
+                "name": "name",
+                "value": "API Guides",
+                "type": "query",
+                "description": "Filter categories by name."
+              },
+              {
+                "name": "scope",
+                "value": "INTERNAL",
+                "type": "query",
+                "description": "Filter categories by content scope."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              },
+              {
+                "name": "sort",
+                "value": "name,asc",
+                "type": "query",
+                "description": "Sort criteria in format 'field,direction'."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a paginated list of categories. Optionally filter by category name or content scope. Results are sorted by name in ascending order by default."
+        },
+        {
+          "info": {
+            "name": "Get folders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/knowledge-base/1/folders",
+            "params": [
+              {
+                "name": "name",
+                "value": "Getting Started",
+                "type": "query",
+                "description": "Filter folders by name."
+              },
+              {
+                "name": "categoryId",
+                "value": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "type": "query",
+                "description": "Filter folders by category identifier."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              },
+              {
+                "name": "sort",
+                "value": "name,asc",
+                "type": "query",
+                "description": "Sort criteria in format 'field,direction'."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a paginated list of folders. Optionally filter by folder name or category. Results are sorted by name in ascending order by default."
+        },
+        {
+          "info": {
+            "name": "Get content tree categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/knowledge-base/1/content-tree/nodes/categories",
+            "params": [
+              {
+                "name": "expandedToNodeId",
+                "value": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "type": "query",
+                "description": "Expand the tree to include the path to this node."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              },
+              {
+                "name": "sort",
+                "value": "position,asc",
+                "type": "query",
+                "description": "Sort criteria in format 'field,direction'."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a paginated list of top-level category nodes in the content tree. Optionally expand the tree to a specific node. Results are sorted by position in ascending order by default."
+        },
+        {
+          "info": {
+            "name": "Create content tree node",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/knowledge-base/1/content-tree/nodes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new node in the content tree."
+        },
+        {
+          "info": {
+            "name": "Move content tree node",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/knowledge-base/1/content-tree/nodes/:nodeId/move",
+            "params": [
+              {
+                "name": "nodeId",
+                "value": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "type": "path",
+                "description": "Unique identifier of the node to move."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Moves a content tree node to a new position relative to a target node."
+        },
+        {
+          "info": {
+            "name": "Get content tree node",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/knowledge-base/1/content-tree/nodes/:nodeId",
+            "params": [
+              {
+                "name": "nodeId",
+                "value": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "type": "path",
+                "description": "Unique identifier of the tree node."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the direct children of a specific content tree node."
+        },
+        {
+          "info": {
+            "name": "Update content tree node",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/knowledge-base/1/content-tree/nodes/:nodeId",
+            "params": [
+              {
+                "name": "nodeId",
+                "value": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "type": "path",
+                "description": "Unique identifier of the tree node."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates an existing content tree node."
+        },
+        {
+          "info": {
+            "name": "Delete content tree node",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/knowledge-base/1/content-tree/nodes/:nodeId",
+            "params": [
+              {
+                "name": "nodeId",
+                "value": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "type": "path",
+                "description": "Unique identifier of the tree node."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes a content tree node and its children."
+        },
+        {
+          "info": {
+            "name": "Get tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/knowledge-base/1/tags",
+            "params": [
+              {
+                "name": "name",
+                "value": "sms",
+                "type": "query",
+                "description": "Filter tags by name."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              },
+              {
+                "name": "sort",
+                "value": "lastUpdatedAt,desc",
+                "type": "query",
+                "description": "Sort criteria in format 'field,direction'. Sortable fields: name, createdAt, lastUpdatedAt, referencesCount."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a paginated list of tags. Optionally filter by tag name. Results are sorted by last updated date in descending order by default."
+        },
+        {
+          "info": {
+            "name": "Create tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/knowledge-base/1/tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new tag with the given name. Tag name must not contain comma characters."
+        },
+        {
+          "info": {
+            "name": "Get tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/knowledge-base/1/tags/:tagId",
+            "params": [
+              {
+                "name": "tagId",
+                "value": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "type": "path",
+                "description": "Unique identifier of the tag."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the details of a specific tag by its identifier."
+        },
+        {
+          "info": {
+            "name": "Update tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/knowledge-base/1/tags/:tagId",
+            "params": [
+              {
+                "name": "tagId",
+                "value": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "type": "path",
+                "description": "Unique identifier of the tag."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Renames an existing tag."
+        },
+        {
+          "info": {
+            "name": "Get attachment details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/knowledge-base/1/attachments/:attachmentId",
+            "params": [
+              {
+                "name": "attachmentId",
+                "value": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "type": "path",
+                "description": "Unique identifier of the attachment."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the details of a specific attachment including its metadata and download URL."
+        },
+        {
+          "info": {
+            "name": "Delete attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/knowledge-base/1/attachments/:attachmentId",
+            "params": [
+              {
+                "name": "attachmentId",
+                "value": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "type": "path",
+                "description": "Unique identifier of the attachment."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes an attachment by its identifier."
+        },
+        {
+          "info": {
+            "name": "Get attachment linked article",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/knowledge-base/1/attachments/:attachmentId/linked-article",
+            "params": [
+              {
+                "name": "attachmentId",
+                "value": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "type": "path",
+                "description": "Unique identifier of the attachment."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the article that is linked to a specific attachment."
+        },
+        {
+          "info": {
+            "name": "Upload attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/knowledge-base/1/attachments",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Uploads a file as a new knowledge base attachment. The file is validated and stored."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,2511 @@
+{
+  "item": [
+    {
+      "id": "7a2af481-9e93-434b-a211-419c26a3247e",
+      "name": "platform",
+      "description": {
+        "content": "Modular tools to scale and automate your business.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2065c174-fd5b-40e0-913f-3b603bc3a0ca",
+          "name": "Get sending strategies",
+          "request": {
+            "name": "Get sending strategies",
+            "description": {
+              "content": "Get sending strategies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "provisioning",
+                "2",
+                "sending-strategies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sendingStrategyId",
+                  "value": "<string>",
+                  "description": "Id of created Sending Strategy."
+                },
+                {
+                  "disabled": false,
+                  "key": "applicationId",
+                  "value": "<string>",
+                  "description": "Application Id of created Sending Strategy. For more details, see the [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+                },
+                {
+                  "disabled": false,
+                  "key": "entityId",
+                  "value": "<string>",
+                  "description": "Entity Id of created Sending Strategy. For more details, see the [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Requested page number."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "100",
+                  "description": "Requested page size."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "95f1548b-438e-4cc7-900f-a62e8184392e",
+              "name": "OK.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sendingStrategyId",
+                      "value": "78D8394AC3EG0460B4CF0E723FC31B49"
+                    },
+                    {
+                      "key": "applicationId",
+                      "value": "test-application-1"
+                    },
+                    {
+                      "key": "entityId",
+                      "value": "test-entity-1"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"sendingStrategyId\": \"78D8394AC3EG0460B4CF0E723FC31B49\",\n      \"platform\": {\n        \"entityId\": \"test-entity-1\",\n        \"applicationId\": \"test-application-1\"\n      },\n      \"channel\": \"MMS\",\n      \"destinationCountryCode\": \"US\",\n      \"useStickySender\": false,\n      \"useGeolocatedSender\": true,\n      \"priorities\": [\n        {\n          \"senderType\": \"VIRTUAL_LONG_NUMBER\",\n          \"priority\": 1\n        },\n        {\n          \"senderType\": \"TOLL_FREE_NUMBER\",\n          \"priority\": 2\n        }\n      ]\n    },\n    {\n      \"sendingStrategyId\": \"3B9D1EACAB7FBDRN4EE03592BFCD6BE1\",\n      \"platform\": {\n        \"entityId\": \"test-entity-2\",\n        \"applicationId\": \"test-application-2\"\n      },\n      \"useStickySender\": false,\n      \"useGeolocatedSender\": false\n    },\n    {\n      \"sendingStrategyId\": \"712D1EACAB7FDORN4EE035954FCD6BOO\",\n      \"platform\": {\n        \"entityId\": \"test-entity-2\",\n        \"applicationId\": \"test-application-3\"\n      },\n      \"useStickySender\": true,\n      \"useGeolocatedSender\": false\n    }\n  ],\n  \"paging\": {\n    \"page\": 0,\n    \"size\": 10,\n    \"totalPages\": 1,\n    \"totalResults\": 3\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7fd4d4e-eaad-475e-bca6-beb46268b0bf",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sendingStrategyId",
+                      "value": "78D8394AC3EG0460B4CF0E723FC31B49"
+                    },
+                    {
+                      "key": "applicationId",
+                      "value": "test-application-1"
+                    },
+                    {
+                      "key": "entityId",
+                      "value": "test-entity-1"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E401\",\n  \"description\": \"The request lacks valid authentication credentials for the requested resource.\",\n  \"action\": \"Check the resources and adjust authentication credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Authentication\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-authentication\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0264885e-5b75-4810-8a31-2ddf1ad10c2b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sendingStrategyId",
+                      "value": "78D8394AC3EG0460B4CF0E723FC31B49"
+                    },
+                    {
+                      "key": "applicationId",
+                      "value": "test-application-1"
+                    },
+                    {
+                      "key": "entityId",
+                      "value": "test-entity-1"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E403\",\n  \"description\": \"Insufficient permissions to access the requested resource.\",\n  \"action\": \"Repeat the request with new or different credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Scopes\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b65753e-7539-4d46-9659-ba7b12c66545",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sendingStrategyId",
+                      "value": "78D8394AC3EG0460B4CF0E723FC31B49"
+                    },
+                    {
+                      "key": "applicationId",
+                      "value": "test-application-1"
+                    },
+                    {
+                      "key": "entityId",
+                      "value": "test-entity-1"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E429\",\n  \"description\": \"Too many requests sent.\",\n  \"action\": \"Check request rate limit specified in the API endpoint documentation resource.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"Throttling handling errors\",\n      \"url\": \"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73b3afb5-a515-4698-addd-13909116d264",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sendingStrategyId",
+                      "value": "78D8394AC3EG0460B4CF0E723FC31B49"
+                    },
+                    {
+                      "key": "applicationId",
+                      "value": "test-application-1"
+                    },
+                    {
+                      "key": "entityId",
+                      "value": "test-entity-1"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E500\",\n  \"description\": \"Something went wrong.\",\n  \"action\": \"Contact the support.\",\n  \"violations\": [],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "32b85e8e-641f-4ca8-9778-d7b7c494b7c8",
+          "name": "Create sending strategy",
+          "request": {
+            "name": "Create sending strategy",
+            "description": {
+              "content": "Create sending strategy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "provisioning",
+                "2",
+                "sending-strategies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"platform\": {\n    \"entityId\": \"<string>\",\n    \"applicationId\": \"<string>\"\n  },\n  \"channel\": \"<string>\",\n  \"destinationCountryCode\": \"<string>\",\n  \"useStickySender\": false,\n  \"useGeolocatedSender\": false,\n  \"priorities\": [\n    {\n      \"priority\": \"<integer>\",\n      \"senderType\": \"<string>\"\n    },\n    {\n      \"priority\": \"<integer>\",\n      \"senderType\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "acc62805-02eb-4012-a576-ce6f9179147e",
+              "name": "Created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"platform\": {\n    \"applicationId\": \"default\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sendingStrategyId\": \"78D8394AC3EG0460B4CF0E723FC31B49\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e1b0cb03-e2ee-4643-ae9c-f60d951bf53b",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"platform\": {\n    \"applicationId\": \"default\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E400\",\n  \"description\": \"Request cannot be processed.\",\n  \"action\": \"Check the syntax, violations and adjust the request.\",\n  \"violations\": [\n    {\n      \"property\": \"property.path\",\n      \"violation\": \"Violation message.\"\n    }\n  ],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c5614c6-de32-4820-9f00-d8b4178798b5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"platform\": {\n    \"applicationId\": \"default\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E401\",\n  \"description\": \"The request lacks valid authentication credentials for the requested resource.\",\n  \"action\": \"Check the resources and adjust authentication credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Authentication\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-authentication\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47f8b77e-0a14-40e5-8ea9-af4763f0293e",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"platform\": {\n    \"applicationId\": \"default\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E403\",\n  \"description\": \"Insufficient permissions to access the requested resource.\",\n  \"action\": \"Repeat the request with new or different credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Scopes\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c19db99d-e71d-437e-8ec8-e561dd499194",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"platform\": {\n    \"applicationId\": \"default\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E429\",\n  \"description\": \"Too many requests sent.\",\n  \"action\": \"Check request rate limit specified in the API endpoint documentation resource.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"Throttling handling errors\",\n      \"url\": \"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3cd4db9e-5863-4f7b-9065-09349ee830ea",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"platform\": {\n    \"applicationId\": \"default\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E500\",\n  \"description\": \"Something went wrong.\",\n  \"action\": \"Contact the support.\",\n  \"violations\": [],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f6c24132-143e-4184-8cc5-80a0c0ae7eb8",
+          "name": "Delete sending strategy by sending strategy id",
+          "request": {
+            "name": "Delete sending strategy by sending strategy id",
+            "description": {
+              "content": "Delete sending strategy by sending strategy id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "provisioning",
+                "2",
+                "sending-strategies",
+                ":sendingStrategyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sendingStrategyId",
+                  "description": "(Required) Id of the Sending Strategy."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9bfddfa2-b265-4f17-bb91-62dbfe2994db",
+              "name": "No content.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies",
+                    ":sendingStrategyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sendingStrategyId",
+                      "description": "(Required) Id of the Sending Strategy."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e9584fe4-378f-4356-b608-5a4e3b6ae0a3",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies",
+                    ":sendingStrategyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sendingStrategyId",
+                      "description": "(Required) Id of the Sending Strategy."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E400\",\n  \"description\": \"Request cannot be processed.\",\n  \"action\": \"Check the syntax, violations and adjust the request.\",\n  \"violations\": [\n    {\n      \"property\": \"property.path\",\n      \"violation\": \"Violation message.\"\n    }\n  ],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3db53d91-cef4-4b86-83b0-6a835700e685",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies",
+                    ":sendingStrategyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sendingStrategyId",
+                      "description": "(Required) Id of the Sending Strategy."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E401\",\n  \"description\": \"The request lacks valid authentication credentials for the requested resource.\",\n  \"action\": \"Check the resources and adjust authentication credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Authentication\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-authentication\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26228c92-a7ed-4a1c-a451-b3532a0c04c7",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies",
+                    ":sendingStrategyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sendingStrategyId",
+                      "description": "(Required) Id of the Sending Strategy."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E403\",\n  \"description\": \"Insufficient permissions to access the requested resource.\",\n  \"action\": \"Repeat the request with new or different credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Scopes\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44ec4928-bcf3-454b-a467-c97531df4c76",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies",
+                    ":sendingStrategyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sendingStrategyId",
+                      "description": "(Required) Id of the Sending Strategy."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"action\": \"string\",\n  \"description\": \"string\",\n  \"errorCode\": \"string\",\n  \"resources\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"string\",\n      \"violation\": \"string\"\n    },\n    {\n      \"property\": \"string\",\n      \"violation\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97c0d835-3fb8-40b0-8a40-fd61e3bc82e4",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies",
+                    ":sendingStrategyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sendingStrategyId",
+                      "description": "(Required) Id of the Sending Strategy."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E429\",\n  \"description\": \"Too many requests sent.\",\n  \"action\": \"Check request rate limit specified in the API endpoint documentation resource.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"Throttling handling errors\",\n      \"url\": \"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "776822ab-275f-4816-8231-163fab254be6",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies",
+                    ":sendingStrategyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sendingStrategyId",
+                      "description": "(Required) Id of the Sending Strategy."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E500\",\n  \"description\": \"Something went wrong.\",\n  \"action\": \"Contact the support.\",\n  \"violations\": [],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "d5ac6402-9fd0-4279-b6da-702636def905",
+      "name": "sending-strategy",
+      "description": {
+        "content": "Sending Strategy represents one type of configuration for your sending resources. This configuration in its simplest form allows you to set manipulation for your senders on a country level for a specific channel (SMS/MMS) on an Entity or Application-Entity level (read more about Entity and Application [here](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)). Sending Strategies have additional functionalities on top of sender manipulations, like Sticky sender (same sender used for all messaging towards the same destination) and Geolocated sender (sender picked based on the local area code of the customer receiving the message). More about Sending Strategy Management, available features, and future development can be read [here](https://www.infobip.com/docs/cpaas-x/sending-strategy-management).\n\nSending Strategy types:\n* __Application-level Sending Strategy (also called the Default Sending Strategy)__\n  * A strategy that distributes sending across the pool of senders that are automatically fetched based on the definition you specified in [Resources Associations](https://www.infobip.com/docs/cpaas-x/resources#resource-association).\n* __Entity/Application-level Sending Strategy__\n  * A strategy used for client-specific setup. You can define different rules, features, and limitations for each client of yours.\n* __Additional features__\n  * Geolocated Sender - by turning on this feature, traffic will be sent from one of the defined senders that have the same local area code as the customer receiving the message. Customers are more likely to positively react to a message if it comes from a number from their local state. Note: Geolocated sender can be used for terminating messages in North America only.\n  * Sticky Sender - by turning on this feature, when a customer receives a message from one of the defined senders then the same sender will be used for all further messages sent to that customer. Customers are more likely to positively react to a message if it comes from a consistent number connected with some brand/company. \n  * Note: A geolocated sender and a Sticky sender can be used in combination.\n  * Sender Type Priority - enables you to define the priority of your senders in case you have more than one sender for a destination country.\n  * Coming soon:\n    * Default Sender - enables you to define a sender that would be used in case a message does not pass with your Entity-specific sender/s. This can be defined per each Entity differently or can be defined as a default sender on the Application level.\n\nNote: When the \"from\" field (sender) is defined along with application and/or entity in the sending API call, it overrides the Sending Strategy configuration and sender manipulations will not apply\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "88eab082-1095-4855-b212-cd15d2a64143",
+          "name": "Get sending strategies",
+          "request": {
+            "name": "Get sending strategies",
+            "description": {
+              "content": "Get sending strategies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "provisioning",
+                "2",
+                "sending-strategies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sendingStrategyId",
+                  "value": "<string>",
+                  "description": "Id of created Sending Strategy."
+                },
+                {
+                  "disabled": false,
+                  "key": "applicationId",
+                  "value": "<string>",
+                  "description": "Application Id of created Sending Strategy. For more details, see the [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+                },
+                {
+                  "disabled": false,
+                  "key": "entityId",
+                  "value": "<string>",
+                  "description": "Entity Id of created Sending Strategy. For more details, see the [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Requested page number."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "100",
+                  "description": "Requested page size."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1557d02d-1c25-45bd-90bd-0267315d5ae6",
+              "name": "OK.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sendingStrategyId",
+                      "value": "78D8394AC3EG0460B4CF0E723FC31B49"
+                    },
+                    {
+                      "key": "applicationId",
+                      "value": "test-application-1"
+                    },
+                    {
+                      "key": "entityId",
+                      "value": "test-entity-1"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"sendingStrategyId\": \"78D8394AC3EG0460B4CF0E723FC31B49\",\n      \"platform\": {\n        \"entityId\": \"test-entity-1\",\n        \"applicationId\": \"test-application-1\"\n      },\n      \"channel\": \"MMS\",\n      \"destinationCountryCode\": \"US\",\n      \"useStickySender\": false,\n      \"useGeolocatedSender\": true,\n      \"priorities\": [\n        {\n          \"senderType\": \"VIRTUAL_LONG_NUMBER\",\n          \"priority\": 1\n        },\n        {\n          \"senderType\": \"TOLL_FREE_NUMBER\",\n          \"priority\": 2\n        }\n      ]\n    },\n    {\n      \"sendingStrategyId\": \"3B9D1EACAB7FBDRN4EE03592BFCD6BE1\",\n      \"platform\": {\n        \"entityId\": \"test-entity-2\",\n        \"applicationId\": \"test-application-2\"\n      },\n      \"useStickySender\": false,\n      \"useGeolocatedSender\": false\n    },\n    {\n      \"sendingStrategyId\": \"712D1EACAB7FDORN4EE035954FCD6BOO\",\n      \"platform\": {\n        \"entityId\": \"test-entity-2\",\n        \"applicationId\": \"test-application-3\"\n      },\n      \"useStickySender\": true,\n      \"useGeolocatedSender\": false\n    }\n  ],\n  \"paging\": {\n    \"page\": 0,\n    \"size\": 10,\n    \"totalPages\": 1,\n    \"totalResults\": 3\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8705609-fdd1-42cb-9926-c009343d6dcb",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sendingStrategyId",
+                      "value": "78D8394AC3EG0460B4CF0E723FC31B49"
+                    },
+                    {
+                      "key": "applicationId",
+                      "value": "test-application-1"
+                    },
+                    {
+                      "key": "entityId",
+                      "value": "test-entity-1"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E401\",\n  \"description\": \"The request lacks valid authentication credentials for the requested resource.\",\n  \"action\": \"Check the resources and adjust authentication credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Authentication\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-authentication\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1952b1b3-e7fe-468a-aed2-4308f169a5dd",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sendingStrategyId",
+                      "value": "78D8394AC3EG0460B4CF0E723FC31B49"
+                    },
+                    {
+                      "key": "applicationId",
+                      "value": "test-application-1"
+                    },
+                    {
+                      "key": "entityId",
+                      "value": "test-entity-1"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E403\",\n  \"description\": \"Insufficient permissions to access the requested resource.\",\n  \"action\": \"Repeat the request with new or different credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Scopes\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb0c01b8-bc63-4e41-99d2-4b27b142b3e9",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sendingStrategyId",
+                      "value": "78D8394AC3EG0460B4CF0E723FC31B49"
+                    },
+                    {
+                      "key": "applicationId",
+                      "value": "test-application-1"
+                    },
+                    {
+                      "key": "entityId",
+                      "value": "test-entity-1"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E429\",\n  \"description\": \"Too many requests sent.\",\n  \"action\": \"Check request rate limit specified in the API endpoint documentation resource.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"Throttling handling errors\",\n      \"url\": \"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c94a05ea-d7ad-4b9b-a12b-66a1a9fd8a78",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sendingStrategyId",
+                      "value": "78D8394AC3EG0460B4CF0E723FC31B49"
+                    },
+                    {
+                      "key": "applicationId",
+                      "value": "test-application-1"
+                    },
+                    {
+                      "key": "entityId",
+                      "value": "test-entity-1"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E500\",\n  \"description\": \"Something went wrong.\",\n  \"action\": \"Contact the support.\",\n  \"violations\": [],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df2829e6-920f-4d74-99d9-d8cf99253980",
+          "name": "Create sending strategy",
+          "request": {
+            "name": "Create sending strategy",
+            "description": {
+              "content": "Create sending strategy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "provisioning",
+                "2",
+                "sending-strategies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"platform\": {\n    \"entityId\": \"<string>\",\n    \"applicationId\": \"<string>\"\n  },\n  \"channel\": \"<string>\",\n  \"destinationCountryCode\": \"<string>\",\n  \"useStickySender\": false,\n  \"useGeolocatedSender\": false,\n  \"priorities\": [\n    {\n      \"priority\": \"<integer>\",\n      \"senderType\": \"<string>\"\n    },\n    {\n      \"priority\": \"<integer>\",\n      \"senderType\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e802e4f0-fcbf-49b4-97f1-d6b583cb897b",
+              "name": "Created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"platform\": {\n    \"applicationId\": \"default\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sendingStrategyId\": \"78D8394AC3EG0460B4CF0E723FC31B49\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "000fe33b-4030-435b-b10b-f965cba85ef4",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"platform\": {\n    \"applicationId\": \"default\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E400\",\n  \"description\": \"Request cannot be processed.\",\n  \"action\": \"Check the syntax, violations and adjust the request.\",\n  \"violations\": [\n    {\n      \"property\": \"property.path\",\n      \"violation\": \"Violation message.\"\n    }\n  ],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f73d51c-fddb-43f2-82fd-619cbaee2bf5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"platform\": {\n    \"applicationId\": \"default\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E401\",\n  \"description\": \"The request lacks valid authentication credentials for the requested resource.\",\n  \"action\": \"Check the resources and adjust authentication credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Authentication\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-authentication\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3cdcd67d-29a8-4c13-9f52-d3f2545081f9",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"platform\": {\n    \"applicationId\": \"default\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E403\",\n  \"description\": \"Insufficient permissions to access the requested resource.\",\n  \"action\": \"Repeat the request with new or different credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Scopes\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f98b51f-4e98-4ee6-8f00-3e644c8e1bb5",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"platform\": {\n    \"applicationId\": \"default\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E429\",\n  \"description\": \"Too many requests sent.\",\n  \"action\": \"Check request rate limit specified in the API endpoint documentation resource.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"Throttling handling errors\",\n      \"url\": \"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c31098f-bd66-40b0-8ff4-bd204abdf05a",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"platform\": {\n    \"applicationId\": \"default\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E500\",\n  \"description\": \"Something went wrong.\",\n  \"action\": \"Contact the support.\",\n  \"violations\": [],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c74d2efd-db28-47aa-af8e-b6c31f0c10ea",
+          "name": "Delete sending strategy by sending strategy id",
+          "request": {
+            "name": "Delete sending strategy by sending strategy id",
+            "description": {
+              "content": "Delete sending strategy by sending strategy id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "provisioning",
+                "2",
+                "sending-strategies",
+                ":sendingStrategyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sendingStrategyId",
+                  "description": "(Required) Id of the Sending Strategy."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f95b1b29-15d6-4a47-8223-2c06c9a01028",
+              "name": "No content.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies",
+                    ":sendingStrategyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sendingStrategyId",
+                      "description": "(Required) Id of the Sending Strategy."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2678e295-7c5c-41f5-b4e5-9cc8ea2bf7b5",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies",
+                    ":sendingStrategyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sendingStrategyId",
+                      "description": "(Required) Id of the Sending Strategy."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E400\",\n  \"description\": \"Request cannot be processed.\",\n  \"action\": \"Check the syntax, violations and adjust the request.\",\n  \"violations\": [\n    {\n      \"property\": \"property.path\",\n      \"violation\": \"Violation message.\"\n    }\n  ],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e43d3b8-a309-4e6b-83a0-a7d6432741e3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies",
+                    ":sendingStrategyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sendingStrategyId",
+                      "description": "(Required) Id of the Sending Strategy."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E401\",\n  \"description\": \"The request lacks valid authentication credentials for the requested resource.\",\n  \"action\": \"Check the resources and adjust authentication credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Authentication\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-authentication\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df3d111c-7c9a-4b8b-8cfe-33ea9525fd11",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies",
+                    ":sendingStrategyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sendingStrategyId",
+                      "description": "(Required) Id of the Sending Strategy."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E403\",\n  \"description\": \"Insufficient permissions to access the requested resource.\",\n  \"action\": \"Repeat the request with new or different credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Scopes\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32f4e241-df83-4597-9d21-e83aee49e38e",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies",
+                    ":sendingStrategyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sendingStrategyId",
+                      "description": "(Required) Id of the Sending Strategy."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"action\": \"string\",\n  \"description\": \"string\",\n  \"errorCode\": \"string\",\n  \"resources\": [\n    {\n      \"name\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"violations\": [\n    {\n      \"property\": \"string\",\n      \"violation\": \"string\"\n    },\n    {\n      \"property\": \"string\",\n      \"violation\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "02314d52-200e-4eae-aba8-09f9399047ca",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies",
+                    ":sendingStrategyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sendingStrategyId",
+                      "description": "(Required) Id of the Sending Strategy."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E429\",\n  \"description\": \"Too many requests sent.\",\n  \"action\": \"Check request rate limit specified in the API endpoint documentation resource.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"Throttling handling errors\",\n      \"url\": \"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b24eb56a-c13f-44db-af1a-cf643d13c58f",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning",
+                    "2",
+                    "sending-strategies",
+                    ":sendingStrategyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sendingStrategyId",
+                      "description": "(Required) Id of the Sending Strategy."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E500\",\n  \"description\": \"Something went wrong.\",\n  \"action\": \"Contact the support.\",\n  \"violations\": [],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ec603dee-ba8a-4b06-8cd0-e5d9a95bf1ef",
+    "name": "Infobip OpenAPI Specification",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI Specification that contains all public endpoints and webhooks.\n\nContact Support:\n Name: Infobip support\n Email: support@infobip.com",
+      "type": "text/plain"
+    }
+  }
+}

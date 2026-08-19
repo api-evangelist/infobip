@@ -1,0 +1,906 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "channels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send SMS message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/sms/3/messages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "With this API method, you can do anything from sending a basic message to one person, all the way to sending customized messages to thousands of recipients in one go. It comes with a range of useful features like transliteration, scheduling, and tracking in a unified way.\\\nIf utilizing Message Delivery Reports webhook, please consult the documentation provided at [Receive outbound SMS message reports](#channels/sms/receive-outbound-sms-message-report-v3).\\\nThis endpoint is the successor of [Send"
+        },
+        {
+          "info": {
+            "name": "Send SMS message over query parameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/sms/3/text/query",
+            "params": [
+              {
+                "name": "bulkId",
+                "value": "",
+                "type": "query",
+                "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request."
+              },
+              {
+                "name": "from",
+                "value": "InfoSMS",
+                "type": "query",
+                "description": "The sender ID which can be alphanumeric or numeric (e.g., `CompanyName`)."
+              },
+              {
+                "name": "to",
+                "value": "41793026727,41793026834",
+                "type": "query",
+                "description": "List of message recipients."
+              },
+              {
+                "name": "text",
+                "value": "Message text",
+                "type": "query",
+                "description": "Content of the message being sent."
+              },
+              {
+                "name": "flash",
+                "value": "true",
+                "type": "query",
+                "description": "Sends a [flash SMS](https://www.infobip.com/docs/sms/message-types#flash-sms) if set to true."
+              },
+              {
+                "name": "transliteration",
+                "value": "TURKISH",
+                "type": "query",
+                "description": "Conversion of a message text from one script to another."
+              },
+              {
+                "name": "languageCode",
+                "value": "TR",
+                "type": "query",
+                "description": "Code for language character set of a message content."
+              },
+              {
+                "name": "intermediateReport",
+                "value": "true",
+                "type": "query",
+                "description": "Use a [real-time intermediate delivery report](#channels/sms/receive-outbound-sms-message-report-v3) that will be sent on your callback server."
+              },
+              {
+                "name": "notifyUrl",
+                "value": "https://www.example.com",
+                "type": "query",
+                "description": "The URL on your call back server on to which a delivery report will be sent."
+              },
+              {
+                "name": "notifyContentType",
+                "value": "application/json",
+                "type": "query",
+                "description": "Preferred delivery report content type, `application/json` or `application/xml`."
+              },
+              {
+                "name": "callbackData",
+                "value": "callbackData",
+                "type": "query",
+                "description": "Additional data that can be used for identifying, managing, or monitoring a message. Data included here will also be automatically included in the message [Delivery Report](#channels/sms/get-outbound-sms-message-delivery-reports-v3). The maximum value is 4000 characters."
+              },
+              {
+                "name": "validityPeriod",
+                "value": "720",
+                "type": "query",
+                "description": "The message validity period in minutes. When the period expires, it will not be allowed for the message to be sent. Validity period longer than 48h is not supported. Any bigger value will automatically default back to `2880`."
+              },
+              {
+                "name": "sendAt",
+                "value": "",
+                "type": "query",
+                "description": "Date and time when the message is to be sent. Used for [scheduled SMS](#channels/sms/get-scheduled-sms-messages). Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`. Must be sooner than 180 days from now."
+              },
+              {
+                "name": "includeSmsCountInResponse",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to return smsCount in the response. Default is false. smsCount is the total count of SMS submitted in the request. SMS messages have a character limit and messages longer than that limit will be split into multiple SMS and reflected in the total count of SMS submitted. "
+              },
+              {
+                "name": "trackingUrl",
+                "value": "",
+                "type": "query",
+                "description": "The URL of your callback server on to which the Click report will be sent."
+              },
+              {
+                "name": "trackingType",
+                "value": "Custom tracking type",
+                "type": "query",
+                "description": "Sets a custom conversion type naming convention, e.g. ONE_TIME_PIN, SOCIAL_INVITES, etc."
+              },
+              {
+                "name": "indiaDltContentTemplateId",
+                "value": "1111111111111111111",
+                "type": "query",
+                "description": "The ID of your registered DLT (Distributed Ledger Technology) content template."
+              },
+              {
+                "name": "indiaDltPrincipalEntityId",
+                "value": "1111111111111111112",
+                "type": "query",
+                "description": "Your DLT (Distributed Ledger Technology) entity id."
+              },
+              {
+                "name": "indiaDltTelemarketerId",
+                "value": "111111111111",
+                "type": "query",
+                "description": "Your assigned Telemarketer ID. (required for Aggregators)"
+              },
+              {
+                "name": "turkeyIysBrandCode",
+                "value": "",
+                "type": "query",
+                "description": "Brand code is an ID of the company based on a company VAT number. If not provided in request, default value is used from your Infobip account."
+              },
+              {
+                "name": "turkeyIysRecipientType",
+                "value": "",
+                "type": "query",
+                "description": "Recipient Type must be TACIR or BIREYSEL"
+              },
+              {
+                "name": "southKoreaResellerCode",
+                "value": "",
+                "type": "query",
+                "description": "Reseller identification code: 9-digit registration number in the business registration certificate for South Korea. Resellers should submit this when sending."
+              },
+              {
+                "name": "southKoreaTitle",
+                "value": "",
+                "type": "query",
+                "description": "Title of the message."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "All message parameters of the message can be defined in the query string. Use this method only if [Send SMS message](#channels/sms/send-sms-messages) is not an option for your use case!<br>**Note:** Make sure that special characters are properly encoded. Use a [URL encoding reference](https://www.w3schools.com/tags/ref_urlencode.asp) as a guide. This endpoint is the successor of [Send SMS message over query parameters](#channels/sms/send-sms-message-over-query-parameters)."
+        },
+        {
+          "info": {
+            "name": "Send SMS message over query parameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/sms/1/text/query",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "query",
+                "description": "Username for authentication."
+              },
+              {
+                "name": "password",
+                "value": "",
+                "type": "query",
+                "description": "Password for authentication."
+              },
+              {
+                "name": "bulkId",
+                "value": "",
+                "type": "query",
+                "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. Anything above 100 characters passed in the request will be clipped during processing and returned in response, reports and logs."
+              },
+              {
+                "name": "from",
+                "value": "InfoSMS",
+                "type": "query",
+                "description": "The sender ID which can be alphanumeric or numeric (e.g., `CompanyName`)."
+              },
+              {
+                "name": "to",
+                "value": "41793026727,41793026834",
+                "type": "query",
+                "description": "List of message recipients."
+              },
+              {
+                "name": "text",
+                "value": "Message text",
+                "type": "query",
+                "description": "Content of the message being sent."
+              },
+              {
+                "name": "flash",
+                "value": "true",
+                "type": "query",
+                "description": "Sends a [flash SMS](https://www.infobip.com/docs/sms/message-types#flash-sms) if set to true."
+              },
+              {
+                "name": "transliteration",
+                "value": "TURKISH",
+                "type": "query",
+                "description": "Conversion of a message text from one script to another."
+              },
+              {
+                "name": "languageCode",
+                "value": "TR",
+                "type": "query",
+                "description": "Code for language character set of a message content."
+              },
+              {
+                "name": "intermediateReport",
+                "value": "true",
+                "type": "query",
+                "description": "Use a [real-time intermediate delivery report](#channels/sms/receive-outbound-sms-message-report) that will be sent on your callback server."
+              },
+              {
+                "name": "notifyUrl",
+                "value": "https://www.example.com",
+                "type": "query",
+                "description": "The URL on your call back server on to which a delivery report will be sent."
+              },
+              {
+                "name": "notifyContentType",
+                "value": "application/json",
+                "type": "query",
+                "description": "Preferred delivery report content type, `application/json` or `application/xml`."
+              },
+              {
+                "name": "callbackData",
+                "value": "callbackData",
+                "type": "query",
+                "description": "Additional data that can be used for identifying, managing, or monitoring a message. Data included here will also be automatically included in the message [Delivery Report](#channels/sms/get-outbound-sms-message-delivery-reports). The maximum value is 4000 characters."
+              },
+              {
+                "name": "validityPeriod",
+                "value": "720",
+                "type": "query",
+                "description": "The message validity period in minutes. When the period expires, it will not be allowed for the message to be sent. Validity period longer than 48h is not supported. Any bigger value will automatically default back to `2880`."
+              },
+              {
+                "name": "sendAt",
+                "value": "",
+                "type": "query",
+                "description": "Date and time when the message is to be sent. Used for [scheduled SMS](#channels/sms/get-scheduled-sms-messages). Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`. Must be sooner than 180 days from now."
+              },
+              {
+                "name": "track",
+                "value": "URL",
+                "type": "query",
+                "description": "Sets the conversion element to be tracked. Possible values: `SMS` and `URL`. For more details on SMS Conversion, see: [Track Conversion](https://www.infobip.com/docs/sms/api#track-conversion)."
+              },
+              {
+                "name": "processKey",
+                "value": "",
+                "type": "query",
+                "description": "The process key which  uniquely identifies conversion tracking."
+              },
+              {
+                "name": "trackingType",
+                "value": "Custom tracking type",
+                "type": "query",
+                "description": "Sets a custom conversion type naming convention, e.g. ONE_TIME_PIN, SOCIAL_INVITES, etc."
+              },
+              {
+                "name": "indiaDltContentTemplateId",
+                "value": "1111111111111111111",
+                "type": "query",
+                "description": "The ID of your registered DLT (Distributed Ledger Technology) content template."
+              },
+              {
+                "name": "indiaDltPrincipalEntityId",
+                "value": "1111111111111111112",
+                "type": "query",
+                "description": "Your DLT (Distributed Ledger Technology) entity id."
+              },
+              {
+                "name": "indiaDltTelemarketerId",
+                "value": "111111111111",
+                "type": "query",
+                "description": "Your assigned Telemarketer ID. (required for Aggregators)"
+              },
+              {
+                "name": "turkeyIysBrandCode",
+                "value": "",
+                "type": "query",
+                "description": "Brand code is an ID of the company based on a company VAT number. If not provided in request, default value is used from your Infobip account."
+              },
+              {
+                "name": "turkeyIysRecipientType",
+                "value": "",
+                "type": "query",
+                "description": "Recipient Type must be TACIR or BIREYSEL"
+              },
+              {
+                "name": "southKoreaResellerCode",
+                "value": "",
+                "type": "query",
+                "description": "Reseller identification code: 9-digit registration number in the business registration certificate for South Korea. Resellers should submit this when sending."
+              }
+            ]
+          },
+          "docs": "All message parameters of the message can be defined in the query string. Use this method only if [Send SMS message](#channels/sms/send-sms-message) is not an option for your use case!<br>**Note:** Make sure that special characters and user credentials are properly encoded. Use a [URL encoding reference](https://www.w3schools.com/tags/ref_urlencode.asp) as a guide."
+        },
+        {
+          "info": {
+            "name": "Preview SMS message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/sms/1/preview",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Avoid unpleasant surprises and check how different message configurations will affect your message text, number of characters and message parts."
+        },
+        {
+          "info": {
+            "name": "Send SMS message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/sms/2/text/advanced",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this endpoint to send an SMS and set up a rich set of features, such as batch sending with a single API request, scheduling, URL tracking, language and transliteration configuration, etc. The API response will not contain the final delivery status, use [Delivery Reports](https://www.infobip.com/docs/api/channels/sms/sms-messaging/logs-and-status-reports/receive-outbound-sms-message-report) instead.\\\nIn light of improved features, this endpoint has been superseded. Please visit [Send SMS mess"
+        },
+        {
+          "info": {
+            "name": "Send binary SMS message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/sms/2/binary/advanced",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Send single or multiple binary messages to one or more destination address. The API response will not contain the final delivery status, use [Delivery Reports](https://www.infobip.com/docs/api/channels/sms/sms-messaging/logs-and-status-reports/receive-outbound-sms-message-report) instead.\\\nIn light of improved features, this endpoint has been superseded. Please visit [Send SMS message](#channels/sms/send-sms-messages) for the next version."
+        },
+        {
+          "info": {
+            "name": "Get scheduled SMS messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/sms/1/bulks",
+            "params": [
+              {
+                "name": "bulkId",
+                "value": "BULK-ID-123-xyz",
+                "type": "query",
+                "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "See all [scheduled messages](https://www.infobip.com/docs/sms/sms-over-api#schedule-sms) and their scheduled date and time. To schedule a message, use the `sendAt` field when [sending a message](#channels/sms/sms-messaging/outbound-sms/send-sms-messages)."
+        },
+        {
+          "info": {
+            "name": "Reschedule SMS messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/sms/1/bulks",
+            "params": [
+              {
+                "name": "bulkId",
+                "value": "BULK-ID-123-xyz",
+                "type": "query",
+                "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Change the date and time of already [scheduled messages](https://www.infobip.com/docs/sms/sms-over-api#schedule-sms). To schedule a message, use the `sendAt` field when [sending a message](#channels/sms/sms-messaging/outbound-sms/send-sms-messages)."
+        },
+        {
+          "info": {
+            "name": "Get scheduled SMS messages status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/sms/1/bulks/status",
+            "params": [
+              {
+                "name": "bulkId",
+                "value": "BULK-ID-123-xyz",
+                "type": "query",
+                "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "See the status of [scheduled messages](https://www.infobip.com/docs/sms/sms-over-api#schedule-sms). To schedule a message, use the `sendAt` field when [sending a message](#channels/sms/sms-messaging/outbound-sms/send-sms-messages)."
+        },
+        {
+          "info": {
+            "name": "Update scheduled SMS messages status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/sms/1/bulks/status",
+            "params": [
+              {
+                "name": "bulkId",
+                "value": "BULK-ID-123-xyz",
+                "type": "query",
+                "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Change the status or completely cancel sending of [scheduled messages](https://www.infobip.com/docs/sms/sms-over-api#schedule-sms). To schedule a message, use the `sendAt` field when [sending a message](#channels/sms/sms-messaging/outbound-sms/send-sms-messages)."
+        },
+        {
+          "info": {
+            "name": "Confirm conversion",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ct/1/log/end/:messageId",
+            "params": [
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "path",
+                "description": "ID of a converted message."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Use this endpoint to inform the Infobip platform about the successful conversion on your side. Infobip will use this information to monitor SMS performance and provide you with better service. To enable Conversion Tracking, set up the “tracking” object to “SMS” when [sending a message](https://www.infobip.com/docs/api/channels/sms/sms-messaging/outbound-sms) over HTTP API.\nFor more information, see: [Tracking Conversion](https://www.infobip.com/docs/sms/api#track-conversion)."
+        },
+        {
+          "info": {
+            "name": "Get inbound SMS messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/sms/1/inbox/reports",
+            "params": [
+              {
+                "name": "limit",
+                "value": "2",
+                "type": "query",
+                "description": "Maximum number of messages to be returned in a response. If not set, the latest 50 records are returned. Maximum limit value is `1000` and you can only access messages for the last 48h."
+              },
+              {
+                "name": "applicationId",
+                "value": "marketing-automation-application",
+                "type": "query",
+                "description": "Application id that the message is linked to. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "entityId",
+                "value": "promotional-traffic-entity",
+                "type": "query",
+                "description": "Entity id that the message is linked to. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "campaignReferenceId",
+                "value": "summersale",
+                "type": "query",
+                "description": "ID of a campaign that was sent in the message."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "If you are unable to receive incoming SMS to the endpoint of your choice in real-time, you can use this API call to fetch messages. Each request will return a batch of received messages, only once. The API request will only return new messages that arrived since the last API request. To use this method, you’d need to:<ol><li><a href=\"https://www.infobip.com/docs/api/platform/numbers/phone-numbers/purchase-number\">Buy a number</a> capable of receiving SMS traffic.</li><li>Specify a forwarding end"
+        },
+        {
+          "info": {
+            "name": "Get outbound SMS message delivery reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/sms/3/reports",
+            "params": [
+              {
+                "name": "bulkId",
+                "value": "",
+                "type": "query",
+                "description": "The ID that uniquely identifies the request. Bulk ID will be received only when you send a message to more than one destination address."
+              },
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "query",
+                "description": "The ID that uniquely identifies the message sent."
+              },
+              {
+                "name": "limit",
+                "value": "1",
+                "type": "query",
+                "description": "Maximum number of delivery reports to be returned. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access reports for the last 48h."
+              },
+              {
+                "name": "entityId",
+                "value": "promotional-traffic-entity",
+                "type": "query",
+                "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "applicationId",
+                "value": "marketing-automation-application",
+                "type": "query",
+                "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "campaignReferenceId",
+                "value": "summersale",
+                "type": "query",
+                "description": "ID of a campaign that was sent in the message."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "If you are unable to receive real-time message delivery reports towards your endpoint for various reasons, we offer you an API method to fetch batches of message reports to confirm whether specific messages have been delivered. Each request towards this endpoint returns batches of the latest message reports. The API returns each report only once. If the message status changes again after retrieval, the endpoint returns a new report for the updated status on the next request."
+        },
+        {
+          "info": {
+            "name": "Get outbound SMS message logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/sms/3/logs",
+            "params": [
+              {
+                "name": "mcc",
+                "value": "",
+                "type": "query",
+                "description": "Mobile Country Code."
+              },
+              {
+                "name": "mnc",
+                "value": "",
+                "type": "query",
+                "description": "Mobile Network Code. Mobile Country Code is required if this property is used."
+              },
+              {
+                "name": "sender",
+                "value": "",
+                "type": "query",
+                "description": "The sender ID which can be alphanumeric or numeric."
+              },
+              {
+                "name": "destination",
+                "value": "",
+                "type": "query",
+                "description": "Message destination address."
+              },
+              {
+                "name": "bulkId",
+                "value": "BULK-ID-123-xyz",
+                "type": "query",
+                "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. May contain multiple comma-separated values. Maximum length 2048 characters."
+              },
+              {
+                "name": "messageId",
+                "value": "MESSAGE-ID-123-xyz,MESSAGE-ID-124-xyz",
+                "type": "query",
+                "description": "Unique message ID for which a log is requested. May contain multiple comma-separated values. Maximum length 2048 characters."
+              },
+              {
+                "name": "generalStatus",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sentSince",
+                "value": "2020-02-22T17:42:05.390+01:00",
+                "type": "query",
+                "description": "The logs will only include messages sent after this date. Use it alongside sentUntil to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+              },
+              {
+                "name": "sentUntil",
+                "value": "2020-02-23T17:42:05.390+01:00",
+                "type": "query",
+                "description": "The logs will only include messages sent before this date. Use it alongside sentSince to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of messages to include in logs. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access logs for the last 48h."
+              },
+              {
+                "name": "entityId",
+                "value": "promotional-traffic-entity",
+                "type": "query",
+                "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "applicationId",
+                "value": "marketing-automation-application",
+                "type": "query",
+                "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "campaignReferenceId",
+                "value": "summersale",
+                "type": "query",
+                "description": "ID of a campaign that was sent in the message. May contain multiple comma-separated values."
+              },
+              {
+                "name": "useCursor",
+                "value": "",
+                "type": "query",
+                "description": "Flag used to enable cursor-based pagination. When set to true, the system will use the cursor to fetch the next set of logs."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Value which represents the current position in the data set. For the first request, this field shouldn't be defined. In subsequent requests, use the `nextCursor` value returned from the previous response to continue fetching data."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to obtain the logs associated with outbound messages. The available logs are limited to those generated in the last 48 hours, and you can retrieve a maximum of only 1000 logs per call. See [message delivery reports](#channels/sms/get-outbound-sms-message-delivery-reports-v3) if your use case is to verify message delivery."
+        },
+        {
+          "info": {
+            "name": "Get outbound SMS message delivery reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/sms/1/reports",
+            "params": [
+              {
+                "name": "bulkId",
+                "value": "",
+                "type": "query",
+                "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request."
+              },
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "query",
+                "description": "Unique message ID for which a report is requested."
+              },
+              {
+                "name": "limit",
+                "value": "2",
+                "type": "query",
+                "description": "Maximum number of delivery reports to be returned. If not set, the latest 50 records are returned. Maximum limit value is `1000` and you can only access reports for the last 48h."
+              },
+              {
+                "name": "applicationId",
+                "value": "marketing-automation-application",
+                "type": "query",
+                "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "entityId",
+                "value": "promotional-traffic-entity",
+                "type": "query",
+                "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "campaignReferenceId",
+                "value": "summersale",
+                "type": "query",
+                "description": "ID of a campaign that was sent in the message."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "If you are for any reason unable to receive real-time delivery reports on your endpoint, you can use this API method to learn if and when the message has been delivered to the recipient. Each request will return a batch of delivery reports - only once. The following API request will return only new reports that arrived since the last API request in the last 48 hours."
+        },
+        {
+          "info": {
+            "name": "Get outbound SMS message logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/sms/1/logs",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The sender ID which can be alphanumeric or numeric."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Message destination address."
+              },
+              {
+                "name": "bulkId",
+                "value": "BULK-ID-123-xyz",
+                "type": "query",
+                "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. May contain multiple comma-separated values. Maximum length 2048 characters."
+              },
+              {
+                "name": "messageId",
+                "value": "MESSAGE-ID-123-xyz,MESSAGE-ID-124-xyz",
+                "type": "query",
+                "description": "Unique message ID for which a log is requested. May contain multiple comma-separated values. Maximum length 2048 characters."
+              },
+              {
+                "name": "generalStatus",
+                "value": "",
+                "type": "query",
+                "description": "Sent [message status](https://www.infobip.com/docs/essentials/response-status-and-error-codes#api-status-codes)."
+              },
+              {
+                "name": "sentSince",
+                "value": "2015-02-22T17:42:05.390+0100",
+                "type": "query",
+                "description": "The logs will only include messages sent after this date. Use it alongside `sentUntil` to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`."
+              },
+              {
+                "name": "sentUntil",
+                "value": "2015-02-22T19:42:05.390+0100",
+                "type": "query",
+                "description": "The logs will only include messages sent before this date. Use it alongside `sentSince` to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of messages to include in logs. If not set, the latest 50 records are returned. Maximum limit value is `1000` and you can only access logs for the last 48h."
+              },
+              {
+                "name": "mcc",
+                "value": "",
+                "type": "query",
+                "description": "Mobile Country Code."
+              },
+              {
+                "name": "mnc",
+                "value": "",
+                "type": "query",
+                "description": "Mobile Network Code. Mobile Country Code is required if this property is used. "
+              },
+              {
+                "name": "applicationId",
+                "value": "marketing-automation-application",
+                "type": "query",
+                "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "entityId",
+                "value": "promotional-traffic-entity",
+                "type": "query",
+                "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "campaignReferenceId",
+                "value": "summersale",
+                "type": "query",
+                "description": "ID of a campaign that was sent in the message. May contain multiple comma-separated values."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method for displaying logs for example in the user interface. Available are the logs for the last 48 hours and you can only retrieve maximum of 1000 logs per call. See [message delivery reports](#channels/sms/get-outbound-sms-message-delivery-reports) if your use case is to verify message delivery."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

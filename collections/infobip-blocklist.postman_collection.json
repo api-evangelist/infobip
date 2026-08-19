@@ -1,0 +1,2883 @@
+{
+  "item": [
+    {
+      "id": "946c1c58-e0ce-477a-a33e-77b94e898075",
+      "name": "platform",
+      "description": {
+        "content": "Modular tools to scale and automate your business.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a594bada-ad8c-48cb-8ba4-fd5b7bd99b98",
+          "name": "Get all blocklists",
+          "request": {
+            "name": "Get all blocklists",
+            "description": {
+              "content": "This method allows you to get all blocklist records or filter them based on specific parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "platform",
+                "1",
+                "blocklists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sender",
+                  "value": "<string>",
+                  "description": "The sender ID for which blocklist happened."
+                },
+                {
+                  "disabled": false,
+                  "key": "destination",
+                  "value": "<string>",
+                  "description": "Blocklisted destination address."
+                },
+                {
+                  "disabled": false,
+                  "key": "channel",
+                  "value": "<string>",
+                  "description": "Channel used for sending for which blocklist happened.\n\nIf you want to check blocklist records for all channels, this field can be left out."
+                },
+                {
+                  "disabled": false,
+                  "key": "sourceType",
+                  "value": "<string>",
+                  "description": "Represents the way blocklist record was created:\n\nCUSTOM - blocklist record that was created manually\n\nMO - blocklist record automatically created once an end user unsubscribes by replying with a specific keyword (e.g.: STOP). This is applicable for the following channels: SMS, MMS.\n\nURL_OPT_OUT - blocklist record automatically created once an end user clicks an opt-out link included in the message.\n\nCAMPAIGN - blocklist record automatically created through a triggered event in the Flow (e.g., if the message was not opened in 24h, add to blocklist)."
+                },
+                {
+                  "disabled": false,
+                  "key": "accountKey",
+                  "value": "<string>",
+                  "description": "Account connected with a blocklist record. Main account has access to blocklist records of their subaccounts. Subaccounts can only access blocklist records specific to them. [API to retrieve account key](https://www.infobip.com/docs/api/platform/account-management/get-all-accounts)."
+                },
+                {
+                  "disabled": false,
+                  "key": "getAllAccountKeysBlocklists",
+                  "value": "<boolean>",
+                  "description": "If set to `true`, blocklist records for subaccounts will be returned as well."
+                },
+                {
+                  "disabled": false,
+                  "key": "createdDateFrom",
+                  "value": "<dateTime>",
+                  "description": "Use with `createDateTo` to search for blocklists for a particular date range."
+                },
+                {
+                  "disabled": false,
+                  "key": "createdDateTo",
+                  "value": "<dateTime>",
+                  "description": "Use with `createDateFrom` to search for blocklists for a particular date range."
+                },
+                {
+                  "disabled": false,
+                  "key": "campaign",
+                  "value": "<string>",
+                  "description": "ID that allows you to track, analyze, and show an aggregated overview and the performance of individual campaigns per sending channel."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Requested page number."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "100",
+                  "description": "Requested page size."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "84d22dfb-302f-446d-84f2-870a6d9d2d2f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sender",
+                      "value": "10950"
+                    },
+                    {
+                      "key": "destination",
+                      "value": "41793026727"
+                    },
+                    {
+                      "key": "channel",
+                      "value": "WHATSAPP"
+                    },
+                    {
+                      "key": "sourceType",
+                      "value": "CAMPAIGN"
+                    },
+                    {
+                      "key": "accountKey",
+                      "value": "8F0792F86035A9F4290821F1EE6BC06A"
+                    },
+                    {
+                      "key": "getAllAccountKeysBlocklists",
+                      "value": "false"
+                    },
+                    {
+                      "key": "createdDateFrom",
+                      "value": "2022-08-18T12:33:42.123Z"
+                    },
+                    {
+                      "key": "createdDateTo",
+                      "value": "2022-08-18T13:33:42.123Z"
+                    },
+                    {
+                      "key": "campaign",
+                      "value": "summersale"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"sender\": \"10950\",\n      \"destination\": \"12022921990\",\n      \"sourceType\": \"MO\",\n      \"channel\": \"MMS\",\n      \"accountKey\": \"8F0792F86035A9F4290821F1EE6BC06A\",\n      \"createdDate\": \"2022-08-18T12:36:42.123Z\"\n    },\n    {\n      \"sender\": \"64350\",\n      \"destination\": \"12022921994\",\n      \"sourceType\": \"CUSTOM\",\n      \"channel\": \"SMS\",\n      \"accountKey\": \"8F0792F86035A9F4290821F1EE6BC06A\",\n      \"createdDate\": \"2022-08-18T12:36:42.123Z\"\n    },\n    {\n      \"sender\": \"c5ab692f-b5d8-4bad-bee5-c121dc346a39\",\n      \"destination\": \"urn:mbid:AQAAY3hr45FzBEsLpieCa0GANPlF399IiV/0gLSXRvwHauT0ph5Akk/Tx66ekESCF32bAOUHbSDCgQmZpGlyVr+wWepO0vPd7SUSQMUhjm+TTD7b/gGuVS6urpS2PL8I4GT+NW67K6VIO/1TeADk+Yu18i9HQfw=\",\n      \"sourceType\": \"MO\",\n      \"channel\": \"APPLE_MB\",\n      \"accountKey\": \"8F0792F86035A9F4290821F1EE6BC06A\",\n      \"createdDate\": \"2022-08-18T12:36:42.123Z\"\n    }\n  ],\n  \"paging\": {\n    \"page\": 0,\n    \"size\": 10,\n    \"totalPages\": 1,\n    \"totalResults\": 2\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55035d57-5ca8-4e76-9491-83d067c77830",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sender",
+                      "value": "10950"
+                    },
+                    {
+                      "key": "destination",
+                      "value": "41793026727"
+                    },
+                    {
+                      "key": "channel",
+                      "value": "WHATSAPP"
+                    },
+                    {
+                      "key": "sourceType",
+                      "value": "CAMPAIGN"
+                    },
+                    {
+                      "key": "accountKey",
+                      "value": "8F0792F86035A9F4290821F1EE6BC06A"
+                    },
+                    {
+                      "key": "getAllAccountKeysBlocklists",
+                      "value": "false"
+                    },
+                    {
+                      "key": "createdDateFrom",
+                      "value": "2022-08-18T12:33:42.123Z"
+                    },
+                    {
+                      "key": "createdDateTo",
+                      "value": "2022-08-18T13:33:42.123Z"
+                    },
+                    {
+                      "key": "campaign",
+                      "value": "summersale"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"BAD_REQUEST\",\n      \"text\": \"Bad request\",\n      \"validationErrors\": {\n        \"channel\": [\n          \"unsupported channel\"\n        ],\n        \"sender\": [\n          \"size must be between 1 and 255\"\n        ],\n        \"sourceType\": [\n          \"unsupported source type\"\n        ],\n        \"destination\": [\n          \"size must be between 1 and 255\"\n        ],\n        \"size\": [\n          \"must be less than or equal to 1000\"\n        ],\n        \"page\": [\n          \"must be greater than or equal to 0\"\n        ],\n        \"request\": [\n          \"created dates must be in supported format, both present and valid (`from` must be before `to`)\"\n        ]\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ab52236-8fd0-48c5-a22e-10fbb45a7e5e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sender",
+                      "value": "10950"
+                    },
+                    {
+                      "key": "destination",
+                      "value": "41793026727"
+                    },
+                    {
+                      "key": "channel",
+                      "value": "WHATSAPP"
+                    },
+                    {
+                      "key": "sourceType",
+                      "value": "CAMPAIGN"
+                    },
+                    {
+                      "key": "accountKey",
+                      "value": "8F0792F86035A9F4290821F1EE6BC06A"
+                    },
+                    {
+                      "key": "getAllAccountKeysBlocklists",
+                      "value": "false"
+                    },
+                    {
+                      "key": "createdDateFrom",
+                      "value": "2022-08-18T12:33:42.123Z"
+                    },
+                    {
+                      "key": "createdDateTo",
+                      "value": "2022-08-18T13:33:42.123Z"
+                    },
+                    {
+                      "key": "campaign",
+                      "value": "summersale"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"UNAUTHORIZED\",\n      \"text\": \"Unauthorized\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ba658bd-e5fd-4f2a-9e19-31083498cc07",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sender",
+                      "value": "10950"
+                    },
+                    {
+                      "key": "destination",
+                      "value": "41793026727"
+                    },
+                    {
+                      "key": "channel",
+                      "value": "WHATSAPP"
+                    },
+                    {
+                      "key": "sourceType",
+                      "value": "CAMPAIGN"
+                    },
+                    {
+                      "key": "accountKey",
+                      "value": "8F0792F86035A9F4290821F1EE6BC06A"
+                    },
+                    {
+                      "key": "getAllAccountKeysBlocklists",
+                      "value": "false"
+                    },
+                    {
+                      "key": "createdDateFrom",
+                      "value": "2022-08-18T12:33:42.123Z"
+                    },
+                    {
+                      "key": "createdDateTo",
+                      "value": "2022-08-18T13:33:42.123Z"
+                    },
+                    {
+                      "key": "campaign",
+                      "value": "summersale"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"FORBIDDEN\",\n      \"text\": \"Forbidden\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1fef2e8-61fc-4076-bdf1-aec295898b2c",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sender",
+                      "value": "10950"
+                    },
+                    {
+                      "key": "destination",
+                      "value": "41793026727"
+                    },
+                    {
+                      "key": "channel",
+                      "value": "WHATSAPP"
+                    },
+                    {
+                      "key": "sourceType",
+                      "value": "CAMPAIGN"
+                    },
+                    {
+                      "key": "accountKey",
+                      "value": "8F0792F86035A9F4290821F1EE6BC06A"
+                    },
+                    {
+                      "key": "getAllAccountKeysBlocklists",
+                      "value": "false"
+                    },
+                    {
+                      "key": "createdDateFrom",
+                      "value": "2022-08-18T12:33:42.123Z"
+                    },
+                    {
+                      "key": "createdDateTo",
+                      "value": "2022-08-18T13:33:42.123Z"
+                    },
+                    {
+                      "key": "campaign",
+                      "value": "summersale"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"TOO_MANY_REQUESTS\",\n      \"text\": \"Too many requests\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "faf1b6b1-9f2f-4f7f-8f74-bdcaa7591758",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sender",
+                      "value": "10950"
+                    },
+                    {
+                      "key": "destination",
+                      "value": "41793026727"
+                    },
+                    {
+                      "key": "channel",
+                      "value": "WHATSAPP"
+                    },
+                    {
+                      "key": "sourceType",
+                      "value": "CAMPAIGN"
+                    },
+                    {
+                      "key": "accountKey",
+                      "value": "8F0792F86035A9F4290821F1EE6BC06A"
+                    },
+                    {
+                      "key": "getAllAccountKeysBlocklists",
+                      "value": "false"
+                    },
+                    {
+                      "key": "createdDateFrom",
+                      "value": "2022-08-18T12:33:42.123Z"
+                    },
+                    {
+                      "key": "createdDateTo",
+                      "value": "2022-08-18T13:33:42.123Z"
+                    },
+                    {
+                      "key": "campaign",
+                      "value": "summersale"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"GENERAL_ERROR\",\n      \"text\": \"Something went wrong. Please contact support.\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "11d685a1-0c97-497d-b387-ab13a1ae86d4",
+          "name": "Create blocklists",
+          "request": {
+            "name": "Create blocklists",
+            "description": {
+              "content": "This method allows you to add someone to blocklist. It accepts create request with blocklists and asynchronously saves them, leaving out duplicate entries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "platform",
+                "1",
+                "blocklists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"<string>\",\n      \"accountKey\": \"<string>\"\n    },\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"<string>\",\n      \"accountKey\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a253a33b-cb5a-45b1-a238-3c78284a7ddd",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"2025550954\"\n        },\n        {\n          \"to\": \"2025550316\"\n        }\n      ]\n    },\n    {\n      \"sender\": \"someone@example.com\",\n      \"destinations\": [\n        {\n          \"to\": \"jane.doe@example.com\"\n        },\n        {\n          \"to\": \"john.doe@example.com\"\n        }\n      ],\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"8F0792F86035A9F4290821F1EE6BC06A\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "407fb592-a160-46ee-9188-63a89b31dade",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"2025550954\"\n        },\n        {\n          \"to\": \"2025550316\"\n        }\n      ]\n    },\n    {\n      \"sender\": \"someone@example.com\",\n      \"destinations\": [\n        {\n          \"to\": \"jane.doe@example.com\"\n        },\n        {\n          \"to\": \"john.doe@example.com\"\n        }\n      ],\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"8F0792F86035A9F4290821F1EE6BC06A\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"BAD_REQUEST\",\n      \"text\": \"Bad request\",\n      \"validationErrors\": {\n        \"blocklist[1].accountKey\": [\n          \"unsupported account key\"\n        ],\n        \"blocklist[0].channel\": [\n          \"unsupported channel\"\n        ],\n        \"blocklist[0].destinations[0].to\": [\n          \"size must be between 1 and 255\"\n        ],\n        \"blocklist[1].channel\": [\n          \"unsupported channel\"\n        ],\n        \"blocklist[1].destinations[1].to\": [\n          \"size must be between 1 and 255\"\n        ],\n        \"blocklist[2].destinations\": [\n          \"must not be empty\"\n        ]\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "12cd9071-5523-4e2b-8ffc-c25f7518c5de",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"2025550954\"\n        },\n        {\n          \"to\": \"2025550316\"\n        }\n      ]\n    },\n    {\n      \"sender\": \"someone@example.com\",\n      \"destinations\": [\n        {\n          \"to\": \"jane.doe@example.com\"\n        },\n        {\n          \"to\": \"john.doe@example.com\"\n        }\n      ],\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"8F0792F86035A9F4290821F1EE6BC06A\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"UNAUTHORIZED\",\n      \"text\": \"Unauthorized\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c02b97f-f958-467e-86f8-ee611ccac1a7",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"2025550954\"\n        },\n        {\n          \"to\": \"2025550316\"\n        }\n      ]\n    },\n    {\n      \"sender\": \"someone@example.com\",\n      \"destinations\": [\n        {\n          \"to\": \"jane.doe@example.com\"\n        },\n        {\n          \"to\": \"john.doe@example.com\"\n        }\n      ],\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"8F0792F86035A9F4290821F1EE6BC06A\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"FORBIDDEN\",\n      \"text\": \"Forbidden\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c4f00c0-3d85-4676-b437-68462865249d",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"2025550954\"\n        },\n        {\n          \"to\": \"2025550316\"\n        }\n      ]\n    },\n    {\n      \"sender\": \"someone@example.com\",\n      \"destinations\": [\n        {\n          \"to\": \"jane.doe@example.com\"\n        },\n        {\n          \"to\": \"john.doe@example.com\"\n        }\n      ],\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"8F0792F86035A9F4290821F1EE6BC06A\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"TOO_MANY_REQUESTS\",\n      \"text\": \"Too many requests\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc0cea38-dd38-455d-98d6-300f4bc22ad0",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"2025550954\"\n        },\n        {\n          \"to\": \"2025550316\"\n        }\n      ]\n    },\n    {\n      \"sender\": \"someone@example.com\",\n      \"destinations\": [\n        {\n          \"to\": \"jane.doe@example.com\"\n        },\n        {\n          \"to\": \"john.doe@example.com\"\n        }\n      ],\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"8F0792F86035A9F4290821F1EE6BC06A\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"GENERAL_ERROR\",\n      \"text\": \"Something went wrong. Please contact support.\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b25899c-689e-48ba-96e8-9e51346901be",
+          "name": "Delete blocklists",
+          "request": {
+            "name": "Delete blocklists",
+            "description": {
+              "content": "This method allows you to remove someone from blocklist. It accepts delete request and asynchronously deletes all blocklists that match given properties. \n\nNote: To delete a blocklist, you must list all properties that were defined in the create request. For example, to delete the blocklist with the following properties: \n\n`{\"sender\": \"10950\", \"destination\": \"12022921990\", \"sourceType\": \"CUSTOM\", \"channel\": \"MMS\", \"createdDate\": \"2022-08-18T12:36:42.123Z\"}` \n\nThe delete request must contain all present properties, like this: \n\n`{\"blocklist\": [{\"destinations\": [{\"to\": \"12022921990\"}], \"sender\": \"10950\", \"channel\": \"MMS\", \"sourceType\": \"CUSTOM\"}`. \n\nOnly when all properties are listed will the blocklist be removed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "platform",
+                "1",
+                "blocklists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"<string>\",\n      \"accountKey\": \"<string>\",\n      \"sourceType\": \"<string>\"\n    },\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"<string>\",\n      \"accountKey\": \"<string>\",\n      \"sourceType\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fccb100f-2036-469a-b009-84f9937ee4c1",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"2025550954\"\n        },\n        {\n          \"to\": \"2025550316\"\n        }\n      ],\n      \"sourceType\": \"CAMPAIGN\"\n    },\n    {\n      \"sender\": \"someone@example.com\",\n      \"destinations\": [\n        {\n          \"to\": \"jane.doe@example.com\"\n        },\n        {\n          \"to\": \"john.doe@example.com\"\n        }\n      ],\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"8F0792F86035A9F4290821F1EE6BC06A\",\n      \"sourceType\": \"CUSTOM\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7ac1ae2c-3d30-4ca8-848b-6fda9f2c2df2",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"2025550954\"\n        },\n        {\n          \"to\": \"2025550316\"\n        }\n      ],\n      \"sourceType\": \"CAMPAIGN\"\n    },\n    {\n      \"sender\": \"someone@example.com\",\n      \"destinations\": [\n        {\n          \"to\": \"jane.doe@example.com\"\n        },\n        {\n          \"to\": \"john.doe@example.com\"\n        }\n      ],\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"8F0792F86035A9F4290821F1EE6BC06A\",\n      \"sourceType\": \"CUSTOM\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"BAD_REQUEST\",\n      \"text\": \"Bad request\",\n      \"validationErrors\": {\n        \"blocklist[1].accountKey\": [\n          \"unsupported account key\"\n        ],\n        \"blocklist[0].channel\": [\n          \"unsupported channel\"\n        ],\n        \"blocklist[0].sourceType\": [\n          \"unsupported source type\"\n        ],\n        \"blocklist[0].destinations[0].to\": [\n          \"size must be between 1 and 255\"\n        ],\n        \"blocklist[1].channel\": [\n          \"unsupported channel\"\n        ],\n        \"blocklist[1].destinations[1].to\": [\n          \"size must be between 1 and 255\"\n        ],\n        \"blocklist[2].destinations\": [\n          \"must not be empty\"\n        ]\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f83535ba-17a7-4ec7-8725-0c50cc4fca3a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"2025550954\"\n        },\n        {\n          \"to\": \"2025550316\"\n        }\n      ],\n      \"sourceType\": \"CAMPAIGN\"\n    },\n    {\n      \"sender\": \"someone@example.com\",\n      \"destinations\": [\n        {\n          \"to\": \"jane.doe@example.com\"\n        },\n        {\n          \"to\": \"john.doe@example.com\"\n        }\n      ],\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"8F0792F86035A9F4290821F1EE6BC06A\",\n      \"sourceType\": \"CUSTOM\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"UNAUTHORIZED\",\n      \"text\": \"Unauthorized\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6fb2340d-35ee-458f-9cc9-dc75745dc59d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"2025550954\"\n        },\n        {\n          \"to\": \"2025550316\"\n        }\n      ],\n      \"sourceType\": \"CAMPAIGN\"\n    },\n    {\n      \"sender\": \"someone@example.com\",\n      \"destinations\": [\n        {\n          \"to\": \"jane.doe@example.com\"\n        },\n        {\n          \"to\": \"john.doe@example.com\"\n        }\n      ],\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"8F0792F86035A9F4290821F1EE6BC06A\",\n      \"sourceType\": \"CUSTOM\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"FORBIDDEN\",\n      \"text\": \"Forbidden\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "76a83dcc-7a02-4fc2-b9a1-1e3602434da7",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"2025550954\"\n        },\n        {\n          \"to\": \"2025550316\"\n        }\n      ],\n      \"sourceType\": \"CAMPAIGN\"\n    },\n    {\n      \"sender\": \"someone@example.com\",\n      \"destinations\": [\n        {\n          \"to\": \"jane.doe@example.com\"\n        },\n        {\n          \"to\": \"john.doe@example.com\"\n        }\n      ],\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"8F0792F86035A9F4290821F1EE6BC06A\",\n      \"sourceType\": \"CUSTOM\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"TOO_MANY_REQUESTS\",\n      \"text\": \"Too many requests\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99aea61a-dbd5-4e31-a7e1-693d27b32c94",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"2025550954\"\n        },\n        {\n          \"to\": \"2025550316\"\n        }\n      ],\n      \"sourceType\": \"CAMPAIGN\"\n    },\n    {\n      \"sender\": \"someone@example.com\",\n      \"destinations\": [\n        {\n          \"to\": \"jane.doe@example.com\"\n        },\n        {\n          \"to\": \"john.doe@example.com\"\n        }\n      ],\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"8F0792F86035A9F4290821F1EE6BC06A\",\n      \"sourceType\": \"CUSTOM\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"GENERAL_ERROR\",\n      \"text\": \"Something went wrong. Please contact support.\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "11ef6ac1-7bbf-4b54-a2cf-02ca5826debb",
+      "name": "blocklist",
+      "description": {
+        "content": "Phone numbers and email addresses (referred to as destinations) that no longer want to be contacted are stored inside a Blocklist (also known as [Do Not Contact List](https://www.infobip.com/docs/people/manage-audience#do-not-contact-list))\n\nThis platform feature is used to make sure that no communication is sent to recipients who have opted out of your communication campaigns.\n\nWith the Blocklist API, you are able to programmatically manage and track the list of recipients who want to stop receiving communication from your company while remaining compliant with important personal data regulations, such as GDPR.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f2267886-4c68-465f-85fd-d074de72df35",
+          "name": "Get all blocklists",
+          "request": {
+            "name": "Get all blocklists",
+            "description": {
+              "content": "This method allows you to get all blocklist records or filter them based on specific parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "platform",
+                "1",
+                "blocklists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sender",
+                  "value": "<string>",
+                  "description": "The sender ID for which blocklist happened."
+                },
+                {
+                  "disabled": false,
+                  "key": "destination",
+                  "value": "<string>",
+                  "description": "Blocklisted destination address."
+                },
+                {
+                  "disabled": false,
+                  "key": "channel",
+                  "value": "<string>",
+                  "description": "Channel used for sending for which blocklist happened.\n\nIf you want to check blocklist records for all channels, this field can be left out."
+                },
+                {
+                  "disabled": false,
+                  "key": "sourceType",
+                  "value": "<string>",
+                  "description": "Represents the way blocklist record was created:\n\nCUSTOM - blocklist record that was created manually\n\nMO - blocklist record automatically created once an end user unsubscribes by replying with a specific keyword (e.g.: STOP). This is applicable for the following channels: SMS, MMS.\n\nURL_OPT_OUT - blocklist record automatically created once an end user clicks an opt-out link included in the message.\n\nCAMPAIGN - blocklist record automatically created through a triggered event in the Flow (e.g., if the message was not opened in 24h, add to blocklist)."
+                },
+                {
+                  "disabled": false,
+                  "key": "accountKey",
+                  "value": "<string>",
+                  "description": "Account connected with a blocklist record. Main account has access to blocklist records of their subaccounts. Subaccounts can only access blocklist records specific to them. [API to retrieve account key](https://www.infobip.com/docs/api/platform/account-management/get-all-accounts)."
+                },
+                {
+                  "disabled": false,
+                  "key": "getAllAccountKeysBlocklists",
+                  "value": "<boolean>",
+                  "description": "If set to `true`, blocklist records for subaccounts will be returned as well."
+                },
+                {
+                  "disabled": false,
+                  "key": "createdDateFrom",
+                  "value": "<dateTime>",
+                  "description": "Use with `createDateTo` to search for blocklists for a particular date range."
+                },
+                {
+                  "disabled": false,
+                  "key": "createdDateTo",
+                  "value": "<dateTime>",
+                  "description": "Use with `createDateFrom` to search for blocklists for a particular date range."
+                },
+                {
+                  "disabled": false,
+                  "key": "campaign",
+                  "value": "<string>",
+                  "description": "ID that allows you to track, analyze, and show an aggregated overview and the performance of individual campaigns per sending channel."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Requested page number."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "100",
+                  "description": "Requested page size."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c1d19cfd-9cf9-435d-b8d2-340ac6bf1945",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sender",
+                      "value": "10950"
+                    },
+                    {
+                      "key": "destination",
+                      "value": "41793026727"
+                    },
+                    {
+                      "key": "channel",
+                      "value": "WHATSAPP"
+                    },
+                    {
+                      "key": "sourceType",
+                      "value": "CAMPAIGN"
+                    },
+                    {
+                      "key": "accountKey",
+                      "value": "8F0792F86035A9F4290821F1EE6BC06A"
+                    },
+                    {
+                      "key": "getAllAccountKeysBlocklists",
+                      "value": "false"
+                    },
+                    {
+                      "key": "createdDateFrom",
+                      "value": "2022-08-18T12:33:42.123Z"
+                    },
+                    {
+                      "key": "createdDateTo",
+                      "value": "2022-08-18T13:33:42.123Z"
+                    },
+                    {
+                      "key": "campaign",
+                      "value": "summersale"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"sender\": \"10950\",\n      \"destination\": \"12022921990\",\n      \"sourceType\": \"MO\",\n      \"channel\": \"MMS\",\n      \"accountKey\": \"8F0792F86035A9F4290821F1EE6BC06A\",\n      \"createdDate\": \"2022-08-18T12:36:42.123Z\"\n    },\n    {\n      \"sender\": \"64350\",\n      \"destination\": \"12022921994\",\n      \"sourceType\": \"CUSTOM\",\n      \"channel\": \"SMS\",\n      \"accountKey\": \"8F0792F86035A9F4290821F1EE6BC06A\",\n      \"createdDate\": \"2022-08-18T12:36:42.123Z\"\n    },\n    {\n      \"sender\": \"c5ab692f-b5d8-4bad-bee5-c121dc346a39\",\n      \"destination\": \"urn:mbid:AQAAY3hr45FzBEsLpieCa0GANPlF399IiV/0gLSXRvwHauT0ph5Akk/Tx66ekESCF32bAOUHbSDCgQmZpGlyVr+wWepO0vPd7SUSQMUhjm+TTD7b/gGuVS6urpS2PL8I4GT+NW67K6VIO/1TeADk+Yu18i9HQfw=\",\n      \"sourceType\": \"MO\",\n      \"channel\": \"APPLE_MB\",\n      \"accountKey\": \"8F0792F86035A9F4290821F1EE6BC06A\",\n      \"createdDate\": \"2022-08-18T12:36:42.123Z\"\n    }\n  ],\n  \"paging\": {\n    \"page\": 0,\n    \"size\": 10,\n    \"totalPages\": 1,\n    \"totalResults\": 2\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee2e5a89-1d9d-48be-b3f8-41a4d86642c8",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sender",
+                      "value": "10950"
+                    },
+                    {
+                      "key": "destination",
+                      "value": "41793026727"
+                    },
+                    {
+                      "key": "channel",
+                      "value": "WHATSAPP"
+                    },
+                    {
+                      "key": "sourceType",
+                      "value": "CAMPAIGN"
+                    },
+                    {
+                      "key": "accountKey",
+                      "value": "8F0792F86035A9F4290821F1EE6BC06A"
+                    },
+                    {
+                      "key": "getAllAccountKeysBlocklists",
+                      "value": "false"
+                    },
+                    {
+                      "key": "createdDateFrom",
+                      "value": "2022-08-18T12:33:42.123Z"
+                    },
+                    {
+                      "key": "createdDateTo",
+                      "value": "2022-08-18T13:33:42.123Z"
+                    },
+                    {
+                      "key": "campaign",
+                      "value": "summersale"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"BAD_REQUEST\",\n      \"text\": \"Bad request\",\n      \"validationErrors\": {\n        \"channel\": [\n          \"unsupported channel\"\n        ],\n        \"sender\": [\n          \"size must be between 1 and 255\"\n        ],\n        \"sourceType\": [\n          \"unsupported source type\"\n        ],\n        \"destination\": [\n          \"size must be between 1 and 255\"\n        ],\n        \"size\": [\n          \"must be less than or equal to 1000\"\n        ],\n        \"page\": [\n          \"must be greater than or equal to 0\"\n        ],\n        \"request\": [\n          \"created dates must be in supported format, both present and valid (`from` must be before `to`)\"\n        ]\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ea16f08-2477-4c19-ab29-fab4251fe480",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sender",
+                      "value": "10950"
+                    },
+                    {
+                      "key": "destination",
+                      "value": "41793026727"
+                    },
+                    {
+                      "key": "channel",
+                      "value": "WHATSAPP"
+                    },
+                    {
+                      "key": "sourceType",
+                      "value": "CAMPAIGN"
+                    },
+                    {
+                      "key": "accountKey",
+                      "value": "8F0792F86035A9F4290821F1EE6BC06A"
+                    },
+                    {
+                      "key": "getAllAccountKeysBlocklists",
+                      "value": "false"
+                    },
+                    {
+                      "key": "createdDateFrom",
+                      "value": "2022-08-18T12:33:42.123Z"
+                    },
+                    {
+                      "key": "createdDateTo",
+                      "value": "2022-08-18T13:33:42.123Z"
+                    },
+                    {
+                      "key": "campaign",
+                      "value": "summersale"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"UNAUTHORIZED\",\n      \"text\": \"Unauthorized\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e643d896-f262-494c-bb56-2d4ccd5d607b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sender",
+                      "value": "10950"
+                    },
+                    {
+                      "key": "destination",
+                      "value": "41793026727"
+                    },
+                    {
+                      "key": "channel",
+                      "value": "WHATSAPP"
+                    },
+                    {
+                      "key": "sourceType",
+                      "value": "CAMPAIGN"
+                    },
+                    {
+                      "key": "accountKey",
+                      "value": "8F0792F86035A9F4290821F1EE6BC06A"
+                    },
+                    {
+                      "key": "getAllAccountKeysBlocklists",
+                      "value": "false"
+                    },
+                    {
+                      "key": "createdDateFrom",
+                      "value": "2022-08-18T12:33:42.123Z"
+                    },
+                    {
+                      "key": "createdDateTo",
+                      "value": "2022-08-18T13:33:42.123Z"
+                    },
+                    {
+                      "key": "campaign",
+                      "value": "summersale"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"FORBIDDEN\",\n      \"text\": \"Forbidden\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d125edd-9ab7-4609-aced-eda61e794797",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sender",
+                      "value": "10950"
+                    },
+                    {
+                      "key": "destination",
+                      "value": "41793026727"
+                    },
+                    {
+                      "key": "channel",
+                      "value": "WHATSAPP"
+                    },
+                    {
+                      "key": "sourceType",
+                      "value": "CAMPAIGN"
+                    },
+                    {
+                      "key": "accountKey",
+                      "value": "8F0792F86035A9F4290821F1EE6BC06A"
+                    },
+                    {
+                      "key": "getAllAccountKeysBlocklists",
+                      "value": "false"
+                    },
+                    {
+                      "key": "createdDateFrom",
+                      "value": "2022-08-18T12:33:42.123Z"
+                    },
+                    {
+                      "key": "createdDateTo",
+                      "value": "2022-08-18T13:33:42.123Z"
+                    },
+                    {
+                      "key": "campaign",
+                      "value": "summersale"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"TOO_MANY_REQUESTS\",\n      \"text\": \"Too many requests\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb0195d5-dd76-4445-978c-41b5ebe2a354",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sender",
+                      "value": "10950"
+                    },
+                    {
+                      "key": "destination",
+                      "value": "41793026727"
+                    },
+                    {
+                      "key": "channel",
+                      "value": "WHATSAPP"
+                    },
+                    {
+                      "key": "sourceType",
+                      "value": "CAMPAIGN"
+                    },
+                    {
+                      "key": "accountKey",
+                      "value": "8F0792F86035A9F4290821F1EE6BC06A"
+                    },
+                    {
+                      "key": "getAllAccountKeysBlocklists",
+                      "value": "false"
+                    },
+                    {
+                      "key": "createdDateFrom",
+                      "value": "2022-08-18T12:33:42.123Z"
+                    },
+                    {
+                      "key": "createdDateTo",
+                      "value": "2022-08-18T13:33:42.123Z"
+                    },
+                    {
+                      "key": "campaign",
+                      "value": "summersale"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"GENERAL_ERROR\",\n      \"text\": \"Something went wrong. Please contact support.\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7de2f5ca-4500-49c6-9f8b-902b73e71e49",
+          "name": "Create blocklists",
+          "request": {
+            "name": "Create blocklists",
+            "description": {
+              "content": "This method allows you to add someone to blocklist. It accepts create request with blocklists and asynchronously saves them, leaving out duplicate entries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "platform",
+                "1",
+                "blocklists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"<string>\",\n      \"accountKey\": \"<string>\"\n    },\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"<string>\",\n      \"accountKey\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5d7f291e-deeb-4029-a9b3-60b5b13ca5c3",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"2025550954\"\n        },\n        {\n          \"to\": \"2025550316\"\n        }\n      ]\n    },\n    {\n      \"sender\": \"someone@example.com\",\n      \"destinations\": [\n        {\n          \"to\": \"jane.doe@example.com\"\n        },\n        {\n          \"to\": \"john.doe@example.com\"\n        }\n      ],\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"8F0792F86035A9F4290821F1EE6BC06A\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d9e41b56-f31b-4ddb-bc1c-fd3144c001a7",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"2025550954\"\n        },\n        {\n          \"to\": \"2025550316\"\n        }\n      ]\n    },\n    {\n      \"sender\": \"someone@example.com\",\n      \"destinations\": [\n        {\n          \"to\": \"jane.doe@example.com\"\n        },\n        {\n          \"to\": \"john.doe@example.com\"\n        }\n      ],\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"8F0792F86035A9F4290821F1EE6BC06A\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"BAD_REQUEST\",\n      \"text\": \"Bad request\",\n      \"validationErrors\": {\n        \"blocklist[1].accountKey\": [\n          \"unsupported account key\"\n        ],\n        \"blocklist[0].channel\": [\n          \"unsupported channel\"\n        ],\n        \"blocklist[0].destinations[0].to\": [\n          \"size must be between 1 and 255\"\n        ],\n        \"blocklist[1].channel\": [\n          \"unsupported channel\"\n        ],\n        \"blocklist[1].destinations[1].to\": [\n          \"size must be between 1 and 255\"\n        ],\n        \"blocklist[2].destinations\": [\n          \"must not be empty\"\n        ]\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "79327082-67e0-4ac5-abef-bea40deda1d9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"2025550954\"\n        },\n        {\n          \"to\": \"2025550316\"\n        }\n      ]\n    },\n    {\n      \"sender\": \"someone@example.com\",\n      \"destinations\": [\n        {\n          \"to\": \"jane.doe@example.com\"\n        },\n        {\n          \"to\": \"john.doe@example.com\"\n        }\n      ],\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"8F0792F86035A9F4290821F1EE6BC06A\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"UNAUTHORIZED\",\n      \"text\": \"Unauthorized\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c7c5cb84-57dd-4be4-bc2c-2f181af80094",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"2025550954\"\n        },\n        {\n          \"to\": \"2025550316\"\n        }\n      ]\n    },\n    {\n      \"sender\": \"someone@example.com\",\n      \"destinations\": [\n        {\n          \"to\": \"jane.doe@example.com\"\n        },\n        {\n          \"to\": \"john.doe@example.com\"\n        }\n      ],\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"8F0792F86035A9F4290821F1EE6BC06A\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"FORBIDDEN\",\n      \"text\": \"Forbidden\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ddf23582-e5bd-455f-a8cb-7fabefd48339",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"2025550954\"\n        },\n        {\n          \"to\": \"2025550316\"\n        }\n      ]\n    },\n    {\n      \"sender\": \"someone@example.com\",\n      \"destinations\": [\n        {\n          \"to\": \"jane.doe@example.com\"\n        },\n        {\n          \"to\": \"john.doe@example.com\"\n        }\n      ],\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"8F0792F86035A9F4290821F1EE6BC06A\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"TOO_MANY_REQUESTS\",\n      \"text\": \"Too many requests\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ebd25dd-e0a3-4b69-8a44-7f6c3a5653c6",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"2025550954\"\n        },\n        {\n          \"to\": \"2025550316\"\n        }\n      ]\n    },\n    {\n      \"sender\": \"someone@example.com\",\n      \"destinations\": [\n        {\n          \"to\": \"jane.doe@example.com\"\n        },\n        {\n          \"to\": \"john.doe@example.com\"\n        }\n      ],\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"8F0792F86035A9F4290821F1EE6BC06A\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"GENERAL_ERROR\",\n      \"text\": \"Something went wrong. Please contact support.\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "06c4225b-edc6-49f9-b72b-9e359b03045a",
+          "name": "Delete blocklists",
+          "request": {
+            "name": "Delete blocklists",
+            "description": {
+              "content": "This method allows you to remove someone from blocklist. It accepts delete request and asynchronously deletes all blocklists that match given properties. \n\nNote: To delete a blocklist, you must list all properties that were defined in the create request. For example, to delete the blocklist with the following properties: \n\n`{\"sender\": \"10950\", \"destination\": \"12022921990\", \"sourceType\": \"CUSTOM\", \"channel\": \"MMS\", \"createdDate\": \"2022-08-18T12:36:42.123Z\"}` \n\nThe delete request must contain all present properties, like this: \n\n`{\"blocklist\": [{\"destinations\": [{\"to\": \"12022921990\"}], \"sender\": \"10950\", \"channel\": \"MMS\", \"sourceType\": \"CUSTOM\"}`. \n\nOnly when all properties are listed will the blocklist be removed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "platform",
+                "1",
+                "blocklists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"<string>\",\n      \"accountKey\": \"<string>\",\n      \"sourceType\": \"<string>\"\n    },\n    {\n      \"destinations\": [\n        {\n          \"to\": \"<string>\"\n        },\n        {\n          \"to\": \"<string>\"\n        }\n      ],\n      \"sender\": \"<string>\",\n      \"channel\": \"<string>\",\n      \"accountKey\": \"<string>\",\n      \"sourceType\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "16cf00e3-d413-4977-b4df-c27aa519f3cf",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"2025550954\"\n        },\n        {\n          \"to\": \"2025550316\"\n        }\n      ],\n      \"sourceType\": \"CAMPAIGN\"\n    },\n    {\n      \"sender\": \"someone@example.com\",\n      \"destinations\": [\n        {\n          \"to\": \"jane.doe@example.com\"\n        },\n        {\n          \"to\": \"john.doe@example.com\"\n        }\n      ],\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"8F0792F86035A9F4290821F1EE6BC06A\",\n      \"sourceType\": \"CUSTOM\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8463e1dc-1331-4617-adf9-39bf090f68d8",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"2025550954\"\n        },\n        {\n          \"to\": \"2025550316\"\n        }\n      ],\n      \"sourceType\": \"CAMPAIGN\"\n    },\n    {\n      \"sender\": \"someone@example.com\",\n      \"destinations\": [\n        {\n          \"to\": \"jane.doe@example.com\"\n        },\n        {\n          \"to\": \"john.doe@example.com\"\n        }\n      ],\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"8F0792F86035A9F4290821F1EE6BC06A\",\n      \"sourceType\": \"CUSTOM\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"BAD_REQUEST\",\n      \"text\": \"Bad request\",\n      \"validationErrors\": {\n        \"blocklist[1].accountKey\": [\n          \"unsupported account key\"\n        ],\n        \"blocklist[0].channel\": [\n          \"unsupported channel\"\n        ],\n        \"blocklist[0].sourceType\": [\n          \"unsupported source type\"\n        ],\n        \"blocklist[0].destinations[0].to\": [\n          \"size must be between 1 and 255\"\n        ],\n        \"blocklist[1].channel\": [\n          \"unsupported channel\"\n        ],\n        \"blocklist[1].destinations[1].to\": [\n          \"size must be between 1 and 255\"\n        ],\n        \"blocklist[2].destinations\": [\n          \"must not be empty\"\n        ]\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b40d46c-7f58-4e8c-88a5-faec510b8348",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"2025550954\"\n        },\n        {\n          \"to\": \"2025550316\"\n        }\n      ],\n      \"sourceType\": \"CAMPAIGN\"\n    },\n    {\n      \"sender\": \"someone@example.com\",\n      \"destinations\": [\n        {\n          \"to\": \"jane.doe@example.com\"\n        },\n        {\n          \"to\": \"john.doe@example.com\"\n        }\n      ],\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"8F0792F86035A9F4290821F1EE6BC06A\",\n      \"sourceType\": \"CUSTOM\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"UNAUTHORIZED\",\n      \"text\": \"Unauthorized\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b37e3f8a-1c08-4b90-80b2-2cca7d832c72",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"2025550954\"\n        },\n        {\n          \"to\": \"2025550316\"\n        }\n      ],\n      \"sourceType\": \"CAMPAIGN\"\n    },\n    {\n      \"sender\": \"someone@example.com\",\n      \"destinations\": [\n        {\n          \"to\": \"jane.doe@example.com\"\n        },\n        {\n          \"to\": \"john.doe@example.com\"\n        }\n      ],\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"8F0792F86035A9F4290821F1EE6BC06A\",\n      \"sourceType\": \"CUSTOM\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"FORBIDDEN\",\n      \"text\": \"Forbidden\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d5bad66-9888-4c90-9fa0-906e7381c877",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"2025550954\"\n        },\n        {\n          \"to\": \"2025550316\"\n        }\n      ],\n      \"sourceType\": \"CAMPAIGN\"\n    },\n    {\n      \"sender\": \"someone@example.com\",\n      \"destinations\": [\n        {\n          \"to\": \"jane.doe@example.com\"\n        },\n        {\n          \"to\": \"john.doe@example.com\"\n        }\n      ],\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"8F0792F86035A9F4290821F1EE6BC06A\",\n      \"sourceType\": \"CUSTOM\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"TOO_MANY_REQUESTS\",\n      \"text\": \"Too many requests\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "72382401-557c-4312-9159-bbfbb1af0e6b",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "1",
+                    "blocklists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blocklist\": [\n    {\n      \"destinations\": [\n        {\n          \"to\": \"2025550954\"\n        },\n        {\n          \"to\": \"2025550316\"\n        }\n      ],\n      \"sourceType\": \"CAMPAIGN\"\n    },\n    {\n      \"sender\": \"someone@example.com\",\n      \"destinations\": [\n        {\n          \"to\": \"jane.doe@example.com\"\n        },\n        {\n          \"to\": \"john.doe@example.com\"\n        }\n      ],\n      \"channel\": \"EMAIL\",\n      \"accountKey\": \"8F0792F86035A9F4290821F1EE6BC06A\",\n      \"sourceType\": \"CUSTOM\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"GENERAL_ERROR\",\n      \"text\": \"Something went wrong. Please contact support.\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "df72bbd7-088a-4feb-bd7d-885d23ed47ac",
+    "name": "Infobip OpenAPI Specification",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI Specification that contains all public endpoints and webhooks.\n\nContact Support:\n Name: Infobip support\n Email: support@infobip.com",
+      "type": "text/plain"
+    }
+  }
+}

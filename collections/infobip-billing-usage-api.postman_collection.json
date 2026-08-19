@@ -1,0 +1,825 @@
+{
+  "item": [
+    {
+      "id": "b8433fb1-8808-4272-a57e-a515c9cc9d13",
+      "name": "platform",
+      "description": {
+        "content": "Modular tools to scale and automate your business.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4b17465b-e822-4869-9979-ca1e2520fde4",
+          "name": "Query billing usage data",
+          "request": {
+            "name": "Query billing usage data",
+            "description": {
+              "content": "Start the process of aggregating billing-grade financial cost data for your Infobip traffic. The results are delivered once via POST to the `callbackURL` provided in the request. Make sure the URL is reachable before submitting. See [Receive billing usage result](#platform/billing-usage/receive-billing-usage-result) for the webhook payload structure.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "billing",
+                "1",
+                "usage",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"callbackUrl\": \"<string>\",\n  \"request\": {\n    \"aggregateBy\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"filterBy\": {\n      \"dateInterval\": {\n        \"sentSince\": \"<date>\",\n        \"sentUntil\": \"<date>\"\n      },\n      \"accountKeys\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"categories\": \"NUMBER_LOOKUP\",\n      \"subCategories\": \"VIBER_BM\",\n      \"countryCodes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"platforms\": [\n        {\n          \"applicationId\": \"<string>\",\n          \"entityId\": \"<string>\"\n        },\n        {\n          \"applicationId\": \"<string>\",\n          \"entityId\": \"<string>\"\n        }\n      ],\n      \"directions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"trafficTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"senders\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"senderTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"campaignReferenceIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"campaignIds\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"templateIds\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"options\": {\n      \"includeUnfinalizedData\": true\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "307ab0b6-1fda-47fb-a8a3-c9ba5e1d3ac4",
+              "name": "Data querying process is started.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "1",
+                    "usage",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"callbackUrl\": \"https://example.com/receive\",\n  \"request\": {\n    \"filterBy\": {\n      \"dateInterval\": {\n        \"sentSince\": \"2026-03-01\",\n        \"sentUntil\": \"2026-04-01\"\n      }\n    },\n    \"aggregateBy\": [\n      \"CATEGORY_CODE\",\n      \"COUNTRY_NAME\"\n    ],\n    \"options\": {\n      \"includeUnfinalizedData\": true\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"B61D150B0F6596F68D88D253886432B5\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bdb8b0ee-c635-4883-9083-cc911bc21027",
+              "name": "Request is malformed or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "1",
+                    "usage",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"callbackUrl\": \"https://example.com/receive\",\n  \"request\": {\n    \"filterBy\": {\n      \"dateInterval\": {\n        \"sentSince\": \"2026-03-01\",\n        \"sentUntil\": \"2026-04-01\"\n      }\n    },\n    \"aggregateBy\": [\n      \"CATEGORY_CODE\",\n      \"COUNTRY_NAME\"\n    ],\n    \"options\": {\n      \"includeUnfinalizedData\": true\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E400\",\n  \"description\": \"Request cannot be processed.\",\n  \"action\": \"Check the syntax, violations and adjust the request.\",\n  \"violations\": [\n    {\n      \"property\": \"property.path\",\n      \"violation\": \"Violation message.\"\n    }\n  ],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4272b0a-3c7d-49fc-bcae-e83e4a87a118",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "1",
+                    "usage",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"callbackUrl\": \"https://example.com/receive\",\n  \"request\": {\n    \"filterBy\": {\n      \"dateInterval\": {\n        \"sentSince\": \"2026-03-01\",\n        \"sentUntil\": \"2026-04-01\"\n      }\n    },\n    \"aggregateBy\": [\n      \"CATEGORY_CODE\",\n      \"COUNTRY_NAME\"\n    ],\n    \"options\": {\n      \"includeUnfinalizedData\": true\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E401\",\n  \"description\": \"The request lacks valid authentication credentials for the requested resource.\",\n  \"action\": \"Check the resources and adjust authentication credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Authentication\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-authentication\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "08bbd90a-b485-4d0b-bfd4-e48edbd87408",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "1",
+                    "usage",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"callbackUrl\": \"https://example.com/receive\",\n  \"request\": {\n    \"filterBy\": {\n      \"dateInterval\": {\n        \"sentSince\": \"2026-03-01\",\n        \"sentUntil\": \"2026-04-01\"\n      }\n    },\n    \"aggregateBy\": [\n      \"CATEGORY_CODE\",\n      \"COUNTRY_NAME\"\n    ],\n    \"options\": {\n      \"includeUnfinalizedData\": true\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E403\",\n  \"description\": \"Insufficient permissions to access the requested resource.\",\n  \"action\": \"Repeat the request with new or different credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Scopes\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69af898e-2b56-44de-b4df-f771553785d8",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "1",
+                    "usage",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"callbackUrl\": \"https://example.com/receive\",\n  \"request\": {\n    \"filterBy\": {\n      \"dateInterval\": {\n        \"sentSince\": \"2026-03-01\",\n        \"sentUntil\": \"2026-04-01\"\n      }\n    },\n    \"aggregateBy\": [\n      \"CATEGORY_CODE\",\n      \"COUNTRY_NAME\"\n    ],\n    \"options\": {\n      \"includeUnfinalizedData\": true\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E429\",\n  \"description\": \"Too many requests sent.\",\n  \"action\": \"Check request rate limit specified in the API endpoint documentation resource.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"Throttling handling errors\",\n      \"url\": \"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c8962eee-0755-4b51-9825-564840c68926",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "1",
+                    "usage",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"callbackUrl\": \"https://example.com/receive\",\n  \"request\": {\n    \"filterBy\": {\n      \"dateInterval\": {\n        \"sentSince\": \"2026-03-01\",\n        \"sentUntil\": \"2026-04-01\"\n      }\n    },\n    \"aggregateBy\": [\n      \"CATEGORY_CODE\",\n      \"COUNTRY_NAME\"\n    ],\n    \"options\": {\n      \"includeUnfinalizedData\": true\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E500\",\n  \"description\": \"Something went wrong.\",\n  \"action\": \"Contact the support.\",\n  \"violations\": [],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "431c5093-c002-4206-ae53-54a8d96cadb1",
+      "name": "billing-usage-api",
+      "description": {
+        "content": "The Billing Usage API gives you programmatic access to the same billing data behind your monthly invoices. Query costs on demand, integrate results into your own systems, and build automated reporting pipelines.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8d55f129-87c7-4268-bfa6-f39b7c9b16f0",
+          "name": "Query billing usage data",
+          "request": {
+            "name": "Query billing usage data",
+            "description": {
+              "content": "Start the process of aggregating billing-grade financial cost data for your Infobip traffic. The results are delivered once via POST to the `callbackURL` provided in the request. Make sure the URL is reachable before submitting. See [Receive billing usage result](#platform/billing-usage/receive-billing-usage-result) for the webhook payload structure.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "billing",
+                "1",
+                "usage",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"callbackUrl\": \"<string>\",\n  \"request\": {\n    \"aggregateBy\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"filterBy\": {\n      \"dateInterval\": {\n        \"sentSince\": \"<date>\",\n        \"sentUntil\": \"<date>\"\n      },\n      \"accountKeys\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"categories\": \"NUMBER_LOOKUP\",\n      \"subCategories\": \"VIBER_BM\",\n      \"countryCodes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"platforms\": [\n        {\n          \"applicationId\": \"<string>\",\n          \"entityId\": \"<string>\"\n        },\n        {\n          \"applicationId\": \"<string>\",\n          \"entityId\": \"<string>\"\n        }\n      ],\n      \"directions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"trafficTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"senders\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"senderTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"campaignReferenceIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"campaignIds\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"templateIds\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"options\": {\n      \"includeUnfinalizedData\": true\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7d1a4883-55dd-4808-b417-3293116d9454",
+              "name": "Data querying process is started.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "1",
+                    "usage",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"callbackUrl\": \"https://example.com/receive\",\n  \"request\": {\n    \"filterBy\": {\n      \"dateInterval\": {\n        \"sentSince\": \"2026-03-01\",\n        \"sentUntil\": \"2026-04-01\"\n      }\n    },\n    \"aggregateBy\": [\n      \"CATEGORY_CODE\",\n      \"COUNTRY_NAME\"\n    ],\n    \"options\": {\n      \"includeUnfinalizedData\": true\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"B61D150B0F6596F68D88D253886432B5\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8c7f11e-d27f-40cc-952f-a52c66cd749c",
+              "name": "Request is malformed or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "1",
+                    "usage",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"callbackUrl\": \"https://example.com/receive\",\n  \"request\": {\n    \"filterBy\": {\n      \"dateInterval\": {\n        \"sentSince\": \"2026-03-01\",\n        \"sentUntil\": \"2026-04-01\"\n      }\n    },\n    \"aggregateBy\": [\n      \"CATEGORY_CODE\",\n      \"COUNTRY_NAME\"\n    ],\n    \"options\": {\n      \"includeUnfinalizedData\": true\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E400\",\n  \"description\": \"Request cannot be processed.\",\n  \"action\": \"Check the syntax, violations and adjust the request.\",\n  \"violations\": [\n    {\n      \"property\": \"property.path\",\n      \"violation\": \"Violation message.\"\n    }\n  ],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3d8dd96-db81-4033-b4c3-6f75180fdb64",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "1",
+                    "usage",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"callbackUrl\": \"https://example.com/receive\",\n  \"request\": {\n    \"filterBy\": {\n      \"dateInterval\": {\n        \"sentSince\": \"2026-03-01\",\n        \"sentUntil\": \"2026-04-01\"\n      }\n    },\n    \"aggregateBy\": [\n      \"CATEGORY_CODE\",\n      \"COUNTRY_NAME\"\n    ],\n    \"options\": {\n      \"includeUnfinalizedData\": true\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E401\",\n  \"description\": \"The request lacks valid authentication credentials for the requested resource.\",\n  \"action\": \"Check the resources and adjust authentication credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Authentication\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-authentication\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de32d63c-599c-4d82-8fc5-f678d27e3905",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "1",
+                    "usage",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"callbackUrl\": \"https://example.com/receive\",\n  \"request\": {\n    \"filterBy\": {\n      \"dateInterval\": {\n        \"sentSince\": \"2026-03-01\",\n        \"sentUntil\": \"2026-04-01\"\n      }\n    },\n    \"aggregateBy\": [\n      \"CATEGORY_CODE\",\n      \"COUNTRY_NAME\"\n    ],\n    \"options\": {\n      \"includeUnfinalizedData\": true\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E403\",\n  \"description\": \"Insufficient permissions to access the requested resource.\",\n  \"action\": \"Repeat the request with new or different credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Scopes\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "02cb44d2-4efb-4dad-b982-7eafa049d4d2",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "1",
+                    "usage",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"callbackUrl\": \"https://example.com/receive\",\n  \"request\": {\n    \"filterBy\": {\n      \"dateInterval\": {\n        \"sentSince\": \"2026-03-01\",\n        \"sentUntil\": \"2026-04-01\"\n      }\n    },\n    \"aggregateBy\": [\n      \"CATEGORY_CODE\",\n      \"COUNTRY_NAME\"\n    ],\n    \"options\": {\n      \"includeUnfinalizedData\": true\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E429\",\n  \"description\": \"Too many requests sent.\",\n  \"action\": \"Check request rate limit specified in the API endpoint documentation resource.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"Throttling handling errors\",\n      \"url\": \"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01630891-5c73-4e77-83b8-2dfcda9aad6a",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "1",
+                    "usage",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"callbackUrl\": \"https://example.com/receive\",\n  \"request\": {\n    \"filterBy\": {\n      \"dateInterval\": {\n        \"sentSince\": \"2026-03-01\",\n        \"sentUntil\": \"2026-04-01\"\n      }\n    },\n    \"aggregateBy\": [\n      \"CATEGORY_CODE\",\n      \"COUNTRY_NAME\"\n    ],\n    \"options\": {\n      \"includeUnfinalizedData\": true\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E500\",\n  \"description\": \"Something went wrong.\",\n  \"action\": \"Contact the support.\",\n  \"violations\": [],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "62788e61-744a-4d59-b18d-74e40de2292b",
+    "name": "Infobip OpenAPI Specification",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI Specification that contains all public endpoints and webhooks.\n\nContact Support:\n Name: Infobip support\n Email: support@infobip.com",
+      "type": "text/plain"
+    }
+  }
+}

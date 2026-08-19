@@ -1,0 +1,686 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "platform",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/1/subscription/:channel",
+            "params": [
+              {
+                "name": "channel",
+                "value": "",
+                "type": "path",
+                "description": "Channel name. A separate subscription is needed for each channel."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              },
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "query",
+                "description": "CPaaS-X application identifier."
+              },
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "query",
+                "description": "CPaaS-X entity identifier."
+              },
+              {
+                "name": "callsConfigurationId",
+                "value": "",
+                "type": "query",
+                "description": "Calls configuration identifier."
+              },
+              {
+                "name": "resource",
+                "value": "",
+                "type": "query",
+                "description": "Resource."
+              },
+              {
+                "name": "user",
+                "value": "",
+                "type": "query",
+                "description": "User."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of all subscriptions for the specified channel with pagination. By default, the result is sorted by creation date in descending order.<br>The search can be used with various criteria passed via query parameters (all criteria combinations have <strong>AND</strong> semantic).<br><strong>Note.</strong>To avoid validation errors and inconsistent results query parameters need to be encoded  (see <strong>RFC 3986, section 2.1</strong>).<br><strong>Example</strong>. Find subscriptions ha"
+        },
+        {
+          "info": {
+            "name": "Create subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/1/subscription/:channel",
+            "params": [
+              {
+                "name": "channel",
+                "value": "",
+                "type": "path",
+                "description": "Channel name. A separate subscription is needed for each channel."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method will create a new subscription. You can provide an ID of an existing profile, or submit a full definition of a profile and security settings if you want to create new ones."
+        },
+        {
+          "info": {
+            "name": "Get single subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/1/subscription/:channel/:subscriptionId",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the subscription you want to get."
+              },
+              {
+                "name": "channel",
+                "value": "",
+                "type": "path",
+                "description": "Channel name. A separate subscription is needed for each channel."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a specific subscription by ID."
+        },
+        {
+          "info": {
+            "name": "Update subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/1/subscription/:channel/:subscriptionId",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the subscription you want to modify."
+              },
+              {
+                "name": "channel",
+                "value": "",
+                "type": "path",
+                "description": "Channel name. A separate subscription is needed for each channel."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method allows you to update the subscription. You can change its properties and provide an ID of a profile if you wish to change it."
+        },
+        {
+          "info": {
+            "name": "Delete subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscriptions/1/subscription/:channel/:subscriptionId",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the subscription you want to delete."
+              },
+              {
+                "name": "channel",
+                "value": "",
+                "type": "path",
+                "description": "Channel name. A separate subscription is needed for each channel."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method will delete the subscription specified by ID."
+        },
+        {
+          "info": {
+            "name": "Get notification profiles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/1/profiles",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of all notification profiles for your account with pagination."
+        },
+        {
+          "info": {
+            "name": "Create notification profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/1/profiles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method will create a new notification profile. You can provide an ID of existing security settings if you wish to reuse them or submit full definition, if you want to create a new one."
+        },
+        {
+          "info": {
+            "name": "Get single notification profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/1/profiles/:profileId",
+            "params": [
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "path",
+                "description": "Notification profile ID."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a specific notification profile by ID."
+        },
+        {
+          "info": {
+            "name": "Update notification profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/1/profiles/:profileId",
+            "params": [
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method allows you to update a notification profile. You can change its properties and provide an ID of security settings if you wish to change them."
+        },
+        {
+          "info": {
+            "name": "Delete notification profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscriptions/1/profiles/:profileId",
+            "params": [
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "path",
+                "description": "Notification profile ID."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method will delete a notification profile specified by ID."
+        },
+        {
+          "info": {
+            "name": "Get security settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/1/security",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of security settings for your account with pagination."
+        },
+        {
+          "info": {
+            "name": "Create security settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/1/security",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method will create new security settings."
+        },
+        {
+          "info": {
+            "name": "Get single security settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/1/security/:authId",
+            "params": [
+              {
+                "name": "authId",
+                "value": "",
+                "type": "path",
+                "description": "Security settings ID."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns specific security settings item by ID."
+        },
+        {
+          "info": {
+            "name": "Update security settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/1/security/:authId",
+            "params": [
+              {
+                "name": "authId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method allows you to update the security settings."
+        },
+        {
+          "info": {
+            "name": "Delete security settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscriptions/1/security/:authId",
+            "params": [
+              {
+                "name": "authId",
+                "value": "",
+                "type": "path",
+                "description": "Security settings ID."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method will delete the security settings item by ID."
+        },
+        {
+          "info": {
+            "name": "Get filtered certificate details page",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/1/certificates",
+            "params": [
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search filter. Limits returned results."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Sorting parameter."
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Sorting direction."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a page containing certificates details by filtering condition."
+        },
+        {
+          "info": {
+            "name": "Upload certificate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/1/certificates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Upload the certificate Infobip will present for your webhook to verify Infobip when sending notification events."
+        },
+        {
+          "info": {
+            "name": "Get certificate details by identifier",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/1/certificates/:certificateId",
+            "params": [
+              {
+                "name": "certificateId",
+                "value": "",
+                "type": "path",
+                "description": "Certificate identifier."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a certificate details."
+        },
+        {
+          "info": {
+            "name": "Delete certificate",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscriptions/1/certificates/:certificateId",
+            "params": [
+              {
+                "name": "certificateId",
+                "value": "",
+                "type": "path",
+                "description": "Certificate identifier."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes an existing certificate by a given identifier. Note, certificates cannot be deleted if linked to a Notification Profile."
+        },
+        {
+          "info": {
+            "name": "Get filtered certificates statuses page",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/1/certificates/status",
+            "params": [
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search filter. Limits returned results."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Sorting parameter."
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Sorting direction."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a page containing certificates statuses by filtering condition."
+        },
+        {
+          "info": {
+            "name": "Get certificate status by identifier",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/1/certificates/status/:certificateId",
+            "params": [
+              {
+                "name": "certificateId",
+                "value": "",
+                "type": "path",
+                "description": "Certificate identifier."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a certificate status."
+        },
+        {
+          "info": {
+            "name": "Test connection to a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/1/certificates/test/webhook",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Performs connectivity check to provided webhook with the given certificate. Note, it does not send a notification event."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

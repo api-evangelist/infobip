@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "tools",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get OpenAPI Specification",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/platform/1/openapi"
+          },
+          "docs": "Returns the complete OpenAPI Specification for the Infobip platform."
+        },
+        {
+          "info": {
+            "name": "Get OpenAPI Specification for a specific product",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/platform/1/openapi/:product",
+            "params": [
+              {
+                "name": "product",
+                "value": "",
+                "type": "path",
+                "description": "Product identifier."
+              }
+            ]
+          },
+          "docs": "Returns the OpenAPI specification for a specific Infobip product, such as SMS, Email, or WhatsApp. To get the correct product identifier, [view the list of available products](https://www.infobip.com/docs/api/tools/openapi/get-available-products)."
+        },
+        {
+          "info": {
+            "name": "Get a list of available products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/platform/1/openapi/available-products"
+          },
+          "docs": "Returns a list of all available Infobip products that can be used to fetch the [OpenAPI Specification for a specific product](https://www.infobip.com/docs/api/tools/openapi/get-product-level-openapi). Use this list to find the correct value for the product path parameter."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,593 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "platform",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get current account balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/account/1/balance",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the current account balance displayed in the currency configured for the account."
+        },
+        {
+          "info": {
+            "name": "Get remaining free messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/account/1/free-messages",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the remaining number of free messages available for the account."
+        },
+        {
+          "info": {
+            "name": "Get account balance with free messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/account/1/total-balance",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the current account balance, monthly balance, monthly and total credit limit, currency details, and the remaining count of free messages per service type."
+        },
+        {
+          "info": {
+            "name": "Get all sub accounts with filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/settings/1/accounts",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Account name"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of account in response"
+              },
+              {
+                "name": "enabled",
+                "value": "",
+                "type": "query",
+                "description": "Indicates whether the account is enabled"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method allows you to get all sub accounts with custom filter"
+        },
+        {
+          "info": {
+            "name": "Update account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/settings/1/accounts/:accountKey",
+            "params": [
+              {
+                "name": "accountKey",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method allows you to update account. You can only update sub accounts"
+        },
+        {
+          "info": {
+            "name": "Get API keys by filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/settings/1/accounts/:accountKey/api-keys",
+            "params": [
+              {
+                "name": "accountKey",
+                "value": "",
+                "type": "path",
+                "description": "Key of the main account the API key belongs to. Use the special `_` value to reference the account of the user making the API request or a standard account key such as `8F0792F86035A9F4290821F1EE6BC06A` to reference an account explicitly."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "enabled",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "publicApiKey",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method allows you to get API keys of some account by filter forwarded"
+        },
+        {
+          "info": {
+            "name": "Create API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/settings/1/accounts/:accountKey/api-keys",
+            "params": [
+              {
+                "name": "accountKey",
+                "value": "",
+                "type": "path",
+                "description": "Key of the main account the API key belongs to. Use the special `_` value to reference the account of the user making the API request or a standard account key such as `8F0792F86035A9F4290821F1EE6BC06A` to reference an account explicitly."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method allows you to create an API key."
+        },
+        {
+          "info": {
+            "name": "Get API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/settings/1/accounts/:accountKey/api-keys/:key",
+            "params": [
+              {
+                "name": "accountKey",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Key of the main account the API key belongs to. Use the special _ value to reference the account of the user making the API request or a standard account key such as 8F0792F86035A9F4290821F1EE6BC06A to reference an account explicitly"
+        },
+        {
+          "info": {
+            "name": "Update API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/settings/1/accounts/:accountKey/api-keys/:key",
+            "params": [
+              {
+                "name": "accountKey",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Key of the main account the API key belongs to. Use the special _ value to reference the account of the user making the API request or a standard account key such as 8F0792F86035A9F4290821F1EE6BC06A to reference an account explicitly."
+        },
+        {
+          "info": {
+            "name": "Get API keys by filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/settings/2/api-keys",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for account this API keys belongs to. AccountId is optional and if not provided it will default to the account making the request."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Name of this API Key."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Specify the API key response page you want to fetch, starting with 0. If not set, the response will contain first page. The highest allowed page value is 100."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "The number of API keys in one response page. If not set, the response will be limited to 100 API keys, which is also the highest allowed size."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "The ordering parameter of API keys in the response page. If not set, the API keys in the response will be ordered by API key id."
+              },
+              {
+                "name": "orderDirection",
+                "value": "",
+                "type": "query",
+                "description": "The order direction of API keys in the response page. If not set, the API keys in the response will be in the ascending order."
+              },
+              {
+                "name": "enabled",
+                "value": "",
+                "type": "query",
+                "description": "Is API key enabled."
+              },
+              {
+                "name": "apiKeySecret",
+                "value": "",
+                "type": "query",
+                "description": "Authentication key. Use this value for authentication on API. Keep this in secure storage and don't share it."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method allows you to fetch an API keys by filter. Only users with certain roles can fetch api keys; for example, Account Manager and Integrations Manager roles."
+        },
+        {
+          "info": {
+            "name": "Create API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/settings/2/api-keys",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method allows you to create an API key. Only users with certain roles can create api keys; for example, Account Manager and Integrations Manager roles."
+        },
+        {
+          "info": {
+            "name": "Get API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/settings/2/api-keys/:apiKeyId",
+            "params": [
+              {
+                "name": "apiKeyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of api key to be returned."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method allows you to fetch an API key. Only users with certain roles can fetch api key; for example, Account Manager and Integrations Manager roles."
+        },
+        {
+          "info": {
+            "name": "Update API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/settings/2/api-keys/:apiKeyId",
+            "params": [
+              {
+                "name": "apiKeyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of api key to be updated."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method allows you to update an API key. Only users with certain roles can create api keys; for example, Account Manager and Integrations Manager roles."
+        },
+        {
+          "info": {
+            "name": "Create session token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/auth/1/session",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This method allows you to <a href=\"https://www.infobip.com/docs/essentials/api-authentication#ibsso-token-header\">create a session (login)</a> which by default will expire after 60 minutes. If you want to create a new token before the session expires, you'll need to <a href=\"#platform-connectivity/account-management/destroy-session\">destroy it</a> first."
+        },
+        {
+          "info": {
+            "name": "Destroy session token",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/auth/1/session",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method allows you to destroy the session token."
+        },
+        {
+          "info": {
+            "name": "Create OAuth2 token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/auth/1/oauth2/token",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Generate OAuth2 access token that can later on be used to authenticate other Infobip API calls."
+        },
+        {
+          "info": {
+            "name": "Export Audit Logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/audit/1/logs/export",
+            "params": [
+              {
+                "name": "action",
+                "value": "Create",
+                "type": "query",
+                "description": "User's action. If nothing is provided, logs for all actions are returned."
+              },
+              {
+                "name": "description",
+                "value": "username",
+                "type": "query",
+                "description": "Description of an action. If nothing is provided, logs for all descriptions are returned."
+              },
+              {
+                "name": "from",
+                "value": "2023-01-01T00:00:00.000Z",
+                "type": "query",
+                "description": "Date and time filter with the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`. If nothing is provided, there will be no lower limit filter applied on a date and time of recorded activity returned in logs."
+              },
+              {
+                "name": "item",
+                "value": "User",
+                "type": "query",
+                "description": "Use it as a filter to apply to the action field to narrow down the logs returned. if nothing is provided, logs with all items are returned."
+              },
+              {
+                "name": "ipAddress",
+                "value": "127.0.0.1",
+                "type": "query",
+                "description": "User's IP address. If nothing is provided, logs for all IP addresses are returned."
+              },
+              {
+                "name": "limit",
+                "value": "10000",
+                "type": "query",
+                "description": "Max number of user activities returned in logs. Accepts values from `1` to `10000`. Defaults to `10000`."
+              },
+              {
+                "name": "to",
+                "value": "2023-01-03T00:00:00.000Z",
+                "type": "query",
+                "description": "Date and time filter with the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`. If nothing is provided, there will be no upper limit filter applied on a date and time of recorded user activity returned in logs."
+              },
+              {
+                "name": "userKey",
+                "value": "JD1I2JD9JD3DDHHGKCNN1PK2O1",
+                "type": "query",
+                "description": "User's key can be found on the user's profile page at the Infobip portal. If nothing is provided, the logs for all user keys are returned."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method allows you to search and export users' activities on the web interface."
+        },
+        {
+          "info": {
+            "name": "Search Audit Logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/audit/1/logs",
+            "params": [
+              {
+                "name": "action",
+                "value": "Create",
+                "type": "query",
+                "description": "User's action. If nothing is provided, logs for all actions are returned."
+              },
+              {
+                "name": "description",
+                "value": "username",
+                "type": "query",
+                "description": "Description of an action. If nothing is provided, logs for all descriptions are returned."
+              },
+              {
+                "name": "from",
+                "value": "2023-01-01T00:00:00.000Z",
+                "type": "query",
+                "description": "Date and time filter with the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`. If nothing is provided, there will be no lower limit filter applied on a date and time of recorded activity returned in logs."
+              },
+              {
+                "name": "item",
+                "value": "User",
+                "type": "query",
+                "description": "Use it as a filter to apply to the action field to narrow down the logs returned. if nothing is provided, logs with all items are returned."
+              },
+              {
+                "name": "ipAddress",
+                "value": "127.0.0.1",
+                "type": "query",
+                "description": "User's IP address. If nothing is provided, logs for all IP addresses are returned."
+              },
+              {
+                "name": "limit",
+                "value": "10000",
+                "type": "query",
+                "description": "Max number of user activities returned in logs. Accepts values from `1` to `10000`. Defaults to `10000`."
+              },
+              {
+                "name": "to",
+                "value": "2023-01-03T00:00:00.000Z",
+                "type": "query",
+                "description": "Date and time filter with the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`. If nothing is provided, there will be no upper limit filter applied on a date and time of recorded user activity returned in logs."
+              },
+              {
+                "name": "userKey",
+                "value": "JD1I2JD9JD3DDHHGKCNN1PK2O1",
+                "type": "query",
+                "description": "User's key can be found on the user's profile page at the Infobip portal. If nothing is provided, the logs for all user keys are returned."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method allows you to track and search through users' activities on the web interface."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

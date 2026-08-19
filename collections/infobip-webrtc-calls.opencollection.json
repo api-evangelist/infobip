@@ -1,0 +1,1113 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "channels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate WebRTC Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/webrtc/1/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint allows you to generate token for WebRTC channel."
+        },
+        {
+          "info": {
+            "name": "Get WebRTC push configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/webrtc/1/webrtc-push-config",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a page of WebRTC push configurations matching the query criteria."
+        },
+        {
+          "info": {
+            "name": "Create WebRTC push configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/webrtc/1/webrtc-push-config",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create and configure a new WebRTC push configuration."
+        },
+        {
+          "info": {
+            "name": "Get WebRTC push configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/webrtc/1/webrtc-push-config/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "454d142b-a1ad-239a-d231-227fa335aadc3",
+                "type": "path",
+                "description": "Id of the WebRTC push configuration to get."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a single WebRTC push configuration and its details."
+        },
+        {
+          "info": {
+            "name": "Update WebRTC push configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/webrtc/1/webrtc-push-config/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "454d142b-a1ad-239a-d231-227fa335aadc3",
+                "type": "path",
+                "description": "Id of the WebRTC push configuration to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Change details of an existing WebRTC push configuration."
+        },
+        {
+          "info": {
+            "name": "Patch WebRTC push configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/webrtc/1/webrtc-push-config/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "454d142b-a1ad-239a-d231-227fa335aadc3",
+                "type": "path",
+                "description": "Id of the WebRTC push configuration to patch."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Change only specific fields of the WebRTC push configuration. Fields left out of the request will remain unchanged."
+        },
+        {
+          "info": {
+            "name": "Delete WebRTC push configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/webrtc/1/webrtc-push-config/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "454d142b-a1ad-239a-d231-227fa335aadc3",
+                "type": "path",
+                "description": "Id of the WebRTC push configuration to delete."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete WebRTC push configuration for the given id."
+        },
+        {
+          "info": {
+            "name": "Get files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/webrtc/1/files",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of files per page. Maximum page size is 100."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get files with pagination."
+        },
+        {
+          "info": {
+            "name": "Get file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/webrtc/1/files/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "5f4e8861-8ed7-4521-b8c8-f26346726716",
+                "type": "path",
+                "description": "Id of the file."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a single file."
+        },
+        {
+          "info": {
+            "name": "Delete file",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/webrtc/1/files/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "5f4e8861-8ed7-4521-b8c8-f26346726716",
+                "type": "path",
+                "description": "Id of the file to be deleted."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to delete a file."
+        },
+        {
+          "info": {
+            "name": "Download file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/webrtc/1/files/:id/download",
+            "params": [
+              {
+                "name": "id",
+                "value": "5f4e8861-8ed7-4521-b8c8-f26346726716",
+                "type": "path",
+                "description": "Id of the file to be downloaded."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to download a file."
+        },
+        {
+          "info": {
+            "name": "Get WebRTC user activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/webrtc/1/user-activity",
+            "params": [
+              {
+                "name": "identity",
+                "value": "Alice",
+                "type": "query",
+                "description": "The identity of the user on Infobip WebRTC platform."
+              },
+              {
+                "name": "startTime",
+                "value": "2024-09-10T15:30:45.125+0000",
+                "type": "query",
+                "description": "Start date and time for filtering of the user activity. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSS+ZZZZ`."
+              },
+              {
+                "name": "endTime",
+                "value": "2024-09-13T15:30:45.125+0000",
+                "type": "query",
+                "description": "End date and time for filtering of the user activity. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSS+ZZZZ`."
+              },
+              {
+                "name": "sessionId",
+                "value": "3f6957f0-79b3-11ef-a56e-ed504659cd80",
+                "type": "query",
+                "description": "An identifier that links different occurrences of `activityType` within the same activity session for a user identity on the Infobip WebRTC platform. When two activity events, distinguished by their `activityType`, happen during the same user activity session, they will share the same `sessionId`."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a page of a WebRTC user activity matching query criteria."
+        },
+        {
+          "info": {
+            "name": "Get WebRTC recordings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/webrtc/1/recordings",
+            "params": [
+              {
+                "name": "sortBy",
+                "value": "START_TIME",
+                "type": "query",
+                "description": "Field that will be used for sorting."
+              },
+              {
+                "name": "sortDirection",
+                "value": "DESC",
+                "type": "query",
+                "description": "Order in which files will be sorted based on sortBy field."
+              },
+              {
+                "name": "callType",
+                "value": "WEBRTC_CALL",
+                "type": "query",
+                "description": "Call type of the recorded call."
+              },
+              {
+                "name": "phoneNumber",
+                "value": "41792036727",
+                "type": "query",
+                "description": "Phone number that was participant of the recorded call."
+              },
+              {
+                "name": "identity",
+                "value": "Alice",
+                "type": "query",
+                "description": "WebRTC Identity that was participant of the recorded call."
+              },
+              {
+                "name": "roomName",
+                "value": "conference_room",
+                "type": "query",
+                "description": "Name of the recorded room for ROOM_CALL call type."
+              },
+              {
+                "name": "roomId",
+                "value": "f8fc8aca-786d-4943-9af2-e7ec01b5e80d",
+                "type": "query",
+                "description": "Id of the recorded room for ROOM_CALL call type. Equivalent to conferenceId."
+              },
+              {
+                "name": "startTimeAfter",
+                "value": "2024-05-01T14:25:45.125+0000",
+                "type": "query",
+                "description": "Date and time when the (first) call recording started."
+              },
+              {
+                "name": "startTimeBefore",
+                "value": "2024-05-01T14:26:45.125+0000",
+                "type": "query",
+                "description": "Date and time when the (last) call recording started."
+              },
+              {
+                "name": "location",
+                "value": "FRANKFURT",
+                "type": "query",
+                "description": "Recording location."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method allows searching and filtering based on various recording data properties."
+        },
+        {
+          "info": {
+            "name": "Delete WebRTC recording by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/webrtc/1/recordings/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "d8d84155-3831-43fb-91c9-bb897149a79d",
+                "type": "path",
+                "description": "ID of the recording to delete."
+              },
+              {
+                "name": "location",
+                "value": "FRANKFURT",
+                "type": "query",
+                "description": "Recording location."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method allows deleting call recordings based on their ID."
+        },
+        {
+          "info": {
+            "name": "Download WebRTC recording file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/webrtc/1/recordings/:id/download",
+            "headers": [
+              {
+                "name": "Range",
+                "value": "bytes=0-1023"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "d8d84155-3831-43fb-91c9-bb897149a79d",
+                "type": "path",
+                "description": "ID of the recording to download."
+              },
+              {
+                "name": "location",
+                "value": "FRANKFURT",
+                "type": "query",
+                "description": "Recording location."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method allows downloading a WebRTC recording file based on its ID."
+        },
+        {
+          "info": {
+            "name": "Get call links",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/call-link/1/links",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to retrieve all call links."
+        },
+        {
+          "info": {
+            "name": "Create call link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/call-link/1/links",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a link to send to someone who will then initiate a call."
+        },
+        {
+          "info": {
+            "name": "Get call link",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/call-link/1/links/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of a call link."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get a call link by its ID."
+        },
+        {
+          "info": {
+            "name": "Delete call link",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/call-link/1/links/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of a call link to delete."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to delete a call link by its ID."
+        },
+        {
+          "info": {
+            "name": "Get configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/call-link/1/configs",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to retrieve all call link configurations."
+        },
+        {
+          "info": {
+            "name": "Create configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/call-link/1/configs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to add a new call link configuration."
+        },
+        {
+          "info": {
+            "name": "Get configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/call-link/1/configs/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of a call link configuration to load."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to retrieve a call link configuration by its ID."
+        },
+        {
+          "info": {
+            "name": "Update a configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/call-link/1/configs/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of a call link configuration to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to overwrite a call link configuration.\nNew values for configuration attributes replace the existing ones. If no value is passed,\nthe attribute is set to empty or to default, if available."
+        },
+        {
+          "info": {
+            "name": "Partial configuration update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/call-link/1/configs/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of a call link configuration to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to update a call link configuration.\nNew values for configuration attributes replace the existing ones. If no value is passed in the request, the attribute keeps its value."
+        },
+        {
+          "info": {
+            "name": "Delete configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/call-link/1/configs/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of a call link configuration to delete."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to delete a call link configuration by its ID."
+        },
+        {
+          "info": {
+            "name": "Get images",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/call-link/1/images",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Results page to retrieve (0..N)."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to retrieve all images."
+        },
+        {
+          "info": {
+            "name": "Upload image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/call-link/1/images/upload/:type",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Image type, LOGO or BACKGROUND."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to upload an image."
+        },
+        {
+          "info": {
+            "name": "Get image",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/call-link/1/images/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of an image."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get an image."
+        },
+        {
+          "info": {
+            "name": "Delete image",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/call-link/1/images/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of an image to delete."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to delete a call link configuration image."
+        },
+        {
+          "info": {
+            "name": "Get subdomains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/call-link/1/subdomains",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to get all subdomains."
+        },
+        {
+          "info": {
+            "name": "Create subdomain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/call-link/1/subdomains",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to add a new call link subdomain. Maximum number of domains is 3. Cannot contain \".\"."
+        },
+        {
+          "info": {
+            "name": "Delete subdomain",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/call-link/1/subdomains/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of a call link subdomain to delete."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to delete a subdomain by its ID."
+        },
+        {
+          "info": {
+            "name": "Get call link recordings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/call-link/1/recordings",
+            "params": [
+              {
+                "name": "sortBy",
+                "value": "START_TIME",
+                "type": "query",
+                "description": "Field that will be used for sorting."
+              },
+              {
+                "name": "sortDirection",
+                "value": "DESC",
+                "type": "query",
+                "description": "Order in which files will be sorted based on sortBy field."
+              },
+              {
+                "name": "destinationData",
+                "value": "+1234567890",
+                "type": "query",
+                "description": "Destination the call was made towards. For WEBRTC calls, this is the WebRTC identity. For PHONE calls, this is the phone number. For ROOM calls, this is the room name."
+              },
+              {
+                "name": "destinationType",
+                "value": "PHONE",
+                "type": "query",
+                "description": "Type of call link destination."
+              },
+              {
+                "name": "callLinkConfigId",
+                "value": "685bede487a709487c584f91",
+                "type": "query",
+                "description": "ID of the call link configuration used to establish the recorded call."
+              },
+              {
+                "name": "callLinkId",
+                "value": "55a523d1-b769-4466-a4a9-f610899569e5",
+                "type": "query",
+                "description": "ID of a call link used to establish the recorded call."
+              },
+              {
+                "name": "startTimeAfter",
+                "value": "2025-01-01T00:00:00.000+0000",
+                "type": "query",
+                "description": "Date and time when the (first) call recording started."
+              },
+              {
+                "name": "startTimeBefore",
+                "value": "2025-01-01T00:00:00.000+0000",
+                "type": "query",
+                "description": "Date and time when the (last) call recording started."
+              },
+              {
+                "name": "location",
+                "value": "FRANKFURT",
+                "type": "query",
+                "description": "Recording location."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination, starting from 0."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page, maximum is 100."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to filter and retrieve call link recordings."
+        },
+        {
+          "info": {
+            "name": "Delete call link recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/call-link/1/recordings/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "55a523d1-b769-4466-a4a9-f610899569e5",
+                "type": "path",
+                "description": "ID of the recording to delete."
+              },
+              {
+                "name": "location",
+                "value": "FRANKFURT",
+                "type": "query",
+                "description": "Recording location."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to delete a call link recording by its ID."
+        },
+        {
+          "info": {
+            "name": "Download a recording file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/call-link/1/recordings/files/:fileId",
+            "headers": [
+              {
+                "name": "Range",
+                "value": "bytes=0-1023"
+              }
+            ],
+            "params": [
+              {
+                "name": "fileId",
+                "value": "d8d84155-3831-43fb-91c9-bb897149a79d",
+                "type": "path",
+                "description": "File ID to match."
+              },
+              {
+                "name": "location",
+                "value": "FRANKFURT",
+                "type": "query",
+                "description": "Recording location."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method to download a recording file by its ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

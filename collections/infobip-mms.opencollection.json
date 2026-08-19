@@ -1,0 +1,431 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "channels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send MMS messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/mms/2/messages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method allows you to send MMS messages to a recipient or multiple recipients in one request."
+        },
+        {
+          "info": {
+            "name": "Send MMS message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/mms/1/advanced",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method allows you to send one MMS or bulk MMS to a recipient or multiple recipients in one request."
+        },
+        {
+          "info": {
+            "name": "Upload binary content",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/mms/1/content",
+            "headers": [
+              {
+                "name": "X-Content-Id",
+                "value": "image_1_jpg"
+              },
+              {
+                "name": "X-Media-Type",
+                "value": "image/jpeg"
+              },
+              {
+                "name": "X-Validity-Period-Minutes",
+                "value": "70000"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This method allows you to upload binary content that you can reference when sending MMS messages."
+        },
+        {
+          "info": {
+            "name": "Get inbound MMS messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/mms/1/inbox/reports",
+            "params": [
+              {
+                "name": "limit",
+                "value": "2",
+                "type": "query",
+                "description": "Maximum number of delivery reports that will be returned."
+              },
+              {
+                "name": "applicationId",
+                "value": "ApplicationExample",
+                "type": "query",
+                "description": "[Application](https://www.infobip.com/docs/cpaas-x/application-and-entity-management#application) identifier used for filtering."
+              },
+              {
+                "name": "entityId",
+                "value": "EntityExample",
+                "type": "query",
+                "description": "[Entity](https://www.infobip.com/docs/cpaas-x/application-and-entity-management#entity) identifier used for filtering."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "If for some reason you are unable to receive incoming MMS at the endpoint of your choice in real time, you can use this API call to fetch messages. Each request will return a batch of received messages - only once. The following API request will return only new messages that arrived since the last API request."
+        },
+        {
+          "info": {
+            "name": "Get MMS delivery reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/mms/2/reports",
+            "params": [
+              {
+                "name": "bulkId",
+                "value": "",
+                "type": "query",
+                "description": "The ID that uniquely identifies the request. Bulk ID will be received only when you send a message to more than one destination address."
+              },
+              {
+                "name": "messageId",
+                "value": "",
+                "type": "query",
+                "description": "The ID that uniquely identifies the message sent."
+              },
+              {
+                "name": "limit",
+                "value": "1",
+                "type": "query",
+                "description": "Maximum number of delivery reports to be returned. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access reports for the last 48h."
+              },
+              {
+                "name": "entityId",
+                "value": "promotional-traffic-entity",
+                "type": "query",
+                "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "applicationId",
+                "value": "marketing-automation-application",
+                "type": "query",
+                "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "campaignReferenceId",
+                "value": "summersale",
+                "type": "query",
+                "description": "ID of a campaign that was sent in the message."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "If you are unable to receive real-time delivery reports towards your endpoint for various reasons, we offer you an API method to fetch batches of delivery reports to confirm whether specific messages have been delivered. Each request towards this endpoint will return batches of the latest delivery reports. Please note they will be returned only once."
+        },
+        {
+          "info": {
+            "name": "Get outbound MMS message delivery reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/mms/1/reports",
+            "params": [
+              {
+                "name": "bulkId",
+                "value": "BULK-ID-123-xyz",
+                "type": "query",
+                "description": "ID of bulk for which a delivery report is requested."
+              },
+              {
+                "name": "messageId",
+                "value": "MESSAGE-ID-123-xyz",
+                "type": "query",
+                "description": "ID of MMS for which a delivery report is requested."
+              },
+              {
+                "name": "limit",
+                "value": "2",
+                "type": "query",
+                "description": "Maximum number of delivery reports that will be returned."
+              },
+              {
+                "name": "applicationId",
+                "value": "ApplicationExample",
+                "type": "query",
+                "description": "[Application](https://www.infobip.com/docs/cpaas-x/application-and-entity-management#application) identifier used for filtering."
+              },
+              {
+                "name": "entityId",
+                "value": "EntityExample",
+                "type": "query",
+                "description": "[Entity](https://www.infobip.com/docs/cpaas-x/application-and-entity-management#entity) identifier used for filtering."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "If you are unable to receive real-time delivery reports towards your endpoint for various reasons, we offer you an API method to fetch batches of delivery reports to confirm whether specific messages have been delivered. Each request towards this endpoint will return batches of the latest delivery reports. Please note they will be returned only once."
+        },
+        {
+          "info": {
+            "name": "Get MMS message logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/mms/2/logs",
+            "params": [
+              {
+                "name": "mcc",
+                "value": "",
+                "type": "query",
+                "description": "Filter logs by mobile country code."
+              },
+              {
+                "name": "mnc",
+                "value": "",
+                "type": "query",
+                "description": "Filter logs by mobile network code."
+              },
+              {
+                "name": "sender",
+                "value": "",
+                "type": "query",
+                "description": "The sender ID which can be alphanumeric or numeric."
+              },
+              {
+                "name": "destination",
+                "value": "",
+                "type": "query",
+                "description": "Message destination address."
+              },
+              {
+                "name": "bulkId",
+                "value": "BULK-ID-123-xyz",
+                "type": "query",
+                "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. May contain multiple comma-separated values. Maximum length 2048 characters."
+              },
+              {
+                "name": "messageId",
+                "value": "MESSAGE-ID-123-xyz,MESSAGE-ID-124-xyz",
+                "type": "query",
+                "description": "Unique message ID for which a log is requested. May contain multiple comma-separated values. Maximum length 2048 characters."
+              },
+              {
+                "name": "generalStatus",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sentSince",
+                "value": "2020-02-22T17:42:05.390+01:00",
+                "type": "query",
+                "description": "The logs will only include messages sent after this date. Use it alongside sentUntil to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+              },
+              {
+                "name": "sentUntil",
+                "value": "2020-02-23T17:42:05.390+01:00",
+                "type": "query",
+                "description": "The logs will only include messages sent before this date. Use it alongside sentSince to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of messages to include in logs. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access logs for the last 48h."
+              },
+              {
+                "name": "entityId",
+                "value": "promotional-traffic-entity",
+                "type": "query",
+                "description": "Entity id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "applicationId",
+                "value": "marketing-automation-application",
+                "type": "query",
+                "description": "Application id used to send the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "campaignReferenceId",
+                "value": "summersale",
+                "type": "query",
+                "description": "ID of a campaign that was sent in the message. May contain multiple comma-separated values."
+              },
+              {
+                "name": "useCursor",
+                "value": "",
+                "type": "query",
+                "description": "Flag used to enable cursor-based pagination. When set to true, the system will use the cursor to fetch the next set of logs."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Value which represents the current position in the data set. For the first request, this field shouldn't be defined. In subsequent requests, use the `nextCursor` value returned from the previous response to continue fetching data."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method for displaying logs for example in the user interface. Available are the logs for the last 48 hours."
+        },
+        {
+          "info": {
+            "name": "Get outbound MMS message logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/mms/1/logs",
+            "params": [
+              {
+                "name": "from",
+                "value": "10950",
+                "type": "query",
+                "description": "The sender ID which can be alphanumeric or numeric."
+              },
+              {
+                "name": "to",
+                "value": "41793026727",
+                "type": "query",
+                "description": "Message destination address."
+              },
+              {
+                "name": "bulkId",
+                "value": "3746923784",
+                "type": "query",
+                "description": "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request."
+              },
+              {
+                "name": "messageId",
+                "value": "43u2ih-6453jbh-897kfs90u2nj",
+                "type": "query",
+                "description": "Unique message ID for which a log is requested."
+              },
+              {
+                "name": "generalStatus",
+                "value": "ACCEPTED",
+                "type": "query",
+                "description": "Sent [message status](https://www.infobip.com/docs/essentials/response-status-and-error-codes#api-status-codes)."
+              },
+              {
+                "name": "sentSince",
+                "value": "2023-04-16T12:00:00.390Z",
+                "type": "query",
+                "description": "The logs will only include messages sent after this date. Use it together with sentUntil to return a time range or if you want to fetch more than 1000 logs allowed per call. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`."
+              },
+              {
+                "name": "sentUntil",
+                "value": "2023-04-17T12:00:00.390Z",
+                "type": "query",
+                "description": "The logs will only include messages sent before this date. Use it together with sentBefore to return a time range or if you want to fetch more than 1000 logs allowed per call. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`."
+              },
+              {
+                "name": "limit",
+                "value": "100",
+                "type": "query",
+                "description": "Maximum number of messages to include in logs. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access logs for the last 48h. If you have more than 1000 logs in that period, you can retrieve remaining logs by using sentBefore and sentUntil."
+              },
+              {
+                "name": "mcc",
+                "value": "22801",
+                "type": "query",
+                "description": "Mobile Country Code."
+              },
+              {
+                "name": "mnc",
+                "value": "22823",
+                "type": "query",
+                "description": "Mobile Network Code."
+              },
+              {
+                "name": "applicationId",
+                "value": "test-application",
+                "type": "query",
+                "description": "The application used when sending the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              },
+              {
+                "name": "entityId",
+                "value": "test-entity",
+                "type": "query",
+                "description": "The entity used when sending the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this method for displaying logs for example in the user interface. Available are the logs for the last 48 hours and you can only retrieve maximum of 1000 logs per call. See [message delivery reports](#channels/mms/get-outbound-mms-message-delivery-reports) if your use case is to verify message delivery."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

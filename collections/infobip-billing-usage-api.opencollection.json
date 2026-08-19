@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "platform",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query billing usage data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/billing/1/usage/query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Start the process of aggregating billing-grade financial cost data for your Infobip traffic. The results are delivered once via POST to the `callbackURL` provided in the request. Make sure the URL is reachable before submitting. See [Receive billing usage result](#platform/billing-usage/receive-billing-usage-result) for the webhook payload structure."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

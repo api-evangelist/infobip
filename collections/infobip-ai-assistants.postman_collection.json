@@ -1,0 +1,2111 @@
+{
+  "item": [
+    {
+      "id": "b0fa3a82-ffc1-459e-b1fb-c1a4475a550c",
+      "name": "ai-hub",
+      "description": {
+        "content": "AI-powered tools and services to help you create smarter and more personalized customer experiences.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "da4a6631-46c2-47e7-b198-3719d89f1341",
+          "name": "Query AI Assistant by ID",
+          "request": {
+            "name": "Query AI Assistant by ID",
+            "description": {
+              "content": "Forwards a message from a user to a specific AI assistant identified by its unique ID and returns the assistant's response.<br/><br/>This endpoint performs a semantic search over an AI assistant's indexed documents based on configured guidelines. It then generates a response using the LLM connected to the assistant.<br/><br/>The \"use shared history\" feature allowing an AI assistant to utilize the agent's conversation history, is only available if used together with [Infobip AI agents](https://www.infobip.com/docs/ai-agents).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ai",
+                "1",
+                "aiassistants",
+                ":assistantId",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assistantId",
+                  "description": "(Required) Unique identifier of the AI assistant to query."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"<string>\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"<string>\",\n  \"returnContexts\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "91cb8dd7-90cc-4309-8fda-8a6984667584",
+              "name": "AI Assistant response retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "1",
+                    "aiassistants",
+                    ":assistantId",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assistantId",
+                      "description": "(Required) Unique identifier of the AI assistant to query."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Hello, what can you help me with?\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"session-12345\",\n  \"returnContexts\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": \"Based on the documentation, you can send an SMS by using our SMS API. First, you need to authenticate using your API key, then make a POST request to the /sms/2/text/advanced endpoint with your message details.\",\n  \"context\": {\n    \"originalContexts\": [\n      {\n        \"text\": \"To send SMS messages, you need to use the SMS API endpoint...\",\n        \"filename\": \"sms-api-guide.pdf\"\n      },\n      {\n        \"text\": \"Authentication is required for all API calls...\",\n        \"filename\": \"authentication-guide.pdf\"\n      }\n    ],\n    \"rerankedContexts\": [\n      {\n        \"text\": \"To send SMS messages, you need to use the SMS API endpoint...\",\n        \"filename\": \"sms-api-guide.pdf\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4834ba7e-fb73-4fc9-82b4-682e19325bb8",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "1",
+                    "aiassistants",
+                    ":assistantId",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assistantId",
+                      "description": "(Required) Unique identifier of the AI assistant to query."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Hello, what can you help me with?\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"session-12345\",\n  \"returnContexts\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E400\",\n  \"description\": \"Request cannot be processed.\",\n  \"action\": \"Check the syntax, violations and adjust the request.\",\n  \"violations\": [\n    {\n      \"property\": \"property.path\",\n      \"violation\": \"Violation message.\"\n    }\n  ],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05fe378c-741f-4edf-b5cd-6aae193f3934",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "1",
+                    "aiassistants",
+                    ":assistantId",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assistantId",
+                      "description": "(Required) Unique identifier of the AI assistant to query."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Hello, what can you help me with?\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"session-12345\",\n  \"returnContexts\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E401\",\n  \"description\": \"The request lacks valid authentication credentials for the requested resource.\",\n  \"action\": \"Check the resources and adjust authentication credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Authentication\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-authentication\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "483af432-3f45-4e33-8c71-7496d3c64e4f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "1",
+                    "aiassistants",
+                    ":assistantId",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assistantId",
+                      "description": "(Required) Unique identifier of the AI assistant to query."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Hello, what can you help me with?\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"session-12345\",\n  \"returnContexts\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E403\",\n  \"description\": \"Insufficient permissions to access the requested resource.\",\n  \"action\": \"Repeat the request with new or different credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Scopes\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "731e87ec-f791-4ccc-8a4e-4351ee595006",
+              "name": "Assistant not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "1",
+                    "aiassistants",
+                    ":assistantId",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assistantId",
+                      "description": "(Required) Unique identifier of the AI assistant to query."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Hello, what can you help me with?\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"session-12345\",\n  \"returnContexts\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"40401\",\n  \"description\": \"Assistant not found.\",\n  \"action\": \"Check the description for error details.\",\n  \"violations\": [],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59303e96-d42d-4840-a511-147d941c6eab",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "1",
+                    "aiassistants",
+                    ":assistantId",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assistantId",
+                      "description": "(Required) Unique identifier of the AI assistant to query."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Hello, what can you help me with?\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"session-12345\",\n  \"returnContexts\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E429\",\n  \"description\": \"Too many requests sent.\",\n  \"action\": \"Check request rate limit specified in the API endpoint documentation resource.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"Throttling handling errors\",\n      \"url\": \"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0be9d2aa-c5f3-4c04-9173-97fe7fbd7910",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "1",
+                    "aiassistants",
+                    ":assistantId",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assistantId",
+                      "description": "(Required) Unique identifier of the AI assistant to query."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Hello, what can you help me with?\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"session-12345\",\n  \"returnContexts\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E500\",\n  \"description\": \"Something went wrong.\",\n  \"action\": \"Contact the support.\",\n  \"violations\": [],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a8629bc6-7d0c-4e1f-a188-d4d20c762951",
+          "name": "Retrieve Context from AI Assistant",
+          "request": {
+            "name": "Retrieve Context from AI Assistant",
+            "description": {
+              "content": "Retrieves the most relevant context chunks from an AI assistant's knowledge base for a given message.<br/><br/>This endpoint performs a semantic search over the assistant's indexed documents and returns the most relevant text segments (top k chunks). You can specify how many chunks to return and optionally enable re-ranking for more accurate results.<br/><br/>The \"use shared history\" feature allowing an AI assistant to utilize the agent's conversation history, is only available if used together with [Infobip AI agents](https://www.infobip.com/docs/ai-agents).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ai",
+                "1",
+                "aiassistants",
+                ":assistantId",
+                "retrieve-context"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assistantId",
+                  "description": "(Required) Unique identifier of the AI assistant from which to retrieve context."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"<string>\",\n  \"k\": \"<integer>\",\n  \"reRankK\": \"<integer>\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "20d9cf86-9a02-4913-93ad-2a271e75b021",
+              "name": "Context retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "1",
+                    "aiassistants",
+                    ":assistantId",
+                    "retrieve-context"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assistantId",
+                      "description": "(Required) Unique identifier of the AI assistant from which to retrieve context."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"How to send SMS?\",\n  \"k\": 5,\n  \"reRankK\": 10,\n  \"useSharedHistory\": false,\n  \"sessionId\": \"session-12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contexts\": [\n    {\n      \"node\": {\n        \"id\": \"node-123-abc\",\n        \"text\": \"To send SMS messages, you need to use the SMS API endpoint. Make a POST request to /sms/2/text/advanced with your authentication credentials and message payload.\",\n        \"metadata\": {\n          \"source\": \"sms-api-guide.pdf\",\n          \"page\": 5,\n          \"chapter\": \"Sending Messages\"\n        },\n        \"startCharIdx\": 0,\n        \"endCharIdx\": 150\n      },\n      \"score\": 0.92\n    },\n    {\n      \"node\": {\n        \"id\": \"node-456-def\",\n        \"text\": \"Authentication is required for all API calls. You can authenticate using an API key in the Authorization header with the format 'App YOUR_API_KEY'.\",\n        \"metadata\": {\n          \"source\": \"authentication-guide.pdf\",\n          \"page\": 2\n        },\n        \"startCharIdx\": 200,\n        \"endCharIdx\": 350\n      },\n      \"score\": 0.85\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82ef853d-e9c2-46b1-ba1d-0bcb3ae35eeb",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "1",
+                    "aiassistants",
+                    ":assistantId",
+                    "retrieve-context"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assistantId",
+                      "description": "(Required) Unique identifier of the AI assistant from which to retrieve context."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"How to send SMS?\",\n  \"k\": 5,\n  \"reRankK\": 10,\n  \"useSharedHistory\": false,\n  \"sessionId\": \"session-12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E400\",\n  \"description\": \"Request cannot be processed.\",\n  \"action\": \"Check the syntax, violations and adjust the request.\",\n  \"violations\": [\n    {\n      \"property\": \"property.path\",\n      \"violation\": \"Violation message.\"\n    }\n  ],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1ce6f8f-ff75-4d7f-8315-059ab661f97f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "1",
+                    "aiassistants",
+                    ":assistantId",
+                    "retrieve-context"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assistantId",
+                      "description": "(Required) Unique identifier of the AI assistant from which to retrieve context."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"How to send SMS?\",\n  \"k\": 5,\n  \"reRankK\": 10,\n  \"useSharedHistory\": false,\n  \"sessionId\": \"session-12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E401\",\n  \"description\": \"The request lacks valid authentication credentials for the requested resource.\",\n  \"action\": \"Check the resources and adjust authentication credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Authentication\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-authentication\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a3f19b6d-7556-435c-8a48-2626a5161fba",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "1",
+                    "aiassistants",
+                    ":assistantId",
+                    "retrieve-context"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assistantId",
+                      "description": "(Required) Unique identifier of the AI assistant from which to retrieve context."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"How to send SMS?\",\n  \"k\": 5,\n  \"reRankK\": 10,\n  \"useSharedHistory\": false,\n  \"sessionId\": \"session-12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E403\",\n  \"description\": \"Insufficient permissions to access the requested resource.\",\n  \"action\": \"Repeat the request with new or different credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Scopes\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9fbbc3f-b61f-4f38-b637-17842d5ee890",
+              "name": "Assistant not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "1",
+                    "aiassistants",
+                    ":assistantId",
+                    "retrieve-context"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assistantId",
+                      "description": "(Required) Unique identifier of the AI assistant from which to retrieve context."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"How to send SMS?\",\n  \"k\": 5,\n  \"reRankK\": 10,\n  \"useSharedHistory\": false,\n  \"sessionId\": \"session-12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"40401\",\n  \"description\": \"Assistant not found.\",\n  \"action\": \"Check the description for error details.\",\n  \"violations\": [],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca78069b-14d5-46f4-9a03-fc3e3c57a2dc",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "1",
+                    "aiassistants",
+                    ":assistantId",
+                    "retrieve-context"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assistantId",
+                      "description": "(Required) Unique identifier of the AI assistant from which to retrieve context."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"How to send SMS?\",\n  \"k\": 5,\n  \"reRankK\": 10,\n  \"useSharedHistory\": false,\n  \"sessionId\": \"session-12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E429\",\n  \"description\": \"Too many requests sent.\",\n  \"action\": \"Check request rate limit specified in the API endpoint documentation resource.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"Throttling handling errors\",\n      \"url\": \"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bda86a7d-86ad-4ad1-883c-0eb2e65eef4b",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "1",
+                    "aiassistants",
+                    ":assistantId",
+                    "retrieve-context"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assistantId",
+                      "description": "(Required) Unique identifier of the AI assistant from which to retrieve context."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"How to send SMS?\",\n  \"k\": 5,\n  \"reRankK\": 10,\n  \"useSharedHistory\": false,\n  \"sessionId\": \"session-12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E500\",\n  \"description\": \"Something went wrong.\",\n  \"action\": \"Contact the support.\",\n  \"violations\": [],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f04ae954-18f4-474e-ad46-8c261283d5b4",
+      "name": "ai-assistants",
+      "description": {
+        "content": "Infobip AI assistant is a retrieval-augmented generation (RAG) solution that performs tasks based on documents and\ninstructions you specify. This means the AI draws answers directly from your documents, resulting in more accurate\nand relevant responses. For more information on use cases and how to build AI assistants, visit our\n[AI Assistant](https://www.infobip.com/docs/ai-hub/ai-assistant) product documentation.\n\nWith AI Assistants API, you can:\n* Query your existing AI assistants created via [Infobip Portal](https://www.infobip.com/docs/ai-hub/ai-assistant/create-ai-assistant)\n* Retrieve context the AI assistant uses to answer your queries\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0945a695-a72e-4ccd-b267-37c3c75bf7e9",
+          "name": "Query AI Assistant by ID",
+          "request": {
+            "name": "Query AI Assistant by ID",
+            "description": {
+              "content": "Forwards a message from a user to a specific AI assistant identified by its unique ID and returns the assistant's response.<br/><br/>This endpoint performs a semantic search over an AI assistant's indexed documents based on configured guidelines. It then generates a response using the LLM connected to the assistant.<br/><br/>The \"use shared history\" feature allowing an AI assistant to utilize the agent's conversation history, is only available if used together with [Infobip AI agents](https://www.infobip.com/docs/ai-agents).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ai",
+                "1",
+                "aiassistants",
+                ":assistantId",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assistantId",
+                  "description": "(Required) Unique identifier of the AI assistant to query."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"<string>\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"<string>\",\n  \"returnContexts\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8715b9f2-1625-42ef-a454-bc9446f2bb68",
+              "name": "AI Assistant response retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "1",
+                    "aiassistants",
+                    ":assistantId",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assistantId",
+                      "description": "(Required) Unique identifier of the AI assistant to query."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Hello, what can you help me with?\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"session-12345\",\n  \"returnContexts\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": \"Based on the documentation, you can send an SMS by using our SMS API. First, you need to authenticate using your API key, then make a POST request to the /sms/2/text/advanced endpoint with your message details.\",\n  \"context\": {\n    \"originalContexts\": [\n      {\n        \"text\": \"To send SMS messages, you need to use the SMS API endpoint...\",\n        \"filename\": \"sms-api-guide.pdf\"\n      },\n      {\n        \"text\": \"Authentication is required for all API calls...\",\n        \"filename\": \"authentication-guide.pdf\"\n      }\n    ],\n    \"rerankedContexts\": [\n      {\n        \"text\": \"To send SMS messages, you need to use the SMS API endpoint...\",\n        \"filename\": \"sms-api-guide.pdf\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "517b2569-3723-4bf2-b641-61c7726a9f9d",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "1",
+                    "aiassistants",
+                    ":assistantId",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assistantId",
+                      "description": "(Required) Unique identifier of the AI assistant to query."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Hello, what can you help me with?\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"session-12345\",\n  \"returnContexts\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E400\",\n  \"description\": \"Request cannot be processed.\",\n  \"action\": \"Check the syntax, violations and adjust the request.\",\n  \"violations\": [\n    {\n      \"property\": \"property.path\",\n      \"violation\": \"Violation message.\"\n    }\n  ],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99fa3ff7-60d8-4f78-9c7e-cae9de9b2a5f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "1",
+                    "aiassistants",
+                    ":assistantId",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assistantId",
+                      "description": "(Required) Unique identifier of the AI assistant to query."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Hello, what can you help me with?\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"session-12345\",\n  \"returnContexts\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E401\",\n  \"description\": \"The request lacks valid authentication credentials for the requested resource.\",\n  \"action\": \"Check the resources and adjust authentication credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Authentication\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-authentication\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4547d678-a95f-4c0b-8cb8-c4a6d4eeffb0",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "1",
+                    "aiassistants",
+                    ":assistantId",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assistantId",
+                      "description": "(Required) Unique identifier of the AI assistant to query."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Hello, what can you help me with?\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"session-12345\",\n  \"returnContexts\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E403\",\n  \"description\": \"Insufficient permissions to access the requested resource.\",\n  \"action\": \"Repeat the request with new or different credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Scopes\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07ee22a8-c4a6-4ac2-880e-4ca99ee748cf",
+              "name": "Assistant not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "1",
+                    "aiassistants",
+                    ":assistantId",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assistantId",
+                      "description": "(Required) Unique identifier of the AI assistant to query."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Hello, what can you help me with?\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"session-12345\",\n  \"returnContexts\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"40401\",\n  \"description\": \"Assistant not found.\",\n  \"action\": \"Check the description for error details.\",\n  \"violations\": [],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "077ec749-48af-4a02-ba19-11869f972fb3",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "1",
+                    "aiassistants",
+                    ":assistantId",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assistantId",
+                      "description": "(Required) Unique identifier of the AI assistant to query."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Hello, what can you help me with?\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"session-12345\",\n  \"returnContexts\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E429\",\n  \"description\": \"Too many requests sent.\",\n  \"action\": \"Check request rate limit specified in the API endpoint documentation resource.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"Throttling handling errors\",\n      \"url\": \"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f4d9a84-6c4f-4e79-82ac-a951f999c9ab",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "1",
+                    "aiassistants",
+                    ":assistantId",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assistantId",
+                      "description": "(Required) Unique identifier of the AI assistant to query."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Hello, what can you help me with?\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"session-12345\",\n  \"returnContexts\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E500\",\n  \"description\": \"Something went wrong.\",\n  \"action\": \"Contact the support.\",\n  \"violations\": [],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bd183aae-ccaf-4a7d-8dec-a73dc3d68c6b",
+          "name": "Retrieve Context from AI Assistant",
+          "request": {
+            "name": "Retrieve Context from AI Assistant",
+            "description": {
+              "content": "Retrieves the most relevant context chunks from an AI assistant's knowledge base for a given message.<br/><br/>This endpoint performs a semantic search over the assistant's indexed documents and returns the most relevant text segments (top k chunks). You can specify how many chunks to return and optionally enable re-ranking for more accurate results.<br/><br/>The \"use shared history\" feature allowing an AI assistant to utilize the agent's conversation history, is only available if used together with [Infobip AI agents](https://www.infobip.com/docs/ai-agents).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ai",
+                "1",
+                "aiassistants",
+                ":assistantId",
+                "retrieve-context"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assistantId",
+                  "description": "(Required) Unique identifier of the AI assistant from which to retrieve context."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"<string>\",\n  \"k\": \"<integer>\",\n  \"reRankK\": \"<integer>\",\n  \"useSharedHistory\": false,\n  \"sessionId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "be844140-0163-4ab0-b905-0398c8d9d99c",
+              "name": "Context retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "1",
+                    "aiassistants",
+                    ":assistantId",
+                    "retrieve-context"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assistantId",
+                      "description": "(Required) Unique identifier of the AI assistant from which to retrieve context."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"How to send SMS?\",\n  \"k\": 5,\n  \"reRankK\": 10,\n  \"useSharedHistory\": false,\n  \"sessionId\": \"session-12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contexts\": [\n    {\n      \"node\": {\n        \"id\": \"node-123-abc\",\n        \"text\": \"To send SMS messages, you need to use the SMS API endpoint. Make a POST request to /sms/2/text/advanced with your authentication credentials and message payload.\",\n        \"metadata\": {\n          \"source\": \"sms-api-guide.pdf\",\n          \"page\": 5,\n          \"chapter\": \"Sending Messages\"\n        },\n        \"startCharIdx\": 0,\n        \"endCharIdx\": 150\n      },\n      \"score\": 0.92\n    },\n    {\n      \"node\": {\n        \"id\": \"node-456-def\",\n        \"text\": \"Authentication is required for all API calls. You can authenticate using an API key in the Authorization header with the format 'App YOUR_API_KEY'.\",\n        \"metadata\": {\n          \"source\": \"authentication-guide.pdf\",\n          \"page\": 2\n        },\n        \"startCharIdx\": 200,\n        \"endCharIdx\": 350\n      },\n      \"score\": 0.85\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "458e0d4b-5200-475c-9f89-7b4b935aa875",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "1",
+                    "aiassistants",
+                    ":assistantId",
+                    "retrieve-context"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assistantId",
+                      "description": "(Required) Unique identifier of the AI assistant from which to retrieve context."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"How to send SMS?\",\n  \"k\": 5,\n  \"reRankK\": 10,\n  \"useSharedHistory\": false,\n  \"sessionId\": \"session-12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E400\",\n  \"description\": \"Request cannot be processed.\",\n  \"action\": \"Check the syntax, violations and adjust the request.\",\n  \"violations\": [\n    {\n      \"property\": \"property.path\",\n      \"violation\": \"Violation message.\"\n    }\n  ],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3657c7da-c5b8-4cd1-98e8-4400d5ee5c44",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "1",
+                    "aiassistants",
+                    ":assistantId",
+                    "retrieve-context"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assistantId",
+                      "description": "(Required) Unique identifier of the AI assistant from which to retrieve context."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"How to send SMS?\",\n  \"k\": 5,\n  \"reRankK\": 10,\n  \"useSharedHistory\": false,\n  \"sessionId\": \"session-12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E401\",\n  \"description\": \"The request lacks valid authentication credentials for the requested resource.\",\n  \"action\": \"Check the resources and adjust authentication credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Authentication\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-authentication\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "717ff340-2bd7-4224-ba10-5e2fc5193722",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "1",
+                    "aiassistants",
+                    ":assistantId",
+                    "retrieve-context"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assistantId",
+                      "description": "(Required) Unique identifier of the AI assistant from which to retrieve context."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"How to send SMS?\",\n  \"k\": 5,\n  \"reRankK\": 10,\n  \"useSharedHistory\": false,\n  \"sessionId\": \"session-12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E403\",\n  \"description\": \"Insufficient permissions to access the requested resource.\",\n  \"action\": \"Repeat the request with new or different credentials.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"API Scopes\",\n      \"url\": \"https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "727ae7b6-3cfb-4a02-bac6-db8b22bba1fb",
+              "name": "Assistant not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "1",
+                    "aiassistants",
+                    ":assistantId",
+                    "retrieve-context"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assistantId",
+                      "description": "(Required) Unique identifier of the AI assistant from which to retrieve context."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"How to send SMS?\",\n  \"k\": 5,\n  \"reRankK\": 10,\n  \"useSharedHistory\": false,\n  \"sessionId\": \"session-12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"40401\",\n  \"description\": \"Assistant not found.\",\n  \"action\": \"Check the description for error details.\",\n  \"violations\": [],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67152493-6677-4760-a563-c659795a5344",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "1",
+                    "aiassistants",
+                    ":assistantId",
+                    "retrieve-context"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assistantId",
+                      "description": "(Required) Unique identifier of the AI assistant from which to retrieve context."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"How to send SMS?\",\n  \"k\": 5,\n  \"reRankK\": 10,\n  \"useSharedHistory\": false,\n  \"sessionId\": \"session-12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E429\",\n  \"description\": \"Too many requests sent.\",\n  \"action\": \"Check request rate limit specified in the API endpoint documentation resource.\",\n  \"violations\": [],\n  \"resources\": [\n    {\n      \"name\": \"Throttling handling errors\",\n      \"url\": \"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8ee08d0-c97d-485d-9d69-0f7f8d863dce",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai",
+                    "1",
+                    "aiassistants",
+                    ":assistantId",
+                    "retrieve-context"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assistantId",
+                      "description": "(Required) Unique identifier of the AI assistant from which to retrieve context."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"How to send SMS?\",\n  \"k\": 5,\n  \"reRankK\": 10,\n  \"useSharedHistory\": false,\n  \"sessionId\": \"session-12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"E500\",\n  \"description\": \"Something went wrong.\",\n  \"action\": \"Contact the support.\",\n  \"violations\": [],\n  \"resources\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7477b656-8381-434e-9d13-4c395f5828a9",
+    "name": "Infobip OpenAPI Specification",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI Specification that contains all public endpoints and webhooks.\n\nContact Support:\n Name: Infobip support\n Email: support@infobip.com",
+      "type": "text/plain"
+    }
+  }
+}

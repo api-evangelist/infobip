@@ -1,0 +1,306 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "customer-engagement",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get my campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/vocalize/2/campaigns/me",
+            "params": [
+              {
+                "name": "activeOnly",
+                "value": "",
+                "type": "query",
+                "description": "If true, only return active campaigns. Defaults to false."
+              },
+              {
+                "name": "hasScores",
+                "value": "",
+                "type": "query",
+                "description": "If true, only return campaigns that have scores associated with them. Defaults to false."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get all campaigns for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Create campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/vocalize/2/campaigns",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new campaign with the specified parameters."
+        },
+        {
+          "info": {
+            "name": "Get campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/vocalize/2/campaigns/:campaignId",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the campaign to retrieve."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a campaign by its ID."
+        },
+        {
+          "info": {
+            "name": "Delete campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/vocalize/2/campaigns/:campaignId",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the campaign to delete."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete a campaign with the specified ID."
+        },
+        {
+          "info": {
+            "name": "Update campaign settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/vocalize/2/campaigns/:campaignId/settings",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the campaign to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update the settings of a campaign with the specified ID."
+        },
+        {
+          "info": {
+            "name": "Get campaign leaderboard",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/vocalize/2/campaigns/:campaignId/leaderboard",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the campaign to retrieve the leaderboard for."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              },
+              {
+                "name": "fromTime",
+                "value": "",
+                "type": "query",
+                "description": "Start time for filtering scores (datetime, ISO string, or Unix timestamp). Example value: 2023-10-01T00:00:00Z."
+              },
+              {
+                "name": "toTime",
+                "value": "",
+                "type": "query",
+                "description": "End time for filtering scores (datetime, ISO string, or Unix timestamp). Example value: 2023-10-31T23:59:59Z."
+              },
+              {
+                "name": "day",
+                "value": "",
+                "type": "query",
+                "description": "Retrieves scores for a specific day. Can't be used with fromTime/toTime. Days count starts at 0, which means that the API will return scores for the first day of the campaign."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get leaderboard for a campaign, sorted by score. Additional query parameters can be used to filter and paginate the results. Filter by fromTime and toTime to get scores within a specific time range. Filter by day to get scores for a specific day of the campaign. You cannot use both fromTime/toTime and day together. If no filters are provided, the leaderboard will show all scores for the campaign, paginated. Users who have not provided their name will not be included in the leaderboard."
+        },
+        {
+          "info": {
+            "name": "Get campaign statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/vocalize/2/campaigns/:campaignId/stats",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the campaign to retrieve statistics for."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get statistics for a campaign, including total scores, attempts, and more."
+        },
+        {
+          "info": {
+            "name": "Delete campaign scores",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/vocalize/2/campaigns/:campaignId/reset",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the campaign to reset."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete all scores and attempts for a campaign with the specified ID. This action cannot be undone."
+        },
+        {
+          "info": {
+            "name": "Update score",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/vocalize/2/scores",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint allows users to create or update their score for a specific campaign. If it is the first attempt of the user, the name parameter can be omited."
+        },
+        {
+          "info": {
+            "name": "Get user score statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/vocalize/2/scores/stats",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "query",
+                "description": "ID of the campaign to get score stats for."
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query",
+                "description": "User ID, a unique identifier for the user."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint retrieves score statistics for a specific user in a campaign."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

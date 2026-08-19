@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Infobip OpenAPI Specification",
+    "version": "3.210.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "platform",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query aggregated traffic data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/metrics/1/query-aggregate-data",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Start process for traffic data aggregation. The result will be posted to `callbackURL` provided in the request. The response format is described in [Receive aggregated data result](#platform/metrics-api/receive-aggregate-data-result) operation."
+        },
+        {
+          "info": {
+            "name": "Get status of query aggregate data request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/metrics/1/requests/:requestId",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Return the status of ongoing request, started by invoking [Query aggregated traffic data](#platform/metrics-api/query-aggregate-data)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

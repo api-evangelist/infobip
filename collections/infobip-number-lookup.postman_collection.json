@@ -1,0 +1,2687 @@
+{
+  "item": [
+    {
+      "id": "c98df62f-014b-471d-a723-24ab7e6556a5",
+      "name": "connectivity",
+      "description": {
+        "content": "Powerful infrastructure and tools that connect you to the world.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "40027b02-eccc-46ac-91d3-2a7985ecf739",
+          "name": "Number Context lookup (async)",
+          "request": {
+            "name": "Number Context lookup (async)",
+            "description": {
+              "content": "This method allows you to get number context information for requested phone numbers and receive information at some endpoint asynchronously. Information may vary per country and your package. For package change, contact your account manager or [support](https://www.infobip.com/contact).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "number",
+                "1",
+                "notify"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"notifyContentType\": \"<string>\",\n  \"notifyUrl\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "77bfdb2e-55b9-4b6a-a06d-04eff5bcdaa0",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "notify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"notifyContentType\": \"application/json\",\n  \"notifyUrl\": \"https://www.example.com/number/lookup/report\",\n  \"to\": [\n    \"41793026727\",\n    \"41793026834\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"to\": \"3859851212\",\n      \"status\": {\n        \"groupId\": 1,\n        \"groupName\": \"PENDING\",\n        \"id\": 3,\n        \"name\": \"PENDING_WAITING_DELIVERY\",\n        \"description\": \"Message sent, waiting for delivery report\"\n      },\n      \"messageId\": \"2b691c32-1233-4716-a763-4f70cc929eae\"\n    },\n    {\n      \"to\": \"3816038923\",\n      \"status\": {\n        \"groupId\": 1,\n        \"groupName\": \"PENDING\",\n        \"id\": 3,\n        \"name\": \"PENDING_WAITING_DELIVERY\",\n        \"description\": \"Message sent, waiting for delivery report\"\n      },\n      \"messageId\": \"24c753c7-8113-4983-9ddb-c50978ba47dc\"\n    }\n  ],\n  \"bulkId\": \"BULK-ID-123-xyz\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f80127f-8c7a-45b4-be22-25420663cf81",
+              "name": "Error responses",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "notify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"notifyContentType\": \"application/json\",\n  \"notifyUrl\": \"https://www.example.com/number/lookup/report\",\n  \"to\": [\n    \"41793026727\",\n    \"41793026834\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"BAD_REQUEST\",\n      \"text\": \"Bad request\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee70fee6-262d-4b1f-800e-e33e50e55fd5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "notify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"notifyContentType\": \"application/json\",\n  \"notifyUrl\": \"https://www.example.com/number/lookup/report\",\n  \"to\": [\n    \"41793026727\",\n    \"41793026834\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"UNAUTHORIZED\",\n      \"text\": \"Unauthorized\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dfe5dc8b-04f7-45eb-bd60-132dfce10114",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "notify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"notifyContentType\": \"application/json\",\n  \"notifyUrl\": \"https://www.example.com/number/lookup/report\",\n  \"to\": [\n    \"41793026727\",\n    \"41793026834\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"FORBIDDEN\",\n      \"text\": \"Forbidden\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d370811-b45f-4b95-8904-f67a220cc719",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "notify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"notifyContentType\": \"application/json\",\n  \"notifyUrl\": \"https://www.example.com/number/lookup/report\",\n  \"to\": [\n    \"41793026727\",\n    \"41793026834\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"GENERAL_ERROR\",\n      \"text\": \"Something went wrong. Please contact support.\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8e782251-b782-40b9-bb6a-af2e064ede3e",
+          "name": "Number Context lookup",
+          "request": {
+            "name": "Number Context lookup",
+            "description": {
+              "content": "This method allows you to get Number Context information for the requested phone numbers. For package change, contact your account manager or [support](https://www.infobip.com/contact).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "number",
+                "1",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"to\": [\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "961043ec-7879-408e-b725-1617c3a2645d",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": [\n    \"41793026727\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"to\": \"41793026727\",\n      \"mccMnc\": \"22801\",\n      \"imsi\": \"228011234567890\",\n      \"originalNetwork\": {\n        \"networkName\": \"Swisscom\",\n        \"networkPrefix\": \"79\",\n        \"countryName\": \"Switzerland\",\n        \"countryPrefix\": \"41\",\n        \"networkId\": 123\n      },\n      \"ported\": false,\n      \"roaming\": false,\n      \"servingMSC\": \"41001\",\n      \"status\": {\n        \"groupId\": 3,\n        \"groupName\": \"DELIVERED\",\n        \"id\": 5,\n        \"name\": \"DELIVERED_TO_HANDSET\",\n        \"description\": \"Message delivered to handset\"\n      },\n      \"error\": {\n        \"groupId\": 0,\n        \"groupName\": \"Ok\",\n        \"id\": 0,\n        \"name\": \"NO_ERROR\",\n        \"description\": \"No Error\",\n        \"permanent\": false\n      }\n    }\n  ],\n  \"bulkId\": \"BULK-ID-123-xyz\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5fe3d987-b679-4ab6-b25a-fac08cd85c4f",
+              "name": "Error responses",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": [\n    \"41793026727\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"BAD_REQUEST\",\n      \"text\": \"Bad request\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af19b11f-0a6a-4fc8-b57a-d5a90e3460de",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": [\n    \"41793026727\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"UNAUTHORIZED\",\n      \"text\": \"Unauthorized\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f901486-ee32-4cf3-a38a-a8096bbf0d7a",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": [\n    \"41793026727\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"FORBIDDEN\",\n      \"text\": \"Forbidden\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8c561c3-748f-47e8-a895-029a2906d1c8",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": [\n    \"41793026727\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"GENERAL_ERROR\",\n      \"text\": \"Something went wrong. Please contact support.\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81ff14ea-f593-45c5-accd-af7a7ddd5c1a",
+          "name": "Get Number Context logs",
+          "request": {
+            "name": "Get Number Context logs",
+            "description": {
+              "content": "This method allows you to get logs of sent Number Context requests.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "number",
+                "1",
+                "logs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<string>",
+                  "description": "Destination address."
+                },
+                {
+                  "disabled": false,
+                  "key": "bulkId",
+                  "value": "<string>",
+                  "description": "Bulk ID for which log is requested."
+                },
+                {
+                  "disabled": false,
+                  "key": "bulkId",
+                  "value": "<string>",
+                  "description": "Bulk ID for which log is requested."
+                },
+                {
+                  "disabled": false,
+                  "key": "messageId",
+                  "value": "<string>",
+                  "description": "NC lookup ID for which log is requested."
+                },
+                {
+                  "disabled": false,
+                  "key": "messageId",
+                  "value": "<string>",
+                  "description": "NC lookup ID for which log is requested."
+                },
+                {
+                  "disabled": false,
+                  "key": "generalStatus",
+                  "value": "<string>",
+                  "description": "Requested Number Context [status](https://www.infobip.com/docs/essentials/response-status-and-error-codes#api-status-codes)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sentSince",
+                  "value": "<dateTime>",
+                  "description": "The logs will only include NC lookups sent after this date. Use it alongside `sentUntil` to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`."
+                },
+                {
+                  "disabled": false,
+                  "key": "sentUntil",
+                  "value": "<dateTime>",
+                  "description": "The logs will only include NC lookups sent before this date. Use it alongside `sentSince` to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of Number Context lookups in returned logs. If not set, the latest 50 records are returned. Maximum limit value is `1000` and you can only access logs for the last 48h."
+                },
+                {
+                  "disabled": false,
+                  "key": "mcc",
+                  "value": "<string>",
+                  "description": "Mobile Country Code."
+                },
+                {
+                  "disabled": false,
+                  "key": "mnc",
+                  "value": "<string>",
+                  "description": "Mobile Network Code. Mobile Country Code is required if this property is used. "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d5c2d786-e087-49d0-b720-3b203fbd92ad",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bulkId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bulkId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "generalStatus",
+                      "value": "DELIVERED"
+                    },
+                    {
+                      "key": "sentSince",
+                      "value": "2015-02-22T17:42:05.390+0100"
+                    },
+                    {
+                      "key": "sentUntil",
+                      "value": "2015-02-22T19:42:05.390+0100"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "mcc",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mnc",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"bulkId\": \"string\",\n      \"messageId\": \"string\",\n      \"to\": \"string\",\n      \"sentAt\": \"2008-11-17T00:00:01.179Z\",\n      \"doneAt\": \"2026-04-26T19:23:23.346Z\",\n      \"mccMnc\": \"string\",\n      \"price\": {\n        \"currency\": \"string\",\n        \"pricePerLookup\": 7326.642354445976\n      },\n      \"status\": {\n        \"groupId\": 5065,\n        \"groupName\": \"string\",\n        \"id\": 2429,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"action\": \"string\"\n      },\n      \"error\": {\n        \"groupId\": 9724,\n        \"groupName\": \"string\",\n        \"id\": 1155,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"permanent\": true\n      }\n    },\n    {\n      \"bulkId\": \"string\",\n      \"messageId\": \"string\",\n      \"to\": \"string\",\n      \"sentAt\": \"1987-06-29T16:43:22.799Z\",\n      \"doneAt\": \"1982-04-01T05:21:27.067Z\",\n      \"mccMnc\": \"string\",\n      \"price\": {\n        \"currency\": \"string\",\n        \"pricePerLookup\": 3862.1675664948552\n      },\n      \"status\": {\n        \"groupId\": 128,\n        \"groupName\": \"string\",\n        \"id\": 2144,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"action\": \"string\"\n      },\n      \"error\": {\n        \"groupId\": 6106,\n        \"groupName\": \"string\",\n        \"id\": 3478,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"permanent\": false\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "93a18bea-650d-4e84-8d79-7c887c25fa49",
+              "name": "Error responses",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bulkId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bulkId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "generalStatus",
+                      "value": "DELIVERED"
+                    },
+                    {
+                      "key": "sentSince",
+                      "value": "2015-02-22T17:42:05.390+0100"
+                    },
+                    {
+                      "key": "sentUntil",
+                      "value": "2015-02-22T19:42:05.390+0100"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "mcc",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mnc",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"BAD_REQUEST\",\n      \"text\": \"Bad request\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c0a66d49-5033-4408-b250-e0abe1c934f5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bulkId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bulkId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "generalStatus",
+                      "value": "DELIVERED"
+                    },
+                    {
+                      "key": "sentSince",
+                      "value": "2015-02-22T17:42:05.390+0100"
+                    },
+                    {
+                      "key": "sentUntil",
+                      "value": "2015-02-22T19:42:05.390+0100"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "mcc",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mnc",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"UNAUTHORIZED\",\n      \"text\": \"Unauthorized\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "866f8953-914e-4be6-bf5f-c8e6aaca1748",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bulkId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bulkId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "generalStatus",
+                      "value": "DELIVERED"
+                    },
+                    {
+                      "key": "sentSince",
+                      "value": "2015-02-22T17:42:05.390+0100"
+                    },
+                    {
+                      "key": "sentUntil",
+                      "value": "2015-02-22T19:42:05.390+0100"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "mcc",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mnc",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"FORBIDDEN\",\n      \"text\": \"Forbidden\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9b42d92-91d7-4d2e-b107-972479ec2cfb",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bulkId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bulkId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "generalStatus",
+                      "value": "DELIVERED"
+                    },
+                    {
+                      "key": "sentSince",
+                      "value": "2015-02-22T17:42:05.390+0100"
+                    },
+                    {
+                      "key": "sentUntil",
+                      "value": "2015-02-22T19:42:05.390+0100"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "mcc",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mnc",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"TOO_MANY_REQUESTS\",\n      \"text\": \"Too many requests\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e83d1cb4-30f0-4ef9-88aa-04fbfbbc54f3",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bulkId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bulkId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "generalStatus",
+                      "value": "DELIVERED"
+                    },
+                    {
+                      "key": "sentSince",
+                      "value": "2015-02-22T17:42:05.390+0100"
+                    },
+                    {
+                      "key": "sentUntil",
+                      "value": "2015-02-22T19:42:05.390+0100"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "mcc",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mnc",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"GENERAL_ERROR\",\n      \"text\": \"Something went wrong. Please contact support.\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "71dfb4bc-dae8-420a-be1f-0c2e891740cc",
+      "name": "number-lookup",
+      "description": {
+        "content": "Number Lookup is a product that draws information from Home Location Register which is a database that contains important information about every mobile subscriber of a specific mobile network. You will receive information if the phone number has been ported to another network, if the user is in roaming, if the number is still valid and if it has any permanent or any other errors. Number Lookup also allows you to check the status and validity of mobile numbers, and the country/mobile network they are associated with. This can save substantial amounts to global companies with millions of users, improve delivery rates and optimize processes in real-time.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "87703d3b-8a7e-4bd1-aa80-e8c8176cc1cc",
+          "name": "Number Context lookup (async)",
+          "request": {
+            "name": "Number Context lookup (async)",
+            "description": {
+              "content": "This method allows you to get number context information for requested phone numbers and receive information at some endpoint asynchronously. Information may vary per country and your package. For package change, contact your account manager or [support](https://www.infobip.com/contact).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "number",
+                "1",
+                "notify"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"to\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"notifyContentType\": \"<string>\",\n  \"notifyUrl\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d391ec18-9f50-42fa-a8b5-a698c496418f",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "notify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"notifyContentType\": \"application/json\",\n  \"notifyUrl\": \"https://www.example.com/number/lookup/report\",\n  \"to\": [\n    \"41793026727\",\n    \"41793026834\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"to\": \"3859851212\",\n      \"status\": {\n        \"groupId\": 1,\n        \"groupName\": \"PENDING\",\n        \"id\": 3,\n        \"name\": \"PENDING_WAITING_DELIVERY\",\n        \"description\": \"Message sent, waiting for delivery report\"\n      },\n      \"messageId\": \"2b691c32-1233-4716-a763-4f70cc929eae\"\n    },\n    {\n      \"to\": \"3816038923\",\n      \"status\": {\n        \"groupId\": 1,\n        \"groupName\": \"PENDING\",\n        \"id\": 3,\n        \"name\": \"PENDING_WAITING_DELIVERY\",\n        \"description\": \"Message sent, waiting for delivery report\"\n      },\n      \"messageId\": \"24c753c7-8113-4983-9ddb-c50978ba47dc\"\n    }\n  ],\n  \"bulkId\": \"BULK-ID-123-xyz\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "84920be6-13e3-4512-bbc4-30b7d6f94739",
+              "name": "Error responses",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "notify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"notifyContentType\": \"application/json\",\n  \"notifyUrl\": \"https://www.example.com/number/lookup/report\",\n  \"to\": [\n    \"41793026727\",\n    \"41793026834\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"BAD_REQUEST\",\n      \"text\": \"Bad request\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9384cc3-86ad-4851-a0aa-44a8ab1947d8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "notify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"notifyContentType\": \"application/json\",\n  \"notifyUrl\": \"https://www.example.com/number/lookup/report\",\n  \"to\": [\n    \"41793026727\",\n    \"41793026834\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"UNAUTHORIZED\",\n      \"text\": \"Unauthorized\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "769a0a65-c6ca-4e29-8718-460b7d673eb8",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "notify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"notifyContentType\": \"application/json\",\n  \"notifyUrl\": \"https://www.example.com/number/lookup/report\",\n  \"to\": [\n    \"41793026727\",\n    \"41793026834\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"FORBIDDEN\",\n      \"text\": \"Forbidden\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "523f1386-599f-479f-8e99-dc7300d9e2de",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "notify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"notifyContentType\": \"application/json\",\n  \"notifyUrl\": \"https://www.example.com/number/lookup/report\",\n  \"to\": [\n    \"41793026727\",\n    \"41793026834\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"GENERAL_ERROR\",\n      \"text\": \"Something went wrong. Please contact support.\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fb85430d-0bbf-48d3-869d-60639105a873",
+          "name": "Number Context lookup",
+          "request": {
+            "name": "Number Context lookup",
+            "description": {
+              "content": "This method allows you to get Number Context information for the requested phone numbers. For package change, contact your account manager or [support](https://www.infobip.com/contact).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "number",
+                "1",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"to\": [\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7224201e-54f7-47dc-bf76-3c865e8605e5",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": [\n    \"41793026727\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"to\": \"41793026727\",\n      \"mccMnc\": \"22801\",\n      \"imsi\": \"228011234567890\",\n      \"originalNetwork\": {\n        \"networkName\": \"Swisscom\",\n        \"networkPrefix\": \"79\",\n        \"countryName\": \"Switzerland\",\n        \"countryPrefix\": \"41\",\n        \"networkId\": 123\n      },\n      \"ported\": false,\n      \"roaming\": false,\n      \"servingMSC\": \"41001\",\n      \"status\": {\n        \"groupId\": 3,\n        \"groupName\": \"DELIVERED\",\n        \"id\": 5,\n        \"name\": \"DELIVERED_TO_HANDSET\",\n        \"description\": \"Message delivered to handset\"\n      },\n      \"error\": {\n        \"groupId\": 0,\n        \"groupName\": \"Ok\",\n        \"id\": 0,\n        \"name\": \"NO_ERROR\",\n        \"description\": \"No Error\",\n        \"permanent\": false\n      }\n    }\n  ],\n  \"bulkId\": \"BULK-ID-123-xyz\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a36c5b84-27c5-4e35-bf96-462c96f45f72",
+              "name": "Error responses",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": [\n    \"41793026727\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"BAD_REQUEST\",\n      \"text\": \"Bad request\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b144bf90-ce43-437a-86fb-4400f74f24c3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": [\n    \"41793026727\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"UNAUTHORIZED\",\n      \"text\": \"Unauthorized\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c285f14f-5ac9-400c-9095-afe8ab4d30ea",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": [\n    \"41793026727\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"FORBIDDEN\",\n      \"text\": \"Forbidden\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13c12595-6c2c-4883-b117-5eb39e8950c6",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"to\": [\n    \"41793026727\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"GENERAL_ERROR\",\n      \"text\": \"Something went wrong. Please contact support.\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3baed6b5-a570-481a-b372-fb41d8b38799",
+          "name": "Get Number Context logs",
+          "request": {
+            "name": "Get Number Context logs",
+            "description": {
+              "content": "This method allows you to get logs of sent Number Context requests.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "number",
+                "1",
+                "logs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<string>",
+                  "description": "Destination address."
+                },
+                {
+                  "disabled": false,
+                  "key": "bulkId",
+                  "value": "<string>",
+                  "description": "Bulk ID for which log is requested."
+                },
+                {
+                  "disabled": false,
+                  "key": "bulkId",
+                  "value": "<string>",
+                  "description": "Bulk ID for which log is requested."
+                },
+                {
+                  "disabled": false,
+                  "key": "messageId",
+                  "value": "<string>",
+                  "description": "NC lookup ID for which log is requested."
+                },
+                {
+                  "disabled": false,
+                  "key": "messageId",
+                  "value": "<string>",
+                  "description": "NC lookup ID for which log is requested."
+                },
+                {
+                  "disabled": false,
+                  "key": "generalStatus",
+                  "value": "<string>",
+                  "description": "Requested Number Context [status](https://www.infobip.com/docs/essentials/response-status-and-error-codes#api-status-codes)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sentSince",
+                  "value": "<dateTime>",
+                  "description": "The logs will only include NC lookups sent after this date. Use it alongside `sentUntil` to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`."
+                },
+                {
+                  "disabled": false,
+                  "key": "sentUntil",
+                  "value": "<dateTime>",
+                  "description": "The logs will only include NC lookups sent before this date. Use it alongside `sentSince` to specify a time range for the logs, but only up to the maximum limit of 1000 logs per call. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of Number Context lookups in returned logs. If not set, the latest 50 records are returned. Maximum limit value is `1000` and you can only access logs for the last 48h."
+                },
+                {
+                  "disabled": false,
+                  "key": "mcc",
+                  "value": "<string>",
+                  "description": "Mobile Country Code."
+                },
+                {
+                  "disabled": false,
+                  "key": "mnc",
+                  "value": "<string>",
+                  "description": "Mobile Network Code. Mobile Country Code is required if this property is used. "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7c3bee6b-3026-4394-98cc-a5f45bd4f8c7",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bulkId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bulkId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "generalStatus",
+                      "value": "DELIVERED"
+                    },
+                    {
+                      "key": "sentSince",
+                      "value": "2015-02-22T17:42:05.390+0100"
+                    },
+                    {
+                      "key": "sentUntil",
+                      "value": "2015-02-22T19:42:05.390+0100"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "mcc",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mnc",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"bulkId\": \"string\",\n      \"messageId\": \"string\",\n      \"to\": \"string\",\n      \"sentAt\": \"1991-02-18T04:18:18.053Z\",\n      \"doneAt\": \"1966-08-19T09:05:18.259Z\",\n      \"mccMnc\": \"string\",\n      \"price\": {\n        \"currency\": \"string\",\n        \"pricePerLookup\": 9239.04968747564\n      },\n      \"status\": {\n        \"groupId\": 5219,\n        \"groupName\": \"string\",\n        \"id\": 8193,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"action\": \"string\"\n      },\n      \"error\": {\n        \"groupId\": 4557,\n        \"groupName\": \"string\",\n        \"id\": 863,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"permanent\": true\n      }\n    },\n    {\n      \"bulkId\": \"string\",\n      \"messageId\": \"string\",\n      \"to\": \"string\",\n      \"sentAt\": \"1989-02-09T08:22:30.009Z\",\n      \"doneAt\": \"1996-04-08T04:10:15.984Z\",\n      \"mccMnc\": \"string\",\n      \"price\": {\n        \"currency\": \"string\",\n        \"pricePerLookup\": 1107.5215078062083\n      },\n      \"status\": {\n        \"groupId\": 5910,\n        \"groupName\": \"string\",\n        \"id\": 1981,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"action\": \"string\"\n      },\n      \"error\": {\n        \"groupId\": 7634,\n        \"groupName\": \"string\",\n        \"id\": 6595,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"permanent\": true\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fcae8553-b370-47f0-b003-8388faf222e0",
+              "name": "Error responses",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bulkId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bulkId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "generalStatus",
+                      "value": "DELIVERED"
+                    },
+                    {
+                      "key": "sentSince",
+                      "value": "2015-02-22T17:42:05.390+0100"
+                    },
+                    {
+                      "key": "sentUntil",
+                      "value": "2015-02-22T19:42:05.390+0100"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "mcc",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mnc",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"BAD_REQUEST\",\n      \"text\": \"Bad request\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a01192ab-ab0d-4897-a5c4-4227607390bf",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bulkId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bulkId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "generalStatus",
+                      "value": "DELIVERED"
+                    },
+                    {
+                      "key": "sentSince",
+                      "value": "2015-02-22T17:42:05.390+0100"
+                    },
+                    {
+                      "key": "sentUntil",
+                      "value": "2015-02-22T19:42:05.390+0100"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "mcc",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mnc",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"UNAUTHORIZED\",\n      \"text\": \"Unauthorized\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7185f26f-d8d2-445d-85d9-eb7bf9e5ebcf",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bulkId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bulkId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "generalStatus",
+                      "value": "DELIVERED"
+                    },
+                    {
+                      "key": "sentSince",
+                      "value": "2015-02-22T17:42:05.390+0100"
+                    },
+                    {
+                      "key": "sentUntil",
+                      "value": "2015-02-22T19:42:05.390+0100"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "mcc",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mnc",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"FORBIDDEN\",\n      \"text\": \"Forbidden\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "92921f3c-1178-42e1-9d03-31a6ff74eae7",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bulkId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bulkId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "generalStatus",
+                      "value": "DELIVERED"
+                    },
+                    {
+                      "key": "sentSince",
+                      "value": "2015-02-22T17:42:05.390+0100"
+                    },
+                    {
+                      "key": "sentUntil",
+                      "value": "2015-02-22T19:42:05.390+0100"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "mcc",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mnc",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"TOO_MANY_REQUESTS\",\n      \"text\": \"Too many requests\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "85a11e6a-982d-44fd-94da-2807c0ddac6d",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "number",
+                    "1",
+                    "logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bulkId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bulkId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "messageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "generalStatus",
+                      "value": "DELIVERED"
+                    },
+                    {
+                      "key": "sentSince",
+                      "value": "2015-02-22T17:42:05.390+0100"
+                    },
+                    {
+                      "key": "sentUntil",
+                      "value": "2015-02-22T19:42:05.390+0100"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "mcc",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mnc",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestError\": {\n    \"serviceException\": {\n      \"messageId\": \"GENERAL_ERROR\",\n      \"text\": \"Something went wrong. Please contact support.\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7aec6dfc-9a17-4094-a6d2-1c16c0a6f2f1",
+    "name": "Infobip OpenAPI Specification",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI Specification that contains all public endpoints and webhooks.\n\nContact Support:\n Name: Infobip support\n Email: support@infobip.com",
+      "type": "text/plain"
+    }
+  }
+}

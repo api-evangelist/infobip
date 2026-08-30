@@ -1,0 +1,381 @@
+openapi: 3.2.0
+info:
+  title: Infobip OpenAPI Specification Tools API
+  description: OpenAPI Specification that contains all public endpoints and webhooks.
+  contact:
+    name: Infobip support
+    email: support@infobip.com
+  version: 3.210.0
+  x-generatedAt: '2026-07-23T15:23:37.825639538Z'
+tags:
+- name: tools
+  description: 'Developer utilities to help you integrate and work with Infobip APIs more efficiently.
+
+    '
+  x-type: category
+  x-displayName: Tools
+paths:
+  /platform/1/openapi:
+    get:
+      tags:
+      - tools
+      summary: Get OpenAPI Specification
+      description: Returns the complete OpenAPI Specification for the Infobip platform.
+      operationId: get-openapi
+      responses:
+        '200':
+          description: OpenAPI Specification
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.OpenAPI'
+              examples:
+                OpenAPI Specification:
+                  summary: OpenAPI Specification
+                  value:
+                    openapi: 3.1.0
+                    info:
+                      title: Infobip OpenAPI Specification
+                      description: OpenAPI Specification that contains all public endpoints and webhooks.
+                      contact:
+                        name: Infobip support
+                        email: support@infobip.com
+                      version: 2.1.0
+        '429':
+          $ref: '#/components/responses/ApiError429'
+        '500':
+          $ref: '#/components/responses/ApiError500'
+      x-throttling-info:
+      - type: time
+        numberOfRequests: 20
+        numberOfTimeUnits: 0
+        timeUnit: s
+  /platform/1/openapi/{product}:
+    get:
+      tags:
+      - tools
+      summary: Get OpenAPI Specification for a specific product
+      description: Returns the OpenAPI specification for a specific Infobip product, such as SMS, Email, or WhatsApp. To get the correct product identifier, [view the list of available products](https://www.infobip.com/docs/api/tools/openapi/get-available-products).
+      operationId: get-product-level-openapi
+      parameters:
+      - name: product
+        in: path
+        description: Product identifier.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OpenAPI Specification
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.OpenAPI'
+              examples:
+                OpenAPI Specification for a specific product:
+                  summary: OpenAPI Specification for a specific product
+                  value:
+                    openapi: 3.1.0
+                    info:
+                      title: Infobip OpenAPI Specification
+                      description: OpenAPI Specification that contains all public endpoints and webhooks.
+                      contact:
+                        name: Infobip support
+                        email: support@infobip.com
+                      version: 2.1.0
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+              examples:
+                OpenAPI Specification for a specific product not found:
+                  summary: OpenAPI Specification for a specific product not found
+                  value:
+                    errorCode: OPENAPI404
+                    description: The requested OpenAPI Specification does not exist.
+                    action: Make sure that you provided the correct product identifier in the URL and check the provided resource for more information.
+                    violations: []
+                    resources: []
+        '429':
+          $ref: '#/components/responses/ApiError429'
+        '500':
+          $ref: '#/components/responses/ApiError500'
+      x-throttling-info:
+      - type: time
+        numberOfRequests: 20
+        numberOfTimeUnits: 0
+        timeUnit: s
+  /platform/1/openapi/available-products:
+    get:
+      tags:
+      - tools
+      summary: Get a list of available products
+      description: Returns a list of all available Infobip products that can be used to fetch the [OpenAPI Specification for a specific product](https://www.infobip.com/docs/api/tools/openapi/get-product-level-openapi). Use this list to find the correct value for the product path parameter.
+      operationId: get-available-products
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.AvailableProducts'
+              examples:
+                Available products:
+                  summary: Available products
+                  value:
+                    products:
+                    - id: sms
+                    - id: whatsapp
+        '429':
+          $ref: '#/components/responses/ApiError429'
+        '500':
+          $ref: '#/components/responses/ApiError500'
+      x-throttling-info:
+      - type: time
+        numberOfRequests: 20
+        numberOfTimeUnits: 0
+        timeUnit: s
+components:
+  schemas:
+    d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.AvailableProducts:
+      type: object
+      description: Available products.
+      properties:
+        products:
+          type: array
+          description: List of available products.
+          items:
+            $ref: '#/components/schemas/d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.AvailableProduct'
+      title: AvailableProducts
+    d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.AvailableProduct:
+      type: object
+      description: List of available products.
+      properties:
+        id:
+          type: string
+          description: Product identifier.
+      title: AvailableProduct
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: An error code uniquely identifying the error case.
+        description:
+          type: string
+          description: A detailed description of an error.
+        action:
+          type: string
+          description: An action that should be taken to recover from the error.
+        violations:
+          type: array
+          description: List of violations that caused the error.
+          items:
+            $ref: '#/components/schemas/ApiErrorViolation'
+        resources:
+          type: array
+          description: List of available resources to recover from the error.
+          items:
+            $ref: '#/components/schemas/ApiErrorResource'
+      required:
+      - action
+      - description
+      - errorCode
+      - resources
+      - violations
+      title: ApiError
+    ApiErrorViolation:
+      type: object
+      description: List of violations that caused the error.
+      properties:
+        property:
+          type: string
+          description: Request property that caused the error.
+        violation:
+          type: string
+          description: Detailed violation description.
+      title: ApiErrorViolation
+    d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.OpenAPI:
+      type: object
+      additionalProperties:
+        type: object
+        description: OpenAPI schema.
+      description: Infobip OpenAPI Specification
+      title: OpenAPI
+    ApiErrorResource:
+      type: object
+      description: List of available resources to recover from the error.
+      properties:
+        name:
+          type: string
+          description: Resource name.
+        url:
+          type: string
+          description: Resource URL.
+      title: ApiErrorResource
+  responses:
+    ApiError429:
+      description: Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          example:
+            errorCode: E429
+            description: Too many requests sent.
+            action: Check request rate limit specified in the API endpoint documentation resource.
+            violations: []
+            resources:
+            - name: Throttling handling errors
+              url: https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E429</errorCode>\n  <description>Too many requests sent.</description>\n  <action>Check request rate limit specified in the API endpoint documentation resource.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>Throttling handling errors</name>\n      <url>https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+    ApiError500:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          example:
+            errorCode: E500
+            description: Something went wrong.
+            action: Contact the support.
+            violations: []
+            resources: []
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E500</errorCode>\n  <description>Something went wrong.</description>\n  <action>Contact the support.</action>\n  <violations/>\n  <resources/>\n</ApiError>\n"
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      description: 'This is the most secure authorization type and the one with the most flexibility.
+
+
+        API keys can be generated by calling the dedicated API method. Furthermore, API keys can have a limited scope and cover only some API methods. Lastly, they can
+
+        be revoked at any time. This range of possibilities makes API keys well suited for separating the API access rights across multiple applications or use cases.
+
+        Finally, the loss of an API key is easily manageable.
+
+
+        You can manage your API keys from [GUI](https://portal.infobip.com/settings/accounts/api-keys), or programmatically
+
+        with [dedicated API](#platform-&-connectivity/settings).
+
+
+        API key Authorization header example:
+
+
+        ```shell
+
+        Authorization: App 003026bbc133714df1834b8638bb496e-8f4b3d9a-e931-478d-a994-28a725159ab9
+
+        ```
+
+        '
+      name: Authorization
+      in: header
+    Basic:
+      type: http
+      description: 'Basic authorization type can be used in situations when the API key is not available. For example, API methods for generating API keys should be authenticated
+
+        with the Basic type.
+
+
+        In this case, the credentials included in the Authorization header should be a Base64 encoded username and password combination. More formally, basic
+
+        authentication header can be constructed in three steps:
+
+
+        * Username and password are concatenated using the colon `(:)` as a separator `username:password`.
+
+        * The resulting string is encoded using the [RFC2045-MIME](https://www.ietf.org/rfc/rfc2045.txt) variant of Base64.
+
+        * Encoded string is added as credentials after the `"Basic "` type.
+
+
+        Example:
+
+
+        ```shell
+
+        Username: "Aladdin"
+
+        Password: "openSesame"
+
+
+        Concatenated string: "Aladdin:openSesame"
+
+
+        Base64 encoded string: "QWxhZGRpbjpvcGVuU2VzYW1l"
+
+
+        Authorization header: "Basic QWxhZGRpbjpvcGVuU2VzYW1l"
+
+        ```
+
+
+        > **Implementation detail**: Base64 encoding is a standard and many available programming languages and frameworks provide convenient methods for encoding
+
+        > strings.
+
+        '
+      scheme: basic
+    IBSSOTokenHeader:
+      type: apiKey
+      description: 'This authorization type is suited for situations when you do not want to store Infobip credentials in your own app. Instead, your users will input their Infobip
+
+        credentials every time they access your application and the application will use those credentials to create a session. From then on, the session token can be
+
+        used to authenticate subsequent API requests. Note that the session will expire automatically after a predefined period of inactivity, and can also be manually
+
+        terminated by making an appropriate API call.
+
+
+        You can find more details on the creation and behavior of the session at
+
+        the [dedicated documentation page](#platform-connectivity/account-management/create-session).
+
+
+        After obtaining the session token by calling the above-referenced API method you can include it in the Authorization header like this:
+
+
+        ```shell
+
+        Authorization: IBSSO 2f9b4d31-2d0d-49a8-85f0-9b862bdca394
+
+        ```
+
+        '
+      name: Authorization
+      in: header
+    OAuth2:
+      type: oauth2
+      description: 'Similarly to the IBSSO Token authentication you can use OAuth 2.0 bearer token with Infobip serving both as resource and authorization server. You can obtain
+
+        the access token using the client credentials grant from `auth/1/oauth2/token` endpoint. It will provide you with your access token, and its expiration period.
+
+        You can use the token to authorize your API calls until it expires. You can find out more about the process in
+
+        the [official specification](https://tools.ietf.org/html/rfc6749#section-4.4).
+
+
+        You can include your access token in the Authorization HTTP request header like this:
+
+
+        ```http
+
+        Authorization: Bearer <access_token>
+
+        ```'
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.infobip.com/auth/1/oauth2/token
+          scopes: {}

@@ -8,17 +8,15 @@ info:
   version: 3.210.0
   x-generatedAt: '2026-07-23T15:23:37.825639538Z'
 tags:
-- name: tools
-  description: 'Developer utilities to help you integrate and work with Infobip APIs more efficiently.
-
-    '
+- name: Tools
+  description: Developer utilities to help you integrate and work with Infobip APIs more efficiently.
   x-type: category
   x-displayName: Tools
 paths:
   /platform/1/openapi:
     get:
       tags:
-      - tools
+      - Tools
       summary: Get OpenAPI Specification
       description: Returns the complete OpenAPI Specification for the Infobip platform.
       operationId: get-openapi
@@ -53,9 +51,9 @@ paths:
   /platform/1/openapi/{product}:
     get:
       tags:
-      - tools
+      - Tools
       summary: Get OpenAPI Specification for a specific product
-      description: Returns the OpenAPI specification for a specific Infobip product, such as SMS, Email, or WhatsApp. To get the correct product identifier, [view the list of available products](https://www.infobip.com/docs/api/tools/openapi/get-available-products).
+      description: Returns the OpenAPI specification for a specific Infobip product, such as SMS, Email, or WhatsApp. To get the correct product identifier, view the list of available products.
       operationId: get-product-level-openapi
       parameters:
       - name: product
@@ -112,9 +110,9 @@ paths:
   /platform/1/openapi/available-products:
     get:
       tags:
-      - tools
+      - Tools
       summary: Get a list of available products
-      description: Returns a list of all available Infobip products that can be used to fetch the [OpenAPI Specification for a specific product](https://www.infobip.com/docs/api/tools/openapi/get-product-level-openapi). Use this list to find the correct value for the product path parameter.
+      description: Returns a list of all available Infobip products that can be used to fetch the OpenAPI Specification for a specific product. Use this list to find the correct value for the product path parameter.
       operationId: get-available-products
       responses:
         '200':
@@ -140,25 +138,49 @@ paths:
         numberOfTimeUnits: 0
         timeUnit: s
 components:
+  responses:
+    ApiError500:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          example:
+            errorCode: E500
+            description: Something went wrong.
+            action: Contact the support.
+            violations: []
+            resources: []
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E500</errorCode>\n  <description>Something went wrong.</description>\n  <action>Contact the support.</action>\n  <violations/>\n  <resources/>\n</ApiError>\n"
+    ApiError429:
+      description: Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          example:
+            errorCode: E429
+            description: Too many requests sent.
+            action: Check request rate limit specified in the API endpoint documentation resource.
+            violations: []
+            resources:
+            - name: Throttling handling errors
+              url: https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E429</errorCode>\n  <description>Too many requests sent.</description>\n  <action>Check request rate limit specified in the API endpoint documentation resource.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>Throttling handling errors</name>\n      <url>https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors</url>\n    </resource>\n  </resources>\n</ApiError>\n"
   schemas:
-    d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.AvailableProducts:
+    d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.OpenAPI:
       type: object
-      description: Available products.
-      properties:
-        products:
-          type: array
-          description: List of available products.
-          items:
-            $ref: '#/components/schemas/d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.AvailableProduct'
-      title: AvailableProducts
-    d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.AvailableProduct:
-      type: object
-      description: List of available products.
-      properties:
-        id:
-          type: string
-          description: Product identifier.
-      title: AvailableProduct
+      additionalProperties:
+        type: object
+        description: OpenAPI schema.
+      description: Infobip OpenAPI Specification
+      title: OpenAPI
     ApiError:
       type: object
       properties:
@@ -188,24 +210,6 @@ components:
       - resources
       - violations
       title: ApiError
-    ApiErrorViolation:
-      type: object
-      description: List of violations that caused the error.
-      properties:
-        property:
-          type: string
-          description: Request property that caused the error.
-        violation:
-          type: string
-          description: Detailed violation description.
-      title: ApiErrorViolation
-    d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.OpenAPI:
-      type: object
-      additionalProperties:
-        type: object
-        description: OpenAPI schema.
-      description: Infobip OpenAPI Specification
-      title: OpenAPI
     ApiErrorResource:
       type: object
       description: List of available resources to recover from the error.
@@ -217,41 +221,35 @@ components:
           type: string
           description: Resource URL.
       title: ApiErrorResource
-  responses:
-    ApiError429:
-      description: Too Many Requests
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-          example:
-            errorCode: E429
-            description: Too many requests sent.
-            action: Check request rate limit specified in the API endpoint documentation resource.
-            violations: []
-            resources:
-            - name: Throttling handling errors
-              url: https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-          example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E429</errorCode>\n  <description>Too many requests sent.</description>\n  <action>Check request rate limit specified in the API endpoint documentation resource.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>Throttling handling errors</name>\n      <url>https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors</url>\n    </resource>\n  </resources>\n</ApiError>\n"
-    ApiError500:
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-          example:
-            errorCode: E500
-            description: Something went wrong.
-            action: Contact the support.
-            violations: []
-            resources: []
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-          example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E500</errorCode>\n  <description>Something went wrong.</description>\n  <action>Contact the support.</action>\n  <violations/>\n  <resources/>\n</ApiError>\n"
+    d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.AvailableProduct:
+      type: object
+      description: List of available products.
+      properties:
+        id:
+          type: string
+          description: Product identifier.
+      title: AvailableProduct
+    ApiErrorViolation:
+      type: object
+      description: List of violations that caused the error.
+      properties:
+        property:
+          type: string
+          description: Request property that caused the error.
+        violation:
+          type: string
+          description: Detailed violation description.
+      title: ApiErrorViolation
+    d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.AvailableProducts:
+      type: object
+      description: Available products.
+      properties:
+        products:
+          type: array
+          description: List of available products.
+          items:
+            $ref: '#/components/schemas/d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.AvailableProduct'
+      title: AvailableProducts
   securitySchemes:
     APIKeyHeader:
       type: apiKey

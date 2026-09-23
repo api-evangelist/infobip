@@ -9,9 +9,7 @@ info:
   x-generatedAt: '2026-07-23T15:23:37.825639538Z'
 tags:
 - name: ai-hub
-  description: 'AI-powered tools and services to help you create smarter and more personalized customer experiences.
-
-    '
+  description: AI-powered tools and services to help you create smarter and more personalized customer experiences.
   x-type: category
   x-displayName: AI Hub
 paths:
@@ -20,7 +18,13 @@ paths:
       tags:
       - ai-hub
       summary: Query AI Assistant by ID
-      description: Forwards a message from a user to a specific AI assistant identified by its unique ID and returns the assistant's response.<br/><br/>This endpoint performs a semantic search over an AI assistant's indexed documents based on configured guidelines. It then generates a response using the LLM connected to the assistant.<br/><br/>The "use shared history" feature allowing an AI assistant to utilize the agent's conversation history, is only available if used together with [Infobip AI agents](https://www.infobip.com/docs/ai-agents).
+      description: 'Forwards a message from a user to a specific AI assistant identified by its unique ID and returns the assistant''s response.
+
+
+        This endpoint performs a semantic search over an AI assistant''s indexed documents based on configured guidelines. It then generates a response using the LLM connected to the assistant.
+
+
+        The "use shared history" feature allowing an AI assistant to utilize the agent''s conversation history, is only available if used together with Infobip AI agents.'
       operationId: query-ai-assistant
       parameters:
       - name: assistantId
@@ -119,7 +123,13 @@ paths:
       tags:
       - ai-hub
       summary: Retrieve Context from AI Assistant
-      description: Retrieves the most relevant context chunks from an AI assistant's knowledge base for a given message.<br/><br/>This endpoint performs a semantic search over the assistant's indexed documents and returns the most relevant text segments (top k chunks). You can specify how many chunks to return and optionally enable re-ranking for more accurate results.<br/><br/>The "use shared history" feature allowing an AI assistant to utilize the agent's conversation history, is only available if used together with [Infobip AI agents](https://www.infobip.com/docs/ai-agents).
+      description: 'Retrieves the most relevant context chunks from an AI assistant''s knowledge base for a given message.
+
+
+        This endpoint performs a semantic search over the assistant''s indexed documents and returns the most relevant text segments (top k chunks). You can specify how many chunks to return and optionally enable re-ranking for more accurate results.
+
+
+        The "use shared history" feature allowing an AI assistant to utilize the agent''s conversation history, is only available if used together with Infobip AI agents.'
       operationId: retrieve-ai-assistant-context
       parameters:
       - name: assistantId
@@ -225,20 +235,6 @@ paths:
         timeUnit: s
 components:
   schemas:
-    2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContextChunk:
-      type: object
-      description: Ai Assistant contexts after reranking.
-      properties:
-        text:
-          type: string
-          description: The text content of the context chunk retrieved from the assistant's knowledge base.
-        filename:
-          type: string
-          description: The name of the source file from which this context chunk was extracted.
-      required:
-      - filename
-      - text
-      title: QueryAiAssistantApiResponseContextChunk
     2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.ContextNode:
       type: object
       description: List of retrieved context nodes.
@@ -253,6 +249,21 @@ components:
       - node
       - score
       title: ContextNode
+    2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContext:
+      type: object
+      description: Ai Assistant context used for generating the answer.
+      properties:
+        originalContexts:
+          type: array
+          description: Ai Assistant contexts before reranking.
+          items:
+            $ref: '#/components/schemas/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContextChunk'
+        rerankedContexts:
+          type: array
+          description: Ai Assistant contexts after reranking.
+          items:
+            $ref: '#/components/schemas/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContextChunk'
+      title: QueryAiAssistantApiResponseContext
     2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.RetrieveContextApiResponse:
       type: object
       properties:
@@ -264,6 +275,29 @@ components:
       required:
       - contexts
       title: RetrieveContextApiResponse
+    2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.SimpleAiAssistantQuery:
+      type: object
+      description: Simple AI Assistant query with just a message.
+      properties:
+        message:
+          type: string
+          description: User message an AI assistant receives.
+          example: Hello, what can you help me with?
+        useSharedHistory:
+          type: boolean
+          default: false
+          description: Indicates whether to use shared conversation history. Can only be used with [Infobip AI agents](https://www.infobip.com/docs/ai-agents).
+        sessionId:
+          type: string
+          description: Session ID to maintain context across multiple queries.
+          example: session-12345
+        returnContexts:
+          type: boolean
+          default: false
+          description: Flag to indicate whether to return the contexts used in generating the response.
+      required:
+      - message
+      title: SimpleAiAssistantQuery
     2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.RetrieveContextRequest:
       type: object
       description: AI Assistant retrieve context request with optional retrieval parameters.
@@ -333,6 +367,31 @@ components:
       required:
       - response
       title: QueryAiAssistantApiResponse
+    2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContextChunk:
+      type: object
+      description: Ai Assistant contexts after reranking.
+      properties:
+        text:
+          type: string
+          description: The text content of the context chunk retrieved from the assistant's knowledge base.
+        filename:
+          type: string
+          description: The name of the source file from which this context chunk was extracted.
+      required:
+      - filename
+      - text
+      title: QueryAiAssistantApiResponseContextChunk
+    ApiErrorResource:
+      type: object
+      description: List of available resources to recover from the error.
+      properties:
+        name:
+          type: string
+          description: Resource name.
+        url:
+          type: string
+          description: Resource URL.
+      title: ApiErrorResource
     2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.NodeDetails:
       type: object
       description: Context node details.
@@ -360,21 +419,6 @@ components:
       - id
       - text
       title: NodeDetails
-    2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContext:
-      type: object
-      description: Ai Assistant context used for generating the answer.
-      properties:
-        originalContexts:
-          type: array
-          description: Ai Assistant contexts before reranking.
-          items:
-            $ref: '#/components/schemas/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContextChunk'
-        rerankedContexts:
-          type: array
-          description: Ai Assistant contexts after reranking.
-          items:
-            $ref: '#/components/schemas/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContextChunk'
-      title: QueryAiAssistantApiResponseContext
     ApiErrorViolation:
       type: object
       description: List of violations that caused the error.
@@ -386,59 +430,23 @@ components:
           type: string
           description: Detailed violation description.
       title: ApiErrorViolation
-    2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.SimpleAiAssistantQuery:
-      type: object
-      description: Simple AI Assistant query with just a message.
-      properties:
-        message:
-          type: string
-          description: User message an AI assistant receives.
-          example: Hello, what can you help me with?
-        useSharedHistory:
-          type: boolean
-          default: false
-          description: Indicates whether to use shared conversation history. Can only be used with [Infobip AI agents](https://www.infobip.com/docs/ai-agents).
-        sessionId:
-          type: string
-          description: Session ID to maintain context across multiple queries.
-          example: session-12345
-        returnContexts:
-          type: boolean
-          default: false
-          description: Flag to indicate whether to return the contexts used in generating the response.
-      required:
-      - message
-      title: SimpleAiAssistantQuery
-    ApiErrorResource:
-      type: object
-      description: List of available resources to recover from the error.
-      properties:
-        name:
-          type: string
-          description: Resource name.
-        url:
-          type: string
-          description: Resource URL.
-      title: ApiErrorResource
   responses:
-    ApiError401:
-      description: Unauthorized
+    ApiError500:
+      description: Internal Server Error
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ApiError'
           example:
-            errorCode: E401
-            description: The request lacks valid authentication credentials for the requested resource.
-            action: Check the resources and adjust authentication credentials.
+            errorCode: E500
+            description: Something went wrong.
+            action: Contact the support.
             violations: []
-            resources:
-            - name: API Authentication
-              url: https://www.infobip.com/docs/essentials/api-authentication
+            resources: []
         application/xml:
           schema:
             $ref: '#/components/schemas/ApiError'
-          example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E401</errorCode>\n  <description>The request lacks valid authentication credentials for the requested resource.</description>\n  <action>Check the resources and adjust authentication credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Authentication</name>\n      <url>https://www.infobip.com/docs/essentials/api-authentication</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+          example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E500</errorCode>\n  <description>Something went wrong.</description>\n  <action>Contact the support.</action>\n  <violations/>\n  <resources/>\n</ApiError>\n"
     ApiError403:
       description: Forbidden
       content:
@@ -457,6 +465,24 @@ components:
           schema:
             $ref: '#/components/schemas/ApiError'
           example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E403</errorCode>\n  <description>Insufficient permissions to access the requested resource.</description>\n  <action>Repeat the request with new or different credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Scopes</name>\n      <url>https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+    ApiError401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          example:
+            errorCode: E401
+            description: The request lacks valid authentication credentials for the requested resource.
+            action: Check the resources and adjust authentication credentials.
+            violations: []
+            resources:
+            - name: API Authentication
+              url: https://www.infobip.com/docs/essentials/api-authentication
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E401</errorCode>\n  <description>The request lacks valid authentication credentials for the requested resource.</description>\n  <action>Check the resources and adjust authentication credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Authentication</name>\n      <url>https://www.infobip.com/docs/essentials/api-authentication</url>\n    </resource>\n  </resources>\n</ApiError>\n"
     ApiError429:
       description: Too Many Requests
       content:
@@ -475,22 +501,6 @@ components:
           schema:
             $ref: '#/components/schemas/ApiError'
           example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E429</errorCode>\n  <description>Too many requests sent.</description>\n  <action>Check request rate limit specified in the API endpoint documentation resource.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>Throttling handling errors</name>\n      <url>https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors</url>\n    </resource>\n  </resources>\n</ApiError>\n"
-    ApiError500:
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-          example:
-            errorCode: E500
-            description: Something went wrong.
-            action: Contact the support.
-            violations: []
-            resources: []
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-          example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E500</errorCode>\n  <description>Something went wrong.</description>\n  <action>Contact the support.</action>\n  <violations/>\n  <resources/>\n</ApiError>\n"
   securitySchemes:
     APIKeyHeader:
       type: apiKey

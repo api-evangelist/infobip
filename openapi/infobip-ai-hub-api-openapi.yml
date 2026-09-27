@@ -235,20 +235,28 @@ paths:
         timeUnit: s
 components:
   schemas:
-    2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.ContextNode:
+    2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.RetrieveContextApiResponse:
       type: object
-      description: List of retrieved context nodes.
       properties:
-        node:
-          $ref: '#/components/schemas/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.NodeDetails'
-        score:
-          type: number
-          format: double
-          description: Relevance score for the node.
+        contexts:
+          type: array
+          description: List of retrieved context nodes.
+          items:
+            $ref: '#/components/schemas/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.ContextNode'
       required:
-      - node
-      - score
-      title: ContextNode
+      - contexts
+      title: RetrieveContextApiResponse
+    ApiErrorViolation:
+      type: object
+      description: List of violations that caused the error.
+      properties:
+        property:
+          type: string
+          description: Request property that caused the error.
+        violation:
+          type: string
+          description: Detailed violation description.
+      title: ApiErrorViolation
     2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContext:
       type: object
       description: Ai Assistant context used for generating the answer.
@@ -264,17 +272,61 @@ components:
           items:
             $ref: '#/components/schemas/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContextChunk'
       title: QueryAiAssistantApiResponseContext
-    2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.RetrieveContextApiResponse:
+    2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContextChunk:
       type: object
+      description: Ai Assistant contexts after reranking.
       properties:
-        contexts:
-          type: array
-          description: List of retrieved context nodes.
-          items:
-            $ref: '#/components/schemas/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.ContextNode'
+        text:
+          type: string
+          description: The text content of the context chunk retrieved from the assistant's knowledge base.
+        filename:
+          type: string
+          description: The name of the source file from which this context chunk was extracted.
       required:
-      - contexts
-      title: RetrieveContextApiResponse
+      - filename
+      - text
+      title: QueryAiAssistantApiResponseContextChunk
+    2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.ContextNode:
+      type: object
+      description: List of retrieved context nodes.
+      properties:
+        node:
+          $ref: '#/components/schemas/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.NodeDetails'
+        score:
+          type: number
+          format: double
+          description: Relevance score for the node.
+      required:
+      - node
+      - score
+      title: ContextNode
+    2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.NodeDetails:
+      type: object
+      description: Context node details.
+      properties:
+        id:
+          type: string
+          description: Node ID.
+        text:
+          type: string
+          description: Text content.
+        metadata:
+          type: object
+          additionalProperties:
+            type: object
+          description: Metadata information.
+        startCharIdx:
+          type: integer
+          format: int32
+          description: Start character index.
+        endCharIdx:
+          type: integer
+          format: int32
+          description: End character index.
+      required:
+      - id
+      - text
+      title: NodeDetails
     2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.SimpleAiAssistantQuery:
       type: object
       description: Simple AI Assistant query with just a message.
@@ -327,6 +379,17 @@ components:
       required:
       - message
       title: RetrieveContextRequest
+    2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponse:
+      type: object
+      properties:
+        response:
+          type: string
+          description: Ai Assistant answer.
+        context:
+          $ref: '#/components/schemas/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContext'
+      required:
+      - response
+      title: QueryAiAssistantApiResponse
     ApiError:
       type: object
       properties:
@@ -356,31 +419,6 @@ components:
       - resources
       - violations
       title: ApiError
-    2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponse:
-      type: object
-      properties:
-        response:
-          type: string
-          description: Ai Assistant answer.
-        context:
-          $ref: '#/components/schemas/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContext'
-      required:
-      - response
-      title: QueryAiAssistantApiResponse
-    2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContextChunk:
-      type: object
-      description: Ai Assistant contexts after reranking.
-      properties:
-        text:
-          type: string
-          description: The text content of the context chunk retrieved from the assistant's knowledge base.
-        filename:
-          type: string
-          description: The name of the source file from which this context chunk was extracted.
-      required:
-      - filename
-      - text
-      title: QueryAiAssistantApiResponseContextChunk
     ApiErrorResource:
       type: object
       description: List of available resources to recover from the error.
@@ -392,97 +430,7 @@ components:
           type: string
           description: Resource URL.
       title: ApiErrorResource
-    2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.NodeDetails:
-      type: object
-      description: Context node details.
-      properties:
-        id:
-          type: string
-          description: Node ID.
-        text:
-          type: string
-          description: Text content.
-        metadata:
-          type: object
-          additionalProperties:
-            type: object
-          description: Metadata information.
-        startCharIdx:
-          type: integer
-          format: int32
-          description: Start character index.
-        endCharIdx:
-          type: integer
-          format: int32
-          description: End character index.
-      required:
-      - id
-      - text
-      title: NodeDetails
-    ApiErrorViolation:
-      type: object
-      description: List of violations that caused the error.
-      properties:
-        property:
-          type: string
-          description: Request property that caused the error.
-        violation:
-          type: string
-          description: Detailed violation description.
-      title: ApiErrorViolation
   responses:
-    ApiError500:
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-          example:
-            errorCode: E500
-            description: Something went wrong.
-            action: Contact the support.
-            violations: []
-            resources: []
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-          example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E500</errorCode>\n  <description>Something went wrong.</description>\n  <action>Contact the support.</action>\n  <violations/>\n  <resources/>\n</ApiError>\n"
-    ApiError403:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-          example:
-            errorCode: E403
-            description: Insufficient permissions to access the requested resource.
-            action: Repeat the request with new or different credentials.
-            violations: []
-            resources:
-            - name: API Scopes
-              url: https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-          example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E403</errorCode>\n  <description>Insufficient permissions to access the requested resource.</description>\n  <action>Repeat the request with new or different credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Scopes</name>\n      <url>https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes</url>\n    </resource>\n  </resources>\n</ApiError>\n"
-    ApiError401:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-          example:
-            errorCode: E401
-            description: The request lacks valid authentication credentials for the requested resource.
-            action: Check the resources and adjust authentication credentials.
-            violations: []
-            resources:
-            - name: API Authentication
-              url: https://www.infobip.com/docs/essentials/api-authentication
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-          example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E401</errorCode>\n  <description>The request lacks valid authentication credentials for the requested resource.</description>\n  <action>Check the resources and adjust authentication credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Authentication</name>\n      <url>https://www.infobip.com/docs/essentials/api-authentication</url>\n    </resource>\n  </resources>\n</ApiError>\n"
     ApiError429:
       description: Too Many Requests
       content:
@@ -501,6 +449,58 @@ components:
           schema:
             $ref: '#/components/schemas/ApiError'
           example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E429</errorCode>\n  <description>Too many requests sent.</description>\n  <action>Check request rate limit specified in the API endpoint documentation resource.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>Throttling handling errors</name>\n      <url>https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+    ApiError500:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          example:
+            errorCode: E500
+            description: Something went wrong.
+            action: Contact the support.
+            violations: []
+            resources: []
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E500</errorCode>\n  <description>Something went wrong.</description>\n  <action>Contact the support.</action>\n  <violations/>\n  <resources/>\n</ApiError>\n"
+    ApiError401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          example:
+            errorCode: E401
+            description: The request lacks valid authentication credentials for the requested resource.
+            action: Check the resources and adjust authentication credentials.
+            violations: []
+            resources:
+            - name: API Authentication
+              url: https://www.infobip.com/docs/essentials/api-authentication
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E401</errorCode>\n  <description>The request lacks valid authentication credentials for the requested resource.</description>\n  <action>Check the resources and adjust authentication credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Authentication</name>\n      <url>https://www.infobip.com/docs/essentials/api-authentication</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+    ApiError403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          example:
+            errorCode: E403
+            description: Insufficient permissions to access the requested resource.
+            action: Repeat the request with new or different credentials.
+            violations: []
+            resources:
+            - name: API Scopes
+              url: https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E403</errorCode>\n  <description>Insufficient permissions to access the requested resource.</description>\n  <action>Repeat the request with new or different credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Scopes</name>\n      <url>https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes</url>\n    </resource>\n  </resources>\n</ApiError>\n"
   securitySchemes:
     APIKeyHeader:
       type: apiKey

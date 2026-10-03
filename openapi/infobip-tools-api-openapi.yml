@@ -139,17 +139,6 @@ paths:
         timeUnit: s
 components:
   schemas:
-    ApiErrorViolation:
-      type: object
-      description: List of violations that caused the error.
-      properties:
-        property:
-          type: string
-          description: Request property that caused the error.
-        violation:
-          type: string
-          description: Detailed violation description.
-      title: ApiErrorViolation
     d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.OpenAPI:
       type: object
       additionalProperties:
@@ -157,24 +146,6 @@ components:
         description: OpenAPI schema.
       description: Infobip OpenAPI Specification
       title: OpenAPI
-    d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.AvailableProducts:
-      type: object
-      description: Available products.
-      properties:
-        products:
-          type: array
-          description: List of available products.
-          items:
-            $ref: '#/components/schemas/d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.AvailableProduct'
-      title: AvailableProducts
-    d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.AvailableProduct:
-      type: object
-      description: List of available products.
-      properties:
-        id:
-          type: string
-          description: Product identifier.
-      title: AvailableProduct
     ApiError:
       type: object
       properties:
@@ -204,6 +175,35 @@ components:
       - resources
       - violations
       title: ApiError
+    ApiErrorViolation:
+      type: object
+      description: List of violations that caused the error.
+      properties:
+        property:
+          type: string
+          description: Request property that caused the error.
+        violation:
+          type: string
+          description: Detailed violation description.
+      title: ApiErrorViolation
+    d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.AvailableProduct:
+      type: object
+      description: List of available products.
+      properties:
+        id:
+          type: string
+          description: Product identifier.
+      title: AvailableProduct
+    d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.AvailableProducts:
+      type: object
+      description: Available products.
+      properties:
+        products:
+          type: array
+          description: List of available products.
+          items:
+            $ref: '#/components/schemas/d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.AvailableProduct'
+      title: AvailableProducts
     ApiErrorResource:
       type: object
       description: List of available resources to recover from the error.

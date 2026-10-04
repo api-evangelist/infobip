@@ -1,12 +1,13 @@
 openapi: 3.2.0
 info:
-  title: Infobip OpenAPI Specification AI Hub API
-  description: OpenAPI Specification that contains all public endpoints and webhooks.
+  title: Infobip AI Hub API
   contact:
     name: Infobip support
     email: support@infobip.com
-  version: 3.210.0
-  x-generatedAt: '2026-07-23T15:23:37.825639538Z'
+  x-refined-note:
+  - x-generatedAt differs across the merged source definitions and was not carried
+  version: '1.0'
+  description: 'Operations tagged ai-hub across 2 of this provider''s published API definitions: infobip-platform-full-openapi.json, infobip-platform-openapi.json. Each path carries the servers of the definition it was published in.'
 tags:
 - name: ai-hub
   description: AI-powered tools and services to help you create smarter and more personalized customer experiences.
@@ -235,73 +236,28 @@ paths:
         timeUnit: s
 components:
   schemas:
-    2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContext:
+    ApiErrorResource:
       type: object
-      description: Ai Assistant context used for generating the answer.
+      description: List of available resources to recover from the error.
       properties:
-        originalContexts:
-          type: array
-          description: Ai Assistant contexts before reranking.
-          items:
-            $ref: '#/components/schemas/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContextChunk'
-        rerankedContexts:
-          type: array
-          description: Ai Assistant contexts after reranking.
-          items:
-            $ref: '#/components/schemas/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContextChunk'
-      title: QueryAiAssistantApiResponseContext
-    2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.SimpleAiAssistantQuery:
+        name:
+          type: string
+          description: Resource name.
+        url:
+          type: string
+          description: Resource URL.
+      title: ApiErrorResource
+    2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.RetrieveContextApiResponse:
       type: object
-      description: Simple AI Assistant query with just a message.
       properties:
-        message:
-          type: string
-          description: User message an AI assistant receives.
-          example: Hello, what can you help me with?
-        useSharedHistory:
-          type: boolean
-          default: false
-          description: Indicates whether to use shared conversation history. Can only be used with [Infobip AI agents](https://www.infobip.com/docs/ai-agents).
-        sessionId:
-          type: string
-          description: Session ID to maintain context across multiple queries.
-          example: session-12345
-        returnContexts:
-          type: boolean
-          default: false
-          description: Flag to indicate whether to return the contexts used in generating the response.
+        contexts:
+          type: array
+          description: List of retrieved context nodes.
+          items:
+            $ref: '#/components/schemas/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.ContextNode'
       required:
-      - message
-      title: SimpleAiAssistantQuery
-    ApiError:
-      type: object
-      properties:
-        errorCode:
-          type: string
-          description: An error code uniquely identifying the error case.
-        description:
-          type: string
-          description: A detailed description of an error.
-        action:
-          type: string
-          description: An action that should be taken to recover from the error.
-        violations:
-          type: array
-          description: List of violations that caused the error.
-          items:
-            $ref: '#/components/schemas/ApiErrorViolation'
-        resources:
-          type: array
-          description: List of available resources to recover from the error.
-          items:
-            $ref: '#/components/schemas/ApiErrorResource'
-      required:
-      - action
-      - description
-      - errorCode
-      - resources
-      - violations
-      title: ApiError
+      - contexts
+      title: RetrieveContextApiResponse
     2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.RetrieveContextRequest:
       type: object
       description: AI Assistant retrieve context request with optional retrieval parameters.
@@ -331,17 +287,6 @@ components:
       required:
       - message
       title: RetrieveContextRequest
-    2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.RetrieveContextApiResponse:
-      type: object
-      properties:
-        contexts:
-          type: array
-          description: List of retrieved context nodes.
-          items:
-            $ref: '#/components/schemas/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.ContextNode'
-      required:
-      - contexts
-      title: RetrieveContextApiResponse
     ApiErrorViolation:
       type: object
       description: List of violations that caused the error.
@@ -353,20 +298,6 @@ components:
           type: string
           description: Detailed violation description.
       title: ApiErrorViolation
-    2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContextChunk:
-      type: object
-      description: Ai Assistant contexts after reranking.
-      properties:
-        text:
-          type: string
-          description: The text content of the context chunk retrieved from the assistant's knowledge base.
-        filename:
-          type: string
-          description: The name of the source file from which this context chunk was extracted.
-      required:
-      - filename
-      - text
-      title: QueryAiAssistantApiResponseContextChunk
     2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.NodeDetails:
       type: object
       description: Context node details.
@@ -419,54 +350,88 @@ components:
       required:
       - response
       title: QueryAiAssistantApiResponse
-    ApiErrorResource:
+    ApiError:
       type: object
-      description: List of available resources to recover from the error.
       properties:
-        name:
+        errorCode:
           type: string
-          description: Resource name.
-        url:
+          description: An error code uniquely identifying the error case.
+        description:
           type: string
-          description: Resource URL.
-      title: ApiErrorResource
+          description: A detailed description of an error.
+        action:
+          type: string
+          description: An action that should be taken to recover from the error.
+        violations:
+          type: array
+          description: List of violations that caused the error.
+          items:
+            $ref: '#/components/schemas/ApiErrorViolation'
+        resources:
+          type: array
+          description: List of available resources to recover from the error.
+          items:
+            $ref: '#/components/schemas/ApiErrorResource'
+      required:
+      - action
+      - description
+      - errorCode
+      - resources
+      - violations
+      title: ApiError
+    2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.SimpleAiAssistantQuery:
+      type: object
+      description: Simple AI Assistant query with just a message.
+      properties:
+        message:
+          type: string
+          description: User message an AI assistant receives.
+          example: Hello, what can you help me with?
+        useSharedHistory:
+          type: boolean
+          default: false
+          description: Indicates whether to use shared conversation history. Can only be used with [Infobip AI agents](https://www.infobip.com/docs/ai-agents).
+        sessionId:
+          type: string
+          description: Session ID to maintain context across multiple queries.
+          example: session-12345
+        returnContexts:
+          type: boolean
+          default: false
+          description: Flag to indicate whether to return the contexts used in generating the response.
+      required:
+      - message
+      title: SimpleAiAssistantQuery
+    2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContextChunk:
+      type: object
+      description: Ai Assistant contexts after reranking.
+      properties:
+        text:
+          type: string
+          description: The text content of the context chunk retrieved from the assistant's knowledge base.
+        filename:
+          type: string
+          description: The name of the source file from which this context chunk was extracted.
+      required:
+      - filename
+      - text
+      title: QueryAiAssistantApiResponseContextChunk
+    2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContext:
+      type: object
+      description: Ai Assistant context used for generating the answer.
+      properties:
+        originalContexts:
+          type: array
+          description: Ai Assistant contexts before reranking.
+          items:
+            $ref: '#/components/schemas/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContextChunk'
+        rerankedContexts:
+          type: array
+          description: Ai Assistant contexts after reranking.
+          items:
+            $ref: '#/components/schemas/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContextChunk'
+      title: QueryAiAssistantApiResponseContext
   responses:
-    ApiError429:
-      description: Too Many Requests
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-          example:
-            errorCode: E429
-            description: Too many requests sent.
-            action: Check request rate limit specified in the API endpoint documentation resource.
-            violations: []
-            resources:
-            - name: Throttling handling errors
-              url: https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-          example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E429</errorCode>\n  <description>Too many requests sent.</description>\n  <action>Check request rate limit specified in the API endpoint documentation resource.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>Throttling handling errors</name>\n      <url>https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors</url>\n    </resource>\n  </resources>\n</ApiError>\n"
-    ApiError401:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-          example:
-            errorCode: E401
-            description: The request lacks valid authentication credentials for the requested resource.
-            action: Check the resources and adjust authentication credentials.
-            violations: []
-            resources:
-            - name: API Authentication
-              url: https://www.infobip.com/docs/essentials/api-authentication
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-          example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E401</errorCode>\n  <description>The request lacks valid authentication credentials for the requested resource.</description>\n  <action>Check the resources and adjust authentication credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Authentication</name>\n      <url>https://www.infobip.com/docs/essentials/api-authentication</url>\n    </resource>\n  </resources>\n</ApiError>\n"
     ApiError403:
       description: Forbidden
       content:
@@ -485,6 +450,24 @@ components:
           schema:
             $ref: '#/components/schemas/ApiError'
           example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E403</errorCode>\n  <description>Insufficient permissions to access the requested resource.</description>\n  <action>Repeat the request with new or different credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Scopes</name>\n      <url>https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+    ApiError401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          example:
+            errorCode: E401
+            description: The request lacks valid authentication credentials for the requested resource.
+            action: Check the resources and adjust authentication credentials.
+            violations: []
+            resources:
+            - name: API Authentication
+              url: https://www.infobip.com/docs/essentials/api-authentication
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E401</errorCode>\n  <description>The request lacks valid authentication credentials for the requested resource.</description>\n  <action>Check the resources and adjust authentication credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Authentication</name>\n      <url>https://www.infobip.com/docs/essentials/api-authentication</url>\n    </resource>\n  </resources>\n</ApiError>\n"
     ApiError500:
       description: Internal Server Error
       content:
@@ -501,6 +484,24 @@ components:
           schema:
             $ref: '#/components/schemas/ApiError'
           example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E500</errorCode>\n  <description>Something went wrong.</description>\n  <action>Contact the support.</action>\n  <violations/>\n  <resources/>\n</ApiError>\n"
+    ApiError429:
+      description: Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          example:
+            errorCode: E429
+            description: Too many requests sent.
+            action: Check request rate limit specified in the API endpoint documentation resource.
+            violations: []
+            resources:
+            - name: Throttling handling errors
+              url: https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E429</errorCode>\n  <description>Too many requests sent.</description>\n  <action>Check request rate limit specified in the API endpoint documentation resource.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>Throttling handling errors</name>\n      <url>https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors</url>\n    </resource>\n  </resources>\n</ApiError>\n"
   securitySchemes:
     APIKeyHeader:
       type: apiKey
@@ -628,3 +629,6 @@ components:
         clientCredentials:
           tokenUrl: https://api.infobip.com/auth/1/oauth2/token
           scopes: {}
+x-refined-from:
+- infobip-platform-full-openapi.json
+- infobip-platform-openapi.json

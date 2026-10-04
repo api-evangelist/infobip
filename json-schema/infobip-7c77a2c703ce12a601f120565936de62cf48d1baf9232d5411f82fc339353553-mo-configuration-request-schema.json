@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/infobip/main/json-schema/infobip-7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553-mo-configuration-request-schema.json",
+  "title": "MoConfigurationRequest",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/infobip-platform-api-openapi.yml#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.MoConfigurationRequest",
+  "type": "object",
+  "properties": {
+    "keyword": {
+      "type": "string",
+      "description": "Omitting this value or sending <code>NULL</code> will set keyword to <code>NULL</code> because it is a valid keyword which will match all values.",
+      "maxLength": 50,
+      "minLength": 0
+    },
+    "username": {
+      "type": "string",
+      "description": "Sets username that will be applied in appropriate actions.",
+      "maxLength": 255,
+      "minLength": 0,
+      "pattern": "^(?!\\s*$).+"
+    },
+    "unset": {
+      "type": "array",
+      "description": "Used for unsetting configuration options. <br /> <b>If a property appears both in unset, and in the body of the request, it will <u>FIRST</u> be removed, and then <u>UPDATED</u> with the value from the request body!</b>",
+      "items": {
+        "$ref": "#/$defs/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.UnsetOption"
+      },
+      "uniqueItems": true
+    },
+    "channel": {
+      "$ref": "#/$defs/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.ConfigurationType"
+    }
+  },
+  "required": [
+    "channel"
+  ],
+  "$defs": {
+    "7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.ConfigurationType": {
+      "type": "string",
+      "description": "Channel type.",
+      "enum": [
+        "SMS",
+        "MMS",
+        "WHATSAPP",
+        "RCS",
+        "VIBER_BM",
+        "APPLE_MB",
+        "LINE_OA",
+        "KAKAO_SANGDAM",
+        "MESSENGER",
+        "INSTAGRAM_DM",
+        "ZALO_ZNS",
+        "TELEGRAM",
+        "VIBER_BOT",
+        "EMAIL",
+        "ZALO_FOLLOWER",
+        "OPEN_CHANNEL",
+        "TIKTOK_BM"
+      ],
+      "title": "ConfigurationType"
+    },
+    "7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.UnsetOption": {
+      "type": "string",
+      "description": "Used for unsetting configuration options. <br /> <b>If a property appears both in unset, and in the body of the request, it will <u>FIRST</u> be removed, and then <u>UPDATED</u> with the value from the request body!</b>",
+      "enum": [
+        "USERNAME",
+        "PLATFORM",
+        "FORWARDING",
+        "CONVERSATIONS",
+        "ANSWERS",
+        "AUTORESPONSE",
+        "BLOCKLISTCONFIGURATION"
+      ],
+      "title": "UnsetOption"
+    }
+  }
+}

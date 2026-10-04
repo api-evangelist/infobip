@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/infobip/main/json-schema/infobip-8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9-verification-session-request-schema.json",
+  "title": "VerificationSessionRequest",
+  "description": "JSON containing session parameters and client identifiers for Verification application.",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/infobip-connectivity-api-openapi.yml#/components/schemas/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.VerificationSessionRequest",
+  "type": "object",
+  "properties": {
+    "scenarioName": {
+      "type": "string",
+      "description": "Request a specific scenario within the application. To get possible values call [Get Scenarios](#platform-connectivity/biometrics/get-biometrics-scenarios) with the following query parameter: `?applicationTypes=verification`. Check scenario descriptions in the response to find the scenario you need, and copy its `name`."
+    },
+    "locationInfo": {
+      "$ref": "#/$defs/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.LocationInfo"
+    },
+    "partnerReference": {
+      "type": "string",
+      "description": "Your (usually unique) identifier of the end user performing the scenario. Will be sent together with the rest of the information via the webhook."
+    },
+    "webhook": {
+      "$ref": "#/$defs/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.WebhookInfo"
+    },
+    "successUrl": {
+      "type": "string",
+      "description": "End user will be sent to this URL after the selected scenario has been successfully completed."
+    },
+    "cancelUrl": {
+      "type": "string",
+      "description": "End user will be sent to this URL if they cancel the scenario."
+    },
+    "retainData": {
+      "type": "boolean",
+      "description": "Indicates whether Infobip should store and retain data. This value overrides value in account configuration."
+    },
+    "biometricData": {
+      "$ref": "#/$defs/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.BiometricData"
+    }
+  },
+  "required": [
+    "locationInfo",
+    "scenarioName",
+    "webhook"
+  ],
+  "$defs": {
+    "8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.BiometricData": {
+      "type": "object",
+      "description": "Biometric data.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.BiometricReference"
+        },
+        {
+          "$ref": "#/$defs/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.BiometricVector"
+        }
+      ],
+      "title": "BiometricData"
+    },
+    "8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.BiometricReference": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.BiometricData"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "reference": {
+              "type": "string",
+              "description": "36-character unique identifier of a biometric vector associated with the end user. Used, if Infobip needs to store the vector in enrolment phase and return reference in result."
+            }
+          }
+        }
+      ],
+      "title": "BiometricReference"
+    },
+    "8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.BiometricVector": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.BiometricData"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "vector": {
+              "type": "array",
+              "description": "Biometric vector associated with the end user. Used when Infobip didn't store the vector in enrolment phase.",
+              "items": {
+                "type": "number",
+                "format": "double"
+              }
+            }
+          }
+        }
+      ],
+      "title": "BiometricVector"
+    },
+    "8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.LocationInfo": {
+      "type": "object",
+      "description": "End user location information.",
+      "properties": {
+        "country": {
+          "type": "string",
+          "description": "End user country needed for processing documents. Format [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)."
+        },
+        "language": {
+          "type": "string",
+          "default": "en-US",
+          "description": "End user language. Will be used within the UI when completing scenario steps. Format: [ISO 639-1](http://www.lingoes.net/en/translator/langcode.htm)."
+        }
+      },
+      "required": [
+        "country"
+      ],
+      "title": "LocationInfo"
+    },
+    "8a19359d3a412667abbd2d38733e247b91417d2a845ae41758328736ea0ecce9.WebhookInfo": {
+      "type": "object",
+      "description": "Webhook that will be called with the information about the request status. The webhook will be called with a POST method that contains all the info in JSON format. Check webhook endpoint for more details.",
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Your webhook URL onto which the request is received."
+        },
+        "type": {
+          "type": "string",
+          "default": "ON_END",
+          "description": "Defines what kind of requests you want to receive on a webhook. `ON_END` - only final status at the end, `ON_STATUS_CHANGE` - any change in the scenario.",
+          "enum": [
+            "ON_END",
+            "ON_STATUS_CHANGE"
+          ]
+        }
+      },
+      "required": [
+        "url"
+      ],
+      "title": "WebhookInfo"
+    }
+  }
+}

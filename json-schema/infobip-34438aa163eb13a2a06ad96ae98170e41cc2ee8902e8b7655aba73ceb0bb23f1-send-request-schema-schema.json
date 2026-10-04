@@ -1,0 +1,202 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/infobip/main/json-schema/infobip-34438aa163eb13a2a06ad96ae98170e41cc2ee8902e8b7655aba73ceb0bb23f1-send-request-schema-schema.json",
+  "title": "SendRequestSchema",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/infobip-channels-api-openapi.yml#/components/schemas/34438aa163eb13a2a06ad96ae98170e41cc2ee8902e8b7655aba73ceb0bb23f1.SendRequestSchema",
+  "type": "object",
+  "properties": {
+    "from": {
+      "type": "string",
+      "description": "Email address with optional sender name.\n\nNote: This field is required if `templateId` is not present."
+    },
+    "to": {
+      "type": "array",
+      "description": "Email address of the recipient in a form of `To=\"john.smith@somecompany.com\"`.\nAs optional feature on this field, a specific placeholder can be defined whose value will apply only for this destination. Given `To` value should look like:\n`To= {\"to\": \"john.smith@somecompany.com\",\"placeholders\": {\"name\": \"John\"}}`\n`To= {\"to\": \"alice.grey@somecompany.com\",\"placeholders\": {\"name\": \"Alice\"}}`.\n\nNote: Maximum number of recipients per request is 1000 overall including to, cc and bcc field.",
+      "items": {
+        "type": "string",
+        "description": "Email address of the recipient in a form of `To=\"john.smith@somecompany.com\"`.\nAs optional feature on this field, a specific placeholder can be defined whose value will apply only for this destination. Given `To` value should look like:\n`To= {\"to\": \"john.smith@somecompany.com\",\"placeholders\": {\"name\": \"John\"}}`\n`To= {\"to\": \"alice.grey@somecompany.com\",\"placeholders\": {\"name\": \"Alice\"}}`.\n\nNote: Maximum number of recipients per request is 1000 overall including to, cc and bcc field.",
+        "maximum": 1000
+      },
+      "maximum": 1000
+    },
+    "cc": {
+      "type": "array",
+      "description": "CC recipient email address.\nAs optional feature on this field, a specific placeholder can be defined whose value will apply only for this destination.\n\nNote: Maximum number of recipients per request is 1000 overall including to, cc and bcc field.",
+      "items": {
+        "type": "string",
+        "description": "CC recipient email address.\nAs optional feature on this field, a specific placeholder can be defined whose value will apply only for this destination.\n\nNote: Maximum number of recipients per request is 1000 overall including to, cc and bcc field.",
+        "maximum": 1000
+      },
+      "maximum": 1000
+    },
+    "bcc": {
+      "type": "array",
+      "description": "BCC recipient email address.\nAs optional feature on this field, a specific placeholder can be defined whose value will apply only for this destination.\n\nNote: Maximum number of recipients per request is 1000 overall including to, cc and bcc field.",
+      "items": {
+        "type": "string",
+        "description": "BCC recipient email address.\nAs optional feature on this field, a specific placeholder can be defined whose value will apply only for this destination.\n\nNote: Maximum number of recipients per request is 1000 overall including to, cc and bcc field.",
+        "maximum": 1000
+      },
+      "maximum": 1000
+    },
+    "subject": {
+      "type": "string",
+      "description": "Message subject.\n\nNote: This field is required if `templateId` is not present.",
+      "maximum": 1000,
+      "minimum": 1
+    },
+    "text": {
+      "type": "string",
+      "description": "Body of the message."
+    },
+    "html": {
+      "type": "string",
+      "description": "HTML body of the message. If `html` and `text` fields are present, the `text` field will be ignored and `html` will be delivered as a message body."
+    },
+    "ampHtml": {
+      "type": "string",
+      "description": "Amp HTML body of the message. If `ampHtml` is present, `html` is mandatory. Amp HTML is not supported by all the email clients. Please check this link for configuring gmail client https://developers.google.com/gmail/ampemail/."
+    },
+    "templateId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Template ID used for generating email content. The template is created over Infobip web interface or via the [Infobip Templates API](https://www.infobip.com/docs/api/channels/email/templates). If `templateId` is present, then `html` and `text` values are ignored.\n\nNote: `templateId` only supports the value of `Broadcast`. `Content` and `Flow` are not supported."
+    },
+    "attachment": {
+      "type": "array",
+      "format": "binary",
+      "description": "File attachment.",
+      "items": {
+        "type": "string",
+        "format": "binary",
+        "description": "File attachment."
+      }
+    },
+    "inlineImage": {
+      "type": "array",
+      "format": "binary",
+      "description": "Allows for inserting an image file inside the HTML code of the email by using `cid:FILENAME` instead of providing an external link to the image.",
+      "items": {
+        "type": "string",
+        "format": "binary",
+        "description": "Allows for inserting an image file inside the HTML code of the email by using `cid:FILENAME` instead of providing an external link to the image."
+      }
+    },
+    "intermediateReport": {
+      "type": "boolean",
+      "description": "The real-time Intermediate delivery report that will be sent on your callback server."
+    },
+    "notifyUrl": {
+      "type": "string",
+      "description": "The URL on your callback server on which the Delivery report will be sent."
+    },
+    "notifyContentType": {
+      "type": "string",
+      "description": "Preferred Delivery report content type. Can be `application/json` or `application/xml`."
+    },
+    "callbackData": {
+      "type": "string",
+      "description": "Additional client data that will be sent on the notifyUrl.",
+      "maximum": 4000,
+      "minimum": 0
+    },
+    "track": {
+      "type": "boolean",
+      "description": "Enable or disable open and click tracking. Passing true will only enable tracking and the statistics would be visible in the web interface alone. This can be explicitly overridden by `trackClicks` and `trackOpens`."
+    },
+    "trackClicks": {
+      "type": "boolean",
+      "description": "This parameter enables or disables track click feature.\n\nNote: Option to disable click tracking per URL is available. For detailed usage, please refer to the [documentation](https://www.infobip.com/docs/email/email-tracking-and-analytics/email-tracking-types#disable-click-tracking-on-urls-url-clicks)."
+    },
+    "trackOpens": {
+      "type": "boolean",
+      "description": "This parameter enables or disables track open feature."
+    },
+    "trackingPixelPosition": {
+      "type": "string",
+      "description": "This parameter specifies the position of the open tracking pixel within the email content.\nAllowed values are `TOP` and `BOTTOM`. If no value is provided, the default is `TOP`."
+    },
+    "trackingUrl": {
+      "type": "string",
+      "description": "The URL on your callback server on which the open and click notifications will be sent. See [Tracking Notifications](https://www.infobip.com/docs/email/email-over-api/tracking-notifications) for details."
+    },
+    "bulkId": {
+      "type": "string",
+      "description": "The ID that uniquely identifies the sent bulk. This filter will enable you to query delivery reports for all the messages using just one request. You will receive a `bulkId` in the response after sending an email request. If you don't set your own `bulkId`, unique ID will be generated by our system and returned in the API response. (Optional Field)"
+    },
+    "messageId": {
+      "type": "string",
+      "description": "The ID that uniquely identifies the message sent to a recipient. (Optional Field)"
+    },
+    "campaignReferenceId": {
+      "type": "string",
+      "description": "The ID that allows you to track, analyze, and show an aggregated overview and the performance of individual campaigns."
+    },
+    "replyTo": {
+      "type": "string",
+      "description": "Email address to which recipients of the email can reply."
+    },
+    "defaultPlaceholders": {
+      "type": "string",
+      "description": "General placeholder, given in a form of json example: `defaultPlaceholders={\"ph1\": \"Success\"}`, which will replace given key `{{ph1}}` with given value `Success` anywhere in the email (subject, text, html...). In case of more destinations in `To` field, this placeholder will resolve the same value for key `ph1`."
+    },
+    "preserveRecipients": {
+      "type": "boolean",
+      "default": false,
+      "description": "If set to `true`, the `to` recipients will see the list of all other recipients to get the email and the response will return only one `messageId`. Otherwise, each recipient will see just their own email and the response will return a unique `messageId` for each email recipient."
+    },
+    "sendAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "To schedule message at a given time. Time provided should be in UTC in the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ` and cannot exceed 30 days in the future.\n"
+    },
+    "landingPagePlaceholders": {
+      "type": "string",
+      "description": "Personalize opt out landing page by inserting placeholders. Insert placeholder or tag while designing landing page."
+    },
+    "landingPageId": {
+      "type": "string",
+      "description": "The ID of an opt out landing page to be used and displayed once an end user clicks the unsubscribe link. If not present, default opt out landing page will be displayed. Create a landing page in your Infobip account and use its ID, e.g., `1_23456`."
+    },
+    "templateLanguageVersion": {
+      "type": "string",
+      "default": "1",
+      "description": "Specifies template language version that will be used in the current message template. Use version 1 for previous version of template language. Use version 2 for features of the new template language. If not present version 1 will be used as default version. "
+    },
+    "clientPriority": {
+      "type": "string",
+      "default": "STANDARD",
+      "description": "Adds a priority rating to this email message.\nAllowed values are `HIGH`, `STANDARD` and `LOW`.\nMessages with a higher priority value sent by your account are prioritized over messages with a lower priority value sent by your account.\nIf no priority value is provided, messages will be treated with `STANDARD` priority by default.\n"
+    },
+    "applicationId": {
+      "type": "string",
+      "description": "Required for application use in a send request for outbound traffic. Returned in notification events."
+    },
+    "entityId": {
+      "type": "string",
+      "description": "Required for entity use in a send request for outbound traffic. Returned in notification events."
+    },
+    "headers": {
+      "type": "string",
+      "description": "Additional email headers for customization that can be provided in a form of JSON. For example, you can override List-Unsubscribe header and provide your own custom one: `headers={\"List-Unsubscribe\": \"your unsubscribe link\", \"X-CustomHeader\": \"Header value\"}`.\n\nThere are a few exceptions of headers which are not adjustable through this option: `To`, `Cc`, `Bcc`, `From`, `Subject`,`Content-Type`, `DKIM-Signature`, `Content-Transfer-Encoding`, `Return-Path`, `MIME-Version`"
+    },
+    "ipPoolId": {
+      "type": "string",
+      "description": "The ID of the IP Pool which will be used for sending."
+    },
+    "skipPassiveStorage": {
+      "type": "boolean",
+      "description": "Set to true to skip [passive email storage](https://www.infobip.com/docs/email/email-storage-and-retrieval/passive-email-storage) (long-term storage used for compliance, legal, or audit purposes).\nIf `false` or not set, the account-level setting is used.\n"
+    },
+    "skipActiveStorage": {
+      "type": "boolean",
+      "description": "Set to true to skip [active email storage](https://www.infobip.com/docs/email/email-storage-and-retrieval/active-email-storage) (short-term storage used for troubleshooting or support).\nIf `false` or not set, the account-level setting is used.\n"
+    }
+  },
+  "required": [
+    "to"
+  ]
+}

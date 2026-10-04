@@ -1,0 +1,187 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/infobip/main/json-schema/infobip-c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3-sms-or-voice-message-schema.json",
+  "title": "SmsOrVoiceMessage",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/infobip-platform-api-openapi.yml#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.SmsOrVoiceMessage",
+  "type": "object",
+  "properties": {
+    "applicationId": {
+      "type": "string",
+      "description": "The ID of the application that represents your service (e.g. 2FA for login, 2FA for changing the password, etc.) for which the requested message has been created.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "language": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.Language"
+        }
+      ],
+      "description": "The language code which message is written in used when sending text-to-speech messages. If not defined, it will default to English (`en`).",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "messageId": {
+      "type": "string",
+      "description": "The ID of the message template (message body with the PIN placeholder) that is sent to the recipient.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "messageText": {
+      "type": "string",
+      "description": "Text of a message that will be sent. Message text must contain `pinPlaceholder`.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "pinLength": {
+      "type": "integer",
+      "format": "int32",
+      "description": "PIN code length.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "pinPlaceholder": {
+      "type": "string",
+      "description": "The PIN code placeholder that will be replaced with a generated PIN code.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "pinType": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.PinType"
+        }
+      ],
+      "description": "The type of PIN code that will be generated and sent as part of 2FA message. You can set PIN type to numeric, alpha, alphanumeric or hex.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "regional": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.RegionalOptions"
+        }
+      ],
+      "description": "Region specific parameters, often specified by local laws. Use this if country or region that you are sending SMS to requires some extra parameters.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "repeatDTMF": {
+      "type": "string",
+      "description": "In case PIN message is sent by Voice, DTMF code will enable replaying the message.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "senderId": {
+      "type": "string",
+      "description": "The name that will appear as the sender of the 2FA message (Example: CompanyName).",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "speechRate": {
+      "type": "number",
+      "format": "double",
+      "description": "In case PIN message is sent by Voice, the speed of speech can be set for the message. Supported range is from `0.5` to `2`.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "voiceName": {
+      "type": "string",
+      "description": "Defines the voice that will be used for the chosen language (example: Joanna). For each supported language, we may offer different voices (learn more [here](https://www.infobip.com/docs/voice-and-video/reference#text-to-speech-languages)). You can use this [method](https://www.infobip.com/docs/api/channels/voice/voice-message/get-voices) to retrieve all voices for the given language. If not defined, it will default to the standard voice for the selected language (if available). If the standard voice is not available, the request will fail. To avoid that, you can choose one of the neural voices (charges will apply).",
+      "readOnly": false,
+      "writeOnly": true
+    }
+  },
+  "$defs": {
+    "c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.IndiaDltOptions": {
+      "type": "object",
+      "properties": {
+        "contentTemplateId": {
+          "type": "string",
+          "description": "Registered DLT content template ID which matches message you are sending.",
+          "maxLength": 30,
+          "minLength": 0,
+          "readOnly": false,
+          "writeOnly": false
+        },
+        "principalEntityId": {
+          "type": "string",
+          "description": "Your assigned DLT principal entity ID.",
+          "maxLength": 30,
+          "minLength": 0,
+          "readOnly": false,
+          "writeOnly": false
+        },
+        "teleMarketerId": {
+          "type": "string",
+          "description": "Your assigned Telemarketer ID (required for Aggregators).",
+          "maxLength": 255,
+          "minLength": 0,
+          "readOnly": false,
+          "writeOnly": false
+        }
+      },
+      "required": [
+        "principalEntityId"
+      ],
+      "title": "IndiaDltOptions"
+    },
+    "c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.Language": {
+      "type": "string",
+      "enum": [
+        "en",
+        "es",
+        "ca",
+        "da",
+        "nl",
+        "fr",
+        "de",
+        "it",
+        "ja",
+        "ko",
+        "no",
+        "pl",
+        "ru",
+        "sv",
+        "fi",
+        "hr",
+        "sl",
+        "ro",
+        "pt_pt",
+        "pt_br",
+        "zh_cn",
+        "zh_tw"
+      ],
+      "title": "Language"
+    },
+    "c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.PinType": {
+      "type": "string",
+      "enum": [
+        "NUMERIC",
+        "ALPHA",
+        "HEX",
+        "ALPHANUMERIC"
+      ],
+      "title": "PinType"
+    },
+    "c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.RegionalOptions": {
+      "type": "object",
+      "properties": {
+        "indiaDlt": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.IndiaDltOptions"
+            }
+          ],
+          "description": "Distributed Ledger Technology (DLT) specific parameters required for sending SMS to phone numbers registered in India.",
+          "readOnly": false,
+          "writeOnly": false
+        }
+      },
+      "title": "RegionalOptions"
+    }
+  }
+}

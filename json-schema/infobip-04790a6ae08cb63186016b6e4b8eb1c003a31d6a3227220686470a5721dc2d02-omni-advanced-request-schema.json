@@ -1,0 +1,1321 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/infobip/main/json-schema/infobip-04790a6ae08cb63186016b6e4b8eb1c003a31d6a3227220686470a5721dc2d02-omni-advanced-request-schema.json",
+  "title": "OmniAdvancedRequest",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/infobip-channels-api-openapi.yml#/components/schemas/04790a6ae08cb63186016b6e4b8eb1c003a31d6a3227220686470a5721dc2d02.OmniAdvancedRequest",
+  "type": "object",
+  "properties": {
+    "scenarioKey": {
+      "type": "string",
+      "description": "Scenario key that uniquely identifies the scenario which will be used when sending message. If this field is not set, the default scenario will be used.",
+      "writeOnly": true
+    },
+    "bulkId": {
+      "type": "string",
+      "description": "The ID which uniquely identifies the request. Bulk ID will be received only when you send a message to more than one destination address.",
+      "writeOnly": true
+    },
+    "destinations": {
+      "type": "array",
+      "description": "Destinations to which you are sending a message, such as phone number, email address, or unique ID.",
+      "items": {
+        "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Destination"
+      },
+      "writeOnly": true
+    },
+    "sms": {
+      "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.SmsData"
+    },
+    "whatsApp": {
+      "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.WhatsAppData"
+    },
+    "viber": {
+      "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.ViberData"
+    },
+    "voice": {
+      "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.VoiceData"
+    },
+    "email": {
+      "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.EmailData"
+    },
+    "push": {
+      "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.PushData"
+    },
+    "line": {
+      "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.LineData"
+    },
+    "kakaoChingu": {
+      "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.KakaoChinguData"
+    },
+    "kakaoAlim": {
+      "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.KakaoAlimData"
+    },
+    "notify": {
+      "type": "boolean",
+      "description": "Notify enables you to specify your preferences for receiving DLRs. If set to false, no DLR will be sent. Note: When no webhook is specified in the request and notify is set to 'true' or not defined, your Subscription settings will apply."
+    },
+    "intermediateReport": {
+      "type": "boolean",
+      "description": "The real-time intermediate delivery report containing GSM error codes, messages status, pricing, network and country codes, etc., which will be sent on your callback server. Defaults to `false`."
+    },
+    "notifyUrl": {
+      "type": "string",
+      "description": "The URL on your call back server where a delivery report will be sent. If your URL becomes unavailable then the [retry cycle](https://www.infobip.com/docs/sms/api#notify-url) uses the following formula: `1min + (1min * retryNumber * retryNumber)`."
+    },
+    "notifyContentType": {
+      "type": "string",
+      "description": "Preferred delivery report content type, `application/json` or `application/xml`."
+    },
+    "callbackData": {
+      "type": "string",
+      "description": "Additional data that can be used for identifying, managing, or monitoring a message. Data included here will also be automatically included in the message Delivery Report. The maximum value is 4000 characters.",
+      "maxLength": 4000,
+      "minLength": 0
+    },
+    "sendAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when the message is to be sent. Used for scheduled OMNI messaging (first message in the OMNI flow not sent immediately, but at scheduled time). Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`. Must be sooner than 180 days from now."
+    },
+    "vKontakte": {
+      "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.VKontakteData"
+    }
+  },
+  "$defs": {
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Address": {
+      "type": "object",
+      "description": "Address information.",
+      "properties": {
+        "street": {
+          "type": "string",
+          "description": "Street name.",
+          "writeOnly": true
+        },
+        "city": {
+          "type": "string",
+          "description": "City name.",
+          "writeOnly": true
+        },
+        "state": {
+          "type": "string",
+          "description": "State name.",
+          "writeOnly": true
+        },
+        "zip": {
+          "type": "string",
+          "description": "Zip value.",
+          "writeOnly": true
+        },
+        "country": {
+          "type": "string",
+          "description": "Country name.",
+          "writeOnly": true
+        },
+        "countryCode": {
+          "type": "string",
+          "description": "Country code value.",
+          "writeOnly": true
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of an address. Can be HOME, WORK.",
+          "writeOnly": true
+        }
+      },
+      "title": "Address",
+      "writeOnly": true
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Contact": {
+      "type": "object",
+      "properties": {
+        "addresses": {
+          "type": "array",
+          "description": "Address information.",
+          "items": {
+            "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Address"
+          },
+          "writeOnly": true
+        },
+        "birthday": {
+          "type": "string",
+          "description": "Birthday information, YYYY-MM-DD formatted string.",
+          "writeOnly": true
+        },
+        "emails": {
+          "type": "array",
+          "description": "Email information.",
+          "items": {
+            "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Email"
+          },
+          "writeOnly": true
+        },
+        "name": {
+          "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Name"
+        },
+        "org": {
+          "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Organization"
+        },
+        "phones": {
+          "type": "array",
+          "description": "Phone information.",
+          "items": {
+            "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Phone"
+          },
+          "writeOnly": true
+        },
+        "urls": {
+          "type": "array",
+          "description": "Url information.",
+          "items": {
+            "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Url"
+          },
+          "writeOnly": true
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "Contact"
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.ContainerType": {
+      "type": "string",
+      "enum": [
+        "BUBBLE",
+        "CAROUSEL"
+      ],
+      "title": "ContainerType"
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Destination": {
+      "type": "object",
+      "description": "Destinations to which you are sending a message, such as phone number, email address, or unique ID.",
+      "properties": {
+        "messageId": {
+          "type": "string",
+          "description": "The ID that uniquely identifies the message sent."
+        },
+        "to": {
+          "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.To"
+        }
+      },
+      "title": "Destination",
+      "writeOnly": true
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Email": {
+      "type": "object",
+      "description": "Email information.",
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "Email of a contact.",
+          "writeOnly": true
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of an email. Can be HOME, WORK.",
+          "writeOnly": true
+        }
+      },
+      "title": "Email",
+      "writeOnly": true
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.EmailData": {
+      "type": "object",
+      "description": "Email-specific data used if the message is sent through an email channel.",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Text of the message that will be sent.",
+          "maxLength": 2147483647,
+          "minLength": 1,
+          "writeOnly": true
+        },
+        "validityPeriod": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The message validity period. Unless specified differently in validityPeriodTimeUnit, it is expressed in minutes. When the period expires, the message will be automatically sent using the next OMNI step. Validity period longer than 48h is not supported (in this case, it will be automatically set to 48h). Additionally, period should be longer than 30 seconds.",
+          "writeOnly": true
+        },
+        "validityPeriodTimeUnit": {
+          "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.TimeUnit"
+        },
+        "subject": {
+          "type": "string",
+          "description": "Message subject.",
+          "writeOnly": true
+        }
+      },
+      "title": "EmailData",
+      "writeOnly": true
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.FlexContainer": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.ContainerType"
+        }
+      },
+      "title": "FlexContainer"
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.InAppStyle": {
+      "type": "string",
+      "description": "Set to `MODAL` to use in app dialog for actionable message, or `BANNER` to show a standard banner view. `MODAL` is supported on iOS from 3.6.0, on Android from 1.13.0 and on Cordova from 0.7.0. `BANNER` is supported from iOS 5.0.0, Android 2.0.0 and Cordova 1.0.0",
+      "enum": [
+        "BANNER",
+        "MODAL"
+      ],
+      "title": "InAppStyle",
+      "writeOnly": true
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.IndiaDltOptions": {
+      "type": "object",
+      "description": "Distributed Ledger Technology (DLT) specific parameters required for sending SMS to phone numbers registered in India.",
+      "properties": {
+        "contentTemplateId": {
+          "type": "string",
+          "description": "Id of your registered DTL content template that matches this message's text."
+        },
+        "principalEntityId": {
+          "type": "string",
+          "description": "Your assigned DTL principal entity id."
+        },
+        "telemarketerId": {
+          "type": "string",
+          "description": "Your assigned Telemarketer ID. (required for Aggregators)"
+        }
+      },
+      "required": [
+        "principalEntityId"
+      ],
+      "title": "IndiaDltOptions"
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.KakaoAlimButton": {
+      "type": "object",
+      "description": "Buttons to include in the message. Optional value. Max 5 buttons.",
+      "properties": {
+        "buttonText": {
+          "type": "string",
+          "description": "Text of the button. Max 28 characters.",
+          "maxLength": 28,
+          "minLength": 1,
+          "writeOnly": true
+        },
+        "type": {
+          "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.KakaoAlimButtonType"
+        }
+      },
+      "required": [
+        "buttonText"
+      ],
+      "title": "KakaoAlimButton",
+      "writeOnly": true
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.KakaoAlimButtonType": {
+      "type": "string",
+      "enum": [
+        "URL",
+        "APP_LINK",
+        "DELIVERY_TRACKING",
+        "CHATBOT_SWITCH",
+        "MESSAGE_DELIVERY",
+        "BOT_KEYWORD",
+        "ADD_CHANNEL"
+      ],
+      "title": "KakaoAlimButtonType"
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.KakaoAlimData": {
+      "type": "object",
+      "description": "Kakao AlimTalk-specific data used if the message is sent through a Kakao AlimTalk channel.",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Text of the message.",
+          "maxLength": 1000,
+          "minLength": 1,
+          "writeOnly": true
+        },
+        "validityPeriod": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The message validity period. Unless specified differently in validityPeriodTimeUnit, it is expressed in minutes. When the period expires, the message will be automatically sent using the next OMNI step. Validity period longer than 48h is not supported (in this case, it will be automatically set to 48h). Additionally, period should be longer than 30 seconds.",
+          "writeOnly": true
+        },
+        "validityPeriodTimeUnit": {
+          "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.TimeUnit"
+        },
+        "templateCode": {
+          "type": "string",
+          "description": "Code of the template. Max 30 characters.",
+          "maxLength": 30,
+          "minLength": 1,
+          "writeOnly": true
+        },
+        "buttons": {
+          "type": "array",
+          "description": "Buttons to include in the message. Optional value. Max 5 buttons.",
+          "items": {
+            "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.KakaoAlimButton"
+          },
+          "maxItems": 5,
+          "minItems": 1,
+          "writeOnly": true
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the message.",
+          "maxLength": 50,
+          "minLength": 0,
+          "writeOnly": true
+        },
+        "groupKey": {
+          "type": "string",
+          "description": "Group key of the profile. Required if the template was created using it.",
+          "writeOnly": true
+        }
+      },
+      "title": "KakaoAlimData",
+      "writeOnly": true
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.KakaoChinguButton": {
+      "type": "object",
+      "description": "Buttons to include in the message. Optional value. Max 5 buttons.",
+      "properties": {
+        "buttonText": {
+          "type": "string",
+          "description": "Text of the button. Max 28 characters.",
+          "maxLength": 28,
+          "minLength": 1,
+          "writeOnly": true
+        },
+        "type": {
+          "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.KakaoChinguButtonType"
+        }
+      },
+      "required": [
+        "buttonText"
+      ],
+      "title": "KakaoChinguButton",
+      "writeOnly": true
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.KakaoChinguButtonType": {
+      "type": "string",
+      "enum": [
+        "URL",
+        "APP_LINK",
+        "BOT_KEYWORD",
+        "MESSAGE_DELIVERY"
+      ],
+      "title": "KakaoChinguButtonType"
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.KakaoChinguData": {
+      "type": "object",
+      "description": "Kakao ChinguTalk-specific data used if the message is sent through a Kakao ChinguTalk channel.",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Text of the message that will be sent.",
+          "writeOnly": true
+        },
+        "validityPeriod": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The message validity period. Unless specified differently in validityPeriodTimeUnit, it is expressed in minutes. When the period expires, the message will be automatically sent using the next OMNI step. Validity period longer than 48h is not supported (in this case, it will be automatically set to 48h). Additionally, period should be longer than 30 seconds.",
+          "writeOnly": true
+        },
+        "validityPeriodTimeUnit": {
+          "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.TimeUnit"
+        },
+        "buttons": {
+          "type": "array",
+          "description": "Buttons to include in the message. Optional value. Max 5 buttons.",
+          "items": {
+            "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.KakaoChinguButton"
+          },
+          "maxItems": 5,
+          "minItems": 1,
+          "writeOnly": true
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "URL of the image sent in the message. Optional value. Max 250 characters.",
+          "maxLength": 250,
+          "minLength": 1,
+          "writeOnly": true
+        },
+        "imageLink": {
+          "type": "string",
+          "description": "Link of the image sent in the message. Optional value. Max 250 characters.",
+          "maxLength": 250,
+          "minLength": 1,
+          "writeOnly": true
+        },
+        "isPromotional": {
+          "type": "boolean",
+          "description": "Flag that defines the message as promotional or not. Optional value.",
+          "writeOnly": true
+        }
+      },
+      "required": [
+        "imageUrl",
+        "text"
+      ],
+      "title": "KakaoChinguData",
+      "writeOnly": true
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.KoreaOptions": {
+      "type": "object",
+      "description": "Specific parameters required for sending SMS to phone numbers registered in Korea.",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Title of the message that will be sent.",
+          "maxLength": 66,
+          "minLength": 0
+        }
+      },
+      "title": "KoreaOptions"
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Language": {
+      "type": "object",
+      "description": "By setting the `languageCode` parameter you can send your language specific characters",
+      "properties": {
+        "languageCode": {
+          "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.LanguageCode"
+        }
+      },
+      "title": "Language",
+      "writeOnly": true
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.LanguageCode": {
+      "type": "string",
+      "description": "Code for language character set of a message text.",
+      "enum": [
+        "NONE",
+        "TR",
+        "ES",
+        "PT",
+        "AUTODETECT"
+      ],
+      "title": "LanguageCode",
+      "writeOnly": true
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.LineData": {
+      "type": "object",
+      "description": "Line-specific data used if the message is sent through a Line channel.",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Text of the message that will be sent.",
+          "writeOnly": true
+        },
+        "validityPeriod": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The message validity period. Unless specified differently in validityPeriodTimeUnit, it is expressed in minutes. When the period expires, the message will be automatically sent using the next OMNI step. Validity period longer than 48h is not supported (in this case, it will be automatically set to 48h). Additionally, period should be longer than 30 seconds.",
+          "writeOnly": true
+        },
+        "validityPeriodTimeUnit": {
+          "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.TimeUnit"
+        },
+        "type": {
+          "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.LineDataType"
+        },
+        "url": {
+          "type": "string",
+          "description": "Url of the image sent in the Line message. Max 1000 characters.",
+          "maxLength": 1000,
+          "minLength": 0,
+          "writeOnly": true
+        },
+        "thumbnailUrl": {
+          "type": "string",
+          "description": "Thumbnail of the image sent in the Line message. Max 1000 characters.",
+          "maxLength": 1000,
+          "minLength": 0,
+          "writeOnly": true
+        },
+        "duration": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Duration of the audio file.",
+          "writeOnly": true
+        },
+        "packageId": {
+          "type": "string",
+          "description": "Package id of sticker that will be sent.",
+          "writeOnly": true
+        },
+        "stickerId": {
+          "type": "string",
+          "description": "Sticker id that will be sent.",
+          "writeOnly": true
+        },
+        "altText": {
+          "type": "string",
+          "maxLength": 400,
+          "minLength": 0
+        },
+        "contents": {
+          "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.FlexContainer"
+        }
+      },
+      "required": [
+        "altText",
+        "contents",
+        "duration",
+        "packageId",
+        "stickerId",
+        "thumbnailUrl",
+        "url"
+      ],
+      "title": "LineData",
+      "writeOnly": true
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.LineDataType": {
+      "type": "string",
+      "enum": [
+        "TEXT",
+        "IMAGE",
+        "VIDEO",
+        "AUDIO",
+        "STICKER",
+        "FLEX"
+      ],
+      "title": "LineDataType"
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.MediaTemplateBodyContent": {
+      "type": "object",
+      "description": "Media template body",
+      "properties": {
+        "placeholders": {
+          "type": "array",
+          "description": "Media template body placeholders. The value must not be null, but can be an empty array. Values within the array must not be null or empty.",
+          "items": {
+            "type": "string",
+            "description": "Media template body placeholders. The value must not be null, but can be an empty array. Values within the array must not be null or empty.",
+            "writeOnly": true
+          },
+          "writeOnly": true
+        }
+      },
+      "required": [
+        "placeholders"
+      ],
+      "title": "MediaTemplateBodyContent",
+      "writeOnly": true
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.MediaTemplateButtonContent": {
+      "type": "object",
+      "description": "Media template buttons",
+      "properties": {
+        "urlPlaceholder": {
+          "type": "string",
+          "description": "URL placeholder. Required for URL buttons that have a parameterized URL.",
+          "maxLength": 1500,
+          "minLength": 0,
+          "writeOnly": true
+        },
+        "quickReplyPayload": {
+          "type": "string",
+          "description": "QuickReply payload. Required for quick reply buttons.",
+          "maxLength": 128,
+          "minLength": 0,
+          "writeOnly": true
+        }
+      },
+      "title": "MediaTemplateButtonContent",
+      "writeOnly": true
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.MediaTemplateData": {
+      "type": "object",
+      "description": "Media template definitions",
+      "properties": {
+        "header": {
+          "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.MediaTemplateHeaderContent"
+        },
+        "body": {
+          "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.MediaTemplateBodyContent"
+        },
+        "buttons": {
+          "type": "array",
+          "description": "Media template buttons",
+          "items": {
+            "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.MediaTemplateButtonContent"
+          },
+          "writeOnly": true
+        }
+      },
+      "required": [
+        "body"
+      ],
+      "title": "MediaTemplateData",
+      "writeOnly": true
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.MediaTemplateHeaderContent": {
+      "type": "object",
+      "description": "Media template header. Required for media templates which contain headers",
+      "properties": {
+        "textPlaceholder": {
+          "type": "string",
+          "description": "Text placeholder. Required for templates that contain a text header.",
+          "writeOnly": true
+        },
+        "documentUrl": {
+          "type": "string",
+          "description": "Document URL. Required for templates that contain a document header.Supported document types are PDF, DOC(X), PPT(X), XLS(X). Maximum document size is 100MB.",
+          "writeOnly": true
+        },
+        "documentFilename": {
+          "type": "string",
+          "description": "Document name. Required for templates that contain a document header.",
+          "writeOnly": true
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "Image URL. Required for templates that contain an image header. Supported image types: JPG, JPEG, PNG. Maximum image size is 5MB.",
+          "writeOnly": true
+        },
+        "videoUrl": {
+          "type": "string",
+          "description": "Video URL. Required for templates that contain a video header. Supported video types are MP4, 3GPP. Maximum video size is 16MB.",
+          "writeOnly": true
+        },
+        "latitude": {
+          "type": "number",
+          "format": "double",
+          "description": "Location latitude. The value must be between -90 and 90. Required for templates that contain a location header.",
+          "maximum": 90,
+          "minimum": -90,
+          "writeOnly": true
+        },
+        "longitude": {
+          "type": "number",
+          "format": "double",
+          "description": "Location longitude. The value must be between -180 and 180. Required for templates that contain a location header.",
+          "maximum": 180,
+          "minimum": -180,
+          "writeOnly": true
+        }
+      },
+      "required": [
+        "documentFilename",
+        "documentUrl",
+        "imageUrl",
+        "latitude",
+        "longitude",
+        "textPlaceholder",
+        "videoUrl"
+      ],
+      "title": "MediaTemplateHeaderContent",
+      "writeOnly": true
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Name": {
+      "type": "object",
+      "description": "Contains information about the name and last of a contact.",
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "description": "First name of a contact. Mandatory value.",
+          "writeOnly": true
+        },
+        "lastName": {
+          "type": "string",
+          "description": "Last name of a contact.",
+          "writeOnly": true
+        },
+        "middleName": {
+          "type": "string",
+          "description": "Middle name of a contact.",
+          "writeOnly": true
+        },
+        "nameSuffix": {
+          "type": "string",
+          "description": "Name suffix of a contact. ",
+          "writeOnly": true
+        },
+        "namePrefix": {
+          "type": "string",
+          "description": "Name prefix of a contact.",
+          "writeOnly": true
+        },
+        "formattedName": {
+          "type": "string",
+          "description": "Full name as it normally appears. Mandatory value.",
+          "writeOnly": true
+        }
+      },
+      "required": [
+        "firstName",
+        "formattedName"
+      ],
+      "title": "Name",
+      "writeOnly": true
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.NotificationOptions": {
+      "type": "object",
+      "description": "Options on how to alert the user when the Push message is received.",
+      "properties": {
+        "vibrationEnabled": {
+          "type": "boolean",
+          "description": "Notification vibration (Android only).",
+          "writeOnly": true
+        },
+        "soundEnabled": {
+          "type": "boolean",
+          "description": "Sound when notification arrives on a device.",
+          "writeOnly": true
+        },
+        "soundName": {
+          "type": "string",
+          "description": "Name of the custom sound played when notification arrives on a device. File should be located in the app with max 30 seconds length. File extension is required for iOS and optional for Android. For custom sound to be played soundEnabled shouldn’t be false (Example: `notification_sound.wav`). Check Android and iOS usage details.",
+          "writeOnly": true
+        },
+        "badge": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Badge counter (iOS only).",
+          "writeOnly": true
+        },
+        "contentUrl": {
+          "type": "string",
+          "description": "URL of the image displayed in the notification. Rich push notifications are available on devices with iOS 10 and Android 4.1.+. Supported on iOS since MM SDK version 2.5.8. Supported on Android since MM SDK version 1.6.4.",
+          "writeOnly": true
+        },
+        "category": {
+          "type": "string",
+          "description": "Category id for actionable notification. Supported on Android since MM SDK version 1.6.16. Supported on iOS since MM SDK version 2.6.9. Predefined category ids: `mm_accept_decline` - Accept & Decline button actions.",
+          "writeOnly": true
+        },
+        "inAppStyle": {
+          "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.InAppStyle"
+        },
+        "title": {
+          "type": "string",
+          "description": "Notification title displayed within notification. Requires iOS 10+ or Android 4.1+ (may depend on Android custom firmware)",
+          "writeOnly": true
+        },
+        "isSilent": {
+          "type": "boolean",
+          "description": "Set to `true` to send silent push message. Such messages are not displayed on device lock screen and in the notification center. Silent messages can be used to deliver custom data to your mobile application or to trigger an in-app notification.",
+          "writeOnly": true
+        },
+        "webViewUrl": {
+          "type": "string",
+          "description": "URL to open external web page within the mobile app (web view).",
+          "writeOnly": true
+        },
+        "inboxTopic": {
+          "type": "string",
+          "description": "A case sensitive topic name to save a message to an inbox. If the topic name does not exist for a specified account, message sending will be rejected.",
+          "writeOnly": true
+        }
+      },
+      "title": "NotificationOptions",
+      "writeOnly": true
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Organization": {
+      "type": "object",
+      "description": "Company information.",
+      "properties": {
+        "company": {
+          "type": "string",
+          "description": "Company name.",
+          "writeOnly": true
+        },
+        "department": {
+          "type": "string",
+          "description": "Department name.",
+          "writeOnly": true
+        },
+        "title": {
+          "type": "string",
+          "description": "Title value",
+          "writeOnly": true
+        }
+      },
+      "title": "Organization",
+      "writeOnly": true
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Phone": {
+      "type": "object",
+      "description": "Phone information.",
+      "properties": {
+        "phone": {
+          "type": "string",
+          "description": "Phone of  contact.",
+          "writeOnly": true
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of a phone. Can be CELL, MAIN, IPHONE, HOME, WORK.",
+          "writeOnly": true
+        },
+        "waId": {
+          "type": "string",
+          "description": "WhatsApp ID.",
+          "writeOnly": true
+        }
+      },
+      "title": "Phone",
+      "writeOnly": true
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.PushData": {
+      "type": "object",
+      "description": "Push-specific data used if the message is sent through a Push channel.",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Text of the message that will be sent.",
+          "maxLength": 2000,
+          "minLength": 1,
+          "writeOnly": true
+        },
+        "validityPeriod": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The message validity period. Unless specified differently in validityPeriodTimeUnit, it is expressed in minutes. When the period expires, the message will be automatically sent using the next OMNI step. Validity period longer than 48h is not supported (in this case, it will be automatically set to 48h). Additionally, period should be longer than 30 seconds.",
+          "writeOnly": true
+        },
+        "validityPeriodTimeUnit": {
+          "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.TimeUnit"
+        },
+        "customPayload": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "writeOnly": true
+          },
+          "description": "Additional custom data delivered with the Push message.",
+          "writeOnly": true
+        },
+        "notificationOptions": {
+          "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.NotificationOptions"
+        },
+        "targetOnlyPrimaryDevices": {
+          "type": "boolean",
+          "description": "Set to true to only send messages to push devices which are marked as primary devices. By default, messages will be sent to all targeted devices, including both primary and non-primary.",
+          "writeOnly": true
+        },
+        "includeNotificationsDisabledDevices": {
+          "type": "boolean",
+          "description": "Flag which shows if devices with disabled notifications are included.",
+          "writeOnly": true
+        },
+        "personSubscriptions": {
+          "type": "array",
+          "description": "Key set of custom attributes on person for additional filtering.",
+          "items": {
+            "type": "string",
+            "description": "Key set of custom attributes on person for additional filtering.",
+            "writeOnly": true
+          },
+          "uniqueItems": true,
+          "writeOnly": true
+        },
+        "deviceSubscriptions": {
+          "type": "array",
+          "description": "Key set of custom attributes on device for additional filtering.",
+          "items": {
+            "type": "string",
+            "description": "Key set of custom attributes on device for additional filtering.",
+            "writeOnly": true
+          },
+          "uniqueItems": true,
+          "writeOnly": true
+        }
+      },
+      "title": "PushData",
+      "writeOnly": true
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.RegionalData": {
+      "type": "object",
+      "description": "Region specific parameters, often specified by local laws. Use this if country or region that you are sending SMS to requires some extra parameters.",
+      "properties": {
+        "indiaDlt": {
+          "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.IndiaDltOptions"
+        },
+        "korea": {
+          "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.KoreaOptions"
+        }
+      },
+      "title": "RegionalData"
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.SmsData": {
+      "type": "object",
+      "description": "SMS-specific data used if the message is sent through an SMS channel.",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Text of the message that will be sent.",
+          "maxLength": 2147483647,
+          "minLength": 1,
+          "writeOnly": true
+        },
+        "validityPeriod": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The message validity period. Unless specified differently in validityPeriodTimeUnit, it is expressed in minutes. When the period expires, the message will be automatically sent using the next OMNI step. Validity period longer than 48h is not supported (in this case, it will be automatically set to 48h). Additionally, period should be longer than 30 seconds.",
+          "writeOnly": true
+        },
+        "validityPeriodTimeUnit": {
+          "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.TimeUnit"
+        },
+        "transliteration": {
+          "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.TransliterationCode"
+        },
+        "language": {
+          "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Language"
+        },
+        "regional": {
+          "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.RegionalData"
+        }
+      },
+      "title": "SmsData",
+      "writeOnly": true
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.TimeUnit": {
+      "type": "string",
+      "default": "MINUTES",
+      "description": "The message validity period time unit, allowing finer time granulation.",
+      "enum": [
+        "NANOSECONDS",
+        "MICROSECONDS",
+        "MILLISECONDS",
+        "SECONDS",
+        "MINUTES",
+        "HOURS",
+        "DAYS"
+      ],
+      "title": "TimeUnit",
+      "writeOnly": true
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.To": {
+      "type": "object",
+      "description": "The message destination address.",
+      "properties": {
+        "phoneNumber": {
+          "type": "string",
+          "description": "Destination phone number. Phone numbers must be in international format (example: `41793026727`)."
+        },
+        "emailAddress": {
+          "type": "string",
+          "description": "Destination email address."
+        },
+        "pushRegistrationId": {
+          "type": "string",
+          "description": "Unique ID for push registration."
+        },
+        "whatsAppUserId": {
+          "type": "string",
+          "description": "WhatsApp Business-Scoped User ID (BSUID). Format: `{CC}.{alphanumeric}` (e.g. `US.13491208655302741918`). Max 150 characters. Phone number takes precedence when both are provided."
+        }
+      },
+      "title": "To"
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.TransliterationCode": {
+      "type": "string",
+      "description": "Conversion of a message text from one script to another.",
+      "enum": [
+        "NONE",
+        "ALL",
+        "BALTIC",
+        "CENTRAL_EUROPEAN",
+        "COLOMBIAN",
+        "CYRILLIC",
+        "GREEK",
+        "NON_UNICODE",
+        "PORTUGUESE",
+        "SERBIAN_CYRILLIC",
+        "TURKISH",
+        "BULGARIAN_CYRILLIC"
+      ],
+      "title": "TransliterationCode",
+      "writeOnly": true
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Url": {
+      "type": "object",
+      "description": "Url information.",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Url of a contact.",
+          "writeOnly": true
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of a url. Can be HOME, WORK.",
+          "writeOnly": true
+        }
+      },
+      "title": "Url",
+      "writeOnly": true
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.VKontakteData": {
+      "type": "object",
+      "description": "VKontakte-specific data used if the message is sent through a VKontakte channel.",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Text of the message that will be sent.",
+          "writeOnly": true
+        },
+        "validityPeriod": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The message validity period. Unless specified differently in validityPeriodTimeUnit, it is expressed in minutes. When the period expires, the message will be automatically sent using the next OMNI step. Validity period longer than 48h is not supported (in this case, it will be automatically set to 48h). Additionally, period should be longer than 30 seconds.",
+          "writeOnly": true
+        },
+        "validityPeriodTimeUnit": {
+          "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.TimeUnit"
+        },
+        "templateName": {
+          "type": "string",
+          "description": "Template name",
+          "writeOnly": true
+        },
+        "templateData": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "writeOnly": true
+          },
+          "description": "JSON object where the keys are names of parameters in the template.",
+          "writeOnly": true
+        }
+      },
+      "title": "VKontakteData",
+      "writeOnly": true
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.ViberData": {
+      "type": "object",
+      "description": "Viber-specific data used if the message is sent through a Viber channel. Must be one of: text, image, file, text with button or text with image and button.",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Text of the message that will be sent.",
+          "writeOnly": true
+        },
+        "validityPeriod": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The message validity period. Unless specified differently in validityPeriodTimeUnit, it is expressed in minutes. When the period expires, the message will be automatically sent using the next OMNI step. Validity period longer than 14 days is not supported. Additionally, period should be longer than 35 seconds.",
+          "writeOnly": true
+        },
+        "validityPeriodTimeUnit": {
+          "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.TimeUnit"
+        },
+        "imageURL": {
+          "type": "string",
+          "description": "URL of the image sent in the Viber message.",
+          "maxLength": 1000,
+          "minLength": 0,
+          "writeOnly": true
+        },
+        "fileName": {
+          "type": "string",
+          "description": "File name of the file sent in the Viber message.",
+          "maxLength": 25,
+          "minLength": 0,
+          "writeOnly": true
+        },
+        "fileType": {
+          "type": "string",
+          "description": "File type (extension) of the file sent in the Viber message. Has to be one of: doc, docx, rtf, dot, dotx, odt ,odf, fodt, txt, info, pdf, xps, pdax, eps, xls, xlsx, ods, fods, csv, xlsm, xltx",
+          "writeOnly": true
+        },
+        "fileUrl": {
+          "type": "string",
+          "description": "URL of the file sent in the Viber message. For example: http://example.com/document.docx",
+          "pattern": "^(https?)://.*$",
+          "writeOnly": true
+        },
+        "buttonText": {
+          "type": "string",
+          "description": "Viber button label. Max 30 characters.",
+          "maxLength": 30,
+          "minLength": 0,
+          "writeOnly": true
+        },
+        "buttonURL": {
+          "type": "string",
+          "description": "Viber Button Call To Action. Should contain URL or telephone number to call. Format for telephone number is tel:.",
+          "maxLength": 1000,
+          "minLength": 0,
+          "writeOnly": true
+        },
+        "trackingData": {
+          "type": "string",
+          "description": "Viber tracking data. Enables tracking messages, sent tracking_data value will be passed back with user's reply",
+          "maxLength": 100,
+          "minLength": 0,
+          "writeOnly": true
+        },
+        "isPromotional": {
+          "type": "boolean",
+          "description": "Indicates if content is of promotional character.",
+          "writeOnly": true
+        },
+        "forcePrimaryDevice": {
+          "type": "boolean",
+          "description": "Defines if Text message will be sent only to the users primary device (smartphone).",
+          "writeOnly": true
+        }
+      },
+      "title": "ViberData",
+      "writeOnly": true
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.VoiceData": {
+      "type": "object",
+      "description": "Voice-specific data used if the message is sent through a voice channel.",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Text of the message that will be sent.",
+          "maxLength": 2147483647,
+          "minLength": 1,
+          "writeOnly": true
+        },
+        "validityPeriod": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The message validity period. Unless specified differently in validityPeriodTimeUnit, it is expressed in minutes. When the period expires, the message will be automatically sent using the next OMNI step. Validity period longer than 48h is not supported (in this case, it will be automatically set to 48h). Additionally, period should be longer than 30 seconds.",
+          "writeOnly": true
+        },
+        "validityPeriodTimeUnit": {
+          "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.TimeUnit"
+        },
+        "language": {
+          "type": "string",
+          "description": "Supported languages for Voice messages. List of supported languages can be found [here](https://www.infobip.com/docs/voice-and-video/getting-started#text-to-speech)",
+          "writeOnly": true
+        }
+      },
+      "title": "VoiceData",
+      "writeOnly": true
+    },
+    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.WhatsAppData": {
+      "type": "object",
+      "description": "WhatsApp-specific data used if the message is sent through a WhatsApp channel.",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Text of the message that will be sent.",
+          "writeOnly": true
+        },
+        "validityPeriod": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The message validity period. Unless specified differently in validityPeriodTimeUnit, it is expressed in minutes. When the period expires, the message will be automatically sent using the next OMNI step. Validity period longer than 48h is not supported (in this case, it will be automatically set to 48h). Additionally, period should be longer than 30 seconds.",
+          "writeOnly": true
+        },
+        "validityPeriodTimeUnit": {
+          "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.TimeUnit"
+        },
+        "templateNamespace": {
+          "type": "string",
+          "description": "Template namespace",
+          "writeOnly": true
+        },
+        "templateName": {
+          "type": "string",
+          "description": "Template name",
+          "writeOnly": true
+        },
+        "templateData": {
+          "type": "array",
+          "description": "Template parameters values ordered as registered in template",
+          "items": {
+            "type": "string",
+            "description": "Template parameters values ordered as registered in template",
+            "writeOnly": true
+          },
+          "writeOnly": true
+        },
+        "mediaTemplateData": {
+          "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.MediaTemplateData"
+        },
+        "language": {
+          "type": "string",
+          "description": "The code of the language or locale to use. Needs to be exactly the code with which the template was registered.",
+          "writeOnly": true
+        },
+        "fileUrl": {
+          "type": "string",
+          "description": "URL of the file sent in the WhatsApp message. Max 2048 characters. Supported file types are PDF, DOC(X), PPT(X), XLS(X). Maximum file size is 100MB.",
+          "maxLength": 2048,
+          "minLength": 0,
+          "writeOnly": true
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "URL of the image sent in the WhatsApp message. Max 2048 characters. Supported image types: JPG, JPEG, PNG. Maximum image size is 5MB.",
+          "maxLength": 2048,
+          "minLength": 0,
+          "writeOnly": true
+        },
+        "audioUrl": {
+          "type": "string",
+          "description": "URL of the audio file sent in the WhatsApp message. Max 2048 characters. Supported audio types are AAC, AMR, MP3, OPUS. Maximum audio size is 16MB.",
+          "maxLength": 2048,
+          "minLength": 0,
+          "writeOnly": true
+        },
+        "videoUrl": {
+          "type": "string",
+          "description": "URL of the video sent in the WhatsApp message. Max 2048 characters. Supported video types are MP4, 3GPP. Maximum video size is 16MB.",
+          "maxLength": 2048,
+          "minLength": 0,
+          "writeOnly": true
+        },
+        "locationName": {
+          "type": "string",
+          "description": "Name of the location. Optional value. ",
+          "maxLength": 1000,
+          "minLength": 0,
+          "writeOnly": true
+        },
+        "address": {
+          "type": "string",
+          "description": "Address location. Optional value.",
+          "maxLength": 1000,
+          "minLength": 0,
+          "writeOnly": true
+        },
+        "longitude": {
+          "type": "number",
+          "format": "double",
+          "description": "Longitude of a coordinate. The value must be between -180 and 180",
+          "maximum": 180,
+          "minimum": -180,
+          "writeOnly": true
+        },
+        "latitude": {
+          "type": "number",
+          "format": "double",
+          "description": "Latitude of a coordinate. The value must be between -90 and 90.",
+          "maximum": 90,
+          "minimum": -90,
+          "writeOnly": true
+        },
+        "previewUrl": {
+          "type": "boolean",
+          "description": "`Options`: false (default), true <br/>Specifying previewUrl in the request is optional when not including a URL in your message. <br/>To include a URL preview, set previewUrl to true in the message body and make sure that URL begins with http:// or https:/",
+          "writeOnly": true
+        },
+        "contacts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Contact"
+          }
+        }
+      },
+      "required": [
+        "mediaTemplateData",
+        "text"
+      ],
+      "title": "WhatsAppData"
+    }
+  }
+}

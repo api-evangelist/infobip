@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/infobip/main/json-schema/infobip-2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34-retrieve-context-request-schema.json",
+  "title": "RetrieveContextRequest",
+  "description": "AI Assistant retrieve context request with optional retrieval parameters.",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/infobip-ai-hub-api-openapi.yml#/components/schemas/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.RetrieveContextRequest",
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "User message to retrieve context for."
+    },
+    "k": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Number of context chunks to return. Overrides the assistant's default K value. Use this to get more or fewer context chunks."
+    },
+    "reRankK": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Enables re-ranking for improved precision. When set, retrieves max(k, reRankK) chunks initially, then uses a cross-encoder to return the top K most relevant results."
+    },
+    "useSharedHistory": {
+      "type": "boolean",
+      "default": false,
+      "description": "Flag to indicate whether to use shared conversation history."
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "Session ID to maintain context across multiple queries."
+    }
+  },
+  "required": [
+    "message"
+  ]
+}

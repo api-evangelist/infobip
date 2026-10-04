@@ -1,0 +1,594 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/infobip/main/json-schema/infobip-2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a-toll-free-unified-number-campaign-api-model-schema.json",
+  "title": "TollFreeUnifiedNumberCampaignApiModel",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/infobip-platform-api-openapi.yml#/components/schemas/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.TollFreeUnifiedNumberCampaignApiModel",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The identifier for the campaign.",
+      "readOnly": true
+    },
+    "referenceId": {
+      "type": "string",
+      "description": "Unique user defined ID for the campaign. While not required, it is recommended to supply a referenceId as the uniqueness constraint will help ensure a campaign is not accidentally created multiple times. Subsequent create requests with the same referenceId will be rejected with an error.",
+      "maxLength": 50,
+      "minLength": 0
+    },
+    "applicationId": {
+      "type": "string",
+      "description": "CPaaS X property identifying an application, a use case or an environment on your system. It should only be set if you are using CPaaS X Applications with your traffic."
+    },
+    "entityId": {
+      "type": "string",
+      "description": "CPaaS X property identifying an unique actor on your system. Should only be set if you are using CPaaS X Applications with your traffic."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the campaign.",
+      "maxLength": 30,
+      "minLength": 1,
+      "pattern": "[A-Za-z0-9_ ]*"
+    },
+    "createdDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the campaign was created.",
+      "readOnly": true
+    },
+    "lastModifiedDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the campaign was last modified.",
+      "readOnly": true
+    },
+    "stage": {
+      "$ref": "#/$defs/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.CampaignStage"
+    },
+    "priority": {
+      "$ref": "#/$defs/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.PriorityInfo"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "TOLL_FREE_UNIFIED_NUMBER"
+      ]
+    },
+    "campaignFeedback": {
+      "$ref": "#/$defs/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.CampaignFeedback"
+    },
+    "privacyPolicyUrl": {
+      "type": "string",
+      "description": "Public URL to the privacy policy that outlines how user data is collected, stored, and used."
+    },
+    "termsAndConditionsUrl": {
+      "type": "string",
+      "description": "URL where the terms and conditions of the campaign are located."
+    },
+    "messageVolume": {
+      "$ref": "#/$defs/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.TollFreeMessageVolume"
+    },
+    "numbers": {
+      "type": "array",
+      "description": "US TFN numbers to use with the campaign. Campaign must have at least one TFN number associated before it can be submitted for review. You may only use numbers that are associated with your account inside the Infobip platform. Numbers must be provided in international format including the country prefix, e.g. 18881234567. This property can be used instead of 'numberKeys' to specify the campaign numbers; it is not returned in the API response.",
+      "items": {
+        "type": "string",
+        "description": "US TFN numbers to use with the campaign. Campaign must have at least one TFN number associated before it can be submitted for review. You may only use numbers that are associated with your account inside the Infobip platform. Numbers must be provided in international format including the country prefix, e.g. 18881234567. This property can be used instead of 'numberKeys' to specify the campaign numbers; it is not returned in the API response."
+      },
+      "uniqueItems": true,
+      "writeOnly": true
+    },
+    "numberKeys": {
+      "type": "array",
+      "description": "The numberKey(s) of the numbers to use with the campaign. Campaign must have at least one TFN number associated before it can be submitted for review. Alternatively, you can use the 'numbers' property to specify the numbers directly, but note that 'numberKeys' property takes precedence if both are specified.",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 25,
+      "minItems": 1,
+      "uniqueItems": true,
+      "writeOnly": true
+    },
+    "numberPreviews": {
+      "type": "array",
+      "description": "The number(s) to use with the campaign. This property is read-only and ignored in POST/PUT calls.",
+      "items": {
+        "$ref": "#/$defs/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.NumberPreview"
+      },
+      "readOnly": true,
+      "uniqueItems": true
+    },
+    "useCase": {
+      "$ref": "#/$defs/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.TollFreeUseCase"
+    },
+    "programSummary": {
+      "type": "string",
+      "description": "A brief description of the purpose of the campaign.",
+      "maxLength": 500,
+      "minLength": 0
+    },
+    "exampleMessage": {
+      "type": "string",
+      "description": "The example message(s) a user may receive from this campaign. Each example message must be at least 20 characters long.",
+      "maxLength": 1000,
+      "minLength": 0
+    },
+    "optIns": {
+      "$ref": "#/$defs/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.OptIns"
+    },
+    "optInImageURLs": {
+      "type": "array",
+      "description": "List of URLs linking to screenshots that show how end-users opt in to receive messages.",
+      "items": {
+        "type": "string",
+        "description": "List of URLs linking to screenshots that show how end-users opt in to receive messages.",
+        "pattern": "(?i)https?:\\/\\/\\S+"
+      },
+      "uniqueItems": true
+    },
+    "additionalInformation": {
+      "type": "string",
+      "description": "Free-form field for any extra details relevant to the campaign—such as custom use cases or compliance clarification.",
+      "maxLength": 500,
+      "minLength": 0
+    },
+    "countryCode": {
+      "type": "string",
+      "description": "The country where the brand is located.",
+      "maxLength": 2,
+      "minLength": 1
+    },
+    "address": {
+      "$ref": "#/$defs/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.Address"
+    },
+    "supportPhone": {
+      "type": "string",
+      "description": "The business phone number to contact about brand compliance issues.",
+      "maxLength": 16,
+      "minLength": 3,
+      "pattern": "\\+?[1-9]\\d{1,14}"
+    },
+    "supportEmail": {
+      "type": "string",
+      "description": "The business email address to contact about brand compliance issues. Must be a well formed email address that does not include a '=' character."
+    },
+    "businessContactFirstName": {
+      "type": "string",
+      "description": "First name of the primary contact person for the brand or business entity. Used for verification or compliance outreach.",
+      "maxLength": 100,
+      "minLength": 1
+    },
+    "businessContactLastName": {
+      "type": "string",
+      "description": "Last name of the primary contact person for the brand or business entity.",
+      "maxLength": 100,
+      "minLength": 1
+    },
+    "legalName": {
+      "type": "string",
+      "description": "The legal name of the brand.",
+      "maxLength": 255,
+      "minLength": 1
+    },
+    "businessDBA": {
+      "type": "string",
+      "description": "'Doing Business As' name if different from the legal business name.",
+      "maxLength": 500,
+      "minLength": 0
+    },
+    "businessName": {
+      "type": "string",
+      "description": "The customer defined name of brand or business entity.",
+      "maxLength": 500,
+      "minLength": 0
+    },
+    "businessWebsite": {
+      "type": "string",
+      "description": "The website for the brand or business entity.",
+      "maxLength": 500,
+      "minLength": 0
+    },
+    "customerCareEmail": {
+      "type": "string",
+      "description": "The email address the user may contact to get customer care.  Must be a well formed email address that does not include a '=' character.",
+      "maxLength": 255,
+      "minLength": 1
+    },
+    "taxId": {
+      "type": "string",
+      "description": "The tax identifier for the brand. Not required for sole proprietor brands.",
+      "maxLength": 50,
+      "minLength": 0
+    },
+    "taxIdIssuingCountry": {
+      "type": "string",
+      "description": "The country where tax identifier is issued. If not specified, the value from countryCode will be used.",
+      "maxLength": 2,
+      "minLength": 1
+    },
+    "legalEntityType": {
+      "type": "string",
+      "description": "Legal entity type of the business.",
+      "enum": [
+        "PRIVATE_COMPANY",
+        "PUBLIC_COMPANY",
+        "NON_PROFIT",
+        "GOVERNMENT",
+        "SOLE_PROPRIETOR"
+      ]
+    },
+    "businessRegistrationType": {
+      "$ref": "#/$defs/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.BusinessRegistrationType"
+    },
+    "campaignVerifyToken": {
+      "type": "string",
+      "description": "Campaign Verify token for POLITICAL campaigns."
+    },
+    "priorityId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Priority information used in latest campaign review.",
+      "writeOnly": true
+    }
+  },
+  "required": [
+    "businessContactFirstName",
+    "businessContactLastName",
+    "businessWebsite",
+    "customerCareEmail",
+    "exampleMessage",
+    "legalEntityType",
+    "legalName",
+    "messageVolume",
+    "name",
+    "numberKeys",
+    "optInImageURLs",
+    "optIns",
+    "programSummary",
+    "supportEmail",
+    "supportPhone",
+    "useCase"
+  ],
+  "$defs": {
+    "2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.Address": {
+      "type": "object",
+      "description": "The address of the brand.",
+      "properties": {
+        "city": {
+          "type": "string",
+          "description": "The city in which the brand is located.",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "state": {
+          "type": "string",
+          "description": "State or province. For the United States, please use 2 character codes. E.g. 'CA' for California.",
+          "maxLength": 20,
+          "minLength": 1
+        },
+        "street": {
+          "type": "string",
+          "description": "The street address for the brand.",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "zipCode": {
+          "type": "string",
+          "description": "The zipcode in which the brand is located.",
+          "maxLength": 10,
+          "minLength": 1
+        }
+      },
+      "required": [
+        "city",
+        "street",
+        "zipCode"
+      ],
+      "title": "Address"
+    },
+    "2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.BusinessRegistrationType": {
+      "type": "string",
+      "description": "Type of tax identification number provided. Value depend on selected taxId issuing country. For US it can be only EIN.\nNot required for sole proprietor brands.",
+      "enum": [
+        "EIN",
+        "CBN",
+        "NEQ",
+        "PROVINCIAL_NUMBER",
+        "CRN",
+        "VAT",
+        "ACN",
+        "ABN",
+        "BRN",
+        "SIREN",
+        "SIRET",
+        "NZBN",
+        "UST_IDNR",
+        "CIF",
+        "NIF",
+        "CNPJ",
+        "UID",
+        "OTHER"
+      ],
+      "title": "BusinessRegistrationType"
+    },
+    "2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.CampaignFeedback": {
+      "type": "object",
+      "description": "Offers additional information regarding the campaign, includes rejection reason and time.",
+      "properties": {
+        "rejectionReasons": {
+          "type": "array",
+          "description": "The reasons for the rejection.",
+          "items": {
+            "type": "string",
+            "description": "The reasons for the rejection."
+          }
+        },
+        "rejectionDetails": {
+          "type": "array",
+          "description": "Rejection reasons details.",
+          "items": {
+            "$ref": "#/$defs/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.RejectionReason"
+          }
+        },
+        "rejectionDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The time of the rejection."
+        }
+      },
+      "readOnly": true,
+      "title": "CampaignFeedback"
+    },
+    "2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.CampaignStage": {
+      "type": "string",
+      "enum": [
+        "DRAFT",
+        "SUBMITTED_FOR_REVIEW",
+        "IN_REVIEW",
+        "UPDATE_REQUESTED_BY_INTERNAL_REVIEWER",
+        "APPROVED_BY_INTERNAL_REVIEWER",
+        "SUBMITTED",
+        "REJECTED_EXTERNALLY",
+        "REGISTERED",
+        "REJECTED",
+        "ON_HOLD",
+        "DEREGISTERED",
+        "REGISTERED_PENDING_UPDATE",
+        "REGISTERED_PENDING_DEREGISTRATION",
+        "ARCHIVED",
+        "BLOCKED",
+        "SUSPENDED",
+        "APPEALED",
+        "IN_MIGRATION",
+        "PAUSED"
+      ],
+      "readOnly": true,
+      "title": "CampaignStage"
+    },
+    "2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.InteractiveVoiceResponseOptIn": {
+      "type": "object",
+      "description": "The type of opt in that requires a user to record a confirmation.",
+      "properties": {
+        "callToAction": {
+          "type": "string",
+          "description": "    The message sent to the user to tell them how to subscribe. Must include:\n    • Product description\n    • Message frequency disclosure\n    • Complete terms and conditions OR link to complete terms and conditions\n    • Privacy policy OR link to privacy policy\n    • STOP keyword\n    • The \"Message and data rates may apply\" disclosure\n",
+          "maxLength": 1024,
+          "minLength": 20
+        }
+      },
+      "required": [
+        "callToAction"
+      ],
+      "title": "InteractiveVoiceResponseOptIn"
+    },
+    "2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.KeywordOptIn": {
+      "type": "object",
+      "description": "The type of opt in that requires a user to type in a keyword.",
+      "properties": {
+        "callToAction": {
+          "type": "string",
+          "description": "    The message sent to the user to tell them how to subscribe. Must include:\n    • Product description\n    • Message frequency disclosure\n    • Complete terms and conditions OR link to complete terms and conditions\n    • Privacy policy OR link to privacy policy\n    • STOP keyword\n    • The \"Message and data rates may apply\" disclosure\n",
+          "maxLength": 1024,
+          "minLength": 20
+        },
+        "keywords": {
+          "type": "array",
+          "description": "The keyword(s) the user will text to subscribe. Keyword(s) must include only uppercase letters and numbers.",
+          "items": {
+            "type": "string",
+            "description": "The keyword(s) the user will text to subscribe. Keyword(s) must include only uppercase letters and numbers.",
+            "pattern": "[A-Z0-9]+"
+          }
+        }
+      },
+      "required": [
+        "callToAction",
+        "keywords"
+      ],
+      "title": "KeywordOptIn"
+    },
+    "2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.NumberPreview": {
+      "type": "object",
+      "properties": {
+        "numberKey": {
+          "type": "string",
+          "description": "Unique ID of the number."
+        },
+        "number": {
+          "type": "string",
+          "description": "Number."
+        },
+        "countryCode": {
+          "type": "string",
+          "description": "Number's country code."
+        }
+      },
+      "title": "NumberPreview"
+    },
+    "2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.OptIns": {
+      "type": "object",
+      "properties": {
+        "keyword": {
+          "$ref": "#/$defs/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.KeywordOptIn"
+        },
+        "web": {
+          "$ref": "#/$defs/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.WebOptIn"
+        },
+        "verbal": {
+          "$ref": "#/$defs/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.VerbalOptIn"
+        },
+        "interactiveVoiceResponse": {
+          "$ref": "#/$defs/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.InteractiveVoiceResponseOptIn"
+        }
+      },
+      "title": "OptIns"
+    },
+    "2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.PriorityInfo": {
+      "type": "object",
+      "description": "Priority information used in latest campaign review.",
+      "properties": {
+        "priorityId": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Id of a priority"
+        },
+        "submittedDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Date submitted for review"
+        }
+      },
+      "title": "PriorityInfo"
+    },
+    "2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.RejectionReason": {
+      "type": "object",
+      "description": "Rejection reasons details.",
+      "properties": {
+        "errorCode": {
+          "type": "string",
+          "description": "Predefined code."
+        },
+        "description": {
+          "type": "string",
+          "description": "Rejection reason."
+        },
+        "recommendedAction": {
+          "type": "string",
+          "description": "Recommended action."
+        }
+      },
+      "title": "RejectionReason"
+    },
+    "2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.TollFreeMessageVolume": {
+      "type": "string",
+      "enum": [
+        "TEN",
+        "HUNDRED",
+        "THOUSAND",
+        "TEN_THOUSAND",
+        "HUNDRED_THOUSAND",
+        "TWO_HUNDRED_FIFTY_THOUSAND",
+        "FIVE_HUNDRED_THOUSAND",
+        "SEVEN_HUNDRED_FIFTY_THOUSAND",
+        "ONE_MILLION",
+        "FIVE_MILLION",
+        "TEN_MILLION_PLUS"
+      ],
+      "title": "TollFreeMessageVolume"
+    },
+    "2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.TollFreeUseCase": {
+      "type": "string",
+      "description": "Campaign use case.",
+      "enum": [
+        "TWO_FA",
+        "APP_NOTIFICATIONS",
+        "APPOINTMENTS",
+        "AUCTIONS",
+        "AUTO_DEALERSHIP_SERVICES",
+        "BANKING",
+        "BILLING",
+        "BOOKING_CONFIRMATIONS",
+        "BUSINESS_UPDATES",
+        "COVID_19_ALERTS",
+        "CAREER_TRAINING",
+        "CHATBOT",
+        "CONVERSATIONAL_ALERTS",
+        "COURIER_SERVICES_DELIVERIES",
+        "EDUCATIONAL",
+        "EMERGENCY_ALERTS",
+        "EMPLOYEE_ALERTS_NOTIFICATIONS",
+        "EVENTS_PLANNING",
+        "FINANCIAL_SERVICES",
+        "FRAUD_ALERTS",
+        "FUNDRAISING",
+        "GENERAL_MARKETING",
+        "HR_STAFFING",
+        "HEALTHCARE",
+        "HOUSING_COMMUNITY_UPDATES",
+        "INSURANCE_SERVICES",
+        "JOB_ALERTS",
+        "LEGAL_SERVICES",
+        "MIXED",
+        "MOTIVATIONAL_REMINDERS",
+        "NOTARY_NOTIFICATIONS",
+        "NOTIFICATIONS",
+        "ORDER_NOTIFICATIONS",
+        "POLITICAL",
+        "PUBLIC_WORKS",
+        "REAL_ESTATE_SERVICES",
+        "RECEIPT_NOTIFICATIONS",
+        "RELIGIOUS_SERVICES",
+        "REPAIR_DIAGNOSTICS_ALERTS",
+        "REWARDS_PROGRAM",
+        "SURVEYS",
+        "SYSTEM_ALERTS",
+        "WAITLIST_ALERTS",
+        "WEBINAR_REMINDERS",
+        "WORKSHOP_ALERTS"
+      ],
+      "title": "TollFreeUseCase"
+    },
+    "2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.VerbalOptIn": {
+      "type": "object",
+      "description": "The type of opt in that requires a user to verbally confirm.",
+      "properties": {
+        "callToAction": {
+          "type": "string",
+          "description": "    The message sent to the user to tell them how to subscribe. Must include:\n    • Product description\n    • Message frequency disclosure\n    • Complete terms and conditions OR link to complete terms and conditions\n    • Privacy policy OR link to privacy policy\n    • STOP keyword\n    • The \"Message and data rates may apply\" disclosure\n",
+          "maxLength": 1024,
+          "minLength": 20
+        }
+      },
+      "required": [
+        "callToAction"
+      ],
+      "title": "VerbalOptIn"
+    },
+    "2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.WebOptIn": {
+      "type": "object",
+      "description": "The type of opt in that requires a user to follow a URL.",
+      "properties": {
+        "callToAction": {
+          "type": "string",
+          "description": "    The message sent to the user to tell them how to subscribe. Must include:\n    • Product description\n    • Message frequency disclosure\n    • Complete terms and conditions OR link to complete terms and conditions\n    • Privacy policy OR link to privacy policy\n    • STOP keyword\n    • The \"Message and data rates may apply\" disclosure\n",
+          "maxLength": 1024,
+          "minLength": 20
+        },
+        "url": {
+          "type": "string",
+          "maxLength": 255,
+          "minLength": 11
+        }
+      },
+      "required": [
+        "callToAction"
+      ],
+      "title": "WebOptIn"
+    }
+  }
+}

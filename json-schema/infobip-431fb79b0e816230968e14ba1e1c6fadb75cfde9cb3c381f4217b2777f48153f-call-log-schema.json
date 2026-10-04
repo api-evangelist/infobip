@@ -1,0 +1,255 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/infobip/main/json-schema/infobip-431fb79b0e816230968e14ba1e1c6fadb75cfde9cb3c381f4217b2777f48153f-call-log-schema.json",
+  "title": "CallLog",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/infobip-channels-api-openapi.yml#/components/schemas/431fb79b0e816230968e14ba1e1c6fadb75cfde9cb3c381f4217b2777f48153f.CallLog",
+  "type": "object",
+  "properties": {
+    "callId": {
+      "type": "string",
+      "description": "Unique call ID.",
+      "maxLength": 128
+    },
+    "endpoint": {
+      "$ref": "#/$defs/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.CallEndpoint"
+    },
+    "from": {
+      "type": "string",
+      "description": "Caller ID."
+    },
+    "to": {
+      "type": "string",
+      "description": "Callee ID."
+    },
+    "direction": {
+      "$ref": "#/$defs/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.CallDirection"
+    },
+    "state": {
+      "$ref": "#/$defs/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.CallState"
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time for when the call has been created."
+    },
+    "answerTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time for when the call has been answered."
+    },
+    "endTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time for when the call has been finished."
+    },
+    "parentCallId": {
+      "type": "string",
+      "description": "Parent call ID.",
+      "maxLength": 128
+    },
+    "machineDetection": {
+      "$ref": "#/$defs/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.MachineDetectionProperties"
+    },
+    "ringDuration": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Ringing duration in seconds."
+    },
+    "callsConfigurationIds": {
+      "type": "array",
+      "description": "IDs of the calls configurations used during the call.",
+      "items": {
+        "type": "string",
+        "description": "IDs of the calls configurations used during the call."
+      }
+    },
+    "platform": {
+      "$ref": "#/$defs/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.Platform"
+    },
+    "conferenceIds": {
+      "type": "array",
+      "description": "IDs of the conferences where the call was a participant.",
+      "items": {
+        "type": "string",
+        "description": "IDs of the conferences where the call was a participant."
+      }
+    },
+    "duration": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Call duration in seconds."
+    },
+    "hasCameraVideo": {
+      "type": "boolean",
+      "description": "Indicates if camera was enabled during the call."
+    },
+    "hasScreenshareVideo": {
+      "type": "boolean",
+      "description": "Indicates if screen sharing was enabled during the call."
+    },
+    "errorCode": {
+      "$ref": "#/$defs/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.ErrorCodeInfo"
+    },
+    "customData": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Custom data."
+    },
+    "dialogId": {
+      "type": "string",
+      "description": "Dialog ID.",
+      "maxLength": 128
+    },
+    "sender": {
+      "type": "string",
+      "description": "Sender."
+    },
+    "hangupSource": {
+      "$ref": "#/$defs/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.HangupSource"
+    },
+    "externalId": {
+      "type": "string",
+      "description": "Client defined call ID."
+    }
+  },
+  "required": [
+    "endpoint"
+  ],
+  "$defs": {
+    "4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.CallDirection": {
+      "type": "string",
+      "description": "Call direction.",
+      "enum": [
+        "INBOUND",
+        "OUTBOUND"
+      ],
+      "title": "CallDirection"
+    },
+    "4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.CallEndpoint": {
+      "type": "object",
+      "description": "Call endpoint. Represents a caller for the inbound calls and a callee for the outbound calls.",
+      "properties": {
+        "type": {
+          "$ref": "#/$defs/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.CallEndpointType"
+        }
+      },
+      "title": "CallEndpoint"
+    },
+    "4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.CallEndpointType": {
+      "type": "string",
+      "enum": [
+        "PHONE",
+        "SIP",
+        "WEBRTC",
+        "VIBER",
+        "WHATSAPP",
+        "WEBSOCKET"
+      ],
+      "title": "CallEndpointType"
+    },
+    "4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.CallState": {
+      "type": "string",
+      "description": "Call state.",
+      "enum": [
+        "CALLING",
+        "RINGING",
+        "PRE_ESTABLISHED",
+        "ESTABLISHED",
+        "FINISHED",
+        "FAILED",
+        "CANCELLED",
+        "NO_ANSWER",
+        "BUSY"
+      ],
+      "title": "CallState"
+    },
+    "4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.DetectionResult": {
+      "type": "string",
+      "description": "Detected class during analysis of the call. Always returns either HUMAN or MACHINE. Use confidenceRating for a finer grained analysis result",
+      "enum": [
+        "HUMAN",
+        "MACHINE"
+      ],
+      "title": "DetectionResult"
+    },
+    "4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.ErrorCodeInfo": {
+      "type": "object",
+      "description": "Reason why the call has finished.",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Unique ErrorCode ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "Unique ErrorCode name in machine-readable format."
+        },
+        "description": {
+          "type": "string",
+          "description": "ErrorCode description in human-readable format."
+        }
+      },
+      "title": "ErrorCodeInfo"
+    },
+    "4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.HangupSource": {
+      "type": "string",
+      "description": "Hangup source.",
+      "enum": [
+        "ENDPOINT",
+        "API",
+        "PLATFORM"
+      ],
+      "title": "HangupSource"
+    },
+    "4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.MachineDetectionProperties": {
+      "type": "object",
+      "description": "Properties of the events that provide Answering Machine Detection result.",
+      "properties": {
+        "detectionResult": {
+          "$ref": "#/$defs/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.DetectionResult"
+        },
+        "confidenceRating": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "format": "double"
+          },
+          "description": "A map representing the confidence rating for each detection class. The key is a tag indicating the detection class, and the value is a float between `0.0` and `1.0` representing the confidence rating. Possible classes are: `HUMAN`, `MACHINE`, `MUSIC`, `RINGING`, `NOISE`, `SILENCE` and `OTHER`. Each class confidence rating is independent from the other, thereby the sum of all confidence values may not equal 1.0."
+        },
+        "customData": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Custom data."
+        }
+      },
+      "title": "MachineDetectionProperties"
+    },
+    "4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.Platform": {
+      "type": "object",
+      "description": "Platform options. For more details, see [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+      "properties": {
+        "entityId": {
+          "type": "string",
+          "description": "Required to use entity in a send request for outbound traffic. Returned in notification events. For more details, see [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+          "maxLength": 255,
+          "minLength": 0
+        },
+        "applicationId": {
+          "type": "string",
+          "description": "Required for application use in a send request for outbound traffic. Returned in notification events. For more details, see [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+          "maxLength": 255,
+          "minLength": 0
+        }
+      },
+      "title": "Platform"
+    }
+  }
+}

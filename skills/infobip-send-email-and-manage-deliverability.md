@@ -1,5 +1,5 @@
 ---
-name: Send email and manage deliverability
+name: send-email-and-manage-deliverability
 description: Send transactional email through the Infobip Email API and keep the sending domain, suppression
   list and IP pools healthy.
 api: openapi/infobip-email-openapi.json

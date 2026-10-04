@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/infobip/main/json-schema/infobip-2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34-retrieve-context-api-response-schema.json",
+  "title": "RetrieveContextApiResponse",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/infobip-ai-hub-api-openapi.yml#/components/schemas/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.RetrieveContextApiResponse",
+  "type": "object",
+  "properties": {
+    "contexts": {
+      "type": "array",
+      "description": "List of retrieved context nodes.",
+      "items": {
+        "$ref": "#/$defs/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.ContextNode"
+      }
+    }
+  },
+  "required": [
+    "contexts"
+  ],
+  "$defs": {
+    "2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.ContextNode": {
+      "type": "object",
+      "description": "List of retrieved context nodes.",
+      "properties": {
+        "node": {
+          "$ref": "#/$defs/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.NodeDetails"
+        },
+        "score": {
+          "type": "number",
+          "format": "double",
+          "description": "Relevance score for the node."
+        }
+      },
+      "required": [
+        "node",
+        "score"
+      ],
+      "title": "ContextNode"
+    },
+    "2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.NodeDetails": {
+      "type": "object",
+      "description": "Context node details.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Node ID."
+        },
+        "text": {
+          "type": "string",
+          "description": "Text content."
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "Metadata information."
+        },
+        "startCharIdx": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Start character index."
+        },
+        "endCharIdx": {
+          "type": "integer",
+          "format": "int32",
+          "description": "End character index."
+        }
+      },
+      "required": [
+        "id",
+        "text"
+      ],
+      "title": "NodeDetails"
+    }
+  }
+}

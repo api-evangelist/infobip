@@ -1,0 +1,288 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/infobip/main/json-schema/infobip-09ef6171198229ad9a73a413d2271afa3ba31b9abbd6cd8a0cc9563fd721f1ed-article-detail-response-schema.json",
+  "title": "ArticleDetailResponse",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/infobip-customer-engagement-api-openapi.yml#/components/schemas/09ef6171198229ad9a73a413d2271afa3ba31b9abbd6cd8a0cc9563fd721f1ed.ArticleDetailResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier of the article."
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the article."
+    },
+    "content": {
+      "type": "string",
+      "description": "Content of the article in HTML format."
+    },
+    "status": {
+      "$ref": "#/$defs/09ef6171198229ad9a73a413d2271afa3ba31b9abbd6cd8a0cc9563fd721f1ed.WorkflowStatus"
+    },
+    "tags": {
+      "type": "array",
+      "description": "Tags assigned to the article.",
+      "items": {
+        "$ref": "#/$defs/09ef6171198229ad9a73a413d2271afa3ba31b9abbd6cd8a0cc9563fd721f1ed.TagSimpleResponse"
+      }
+    },
+    "links": {
+      "type": "array",
+      "description": "List of Articles Or Attachments linked to the article.",
+      "items": {
+        "$ref": "#/$defs/09ef6171198229ad9a73a413d2271afa3ba31b9abbd6cd8a0cc9563fd721f1ed.ArticleLinkDetailResponse"
+      }
+    },
+    "lastPublishedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of when the article was last published."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of when the article was created."
+    },
+    "lastUpdatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of when the article was last updated."
+    },
+    "likeCount": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Count of positive feedbacks."
+    },
+    "likedByUser": {
+      "type": "boolean",
+      "description": "Whether the current user has liked this article. Null when no user context is available."
+    },
+    "viewCount": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Total view count."
+    },
+    "subscribedByUser": {
+      "type": "boolean",
+      "description": "Whether the current user is subscribed to this article. Null when no user context is available."
+    },
+    "scope": {
+      "$ref": "#/$defs/09ef6171198229ad9a73a413d2271afa3ba31b9abbd6cd8a0cc9563fd721f1ed.ContentScope"
+    },
+    "source": {
+      "$ref": "#/$defs/09ef6171198229ad9a73a413d2271afa3ba31b9abbd6cd8a0cc9563fd721f1ed.ContentSource"
+    },
+    "category": {
+      "$ref": "#/$defs/09ef6171198229ad9a73a413d2271afa3ba31b9abbd6cd8a0cc9563fd721f1ed.CategoryResponse"
+    },
+    "createdBy": {
+      "$ref": "#/$defs/09ef6171198229ad9a73a413d2271afa3ba31b9abbd6cd8a0cc9563fd721f1ed.UserData"
+    },
+    "folder": {
+      "$ref": "#/$defs/09ef6171198229ad9a73a413d2271afa3ba31b9abbd6cd8a0cc9563fd721f1ed.FolderResponse"
+    },
+    "breadcrumb": {
+      "type": "array",
+      "description": "Navigation breadcrumb path.",
+      "items": {
+        "type": "string",
+        "description": "Navigation breadcrumb path."
+      }
+    },
+    "lastUpdatedBy": {
+      "$ref": "#/$defs/09ef6171198229ad9a73a413d2271afa3ba31b9abbd6cd8a0cc9563fd721f1ed.UserData"
+    },
+    "lastPublishedBy": {
+      "$ref": "#/$defs/09ef6171198229ad9a73a413d2271afa3ba31b9abbd6cd8a0cc9563fd721f1ed.UserData"
+    },
+    "commentsCount": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Number of comments on the article."
+    },
+    "visibility": {
+      "$ref": "#/$defs/09ef6171198229ad9a73a413d2271afa3ba31b9abbd6cd8a0cc9563fd721f1ed.ContentVisibility"
+    },
+    "publicContentUrl": {
+      "type": "string",
+      "description": "URL to the public content page."
+    }
+  },
+  "required": [
+    "breadcrumb",
+    "category",
+    "content",
+    "createdAt",
+    "id",
+    "lastUpdatedAt",
+    "likeCount",
+    "links",
+    "name",
+    "scope",
+    "status",
+    "tags",
+    "viewCount",
+    "visibility"
+  ],
+  "$defs": {
+    "09ef6171198229ad9a73a413d2271afa3ba31b9abbd6cd8a0cc9563fd721f1ed.ArticleLinkDetailResponse": {
+      "type": "object",
+      "description": "List of Articles Or Attachments linked to the article.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Unique identifier of the linked article or attachment."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the linked article or attachment."
+        },
+        "type": {
+          "$ref": "#/$defs/09ef6171198229ad9a73a413d2271afa3ba31b9abbd6cd8a0cc9563fd721f1ed.InternalType"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "type"
+      ],
+      "title": "ArticleLinkDetailResponse"
+    },
+    "09ef6171198229ad9a73a413d2271afa3ba31b9abbd6cd8a0cc9563fd721f1ed.CategoryResponse": {
+      "type": "object",
+      "description": "Parent category of the article.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the category."
+        },
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Unique identifier of the category."
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ],
+      "title": "CategoryResponse"
+    },
+    "09ef6171198229ad9a73a413d2271afa3ba31b9abbd6cd8a0cc9563fd721f1ed.ContentScope": {
+      "type": "string",
+      "description": "Content scope of the node.",
+      "enum": [
+        "INTERNAL",
+        "EXTERNAL"
+      ],
+      "title": "ContentScope"
+    },
+    "09ef6171198229ad9a73a413d2271afa3ba31b9abbd6cd8a0cc9563fd721f1ed.ContentSource": {
+      "type": "string",
+      "description": "External source of the node, if imported.",
+      "enum": [
+        "CSV",
+        "SHAREPOINT",
+        "CONFLUENCE"
+      ],
+      "title": "ContentSource"
+    },
+    "09ef6171198229ad9a73a413d2271afa3ba31b9abbd6cd8a0cc9563fd721f1ed.ContentVisibility": {
+      "type": "string",
+      "description": "Visibility of the node.",
+      "enum": [
+        "PRIVATE",
+        "PUBLIC"
+      ],
+      "title": "ContentVisibility"
+    },
+    "09ef6171198229ad9a73a413d2271afa3ba31b9abbd6cd8a0cc9563fd721f1ed.FolderResponse": {
+      "type": "object",
+      "description": "Parent folder of the article.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the folder."
+        },
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Unique identifier of the folder."
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ],
+      "title": "FolderResponse"
+    },
+    "09ef6171198229ad9a73a413d2271afa3ba31b9abbd6cd8a0cc9563fd721f1ed.InternalType": {
+      "type": "string",
+      "description": "Type of the record.",
+      "enum": [
+        "ARTICLE",
+        "ATTACHMENT"
+      ],
+      "title": "InternalType"
+    },
+    "09ef6171198229ad9a73a413d2271afa3ba31b9abbd6cd8a0cc9563fd721f1ed.TagSimpleResponse": {
+      "type": "object",
+      "description": "Tags assigned to the article.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Unique identifier of the tag."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the tag."
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ],
+      "title": "TagSimpleResponse"
+    },
+    "09ef6171198229ad9a73a413d2271afa3ba31b9abbd6cd8a0cc9563fd721f1ed.UserData": {
+      "type": "object",
+      "description": "User who uploaded the file.",
+      "properties": {
+        "encryptUserId": {
+          "type": "string",
+          "description": "Unique encrypted identifier of the user."
+        },
+        "firstName": {
+          "type": "string",
+          "description": "First name of the user."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "Last name of the user."
+        }
+      },
+      "required": [
+        "encryptUserId",
+        "firstName",
+        "lastName"
+      ],
+      "title": "UserData"
+    },
+    "09ef6171198229ad9a73a413d2271afa3ba31b9abbd6cd8a0cc9563fd721f1ed.WorkflowStatus": {
+      "type": "string",
+      "description": "Workflow status of the article.",
+      "enum": [
+        "PUBLISHED",
+        "DRAFT"
+      ],
+      "title": "WorkflowStatus"
+    }
+  }
+}

@@ -1,0 +1,302 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/infobip/main/json-schema/infobip-c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913-rcs-sender-schema.json",
+  "title": "RcsSender",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/infobip-channels-api-openapi.yml#/components/schemas/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.RcsSender",
+  "type": "object",
+  "properties": {
+    "senderName": {
+      "type": "string",
+      "description": "Unique identifier of Sender entity for RCS channel within Infobip platform."
+    },
+    "senderStatus": {
+      "$ref": "#/$defs/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.RcsSenderStatus"
+    },
+    "billingCategory": {
+      "$ref": "#/$defs/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.RcsSenderBillingCategory"
+    },
+    "useCase": {
+      "$ref": "#/$defs/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.RcsUseCase"
+    },
+    "hostingRegion": {
+      "$ref": "#/$defs/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.HostingRegion"
+    },
+    "brand": {
+      "$ref": "#/$defs/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.RcsBrand"
+    },
+    "googleAgentId": {
+      "type": "string",
+      "description": "Google Agent ID associated with this sender."
+    },
+    "displayName": {
+      "type": "string",
+      "description": "The name of the sender displayed to the user on mobile device."
+    },
+    "description": {
+      "type": "string",
+      "description": "The description of the sender displayed to the user on mobile device."
+    },
+    "color": {
+      "type": "string",
+      "description": "Theme color of the sender that is visible to the user on mobile device. Must be in hex format and contrast ratio must be at least 4.5:1 for white."
+    },
+    "phones": {
+      "type": "array",
+      "description": "List of phone contacts associated with the sender and displayed to the user on mobile device. Required if email and website are not provided. Currently, only one entry is supported.",
+      "items": {
+        "$ref": "#/$defs/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.Phone"
+      }
+    },
+    "emails": {
+      "type": "array",
+      "description": "List of email contacts associated with the sender and displayed to the user on mobile device. Required if phone and website are not provided. Currently, only one entry is supported.",
+      "items": {
+        "$ref": "#/$defs/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.Email"
+      }
+    },
+    "websites": {
+      "type": "array",
+      "description": "List of websites associated with the sender and displayed to the user on mobile device. Required if phone and email are not provided. Currently, only one entry is supported.",
+      "items": {
+        "$ref": "#/$defs/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.WebsiteWebAddress"
+      }
+    },
+    "bannerUrl": {
+      "type": "string",
+      "description": "URL of the banner image associated with the sender and displayed to the user on mobile device. It must be in JPG / JPEG or PNG format and it must be in 1440 x 448 resolution (width x height). Maximum 204,800 bytes. Maximum URL length is 2048 characters.",
+      "maxLength": 2048
+    },
+    "logoUrl": {
+      "type": "string",
+      "description": "URL of the logo image associated with the sender and displayed to the user on mobile device. It must be in JPG / JPEG or PNG format and it must be in 224 x 224 resolution (width x height). Maximum 51,200 bytes. Maximum URL length is 2048 characters.",
+      "maxLength": 2048
+    },
+    "privacy": {
+      "$ref": "#/$defs/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.PrivacyWebAddress"
+    },
+    "termsOfService": {
+      "$ref": "#/$defs/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.TermsWebAddress"
+    },
+    "platform": {
+      "$ref": "#/$defs/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.PlatformParameters"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when sender has been updated last time."
+    }
+  },
+  "required": [
+    "bannerUrl",
+    "billingCategory",
+    "brand",
+    "color",
+    "description",
+    "displayName",
+    "hostingRegion",
+    "logoUrl",
+    "privacy",
+    "senderName",
+    "senderStatus",
+    "termsOfService",
+    "updatedAt",
+    "useCase"
+  ],
+  "$defs": {
+    "c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.Email": {
+      "type": "object",
+      "description": "List of email contacts associated with the sender and displayed to the user on mobile device. Required if phone and website are not provided. Currently, only one entry is supported.",
+      "properties": {
+        "address": {
+          "type": "string",
+          "description": "Email address. Must be in valid email format.",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "description": "Label for the email address. Must be plain text (no URLs, HTML or markup).",
+          "maxLength": 25,
+          "minLength": 1
+        }
+      },
+      "required": [
+        "address",
+        "label"
+      ],
+      "title": "Email"
+    },
+    "c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.HostingRegion": {
+      "type": "string",
+      "description": "RBM agents can be hosted in one of three regions: North America, Europe, or Asia Pacific, to help businesses comply with regional and regulatory requirements. Select the region based on the country where you plan to launch the sender. Please note that the hosting region cannot be changed once the sender is created.",
+      "enum": [
+        "NORTH_AMERICA",
+        "EUROPE",
+        "ASIA_PACIFIC"
+      ],
+      "title": "HostingRegion"
+    },
+    "c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.Phone": {
+      "type": "object",
+      "description": "List of phone contacts associated with the sender and displayed to the user on mobile device. Required if email and website are not provided. Currently, only one entry is supported.",
+      "properties": {
+        "phoneNumber": {
+          "type": "string",
+          "description": "Phone number. Can be in E.164 format (e.g. +1234567890) or in local/national format (e.g. 1234567). Numbers starting with “+” are validated as E.164, with a known network prefix and a number length that follows country-specific rules. Numbers without “+” must contain only digits and be 3 to 20 characters long.",
+          "pattern": "^\\+?[0-9 \\-().]{1,30}$"
+        },
+        "label": {
+          "type": "string",
+          "description": "Label for the phone number. Must be plain text (no URLs, HTML or markup).",
+          "maxLength": 25,
+          "minLength": 1
+        }
+      },
+      "required": [
+        "label",
+        "phoneNumber"
+      ],
+      "title": "Phone"
+    },
+    "c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.PlatformParameters": {
+      "type": "object",
+      "description": "Platform parameters that would be associated with the sender. Please note that platform parameters must be created before they can be associated with the sender. For more details, see [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
+      "properties": {
+        "applicationId": {
+          "type": "string",
+          "description": "ID of the Application that would be associated with the sender.",
+          "maxLength": 255,
+          "minLength": 1
+        },
+        "entityId": {
+          "type": "string",
+          "description": "ID of the Entity that would be associated with the sender.",
+          "maxLength": 255,
+          "minLength": 1
+        }
+      },
+      "title": "PlatformParameters"
+    },
+    "c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.PrivacyWebAddress": {
+      "type": "object",
+      "description": "Privacy policy associated with the sender.",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "A publicly accessible URI associated with the sender. Must use the HTTP or HTTPS protocol. Maximum URL length is 2048 characters.",
+          "maxLength": 2048,
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "description": "Label for the URI. Currently accepted but not in use by RCS providers.",
+          "maxLength": 25,
+          "minLength": 1
+        }
+      },
+      "required": [
+        "url"
+      ],
+      "title": "PrivacyWebAddress"
+    },
+    "c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.RcsBrand": {
+      "type": "object",
+      "description": "Brand for which sender is created.",
+      "properties": {
+        "brandName": {
+          "type": "string",
+          "description": "Name of the brand.",
+          "maxLength": 100,
+          "minLength": 1
+        }
+      },
+      "required": [
+        "brandName"
+      ],
+      "title": "RcsBrand"
+    },
+    "c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.RcsSenderBillingCategory": {
+      "type": "string",
+      "description": "Billing category for the sender. Following billing categories are available:\n* `NON_CONVERSATIONAL`: Messages billed as standard RCS message that allows richer messaging experience. Never billed as `CONVERSATIONAL`.\n* `CONVERSATIONAL`: Billed as session in which user and agent can exchange a series of messages.",
+      "enum": [
+        "CONVERSATIONAL",
+        "NON_CONVERSATIONAL"
+      ],
+      "title": "RcsSenderBillingCategory"
+    },
+    "c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.RcsSenderStatus": {
+      "type": "string",
+      "description": "Status of the sender. It'll be updated by Infobip platform automatically and notification about sender status update will be sent to client's webhook. Following statuses are available:\n* `DRAFT`: Status returned when the Sender is created in Draft state via the UI.\n* `PENDING`: Status returned while the creation or update of the Sender is being processed.\n* `READY_FOR_TESTING`: Status indicating that the Sender has been created, is unlocked for editing, and testing is allowed on any device. If the launch process finishes unsuccessfully (i.e., all Providers have REJECTED), the Sender reverts to this status.\n* `PENDING_LAUNCH`: Status indicating that a launch has been requested through the Account Manager, RR (future), or CUP UI (future). The Sender is locked and cannot be edited.\n* `SENDER_UPDATE_REQUIRED`: Status indicating that after PENDING_LAUNCH, an update to the Sender is required. The Sender is unlocked for editing.\n* `LAUNCHED_IN_PROGRESS`: Status indicating that at least one Provider has successfully COMPLETED the launch of the Sender. The Sender is locked and ready for sending traffic, but the launch process with all Providers is not yet complete.\n* `LAUNCHED_PARTIAL_SUCCESS`: Status indicating that all Providers have completed their launch process with mixed results — some Providers have COMPLETED successfully, and others have REJECTED. The Sender remains locked and can be used for sending traffic.\n* `LAUNCHED`: Status indicating that all selected Providers have successfully COMPLETED the launch of the Sender.",
+      "enum": [
+        "DRAFT",
+        "PENDING",
+        "READY_FOR_TESTING",
+        "PENDING_LAUNCH",
+        "SENDER_UPDATE_REQUIRED",
+        "LAUNCHED_IN_PROGRESS",
+        "LAUNCHED_PARTIAL_SUCCESS",
+        "LAUNCHED"
+      ],
+      "title": "RcsSenderStatus"
+    },
+    "c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.RcsUseCase": {
+      "type": "string",
+      "description": "Use case for the sender. Following use cases are available:\n* `OTP`: Used for senders that only send one time passwords.\n* `TRANSACTIONAL`: Used for senders that send only essential, necessary and time-sensitive messages.\n* `PROMOTIONAL`: Used for senders that send promotional messages.\n* `MULTI_USE`: Used for senders that have multiple use cases.",
+      "enum": [
+        "OTP",
+        "TRANSACTIONAL",
+        "PROMOTIONAL",
+        "MULTI_USE"
+      ],
+      "title": "RcsUseCase"
+    },
+    "c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.TermsWebAddress": {
+      "type": "object",
+      "description": "Terms and conditions associated with the sender.",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "A publicly accessible URI associated with the sender. Must use the HTTP or HTTPS protocol. Maximum URL length is 2048 characters.",
+          "maxLength": 2048,
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "description": "Label for the URI. Currently accepted but not in use by RCS providers.",
+          "maxLength": 25,
+          "minLength": 1
+        }
+      },
+      "required": [
+        "url"
+      ],
+      "title": "TermsWebAddress"
+    },
+    "c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.WebsiteWebAddress": {
+      "type": "object",
+      "description": "List of websites associated with the sender and displayed to the user on mobile device. Required if phone and email are not provided. Currently, only one entry is supported.",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "A publicly accessible URI associated with the sender. Must use the HTTP or HTTPS protocol. Maximum URL length is 2048 characters.",
+          "maxLength": 2048,
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "description": "Label for the URI. Must be plain text (no URLs, HTML or markup).",
+          "maxLength": 25,
+          "minLength": 1
+        }
+      },
+      "required": [
+        "label",
+        "url"
+      ],
+      "title": "WebsiteWebAddress"
+    }
+  }
+}

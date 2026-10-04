@@ -1,5 +1,5 @@
 ---
-name: Provision a number and wire up its webhooks
+name: provision-number-and-wire-up-webhooks
 description: Search, purchase and configure an Infobip number, then attach the SMS/MMS/voice inbound configuration
   and webhook endpoints that route traffic back to you.
 api: openapi/infobip-numbers-openapi.json

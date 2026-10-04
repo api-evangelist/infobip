@@ -1,5 +1,5 @@
 ---
-name: Send omnichannel with failover
+name: send-omnichannel-with-failover
 description: Use the Messages API to send one payload across channels with an ordered failover chain,
   and read a single normalized delivery report.
 api: openapi/infobip-messages-api-openapi.json

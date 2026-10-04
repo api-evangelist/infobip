@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/infobip/main/json-schema/infobip-2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34-query-ai-assistant-api-response-schema.json",
+  "title": "QueryAiAssistantApiResponse",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/infobip-ai-hub-api-openapi.yml#/components/schemas/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponse",
+  "type": "object",
+  "properties": {
+    "response": {
+      "type": "string",
+      "description": "Ai Assistant answer."
+    },
+    "context": {
+      "$ref": "#/$defs/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContext"
+    }
+  },
+  "required": [
+    "response"
+  ],
+  "$defs": {
+    "2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContext": {
+      "type": "object",
+      "description": "Ai Assistant context used for generating the answer.",
+      "properties": {
+        "originalContexts": {
+          "type": "array",
+          "description": "Ai Assistant contexts before reranking.",
+          "items": {
+            "$ref": "#/$defs/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContextChunk"
+          }
+        },
+        "rerankedContexts": {
+          "type": "array",
+          "description": "Ai Assistant contexts after reranking.",
+          "items": {
+            "$ref": "#/$defs/2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContextChunk"
+          }
+        }
+      },
+      "title": "QueryAiAssistantApiResponseContext"
+    },
+    "2a53d681c9399f766b0cfff54e0469d04419b36fc1603e6db03e69cc8ad55f34.QueryAiAssistantApiResponseContextChunk": {
+      "type": "object",
+      "description": "Ai Assistant contexts after reranking.",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "The text content of the context chunk retrieved from the assistant's knowledge base."
+        },
+        "filename": {
+          "type": "string",
+          "description": "The name of the source file from which this context chunk was extracted."
+        }
+      },
+      "required": [
+        "filename",
+        "text"
+      ],
+      "title": "QueryAiAssistantApiResponseContextChunk"
+    }
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/infobip/main/json-schema/infobip-c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae-smv-verify-advanced-request-dto-schema.json",
+  "title": "SmvVerifyAdvancedRequestDto",
+  "description": "Silent Mobile Verification Advanced request object.",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/infobip-connectivity-api-openapi.yml#/components/schemas/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.SmvVerifyAdvancedRequestDto",
+  "type": "object",
+  "properties": {
+    "consentGranted": {
+      "type": "boolean",
+      "description": "Indicates whether you have consent from mobile phone number's owner to perform this request. All requests that do not have this property set to \"true\" will be rejected."
+    },
+    "phoneNumber": {
+      "type": "string",
+      "description": "Mobile phone number (MSISDN) to verify. The number must be in international format."
+    },
+    "callbackUrl": {
+      "type": "string",
+      "description": "Your URL that will be called to provide [result](#platform-connectivity/mobile-identity/receive-advanced-silent-mobile-verification-result) when the process is completed."
+    },
+    "returnUrl": {
+      "type": "string",
+      "description": "An URL to which the mobile device will be redirected to when verification is complete."
+    },
+    "smsFailover": {
+      "$ref": "#/$defs/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.SmsFailoverDto"
+    },
+    "simSwapCheck": {
+      "$ref": "#/$defs/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.SimSwapCheckDto"
+    },
+    "deviceIp": {
+      "type": "string",
+      "format": "xxx.xxx.xxx.xxx|xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx",
+      "description": "IPv4 or IPv6 address of the mobile device that will be verified with operator. Currently, can be used only in Brazil."
+    },
+    "devicePort": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Port of the mobile device that will be verified with operator. Can be used only when \"deviceIp\" is also provided. Currently, can be used only in Brazil."
+    }
+  },
+  "required": [
+    "callbackUrl",
+    "consentGranted",
+    "phoneNumber"
+  ],
+  "$defs": {
+    "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.DltDto": {
+      "type": "object",
+      "description": "Distributed Ledger Technology (DLT) specific parameters required for sending SMS to phone numbers registered in India.",
+      "properties": {
+        "principalEntityId": {
+          "type": "string",
+          "description": "Your assigned DLT principal entity ID."
+        },
+        "contentTemplateId": {
+          "type": "string",
+          "description": "Registered DLT content template ID which matches message you are sending."
+        }
+      },
+      "required": [
+        "principalEntityId"
+      ],
+      "title": "DltDto"
+    },
+    "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.RegionalDto": {
+      "type": "object",
+      "description": "Region specific parameters, often specified by local laws. Use this if country or region that you are sending SMS to requires some extra parameters.",
+      "properties": {
+        "indiaDlt": {
+          "$ref": "#/$defs/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.DltDto"
+        }
+      },
+      "title": "RegionalDto"
+    },
+    "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.SimSwapCheckDto": {
+      "type": "object",
+      "description": "SIM swap check parameters. In case this field is null, no SIM swap checks will be done.",
+      "properties": {
+        "period": {
+          "type": "integer",
+          "format": "int32",
+          "description": "SIM swap check will be verified with MNO in \"period\" amount of hours from when this request was received. The value should be greater than 0.",
+          "minimum": 0
+        },
+        "proceedOn": {
+          "type": "array",
+          "description": "If specified, proceed to the SMV verify in case:\n- SIM swap check fails\n- There is no SIM swap coverage\n- Result of the SIM swap check was unknown",
+          "items": {
+            "$ref": "#/$defs/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.SimSwapProceedOnDto"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "period"
+      ],
+      "title": "SimSwapCheckDto"
+    },
+    "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.SimSwapProceedOnDto": {
+      "type": "string",
+      "description": "If specified, proceed to the SMV verify in case:\n- SIM swap check fails\n- There is no SIM swap coverage\n- Result of the SIM swap check was unknown",
+      "enum": [
+        "ANY_ERROR",
+        "UNKNOWN",
+        "NO_COVERAGE"
+      ],
+      "title": "SimSwapProceedOnDto"
+    },
+    "c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.SmsFailoverDto": {
+      "type": "object",
+      "description": "SMS failover message contents. In case this field is null, no SMS failover will be done.",
+      "properties": {
+        "from": {
+          "type": "string",
+          "description": "Message failover sender."
+        },
+        "text": {
+          "type": "string",
+          "description": "Message failover text."
+        },
+        "validityPeriod": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The message validity period in seconds. When the period expires, it will not be allowed for the message to be sent.",
+          "minimum": 0
+        },
+        "regional": {
+          "$ref": "#/$defs/c4fb96364cd87b1d1d15720880c5153ef26f58342e4ec03b9d5896f2251f17ae.RegionalDto"
+        }
+      },
+      "required": [
+        "from",
+        "text"
+      ],
+      "title": "SmsFailoverDto"
+    }
+  }
+}

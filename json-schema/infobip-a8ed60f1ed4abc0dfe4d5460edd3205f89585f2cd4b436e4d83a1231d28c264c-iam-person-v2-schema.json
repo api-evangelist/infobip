@@ -1,0 +1,548 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/infobip/main/json-schema/infobip-a8ed60f1ed4abc0dfe4d5460edd3205f89585f2cd4b436e4d83a1231d28c264c-iam-person-v2-schema.json",
+  "title": "IamPersonV2",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/infobip-customer-engagement-api-openapi.yml#/components/schemas/a8ed60f1ed4abc0dfe4d5460edd3205f89585f2cd4b436e4d83a1231d28c264c.IamPersonV2",
+  "type": "object",
+  "properties": {
+    "address": {
+      "type": "string",
+      "description": "Person's address, 256 characters max.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "birthDate": {
+      "type": "string",
+      "description": "Person's date of birth, format `YYYY-MM-DD`.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "city": {
+      "type": "string",
+      "description": "Person's city, 50 characters max.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "computedAttributes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object"
+      },
+      "description": "Person's computed attributes grouped by type.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "contactInformation": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/61aa42c3f981b5eedf39f88f62d783e335a4e6b75d3b1bbc6a07b0633bb93eb9.IamPersonContactsV2"
+        }
+      ],
+      "description": "List of phones, emails and other information how a person can be contacted.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "country": {
+      "type": "string",
+      "description": "Person's country, 50 characters max.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "Date and time of creation. Has the following format: yyyy-MM-dd'T'HH:mm:ss.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "customAttributes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object"
+      },
+      "description": "List of custom attributes for the person, 4096 characters max per value.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "externalId": {
+      "type": "string",
+      "description": "Unique ID for a person from your or another external system, 256 characters max.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "firstName": {
+      "type": "string",
+      "description": "Person's first name, 255 characters max.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "gender": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/bd4ede8ed45be5abed1981f01dd3d5e59730966bed7e4695994e920454030b86.IamGender"
+        }
+      ],
+      "description": "Person's gender.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Unique id of the entity.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "integrations": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/a8ed60f1ed4abc0dfe4d5460edd3205f89585f2cd4b436e4d83a1231d28c264c.IamIntegrationsV2"
+        }
+      ],
+      "description": "Integrations.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "lastName": {
+      "type": "string",
+      "description": "Person's last name, 255 characters max.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "middleName": {
+      "type": "string",
+      "description": "Person's middle name, 50 characters max.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "modifiedAt": {
+      "type": "string",
+      "description": "Date and time of last modification. Has the following format: yyyy-MM-dd'T'HH:mm:ss.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "modifiedFrom": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/bd4ede8ed45be5abed1981f01dd3d5e59730966bed7e4695994e920454030b86.IamOrigin"
+        }
+      ],
+      "description": "The information which describes the source of the last modification of record.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "origin": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/bd4ede8ed45be5abed1981f01dd3d5e59730966bed7e4695994e920454030b86.IamOrigin"
+        }
+      ],
+      "description": "The information which describes the origin of the record.",
+      "readOnly": true,
+      "writeOnly": false
+    },
+    "preferredLanguage": {
+      "type": "string",
+      "description": "Person's preferred language. Must be in two letter ISO (xx) or language-region BCP-47 (xx-YY) format.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "profilePicture": {
+      "type": "string",
+      "description": "URL for the person's profile picture, 2083 characters max.",
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "tags": {
+      "type": "array",
+      "description": "List of tags that this person has.",
+      "items": {
+        "type": "string"
+      },
+      "readOnly": false,
+      "writeOnly": false
+    },
+    "type": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/a8ed60f1ed4abc0dfe4d5460edd3205f89585f2cd4b436e4d83a1231d28c264c.IamTypeV2"
+        }
+      ],
+      "description": "Person's type, default type is CUSTOMER.",
+      "readOnly": false,
+      "writeOnly": false
+    }
+  },
+  "$defs": {
+    "61aa42c3f981b5eedf39f88f62d783e335a4e6b75d3b1bbc6a07b0633bb93eb9.IamEmailContactV2": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "description": "Person's email address. Must comply with the [email format](https://tools.ietf.org/html/rfc2822) and cannot exceed 255 characters. One person can have up to 100 email addresses.",
+          "readOnly": false,
+          "writeOnly": false
+        }
+      },
+      "title": "IamEmailContactV2"
+    },
+    "61aa42c3f981b5eedf39f88f62d783e335a4e6b75d3b1bbc6a07b0633bb93eb9.IamPersonContactsV2": {
+      "type": "object",
+      "properties": {
+        "appleBusinessChat": {
+          "type": "array",
+          "description": "A list of person's Apple Business Chat destinations.",
+          "items": {
+            "$ref": "#/$defs/b19dbfd240ca6293d80ae57437ec266d186a81682210bc56a1b7636c4c62d0e7.CommonOttContact"
+          },
+          "readOnly": true,
+          "writeOnly": false
+        },
+        "email": {
+          "type": "array",
+          "description": "A list of person's email addresses. Max 100 emails per person.",
+          "items": {
+            "$ref": "#/$defs/61aa42c3f981b5eedf39f88f62d783e335a4e6b75d3b1bbc6a07b0633bb93eb9.IamEmailContactV2"
+          },
+          "readOnly": false,
+          "writeOnly": false
+        },
+        "facebook": {
+          "type": "array",
+          "description": "A list of person's Messenger destinations.",
+          "items": {
+            "$ref": "#/$defs/b19dbfd240ca6293d80ae57437ec266d186a81682210bc56a1b7636c4c62d0e7.CommonOttContact"
+          },
+          "readOnly": true,
+          "writeOnly": false
+        },
+        "instagram": {
+          "type": "array",
+          "description": "A list of person's Instagram destinations.",
+          "items": {
+            "$ref": "#/$defs/b19dbfd240ca6293d80ae57437ec266d186a81682210bc56a1b7636c4c62d0e7.CommonOttContact"
+          },
+          "readOnly": true,
+          "writeOnly": false
+        },
+        "instagramDm": {
+          "type": "array",
+          "description": "A list of person's Instagram DM destinations.",
+          "items": {
+            "$ref": "#/$defs/b19dbfd240ca6293d80ae57437ec266d186a81682210bc56a1b7636c4c62d0e7.CommonOttContact"
+          },
+          "readOnly": true,
+          "writeOnly": false
+        },
+        "kakaoSangdam": {
+          "type": "array",
+          "description": "A list of person's Kakao Sangdam destinations.",
+          "items": {
+            "$ref": "#/$defs/b19dbfd240ca6293d80ae57437ec266d186a81682210bc56a1b7636c4c62d0e7.CommonOttContact"
+          },
+          "readOnly": true,
+          "writeOnly": false
+        },
+        "line": {
+          "type": "array",
+          "description": "A list of person's Line destinations.",
+          "items": {
+            "$ref": "#/$defs/b19dbfd240ca6293d80ae57437ec266d186a81682210bc56a1b7636c4c62d0e7.CommonOttContact"
+          },
+          "readOnly": true,
+          "writeOnly": false
+        },
+        "liveChat": {
+          "type": "array",
+          "description": "A list of person's Live Chat destinations.",
+          "items": {
+            "$ref": "#/$defs/b19dbfd240ca6293d80ae57437ec266d186a81682210bc56a1b7636c4c62d0e7.CommonOttContact"
+          },
+          "readOnly": true,
+          "writeOnly": false
+        },
+        "openChannel": {
+          "type": "array",
+          "description": "A list of person's Open Channel destinations.",
+          "items": {
+            "$ref": "#/$defs/b19dbfd240ca6293d80ae57437ec266d186a81682210bc56a1b7636c4c62d0e7.CommonOttContact"
+          },
+          "readOnly": true,
+          "writeOnly": false
+        },
+        "phone": {
+          "type": "array",
+          "description": "A list of person's phone numbers. Max 100 numbers per person.",
+          "items": {
+            "$ref": "#/$defs/61aa42c3f981b5eedf39f88f62d783e335a4e6b75d3b1bbc6a07b0633bb93eb9.IamPhoneContactV2"
+          },
+          "readOnly": false,
+          "writeOnly": false
+        },
+        "push": {
+          "type": "array",
+          "description": "List of person's push registrations.",
+          "items": {
+            "$ref": "#/$defs/61aa42c3f981b5eedf39f88f62d783e335a4e6b75d3b1bbc6a07b0633bb93eb9.IamPushContactV2"
+          },
+          "readOnly": true,
+          "writeOnly": false
+        },
+        "telegram": {
+          "type": "array",
+          "description": "A list of person's Telegram destinations.",
+          "items": {
+            "$ref": "#/$defs/b19dbfd240ca6293d80ae57437ec266d186a81682210bc56a1b7636c4c62d0e7.CommonOttContact"
+          },
+          "readOnly": true,
+          "writeOnly": false
+        },
+        "tiktokBm": {
+          "type": "array",
+          "description": "A list of person's TikTok Business Messaging destinations.",
+          "items": {
+            "$ref": "#/$defs/b19dbfd240ca6293d80ae57437ec266d186a81682210bc56a1b7636c4c62d0e7.CommonOttContact"
+          },
+          "readOnly": true,
+          "writeOnly": false
+        },
+        "twitter": {
+          "type": "array",
+          "description": "A list of person's Twitter destinations.",
+          "items": {
+            "$ref": "#/$defs/b19dbfd240ca6293d80ae57437ec266d186a81682210bc56a1b7636c4c62d0e7.CommonOttContact"
+          },
+          "readOnly": true,
+          "writeOnly": false
+        },
+        "viberBots": {
+          "type": "array",
+          "description": "A list of person's Viber Bots destinations.",
+          "items": {
+            "$ref": "#/$defs/b19dbfd240ca6293d80ae57437ec266d186a81682210bc56a1b7636c4c62d0e7.CommonOttContact"
+          },
+          "readOnly": true,
+          "writeOnly": false
+        },
+        "webpush": {
+          "type": "array",
+          "description": "A list of person's web push registrations",
+          "items": {
+            "$ref": "#/$defs/b19dbfd240ca6293d80ae57437ec266d186a81682210bc56a1b7636c4c62d0e7.CommonPushContact"
+          },
+          "readOnly": true,
+          "writeOnly": false
+        },
+        "whatsapp": {
+          "type": "array",
+          "description": "A list of person's WhatsApp destinations.",
+          "items": {
+            "$ref": "#/$defs/b19dbfd240ca6293d80ae57437ec266d186a81682210bc56a1b7636c4c62d0e7.CommonOttContact"
+          },
+          "readOnly": true,
+          "writeOnly": false
+        },
+        "zaloFollower": {
+          "type": "array",
+          "description": "A list of person's Zalo Follower destinations.",
+          "items": {
+            "$ref": "#/$defs/b19dbfd240ca6293d80ae57437ec266d186a81682210bc56a1b7636c4c62d0e7.CommonOttContact"
+          },
+          "readOnly": true,
+          "writeOnly": false
+        }
+      },
+      "title": "IamPersonContactsV2"
+    },
+    "61aa42c3f981b5eedf39f88f62d783e335a4e6b75d3b1bbc6a07b0633bb93eb9.IamPhoneContactV2": {
+      "type": "object",
+      "properties": {
+        "number": {
+          "type": "string",
+          "description": "Person's phone number. Must be in [international format](https://en.wikipedia.org/wiki/E.164) and cannot exceed 50 characters. One person can have up to 100 phone numbers.",
+          "readOnly": false,
+          "writeOnly": false
+        }
+      },
+      "title": "IamPhoneContactV2"
+    },
+    "61aa42c3f981b5eedf39f88f62d783e335a4e6b75d3b1bbc6a07b0633bb93eb9.IamPushContactV2": {
+      "type": "object",
+      "properties": {
+        "additionalData": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "Additional data collected from the user's profile",
+          "readOnly": true,
+          "writeOnly": false
+        },
+        "applicationId": {
+          "type": "string",
+          "description": "Application Id on which the user is subscribed.",
+          "readOnly": true,
+          "writeOnly": false
+        },
+        "isPrimary": {
+          "type": "boolean",
+          "description": "Set to true if this device is a primary device of a user among other devices.",
+          "readOnly": true,
+          "writeOnly": false
+        },
+        "registrationId": {
+          "type": "string",
+          "description": "Push registration ID.",
+          "readOnly": true,
+          "writeOnly": false
+        },
+        "systemData": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "System data collected from the user's profile",
+          "readOnly": true,
+          "writeOnly": false
+        }
+      },
+      "title": "IamPushContactV2"
+    },
+    "a8ed60f1ed4abc0dfe4d5460edd3205f89585f2cd4b436e4d83a1231d28c264c.IamIntegrationsV2": {
+      "type": "object",
+      "properties": {
+        "salesforce": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/a8ed60f1ed4abc0dfe4d5460edd3205f89585f2cd4b436e4d83a1231d28c264c.IamSalesforceV2"
+            }
+          ],
+          "description": "Salesforce integration.",
+          "readOnly": false,
+          "writeOnly": false
+        }
+      },
+      "title": "IamIntegrationsV2"
+    },
+    "a8ed60f1ed4abc0dfe4d5460edd3205f89585f2cd4b436e4d83a1231d28c264c.IamSalesforceV2": {
+      "type": "object",
+      "properties": {
+        "contactId": {
+          "type": "string",
+          "description": "Salesforce contact id.",
+          "readOnly": false,
+          "writeOnly": false
+        },
+        "leadId": {
+          "type": "string",
+          "description": "Salesforce lead id.",
+          "readOnly": false,
+          "writeOnly": false
+        }
+      },
+      "title": "IamSalesforceV2"
+    },
+    "a8ed60f1ed4abc0dfe4d5460edd3205f89585f2cd4b436e4d83a1231d28c264c.IamTypeV2": {
+      "type": "string",
+      "enum": [
+        "CUSTOMER",
+        "LEAD"
+      ],
+      "title": "IamTypeV2"
+    },
+    "b19dbfd240ca6293d80ae57437ec266d186a81682210bc56a1b7636c4c62d0e7.CommonOttContact": {
+      "type": "object",
+      "properties": {
+        "applicationId": {
+          "type": "string",
+          "description": "Application Id on which the user is subscribed.",
+          "readOnly": true,
+          "writeOnly": false
+        },
+        "systemData": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "System data collected from the user's profile.",
+          "readOnly": true,
+          "writeOnly": false
+        },
+        "userId": {
+          "type": "string",
+          "description": "Unique user ID for a person.",
+          "readOnly": true,
+          "writeOnly": false
+        }
+      },
+      "title": "CommonOttContact"
+    },
+    "b19dbfd240ca6293d80ae57437ec266d186a81682210bc56a1b7636c4c62d0e7.CommonPushContact": {
+      "type": "object",
+      "properties": {
+        "additionalData": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "Additional data collected from the user's profile",
+          "readOnly": true,
+          "writeOnly": false
+        },
+        "applicationId": {
+          "type": "string",
+          "description": "Application Id on which the user is subscribed.",
+          "readOnly": true,
+          "writeOnly": false
+        },
+        "registrationId": {
+          "type": "string",
+          "description": "Push registration ID.",
+          "readOnly": true,
+          "writeOnly": false
+        },
+        "systemData": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "System data collected from the user's profile",
+          "readOnly": true,
+          "writeOnly": false
+        }
+      },
+      "title": "CommonPushContact"
+    },
+    "bd4ede8ed45be5abed1981f01dd3d5e59730966bed7e4695994e920454030b86.IamGender": {
+      "type": "string",
+      "enum": [
+        "MALE",
+        "FEMALE"
+      ],
+      "title": "IamGender"
+    },
+    "bd4ede8ed45be5abed1981f01dd3d5e59730966bed7e4695994e920454030b86.IamOrigin": {
+      "type": "string",
+      "enum": [
+        "API",
+        "PORTAL",
+        "WEB_SDK",
+        "INTEGRATION",
+        "PUSH",
+        "FACEBOOK",
+        "LINE",
+        "TELEGRAM",
+        "SALESFORCE",
+        "DYNAMICS",
+        "ZAPIER",
+        "FORMS",
+        "COMPUTED",
+        "ANSWERS",
+        "CONVERSATIONS"
+      ],
+      "title": "IamOrigin"
+    }
+  }
+}

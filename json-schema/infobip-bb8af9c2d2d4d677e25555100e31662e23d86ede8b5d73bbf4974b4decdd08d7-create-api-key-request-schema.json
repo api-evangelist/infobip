@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/infobip/main/json-schema/infobip-bb8af9c2d2d4d677e25555100e31662e23d86ede8b5d73bbf4974b4decdd08d7-create-api-key-request-schema.json",
+  "title": "CreateApiKeyRequest",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/infobip-platform-api-openapi.yml#/components/schemas/bb8af9c2d2d4d677e25555100e31662e23d86ede8b5d73bbf4974b4decdd08d7.CreateApiKeyRequest",
+  "type": "object",
+  "properties": {
+    "accountId": {
+      "type": "string",
+      "description": "Unique identifier for account this API key will belong to. If not provided accountId of the user making the API request will be set. CPaaSX Applications and Entities can be set only on api keys that belong to the account of the user making the request and only if that account is main account."
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of this API Key."
+    },
+    "allowedIPs": {
+      "type": "array",
+      "description": "List of IP addresses or IP ranges from which this API key will be used. Authentication will fail from any other IP not specified in this list.",
+      "items": {
+        "type": "string",
+        "description": "List of IP addresses or IP ranges from which this API key will be used. Authentication will fail from any other IP not specified in this list."
+      }
+    },
+    "validFrom": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date from which this API key will be valid. Time is in UTC. Should not be earlier than creation date. If not provided default is date of creation."
+    },
+    "validTo": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date until this API key will be valid. Time is in UTC. Should not be earlier than validFrom or creation time. If not provided default is 1 year from creation."
+    },
+    "permissions": {
+      "type": "array",
+      "description": "List of permissions this API key has granted. Default permission is 'PUBLIC_API'. API key cannot be created with both 'PUBLIC_API' and 'WEB_SDK' permissions. API key cannot be created with both permissions and a collection of Applications and/or Entities in <code>platform</code>.",
+      "enum": [
+        "PUBLIC_API",
+        "2FA_CLIENT",
+        "WEB_SDK"
+      ],
+      "items": {
+        "type": "string",
+        "description": "List of permissions this API key has granted. Default permission is 'PUBLIC_API'. API key cannot be created with both 'PUBLIC_API' and 'WEB_SDK' permissions. API key cannot be created with both permissions and a collection of Applications and/or Entities in <code>platform</code>.",
+        "enum": [
+          "PUBLIC_API",
+          "2FA_CLIENT",
+          "WEB_SDK"
+        ]
+      }
+    },
+    "platform": {
+      "type": "array",
+      "description": "A collection of CPaaS X Applications and Entities that will be linked to the API Key. API key cannot be created with both permissions and a collection of Applications and/or Entities.",
+      "items": {
+        "$ref": "#/$defs/bb8af9c2d2d4d677e25555100e31662e23d86ede8b5d73bbf4974b4decdd08d7.Platform"
+      }
+    },
+    "scopeGuids": {
+      "type": "array",
+      "description": "List of [API scopes](https://www.infobip.com/docs/essentials/api-essentials/api-authorization#available-api-scopes-api-scopes) that will be assigned to the API key.",
+      "items": {
+        "type": "string",
+        "description": "List of [API scopes](https://www.infobip.com/docs/essentials/api-essentials/api-authorization#available-api-scopes-api-scopes) that will be assigned to the API key."
+      },
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "$defs": {
+    "bb8af9c2d2d4d677e25555100e31662e23d86ede8b5d73bbf4974b4decdd08d7.Action": {
+      "type": "string",
+      "description": "An optional action performed for an API request authenticated by this specific API key. The `FILL` option is used when an API endpoint inserts linked Application and Entity IDs into a request, if missing. The `FORCE` option is used when an API endpoint overrides linked Application and Entity IDs with the ones from this platform. If the action is left blank, the API endpoint will only perform an authorization check without injecting values into the request.",
+      "enum": [
+        "FILL",
+        "FORCE"
+      ],
+      "title": "Action"
+    },
+    "bb8af9c2d2d4d677e25555100e31662e23d86ede8b5d73bbf4974b4decdd08d7.Platform": {
+      "type": "object",
+      "description": "A collection of CPaaS X Applications and Entities that will be linked to the API key. All Applications and Entities will be removed from the api key if an empty platform list is sent and 'PUBLIC_API' will be assigned as default permission. Or, to remove a specific Application/Entity pair, omit it from the platform list.",
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Unique identifier of application and/or entity association.",
+          "readOnly": true
+        },
+        "applicationId": {
+          "type": "string",
+          "description": "ID of a CPaaS X Application. Once linked to an Application, the API key can only be used to send messages using linked Applications. Mandatory for every Application and/or Entity pair. Use the default value to reference a default Application. Use an existing Application created using [create-application endpoint](https://www.infobip.com/docs/api/platform/application-entity/create-application) or specify a new applicationId to create a new Application."
+        },
+        "entityId": {
+          "type": "string",
+          "description": "ID of a CPaaS X Entity. Once linked to an Entity, the API key can only be used to send messages using linked Entities. Use an existing Entity created using [create-entity endpoint](https://www.infobip.com/docs/api/platform/application-entity/create-entity) or specify a new entityId to create a new Entity."
+        },
+        "action": {
+          "$ref": "#/$defs/bb8af9c2d2d4d677e25555100e31662e23d86ede8b5d73bbf4974b4decdd08d7.Action"
+        }
+      },
+      "required": [
+        "applicationId"
+      ],
+      "title": "Platform"
+    }
+  }
+}

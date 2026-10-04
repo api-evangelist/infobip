@@ -1,5 +1,5 @@
 ---
-name: Manage customer profiles in People
+name: manage-customer-profiles-in-people
 description: Create, match, upsert and merge person profiles in the Infobip People CDP so messaging and
   journeys resolve to one customer.
 api: openapi/infobip-people-openapi.json

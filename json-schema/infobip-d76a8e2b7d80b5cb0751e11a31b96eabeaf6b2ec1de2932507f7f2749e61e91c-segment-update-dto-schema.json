@@ -1,0 +1,202 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/infobip/main/json-schema/infobip-d76a8e2b7d80b5cb0751e11a31b96eabeaf6b2ec1de2932507f7f2749e61e91c-segment-update-dto-schema.json",
+  "title": "SegmentUpdateDto",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/infobip-customer-engagement-api-openapi.yml#/components/schemas/d76a8e2b7d80b5cb0751e11a31b96eabeaf6b2ec1de2932507f7f2749e61e91c.SegmentUpdateDto",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "A unique segment name."
+    },
+    "description": {
+      "type": "string",
+      "description": "Segment description."
+    },
+    "query": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object"
+      },
+      "description": "\nAllows to filter persons using simple queries.\n\n##### Supported logical operators\n\n<table>\n    <thead>\n        <tr>\n            <th>Operator</th>\n            <th>Description</th>\n            <th>Example</th>\n        </tr>\n    </thead>\n    <tr>\n        <td><code>#and</code></td>\n        <td>All records that match the conditions of all clauses.</td>\n        <td><code>{\"#and\":[{\"firstName\":\"John\"},{\"lastName\":\"Smith\"}]}</code></td>\n    </tr>\n    <tr>\n        <td><code>#or</code></td>\n        <td>All records that match the conditions of any clause.</td>\n        <td><code>{\"#or\":[{\"firstName\":\"John\"},{\"firstName\":\"Jane\"}]}</code></td>\n    </tr>\n</table>\n\n##### Supported comparison operators\n\n<table>\n    <thead>\n        <tr>\n            <th>Attributes</th>\n            <th>Description</th>\n            <th>Example</th>\n        </tr>\n    </thead>\n    <tr>\n        <td><code>#notExist</code></td>\n        <td>Matches records that do not have given attribute.</td>\n        <td><code>{\"#notExist\":\"firstName\"}</code></td>\n    </tr>\n    <tr>\n        <td><code>#exist</code></td>\n        <td>Matches records that have given attribute.</td>\n        <td><code>{\"#exists\":\"firstName\"}</code></td>\n    </tr>\n    <thead>\n        <tr>\n            <th>Strings</th>\n            <th>Description</th>\n            <th>Example</th>\n        </tr>\n    </thead>\n    <tr>\n        <td><code>#eq</code></td>\n        <td>Equals to a specified string.</td>\n        <td><code>{\"firstName\":\"John\"}</code></td>\n    </tr>\n    <tr>\n        <td><code>#ne</code></td>\n        <td>Not equal to a specified string.</td>\n        <td><code>{\"#ne\":{\"firstName\":\"John\"}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#startsWith</code></td>\n        <td>Starts with a specified string.</td>\n        <td><code>{\"#startsWith\":{\"firstName\":\"John\"}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#endsWith</code></td>\n        <td>Ends with a specified string.</td>\n        <td><code>{\"#endsWith\":{\"firstName\":\"John\"}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#contains</code></td>\n        <td>Contains a specified string.</td>\n        <td><code>{\"#contains\":{\"firstName\":\"oh\"}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#notContain</code></td>\n        <td>Does not contain a specified string.</td>\n        <td><code>{\"#notContain\":{\"firstName\":\"oh\"}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#in</code></td>\n        <td>At least one of the strings in a list.</td>\n        <td><code>{\"#in\":{\"firstName\":[\"John\",\"Jane\"]}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#notIn</code></td>\n        <td>Not any of the strings in a list.</td>\n        <td><code>{\"#notIn\":{\"firstName\":[\"John\",\"Jane\"]}}</code></td>\n    </tr>\n    <thead>\n        <tr>\n            <th>Dates</th>\n            <th>Description</th>\n            <th>Example</th>\n        </tr>\n    </thead>\n    <tr>\n        <td><code>#eq</code></td>\n        <td>Equals to a specified date.</td>\n        <td><code>{\"birthDate\":\"1987-07-10\"}</code></td>\n    </tr>\n    <tr>\n        <td><code>#ne</code></td>\n        <td>Not equal to a specified date.</td>\n        <td><code>{\"#ne\":{\"birthDate\":\"1987-07-10\"}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#eq (relative)</code></td>\n        <td>Will be in specified interval.</td>\n        <td><code>{\"#eq\":{\"birthDate\":{\"#relNow\":\"P1D\"}}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#lt (relative)</code></td>\n        <td>Will be within a specified interval.</td>\n        <td><code>{\"#lt\":{\"birthDate\":{\"#relNow\":\"P1D\"}}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#gt (relative)</code></td>\n        <td>Will be in more than a specified interval.</td>\n        <td><code>{\"#gt\":{\"birthDate\":{\"#relNow\":\"P1D\"}}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#eq (relative) -</code></td>\n        <td>Was a specified interval ago.</td>\n        <td><code>{\"#eq\":{\"birthDate\":{\"#relNow\":\"P-1D\"}}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#gt (relative) -</code></td>\n        <td>Was within a specified interval ago.</td>\n        <td><code>{\"#gt\":{\"birthDate\":{\"#relNow\":\"P-1D\"}}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#gt (relative) -</code></td>\n        <td>Was more than a specified interval ago.</td>\n        <td><code>{\"#gt\":{\"birthDate\":{\"#relNow\":\"P-1D\"}}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#lt</code></td>\n        <td>Is before a specified date.</td>\n        <td><code>{\"#lt\":{\"birthDate\":\"1987-07-10\"}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#lte</code></td>\n        <td>Is before or equal to a specified date.</td>\n        <td><code>{\"#lte\":{\"birthDate\":\"1987-07-10\"}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#gt</code></td>\n        <td>Is after a specified date.</td>\n        <td><code>{\"#gt\":{\"birthDate\":\"1987-07-10\"}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#gte</code></td>\n        <td>Is after or equal to a specified date.</td>\n        <td><code>{\"#gte\":{\"birthDate\":\"1987-07-10\"}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#in</code></td>\n        <td>Is equal to one of dates in a given list.</td>\n        <td><code>{\"#in\":{\"birthDate\":[\"1987-07-10\",\"1987-07-11\"]}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#notIn</code></td>\n        <td>Is not equal to any of dates in a given list.</td>\n        <td><code>{\"#notIn\":{\"birthDate\":[\"1987-07-10\",\"1987-07-11\"]}}</code></td>\n    </tr>\n    <thead>\n        <tr>\n            <th>Integers</th>\n            <th>Description</th>\n            <th>Example</th>\n        </tr>\n    </thead>\n    <tr>\n        <td><code>#eq</code></td>\n        <td>Equals to a specified integer.</td>\n        <td><code>{\"data\\u0001counter\":1}</code></td>\n    </tr>\n    <tr>\n        <td><code>#ne</code></td>\n        <td>Not equal to a specified integer.</td>\n        <td><code>{\"#ne\":{\"data\\u0001counter\":1}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#lt</code></td>\n        <td>Is less than a specified integer.</td>\n        <td><code>{\"#lt\":{\"data\\u0001counter\":1}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#lte</code></td>\n        <td>Is less than or equal to a specified integer.</td>\n        <td><code>{\"#lte\":{\"data\\u0001counter\":1}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#gt</code></td>\n        <td>Is greater than a specified integer.</td>\n        <td><code>{\"#gt\":{\"data\\u0001counter\":1}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#gte</code></td>\n        <td>Is greater than or equal to a specified integer.</td>\n        <td><code>{\"#gte\":{\"data\\u0001counter\":1}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#in</code></td>\n        <td>Is equal to any of specified integers in a list.</td>\n        <td><code>{\"#in\":{\"data\\u0001counter\":[1,2,3]}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#notIn</code></td>\n        <td>Is not equal to any of specified integers in a list.</td>\n        <td><code>{\"#notIn\":{\"data\\u0001counter\":[1,2,3]}}</code></td>\n    </tr>\n    <thead>\n        <tr>\n            <th>Decimals</th>\n            <th>Description</th>\n            <th>Example</th>\n        </tr>\n    </thead>\n    <tr>\n        <td><code>#eq</code></td>\n        <td>Equals to a specified decimal.</td>\n        <td><code>{\"data\\u0001price\":1.1}</code></td>\n    </tr>\n    <tr>\n        <td><code>#ne</code></td>\n        <td>Is not equal to a specified decimal.</td>\n        <td><code>{\"#ne\":{\"data\\u0001price\":1.1}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#lt</code></td>\n        <td>Is less than a specified decimal.</td>\n        <td><code>{\"#lt\":{\"data\\u0001price\":1.1}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#lte</code></td>\n        <td>Is less than or equal to a specified decimal.</td>\n        <td><code>{\"#lte\":{\"data\\u0001price\":1.1}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#gt</code></td>\n        <td>Is greater than a specified decimal.</td>\n        <td><code>{\"#gt\":{\"data\\u0001price\":1.1}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#gte</code></td>\n        <td>Is greater than or equal to a specified decimal.</td>\n        <td><code>{\"#gte\":{\"data\\u0001price\":1.1}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#in</code></td>\n        <td>Is equal to any of specified decimals in a list.</td>\n        <td><code>{\"#in\":{\"data\\u0001price\":[1.1,2.1,3.0]}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#notIn</code></td>\n        <td>Is not equal to any of specified decimals in a list.</td>\n        <td><code>{\"#notIn\":{\"data\\u0001price\":[1.1,2.1,3.0]}}</code></td>\n    </tr>\n    <thead>\n        <tr>\n            <th>Booleans</th>\n            <th>Description</th>\n            <th>Example</th>\n        </tr>\n    </thead>\n    <tr>\n        <td><code>#eq</code></td>\n        <td>Equals to a specified boolean.</td>\n        <td><code>{\"data\\u0001happy\":true}</code></td>\n    </tr>\n    <tr>\n        <td><code>#ne</code></td>\n        <td>Not equal to a specified boolean.</td>\n        <td><code>{\"#ne\":{\"data\\u0001happy\":true}}</code></td>\n    </tr>\n    <thead>\n        <tr>\n            <th>Tags</th>\n            <th>Description</th>\n            <th>Example</th>\n        </tr>\n    </thead>\n    <tr>\n        <td><code>#contains</code></td>\n        <td>Contains a specified tag.</td>\n        <td><code>{\"#contains\":{\"tags\":\"SOME_TAG\"}}</code></td>\n    </tr>\n    <tr>\n        <td><code>#notContain</code></td>\n        <td>Does not contain a specified tag.</td>\n        <td><code>{\"#notContain\":{\"tags\":\"SOME_TAG\"}}</code></td>\n    </tr>\n    <thead>\n        <tr>\n            <th>Gender</th>\n            <th>Description</th>\n            <th>Example</th>\n        </tr>\n    </thead>\n    <tr>\n        <td><code>#eq</code></td>\n        <td>Equals a specified gender.</td>\n        <td><code>{\"gender\":\"MALE\"}</code></td>\n    </tr>\n    <tr>\n        <td><code>#ne</code></td>\n        <td>Does not equal a specified gender.</td>\n        <td><code>{\"#ne\":{\"gender\":\"FEMALE\"}}</code></td>\n    </tr>\n    <thead>\n        <tr>\n            <th>Lists</th>\n            <th>Description</th>\n            <th>Example</th>\n        </tr>\n    </thead>\n    <tr>\n        <td><code>#all</code></td>\n        <td>All items in the list match.</td>\n        <td><code>{\"#all\":{\"data\\u0001Cart\":{\"#and\":[{\"ProductName\":\"Laptop\"},{\"ProductPrice\":2000}]}}}</code>\n        </td>\n    </tr>\n    <tr>\n        <td><code>#any</code></td>\n        <td>Any item in the list match.</td>\n        <td><code>{\"#any\":{\"data\\u0001Cart\":{\"#and\":[{\"ProductName\":\"Laptop\"},{\"ProductPrice\":2000}]}}}</code>\n        </td>\n    </tr>\n</table>\n\n"
+    },
+    "events": {
+      "type": "array",
+      "description": "List of events that persons should match.",
+      "items": {
+        "$ref": "#/$defs/d76a8e2b7d80b5cb0751e11a31b96eabeaf6b2ec1de2932507f7f2749e61e91c.EventClauseDto"
+      }
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "$defs": {
+    "d76a8e2b7d80b5cb0751e11a31b96eabeaf6b2ec1de2932507f7f2749e61e91c.EventClauseDto": {
+      "type": "object",
+      "description": "List of events that persons should match.",
+      "properties": {
+        "definitionId": {
+          "type": "string",
+          "description": "Event definition ID."
+        },
+        "occurrenceCondition": {
+          "$ref": "#/$defs/d76a8e2b7d80b5cb0751e11a31b96eabeaf6b2ec1de2932507f7f2749e61e91c.OccurrenceConditionDto"
+        },
+        "timelineCondition": {
+          "$ref": "#/$defs/d76a8e2b7d80b5cb0751e11a31b96eabeaf6b2ec1de2932507f7f2749e61e91c.TimelineConditionDto"
+        },
+        "payloadConditions": {
+          "type": "array",
+          "description": "Specify the conditions of the event payload.",
+          "items": {
+            "$ref": "#/$defs/d76a8e2b7d80b5cb0751e11a31b96eabeaf6b2ec1de2932507f7f2749e61e91c.PayloadConditionDto"
+          }
+        }
+      },
+      "required": [
+        "definitionId",
+        "timelineCondition"
+      ],
+      "title": "EventClauseDto"
+    },
+    "d76a8e2b7d80b5cb0751e11a31b96eabeaf6b2ec1de2932507f7f2749e61e91c.OccurrenceConditionDto": {
+      "type": "object",
+      "description": "Specify how many times did the event occur.",
+      "properties": {
+        "operation": {
+          "$ref": "#/$defs/d76a8e2b7d80b5cb0751e11a31b96eabeaf6b2ec1de2932507f7f2749e61e91c.OccurrenceConditionOperation"
+        },
+        "times": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Number of times the event has occurred."
+        }
+      },
+      "required": [
+        "operation",
+        "times"
+      ],
+      "title": "OccurrenceConditionDto"
+    },
+    "d76a8e2b7d80b5cb0751e11a31b96eabeaf6b2ec1de2932507f7f2749e61e91c.OccurrenceConditionOperation": {
+      "type": "string",
+      "description": "Operation to compare how many times the event has occurred.",
+      "enum": [
+        "IS",
+        "LESS_THAN",
+        "LESS_OR_EQUAL",
+        "GREATER_OR_EQUAL",
+        "GREATER_THAN"
+      ],
+      "title": "OccurrenceConditionOperation"
+    },
+    "d76a8e2b7d80b5cb0751e11a31b96eabeaf6b2ec1de2932507f7f2749e61e91c.PayloadConditionDto": {
+      "type": "object",
+      "description": "Specify the conditions of the event payload.",
+      "properties": {
+        "attribute": {
+          "type": "string",
+          "description": "Event payload attribute."
+        },
+        "operator": {
+          "$ref": "#/$defs/d76a8e2b7d80b5cb0751e11a31b96eabeaf6b2ec1de2932507f7f2749e61e91c.PayloadOperator"
+        },
+        "value": {
+          "type": "string",
+          "description": "Payload condition value."
+        }
+      },
+      "required": [
+        "attribute",
+        "operator",
+        "value"
+      ],
+      "title": "PayloadConditionDto"
+    },
+    "d76a8e2b7d80b5cb0751e11a31b96eabeaf6b2ec1de2932507f7f2749e61e91c.PayloadOperator": {
+      "type": "string",
+      "description": "Operator for comparing condition value with payload value.",
+      "enum": [
+        "EQ",
+        "LT",
+        "LTE",
+        "GT",
+        "GTE",
+        "NE",
+        "SW",
+        "EW",
+        "CON"
+      ],
+      "title": "PayloadOperator"
+    },
+    "d76a8e2b7d80b5cb0751e11a31b96eabeaf6b2ec1de2932507f7f2749e61e91c.TimelineConditionDto": {
+      "type": "object",
+      "description": "Specify in which timespan did the event occur.",
+      "properties": {
+        "occurred": {
+          "$ref": "#/$defs/d76a8e2b7d80b5cb0751e11a31b96eabeaf6b2ec1de2932507f7f2749e61e91c.TimelineConditionOccurred"
+        },
+        "operator": {
+          "$ref": "#/$defs/d76a8e2b7d80b5cb0751e11a31b96eabeaf6b2ec1de2932507f7f2749e61e91c.TimelineConditionOperator"
+        },
+        "start": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Start of timespan: For relative operators, specify the number of units. For absolute operators, provide a Unix timestamp."
+        },
+        "end": {
+          "type": "integer",
+          "format": "int32",
+          "description": "End of timespan: For relative operators, specify the number of units. For absolute operators, provide a Unix timestamp."
+        },
+        "units": {
+          "$ref": "#/$defs/d76a8e2b7d80b5cb0751e11a31b96eabeaf6b2ec1de2932507f7f2749e61e91c.TimelineConditionUnits"
+        }
+      },
+      "required": [
+        "occurred",
+        "operator"
+      ],
+      "title": "TimelineConditionDto"
+    },
+    "d76a8e2b7d80b5cb0751e11a31b96eabeaf6b2ec1de2932507f7f2749e61e91c.TimelineConditionOccurred": {
+      "type": "string",
+      "description": "Specifies whether an event is occurring for the first or last time within a given period. Additionally, we can use an operator to specify if any event has occurred or never occurred within the specified timeframe.",
+      "enum": [
+        "ALL",
+        "FIRST",
+        "LAST",
+        "NOT"
+      ],
+      "title": "TimelineConditionOccurred"
+    },
+    "d76a8e2b7d80b5cb0751e11a31b96eabeaf6b2ec1de2932507f7f2749e61e91c.TimelineConditionOperator": {
+      "type": "string",
+      "description": "The operators AFTER, BEFORE, and BETWEEN can be used to specify relative time periods, while their counterparts with the suffix _ABS (e.g., AFTER_ABS, BEFORE_ABS, BETWEEN_ABS) are used for absolute time values. These operators can be applied with start and end attributes to define the beginning and ending points of the time. Units need to be used with relative operators to specify the duration of the time periods.",
+      "enum": [
+        "EMPTY",
+        "AFTER",
+        "BEFORE",
+        "BETWEEN",
+        "AFTER_ABS",
+        "BEFORE_ABS",
+        "BETWEEN_ABS"
+      ],
+      "title": "TimelineConditionOperator"
+    },
+    "d76a8e2b7d80b5cb0751e11a31b96eabeaf6b2ec1de2932507f7f2749e61e91c.TimelineConditionUnits": {
+      "type": "string",
+      "description": "Time units for relative operators.",
+      "enum": [
+        "DAYS",
+        "HOURS",
+        "MINUTES"
+      ],
+      "title": "TimelineConditionUnits"
+    }
+  }
+}

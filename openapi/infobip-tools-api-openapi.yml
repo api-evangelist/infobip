@@ -1,12 +1,13 @@
 openapi: 3.2.0
 info:
-  title: Infobip OpenAPI Specification Tools API
-  description: OpenAPI Specification that contains all public endpoints and webhooks.
+  title: Infobip Tools API
   contact:
     name: Infobip support
     email: support@infobip.com
-  version: 3.210.0
-  x-generatedAt: '2026-07-23T15:23:37.825639538Z'
+  x-refined-note:
+  - x-generatedAt differs across the merged source definitions and was not carried
+  version: '1.0'
+  description: 'Operations tagged tools across 2 of this provider''s published API definitions: infobip-platform-full-openapi.json, infobip-platform-openapi.json. Each path carries the servers of the definition it was published in.'
 tags:
 - name: Tools
   description: Developer utilities to help you integrate and work with Infobip APIs more efficiently.
@@ -146,6 +147,38 @@ components:
         description: OpenAPI schema.
       description: Infobip OpenAPI Specification
       title: OpenAPI
+    d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.AvailableProducts:
+      type: object
+      description: Available products.
+      properties:
+        products:
+          type: array
+          description: List of available products.
+          items:
+            $ref: '#/components/schemas/d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.AvailableProduct'
+      title: AvailableProducts
+    ApiErrorResource:
+      type: object
+      description: List of available resources to recover from the error.
+      properties:
+        name:
+          type: string
+          description: Resource name.
+        url:
+          type: string
+          description: Resource URL.
+      title: ApiErrorResource
+    ApiErrorViolation:
+      type: object
+      description: List of violations that caused the error.
+      properties:
+        property:
+          type: string
+          description: Request property that caused the error.
+        violation:
+          type: string
+          description: Detailed violation description.
+      title: ApiErrorViolation
     ApiError:
       type: object
       properties:
@@ -175,17 +208,6 @@ components:
       - resources
       - violations
       title: ApiError
-    ApiErrorViolation:
-      type: object
-      description: List of violations that caused the error.
-      properties:
-        property:
-          type: string
-          description: Request property that caused the error.
-        violation:
-          type: string
-          description: Detailed violation description.
-      title: ApiErrorViolation
     d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.AvailableProduct:
       type: object
       description: List of available products.
@@ -194,28 +216,23 @@ components:
           type: string
           description: Product identifier.
       title: AvailableProduct
-    d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.AvailableProducts:
-      type: object
-      description: Available products.
-      properties:
-        products:
-          type: array
-          description: List of available products.
-          items:
-            $ref: '#/components/schemas/d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.AvailableProduct'
-      title: AvailableProducts
-    ApiErrorResource:
-      type: object
-      description: List of available resources to recover from the error.
-      properties:
-        name:
-          type: string
-          description: Resource name.
-        url:
-          type: string
-          description: Resource URL.
-      title: ApiErrorResource
   responses:
+    ApiError500:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          example:
+            errorCode: E500
+            description: Something went wrong.
+            action: Contact the support.
+            violations: []
+            resources: []
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E500</errorCode>\n  <description>Something went wrong.</description>\n  <action>Contact the support.</action>\n  <violations/>\n  <resources/>\n</ApiError>\n"
     ApiError429:
       description: Too Many Requests
       content:
@@ -234,22 +251,6 @@ components:
           schema:
             $ref: '#/components/schemas/ApiError'
           example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E429</errorCode>\n  <description>Too many requests sent.</description>\n  <action>Check request rate limit specified in the API endpoint documentation resource.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>Throttling handling errors</name>\n      <url>https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors</url>\n    </resource>\n  </resources>\n</ApiError>\n"
-    ApiError500:
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-          example:
-            errorCode: E500
-            description: Something went wrong.
-            action: Contact the support.
-            violations: []
-            resources: []
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-          example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E500</errorCode>\n  <description>Something went wrong.</description>\n  <action>Contact the support.</action>\n  <violations/>\n  <resources/>\n</ApiError>\n"
   securitySchemes:
     APIKeyHeader:
       type: apiKey
@@ -377,3 +378,6 @@ components:
         clientCredentials:
           tokenUrl: https://api.infobip.com/auth/1/oauth2/token
           scopes: {}
+x-refined-from:
+- infobip-platform-full-openapi.json
+- infobip-platform-openapi.json

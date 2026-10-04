@@ -1,6 +1,8 @@
 generated: '2026-07-25'
 method: derived
-source: openapi/infobip-platform-full-openapi.json (x-throttling-info on 652 operations) + https://www.infobip.com/docs/essentials/api-essentials/integration-best-practices
+source: openapi/infobip-platform-full-openapi.json (x-throttling-info on 652 operations)
+  + https://www.infobip.com/docs/essentials/api-essentials/integration-best-practices
+name: Infobip API Rate Limits
 docs: https://www.infobip.com/docs/essentials/api-essentials/integration-best-practices
 summary:
   mechanisms:
@@ -10,13 +12,14 @@ summary:
   distinct_limit_profiles: 44
   exceeded_status: 429
   exceeded_status_name: TOO_MANY_REQUESTS
-  retry_guidance: Exponential backoff with a retry cap; honor the Retry-After header on 429 when present.
+  retry_guidance: Exponential backoff with a retry cap; honor the Retry-After header
+    on 429 when present.
   retry_after_header: Retry-After
-  notes: Infobip publishes per-operation throttling in the OpenAPI as x-throttling-info. Time limits are
-    "N requests per time unit"; token limits are a token bucket with burst capacity and replenish rate.
-    Custom/enterprise throttling is negotiated per account for high-volume send endpoints (email/3/send,
-    email/4/mime).
-rate_limits:
+  notes: Infobip publishes per-operation throttling in the OpenAPI as x-throttling-info.
+    Time limits are "N requests per time unit"; token limits are a token bucket with
+    burst capacity and replenish rate. Custom/enterprise throttling is negotiated
+    per account for high-volume send endpoints (email/3/send, email/4/mime).
+limits:
 - type: time-window
   limit_count: 10
   window: 1s
@@ -42,6 +45,7 @@ rate_limits:
   - deprecated-get-list-items
   - deprecated-get-lists
   - get-segment
+  name: Unnamed
 - type: time-window
   limit_count: 100
   window: 1s
@@ -61,6 +65,7 @@ rate_limits:
   - get-calls-configuration
   - update-calls-configuration
   - delete-calls-configuration
+  name: Unnamed
 - type: time-window
   limit_count: 5
   window: 1s
@@ -79,6 +84,7 @@ rate_limits:
   - partial-person-update
   - set-person-contact-information
   - delete-person-contact-information
+  name: Unnamed
 - type: time-window
   limit_count: 1
   window: 1s
@@ -100,6 +106,7 @@ rate_limits:
   - decommission-ip
   - create-email-template
   - update-email-template
+  name: Unnamed
 - type: token-bucket
   limit_count: 10
   burst_capacity: 20
@@ -116,6 +123,7 @@ rate_limits:
   - get-conversations-waiting-strategy
   - update-conversations-waiting-strategy
   - get-conversations-account-recording-config
+  name: Unnamed
 - type: time-window
   limit_count: 100
   window: 1m
@@ -133,6 +141,7 @@ rate_limits:
   - get-sip-trunk-status
   - set-sip-trunk-status
   - create-sip-trunk-service-address
+  name: Unnamed
 - type: time-window
   limit_count: 4000
   window: 1s
@@ -148,6 +157,7 @@ rate_limits:
   - send-whatsapp-template-message
   - send-whatsapp-text-message
   - send-whatsapp-document-message
+  name: Unnamed
 - type: time-window
   limit_count: 50
   window: 1s
@@ -164,6 +174,7 @@ rate_limits:
   - personalize-push-instance
   - get-attachment-details
   - get-call-links
+  name: Unnamed
 - type: time-window
   limit_count: 120
   window: 1m
@@ -189,6 +200,7 @@ rate_limits:
   - deprecated-get-outbound-mms-message-logs
   - get-sent-voice-logs
   - get-email-message-logs
+  name: Unnamed
 - type: time-window
   limit_count: 3
   window: 1s
@@ -203,6 +215,7 @@ rate_limits:
   - update-list-item
   - delete-lists
   - replace-list
+  name: Unnamed
 - type: time-window
   limit_count: 50
   window: 1m
@@ -217,6 +230,7 @@ rate_limits:
   - get-markup-language-config
   - update-markup-language-config
   - delete-markup-language-config
+  name: Unnamed
 - type: time-window
   limit_count: 100
   window: 1s
@@ -231,6 +245,7 @@ rate_limits:
   - vocalize-delete-campaign
   - vocalize-update-campaign-settings
   - vocalize-get-campaign-leaderboard
+  name: Unnamed
 - type: time-window
   limit_count: 10
   window: 1m
@@ -249,6 +264,7 @@ rate_limits:
   - get-webrtc-recordings
   - delete-webrtc-recording-by-id
   - download-webrtc-recording-by-id
+  name: Unnamed
 - type: token-bucket
   limit_count: 1
   burst_capacity: 5
@@ -266,6 +282,7 @@ rate_limits:
   - get-all-domains
   - add-domain
   - get-domain-details
+  name: Unnamed
 - type: time-window
   limit_count: 2500
   window: 1s
@@ -282,6 +299,7 @@ rate_limits:
   - send-viber-text-message
   - send-viber-image-message
   - send-viber-file-message
+  name: Unnamed
 - type: time-window
   limit_count: 100
   window: 1h
@@ -296,6 +314,7 @@ rate_limits:
   - update-whatsapp-flow
   - publish-whatsapp-flow
   - add-whatsapp-flow-json
+  name: Unnamed
 - type: time-window
   limit_count: 15
   window: 1s
@@ -311,6 +330,7 @@ rate_limits:
   - deprecated-get-whatsapp-templates
   - get-account-whatsapp-templates
   - add-whatsapp-sender
+  name: Unnamed
 - type: time-window
   limit_count: 20
   window: 1s
@@ -327,6 +347,7 @@ rate_limits:
   - delete-document
   - get-openapi
   - get-product-level-openapi
+  name: Unnamed
 - type: token-bucket
   limit_count: 2
   burst_capacity: 10
@@ -344,6 +365,7 @@ rate_limits:
   - update-mms-configuration
   - delete-mms-configuration
   - manage-inbound-configuration
+  name: Unnamed
 - type: time-window
   limit_count: 2000
   window: 1s
@@ -357,6 +379,7 @@ rate_limits:
   - send-multiple-voice-tts
   - send-advanced-voice-tts
   - send-click-to-call-message
+  name: Unnamed
 - type: time-window
   limit_count: 6
   window: 1s
@@ -369,6 +392,7 @@ rate_limits:
   - connect-with-new-call
   - add-new-conference-call
   - dialog-transfer-accept
+  name: Unnamed
 - type: time-window
   limit_count: 60
   window: 1m
@@ -381,6 +405,7 @@ rate_limits:
   - get-email-logs
   - get-email-delivery-reports
   - get-number-context-logs
+  name: Unnamed
 - type: time-window
   limit_count: 1000
   window: 1h
@@ -392,6 +417,7 @@ rate_limits:
   - create-whatsapp-template
   - get-whatsapp-flows
   - get-whatsapp-flow-json
+  name: Unnamed
 - type: time-window
   limit_count: 20
   window: 10m
@@ -404,6 +430,7 @@ rate_limits:
   - create-omni-failover-scenario
   - create-2fa-application
   - create-2fa-email-message-template
+  name: Unnamed
 - type: time-window
   limit_count: 40
   window: 10m
@@ -416,6 +443,7 @@ rate_limits:
   - update-omni-failover-scenario
   - update-2fa-application
   - update-2fa-email-message-template
+  name: Unnamed
 - type: time-window
   limit_count: 40
   window: 1d
@@ -427,6 +455,7 @@ rate_limits:
   - create-api-key-deprecated
   - create-api-key
   - update-api-key
+  name: Unnamed
 - type: time-window
   limit_count: 60
   window: 1s
@@ -439,6 +468,7 @@ rate_limits:
   - query-aggregate-data
   - get-aggregate-request-status
   - query-billing-usage
+  name: Unnamed
 - type: token-bucket
   limit_count: 10
   burst_capacity: 100
@@ -451,6 +481,7 @@ rate_limits:
   example_operations:
   - delete-conversations-waiting-strategy
   - get-transfer-queues
+  name: Unnamed
 - type: time-window
   limit_count: 200
   window: 1h
@@ -461,6 +492,7 @@ rate_limits:
   example_operations:
   - delete-whatsapp-template
   - deprecated-create-whatsapp-template
+  name: Unnamed
 - type: token-bucket
   limit_count: 1
   burst_capacity: 2
@@ -473,6 +505,7 @@ rate_limits:
   example_operations:
   - get-available-numbers
   - list-owned-numbers
+  name: Unnamed
 - type: time-window
   limit_count: 250
   window: 1s
@@ -482,6 +515,7 @@ rate_limits:
   - people
   example_operations:
   - send-custom-event
+  name: Unnamed
 - type: token-bucket
   limit_count: 1
   burst_capacity: 1
@@ -493,6 +527,7 @@ rate_limits:
   - people
   example_operations:
   - cancel-events-export-request
+  name: Unnamed
 - type: time-window
   limit_count: 500
   window: 1m
@@ -502,6 +537,7 @@ rate_limits:
   - conversations
   example_operations:
   - get-messages
+  name: Unnamed
 - type: token-bucket
   limit_count: 100
   burst_capacity: 100
@@ -513,6 +549,7 @@ rate_limits:
   - conversations
   example_operations:
   - download-call-recording
+  name: Unnamed
 - type: time-window
   limit_count: 5
   window: 1m
@@ -522,6 +559,7 @@ rate_limits:
   - voice
   example_operations:
   - simulate-route-selection
+  name: Unnamed
 - type: time-window
   limit_count: 200
   window: 1s
@@ -531,6 +569,7 @@ rate_limits:
   - webrtc-calls
   example_operations:
   - create-call-link
+  name: Unnamed
 - type: time-window
   limit_count: 500
   window: 1s
@@ -540,6 +579,7 @@ rate_limits:
   - email
   example_operations:
   - upload-binary-content
+  name: Unnamed
 - type: time-window
   limit_count: 150
   window: 1s
@@ -549,6 +589,7 @@ rate_limits:
   - email
   example_operations:
   - validate-email-addresses
+  name: Unnamed
 - type: time-window
   limit_count: 30
   window: 1m
@@ -558,6 +599,7 @@ rate_limits:
   - whatsapp
   example_operations:
   - delete-whatsapp-media
+  name: Unnamed
 - type: time-window
   limit_count: 25
   window: 1s
@@ -567,6 +609,7 @@ rate_limits:
   - viber
   example_operations:
   - create-viber-template
+  name: Unnamed
 - type: time-window
   limit_count: 2
   window: 1m
@@ -576,6 +619,7 @@ rate_limits:
   - mobile-app-messaging
   example_operations:
   - delete-push-inbox-messages
+  name: Unnamed
 - type: time-window
   limit_count: 50
   window: 10m
@@ -585,6 +629,7 @@ rate_limits:
   - 2fa
   example_operations:
   - get-2fa-applications
+  name: Unnamed
 - type: time-window
   limit_count: 100
   window: 10m
@@ -594,6 +639,7 @@ rate_limits:
   - 2fa
   example_operations:
   - get-2fa-application
+  name: Unnamed
 - type: time-window
   limit_count: 2
   window: 1s
@@ -603,3 +649,4 @@ rate_limits:
   - resources
   example_operations:
   - get-inbound-configurations
+  name: Unnamed

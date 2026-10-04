@@ -1,5 +1,5 @@
 ---
-name: Send a WhatsApp template message and handle the session
+name: send-whatsapp-template-message-and-handle-session
 description: Open a WhatsApp Business conversation with an approved template, then continue within the
   24-hour session using free-form and interactive messages.
 api: openapi/infobip-whatsapp-openapi.json

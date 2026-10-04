@@ -1,5 +1,5 @@
 ---
-name: Send an SMS and confirm delivery
+name: send-sms-and-confirm-delivery
 description: Send SMS through the Infobip SMS API, receive the delivery report, and resolve the status/error
   codes into a real delivery outcome.
 api: openapi/infobip-sms-openapi.json

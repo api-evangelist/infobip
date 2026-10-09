@@ -1,7 +1,6 @@
 ---
-name: Verify identity with CAMARA network APIs
-description: Use the Infobip CAMARA implementation to verify a phone number against the mobile network,
-  check for a recent SIM swap, verify device location, and run a KYC match.
+name: verify-identity-with-network-apis
+description: Use the Infobip CAMARA implementation to verify a phone number against the mobile network, check for a recent SIM swap, verify device location, and run a KYC match.
 api: openapi/infobip-camara-openapi.json
 operations:
 - authorize-number-verify
@@ -14,8 +13,8 @@ operations:
 provider: Infobip
 generated: '2026-07-25'
 method: generated
-source: Grounded in operationIds verified in openapi/infobip-camara-openapi.json plus conventions/infobip-conventions.yml,
-  errors/infobip-error-codes.yml and rate-limits/infobip-rate-limits.yml
+source: Grounded in operationIds verified in openapi/infobip-camara-openapi.json plus conventions/infobip-conventions.yml, errors/infobip-error-codes.yml and rate-limits/infobip-rate-limits.yml
+title: Verify identity with CAMARA network APIs
 ---
 
 # Verify identity with CAMARA network APIs

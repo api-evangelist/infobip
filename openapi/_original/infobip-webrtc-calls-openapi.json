@@ -7,8 +7,8 @@
    "name":"Infobip support",
    "email":"support@infobip.com"
   },
-  "version":"3.210.0",
-  "x-generatedAt":"2026-07-23T15:24:03.612703412Z"
+  "version":"3.245.1",
+  "x-generatedAt":"2026-10-07T09:47:58.790345607Z"
  },
  "tags":[
   {
@@ -157,6 +157,9 @@
      "403":{
       "$ref":"#/components/responses/ApiException403"
      },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
      "500":{
       "$ref":"#/components/responses/ApiException500"
      }
@@ -178,6 +181,14 @@
     "x-scopes":[
      "webrtc:manage",
      "webrtc:identity:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":150,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
     ]
    }
   },
@@ -2764,8 +2775,8 @@
              },
              "validityWindow":{
               "oneTime":true,
-              "startTime":"2026-07-17T13:37:13.088+0000",
-              "endTime":"2026-07-18T13:37:13.088+0000"
+              "startTime":"2026-08-24T10:45:59.432+0000",
+              "endTime":"2026-08-25T10:45:59.432+0000"
              },
              "callLinkConfigId":"638dbdc6ecede164c3799d04"
             },
@@ -2897,8 +2908,8 @@
           },
           "validityWindow":{
            "oneTime":true,
-           "startTime":"2026-07-17T13:37:13.088+0000",
-           "endTime":"2026-07-18T13:37:13.088+0000"
+           "startTime":"2026-08-24T10:45:59.432+0000",
+           "endTime":"2026-08-25T10:45:59.432+0000"
           },
           "callLinkConfigId":"638dbdc6ecede164c3799d04"
          }
@@ -2913,8 +2924,8 @@
           },
           "validityWindow":{
            "oneTime":true,
-           "startTime":"2026-07-17T13:37:13.088+0000",
-           "endTime":"2026-07-18T13:37:13.088+0000"
+           "startTime":"2026-08-24T10:45:59.432+0000",
+           "endTime":"2026-08-25T10:45:59.432+0000"
           },
           "callLinkConfigId":"638dbdc6ecede164c3799d04"
          }
@@ -2928,8 +2939,8 @@
           },
           "validityWindow":{
            "oneTime":true,
-           "startTime":"2026-07-17T13:37:13.088+0000",
-           "endTime":"2026-07-18T13:37:13.088+0000",
+           "startTime":"2026-08-24T10:45:59.432+0000",
+           "endTime":"2026-08-25T10:45:59.432+0000",
            "acceptableHours":{
             "start":{
              "hour":8,
@@ -2965,8 +2976,8 @@
           },
           "validityWindow":{
            "oneTime":true,
-           "startTime":"2026-07-17T13:37:13.088+0000",
-           "endTime":"2026-07-18T13:37:13.088+0000"
+           "startTime":"2026-08-24T10:45:59.432+0000",
+           "endTime":"2026-08-25T10:45:59.432+0000"
           }
          }
         },
@@ -2985,8 +2996,8 @@
           },
           "validityWindow":{
            "oneTime":true,
-           "startTime":"2026-07-17T13:37:13.088+0000",
-           "endTime":"2026-07-18T13:37:13.088+0000"
+           "startTime":"2026-08-24T10:45:59.432+0000",
+           "endTime":"2026-08-25T10:45:59.432+0000"
           },
           "callLinkConfigId":"638dbdc6ecede164c3799d04"
          }
@@ -7037,7 +7048,9 @@
      "detectionTime":{
       "type":"number",
       "format":"double",
-      "description":"Maximum time in seconds to wait for machine detection. Only applicable when machineDetection is enabled."
+      "description":"Maximum time in seconds to wait for machine detection. Only applicable when machineDetection is enabled.",
+      "maximum":5.0,
+      "minimum":1.0
      }
     },
     "title":"MachineDetection"
@@ -9013,9 +9026,9 @@
              "phoneNumber":"44790987654",
              "type":"PHONE"
             },
-            "startTime":"2026-07-17T13:36:58.214+0000",
-            "joinTime":"2026-07-17T13:37:03.214+0000",
-            "leaveTime":"2026-07-17T13:37:13.214+0000",
+            "startTime":"2026-08-24T10:45:44.683+0000",
+            "joinTime":"2026-08-24T10:45:49.683+0000",
+            "leaveTime":"2026-08-24T10:45:59.683+0000",
             "duration":10,
             "direction":"OUTBOUND",
             "state":"FINISHED",
@@ -9028,9 +9041,9 @@
              "displayName":"John Doe",
              "type":"WEBRTC"
             },
-            "startTime":"2026-07-17T13:36:58.214+0000",
-            "joinTime":"2026-07-17T13:37:03.214+0000",
-            "leaveTime":"2026-07-17T13:37:13.214+0000",
+            "startTime":"2026-08-24T10:45:44.683+0000",
+            "joinTime":"2026-08-24T10:45:49.683+0000",
+            "leaveTime":"2026-08-24T10:45:59.683+0000",
             "duration":10,
             "direction":"INBOUND",
             "state":"FINISHED",
@@ -9082,9 +9095,9 @@
              "phoneNumber":"44790987654",
              "type":"PHONE"
             },
-            "startTime":"2026-07-17T13:36:58.214+0000",
-            "joinTime":"2026-07-17T13:37:03.214+0000",
-            "leaveTime":"2026-07-17T13:37:13.214+0000",
+            "startTime":"2026-08-24T10:45:44.683+0000",
+            "joinTime":"2026-08-24T10:45:49.683+0000",
+            "leaveTime":"2026-08-24T10:45:59.683+0000",
             "duration":10,
             "direction":"OUTBOUND",
             "state":"FINISHED",
@@ -9097,9 +9110,9 @@
              "displayName":"John Doe",
              "type":"WEBRTC"
             },
-            "startTime":"2026-07-17T13:36:58.214+0000",
-            "joinTime":"2026-07-17T13:37:03.214+0000",
-            "leaveTime":"2026-07-17T13:37:13.214+0000",
+            "startTime":"2026-08-24T10:45:44.683+0000",
+            "joinTime":"2026-08-24T10:45:49.683+0000",
+            "leaveTime":"2026-08-24T10:45:59.683+0000",
             "duration":10,
             "direction":"INBOUND",
             "state":"FINISHED",

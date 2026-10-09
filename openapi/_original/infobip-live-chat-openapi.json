@@ -7,8 +7,8 @@
    "name":"Infobip support",
    "email":"support@infobip.com"
   },
-  "version":"3.210.0",
-  "x-generatedAt":"2026-07-23T15:23:48.980338559Z"
+  "version":"3.245.1",
+  "x-generatedAt":"2026-10-07T09:47:45.141143078Z"
  },
  "tags":[
   {
@@ -78,6 +78,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -85,9 +88,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -214,7 +214,8 @@
         "description":"Welcome messages displayed to the end user.",
         "items":{
          "$ref":"#/components/schemas/245a74e48cd7ce0a3e2f108689f6fc8d5a08a4d75c5aeb1883fc983443d62958.LiveChatOutboundTimestampedContent"
-        }
+        },
+        "minItems":1
        }
       }
      }
@@ -236,7 +237,8 @@
       "properties":{
        "text":{
         "type":"string",
-        "description":"Card button title."
+        "description":"Card button title.",
+        "minLength":1
        },
        "payloadType":{
         "$ref":"#/components/schemas/245a74e48cd7ce0a3e2f108689f6fc8d5a08a4d75c5aeb1883fc983443d62958.LiveChatButtonResponsePayloadType"
@@ -341,7 +343,8 @@
         "type":"string",
         "description":"Media download URL.",
         "maxLength":2000,
-        "minLength":0
+        "minLength":0,
+        "pattern":"(http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@!\\-/]))?"
        },
        "caption":{
         "type":"string",
@@ -374,7 +377,8 @@
         "type":"string",
         "description":"Media download URL.",
         "maxLength":2000,
-        "minLength":0
+        "minLength":0,
+        "pattern":"(http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@!\\-/]))?"
        },
        "caption":{
         "type":"string",
@@ -468,7 +472,8 @@
      },
      "identityValue":{
       "type":"string",
-      "description":"Unique Person identifier."
+      "description":"Unique Person identifier.",
+      "minLength":1
      },
      "pushRegistrationId":{
       "type":"string",
@@ -504,7 +509,8 @@
         "type":"string",
         "description":"Media download URL.",
         "maxLength":2000,
-        "minLength":0
+        "minLength":0,
+        "pattern":"(http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@!\\-/]))?"
        },
        "caption":{
         "type":"string",
@@ -736,7 +742,8 @@
         "type":"string",
         "description":"Media download URL.",
         "maxLength":2048,
-        "minLength":0
+        "minLength":0,
+        "pattern":"(http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@!\\-/]))?"
        },
        "caption":{
         "type":"string",
@@ -909,7 +916,8 @@
         "type":"string",
         "description":"Media download URL.",
         "maxLength":2048,
-        "minLength":0
+        "minLength":0,
+        "pattern":"(http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@!\\-/]))?"
        },
        "caption":{
         "type":"string",
@@ -951,22 +959,36 @@
       "description":"The ID that uniquely identifies the received message."
      },
      "callbackData":{
-      "type":"string",
+      "type":[
+       "string",
+       "null"
+      ],
       "description":"Callback data sent through the ‛callbackData‛ field when sending a message."
      },
      "message":{
       "$ref":"#/components/schemas/245a74e48cd7ce0a3e2f108689f6fc8d5a08a4d75c5aeb1883fc983443d62958.LiveChatInboundContent"
      },
      "threadId":{
-      "type":"string",
+      "type":[
+       "string",
+       "null"
+      ],
       "description":"The ID that uniquely identifies the conversation thread."
      },
      "currentLanguage":{
-      "type":"string",
+      "type":[
+       "string",
+       "null"
+      ],
       "description":"Widget language at the time the message was sent."
      },
      "userData":{
-      "$ref":"#/components/schemas/245a74e48cd7ce0a3e2f108689f6fc8d5a08a4d75c5aeb1883fc983443d62958.LiveChatInboundUserData"
+      "type":"null",
+      "allOf":[
+       {
+        "$ref":"#/components/schemas/245a74e48cd7ce0a3e2f108689f6fc8d5a08a4d75c5aeb1883fc983443d62958.LiveChatInboundUserData"
+       }
+      ]
      },
      "price":{
       "$ref":"#/components/schemas/245a74e48cd7ce0a3e2f108689f6fc8d5a08a4d75c5aeb1883fc983443d62958.MessagePrice"
@@ -1038,12 +1060,14 @@
        "title":{
         "type":"string",
         "description":"Suggestion text",
-        "example":"Pick one!"
+        "example":"Pick one!",
+        "minLength":1
        },
        "postbackData":{
         "type":"string",
         "description":"URL or postback data for sending.",
-        "example":"REPLY"
+        "example":"REPLY",
+        "minLength":1
        }
       }
      }
@@ -1075,12 +1099,14 @@
        "title":{
         "type":"string",
         "description":"Suggestion text",
-        "example":"Pick one!"
+        "example":"Pick one!",
+        "minLength":1
        },
        "postbackData":{
         "type":"string",
         "description":"URL or postback data for sending.",
-        "example":"REPLY"
+        "example":"REPLY",
+        "minLength":1
        }
       }
      }

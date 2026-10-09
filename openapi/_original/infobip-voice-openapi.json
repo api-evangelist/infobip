@@ -7,8 +7,8 @@
    "name":"Infobip support",
    "email":"support@infobip.com"
   },
-  "version":"3.210.0",
-  "x-generatedAt":"2026-07-23T15:23:47.459971396Z"
+  "version":"3.245.1",
+  "x-generatedAt":"2026-10-07T09:47:43.726386907Z"
  },
  "tags":[
   {
@@ -126,16 +126,16 @@
    "x-displayName":"SIP Trunk Service Address Management"
   },
   {
-   "name":"files-and-recordings",
-   "description":"Files operations allow the upload, list and delete audio files. These audio files can be played back in calls and conferences.\n\nRecordings methods allow to list, retrieve and delete audio and video recordings performed on calls and conferences.\n",
-   "x-type":"submodule",
-   "x-displayName":"Files And Recordings"
-  },
-  {
-   "name":"file-operations",
+   "name":"sip-trunk-domain-verification-management",
    "description":"",
    "x-type":"section",
-   "x-displayName":"File Operations"
+   "x-displayName":"SIP Trunk Domain Verification Management"
+  },
+  {
+   "name":"files-and-recordings",
+   "description":"Recordings methods allow to list, retrieve and delete audio and video recordings performed on calls and conferences.\n",
+   "x-type":"submodule",
+   "x-displayName":"Recordings"
   },
   {
    "name":"recording-operations",
@@ -328,6 +328,36 @@
    "description":"",
    "x-type":"section",
    "x-displayName":"Call Routing Simulator"
+  },
+  {
+   "name":"number-reputation-hiya",
+   "description":"Number Reputation API enables customers to register businesses, register phone numbers, and query real-time number reputation scores powered by Hiya.\n\nThe flow is: register a business, register phone numbers against it, then check reputation scores for those numbers.\n",
+   "x-type":"module",
+   "x-displayName":"Number Reputation (Hiya)"
+  },
+  {
+   "name":"business-registration",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Business Registration"
+  },
+  {
+   "name":"reputation-number-registration",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Number Registration"
+  },
+  {
+   "name":"reputation-scoring",
+   "description":"",
+   "x-type":"section",
+   "x-displayName":"Reputation Scoring"
+  },
+  {
+   "name":"file-management",
+   "description":"Files management allow the upload, list and delete audio files. These audio files can be played back in calls and conferences.",
+   "x-type":"module",
+   "x-displayName":"File Management"
   }
  ],
  "paths":{
@@ -2368,9 +2398,9 @@
          "summary":"Connect request",
          "value":{
           "callIds":[
-           "d8d84155-3831-43fb-91c9-bb897149a79d",
            "6539fcb4-4b2a-4ac9-a43a-d60807af29b0",
-           "d6d6058c-5077-49f9-a030-2fc40e8ca195"
+           "d6d6058c-5077-49f9-a030-2fc40e8ca195",
+           "d8d84155-3831-43fb-91c9-bb897149a79d"
           ]
          }
         },
@@ -2378,9 +2408,9 @@
          "summary":"Connect request with conference",
          "value":{
           "callIds":[
-           "d8d84155-3831-43fb-91c9-bb897149a79d",
            "6539fcb4-4b2a-4ac9-a43a-d60807af29b0",
-           "d6d6058c-5077-49f9-a030-2fc40e8ca195"
+           "d6d6058c-5077-49f9-a030-2fc40e8ca195",
+           "d8d84155-3831-43fb-91c9-bb897149a79d"
           ],
           "conferenceRequest":{
            "name":"Example conference",
@@ -9273,7 +9303,28 @@
       }
      },
      "429":{
-      "$ref":"#/components/responses/ApiException429"
+      "description":"Too many requests",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e8b4ac5a98b4fdd5509637ee70be50d1c508e5a4c9ac2c19485e7cdc7eb9bd4e.ApiException"
+        },
+        "examples":{
+         "Error responses":{
+          "summary":"Error responses",
+          "description":"Error responses",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"TOO_MANY_REQUESTS",
+             "text":"Too many requests."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
      },
      "500":{
       "$ref":"#/components/responses/ApiException500"
@@ -11347,13 +11398,13 @@
      "dialog-operations"
     ],
     "summary":"Dialog transfer accept",
-    "description":"Accepts a dialog transfer request.",
+    "description":"Accepts a dialog transfer request received in a `DIALOG_TRANSFER_REQUESTED` event.",
     "operationId":"dialog-transfer-accept",
     "parameters":[
      {
       "name":"dialogId",
       "in":"path",
-      "description":"Dialog ID.",
+      "description":"ID of the dialog being transferred.",
       "required":true,
       "style":"simple",
       "explode":false,
@@ -11483,6 +11534,7 @@
       "OAuth2":[]
      }
     ],
+    "x-is-early-access":"true",
     "x-scopes":[
      "calls:manage",
      "calls:traffic:send"
@@ -11507,13 +11559,13 @@
      "dialog-operations"
     ],
     "summary":"Dialog transfer reject",
-    "description":"Rejects a dialog transfer request.",
+    "description":"Rejects a dialog transfer request received in a `DIALOG_TRANSFER_REQUESTED` event.",
     "operationId":"dialog-transfer-reject",
     "parameters":[
      {
       "name":"dialogId",
       "in":"path",
-      "description":"Dialog ID.",
+      "description":"ID of the dialog being transferred.",
       "required":true,
       "style":"simple",
       "explode":false,
@@ -11619,6 +11671,7 @@
       "OAuth2":[]
      }
     ],
+    "x-is-early-access":"true",
     "x-scopes":[
      "calls:manage",
      "calls:traffic:receive"
@@ -12010,6 +12063,22 @@
            "type":"OPENAI_REALTIME"
           }
          }
+        },
+        "Microsoft Direct Routing Provider SIP trunk":{
+         "summary":"Microsoft Direct Routing Provider SIP trunk",
+         "value":{
+          "type":"PROVIDER",
+          "name":"Microsoft Direct Routing SIP trunk",
+          "location":"NEW_YORK",
+          "internationalCallsAllowed":true,
+          "channelLimit":10,
+          "billingPackage":{
+           "packageType":"METERED"
+          },
+          "provider":{
+           "type":"MICROSOFT_DIRECT_ROUTING"
+          }
+         }
         }
        }
       }
@@ -12200,6 +12269,23 @@
            "provider":{
             "projectId":"proj_123456",
             "type":"OPENAI_REALTIME"
+           }
+          }
+         },
+         "Microsoft Direct Routing Provider SIP trunk":{
+          "summary":"Microsoft Direct Routing Provider SIP trunk",
+          "value":{
+           "id":"62eb6ff07b18cc6cdf5cf001",
+           "type":"PROVIDER",
+           "name":"Microsoft Direct Routing SIP trunk",
+           "location":"NEW_YORK",
+           "internationalCallsAllowed":true,
+           "channelLimit":10,
+           "billingPackage":{
+            "packageType":"METERED"
+           },
+           "provider":{
+            "type":"MICROSOFT_DIRECT_ROUTING"
            }
           }
          }
@@ -14225,56 +14311,38 @@
     ]
    }
   },
-  "/calls/1/files":{
+  "/calls/1/sip-trunks/{sipTrunkId}/txt-records":{
    "get":{
     "tags":[
      "channels",
      "voice",
      "calls",
-     "files-and-recordings",
-     "file-operations"
+     "sip-trunks",
+     "sip-trunk-domain-verification-management"
     ],
-    "summary":"Get files",
-    "description":"Get files with pagination. Maximum number of pages is 100.",
-    "operationId":"get-calls-files",
+    "summary":"Get verified domains",
+    "description":"Retrieve all verified domains for your SIP trunk. This shows which domains have been set up for verification and their current verification codes.",
+    "operationId":"get-txt-records",
     "parameters":[
      {
-      "name":"page",
-      "in":"query",
-      "description":"Results page to retrieve (0..N).",
-      "required":false,
-      "style":"form",
-      "explode":true,
+      "name":"sipTrunkId",
+      "in":"path",
+      "description":"SIP trunk ID.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
       "schema":{
-       "type":"integer",
-       "format":"int32",
-       "default":0,
-       "minimum":0
-      }
-     },
-     {
-      "name":"size",
-      "in":"query",
-      "description":"Number of records per page.",
-      "required":false,
-      "style":"form",
-      "explode":true,
-      "schema":{
-       "type":"integer",
-       "format":"int32",
-       "default":20,
-       "maximum":100,
-       "minimum":1
+       "type":"string"
       }
      }
     ],
     "responses":{
      "200":{
-      "description":"Success",
+      "description":"Verified domains retrieved successfully.",
       "content":{
        "application/json":{
         "schema":{
-         "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.FilePage"
+         "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.TxtRecordResponse"
         }
        }
       }
@@ -14287,18 +14355,6 @@
          "$ref":"#/components/schemas/e8b4ac5a98b4fdd5509637ee70be50d1c508e5a4c9ac2c19485e7cdc7eb9bd4e.ApiException"
         },
         "examples":{
-         "Error responses":{
-          "summary":"Error responses",
-          "description":"Error responses",
-          "value":{
-           "requestError":{
-            "serviceException":{
-             "messageId":"BAD_REQUEST",
-             "text":"Request is invalid."
-            }
-           }
-          }
-         },
          "Bad request":{
           "summary":"Bad request",
           "value":{
@@ -14310,167 +14366,6 @@
            }
           }
          }
-        }
-       }
-      }
-     },
-     "401":{
-      "$ref":"#/components/responses/ApiException401"
-     },
-     "403":{
-      "$ref":"#/components/responses/ApiException403"
-     },
-     "429":{
-      "$ref":"#/components/responses/ApiException429"
-     },
-     "500":{
-      "$ref":"#/components/responses/ApiException500"
-     }
-    },
-    "security":[
-     {
-      "IBSSOTokenHeader":[]
-     },
-     {
-      "APIKeyHeader":[]
-     },
-     {
-      "Basic":[]
-     },
-     {
-      "OAuth2":[]
-     }
-    ],
-    "x-scopes":[
-     "calls:manage",
-     "calls:media:manage"
-    ],
-    "x-throttling-info":[
-     {
-      "type":"time",
-      "numberOfRequests":100,
-      "numberOfTimeUnits":0,
-      "timeUnit":"s"
-     }
-    ]
-   },
-   "post":{
-    "tags":[
-     "channels",
-     "voice",
-     "calls",
-     "files-and-recordings",
-     "file-operations"
-    ],
-    "summary":"Upload audio file",
-    "description":"Upload an audio file. Uploaded files can be played on calls, dialogs or conferences. The file will be removed if it is not used for 90 days.",
-    "operationId":"upload-calls-audio-file",
-    "requestBody":{
-     "description":"Audio file to be uploaded.",
-     "content":{
-      "multipart/form-data":{
-       "schema":{
-        "type":"object",
-        "properties":{
-         "file":{
-          "type":"string",
-          "format":"binary"
-         }
-        },
-        "required":[
-         "file"
-        ]
-       }
-      }
-     }
-    },
-    "responses":{
-     "200":{
-      "description":"Success",
-      "content":{
-       "application/json":{
-        "schema":{
-         "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.File"
-        }
-       }
-      }
-     },
-     "400":{
-      "$ref":"#/components/responses/ApiException400"
-     },
-     "401":{
-      "$ref":"#/components/responses/ApiException401"
-     },
-     "403":{
-      "$ref":"#/components/responses/ApiException403"
-     },
-     "429":{
-      "$ref":"#/components/responses/ApiException429"
-     },
-     "500":{
-      "$ref":"#/components/responses/ApiException500"
-     }
-    },
-    "security":[
-     {
-      "IBSSOTokenHeader":[]
-     },
-     {
-      "APIKeyHeader":[]
-     },
-     {
-      "Basic":[]
-     },
-     {
-      "OAuth2":[]
-     }
-    ],
-    "x-scopes":[
-     "calls:manage",
-     "calls:media:manage"
-    ],
-    "x-throttling-info":[
-     {
-      "type":"time",
-      "numberOfRequests":100,
-      "numberOfTimeUnits":0,
-      "timeUnit":"m"
-     }
-    ]
-   }
-  },
-  "/calls/1/files/{fileId}":{
-   "get":{
-    "tags":[
-     "channels",
-     "voice",
-     "calls",
-     "files-and-recordings",
-     "file-operations"
-    ],
-    "summary":"Get file",
-    "description":"Get a single file.",
-    "operationId":"get-calls-file",
-    "parameters":[
-     {
-      "name":"fileId",
-      "in":"path",
-      "description":"File ID.",
-      "required":true,
-      "style":"simple",
-      "explode":false,
-      "schema":{
-       "type":"string"
-      }
-     }
-    ],
-    "responses":{
-     "200":{
-      "description":"Success",
-      "content":{
-       "application/json":{
-        "schema":{
-         "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.File"
         }
        }
       }
@@ -14528,33 +14423,33 @@
     ],
     "x-scopes":[
      "calls:manage",
-     "calls:media:manage"
+     "calls:configuration:manage"
     ],
     "x-throttling-info":[
      {
       "type":"time",
       "numberOfRequests":100,
       "numberOfTimeUnits":0,
-      "timeUnit":"s"
+      "timeUnit":"m"
      }
     ]
    },
-   "delete":{
+   "put":{
     "tags":[
      "channels",
      "voice",
      "calls",
-     "files-and-recordings",
-     "file-operations"
+     "sip-trunks",
+     "sip-trunk-domain-verification-management"
     ],
-    "summary":"Delete file",
-    "description":"Delete a file.",
-    "operationId":"delete-calls-file",
+    "summary":"Update domain verification",
+    "description":"Update the verification code for an existing domain. Use this when your service provider issues a new verification code or you need to update the verification settings for a domain.",
+    "operationId":"update-txt-record",
     "parameters":[
      {
-      "name":"fileId",
+      "name":"sipTrunkId",
       "in":"path",
-      "description":"File ID.",
+      "description":"SIP trunk ID.",
       "required":true,
       "style":"simple",
       "explode":false,
@@ -14563,13 +14458,46 @@
       }
      }
     ],
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.TxtRecordRequest"
+       }
+      }
+     },
+     "required":true
+    },
     "responses":{
      "200":{
-      "description":"Success",
+      "description":"Domain verification updated successfully.",
       "content":{
        "application/json":{
         "schema":{
-         "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.File"
+         "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.TxtRecordResponse"
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e8b4ac5a98b4fdd5509637ee70be50d1c508e5a4c9ac2c19485e7cdc7eb9bd4e.ApiException"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
         }
        }
       }
@@ -14581,7 +14509,28 @@
       "$ref":"#/components/responses/ApiException403"
      },
      "404":{
-      "$ref":"#/components/responses/ApiException404"
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e8b4ac5a98b4fdd5509637ee70be50d1c508e5a4c9ac2c19485e7cdc7eb9bd4e.ApiException"
+        },
+        "examples":{
+         "Error responses":{
+          "summary":"Error responses",
+          "description":"Error responses",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"Resource was not found."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
      },
      "429":{
       "$ref":"#/components/responses/ApiException429"
@@ -14606,14 +14555,272 @@
     ],
     "x-scopes":[
      "calls:manage",
-     "calls:media:manage"
+     "calls:configuration:manage"
     ],
     "x-throttling-info":[
      {
       "type":"time",
       "numberOfRequests":100,
       "numberOfTimeUnits":0,
-      "timeUnit":"s"
+      "timeUnit":"m"
+     }
+    ]
+   },
+   "post":{
+    "tags":[
+     "channels",
+     "voice",
+     "calls",
+     "sip-trunks",
+     "sip-trunk-domain-verification-management"
+    ],
+    "summary":"Create domain verification",
+    "description":"Create domain verification for your SIP trunk. Use this endpoint to verify domain ownership with your service provider. You'll need the verification code provided by your service provider.",
+    "operationId":"create-txt-record",
+    "parameters":[
+     {
+      "name":"sipTrunkId",
+      "in":"path",
+      "description":"SIP trunk ID.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      }
+     }
+    ],
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.TxtRecordRequest"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "201":{
+      "description":"Domain verification created successfully.",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.TxtRecordResponse"
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e8b4ac5a98b4fdd5509637ee70be50d1c508e5a4c9ac2c19485e7cdc7eb9bd4e.ApiException"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e8b4ac5a98b4fdd5509637ee70be50d1c508e5a4c9ac2c19485e7cdc7eb9bd4e.ApiException"
+        },
+        "examples":{
+         "Error responses":{
+          "summary":"Error responses",
+          "description":"Error responses",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"Resource was not found."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "calls:manage",
+     "calls:configuration:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
+      "numberOfTimeUnits":0,
+      "timeUnit":"m"
+     }
+    ]
+   },
+   "delete":{
+    "tags":[
+     "channels",
+     "voice",
+     "calls",
+     "sip-trunks",
+     "sip-trunk-domain-verification-management"
+    ],
+    "summary":"Delete domain verification",
+    "description":"Delete domain verification from your SIP trunk. Use this when you no longer need to verify a specific domain or want to set it up differently.",
+    "operationId":"delete-txt-record",
+    "parameters":[
+     {
+      "name":"sipTrunkId",
+      "in":"path",
+      "description":"SIP trunk ID.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      }
+     },
+     {
+      "name":"fqdn",
+      "in":"query",
+      "description":"The domain name to delete verification for.",
+      "required":true,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      }
+     }
+    ],
+    "responses":{
+     "204":{
+      "description":"Domain verification deleted successfully."
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e8b4ac5a98b4fdd5509637ee70be50d1c508e5a4c9ac2c19485e7cdc7eb9bd4e.ApiException"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e8b4ac5a98b4fdd5509637ee70be50d1c508e5a4c9ac2c19485e7cdc7eb9bd4e.ApiException"
+        },
+        "examples":{
+         "Error responses":{
+          "summary":"Error responses",
+          "description":"Error responses",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"Resource was not found."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "calls:manage",
+     "calls:configuration:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
+      "numberOfTimeUnits":0,
+      "timeUnit":"m"
      }
     ]
    }
@@ -18997,7 +19204,7 @@
      "calls-markup-language",
      "calls-markup-language-create"
     ],
-    "summary":"Create markup language call.",
+    "summary":"Create markup language call",
     "description":"Create a new markup language call which will be processed according to provided markup instructions.",
     "operationId":"create-markup-language-call",
     "requestBody":{
@@ -19153,6 +19360,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -19160,9 +19370,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -19332,6 +19539,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -19339,9 +19549,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -19511,6 +19718,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -19518,9 +19728,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -19648,6 +19855,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -19655,9 +19865,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -19865,6 +20072,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -19872,9 +20082,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -20000,6 +20207,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -20007,9 +20217,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -20170,6 +20377,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -20177,9 +20387,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -20335,6 +20542,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -20342,9 +20552,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -20825,6 +21032,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -20832,9 +21042,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -21188,6 +21395,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -21195,9 +21405,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -21369,6 +21576,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -21376,9 +21586,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -21523,6 +21730,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -21530,9 +21740,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -21704,6 +21911,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -21711,9 +21921,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -22204,7 +22411,10 @@
             "dial":"41793026731",
             "options":{
              "senderId":"123456789",
-             "maxCallDuration":10
+             "maxCallDuration":10,
+             "recording":{
+              "enabled":true
+             }
             }
            }
           ]
@@ -22221,7 +22431,10 @@
             "dial":"${numberToDial}",
             "options":{
              "senderId":"123456789",
-             "maxCallDuration":10
+             "maxCallDuration":10,
+             "recording":{
+              "enabled":true
+             }
             }
            }
           ]
@@ -23500,7 +23713,10 @@
             "dial":"41793026731",
             "options":{
              "senderId":"123456789",
-             "maxCallDuration":10
+             "maxCallDuration":10,
+             "recording":{
+              "enabled":true
+             }
             }
            }
           ]
@@ -23517,7 +23733,10 @@
             "dial":"${numberToDial}",
             "options":{
              "senderId":"123456789",
-             "maxCallDuration":10
+             "maxCallDuration":10,
+             "recording":{
+              "enabled":true
+             }
             }
            }
           ]
@@ -24996,6 +25215,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -25003,9 +25225,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -25078,6 +25297,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -25085,9 +25307,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -25688,6 +25907,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -25695,9 +25917,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -27718,6 +27937,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -27725,9 +27947,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -28179,6 +28398,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -28186,9 +28408,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -28345,6 +28564,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -28352,9 +28574,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -28849,6 +29068,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -28856,9 +29078,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -29013,6 +29232,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -29020,9 +29242,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -29190,6 +29409,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -29197,9 +29419,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -29609,6 +29828,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -29616,9 +29838,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -29758,6 +29977,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -29765,9 +29987,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -29907,6 +30126,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -29914,9 +30136,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -30127,6 +30346,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -30134,9 +30356,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -30331,6 +30550,173 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     }
+    ],
+    "x-scopes":[
+     "callrouting:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":5,
+      "numberOfTimeUnits":0,
+      "timeUnit":"m"
+     }
+    ]
+   }
+  },
+  "/number-reputation/1/businesses":{
+   "get":{
+    "tags":[
+     "channels",
+     "voice",
+     "number-reputation-hiya",
+     "business-registration"
+    ],
+    "summary":"Get businesses",
+    "description":"Returns businesses registered under the customer's account with their current vetting status.",
+    "operationId":"get-businesses",
+    "parameters":[
+     {
+      "name":"businessName",
+      "in":"query",
+      "description":"Case-insensitive partial match against the business primary name or legal name.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"Acme Corporation"
+     },
+     {
+      "name":"status",
+      "in":"query",
+      "description":"Filter by vetting status.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"array",
+       "items":{
+        "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.PublicHiyaBusinessStatus"
+       }
+      },
+      "example":"REGISTERED"
+     },
+     {
+      "name":"registeredFrom",
+      "in":"query",
+      "description":"Date and time from which to return businesses, by registration date.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "format":"date-time"
+      },
+      "example":"2026-01-01T00:00:00.000+0000"
+     },
+     {
+      "name":"registeredTo",
+      "in":"query",
+      "description":"Date and time up to which to return businesses, by registration date.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "format":"date-time"
+      },
+      "example":"2026-12-31T23:59:59.999+0000"
+     },
+     {
+      "name":"page",
+      "in":"query",
+      "description":"Results page to retrieve (0..N).",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "format":"int32",
+       "default":0
+      }
+     },
+     {
+      "name":"size",
+      "in":"query",
+      "description":"Number of records per page.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "format":"int32",
+       "default":20
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Success",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/f0c12807aec90d20a332deb5d4c4ff89651a8119eb6a5fa7e1d6e803f3c0e71b.HiyaBusinessPage"
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     },
+     "502":{
+      "description":"Bad gateway",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e8b4ac5a98b4fdd5509637ee70be50d1c508e5a4c9ac2c19485e7cdc7eb9bd4e.ApiException"
+        },
+        "examples":{
+         "Error responses":{
+          "summary":"Error responses",
+          "description":"Error responses",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_GATEWAY",
+             "text":"Bad gateway."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -30344,14 +30730,1882 @@
      }
     ],
     "x-scopes":[
-     "callrouting:manage"
+     "numbers:manage"
     ],
     "x-throttling-info":[
      {
       "type":"time",
-      "numberOfRequests":5,
+      "numberOfRequests":100,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   },
+   "post":{
+    "tags":[
+     "channels",
+     "voice",
+     "number-reputation-hiya",
+     "business-registration"
+    ],
+    "summary":"Register a new business",
+    "description":"Register a new business for verification. A business must be registered and vetted before phone numbers can be added to it.",
+    "operationId":"create-business",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/eb9826dda36bfa834ba8eec2d30e3749cbed4dee9bcabc5eb783ccaddacf60a3.PublicCreateBusinessRequest"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"Success",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/eb9826dda36bfa834ba8eec2d30e3749cbed4dee9bcabc5eb783ccaddacf60a3.PublicCreateBusinessResponse"
+        }
+       }
+      }
+     },
+     "400":{
+      "$ref":"#/components/responses/ApiException400"
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     },
+     "502":{
+      "description":"Bad gateway",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e8b4ac5a98b4fdd5509637ee70be50d1c508e5a4c9ac2c19485e7cdc7eb9bd4e.ApiException"
+        },
+        "examples":{
+         "Error responses":{
+          "summary":"Error responses",
+          "description":"Error responses",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_GATEWAY",
+             "text":"Bad gateway."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "numbers:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":10,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/number-reputation/1/businesses/{businessId}":{
+   "get":{
+    "tags":[
+     "channels",
+     "voice",
+     "number-reputation-hiya",
+     "business-registration"
+    ],
+    "summary":"Get business",
+    "description":"Get a specific business registration by its ID.",
+    "operationId":"get-business",
+    "parameters":[
+     {
+      "name":"businessId",
+      "in":"path",
+      "description":"Business ID (UUID).",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string",
+       "format":"uuid"
+      },
+      "example":"a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Success",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/eb9826dda36bfa834ba8eec2d30e3749cbed4dee9bcabc5eb783ccaddacf60a3.PublicBusiness"
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e8b4ac5a98b4fdd5509637ee70be50d1c508e5a4c9ac2c19485e7cdc7eb9bd4e.ApiException"
+        },
+        "examples":{
+         "Error responses":{
+          "summary":"Error responses",
+          "description":"Error responses",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"Resource was not found."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     },
+     "502":{
+      "description":"Bad gateway",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e8b4ac5a98b4fdd5509637ee70be50d1c508e5a4c9ac2c19485e7cdc7eb9bd4e.ApiException"
+        },
+        "examples":{
+         "Error responses":{
+          "summary":"Error responses",
+          "description":"Error responses",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_GATEWAY",
+             "text":"Bad gateway."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "numbers:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   },
+   "put":{
+    "tags":[
+     "channels",
+     "voice",
+     "number-reputation-hiya",
+     "business-registration"
+    ],
+    "summary":"Update business registration info",
+    "description":"Update business registration information. While a business is not in REGISTERED status yet, any field may be updated, and the update triggers a fresh verification attempt. Once a business reaches REGISTERED status, only the contact object can be updated.",
+    "operationId":"update-business",
+    "parameters":[
+     {
+      "name":"businessId",
+      "in":"path",
+      "description":"Business ID (UUID).",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string",
+       "format":"uuid"
+      },
+      "example":"a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+     }
+    ],
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/eb9826dda36bfa834ba8eec2d30e3749cbed4dee9bcabc5eb783ccaddacf60a3.PublicCreateBusinessRequest"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "202":{
+      "description":"Accepted"
+     },
+     "400":{
+      "$ref":"#/components/responses/ApiException400"
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e8b4ac5a98b4fdd5509637ee70be50d1c508e5a4c9ac2c19485e7cdc7eb9bd4e.ApiException"
+        },
+        "examples":{
+         "Error responses":{
+          "summary":"Error responses",
+          "description":"Error responses",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"Resource was not found."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     },
+     "502":{
+      "description":"Bad gateway",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e8b4ac5a98b4fdd5509637ee70be50d1c508e5a4c9ac2c19485e7cdc7eb9bd4e.ApiException"
+        },
+        "examples":{
+         "Error responses":{
+          "summary":"Error responses",
+          "description":"Error responses",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_GATEWAY",
+             "text":"Bad gateway."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "numbers:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   },
+   "delete":{
+    "tags":[
+     "channels",
+     "voice",
+     "number-reputation-hiya",
+     "business-registration"
+    ],
+    "summary":"Remove access to a business",
+    "description":"Disconnects API access to the registered business. The business will be deleted together with numbers registered to this business.\nNote: There is a recurring service fee for all registered businesses, deleting a business will terminate that recurring fee for this business.",
+    "operationId":"delete-business",
+    "parameters":[
+     {
+      "name":"businessId",
+      "in":"path",
+      "description":"Business ID (UUID).",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string",
+       "format":"uuid"
+      },
+      "example":"a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Success"
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e8b4ac5a98b4fdd5509637ee70be50d1c508e5a4c9ac2c19485e7cdc7eb9bd4e.ApiException"
+        },
+        "examples":{
+         "Error responses":{
+          "summary":"Error responses",
+          "description":"Error responses",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"Resource was not found."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     },
+     "502":{
+      "description":"Bad gateway",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e8b4ac5a98b4fdd5509637ee70be50d1c508e5a4c9ac2c19485e7cdc7eb9bd4e.ApiException"
+        },
+        "examples":{
+         "Error responses":{
+          "summary":"Error responses",
+          "description":"Error responses",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_GATEWAY",
+             "text":"Bad gateway."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "numbers:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/number-reputation/1/businesses/{businessId}/numbers":{
+   "get":{
+    "tags":[
+     "channels",
+     "voice",
+     "number-reputation-hiya",
+     "reputation-number-registration"
+    ],
+    "summary":"Get business phone numbers",
+    "description":"Get phone numbers registered under a specific business.",
+    "operationId":"get-business-phone-numbers",
+    "parameters":[
+     {
+      "name":"businessId",
+      "in":"path",
+      "description":"Business ID (UUID).",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string",
+       "format":"uuid"
+      },
+      "example":"a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+     },
+     {
+      "name":"phoneNumbers",
+      "in":"query",
+      "description":"Filter by specific phone numbers.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"array",
+       "items":{
+        "type":"string"
+       }
+      },
+      "example":14155551234
+     },
+     {
+      "name":"jobName",
+      "in":"query",
+      "description":"Filter by registration job/batch name.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"test-batch"
+     },
+     {
+      "name":"status",
+      "in":"query",
+      "description":"Filter by phone number status.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"array",
+       "items":{
+        "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.PublicHiyaPhoneNumberStatus"
+       }
+      },
+      "example":"REGISTERED"
+     },
+     {
+      "name":"reputationAvailable",
+      "in":"query",
+      "description":"Filter by reputation availability.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"array",
+       "items":{
+        "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.PublicHiyaReputationAvailability"
+       }
+      },
+      "example":"AVAILABLE"
+     },
+     {
+      "name":"registeredFrom",
+      "in":"query",
+      "description":"Date and time from which to return phone numbers, by registration date.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "format":"date-time"
+      },
+      "example":"2026-01-01T00:00:00.000+0000"
+     },
+     {
+      "name":"registeredTo",
+      "in":"query",
+      "description":"Date and time up to which to return phone numbers, by registration date.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "format":"date-time"
+      },
+      "example":"2026-12-31T23:59:59.999+0000"
+     },
+     {
+      "name":"lastUpdatedFrom",
+      "in":"query",
+      "description":"Date and time from which to return phone numbers, by last reputation check date.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "format":"date-time"
+      },
+      "example":"2026-01-01T00:00:00.000+0000"
+     },
+     {
+      "name":"lastUpdatedTo",
+      "in":"query",
+      "description":"Date and time up to which to return phone numbers, by last reputation check date.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "format":"date-time"
+      },
+      "example":"2026-12-31T23:59:59.999+0000"
+     },
+     {
+      "name":"page",
+      "in":"query",
+      "description":"Results page to retrieve (0..N).",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "format":"int32",
+       "default":0
+      }
+     },
+     {
+      "name":"size",
+      "in":"query",
+      "description":"Number of records per page.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "format":"int32",
+       "default":20
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Success",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/f0c12807aec90d20a332deb5d4c4ff89651a8119eb6a5fa7e1d6e803f3c0e71b.HiyaPhoneNumberPage"
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e8b4ac5a98b4fdd5509637ee70be50d1c508e5a4c9ac2c19485e7cdc7eb9bd4e.ApiException"
+        },
+        "examples":{
+         "Error responses":{
+          "summary":"Error responses",
+          "description":"Error responses",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"Resource was not found."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     },
+     "502":{
+      "description":"Bad gateway",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e8b4ac5a98b4fdd5509637ee70be50d1c508e5a4c9ac2c19485e7cdc7eb9bd4e.ApiException"
+        },
+        "examples":{
+         "Error responses":{
+          "summary":"Error responses",
+          "description":"Error responses",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_GATEWAY",
+             "text":"Bad gateway."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "numbers:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   },
+   "post":{
+    "tags":[
+     "channels",
+     "voice",
+     "number-reputation-hiya",
+     "reputation-number-registration"
+    ],
+    "summary":"Register phone numbers",
+    "description":"Register phone numbers against a business. Numbers are submitted in batches identified by a jobName. Business must be in REGISTERED status.",
+    "operationId":"register-phone-numbers",
+    "parameters":[
+     {
+      "name":"businessId",
+      "in":"path",
+      "description":"Business ID (UUID).",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string",
+       "format":"uuid"
+      },
+      "example":"a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+     }
+    ],
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/eb9826dda36bfa834ba8eec2d30e3749cbed4dee9bcabc5eb783ccaddacf60a3.PublicRegisterPhoneNumbersRequest"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "202":{
+      "description":"Accepted"
+     },
+     "400":{
+      "$ref":"#/components/responses/ApiException400"
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e8b4ac5a98b4fdd5509637ee70be50d1c508e5a4c9ac2c19485e7cdc7eb9bd4e.ApiException"
+        },
+        "examples":{
+         "Error responses":{
+          "summary":"Error responses",
+          "description":"Error responses",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"Resource was not found."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     },
+     "502":{
+      "description":"Bad gateway",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e8b4ac5a98b4fdd5509637ee70be50d1c508e5a4c9ac2c19485e7cdc7eb9bd4e.ApiException"
+        },
+        "examples":{
+         "Error responses":{
+          "summary":"Error responses",
+          "description":"Error responses",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_GATEWAY",
+             "text":"Bad gateway."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "numbers:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   },
+   "delete":{
+    "tags":[
+     "channels",
+     "voice",
+     "number-reputation-hiya",
+     "reputation-number-registration"
+    ],
+    "summary":"Remove phone numbers",
+    "description":"Remove phone numbers from a business. Provide either phoneNumbers or jobName query parameter (at least one required, cannot provide both).",
+    "operationId":"delete-phone-numbers",
+    "parameters":[
+     {
+      "name":"businessId",
+      "in":"path",
+      "description":"Business ID (UUID).",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string",
+       "format":"uuid"
+      },
+      "example":"a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+     },
+     {
+      "name":"phoneNumbers",
+      "in":"query",
+      "description":"Phone numbers to remove. Provide either 'phoneNumbers' or 'jobName' (at least one required, cannot provide both).",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"array",
+       "items":{
+        "type":"string",
+        "example":"14155551234"
+       }
+      }
+     },
+     {
+      "name":"jobName",
+      "in":"query",
+      "description":"Remove all phone numbers in this registration job/batch. Provide either 'phoneNumbers' or 'jobName' (at least one required, cannot provide both).",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      }
+     }
+    ],
+    "responses":{
+     "202":{
+      "description":"Accepted"
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e8b4ac5a98b4fdd5509637ee70be50d1c508e5a4c9ac2c19485e7cdc7eb9bd4e.ApiException"
+        },
+        "examples":{
+         "Error responses":{
+          "summary":"Error responses",
+          "description":"Error responses",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"Resource was not found."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     },
+     "502":{
+      "description":"Bad gateway",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e8b4ac5a98b4fdd5509637ee70be50d1c508e5a4c9ac2c19485e7cdc7eb9bd4e.ApiException"
+        },
+        "examples":{
+         "Error responses":{
+          "summary":"Error responses",
+          "description":"Error responses",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_GATEWAY",
+             "text":"Bad gateway."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "numbers:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/number-reputation/1/numbers":{
+   "get":{
+    "tags":[
+     "channels",
+     "voice",
+     "number-reputation-hiya",
+     "reputation-number-registration"
+    ],
+    "summary":"Get phone numbers (cross-business)",
+    "description":"Returns phone numbers across all businesses for this account.",
+    "operationId":"get-phone-numbers",
+    "parameters":[
+     {
+      "name":"phoneNumbers",
+      "in":"query",
+      "description":"Filter by specific phone numbers.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"array",
+       "items":{
+        "type":"string"
+       }
+      },
+      "example":14155551234
+     },
+     {
+      "name":"jobName",
+      "in":"query",
+      "description":"Filter by registration job/batch name.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"test-batch"
+     },
+     {
+      "name":"status",
+      "in":"query",
+      "description":"Filter by phone number status.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"array",
+       "items":{
+        "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.PublicHiyaPhoneNumberStatus"
+       }
+      },
+      "example":"REGISTERED"
+     },
+     {
+      "name":"reputationAvailable",
+      "in":"query",
+      "description":"Filter by reputation availability.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"array",
+       "items":{
+        "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.PublicHiyaReputationAvailability"
+       }
+      },
+      "example":"AVAILABLE"
+     },
+     {
+      "name":"registeredFrom",
+      "in":"query",
+      "description":"Date and time from which to return phone numbers, by registration date.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "format":"date-time"
+      },
+      "example":"2026-01-01T00:00:00.000+0000"
+     },
+     {
+      "name":"registeredTo",
+      "in":"query",
+      "description":"Date and time up to which to return phone numbers, by registration date.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "format":"date-time"
+      },
+      "example":"2026-12-31T23:59:59.999+0000"
+     },
+     {
+      "name":"lastUpdatedFrom",
+      "in":"query",
+      "description":"Date and time from which to return phone numbers, by last reputation check date.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "format":"date-time"
+      },
+      "example":"2026-01-01T00:00:00.000+0000"
+     },
+     {
+      "name":"lastUpdatedTo",
+      "in":"query",
+      "description":"Date and time up to which to return phone numbers, by last reputation check date.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "format":"date-time"
+      },
+      "example":"2026-12-31T23:59:59.999+0000"
+     },
+     {
+      "name":"page",
+      "in":"query",
+      "description":"Results page to retrieve (0..N).",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "format":"int32",
+       "default":0
+      }
+     },
+     {
+      "name":"size",
+      "in":"query",
+      "description":"Number of records per page.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "format":"int32",
+       "default":20
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Success",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/f0c12807aec90d20a332deb5d4c4ff89651a8119eb6a5fa7e1d6e803f3c0e71b.HiyaPhoneNumberCrossBusinessPage"
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     },
+     "502":{
+      "description":"Bad gateway",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e8b4ac5a98b4fdd5509637ee70be50d1c508e5a4c9ac2c19485e7cdc7eb9bd4e.ApiException"
+        },
+        "examples":{
+         "Error responses":{
+          "summary":"Error responses",
+          "description":"Error responses",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_GATEWAY",
+             "text":"Bad gateway."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "numbers:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/number-reputation/1/businesses/{businessId}/numbers/jobs":{
+   "get":{
+    "tags":[
+     "channels",
+     "voice",
+     "number-reputation-hiya",
+     "reputation-number-registration"
+    ],
+    "summary":"Get phone number registration jobs",
+    "description":"Get phone number registration jobs for a specific business.",
+    "operationId":"get-phone-number-jobs",
+    "parameters":[
+     {
+      "name":"businessId",
+      "in":"path",
+      "description":"Business ID (UUID).",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string",
+       "format":"uuid"
+      },
+      "example":"a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+     },
+     {
+      "name":"jobName",
+      "in":"query",
+      "description":"Filter by registration job/batch name.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"test-batch"
+     },
+     {
+      "name":"page",
+      "in":"query",
+      "description":"Results page to retrieve (0..N).",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "format":"int32",
+       "default":0
+      }
+     },
+     {
+      "name":"size",
+      "in":"query",
+      "description":"Number of records per page.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "format":"int32",
+       "default":20
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Success",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/f0c12807aec90d20a332deb5d4c4ff89651a8119eb6a5fa7e1d6e803f3c0e71b.HiyaPhoneJobPage"
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e8b4ac5a98b4fdd5509637ee70be50d1c508e5a4c9ac2c19485e7cdc7eb9bd4e.ApiException"
+        },
+        "examples":{
+         "Error responses":{
+          "summary":"Error responses",
+          "description":"Error responses",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"Resource was not found."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     },
+     "502":{
+      "description":"Bad gateway",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e8b4ac5a98b4fdd5509637ee70be50d1c508e5a4c9ac2c19485e7cdc7eb9bd4e.ApiException"
+        },
+        "examples":{
+         "Error responses":{
+          "summary":"Error responses",
+          "description":"Error responses",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_GATEWAY",
+             "text":"Bad gateway."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "numbers:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/number-reputation/1/reputation":{
+   "post":{
+    "tags":[
+     "channels",
+     "voice",
+     "number-reputation-hiya",
+     "reputation-scoring"
+    ],
+    "summary":"Check reputation for phone numbers",
+    "description":"Query real-time reputation scores for registered phone numbers. This is a billable operation — each phone number in the request counts as one billable unit.",
+    "operationId":"check-reputation",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/eb9826dda36bfa834ba8eec2d30e3749cbed4dee9bcabc5eb783ccaddacf60a3.PublicCheckReputationRequest"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"Success",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/eb9826dda36bfa834ba8eec2d30e3749cbed4dee9bcabc5eb783ccaddacf60a3.HiyaReputationListResponse"
+        }
+       }
+      }
+     },
+     "400":{
+      "$ref":"#/components/responses/ApiException400"
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     },
+     "502":{
+      "description":"Bad gateway",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e8b4ac5a98b4fdd5509637ee70be50d1c508e5a4c9ac2c19485e7cdc7eb9bd4e.ApiException"
+        },
+        "examples":{
+         "Error responses":{
+          "summary":"Error responses",
+          "description":"Error responses",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_GATEWAY",
+             "text":"Bad gateway."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "numbers:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":10,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/calls/1/files":{
+   "get":{
+    "tags":[
+     "channels",
+     "voice",
+     "file-management"
+    ],
+    "summary":"Get files",
+    "description":"Get files with pagination. Maximum number of pages is 100.",
+    "operationId":"get-calls-files",
+    "parameters":[
+     {
+      "name":"page",
+      "in":"query",
+      "description":"Results page to retrieve (0..N).",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "format":"int32",
+       "default":0,
+       "minimum":0
+      }
+     },
+     {
+      "name":"size",
+      "in":"query",
+      "description":"Number of records per page.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "format":"int32",
+       "default":20,
+       "maximum":100,
+       "minimum":1
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Success",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.FilePage"
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e8b4ac5a98b4fdd5509637ee70be50d1c508e5a4c9ac2c19485e7cdc7eb9bd4e.ApiException"
+        },
+        "examples":{
+         "Error responses":{
+          "summary":"Error responses",
+          "description":"Error responses",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Request is invalid."
+            }
+           }
+          }
+         },
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"BAD_REQUEST",
+             "text":"Bad request"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "calls:manage",
+     "calls:media:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   },
+   "post":{
+    "tags":[
+     "channels",
+     "voice",
+     "file-management"
+    ],
+    "summary":"Upload audio file",
+    "description":"Upload an audio file. Uploaded files can be played on calls, dialogs or conferences. The file will be removed if it is not used for 90 days.",
+    "operationId":"upload-calls-audio-file",
+    "requestBody":{
+     "description":"Audio file to be uploaded.",
+     "content":{
+      "multipart/form-data":{
+       "schema":{
+        "type":"object",
+        "properties":{
+         "file":{
+          "type":"string",
+          "format":"binary"
+         }
+        },
+        "required":[
+         "file"
+        ]
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"Success",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.File"
+        }
+       }
+      }
+     },
+     "400":{
+      "$ref":"#/components/responses/ApiException400"
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "calls:manage",
+     "calls:media:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
       "numberOfTimeUnits":0,
       "timeUnit":"m"
+     }
+    ]
+   }
+  },
+  "/calls/1/files/{fileId}":{
+   "get":{
+    "tags":[
+     "channels",
+     "voice",
+     "file-management"
+    ],
+    "summary":"Get file",
+    "description":"Get a single file.",
+    "operationId":"get-calls-file",
+    "parameters":[
+     {
+      "name":"fileId",
+      "in":"path",
+      "description":"File ID.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Success",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.File"
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/e8b4ac5a98b4fdd5509637ee70be50d1c508e5a4c9ac2c19485e7cdc7eb9bd4e.ApiException"
+        },
+        "examples":{
+         "Error responses":{
+          "summary":"Error responses",
+          "description":"Error responses",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"Resource was not found."
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "calls:manage",
+     "calls:media:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   },
+   "delete":{
+    "tags":[
+     "channels",
+     "voice",
+     "file-management"
+    ],
+    "summary":"Delete file",
+    "description":"Delete a file.",
+    "operationId":"delete-calls-file",
+    "parameters":[
+     {
+      "name":"fileId",
+      "in":"path",
+      "description":"File ID.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"Success",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.File"
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "$ref":"#/components/responses/ApiException404"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "calls:manage",
+     "calls:media:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
      }
     ]
    }
@@ -32269,7 +34523,7 @@
      },
      "collectResponse":{
       "type":"boolean",
-      "description":"If this field is set, the system will parse the response and save all its fields as variables inside scenario. Note: Parser ignores non-primitive fields and does not go deeper than the first level. For example, if the response is {\"letters\": \"abcd\", \"numbers\": 12345}, the system will store variables letters and numbers, with values abcd and 12345 respectively. The response cannot contain duplicate keys or predefined words. Check the example Call Api with response. Response that is parsed can only be in JSON or XML. Predefined words: from, to, startTime, answerTime and machineAnswered."
+      "description":"If this field is set, the system will parse the response and save all its fields as variables inside scenario. For example, if the response is `{\"letters\": \"abcd\", \"numbers\": 12345}`, the system will store variables letters and numbers, with values `abcd` and `12345` respectively. Nested JSON and XML objects are also supported; nested fields are resolved with underscore notation. For example, if the response is `{\"a\": {\"b\": {\"c\": \"xyz\"}}}`, the system will store `a_b_c` with value `xyz`. The response cannot contain duplicate keys or predefined words. Check the example Call Api with response. Response that is parsed can only be in JSON or XML. Predefined words: from, to, startTime, answerTime and machineAnswered."
      }
     },
     "required":[
@@ -34165,6 +36419,23 @@
     "properties":{
      "targetCallRequest":{
       "$ref":"#/components/schemas/5fc49137a7b003ca1d8c4957601417b8ed884356b7fbc49afe416dd5c098a0bd.DialogCallRequest"
+     },
+     "recording":{
+      "$ref":"#/components/schemas/14b5f31f4f292db4a32c4e61928f9a47f8ff4c0a1c06a38af2c29ef9ca05095d.DialogRecordingRequest"
+     },
+     "maxDuration":{
+      "type":"integer",
+      "format":"int32",
+      "default":28800,
+      "description":"Max duration in seconds."
+     },
+     "propagationOptions":{
+      "$ref":"#/components/schemas/5fc49137a7b003ca1d8c4957601417b8ed884356b7fbc49afe416dd5c098a0bd.DialogPropagationOptions"
+     },
+     "finalizeTransferOnFailure":{
+      "type":"boolean",
+      "default":true,
+      "description":"Whether to finalize the transfer if establishing the target call fails. When `false`, the dialog remains in the `TRANSFERRING` state and the transfer can be retried."
      }
     },
     "required":[
@@ -34382,7 +36653,8 @@
     "properties":{
      "name":{
       "type":"string",
-      "description":"Route name."
+      "description":"Route name.",
+      "minLength":1
      },
      "criteria":{
       "type":"array",
@@ -34422,7 +36694,8 @@
      },
      "name":{
       "type":"string",
-      "description":"Route name."
+      "description":"Route name.",
+      "minLength":1
      },
      "criteria":{
       "type":"array",
@@ -34499,7 +36772,8 @@
       "description":"Array of message destination addresses. Maximum number of destination addresses is 20k.",
       "items":{
        "$ref":"#/components/schemas/97cb4ba23432eb0e600ef0617ae1982d499839ef41226973c71dfb335b3071b8.Destination"
-      }
+      },
+      "minItems":1
      },
      "audioFileUrl":{
       "type":"string",
@@ -34722,15 +36996,18 @@
     "properties":{
      "errorCode":{
       "type":"string",
-      "description":"An error code uniquely identifying the error case."
+      "description":"An error code uniquely identifying the error case.",
+      "minLength":1
      },
      "description":{
       "type":"string",
-      "description":"A detailed description of an error."
+      "description":"A detailed description of an error.",
+      "minLength":1
      },
      "action":{
       "type":"string",
-      "description":"An action that should be taken to recover from the error."
+      "description":"An action that should be taken to recover from the error.",
+      "minLength":1
      },
      "violations":{
       "type":"array",
@@ -34892,7 +37169,8 @@
       "properties":{
        "asyncUrl":{
         "type":"string",
-        "description":"Callback URL for ASYNC mode"
+        "description":"Callback URL for ASYNC mode",
+        "minLength":1
        },
        "asyncUrlMethod":{
         "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.MarkupHttpMethod"
@@ -34917,7 +37195,8 @@
       "properties":{
        "username":{
         "type":"string",
-        "description":"Username."
+        "description":"Username.",
+        "minLength":1
        },
        "password":{
         "type":"string",
@@ -35034,6 +37313,128 @@
     ],
     "title":"CallRoutingApplication"
    },
+   "287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.CallRoutingPhoneEndpoint":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.Endpoint"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "from":{
+        "type":"string",
+        "description":"Phone number in the [E.164](https://en.wikipedia.org/wiki/E.164) format. Defaults to `from` value used in inbound call."
+       },
+       "phoneNumber":{
+        "type":"string",
+        "description":"Phone number in the [E.164] format. Defaults to `to` value used in inbound call."
+       },
+       "ringbackGeneration":{
+        "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.RingbackGeneration"
+       }
+      }
+     }
+    ],
+    "required":[
+     "type"
+    ],
+    "title":"CallRoutingPhoneEndpoint"
+   },
+   "287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.CallRoutingSipEndpoint":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.Endpoint"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "from":{
+        "type":"string",
+        "description":"Caller ID that will be used. Defaults to `from` value used in inbound call."
+       },
+       "username":{
+        "type":"string",
+        "description":"Username sent to a selected SIP trunk. When not defined, Infobip DID number is used instead."
+       },
+       "sipTrunkId":{
+        "type":"string",
+        "description":"Unique identifier of a SIP trunk.",
+        "minLength":1
+       },
+       "customHeaders":{
+        "type":"object",
+        "additionalProperties":{
+         "type":"string"
+        },
+        "description":"Custom headers. Only headers starting with `X-` prefix will be propagated. Supports using variables `${from}` and `${to}`."
+       },
+       "ringbackGeneration":{
+        "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.RingbackGeneration"
+       }
+      }
+     }
+    ],
+    "required":[
+     "sipTrunkId",
+     "type"
+    ],
+    "title":"CallRoutingSipEndpoint"
+   },
+   "287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.CallRoutingViberEndpoint":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.Endpoint"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "from":{
+        "type":"string",
+        "description":"Viber registered phone number. Defaults to `from` value used in inbound call."
+       },
+       "phoneNumber":{
+        "type":"string",
+        "description":"Phone number in the [E.164](https://en.wikipedia.org/wiki/E.164) format. Defaults to `to` value used in inbound call."
+       }
+      }
+     }
+    ],
+    "required":[
+     "type"
+    ],
+    "title":"CallRoutingViberEndpoint"
+   },
+   "287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.CallRoutingWhatsAppEndpoint":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.Endpoint"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "from":{
+        "type":"string",
+        "description":"WhatsApp registered phone number. Defaults to `from` value used in inbound call."
+       },
+       "phoneNumber":{
+        "type":"string",
+        "description":"Phone number in the [E.164](https://en.wikipedia.org/wiki/E.164) format. Defaults to `to` value used in inbound call."
+       },
+       "ringbackGeneration":{
+        "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.RingbackGeneration"
+       }
+      }
+     }
+    ],
+    "required":[
+     "type"
+    ],
+    "title":"CallRoutingWhatsAppEndpoint"
+   },
    "287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.CallTransfer":{
     "type":"object",
     "description":"Call transfers object enables transferring the ongoing call to another recipient(s) and establish a communication between your original recipient and additional one.",
@@ -35068,7 +37469,8 @@
     "properties":{
      "url":{
       "type":"string",
-      "description":"URL where markup language is hosted"
+      "description":"URL where markup language is hosted",
+      "minLength":1
      },
      "errorUrl":{
       "type":"string",
@@ -35079,7 +37481,6 @@
      }
     },
     "required":[
-     "errorUrl",
      "method",
      "url"
     ],
@@ -35137,7 +37538,8 @@
        "phoneNumber":{
         "type":"string",
         "description":"Phone number in the [E.164](https://en.wikipedia.org/wiki/E.164) format.",
-        "example":"41793026834"
+        "example":"41793026834",
+        "minLength":1
        }
       }
      }
@@ -35160,12 +37562,14 @@
        "username":{
         "type":"string",
         "description":"SIP endpoint username.",
-        "example":"alice"
+        "example":"alice",
+        "minLength":1
        },
        "sipTrunkId":{
         "type":"string",
         "description":"SIP trunk ID.",
-        "example":"3fa85f64-5717-4562-b3fc-2c963f66afa6"
+        "example":"3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "minLength":1
        },
        "customHeaders":{
         "type":"object",
@@ -35194,7 +37598,8 @@
     "properties":{
      "url":{
       "type":"string",
-      "description":"Callback URL."
+      "description":"Callback URL.",
+      "minLength":1
      },
      "method":{
       "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.MarkupHttpMethod"
@@ -35217,7 +37622,8 @@
        "phoneNumber":{
         "type":"string",
         "description":"Phone number in the [E.164](https://en.wikipedia.org/wiki/E.164) format.",
-        "example":"41793026834"
+        "example":"41793026834",
+        "minLength":1
        }
       }
      }
@@ -35240,7 +37646,8 @@
        "identity":{
         "type":"string",
         "description":"The identity used to present a user on the Infobip WebRTC platform. Must be unique.",
-        "example":"alice.smith"
+        "example":"alice.smith",
+        "minLength":1
        },
        "displayName":{
         "type":"string",
@@ -35268,7 +37675,8 @@
        "websocketEndpointConfigId":{
         "type":"string",
         "description":"Websocket endpoint configuration ID.",
-        "example":"3fa85f64-5717-4562-b3fc-2c963f66afa6"
+        "example":"3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "minLength":1
        },
        "identifier":{
         "type":"string",
@@ -35296,7 +37704,8 @@
        "phoneNumber":{
         "type":"string",
         "description":"Phone number in the [E.164](https://en.wikipedia.org/wiki/E.164) format.",
-        "example":"41793026834"
+        "example":"41793026834",
+        "minLength":1
        }
       }
      }
@@ -35318,7 +37727,8 @@
       "properties":{
        "applicationId":{
         "type":"string",
-        "description":"ID of an application to which a call is to be transferred."
+        "description":"ID of an application to which a call is to be transferred.",
+        "minLength":1
        },
        "customData":{
         "type":"object",
@@ -35330,7 +37740,9 @@
        "timeout":{
         "type":"integer",
         "format":"int32",
-        "description":"Time to wait, in seconds, for a receiving application to accept the transfer."
+        "description":"Time to wait, in seconds, for a receiving application to accept the transfer.",
+        "exclusiveMinimum":0,
+        "minimum":0
        }
       }
      }
@@ -35360,7 +37772,9 @@
       "format":"int32",
       "default":1,
       "description":"Maximum number of digits to capture.",
-      "maximum":30
+      "exclusiveMinimum":0,
+      "maximum":30,
+      "minimum":0
      },
      "timeout":{
       "type":"integer",
@@ -35394,7 +37808,8 @@
     "properties":{
      "url":{
       "type":"string",
-      "description":"Callback URL."
+      "description":"Callback URL.",
+      "minLength":1
      },
      "method":{
       "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.MarkupHttpMethod"
@@ -35429,7 +37844,8 @@
     "properties":{
      "text":{
       "type":"string",
-      "description":"Text to be spoken."
+      "description":"Text to be spoken.",
+      "minLength":1
      },
      "language":{
       "type":"string",
@@ -35452,6 +37868,76 @@
      "text"
     ],
     "title":"CaptureSayInstruction"
+   },
+   "287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.CaptureSpeech":{
+    "type":"object",
+    "description":"CaptureSpeech action captures speech from the caller.",
+    "properties":{
+     "action":{
+      "type":"string",
+      "description":"Action discriminator.",
+      "enum":[
+       "captureSpeech"
+      ]
+     },
+     "callback":{
+      "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.CallbackUrl"
+     },
+     "language":{
+      "type":"string",
+      "description":"Speech language. Must be defined for correct pronunciation. More info about available languages can be found [here](https://www.infobip.com/docs/voice-and-video/reference#speech-recognition-languages). Use language code column in the table.",
+      "example":"en-US",
+      "minLength":1
+     },
+     "timeout":{
+      "type":"integer",
+      "format":"int32",
+      "default":5,
+      "description":"The maximum duration of speech capture.",
+      "maximum":30,
+      "minimum":1
+     },
+     "maxSilence":{
+      "type":"integer",
+      "format":"int32",
+      "description":"The silence duration before terminating the speech capture after speech has been detected.",
+      "maximum":5,
+      "minimum":1
+     },
+     "keyPhrases":{
+      "type":"array",
+      "description":"Array of key-phrases used for matching capturing speech.",
+      "items":{
+       "type":"string",
+       "description":"Array of key-phrases used for matching capturing speech."
+      },
+      "uniqueItems":true
+     },
+     "terminateOnKeyPhrase":{
+      "type":"boolean",
+      "default":true,
+      "description":"Indicates whether speech capture should terminate immediately upon detecting a key phrase. When false, capture proceeds until completion and retains only the first matched key phrase, if any."
+     },
+     "customDictionary":{
+      "type":"array",
+      "description":"Array of custom words (typically, industry-specific terms) used for improved speech capture.",
+      "items":{
+       "type":"string",
+       "description":"Array of custom words (typically, industry-specific terms) used for improved speech capture."
+      }
+     },
+     "advancedFormatting":{
+      "type":"boolean",
+      "default":false,
+      "description":"Toggles enhanced text formatting features like punctuation, proper casing, numeral normalization, and disfluency filtering."
+     }
+    },
+    "required":[
+     "action",
+     "callback",
+     "language"
+    ],
+    "title":"CaptureSpeech"
    },
    "287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.ClickToCallApiMessage":{
     "type":"object",
@@ -35551,34 +38037,40 @@
     "items":{
      "oneOf":[
       {
-       "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.Play"
+       "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.CaptureDtmf"
       },
       {
-       "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.Say"
+       "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.CaptureSpeech"
+      },
+      {
+       "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.Dial"
       },
       {
        "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.Fetch"
       },
       {
+       "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.Hangup"
+      },
+      {
        "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.Pause"
       },
       {
-       "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.Hangup"
+       "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.Play"
       },
       {
        "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.Record"
       },
       {
-       "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.CaptureDtmf"
+       "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.Say"
+      },
+      {
+       "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.SendDtmf"
       },
       {
        "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.StartRecording"
       },
       {
        "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.StopRecording"
-      },
-      {
-       "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.Dial"
       }
      ]
     },
@@ -35624,7 +38116,8 @@
     "properties":{
      "key":{
       "type":"string",
-      "description":"Custom data key. Example: `key1`."
+      "description":"Custom data key. Example: `key1`.",
+      "minLength":1
      },
      "value":{
       "type":"string",
@@ -35680,6 +38173,7 @@
       "items":{
        "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.DeliveryDay"
       },
+      "minItems":1,
       "uniqueItems":true
      },
      "from":{
@@ -35758,7 +38252,7 @@
      "connectTimeout":{
       "type":"integer",
       "format":"int32",
-      "description":"Connection timeout in seconds (1 to 30).",
+      "description":"Connection timeout in seconds.",
       "maximum":30,
       "minimum":1
      },
@@ -35771,7 +38265,7 @@
      "answerBeforeConnecting":{
       "type":"boolean",
       "default":false,
-      "description":"Whether to answer the call before connecting to endpoints."
+      "description":"Whether to answer the call before connecting to endpoints. This value is applied only when `dial` is executed on unanswered call."
      },
      "recording":{
       "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.DialRecording"
@@ -35783,7 +38277,7 @@
      },
      "ringTone":{
       "type":"string",
-      "description":"Ring tone to play while connecting."
+      "description":"URL of the remote ring tone audio file to play while connecting."
      },
      "endpoints":{
       "type":"array",
@@ -35796,6 +38290,10 @@
      },
      "machineDetection":{
       "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.MachineDetection"
+     },
+     "sendDtmf":{
+      "type":"string",
+      "description":"DTMF digits to send after endpoint answered, but before connecting to the endpoint. `W` and `w` characters are supported to introduce one-second and half-second pause."
      }
     },
     "required":[
@@ -35869,10 +38367,10 @@
     "discriminator":{
      "propertyName":"type",
      "mapping":{
-      "PHONE":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.PhoneEndpoint",
-      "SIP":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.SipEndpoint",
-      "VIBER":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.ViberEndpoint",
-      "WHATSAPP":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.WhatsAppEndpoint",
+      "PHONE":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.CallRoutingPhoneEndpoint",
+      "SIP":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.CallRoutingSipEndpoint",
+      "VIBER":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.CallRoutingViberEndpoint",
+      "WHATSAPP":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.CallRoutingWhatsAppEndpoint",
       "WEBSOCKET":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.WebSocketEndpoint",
       "WEBRTC":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.WebRTCEndpoint"
      }
@@ -35916,7 +38414,9 @@
        "connectTimeout":{
         "type":"integer",
         "format":"int32",
-        "description":"Time to wait, in seconds, to establish a call toward the destination endpoint. The call will be terminated if it is not answered within the specified time."
+        "description":"Time to wait, in seconds, to establish a call toward the destination endpoint. The call will be terminated if it is not answered within the specified time.",
+        "exclusiveMinimum":0,
+        "minimum":0
        },
        "recording":{
         "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.Recording"
@@ -35952,7 +38452,9 @@
        "connectTimeout":{
         "type":"integer",
         "format":"int32",
-        "description":"Time to wait, in seconds, to establish a call toward the destination endpoint. The call will be terminated if it is not answered within the specified time."
+        "description":"Time to wait, in seconds, to establish a call toward the destination endpoint. The call will be terminated if it is not answered within the specified time.",
+        "exclusiveMinimum":0,
+        "minimum":0
        },
        "recording":{
         "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.Recording"
@@ -35990,7 +38492,8 @@
      },
      "url":{
       "type":"string",
-      "description":"URL to fetch markup instructions from."
+      "description":"URL to fetch markup instructions from.",
+      "minLength":1
      },
      "method":{
       "type":"string",
@@ -36016,18 +38519,21 @@
      "name":{
       "type":"string",
       "description":"File name.",
-      "example":"Example file"
+      "example":"Example file",
+      "minLength":1
      },
      "fileFormat":{
       "type":"string",
       "description":"File format.",
-      "example":"WAV"
+      "example":"WAV",
+      "minLength":1
      },
      "size":{
       "type":"integer",
       "format":"int64",
       "description":"File size in bytes.",
-      "example":292190
+      "example":292190,
+      "minimum":0
      },
      "creationTime":{
       "type":"string",
@@ -36065,7 +38571,8 @@
      },
      "fileId":{
       "type":"string",
-      "description":"Identifier of the audio file stored in Infobip storage."
+      "description":"Identifier of the audio file stored in Infobip storage.",
+      "minLength":1
      }
     },
     "required":[
@@ -36097,7 +38604,7 @@
      "errorCode":{
       "type":"string",
       "default":"REJECTED",
-      "description":"Error code to return when hanging up."
+      "description":"Error code used to reject a call. This value is applied only when `hangup` is executed on unanswered call."
      }
     },
     "required":[
@@ -36286,7 +38793,8 @@
       "items":{
        "type":"string",
        "description":"Phone number of the recipient. Phone number must be written in E.164 standard format (Example: 41793026727). Maximum number of phone numbers listed is 20k."
-      }
+      },
+      "minItems":1
      }
     },
     "required":[
@@ -36381,27 +38889,21 @@
     "type":"object",
     "allOf":[
      {
-      "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.Endpoint"
+      "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.CallEndpoint"
      },
      {
       "type":"object",
       "properties":{
-       "from":{
-        "type":"string",
-        "description":"Phone number in the [E.164](https://en.wikipedia.org/wiki/E.164) format. Defaults to `from` value used in inbound call."
-       },
        "phoneNumber":{
         "type":"string",
-        "description":"Phone number in the [E.164] format. Defaults to `to` value used in inbound call."
-       },
-       "ringbackGeneration":{
-        "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.RingbackGeneration"
+        "description":"Phone number in the [E.164](https://en.wikipedia.org/wiki/E.164) format.",
+        "minLength":1
        }
       }
      }
     ],
     "required":[
-     "type"
+     "phoneNumber"
     ],
     "title":"PhoneEndpoint"
    },
@@ -36422,7 +38924,9 @@
      "loopCount":{
       "type":"integer",
       "format":"int32",
-      "description":"Number of times to loop the content."
+      "description":"Number of times to loop the content.",
+      "exclusiveMinimum":0,
+      "minimum":0
      }
     },
     "required":[
@@ -36609,6 +39113,53 @@
        "message":{
         "type":"string"
        },
+       "suppressed":{
+        "type":"array",
+        "items":{
+         "type":"object",
+         "properties":{
+          "stackTrace":{
+           "type":"array",
+           "items":{
+            "type":"object",
+            "properties":{
+             "classLoaderName":{
+              "type":"string"
+             },
+             "moduleName":{
+              "type":"string"
+             },
+             "moduleVersion":{
+              "type":"string"
+             },
+             "methodName":{
+              "type":"string"
+             },
+             "fileName":{
+              "type":"string"
+             },
+             "lineNumber":{
+              "type":"integer",
+              "format":"int32"
+             },
+             "className":{
+              "type":"string"
+             },
+             "nativeMethod":{
+              "type":"boolean"
+             }
+            }
+           }
+          },
+          "message":{
+           "type":"string"
+          },
+          "localizedMessage":{
+           "type":"string"
+          }
+         }
+        }
+       },
        "localizedMessage":{
         "type":"string"
        }
@@ -36713,7 +39264,8 @@
      },
      "fileId":{
       "type":"string",
-      "description":"Identifier of the recording to play."
+      "description":"Identifier of the recording to play.",
+      "minLength":1
      }
     },
     "required":[
@@ -36763,6 +39315,53 @@
        },
        "message":{
         "type":"string"
+       },
+       "suppressed":{
+        "type":"array",
+        "items":{
+         "type":"object",
+         "properties":{
+          "stackTrace":{
+           "type":"array",
+           "items":{
+            "type":"object",
+            "properties":{
+             "classLoaderName":{
+              "type":"string"
+             },
+             "moduleName":{
+              "type":"string"
+             },
+             "moduleVersion":{
+              "type":"string"
+             },
+             "methodName":{
+              "type":"string"
+             },
+             "fileName":{
+              "type":"string"
+             },
+             "lineNumber":{
+              "type":"integer",
+              "format":"int32"
+             },
+             "className":{
+              "type":"string"
+             },
+             "nativeMethod":{
+              "type":"boolean"
+             }
+            }
+           }
+          },
+          "message":{
+           "type":"string"
+          },
+          "localizedMessage":{
+           "type":"string"
+          }
+         }
+        }
        },
        "localizedMessage":{
         "type":"string"
@@ -36968,7 +39567,8 @@
      },
      "text":{
       "type":"string",
-      "description":"Text to be spoken."
+      "description":"Text to be spoken.",
+      "minLength":1
      },
      "language":{
       "type":"string",
@@ -37012,6 +39612,29 @@
      }
     },
     "title":"SearchCriteria"
+   },
+   "287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.SendDtmf":{
+    "type":"object",
+    "description":"SendDtmf action sends DTMF digits on a call.",
+    "properties":{
+     "action":{
+      "type":"string",
+      "description":"Action discriminator.",
+      "enum":[
+       "sendDtmf"
+      ]
+     },
+     "dtmf":{
+      "type":"string",
+      "description":"DTMF digits to send. `W` and `w` characters are supported to introduce one-second and half-second pause.",
+      "minLength":1
+     }
+    },
+    "required":[
+     "action",
+     "dtmf"
+    ],
+    "title":"SendDtmf"
    },
    "287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.SendingSpeed":{
     "type":"object",
@@ -37069,7 +39692,8 @@
       "properties":{
        "from":{
         "type":"string",
-        "description":"Phone number in the [E.164](https://en.wikipedia.org/wiki/E.164) format."
+        "description":"Phone number in the [E.164](https://en.wikipedia.org/wiki/E.164) format.",
+        "minLength":1
        }
       }
      }
@@ -37090,7 +39714,8 @@
       "properties":{
        "from":{
         "type":"string",
-        "description":"Username sent to a selected SIP trunk."
+        "description":"Username sent to a selected SIP trunk.",
+        "minLength":1
        },
        "sipTrunkId":{
         "type":"string",
@@ -37123,7 +39748,8 @@
       "properties":{
        "from":{
         "type":"string",
-        "description":"The unique from identity used to present a user on the Infobip WebRTC platform."
+        "description":"The unique from identity used to present a user on the Infobip WebRTC platform.",
+        "minLength":1
        },
        "customData":{
         "type":"object",
@@ -37151,7 +39777,8 @@
       "properties":{
        "from":{
         "type":"string",
-        "description":"Phone number in the [E.164](https://en.wikipedia.org/wiki/E.164) format."
+        "description":"Phone number in the [E.164](https://en.wikipedia.org/wiki/E.164) format.",
+        "minLength":1
        },
        "customData":{
         "type":"object",
@@ -37233,39 +39860,34 @@
     "type":"object",
     "allOf":[
      {
-      "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.Endpoint"
+      "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.CallEndpoint"
      },
      {
       "type":"object",
       "properties":{
-       "from":{
-        "type":"string",
-        "description":"Caller ID that will be used. Defaults to `from` value used in inbound call."
-       },
        "username":{
         "type":"string",
-        "description":"Username sent to a selected SIP trunk. When not defined, Infobip DID number is used instead."
+        "description":"SIP endpoint username.",
+        "minLength":1
        },
        "sipTrunkId":{
         "type":"string",
-        "description":"Unique identifier of a SIP trunk."
+        "description":"SIP trunk ID.",
+        "minLength":1
        },
        "customHeaders":{
         "type":"object",
         "additionalProperties":{
          "type":"string"
         },
-        "description":"Custom headers. Only headers starting with `X-` prefix will be propagated. Supports using variables `${from}` and `${to}`."
-       },
-       "ringbackGeneration":{
-        "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.RingbackGeneration"
+        "description":"Custom headers. Only headers starting with `X-Client-` prefix will be propagated."
        }
       }
      }
     ],
     "required":[
      "sipTrunkId",
-     "type"
+     "username"
     ],
     "title":"SipEndpoint"
    },
@@ -37276,6 +39898,7 @@
      "headerName":{
       "type":"string",
       "description":"SIP header name starting with `X-`. Example: `X-Identity`.",
+      "minLength":1,
       "pattern":"^X-.*$"
      },
      "headerValue":{
@@ -37295,6 +39918,29 @@
      "DESC"
     ],
     "title":"SortDirection"
+   },
+   "287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.SpeechData":{
+    "type":"object",
+    "description":"The data related to the speechCapture instruction.",
+    "properties":{
+     "fullText":{
+      "type":"string",
+      "description":"Captured raw text."
+     },
+     "matchedKeyPhrase":{
+      "type":"string",
+      "description":"Specific phrase matched during the capture."
+     },
+     "confidence":{
+      "type":"number",
+      "format":"double",
+      "description":"Confidence of the capture result."
+     },
+     "terminationReason":{
+      "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.TerminationReason"
+     }
+    },
+    "title":"SpeechData"
    },
    "287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.StartRecording":{
     "type":"object",
@@ -37359,6 +40005,17 @@
     ],
     "title":"SyncMachineDetectionMode"
    },
+   "287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.TerminationReason":{
+    "type":"string",
+    "description":"Explains why the engine stopped capturing.",
+    "enum":[
+     "KEY_PHRASE",
+     "SILENCE",
+     "TIMEOUT",
+     "HANGUP"
+    ],
+    "title":"TerminationReason"
+   },
    "287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.UrlDestination":{
     "type":"object",
     "allOf":[
@@ -37384,7 +40041,9 @@
        },
        "url":{
         "type":"string",
-        "description":"URL endpoint which provides next destination to be tried in a route as a response to `POST` HTTP request sent by the Infobip Platform. Returned destination must be of `ENDPOINT_DESTINATION` type."
+        "description":"URL endpoint which provides next destination to be tried in a route as a response to `POST` HTTP request sent by the Infobip Platform. Returned destination must be of `ENDPOINT_DESTINATION` type.",
+        "minLength":1,
+        "pattern":""
        },
        "securityConfig":{
         "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.UrlSecurityConfig"
@@ -37466,13 +40125,16 @@
      },
      "fileUrl":{
       "type":"string",
-      "description":"URL of the remote audio file to play."
+      "description":"URL of the remote audio file to play.",
+      "minLength":1
      },
      "cacheDuration":{
       "type":"integer",
       "format":"int32",
       "description":"How long, in seconds, the fetched file may be cached (1 to 86400).",
-      "maximum":86400
+      "exclusiveMinimum":0,
+      "maximum":86400,
+      "minimum":0
      }
     },
     "required":[
@@ -37513,24 +40175,21 @@
     "type":"object",
     "allOf":[
      {
-      "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.Endpoint"
+      "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.CallEndpoint"
      },
      {
       "type":"object",
       "properties":{
-       "from":{
-        "type":"string",
-        "description":"Viber registered phone number. Defaults to `from` value used in inbound call."
-       },
        "phoneNumber":{
         "type":"string",
-        "description":"Phone number in the [E.164](https://en.wikipedia.org/wiki/E.164) format. Defaults to `to` value used in inbound call."
+        "description":"Phone number in the [E.164](https://en.wikipedia.org/wiki/E.164) format.",
+        "minLength":1
        }
       }
      }
     ],
     "required":[
-     "type"
+     "phoneNumber"
     ],
     "title":"ViberEndpoint"
    },
@@ -37588,7 +40247,8 @@
       "properties":{
        "identity":{
         "type":"string",
-        "description":"The unique identity used to present a user on the Infobip WebRTC platform. Defaults to `to` value used in inbound call."
+        "description":"The unique identity used to present a user on the Infobip WebRTC platform. Defaults to `to` value used in inbound call.",
+        "minLength":1
        }
       }
      }
@@ -37609,7 +40269,8 @@
       "properties":{
        "identity":{
         "type":"string",
-        "description":"The identity used to present a user on the Infobip WebRTC platform. Must be unique."
+        "description":"The identity used to present a user on the Infobip WebRTC platform. Must be unique.",
+        "minLength":1
        },
        "displayName":{
         "type":"string",
@@ -37634,7 +40295,8 @@
       "properties":{
        "websocketEndpointConfigId":{
         "type":"string",
-        "description":"Websocket endpoint configuration ID."
+        "description":"Websocket endpoint configuration ID.",
+        "minLength":1
        },
        "identifier":{
         "type":"string",
@@ -37667,7 +40329,8 @@
       "properties":{
        "websocketEndpointConfigId":{
         "type":"string",
-        "description":"Websocket endpoint configuration ID."
+        "description":"Websocket endpoint configuration ID.",
+        "minLength":1
        },
        "identifier":{
         "type":"string",
@@ -37713,24 +40376,21 @@
     "type":"object",
     "allOf":[
      {
-      "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.Endpoint"
+      "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.CallEndpoint"
      },
      {
       "type":"object",
       "properties":{
-       "from":{
-        "type":"string",
-        "description":"WhatsApp registered phone number. Defaults to `from` value used in inbound call."
-       },
        "phoneNumber":{
         "type":"string",
-        "description":"Phone number in the [E.164](https://en.wikipedia.org/wiki/E.164) format. Defaults to `to` value used in inbound call."
+        "description":"Phone number in the [E.164](https://en.wikipedia.org/wiki/E.164) format.",
+        "minLength":1
        }
       }
      }
     ],
     "required":[
-     "type"
+     "phoneNumber"
     ],
     "title":"WhatsAppEndpoint"
    },
@@ -37894,7 +40554,8 @@
       "description":"Array of messages to be sent, one object per every message",
       "items":{
        "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.AdvancedTtsApiMessage"
-      }
+      },
+      "minItems":1
      }
     },
     "required":[
@@ -40190,18 +42851,63 @@
     "allOf":[
      {
       "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.Event"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "properties":{
+        "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.DialogTransferFailedProperties"
+       }
+      }
      }
     ],
     "title":"DialogTransferFailedEvent"
+   },
+   "4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.DialogTransferFailedProperties":{
+    "type":"object",
+    "description":"Properties of the event emitted when a dialog transfer fails.",
+    "properties":{
+     "transferId":{
+      "type":"string",
+      "description":"Identifier that correlates all events belonging to the same dialog transfer."
+     },
+     "errorCode":{
+      "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.ErrorCodeInfo"
+     },
+     "finalized":{
+      "type":"boolean",
+      "description":"Whether the dialog transfer has been finalized. If `false`, the dialog remains in the `TRANSFERRING` state and the transfer can be retried."
+     }
+    },
+    "title":"DialogTransferFailedProperties"
    },
    "4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.DialogTransferFinishedEvent":{
     "type":"object",
     "allOf":[
      {
       "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.Event"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "properties":{
+        "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.DialogTransferFinishedProperties"
+       }
+      }
      }
     ],
     "title":"DialogTransferFinishedEvent"
+   },
+   "4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.DialogTransferFinishedProperties":{
+    "type":"object",
+    "description":"Properties of the event emitted when a dialog transfer finishes successfully.",
+    "properties":{
+     "transferId":{
+      "type":"string",
+      "description":"Identifier that correlates all events belonging to the same dialog transfer."
+     }
+    },
+    "title":"DialogTransferFinishedProperties"
    },
    "4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.DialogTransferRequestedEvent":{
     "type":"object",
@@ -40222,7 +42928,12 @@
    },
    "4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.DialogTransferRequestedProperties":{
     "type":"object",
+    "description":"Properties of the event emitted when a dialog transfer is requested.",
     "properties":{
+     "transferId":{
+      "type":"string",
+      "description":"Identifier that correlates all events belonging to the same dialog transfer."
+     },
      "transferorCall":{
       "$ref":"#/components/schemas/431fb79b0e816230968e14ba1e1c6fadb75cfde9cb3c381f4217b2777f48153f.Call"
      },
@@ -41215,6 +43926,15 @@
     ],
     "title":"MediaStreamingConfigResponse"
    },
+   "4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.MicrosoftDirectRoutingProvider":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.PegasusProvider"
+     }
+    ],
+    "title":"MicrosoftDirectRoutingProvider"
+   },
    "4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.MonitorRole":{
     "type":"object",
     "allOf":[
@@ -41527,7 +44247,8 @@
       "FRESHWORKS":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.FreshworksProvider",
       "GENESYS_CLOUD":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.GenesysCloudProvider",
       "CISCO_WEBEX":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.CiscoWebexProvider",
-      "OPENAI_REALTIME":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.OpenAiProvider"
+      "OPENAI_REALTIME":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.OpenAiProvider",
+      "MICROSOFT_DIRECT_ROUTING":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.MicrosoftDirectRoutingProvider"
      }
     },
     "properties":{
@@ -41544,7 +44265,8 @@
      "FRESHWORKS",
      "GENESYS_CLOUD",
      "CISCO_WEBEX",
-     "OPENAI_REALTIME"
+     "OPENAI_REALTIME",
+     "MICROSOFT_DIRECT_ROUTING"
     ],
     "title":"PegasusProviderTrunkType"
    },
@@ -41744,6 +44466,97 @@
     ],
     "title":"PublicErrorCode"
    },
+   "4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.PublicHiyaBusinessStatus":{
+    "type":"string",
+    "description":"Current vetting status.",
+    "enum":[
+     "PENDING",
+     "REGISTERED",
+     "ERROR_DUNS_MISMATCH",
+     "UNKNOWN"
+    ],
+    "title":"PublicHiyaBusinessStatus"
+   },
+   "4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.PublicHiyaFlagStatus":{
+    "type":"string",
+    "description":"Overall spam flag status.",
+    "enum":[
+     "FLAGGED",
+     "MIXED_HIGH",
+     "MIXED_LOW",
+     "UNFLAGGED",
+     "UNKNOWN"
+    ],
+    "title":"PublicHiyaFlagStatus"
+   },
+   "4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.PublicHiyaIndustry":{
+    "type":"string",
+    "description":"Business industry.",
+    "enum":[
+     "ACCOUNTING_OR_FINANCE",
+     "BILLING_AND_COLLECTIONS",
+     "BUSINESS_SERVICES",
+     "CHARITY_OR_FUNDRAISING",
+     "COMMUNICATIONS",
+     "CUSTOMER_SERVICE",
+     "DELIVERY_OR_SHIPPING",
+     "EDUCATION",
+     "FINANCIAL_SERVICES",
+     "GOVERNMENT_OR_PUBLIC_SERVICES",
+     "HEALTHCARE_OR_PHARMACY",
+     "INSURANCE",
+     "LEGAL_SERVICES",
+     "NOTIFICATIONS_OR_SCHEDULING",
+     "REAL_ESTATE",
+     "RETAIL",
+     "SALES",
+     "SOFTWARE_OR_TECHNOLOGY_OR_MEDIA",
+     "SURVEYS_AND_MARKET_RESEARCH",
+     "TRAVEL_OR_HOSPITALITY",
+     "OTHER"
+    ],
+    "title":"PublicHiyaIndustry"
+   },
+   "4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.PublicHiyaNumberOfEmployees":{
+    "type":"string",
+    "description":"Employee count range.",
+    "enum":[
+     "BETWEEN_1_AND_10",
+     "BETWEEN_11_AND_50",
+     "BETWEEN_51_AND_200",
+     "BETWEEN_201_AND_500",
+     "BETWEEN_501_AND_2000",
+     "BETWEEN_2001_AND_10000",
+     "MORE_THAN_10001"
+    ],
+    "title":"PublicHiyaNumberOfEmployees"
+   },
+   "4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.PublicHiyaPhoneNumberStatus":{
+    "type":"string",
+    "description":"Current registration status.",
+    "enum":[
+     "PENDING",
+     "REGISTERED",
+     "NOT_FOUND",
+     "ERROR_INVALID",
+     "ERROR_REGISTERED",
+     "ERROR_FRAUD",
+     "ERROR_UNEXPECTED",
+     "UNKNOWN"
+    ],
+    "title":"PublicHiyaPhoneNumberStatus"
+   },
+   "4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.PublicHiyaReputationAvailability":{
+    "type":"string",
+    "description":"Whether reputation data is available for this number.",
+    "enum":[
+     "AVAILABLE",
+     "UNAVAILABLE",
+     "NOT_FOUND",
+     "UNKNOWN"
+    ],
+    "title":"PublicHiyaReputationAvailability"
+   },
    "4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.PublicPlayContent":{
     "type":"object",
     "description":"Audio content to play. It can either be previously uploaded file or a file from a URL.",
@@ -41940,6 +44753,11 @@
        "type":"string"
       },
       "description":"Custom data."
+     },
+     "composedFileId":{
+      "type":"string",
+      "description":"Recording file identifier when auto-compose feature is turned on.",
+      "example":"218eceba-c044-430d-9f26-8f1a7f0g2d03"
      }
     },
     "title":"RecordingStartedProperties"
@@ -42830,6 +45648,73 @@
     ],
     "title":"TtyPlayContent"
    },
+   "4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.TxtRecord":{
+    "type":"object",
+    "description":"List of verified domains for this SIP trunk.",
+    "properties":{
+     "fqdn":{
+      "type":"string",
+      "description":"The verified domain name.",
+      "example":"sip.example.com"
+     },
+     "value":{
+      "type":"string",
+      "description":"The verification code for this domain.",
+      "example":"ms=ms12345678"
+     },
+     "createdAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when domain verification was set up (Example: 2026-09-07T13:40:11.072+0000).",
+      "readOnly":true
+     },
+     "updatedAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when domain verification was last updated (Example: 2026-09-07T13:40:11.072+0000).",
+      "readOnly":true
+     }
+    },
+    "title":"TxtRecord"
+   },
+   "4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.TxtRecordRequest":{
+    "type":"object",
+    "properties":{
+     "fqdn":{
+      "type":"string",
+      "description":"The domain name you want to verify for your SIP trunk.",
+      "example":"sip.example.com"
+     },
+     "value":{
+      "type":"string",
+      "description":"The verification code provided by your service provider.",
+      "example":"ms=ms12345678"
+     }
+    },
+    "required":[
+     "fqdn",
+     "value"
+    ],
+    "title":"TxtRecordRequest"
+   },
+   "4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.TxtRecordResponse":{
+    "type":"object",
+    "properties":{
+     "trunkId":{
+      "type":"string",
+      "description":"SIP trunk ID.",
+      "example":"034e622a-cc7e-456d-8a10-0ba43b11aa5e"
+     },
+     "txtRecords":{
+      "type":"array",
+      "description":"List of verified domains for this SIP trunk.",
+      "items":{
+       "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.TxtRecord"
+      }
+     }
+    },
+    "title":"TxtRecordResponse"
+   },
    "4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.UrlPlayContent":{
     "type":"object",
     "allOf":[
@@ -43027,12 +45912,17 @@
        "phoneNumber":{
         "type":"string",
         "description":"Phone number in the [E.164](https://en.wikipedia.org/wiki/E.164) format."
+       },
+       "bsuid":{
+        "type":"string",
+        "description":"Business-Scoped User ID. Used for outbound call initiation when the callee's phone number is not provided."
+       },
+       "displayName":{
+        "type":"string",
+        "description":"Caller's WhatsApp username. Populated on inbound calls for caller identification."
        }
       }
      }
-    ],
-    "required":[
-     "phoneNumber"
     ],
     "title":"WhatsAppEndpoint"
    },
@@ -43977,6 +46867,43 @@
      }
     },
     "title":"RecordingStatusCallbackRequest"
+   },
+   "60d0e6d5cbcf8382b5a6bad1f38781f71991c7ea63dad2e6ec22ddc8893af51c.SpeechCaptureCallbackRequest":{
+    "type":"object",
+    "description":"Markup Language speechCapture callback request object. Sent to the callback URL configured on the SpeechCapture instruction. Extends the instructions callback payload with the speech capture result.",
+    "properties":{
+     "callId":{
+      "type":"string",
+      "description":"Unique identifier of the call.",
+      "example":"3fa85f64-5717-4562-b3fc-2c963f66afa6"
+     },
+     "from":{
+      "type":"string",
+      "description":"The phone number of the caller in the [E.164](https://en.wikipedia.org/wiki/E.164) format.",
+      "example":"41793026834"
+     },
+     "to":{
+      "type":"string",
+      "description":"The phone number of the callee in the [E.164](https://en.wikipedia.org/wiki/E.164) format.",
+      "example":"41793026835"
+     },
+     "direction":{
+      "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.CallDirection"
+     },
+     "endpoint":{
+      "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.CallbackEndpoint"
+     },
+     "startTime":{
+      "type":"string",
+      "format":"date-time",
+      "description":"The timestamp when the call started, in ISO-8601 UTC format (yyyy-MM-dd'T'HH:mm:ss.SSSZ).",
+      "example":"2025-04-04T11:38:01.724Z"
+     },
+     "speechData":{
+      "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.SpeechData"
+     }
+    },
+    "title":"SpeechCaptureCallbackRequest"
    },
    "60d0e6d5cbcf8382b5a6bad1f38781f71991c7ea63dad2e6ec22ddc8893af51c.WebhookCallbackRequest":{
     "type":"object",
@@ -45427,7 +48354,8 @@
       "description":"Array of click to call messages to be sent.",
       "items":{
        "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.ClickToCallApiMessage"
-      }
+      },
+      "minItems":1
      }
     },
     "required":[
@@ -45441,7 +48369,8 @@
     "properties":{
      "to":{
       "type":"string",
-      "description":"Message destination addresses. Destination address must be in the E.164 standard format (Example: `41793026727`)."
+      "description":"Message destination addresses. Destination address must be in the E.164 standard format (Example: `41793026727`).",
+      "minLength":1
      },
      "messageId":{
       "type":"string",
@@ -46402,7 +49331,8 @@
     "properties":{
      "to":{
       "type":"string",
-      "description":"Phone number or regular expression pattern representing the phone number. Applies to all simulator endpoint types except `WEBRTC`. Examples: `41793026727`, `41793(.+)`."
+      "description":"Phone number or regular expression pattern representing the phone number. Applies to all simulator endpoint types except `WEBRTC`. Examples: `41793026727`, `41793(.+)`.",
+      "minLength":1
      },
      "useDisabledRoutes":{
       "type":"boolean",
@@ -46433,11 +49363,13 @@
     "properties":{
      "name":{
       "type":"string",
-      "description":"Configuration name."
+      "description":"Configuration name.",
+      "minLength":1
      },
      "markupUrl":{
       "type":"string",
-      "description":"URL where markup script is hosted."
+      "description":"URL where markup script is hosted.",
+      "minLength":1
      },
      "notifyUrl":{
       "type":"string",
@@ -46520,6 +49452,18 @@
      "endpoint":{
       "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.CallEndpoint"
      },
+     "connectTimeout":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Time to wait, in seconds, before the called party answers the call.",
+      "maximum":60
+     },
+     "maxDuration":{
+      "type":"integer",
+      "format":"int32",
+      "default":28800,
+      "description":"Max duration of the call in seconds."
+     },
      "from":{
       "type":"string",
       "description":"Phone number from which the call originated from.",
@@ -46554,6 +49498,16 @@
      "endpoint":{
       "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.CallEndpoint"
      },
+     "connectTimeout":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Time to wait, in seconds, before the called party answers the call."
+     },
+     "maxDuration":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Max duration of the call in seconds."
+     },
      "from":{
       "type":"string",
       "description":"Phone number from which the call originated from.",
@@ -46570,11 +49524,548 @@
     "type":"object",
     "description":"Response from the markup language callback containing instructions to execute.",
     "properties":{
-     "script":{
+     "actions":{
       "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.CmlScript"
      }
     },
     "title":"WebhookCallbackResponse"
+   },
+   "eb9826dda36bfa834ba8eec2d30e3749cbed4dee9bcabc5eb783ccaddacf60a3.HiyaReputationListResponse":{
+    "type":"object",
+    "properties":{
+     "results":{
+      "type":"array",
+      "description":"List of reputation results.",
+      "items":{
+       "$ref":"#/components/schemas/eb9826dda36bfa834ba8eec2d30e3749cbed4dee9bcabc5eb783ccaddacf60a3.PublicReputation"
+      }
+     }
+    },
+    "title":"HiyaReputationListResponse"
+   },
+   "eb9826dda36bfa834ba8eec2d30e3749cbed4dee9bcabc5eb783ccaddacf60a3.PublicBusiness":{
+    "type":"object",
+    "properties":{
+     "businessId":{
+      "type":"string",
+      "format":"uuid",
+      "description":"Unique business identifier (UUID).",
+      "example":"a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+     },
+     "legalName":{
+      "type":"string",
+      "description":"Legal name of the business.",
+      "example":"Example Corp"
+     },
+     "primaryName":{
+      "type":"string",
+      "description":"Primary/display name of the business.",
+      "example":"Example"
+     },
+     "dunsNumber":{
+      "type":"string",
+      "description":"DUNS number.",
+      "example":"123456789"
+     },
+     "einVatNumber":{
+      "type":"string",
+      "description":"EIN (US) or VAT number.",
+      "example":"12-3456789"
+     },
+     "country":{
+      "type":"string",
+      "description":"Country code in [ISO-3166-1 alpha-2](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes) format.",
+      "example":"US"
+     },
+     "region":{
+      "type":"string",
+      "description":"State/province.",
+      "example":"CA"
+     },
+     "city":{
+      "type":"string",
+      "description":"City name.",
+      "example":"San Francisco"
+     },
+     "postcode":{
+      "type":"string",
+      "description":"Postal/ZIP code.",
+      "example":"94105"
+     },
+     "streetAddressLine1":{
+      "type":"string",
+      "description":"Street address line 1.",
+      "example":"123 Main St"
+     },
+     "streetAddressLine2":{
+      "type":"string",
+      "description":"Street address line 2.",
+      "example":"Suite 100"
+     },
+     "industry":{
+      "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.PublicHiyaIndustry"
+     },
+     "contact":{
+      "$ref":"#/components/schemas/eb9826dda36bfa834ba8eec2d30e3749cbed4dee9bcabc5eb783ccaddacf60a3.PublicContact"
+     },
+     "numberOfEmployees":{
+      "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.PublicHiyaNumberOfEmployees"
+     },
+     "website":{
+      "type":"string",
+      "description":"Business website URL.",
+      "example":"https://example.com"
+     },
+     "registered":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when the business was registered.",
+      "example":"2026-07-15T10:30:00Z"
+     },
+     "updated":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when the business was last updated.",
+      "example":"2026-07-15T10:35:00Z"
+     },
+     "status":{
+      "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.PublicHiyaBusinessStatus"
+     },
+     "registeredTns":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Number of phone numbers registered under this business.",
+      "example":15
+     }
+    },
+    "required":[
+     "businessId",
+     "city",
+     "country",
+     "industry",
+     "legalName",
+     "numberOfEmployees",
+     "primaryName",
+     "registered",
+     "registeredTns",
+     "status",
+     "updated",
+     "website"
+    ],
+    "title":"PublicBusiness"
+   },
+   "eb9826dda36bfa834ba8eec2d30e3749cbed4dee9bcabc5eb783ccaddacf60a3.PublicCheckReputationRequest":{
+    "type":"object",
+    "properties":{
+     "phoneNumbers":{
+      "type":"array",
+      "description":"Phone numbers to query reputation for. Must be registered under the account.",
+      "example":[
+       "14155551234",
+       "14155551235"
+      ],
+      "items":{
+       "type":"string"
+      },
+      "maxItems":100,
+      "minItems":1
+     }
+    },
+    "required":[
+     "phoneNumbers"
+    ],
+    "title":"PublicCheckReputationRequest"
+   },
+   "eb9826dda36bfa834ba8eec2d30e3749cbed4dee9bcabc5eb783ccaddacf60a3.PublicContact":{
+    "type":"object",
+    "description":"Primary contact details.",
+    "properties":{
+     "firstName":{
+      "type":"string",
+      "description":"Contact first name.",
+      "example":"John",
+      "maxLength":100,
+      "minLength":0
+     },
+     "lastName":{
+      "type":"string",
+      "description":"Contact last name.",
+      "example":"Doe",
+      "maxLength":100,
+      "minLength":0
+     },
+     "email":{
+      "type":"string",
+      "description":"Contact email address.",
+      "example":"john.doe@example.com",
+      "maxLength":254,
+      "minLength":0
+     },
+     "title":{
+      "type":"string",
+      "description":"Contact job title.",
+      "example":"CTO"
+     },
+     "phoneNumber":{
+      "type":"string",
+      "description":"Contact phone number.",
+      "example":"14155551234"
+     }
+    },
+    "required":[
+     "email",
+     "firstName",
+     "lastName",
+     "phoneNumber",
+     "title"
+    ],
+    "title":"PublicContact"
+   },
+   "eb9826dda36bfa834ba8eec2d30e3749cbed4dee9bcabc5eb783ccaddacf60a3.PublicCreateBusinessRequest":{
+    "type":"object",
+    "properties":{
+     "legalName":{
+      "type":"string",
+      "description":"Legal name of the business.",
+      "example":"Example Corp",
+      "maxLength":150,
+      "minLength":0
+     },
+     "primaryName":{
+      "type":"string",
+      "description":"Primary/display name of the business.",
+      "example":"Example",
+      "maxLength":100,
+      "minLength":0
+     },
+     "dunsNumber":{
+      "type":"string",
+      "description":"DUNS number.",
+      "example":"123456789"
+     },
+     "einVatNumber":{
+      "type":"string",
+      "description":"EIN (US) or VAT number.",
+      "example":"12-3456789"
+     },
+     "country":{
+      "type":"string",
+      "description":"Country code in [ISO-3166-1 alpha-2](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes) format.",
+      "example":"US"
+     },
+     "region":{
+      "type":"string",
+      "description":"State/province or territory. Required for US and CA businesses, using the two-character state code (e.g. NY, WA) or territory code (e.g. ON, BC). Ignored for all other countries.",
+      "example":"NY"
+     },
+     "city":{
+      "type":"string",
+      "description":"City name.",
+      "example":"San Francisco"
+     },
+     "postcode":{
+      "type":"string",
+      "description":"Postal/ZIP code.",
+      "example":"94105"
+     },
+     "streetAddressLine1":{
+      "type":"string",
+      "description":"Street address line 1.",
+      "example":"123 Main St"
+     },
+     "streetAddressLine2":{
+      "type":"string",
+      "description":"Street address line 2.",
+      "example":"Suite 100"
+     },
+     "industry":{
+      "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.PublicHiyaIndustry"
+     },
+     "contact":{
+      "$ref":"#/components/schemas/eb9826dda36bfa834ba8eec2d30e3749cbed4dee9bcabc5eb783ccaddacf60a3.PublicContact"
+     },
+     "numberOfEmployees":{
+      "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.PublicHiyaNumberOfEmployees"
+     },
+     "website":{
+      "type":"string",
+      "description":"Business website URL.",
+      "example":"https://example.com"
+     },
+     "authorized":{
+      "type":"boolean",
+      "description":"Confirmation that the caller is authorized to register this business.",
+      "example":true
+     }
+    },
+    "required":[
+     "authorized",
+     "city",
+     "contact",
+     "country",
+     "industry",
+     "legalName",
+     "numberOfEmployees",
+     "primaryName",
+     "website"
+    ],
+    "title":"PublicCreateBusinessRequest"
+   },
+   "eb9826dda36bfa834ba8eec2d30e3749cbed4dee9bcabc5eb783ccaddacf60a3.PublicCreateBusinessResponse":{
+    "type":"object",
+    "properties":{
+     "businessId":{
+      "type":"string",
+      "format":"uuid",
+      "description":"Unique business identifier (UUID).",
+      "example":"a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+     }
+    },
+    "required":[
+     "businessId"
+    ],
+    "title":"PublicCreateBusinessResponse"
+   },
+   "eb9826dda36bfa834ba8eec2d30e3749cbed4dee9bcabc5eb783ccaddacf60a3.PublicPhoneJob":{
+    "type":"object",
+    "properties":{
+     "jobName":{
+      "type":"string",
+      "description":"Job/batch name.",
+      "example":"batch-2026-07-15"
+     },
+     "phoneNumbersPending":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Number of phone numbers under this job name still pending registration.",
+      "example":5
+     },
+     "phoneNumbersRegistered":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Number of phone numbers under this job name that are registered.",
+      "example":142
+     },
+     "phoneNumbersNeedingAttention":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Number of phone numbers under this job name whose registration was unsuccessful.",
+      "example":3
+     }
+    },
+    "required":[
+     "jobName",
+     "phoneNumbersNeedingAttention",
+     "phoneNumbersPending",
+     "phoneNumbersRegistered"
+    ],
+    "title":"PublicPhoneJob"
+   },
+   "eb9826dda36bfa834ba8eec2d30e3749cbed4dee9bcabc5eb783ccaddacf60a3.PublicPhoneNumber":{
+    "type":"object",
+    "properties":{
+     "phoneNumber":{
+      "type":"string",
+      "description":"Phone number.",
+      "example":"14155551234"
+     },
+     "jobName":{
+      "type":"string",
+      "description":"Registration job/batch name.",
+      "example":"batch-2026-07-15"
+     },
+     "registered":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when the number was registered.",
+      "example":"2026-07-15T11:00:00Z"
+     },
+     "status":{
+      "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.PublicHiyaPhoneNumberStatus"
+     },
+     "reputationAvailable":{
+      "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.PublicHiyaReputationAvailability"
+     },
+     "currentReputation":{
+      "$ref":"#/components/schemas/eb9826dda36bfa834ba8eec2d30e3749cbed4dee9bcabc5eb783ccaddacf60a3.PublicReputationDetail"
+     },
+     "lastUpdated":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when the reputation was last refreshed.",
+      "example":"2026-07-21T10:30:00Z"
+     }
+    },
+    "required":[
+     "phoneNumber",
+     "status"
+    ],
+    "title":"PublicPhoneNumber"
+   },
+   "eb9826dda36bfa834ba8eec2d30e3749cbed4dee9bcabc5eb783ccaddacf60a3.PublicPhoneNumberCrossBusiness":{
+    "type":"object",
+    "properties":{
+     "phoneNumber":{
+      "type":"string",
+      "description":"Phone number.",
+      "example":"14155551234"
+     },
+     "jobName":{
+      "type":"string",
+      "description":"Registration job/batch name.",
+      "example":"batch-2026-07-15"
+     },
+     "registered":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when the number was registered.",
+      "example":"2026-07-15T11:00:00Z"
+     },
+     "status":{
+      "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.PublicHiyaPhoneNumberStatus"
+     },
+     "businessId":{
+      "type":"string",
+      "format":"uuid",
+      "description":"Business ID the number is registered under.",
+      "example":"a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+     },
+     "reputationAvailable":{
+      "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.PublicHiyaReputationAvailability"
+     },
+     "currentReputation":{
+      "$ref":"#/components/schemas/eb9826dda36bfa834ba8eec2d30e3749cbed4dee9bcabc5eb783ccaddacf60a3.PublicReputationDetail"
+     },
+     "lastUpdated":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when the reputation was last refreshed.",
+      "example":"2026-07-21T10:30:00Z"
+     }
+    },
+    "required":[
+     "businessId",
+     "phoneNumber",
+     "status"
+    ],
+    "title":"PublicPhoneNumberCrossBusiness"
+   },
+   "eb9826dda36bfa834ba8eec2d30e3749cbed4dee9bcabc5eb783ccaddacf60a3.PublicRegisterPhoneNumbersRequest":{
+    "type":"object",
+    "properties":{
+     "jobName":{
+      "type":"string",
+      "description":"Identifier for the registration job/batch.",
+      "example":"batch-2026-07-15"
+     },
+     "phoneNumbers":{
+      "type":"array",
+      "description":"Phone numbers in international format. Between 1 and 100 per request.",
+      "example":[
+       "14155551234",
+       "14155551235"
+      ],
+      "items":{
+       "type":"string"
+      },
+      "maxItems":100,
+      "minItems":1
+     }
+    },
+    "required":[
+     "jobName",
+     "phoneNumbers"
+    ],
+    "title":"PublicRegisterPhoneNumbersRequest"
+   },
+   "eb9826dda36bfa834ba8eec2d30e3749cbed4dee9bcabc5eb783ccaddacf60a3.PublicReputation":{
+    "type":"object",
+    "properties":{
+     "phoneNumber":{
+      "type":"string",
+      "description":"Phone number.",
+      "example":"14155551234"
+     },
+     "businessId":{
+      "type":"string",
+      "format":"uuid",
+      "description":"Business ID the number is registered under.",
+      "example":"a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+     },
+     "reputationAvailable":{
+      "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.PublicHiyaReputationAvailability"
+     },
+     "currentReputation":{
+      "$ref":"#/components/schemas/eb9826dda36bfa834ba8eec2d30e3749cbed4dee9bcabc5eb783ccaddacf60a3.PublicReputationDetail"
+     }
+    },
+    "required":[
+     "phoneNumber",
+     "reputationAvailable"
+    ],
+    "title":"PublicReputation"
+   },
+   "eb9826dda36bfa834ba8eec2d30e3749cbed4dee9bcabc5eb783ccaddacf60a3.PublicReputationDetail":{
+    "type":"object",
+    "description":"Last known reputation metrics.",
+    "properties":{
+     "flagStatus":{
+      "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.PublicHiyaFlagStatus"
+     },
+     "flagCategory":{
+      "type":"string",
+      "description":"Category of spam flag (e.g. Telemarketer, Survey).",
+      "example":"Telemarketer"
+     },
+     "maturityMetric":{
+      "type":"string",
+      "description":"Is the number well-established or fresh/new?",
+      "enum":[
+       "GOOD",
+       "NORMAL",
+       "POOR",
+       "VERY_POOR",
+       "UNKNOWN"
+      ]
+     },
+     "desirabilityMetric":{
+      "type":"string",
+      "description":"Do recipients answer calls from this number?",
+      "enum":[
+       "GOOD",
+       "NORMAL",
+       "POOR",
+       "VERY_POOR",
+       "UNKNOWN"
+      ]
+     },
+     "engagementMetric":{
+      "type":"string",
+      "description":"Do recipients stay on the line?",
+      "enum":[
+       "GOOD",
+       "NORMAL",
+       "POOR",
+       "VERY_POOR",
+       "UNKNOWN"
+      ]
+     },
+     "reactionMetric":{
+      "type":"string",
+      "description":"Do recipients block or report the caller?",
+      "enum":[
+       "GOOD",
+       "NORMAL",
+       "POOR",
+       "VERY_POOR",
+       "UNKNOWN"
+      ]
+     }
+    },
+    "required":[
+     "flagStatus"
+    ],
+    "title":"PublicReputationDetail"
    },
    "efc1265916a727aef4eb46ff2e01c3e0ad0c1ad70cf38d568ed99c04a9a73fa0.RingbackGeneration":{
     "type":"object",
@@ -46716,6 +50207,70 @@
     },
     "title":"DialogRecordingPage"
    },
+   "f0c12807aec90d20a332deb5d4c4ff89651a8119eb6a5fa7e1d6e803f3c0e71b.HiyaBusinessPage":{
+    "type":"object",
+    "properties":{
+     "results":{
+      "type":"array",
+      "description":"The list of the results for this page.",
+      "items":{
+       "$ref":"#/components/schemas/eb9826dda36bfa834ba8eec2d30e3749cbed4dee9bcabc5eb783ccaddacf60a3.PublicBusiness"
+      }
+     },
+     "paging":{
+      "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.PageInfo"
+     }
+    },
+    "title":"HiyaBusinessPage"
+   },
+   "f0c12807aec90d20a332deb5d4c4ff89651a8119eb6a5fa7e1d6e803f3c0e71b.HiyaPhoneJobPage":{
+    "type":"object",
+    "properties":{
+     "results":{
+      "type":"array",
+      "description":"The list of the results for this page.",
+      "items":{
+       "$ref":"#/components/schemas/eb9826dda36bfa834ba8eec2d30e3749cbed4dee9bcabc5eb783ccaddacf60a3.PublicPhoneJob"
+      }
+     },
+     "paging":{
+      "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.PageInfo"
+     }
+    },
+    "title":"HiyaPhoneJobPage"
+   },
+   "f0c12807aec90d20a332deb5d4c4ff89651a8119eb6a5fa7e1d6e803f3c0e71b.HiyaPhoneNumberCrossBusinessPage":{
+    "type":"object",
+    "properties":{
+     "results":{
+      "type":"array",
+      "description":"The list of the results for this page.",
+      "items":{
+       "$ref":"#/components/schemas/eb9826dda36bfa834ba8eec2d30e3749cbed4dee9bcabc5eb783ccaddacf60a3.PublicPhoneNumberCrossBusiness"
+      }
+     },
+     "paging":{
+      "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.PageInfo"
+     }
+    },
+    "title":"HiyaPhoneNumberCrossBusinessPage"
+   },
+   "f0c12807aec90d20a332deb5d4c4ff89651a8119eb6a5fa7e1d6e803f3c0e71b.HiyaPhoneNumberPage":{
+    "type":"object",
+    "properties":{
+     "results":{
+      "type":"array",
+      "description":"The list of the results for this page.",
+      "items":{
+       "$ref":"#/components/schemas/eb9826dda36bfa834ba8eec2d30e3749cbed4dee9bcabc5eb783ccaddacf60a3.PublicPhoneNumber"
+      }
+     },
+     "paging":{
+      "$ref":"#/components/schemas/4527871876f1b326359cd9e5dcf777f0ecc3c5fde89b1e88f0c154b298b67611.PageInfo"
+     }
+    },
+    "title":"HiyaPhoneNumberPage"
+   },
    "f0c12807aec90d20a332deb5d4c4ff89651a8119eb6a5fa7e1d6e803f3c0e71b.MediaStreamConfigPage":{
     "type":"object",
     "properties":{
@@ -46785,7 +50340,8 @@
       "description":"Array of messages to be sent, one per every message.",
       "items":{
        "$ref":"#/components/schemas/287f18f04e9f129a7bc94ed3ae48e2480e2673b8fdf041ab5125fde9674634b8.MultiTtsApiMessage"
-      }
+      },
+      "minItems":1
      }
     },
     "required":[
@@ -47123,6 +50679,40 @@
       "application/json":{
        "schema":{
         "$ref":"#/components/schemas/60d0e6d5cbcf8382b5a6bad1f38781f71991c7ea63dad2e6ec22ddc8893af51c.CaptureDtmfCallbackRequest"
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/eaaf11bb9830fc826a8597df01bea6f2a14ef6d1ed129a4f6623981d52827778.WebhookCallbackResponse"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "receive-markup-language-capture-speech":{
+   "post":{
+    "tags":[
+     "channels",
+     "voice",
+     "calls-markup-language",
+     "markup-language-instructions"
+    ],
+    "summary":"Capture speech callback API",
+    "description":"When the Infobip platform finishes capturing speech input requested by a CaptureSpeech instruction, it generates a request \nto the callback URL configured on that CaptureSpeech instruction. The request carries the call context together with the \ncaptured speech details.",
+    "operationId":"markup-language-capture-speech-callback",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/60d0e6d5cbcf8382b5a6bad1f38781f71991c7ea63dad2e6ec22ddc8893af51c.SpeechCaptureCallbackRequest"
        }
       }
      }

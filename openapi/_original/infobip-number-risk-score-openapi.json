@@ -1,0 +1,759 @@
+{
+ "openapi":"3.1.0",
+ "info":{
+  "title":"Infobip OpenAPI Specification",
+  "description":"OpenAPI Specification that contains all public endpoints and webhooks.",
+  "contact":{
+   "name":"Infobip support",
+   "email":"support@infobip.com"
+  },
+  "version":"3.245.1",
+  "x-generatedAt":"2026-10-07T09:47:54.802325421Z"
+ },
+ "tags":[
+  {
+   "name":"platform",
+   "description":"Modular tools to scale and automate your business.\n",
+   "x-type":"category",
+   "x-displayName":"Platform"
+  },
+  {
+   "name":"number-risk-score",
+   "description":"Number Risk Score is a service that assesses the fraud risk associated with a phone number. More information about the product at [Number Risk Score product documentation](https://www.infobip.com/docs/number-risk-score).\n",
+   "x-type":"product",
+   "x-displayName":"Number Risk Score"
+  }
+ ],
+ "paths":{
+  "/number-risk-score/1/query":{
+   "post":{
+    "tags":[
+     "platform",
+     "number-risk-score"
+    ],
+    "summary":"Query phone number attributes",
+    "description":"Receives a phone number and user consent, and returns various attributes for the given number.\nAn empty object is returned for any attributes that have no information.",
+    "operationId":"number-risk-score-query",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/af9b8d75feb9ef8fdc8a04b912e3888bebe39d66ecc19747cc114307487c2bbc.NrsApiRequest"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"Successful response",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/af9b8d75feb9ef8fdc8a04b912e3888bebe39d66ecc19747cc114307487c2bbc.NrsApiResponse"
+        },
+        "examples":{
+         "All attributes present":{
+          "summary":"All attributes present",
+          "description":"All attributes present",
+          "value":{
+           "status":"OK",
+           "requestId":"2444d4e2-ab53-4f77-a5a5-aa97eac55b9e",
+           "riskLevel":"MEDIUM",
+           "tenure":{
+            "firstSeen":"2025-08-22",
+            "lastSeen":"2025-08-26"
+           },
+           "carrierInfo":{
+            "originalNetwork":{
+             "networkName":"HT",
+             "networkPrefix":"99",
+             "countryName":"Croatia",
+             "countryPrefix":"385"
+            },
+            "ported":true,
+            "portedNetwork":{
+             "networkName":"Tomato",
+             "networkPrefix":"92",
+             "countryName":"Croatia",
+             "countryPrefix":"385"
+            },
+            "lineType":"MOBILE"
+           },
+           "numberVelocity":{
+            "last24Hours":{
+             "count":18,
+             "riskLevel":"LOW"
+            },
+            "last90Days":{
+             "count":26,
+             "riskLevel":"LOW"
+            }
+           },
+           "rangeVelocity":{
+            "last24Hours":{
+             "count":3209,
+             "riskLevel":"HIGH"
+            },
+            "last90Days":{
+             "count":3619,
+             "riskLevel":"MEDIUM"
+            }
+           },
+           "trustedInteraction":false,
+           "botLikeBehavior":true
+          }
+         },
+         "Only one attribute present":{
+          "summary":"Only one attribute present",
+          "description":"Only one attribute present",
+          "value":{
+           "status":"OK",
+           "requestId":"0324b427-12fd-4c54-8dd2-6291e7498671",
+           "tenure":{
+            "firstSeen":"2025-08-22",
+            "lastSeen":"2025-08-26"
+           }
+          }
+         },
+         "No attributes present":{
+          "summary":"No attributes present",
+          "description":"No attributes present",
+          "value":{
+           "status":"NO_DATA",
+           "requestId":"a06c2ca1-3f19-41a7-b6c3-39c883fb874f"
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Phone number issue":{
+          "summary":"Phone number issue",
+          "description":"Phone number issue",
+          "value":{
+           "requestId":"a06c2ca1-3f19-41a7-b6c3-39c883fb874f",
+           "errorCode":"E400",
+           "description":"Request cannot be processed.",
+           "action":"Check the syntax, violations and adjust the request.",
+           "violations":[
+            {
+             "property":"phoneNumber",
+             "description":"Must not be blank."
+            },
+            {
+             "property":"phoneNumber",
+             "description":"Invalid format."
+            },
+            {
+             "property":"phoneNumber",
+             "description":"Size must be between 5 and 15."
+            }
+           ],
+           "resources":[]
+          }
+         },
+         "Consent granted issue":{
+          "summary":"Consent granted issue",
+          "description":"Consent granted issue",
+          "value":{
+           "requestId":"a06c2ca1-3f19-41a7-b6c3-39c883fb874f",
+           "errorCode":"E400",
+           "description":"Request cannot be processed.",
+           "action":"Check the syntax, violations and adjust the request.",
+           "violations":[
+            {
+             "property":"consentGranted",
+             "description":"Must be equal to true."
+            }
+           ],
+           "resources":[]
+          }
+         },
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "errorCode":"E400",
+           "description":"Request cannot be processed.",
+           "action":"Check the syntax, violations and adjust the request.",
+           "violations":[
+            {
+             "property":"property.path",
+             "violation":"Violation message."
+            }
+           ],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "number-risk-score:manage"
+    ],
+    "x-is-early-access":true,
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":100,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  }
+ },
+ "components":{
+  "schemas":{
+   "ApiError":{
+    "type":"object",
+    "properties":{
+     "errorCode":{
+      "type":"string",
+      "description":"An error code uniquely identifying the error case."
+     },
+     "description":{
+      "type":"string",
+      "description":"A detailed description of an error."
+     },
+     "action":{
+      "type":"string",
+      "description":"An action that should be taken to recover from the error."
+     },
+     "violations":{
+      "type":"array",
+      "description":"List of violations that caused the error.",
+      "items":{
+       "$ref":"#/components/schemas/ApiErrorViolation"
+      }
+     },
+     "resources":{
+      "type":"array",
+      "description":"List of available resources to recover from the error.",
+      "items":{
+       "$ref":"#/components/schemas/ApiErrorResource"
+      }
+     }
+    },
+    "required":[
+     "action",
+     "description",
+     "errorCode",
+     "resources",
+     "violations"
+    ],
+    "title":"ApiError"
+   },
+   "ApiErrorResource":{
+    "type":"object",
+    "description":"List of available resources to recover from the error.",
+    "properties":{
+     "name":{
+      "type":"string",
+      "description":"Resource name."
+     },
+     "url":{
+      "type":"string",
+      "description":"Resource URL."
+     }
+    },
+    "title":"ApiErrorResource"
+   },
+   "ApiErrorViolation":{
+    "type":"object",
+    "description":"List of violations that caused the error.",
+    "properties":{
+     "property":{
+      "type":"string",
+      "description":"Request property that caused the error."
+     },
+     "violation":{
+      "type":"string",
+      "description":"Detailed violation description."
+     }
+    },
+    "title":"ApiErrorViolation"
+   },
+   "af9b8d75feb9ef8fdc8a04b912e3888bebe39d66ecc19747cc114307487c2bbc.CarrierInfo":{
+    "type":[
+     "object",
+     "null"
+    ],
+    "description":"Carrier info response object",
+    "properties":{
+     "originalNetwork":{
+      "$ref":"#/components/schemas/af9b8d75feb9ef8fdc8a04b912e3888bebe39d66ecc19747cc114307487c2bbc.OriginalNetwork"
+     },
+     "ported":{
+      "type":[
+       "boolean",
+       "null"
+      ],
+      "description":"Flag describing whether or not number is ported to another network."
+     },
+     "portedNetwork":{
+      "$ref":"#/components/schemas/af9b8d75feb9ef8fdc8a04b912e3888bebe39d66ecc19747cc114307487c2bbc.PortedNetwork"
+     },
+     "lineType":{
+      "$ref":"#/components/schemas/af9b8d75feb9ef8fdc8a04b912e3888bebe39d66ecc19747cc114307487c2bbc.LineType"
+     }
+    },
+    "title":"CarrierInfo"
+   },
+   "af9b8d75feb9ef8fdc8a04b912e3888bebe39d66ecc19747cc114307487c2bbc.LineType":{
+    "type":[
+     "string",
+     "null"
+    ],
+    "description":"Type of number.",
+    "enum":[
+     "FIXED_LINE",
+     "MOBILE",
+     "FIXED_LINE_OR_MOBILE",
+     "PAGER",
+     "TOLL_FREE",
+     "PREMIUM_RATE",
+     "SHARED_COST",
+     "PERSONAL_NUMBER",
+     "VOIP",
+     "UAN",
+     "VOICEMAIL",
+     "UNKNOWN"
+    ],
+    "example":"MOBILE",
+    "title":"LineType"
+   },
+   "af9b8d75feb9ef8fdc8a04b912e3888bebe39d66ecc19747cc114307487c2bbc.NrsApiRequest":{
+    "type":"object",
+    "description":"Number Risk Score API request object",
+    "properties":{
+     "phoneNumber":{
+      "type":"string",
+      "description":"Phone number in international format (e.g., +1234567890).\nMust be between 5 and 15 digits, allowing an optional leading plus sign (+).",
+      "example":"+1234567890",
+      "maxLength":15,
+      "minLength":5,
+      "pattern":"^\\+?\\d{5,15}$"
+     },
+     "consentGranted":{
+      "type":"boolean",
+      "description":"Indicates whether the user of the mobile phone number has granted consent to perform a request. Must be true.",
+      "example":true
+     }
+    },
+    "required":[
+     "consentGranted",
+     "phoneNumber"
+    ],
+    "title":"NrsApiRequest"
+   },
+   "af9b8d75feb9ef8fdc8a04b912e3888bebe39d66ecc19747cc114307487c2bbc.NrsApiResponse":{
+    "type":"object",
+    "description":"Number Risk Score success response object",
+    "properties":{
+     "status":{
+      "$ref":"#/components/schemas/af9b8d75feb9ef8fdc8a04b912e3888bebe39d66ecc19747cc114307487c2bbc.ResponseStatus"
+     },
+     "riskLevel":{
+      "$ref":"#/components/schemas/af9b8d75feb9ef8fdc8a04b912e3888bebe39d66ecc19747cc114307487c2bbc.RiskLevel"
+     },
+     "requestId":{
+      "type":"string",
+      "description":"A unique request identifier",
+      "example":"667a35d6-d802-4439-9d69-15e272ad558f"
+     },
+     "carrierInfo":{
+      "$ref":"#/components/schemas/af9b8d75feb9ef8fdc8a04b912e3888bebe39d66ecc19747cc114307487c2bbc.CarrierInfo"
+     },
+     "tenure":{
+      "$ref":"#/components/schemas/af9b8d75feb9ef8fdc8a04b912e3888bebe39d66ecc19747cc114307487c2bbc.Tenure"
+     },
+     "numberVelocity":{
+      "$ref":"#/components/schemas/af9b8d75feb9ef8fdc8a04b912e3888bebe39d66ecc19747cc114307487c2bbc.NumberVelocity"
+     },
+     "rangeVelocity":{
+      "$ref":"#/components/schemas/af9b8d75feb9ef8fdc8a04b912e3888bebe39d66ecc19747cc114307487c2bbc.RangeVelocity"
+     },
+     "trustedInteraction":{
+      "type":[
+       "boolean",
+       "null"
+      ],
+      "description":"Indicator whether or not number had trusted interactions."
+     },
+     "botLikeBehavior":{
+      "type":[
+       "boolean",
+       "null"
+      ],
+      "description":"Indicator whether or not number had bot like behavior."
+     }
+    },
+    "required":[
+     "requestId",
+     "riskLevel",
+     "status"
+    ],
+    "title":"NrsApiResponse"
+   },
+   "af9b8d75feb9ef8fdc8a04b912e3888bebe39d66ecc19747cc114307487c2bbc.NumberVelocity":{
+    "type":[
+     "object",
+     "null"
+    ],
+    "description":"Number Velocity response object",
+    "properties":{
+     "last24Hours":{
+      "$ref":"#/components/schemas/af9b8d75feb9ef8fdc8a04b912e3888bebe39d66ecc19747cc114307487c2bbc.VelocitySummary"
+     },
+     "last90Days":{
+      "$ref":"#/components/schemas/af9b8d75feb9ef8fdc8a04b912e3888bebe39d66ecc19747cc114307487c2bbc.VelocitySummaryDetailed"
+     }
+    },
+    "title":"NumberVelocity"
+   },
+   "af9b8d75feb9ef8fdc8a04b912e3888bebe39d66ecc19747cc114307487c2bbc.OriginalNetwork":{
+    "type":[
+     "object",
+     "null"
+    ],
+    "description":"Information about phone number original network.",
+    "properties":{
+     "networkName":{
+      "type":[
+       "string",
+       "null"
+      ],
+      "description":"Optional human readable name of the network.",
+      "example":"T-Mobile"
+     },
+     "networkPrefix":{
+      "type":"string",
+      "description":"Network prefix, i.e. the numeric code identifying the network/operator within the country's numbering plan.",
+      "example":"99"
+     },
+     "countryName":{
+      "type":[
+       "string",
+       "null"
+      ],
+      "description":"Optional name of the country the network operates in.",
+      "example":"Croatia"
+     },
+     "countryPrefix":{
+      "type":"string",
+      "description":"Country prefix, i.e. the international dialing/calling code of the country.",
+      "example":"385"
+     }
+    },
+    "title":"OriginalNetwork"
+   },
+   "af9b8d75feb9ef8fdc8a04b912e3888bebe39d66ecc19747cc114307487c2bbc.PortedNetwork":{
+    "type":[
+     "object",
+     "null"
+    ],
+    "description":"Information about phone number ported network.",
+    "properties":{
+     "networkName":{
+      "type":"string"
+     },
+     "networkPrefix":{
+      "type":"string"
+     },
+     "countryName":{
+      "type":"string"
+     },
+     "countryPrefix":{
+      "type":"string"
+     }
+    },
+    "title":"PortedNetwork"
+   },
+   "af9b8d75feb9ef8fdc8a04b912e3888bebe39d66ecc19747cc114307487c2bbc.RangeVelocity":{
+    "type":[
+     "object",
+     "null"
+    ],
+    "description":"Range Velocity response object. Range in this context means a given phone number without the last three digits (e.g. range of the 5512345678 is 5512345)",
+    "properties":{
+     "last24Hours":{
+      "$ref":"#/components/schemas/af9b8d75feb9ef8fdc8a04b912e3888bebe39d66ecc19747cc114307487c2bbc.VelocitySummary"
+     },
+     "last90Days":{
+      "$ref":"#/components/schemas/af9b8d75feb9ef8fdc8a04b912e3888bebe39d66ecc19747cc114307487c2bbc.VelocitySummaryDetailed"
+     }
+    },
+    "title":"RangeVelocity"
+   },
+   "af9b8d75feb9ef8fdc8a04b912e3888bebe39d66ecc19747cc114307487c2bbc.ResponseStatus":{
+    "type":"string",
+    "description":"Status of the response, depending on the data availability",
+    "enum":[
+     "OK",
+     "NO_DATA"
+    ],
+    "example":"OK",
+    "title":"ResponseStatus"
+   },
+   "af9b8d75feb9ef8fdc8a04b912e3888bebe39d66ecc19747cc114307487c2bbc.RiskLevel":{
+    "type":[
+     "string",
+     "null"
+    ],
+    "description":"Risk level for given time frame",
+    "enum":[
+     "LOW",
+     "MEDIUM",
+     "HIGH",
+     "UNKNOWN"
+    ],
+    "title":"RiskLevel"
+   },
+   "af9b8d75feb9ef8fdc8a04b912e3888bebe39d66ecc19747cc114307487c2bbc.Tenure":{
+    "type":[
+     "object",
+     "null"
+    ],
+    "description":"Tenure response object",
+    "properties":{
+     "firstSeen":{
+      "type":[
+       "string",
+       "null"
+      ],
+      "format":"date",
+      "description":"Date of the first interaction with the phone number, in ISO 8601 format",
+      "example":"2025-01-15"
+     },
+     "lastSeen":{
+      "type":[
+       "string",
+       "null"
+      ],
+      "format":"date",
+      "description":"Date of the last interaction with the phone number, in ISO 8601 format",
+      "example":"2025-03-20"
+     }
+    },
+    "title":"Tenure"
+   },
+   "af9b8d75feb9ef8fdc8a04b912e3888bebe39d66ecc19747cc114307487c2bbc.VelocitySummary":{
+    "type":"object",
+    "description":"Detailed information about velocity.",
+    "properties":{
+     "count":{
+      "type":[
+       "integer",
+       "null"
+      ],
+      "format":"int32",
+      "description":"Count of messages received"
+     },
+     "riskLevel":{
+      "$ref":"#/components/schemas/af9b8d75feb9ef8fdc8a04b912e3888bebe39d66ecc19747cc114307487c2bbc.RiskLevel"
+     }
+    },
+    "title":"VelocitySummary"
+   },
+   "af9b8d75feb9ef8fdc8a04b912e3888bebe39d66ecc19747cc114307487c2bbc.VelocitySummaryDetailed":{
+    "type":"object",
+    "description":"Detailed information about velocity.",
+    "properties":{
+     "count":{
+      "type":[
+       "integer",
+       "null"
+      ],
+      "format":"int32",
+      "description":"Count of messages received"
+     },
+     "riskLevel":{
+      "$ref":"#/components/schemas/af9b8d75feb9ef8fdc8a04b912e3888bebe39d66ecc19747cc114307487c2bbc.RiskLevel"
+     }
+    },
+    "title":"VelocitySummaryDetailed"
+   }
+  },
+  "responses":{
+   "ApiError401":{
+    "description":"Unauthorized",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E401",
+       "description":"The request lacks valid authentication credentials for the requested resource.",
+       "action":"Check the resources and adjust authentication credentials.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"API Authentication",
+         "url":"https://www.infobip.com/docs/essentials/api-authentication"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E401</errorCode>\n  <description>The request lacks valid authentication credentials for the requested resource.</description>\n  <action>Check the resources and adjust authentication credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Authentication</name>\n      <url>https://www.infobip.com/docs/essentials/api-authentication</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError403":{
+    "description":"Forbidden",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E403",
+       "description":"Insufficient permissions to access the requested resource.",
+       "action":"Repeat the request with new or different credentials.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"API Scopes",
+         "url":"https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E403</errorCode>\n  <description>Insufficient permissions to access the requested resource.</description>\n  <action>Repeat the request with new or different credentials.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>API Scopes</name>\n      <url>https://www.infobip.com/docs/essentials/api-essentials/api-authorization#api-scopes</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError429":{
+    "description":"Too Many Requests",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E429",
+       "description":"Too many requests sent.",
+       "action":"Check request rate limit specified in the API endpoint documentation resource.",
+       "violations":[],
+       "resources":[
+        {
+         "name":"Throttling handling errors",
+         "url":"https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors"
+        }
+       ]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E429</errorCode>\n  <description>Too many requests sent.</description>\n  <action>Check request rate limit specified in the API endpoint documentation resource.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>Throttling handling errors</name>\n      <url>https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+     }
+    }
+   },
+   "ApiError500":{
+    "description":"Internal Server Error",
+    "content":{
+     "application/json":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":{
+       "errorCode":"E500",
+       "description":"Something went wrong.",
+       "action":"Contact the support.",
+       "violations":[],
+       "resources":[]
+      }
+     },
+     "application/xml":{
+      "schema":{
+       "$ref":"#/components/schemas/ApiError"
+      },
+      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E500</errorCode>\n  <description>Something went wrong.</description>\n  <action>Contact the support.</action>\n  <violations/>\n  <resources/>\n</ApiError>\n"
+     }
+    }
+   }
+  },
+  "parameters":{},
+  "examples":{},
+  "requestBodies":{},
+  "headers":{},
+  "securitySchemes":{
+   "APIKeyHeader":{
+    "type":"apiKey",
+    "description":"This is the most secure authorization type and the one with the most flexibility.\n\nAPI keys can be generated by calling the dedicated API method. Furthermore, API keys can have a limited scope and cover only some API methods. Lastly, they can\nbe revoked at any time. This range of possibilities makes API keys well suited for separating the API access rights across multiple applications or use cases.\nFinally, the loss of an API key is easily manageable.\n\nYou can manage your API keys from [GUI](https://portal.infobip.com/settings/accounts/api-keys), or programmatically\nwith [dedicated API](#platform-&-connectivity/settings).\n\nAPI key Authorization header example:\n\n```shell\nAuthorization: App 003026bbc133714df1834b8638bb496e-8f4b3d9a-e931-478d-a994-28a725159ab9\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "Basic":{
+    "type":"http",
+    "description":"Basic authorization type can be used in situations when the API key is not available. For example, API methods for generating API keys should be authenticated\nwith the Basic type.\n\nIn this case, the credentials included in the Authorization header should be a Base64 encoded username and password combination. More formally, basic\nauthentication header can be constructed in three steps:\n\n* Username and password are concatenated using the colon `(:)` as a separator `username:password`.\n* The resulting string is encoded using the [RFC2045-MIME](https://www.ietf.org/rfc/rfc2045.txt) variant of Base64.\n* Encoded string is added as credentials after the `\"Basic \"` type.\n\nExample:\n\n```shell\nUsername: \"Aladdin\"\nPassword: \"openSesame\"\n\nConcatenated string: \"Aladdin:openSesame\"\n\nBase64 encoded string: \"QWxhZGRpbjpvcGVuU2VzYW1l\"\n\nAuthorization header: \"Basic QWxhZGRpbjpvcGVuU2VzYW1l\"\n```\n\n> **Implementation detail**: Base64 encoding is a standard and many available programming languages and frameworks provide convenient methods for encoding\n> strings.\n",
+    "scheme":"basic"
+   },
+   "IBSSOTokenHeader":{
+    "type":"apiKey",
+    "description":"This authorization type is suited for situations when you do not want to store Infobip credentials in your own app. Instead, your users will input their Infobip\ncredentials every time they access your application and the application will use those credentials to create a session. From then on, the session token can be\nused to authenticate subsequent API requests. Note that the session will expire automatically after a predefined period of inactivity, and can also be manually\nterminated by making an appropriate API call.\n\nYou can find more details on the creation and behavior of the session at\nthe [dedicated documentation page](#platform-connectivity/account-management/create-session).\n\nAfter obtaining the session token by calling the above-referenced API method you can include it in the Authorization header like this:\n\n```shell\nAuthorization: IBSSO 2f9b4d31-2d0d-49a8-85f0-9b862bdca394\n```\n",
+    "name":"Authorization",
+    "in":"header"
+   },
+   "OAuth2":{
+    "type":"oauth2",
+    "description":"Similarly to the IBSSO Token authentication you can use OAuth 2.0 bearer token with Infobip serving both as resource and authorization server. You can obtain\nthe access token using the client credentials grant from `auth/1/oauth2/token` endpoint. It will provide you with your access token, and its expiration period.\nYou can use the token to authorize your API calls until it expires. You can find out more about the process in\nthe [official specification](https://tools.ietf.org/html/rfc6749#section-4.4).\n\nYou can include your access token in the Authorization HTTP request header like this:\n\n```http\nAuthorization: Bearer <access_token>\n```",
+    "flows":{
+     "clientCredentials":{
+      "tokenUrl":"https://api.infobip.com/auth/1/oauth2/token",
+      "scopes":{}
+     }
+    }
+   }
+  },
+  "links":{},
+  "callbacks":{}
+ }
+}

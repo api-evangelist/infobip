@@ -1,3 +1,119 @@
-generated: '2026-10-04'
-method: none
-signals: {}
+generated: '2026-10-08'
+method: searched
+probe: true
+source:
+- https://www.infobip.com/privacy-documents
+- https://www.infobip.com/policies/processors
+- https://www.infobip.com/data-processing-agreement
+- https://www.infobip.com/policies/privacy-notice
+- https://www.infobip.com/policies/data-retention-notice
+- https://www.infobip.com/policies/law-enforcement-requests
+note: Harvested 2026-10-08 from the provider's own legal pages, read through the markdown exports the site serves at cdn-web.infobip.com/uploads/markdown-exports/www.infobip.com/<page>.md (the HTML pages are 450-650KB shells). Guessed conventional paths (/accessibility, /accessibility/vpat, /legal/subprocessors, /legal/dpa, /transparency, /security/sbom, /privacy/requests) all returned the edge 403 (93 bytes) and were not used; /docs/data-residency variants 404. No accessibility conformance report, SBOM, training-data summary, transparency report or support-lifetime statement was found on any owned host.
+signals:
+  subprocessors:
+    url: https://www.infobip.com/policies/processors
+    section: List of Sub-processors
+    note: A table (Sub-processor, purpose, sub-processing location, transfer mechanism) naming Microsoft Ireland Operations Limited, Amazon Web Services, Google LLC and others, with a subscription form for change notifications.
+    evidence:
+    - source: https://www.infobip.com/policies/processors
+      http_status: 200
+      fetched: '2026-10-08'
+      quote: Below you will find details on where we store and how we access customer's data, and a complete list of currently engaged Sub-processors.
+  data_residency:
+    url: https://www.infobip.com/policies/processors
+    section: Information about storage and access
+    regions:
+    - eu
+    note: EU data centres are the contractual default; an EU region-locked data centre is offered on request (Schrems II whitepaper at https://cdn-web.infobip.com/uploads/2023/05/infobip_schrems_II_EU_region_locked_data_center_whitepaper.pdf). The page states 40+ data centres globally but names no other region as a selectable residency option.
+    evidence:
+    - source: https://www.infobip.com/policies/processors
+      http_status: 200
+      fetched: '2026-10-08'
+      quote: Unless otherwise agreed upon with the customer in writing (and whenever the customer requires it), Infobip shall ensure that the customer's data are stored and processed at the processing systems located in Infobip data centers within the European Union.
+  incident_notification:
+    url: https://www.infobip.com/data-processing-agreement
+    stated_sla: without undue delay
+    note: The DPA states no numeric notification window; "without undue delay" is the verbatim commitment.
+    evidence:
+    - source: https://www.infobip.com/data-processing-agreement
+      http_status: 200
+      fetched: '2026-10-08'
+      quote: PROVIDER shall, without undue delay after having become aware of it, notify the CLIENT of the Personal Data Breach.
+  data_subject_request:
+    url: https://www.infobip.com/policies/privacy-notice
+    section: SUBMITTING PRIVACY REQUESTS
+    note: Requests go to data-protection-officer(at)infobip.com; the notice also references a Privacy Rights Request Form whose URL is not exposed in the page text (the form is embedded on /privacy-documents). No API endpoint is documented.
+    evidence:
+    - source: https://www.infobip.com/policies/privacy-notice
+      http_status: 200
+      fetched: '2026-10-08'
+      quote: 'To exercise your rights, or to have an authorized agent make a request on your behalf, you may contact us at: Email: data-protection-officer(at)infobip.com We will verify your identity'
+  ai_transparency:
+    url: https://cdn-web.infobip.com/uploads/2025/01/infobip-ai-privacy-whitepaper-public-1.pdf
+    note: A public AI privacy whitepaper (PDF, 5.6MB, HTTP 200) linked from /privacy-documents; a privacy-and-trust disclosure for AI deployments, not a model card or training-data summary.
+    evidence:
+    - source: https://www.infobip.com/privacy-documents
+      http_status: 200
+      fetched: '2026-10-08'
+      quote: Infobip AI Privacy Whitepaper Learn the proactive steps Infobip takes to ensure privacy and trust within AI deployments in this comprehensive Whitepaper.
+  exit_assistance:
+    url: https://www.infobip.com/policies/data-retention-notice
+    section: You can export your data
+    note: Export of communication logs and reports through the customer-facing tools; the same notice lets customers shorten or extend default retention. No dedicated migration/exit page exists.
+    evidence:
+    - source: https://www.infobip.com/policies/data-retention-notice
+      http_status: 200
+      fetched: '2026-10-08'
+      quote: you can export the logs and reports with details about your communication with message text and traffic data from the customer-facing tools following the features available for the product you use.
+  data_retention:
+    url: https://www.infobip.com/policies/data-retention-notice
+    section: Default retention periods
+    note: 'Non-canonical signal: a dated table of default retention periods per data class (e.g. communication content 3 months for CPaaS services, 6 months for Answers and Conversations; OTT media 30 days; WhatsApp media 7 days).'
+    evidence:
+    - source: https://www.infobip.com/policies/data-retention-notice
+      http_status: 200
+      fetched: '2026-10-08'
+      quote: Unless otherwise agreed with you, we will implement the following default retention rules to ensure your data are kept no longer than necessary
+  data_transfer_agreement:
+    url: https://www.infobip.com/policies/data-transfer-agreement
+    note: 'Non-canonical signal: EU SCCs and UK Addendum data transfer agreement offered to customers and partners.'
+    evidence:
+    - source: https://www.infobip.com/policies/data-transfer-agreement
+      http_status: 200
+      fetched: '2026-10-08'
+      quote: Infobip is offering its customers and partners a possibility to execute an additional Data Transfer Agreement to include the new EU Standard Contractual Clauses (SCCs) and the UK Addendum.
+  dsa_point_of_contact:
+    url: https://www.infobip.com/policies/law-enforcement-requests
+    note: 'Non-canonical signal: a DSA Articles 11/12 point-of-contact page for authorities and service recipients (last updated 14 Aug 2023). It is NOT a transparency report (no request counts are published), so transparency_report is not claimed.'
+    evidence:
+    - source: https://www.infobip.com/policies/law-enforcement-requests
+      http_status: 200
+      fetched: '2026-10-08'
+      quote: Information requested by Articles 11 and 12 of the REGULATION (EU) 2022/2065 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL of 19 October 2022 on a Single Market For Digital Services
+  do_not_track:
+    url: https://www.infobip.com/policies/privacy-notice
+    honored: false
+    note: 'Non-canonical signal: the notice states DNT is not honored. It says nothing about Global Privacy Control, so global_privacy_control is not claimed either way.'
+    evidence:
+    - source: https://www.infobip.com/policies/privacy-notice
+      http_status: 200
+      fetched: '2026-10-08'
+      quote: While the opt-out tools provided above help us stop tracking you, we do not currently recognize or respond to DNT signals.
+  minimum_age_statement:
+    url: https://www.infobip.com/policies/privacy-notice
+    section: INFORMATION FROM CHILDREN
+    note: 'Non-canonical signal: a stated minimum age (18; 21 for Singapore; 16-18 with guardian consent for India), with no age-assurance mechanism described, so age_assurance is not claimed.'
+    evidence:
+    - source: https://www.infobip.com/policies/privacy-notice
+      http_status: 200
+      fetched: '2026-10-08'
+      quote: Our Services are not intended for children or minors (individuals under 18 years of age).
+absent:
+  sbom: not found
+  support_lifetime: not found (SDK docs state Semantic Versioning only)
+  accessibility_conformance: not found
+  training_data_summary: not found
+  global_privacy_control: no published statement
+  age_assurance: no mechanism published
+  notice_and_action: not found
+  transparency_report: not found

@@ -1,7 +1,6 @@
 ---
-name: Run a 2FA PIN verification flow
-description: Create a 2FA application and message template, send a PIN over SMS, voice or email, verify
-  it, and read the verification status.
+name: two-factor-authentication
+description: Create a 2FA application and message template, send a PIN over SMS, voice or email, verify it, and read the verification status.
 api: openapi/infobip-2fa-openapi.json
 operations:
 - create-2fa-application
@@ -13,8 +12,8 @@ operations:
 provider: Infobip
 generated: '2026-07-25'
 method: generated
-source: Grounded in operationIds verified in openapi/infobip-2fa-openapi.json plus conventions/infobip-conventions.yml,
-  errors/infobip-error-codes.yml and rate-limits/infobip-rate-limits.yml
+source: Grounded in operationIds verified in openapi/infobip-2fa-openapi.json plus conventions/infobip-conventions.yml, errors/infobip-error-codes.yml and rate-limits/infobip-rate-limits.yml
+title: Run a 2FA PIN verification flow
 ---
 
 # Run a 2FA PIN verification flow

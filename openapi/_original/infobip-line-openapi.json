@@ -7,8 +7,8 @@
    "name":"Infobip support",
    "email":"support@infobip.com"
   },
-  "version":"3.210.0",
-  "x-generatedAt":"2026-07-23T15:23:49.30644178Z"
+  "version":"3.245.1",
+  "x-generatedAt":"2026-10-07T09:47:45.423130804Z"
  },
  "tags":[
   {
@@ -321,6 +321,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -328,9 +331,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -494,6 +494,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -501,9 +504,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -518,11 +518,13 @@
   "schemas":{
    "267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Action":{
     "type":"object",
+    "description":"Action performed when the component is tapped.",
     "discriminator":{
      "propertyName":"type",
      "mapping":{
       "URI":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.UriAction",
-      "POSTBACK":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.PostbackAction"
+      "POSTBACK":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.PostbackAction",
+      "MESSAGE":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.MessageAction"
      }
     },
     "properties":{
@@ -536,12 +538,14 @@
     "type":"string",
     "enum":[
      "URI",
-     "POSTBACK"
+     "POSTBACK",
+     "MESSAGE"
     ],
     "title":"ActionType"
    },
    "267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Alignment":{
     "type":"string",
+    "description":"Alignment style in the horizontal direction.",
     "enum":[
      "START",
      "END",
@@ -551,9 +555,11 @@
    },
    "267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.AltUri":{
     "type":"object",
+    "description":"URI opened on LINE for macOS and Windows, taking precedence over uri on those platforms.",
     "properties":{
      "desktop":{
       "type":"string",
+      "description":"URI opened on LINE for macOS and Windows when the action is performed.",
       "maxLength":1000,
       "minLength":0
      }
@@ -562,6 +568,7 @@
    },
    "267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.AspectMode":{
     "type":"string",
+    "description":"Display style used when the aspect ratio of an image differs from the requested aspect ratio.",
     "enum":[
      "COVER",
      "FIT"
@@ -570,81 +577,104 @@
    },
    "267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.BlockStyle":{
     "type":"object",
+    "description":"Style applied to a single block of a bubble.",
     "properties":{
      "backgroundColor":{
-      "type":"string"
+      "type":"string",
+      "description":"Background color of the block as a hexadecimal color code."
      },
      "separator":{
-      "type":"boolean"
+      "type":"boolean",
+      "description":"Whether to place a separator above the block. A separator can't be placed above the first block."
      },
      "separatorColor":{
-      "type":"string"
+      "type":"string",
+      "description":"Color of the separator as a hexadecimal color code."
      }
     },
     "title":"BlockStyle"
    },
    "267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Box":{
     "type":"object",
+    "description":"Component that lays out other components horizontally, vertically or along a baseline.",
     "properties":{
      "layout":{
       "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.BoxLayout"
      },
      "backgroundColor":{
-      "type":"string"
+      "type":"string",
+      "description":"Background color of the box as a hexadecimal color code, optionally including an alpha channel."
      },
      "borderColor":{
-      "type":"string"
+      "type":"string",
+      "description":"Color of the box border as a hexadecimal color code."
      },
      "borderWidth":{
-      "type":"string"
+      "type":"string",
+      "description":"Width of the box border, either a keyword such as none, light, normal, medium, semi-bold or bold, or a value in pixels."
      },
      "cornerRadius":{
-      "type":"string"
+      "type":"string",
+      "description":"Radius used when rounding the corners of the border, either a keyword such as none, xs, sm, md, lg, xl or xxl, or a value in pixels."
      },
      "width":{
-      "type":"string"
+      "type":"string",
+      "description":"Width of the box, either a value in pixels or a percentage of the width of the parent element."
      },
      "height":{
-      "type":"string"
+      "type":"string",
+      "description":"Height of the box, either a value in pixels or a percentage of the height of the parent element."
      },
      "flex":{
       "type":"integer",
       "format":"int32",
+      "description":"Ratio of the width or height of this component within the parent box.",
       "maximum":20,
       "minimum":0
      },
      "margin":{
-      "type":"string"
+      "type":"string",
+      "description":"Minimum amount of space before this component in its parent container."
      },
      "spacing":{
-      "type":"string"
+      "type":"string",
+      "description":"Minimum amount of space between the components in this box."
      },
      "paddingAll":{
-      "type":"string"
+      "type":"string",
+      "description":"Free space between the borders of this box and its child elements."
      },
      "paddingTop":{
-      "type":"string"
+      "type":"string",
+      "description":"Free space between the upper border of this box and the upper end of its child elements."
      },
      "paddingBottom":{
-      "type":"string"
+      "type":"string",
+      "description":"Free space between the lower border of this box and the lower end of its child elements."
      },
      "paddingStart":{
-      "type":"string"
+      "type":"string",
+      "description":"Free space between the start border of this box and the start of its child elements, on the left for left-to-right text."
      },
      "paddingEnd":{
-      "type":"string"
+      "type":"string",
+      "description":"Free space between the end border of this box and the end of its child elements, on the right for left-to-right text."
      },
      "offsetTop":{
-      "type":"string"
+      "type":"string",
+      "description":"Offset from the top, applied relative to the reference given by position."
      },
      "offsetBottom":{
-      "type":"string"
+      "type":"string",
+      "description":"Offset from the bottom, applied relative to the reference given by position."
      },
      "offsetStart":{
-      "type":"string"
+      "type":"string",
+      "description":"Offset from the start, applied relative to the reference given by position."
      },
      "offsetEnd":{
-      "type":"string"
+      "type":"string",
+      "description":"Offset from the end, applied relative to the reference given by position."
      },
      "position":{
       "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Position"
@@ -654,6 +684,7 @@
      },
      "contents":{
       "type":"array",
+      "description":"Components contained in this box.",
       "items":{
        "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Component"
       }
@@ -669,6 +700,7 @@
    },
    "267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.BoxLayout":{
     "type":"string",
+    "description":"Layout style of the components inside a box.",
     "enum":[
      "HORIZONTAL",
      "VERTICAL",
@@ -694,6 +726,9 @@
        "header":{
         "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Box"
        },
+       "hero":{
+        "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Image"
+       },
        "body":{
         "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Box"
        },
@@ -713,6 +748,7 @@
    },
    "267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.BubbleDirection":{
     "type":"string",
+    "description":"Text directionality and the direction in which components are placed in horizontal boxes.",
     "enum":[
      "LEFT_TO_RIGHT",
      "RIGHT_TO_LEFT"
@@ -721,6 +757,7 @@
    },
    "267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.BubbleSize":{
     "type":"string",
+    "description":"Size of the bubble, ranging from nano to giga.",
     "enum":[
      "NANO",
      "MICRO",
@@ -745,26 +782,32 @@
        "flex":{
         "type":"integer",
         "format":"int32",
+        "description":"Ratio of the width or height of this component within the parent box.",
         "maximum":20,
         "minimum":0
        },
        "margin":{
-        "type":"string"
+        "type":"string",
+        "description":"Minimum amount of space before this component in its parent container."
        },
        "position":{
         "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Position"
        },
        "offsetTop":{
-        "type":"string"
+        "type":"string",
+        "description":"Offset from the top, applied relative to the reference given by position."
        },
        "offsetBottom":{
-        "type":"string"
+        "type":"string",
+        "description":"Offset from the bottom, applied relative to the reference given by position."
        },
        "offsetStart":{
-        "type":"string"
+        "type":"string",
+        "description":"Offset from the start, applied relative to the reference given by position."
        },
        "offsetEnd":{
-        "type":"string"
+        "type":"string",
+        "description":"Offset from the end, applied relative to the reference given by position."
        },
        "height":{
         "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Height"
@@ -773,7 +816,8 @@
         "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Style"
        },
        "color":{
-        "type":"string"
+        "type":"string",
+        "description":"Text color when the style is link, or background color when the style is primary or secondary, as a hexadecimal color code."
        },
        "gravity":{
         "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Gravity"
@@ -786,8 +830,35 @@
     ],
     "title":"Button"
    },
+   "267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.CarouselContainer":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.LineNotificationContainer"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "contents":{
+        "type":"array",
+        "description":"Bubbles contained within the carousel, browsed by scrolling sideways.",
+        "items":{
+         "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.BubbleContainer"
+        },
+        "maxItems":12,
+        "minItems":1
+       }
+      }
+     }
+    ],
+    "required":[
+     "contents"
+    ],
+    "title":"CarouselContainer"
+   },
    "267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Component":{
     "type":"object",
+    "description":"Components contained in this box.",
     "discriminator":{
      "propertyName":"type",
      "mapping":{
@@ -797,7 +868,8 @@
       "IMAGE":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Image",
       "SEPARATOR":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Separator",
       "TEXT":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Text",
-      "SPAN":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Span"
+      "SPAN":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Span",
+      "FILLER":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Filler"
      }
     },
     "properties":{
@@ -816,7 +888,8 @@
      "IMAGE",
      "SEPARATOR",
      "TEXT",
-     "SPAN"
+     "SPAN",
+     "FILLER"
     ],
     "title":"ComponentType"
    },
@@ -967,7 +1040,8 @@
       "description":"Days of the week which are included in the delivery time window. At least one day must be provided. Separate multiple days with a comma.",
       "items":{
        "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.DeliveryDay"
-      }
+      },
+      "minItems":1
      },
      "from":{
       "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.DeliveryTime"
@@ -981,8 +1055,31 @@
     ],
     "title":"DeliveryTimeWindow"
    },
+   "267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Filler":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Component"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "flex":{
+        "type":"integer",
+        "format":"int32",
+        "description":"Ratio of the width or height of this component within the parent box.",
+        "maximum":20,
+        "minimum":0
+       }
+      }
+     }
+    ],
+    "deprecated":true,
+    "title":"Filler"
+   },
    "267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Gravity":{
     "type":"string",
+    "description":"Alignment style in the vertical direction.",
     "enum":[
      "TOP",
      "BOTTOM",
@@ -992,6 +1089,7 @@
    },
    "267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Height":{
     "type":"string",
+    "description":"Height of the button, either small or medium.",
     "enum":[
      "SMALL",
      "MEDIUM"
@@ -1008,31 +1106,40 @@
       "type":"object",
       "properties":{
        "url":{
-        "type":"string"
+        "type":"string",
+        "description":"URL of the icon image. Must use HTTPS and point to a JPEG or PNG file.",
+        "minLength":1
        },
        "margin":{
-        "type":"string"
+        "type":"string",
+        "description":"Minimum amount of space before this component in its parent container."
        },
        "position":{
         "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Position"
        },
        "offsetTop":{
-        "type":"string"
+        "type":"string",
+        "description":"Offset from the top, applied relative to the reference given by position."
        },
        "offsetBottom":{
-        "type":"string"
+        "type":"string",
+        "description":"Offset from the bottom, applied relative to the reference given by position."
        },
        "offsetStart":{
-        "type":"string"
+        "type":"string",
+        "description":"Offset from the start, applied relative to the reference given by position."
        },
        "offsetEnd":{
-        "type":"string"
+        "type":"string",
+        "description":"Offset from the end, applied relative to the reference given by position."
        },
        "size":{
-        "type":"string"
+        "type":"string",
+        "description":"Size of the icon, either a keyword such as xs, sm, md, lg or xl, or a value in pixels."
        },
        "aspectRatio":{
-        "type":"string"
+        "type":"string",
+        "description":"Aspect ratio of the icon, in width:height format."
        }
       }
      }
@@ -1044,64 +1151,71 @@
    },
    "267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Image":{
     "type":"object",
-    "allOf":[
-     {
-      "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Component"
+    "description":"Component that displays an image.",
+    "properties":{
+     "url":{
+      "type":"string",
+      "description":"URL of the image. Must use HTTPS and point to a JPEG or PNG file.",
+      "minLength":1
      },
-     {
-      "type":"object",
-      "properties":{
-       "url":{
-        "type":"string"
-       },
-       "flex":{
-        "type":"integer",
-        "format":"int32",
-        "maximum":20,
-        "minimum":0
-       },
-       "margin":{
-        "type":"string"
-       },
-       "position":{
-        "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Position"
-       },
-       "offsetTop":{
-        "type":"string"
-       },
-       "offsetBottom":{
-        "type":"string"
-       },
-       "offsetStart":{
-        "type":"string"
-       },
-       "offsetEnd":{
-        "type":"string"
-       },
-       "align":{
-        "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Alignment"
-       },
-       "gravity":{
-        "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Gravity"
-       },
-       "size":{
-        "type":"string"
-       },
-       "aspectRatio":{
-        "type":"string"
-       },
-       "aspectMode":{
-        "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.AspectMode"
-       },
-       "backgroundColor":{
-        "type":"string"
-       },
-       "action":{
-        "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Action"
-       }
-      }
+     "flex":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Ratio of the width or height of this component within the parent box.",
+      "maximum":20,
+      "minimum":0
+     },
+     "margin":{
+      "type":"string",
+      "description":"Minimum amount of space before this component in its parent container."
+     },
+     "position":{
+      "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Position"
+     },
+     "offsetTop":{
+      "type":"string",
+      "description":"Offset from the top, applied relative to the reference given by position."
+     },
+     "offsetBottom":{
+      "type":"string",
+      "description":"Offset from the bottom, applied relative to the reference given by position."
+     },
+     "offsetStart":{
+      "type":"string",
+      "description":"Offset from the start, applied relative to the reference given by position."
+     },
+     "offsetEnd":{
+      "type":"string",
+      "description":"Offset from the end, applied relative to the reference given by position."
+     },
+     "align":{
+      "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Alignment"
+     },
+     "gravity":{
+      "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Gravity"
+     },
+     "size":{
+      "type":"string",
+      "description":"Maximum width of the image, either a keyword such as xs, sm, md, lg or xl, or a value in pixels or as a percentage."
+     },
+     "aspectRatio":{
+      "type":"string",
+      "description":"Aspect ratio of the image, in width:height format."
+     },
+     "aspectMode":{
+      "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.AspectMode"
+     },
+     "backgroundColor":{
+      "type":"string",
+      "description":"Background color of the image as a hexadecimal color code."
+     },
+     "action":{
+      "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Action"
+     },
+     "type":{
+      "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.ComponentType"
      }
-    ],
+    },
     "required":[
      "url"
     ],
@@ -1117,7 +1231,8 @@
      },
      "principalEntityId":{
       "type":"string",
-      "description":"Your assigned DLT principal entity ID."
+      "description":"Your assigned DLT principal entity ID.",
+      "minLength":1
      },
      "telemarketerId":{
       "type":"string",
@@ -1135,14 +1250,16 @@
     "properties":{
      "sender":{
       "type":"string",
-      "description":"The sender ID. It can be alphanumeric or numeric (e.g., `CompanyName`). Make sure you don't exceed [character limit](https://www.infobip.com/docs/sms/get-started#sender-names)."
+      "description":"The sender ID. It can be alphanumeric or numeric (e.g., `CompanyName`). Make sure you don't exceed [character limit](https://www.infobip.com/docs/sms/get-started#sender-names).",
+      "minLength":1
      },
      "destinations":{
       "type":"array",
       "description":"An array of destination objects for where messages are being sent. A valid destination is required.",
       "items":{
        "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.ToDestination"
-      }
+      },
+      "minItems":1
      },
      "content":{
       "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.LineOnOutboundContent"
@@ -1173,10 +1290,12 @@
    },
    "267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.LineNotificationContainer":{
     "type":"object",
+    "description":"Container that defines the layout of the message, either a single bubble or a carousel of bubbles.",
     "discriminator":{
      "propertyName":"type",
      "mapping":{
-      "BUBBLE":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.BubbleContainer"
+      "BUBBLE":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.BubbleContainer",
+      "CAROUSEL":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.CarouselContainer"
      }
     },
     "properties":{
@@ -1189,7 +1308,8 @@
    "267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.LineNotificationContainerType":{
     "type":"string",
     "enum":[
-     "BUBBLE"
+     "BUBBLE",
+     "CAROUSEL"
     ],
     "title":"LineNotificationContainerType"
    },
@@ -1227,6 +1347,7 @@
       "properties":{
        "altText":{
         "type":"string",
+        "description":"Alternative text shown in notifications, the chat list and quoted messages instead of the message itself.",
         "maxLength":400,
         "minLength":0
        },
@@ -1250,7 +1371,8 @@
       "description":"An array of message objects of a single message or multiple messages sent under one bulk ID.",
       "items":{
        "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.LineMessage"
-      }
+      },
+      "minItems":1
      },
      "options":{
       "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.LineMessageRequestOptions"
@@ -1260,6 +1382,36 @@
      "messages"
     ],
     "title":"LineRequest"
+   },
+   "267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.MessageAction":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Action"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "label":{
+        "type":"string",
+        "description":"Label displayed on the action.",
+        "maxLength":20,
+        "minLength":0
+       },
+       "text":{
+        "type":"string",
+        "description":"Text sent to the chat as a message from the user when the action is performed.",
+        "maxLength":300,
+        "minLength":0
+       }
+      }
+     }
+    ],
+    "required":[
+     "label",
+     "text"
+    ],
+    "title":"MessageAction"
    },
    "267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.MessageDeliveryReporting":{
     "type":"object",
@@ -1455,6 +1607,7 @@
    },
    "267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Position":{
     "type":"string",
+    "description":"Reference used when positioning a component, either relative to the previous component or absolute to the top left of the parent element.",
     "enum":[
      "RELATIVE",
      "ABSOLUTE"
@@ -1472,16 +1625,21 @@
       "properties":{
        "label":{
         "type":"string",
+        "description":"Label displayed on the action.",
         "maxLength":20,
         "minLength":0
        },
        "data":{
         "type":"string",
+        "description":"String returned in the postback data property of the webhook event when the action is performed.",
         "maxLength":1000,
         "minLength":0
        },
-       "altUri":{
-        "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.AltUri"
+       "displayText":{
+        "type":"string",
+        "description":"Text displayed in the chat as a message from the user when the action is performed.",
+        "maxLength":300,
+        "minLength":0
        }
       }
      }
@@ -1550,7 +1708,8 @@
       "description":"An array of message objects of a single message or multiple messages sent under one bulk ID.",
       "items":{
        "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.MessageResponseMessageResponseDetails"
-      }
+      },
+      "minItems":1
      }
     },
     "required":[
@@ -1586,10 +1745,12 @@
       "type":"object",
       "properties":{
        "margin":{
-        "type":"string"
+        "type":"string",
+        "description":"Minimum amount of space before this component in its parent container."
        },
        "color":{
-        "type":"string"
+        "type":"string",
+        "description":"Color of the separator as a hexadecimal color code."
        }
       }
      }
@@ -1624,13 +1785,17 @@
       "type":"object",
       "properties":{
        "text":{
-        "type":"string"
+        "type":"string",
+        "description":"Text of this span.",
+        "minLength":1
        },
        "color":{
-        "type":"string"
+        "type":"string",
+        "description":"Font color as a hexadecimal color code."
        },
        "size":{
-        "type":"string"
+        "type":"string",
+        "description":"Font size, either a keyword such as xs, sm, md, lg or xl, or a value in pixels."
        },
        "weight":{
         "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Weight"
@@ -1662,8 +1827,12 @@
    },
    "267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Style":{
     "type":"object",
+    "description":"Style of each block of a bubble.",
     "properties":{
      "header":{
+      "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.BlockStyle"
+     },
+     "hero":{
       "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.BlockStyle"
      },
      "body":{
@@ -1685,10 +1854,12 @@
       "type":"object",
       "properties":{
        "text":{
-        "type":"string"
+        "type":"string",
+        "description":"Text to display. Ignored when contents is set."
        },
        "contents":{
         "type":"array",
+        "description":"Spans that make up the text, taking precedence over text when both are set.",
         "items":{
          "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Span"
         }
@@ -1696,14 +1867,17 @@
        "flex":{
         "type":"integer",
         "format":"int32",
+        "description":"Ratio of the width or height of this component within the parent box.",
         "maximum":20,
         "minimum":0
        },
        "margin":{
-        "type":"string"
+        "type":"string",
+        "description":"Minimum amount of space before this component in its parent container."
        },
        "size":{
-        "type":"string"
+        "type":"string",
+        "description":"Font size, either a keyword such as xs, sm, md, lg or xl, or a value in pixels."
        },
        "align":{
         "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Alignment"
@@ -1712,15 +1886,18 @@
         "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Gravity"
        },
        "wrap":{
-        "type":"boolean"
+        "type":"boolean",
+        "description":"Whether the text wraps onto multiple lines."
        },
        "maxLines":{
         "type":"integer",
         "format":"int32",
+        "description":"Maximum number of lines to display, where 0 displays the entire text and anything longer ends in an ellipsis.",
         "minimum":0
        },
        "color":{
-        "type":"string"
+        "type":"string",
+        "description":"Font color as a hexadecimal color code."
        },
        "weight":{
         "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Weight"
@@ -1729,16 +1906,20 @@
         "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Position"
        },
        "offsetTop":{
-        "type":"string"
+        "type":"string",
+        "description":"Offset from the top, applied relative to the reference given by position."
        },
        "offsetBottom":{
-        "type":"string"
+        "type":"string",
+        "description":"Offset from the bottom, applied relative to the reference given by position."
        },
        "offsetStart":{
-        "type":"string"
+        "type":"string",
+        "description":"Offset from the start, applied relative to the reference given by position."
        },
        "offsetEnd":{
-        "type":"string"
+        "type":"string",
+        "description":"Offset from the end, applied relative to the reference given by position."
        },
        "action":{
         "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Action"
@@ -1750,6 +1931,7 @@
    },
    "267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.TextDecoration":{
     "type":"string",
+    "description":"Decoration applied to the text, one of none, underline or line-through.",
     "enum":[
      "NONE",
      "UNDERLINE",
@@ -1759,6 +1941,7 @@
    },
    "267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.TextStyle":{
     "type":"string",
+    "description":"Style of the text, either normal or italic.",
     "enum":[
      "NORMAL",
      "ITALIC"
@@ -1771,7 +1954,8 @@
     "properties":{
      "to":{
       "type":"string",
-      "description":"The destination address of the message."
+      "description":"The destination address of the message.",
+      "minLength":1
      },
      "messageId":{
       "type":"string",
@@ -1814,11 +1998,13 @@
       "properties":{
        "label":{
         "type":"string",
+        "description":"Label displayed on the action.",
         "maxLength":20,
         "minLength":0
        },
        "uri":{
         "type":"string",
+        "description":"URI opened when the action is performed. Supported schemes are http, https, line and tel.",
         "maxLength":1000,
         "minLength":0
        },
@@ -1841,7 +2027,9 @@
      "amount":{
       "type":"integer",
       "format":"int32",
-      "description":"Message validity period's value. If `timeUnit` is not set, it will default to `MINUTES`."
+      "description":"Message validity period's value. If `timeUnit` is not set, it will default to `MINUTES`.",
+      "exclusiveMinimum":0,
+      "minimum":0
      },
      "timeUnit":{
       "$ref":"#/components/schemas/267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.ValidityPeriodTimeUnit"
@@ -1885,6 +2073,7 @@
    },
    "267b6ecf9b18ace076c5287f2f55ab493690ff43a19cc6531a331c0c908f8fd5.Weight":{
     "type":"string",
+    "description":"Font weight of the text.",
     "enum":[
      "BOLD",
      "REGULAR"
@@ -1896,15 +2085,18 @@
     "properties":{
      "errorCode":{
       "type":"string",
-      "description":"An error code uniquely identifying the error case."
+      "description":"An error code uniquely identifying the error case.",
+      "minLength":1
      },
      "description":{
       "type":"string",
-      "description":"A detailed description of an error."
+      "description":"A detailed description of an error.",
+      "minLength":1
      },
      "action":{
       "type":"string",
-      "description":"An action that should be taken to recover from the error."
+      "description":"An action that should be taken to recover from the error.",
+      "minLength":1
      },
      "violations":{
       "type":"array",

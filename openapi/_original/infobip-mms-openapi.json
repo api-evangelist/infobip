@@ -7,8 +7,8 @@
    "name":"Infobip support",
    "email":"support@infobip.com"
   },
-  "version":"3.210.0",
-  "x-generatedAt":"2026-07-23T15:23:52.701888126Z"
+  "version":"3.245.1",
+  "x-generatedAt":"2026-10-07T09:47:48.502395891Z"
  },
  "tags":[
   {
@@ -365,6 +365,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -372,9 +375,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -860,6 +860,9 @@
     "deprecated":true,
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -867,9 +870,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -1007,6 +1007,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -1014,9 +1017,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -1093,7 +1093,16 @@
              "messageId":"817790313235066447",
              "to":"25256",
              "from":"41793026727",
-             "message":"{\"mms_parts\":[{\"origin\":\"text\",\"contentType\":\"text/plain; charset=utf-8\",\"contentId\":\"content0\",\"value\":\"Sample text\"}],\"userAgent\":\"motogstylus5g\",\"priority\":null,\"subject\":null}",
+             "subject":"title123",
+             "userAgent":"motogstylus5g",
+             "message":[
+              {
+               "origin":"text",
+               "contentType":"text/plain; charset=utf-8",
+               "contentId":"content0",
+               "value":"Sample text"
+              }
+             ],
              "receivedAt":"2016-10-06T09:28:39.220+0000",
              "mmsCount":1,
              "callbackData":"Some custom data",
@@ -1113,7 +1122,16 @@
              "messageId":"817790313235066447",
              "to":"25256",
              "from":"41793026727",
-             "message":"{\"mms_parts\":[{\"origin\":\"text\",\"contentType\":\"text/plain; charset=utf-8\",\"contentId\":\"content0\",\"value\":\"Sample text\"}],\"userAgent\":\"motogstylus5g\",\"priority\":null,\"subject\":null}",
+             "subject":"title123",
+             "userAgent":"motogstylus5g",
+             "message":[
+              {
+               "origin":"text",
+               "contentType":"text/plain; charset=utf-8",
+               "contentId":"content0",
+               "value":"Sample text"
+              }
+             ],
              "group":[
               {
                "to":"25256"
@@ -1149,6 +1167,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -1156,9 +1177,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -1288,8 +1306,8 @@
              },
              "messageId":"43u2ih-6453jbh-897kfs90u2nj",
              "sender":"441134960000",
-             "sentAt":"2026-07-07T06:32:15.101+0000",
-             "doneAt":"2026-07-07T06:32:15.101+0000",
+             "sentAt":"2026-09-10T11:05:28.784+0000",
+             "doneAt":"2026-09-10T11:05:28.784+0000",
              "messageCount":3
             }
            ]
@@ -1311,6 +1329,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -1318,9 +1339,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -1328,127 +1346,6 @@
      "mms:message:send",
      "mms:manage"
     ]
-   }
-  },
-  "/mms/1/reports":{
-   "get":{
-    "tags":[
-     "channels",
-     "mms",
-     "logs-and-status-reports-mms"
-    ],
-    "summary":"Get outbound MMS message delivery reports",
-    "description":"If you are unable to receive real-time delivery reports towards your endpoint for various reasons, we offer you an API method to fetch batches of delivery reports to confirm whether specific messages have been delivered. Each request towards this endpoint will return batches of the latest delivery reports. Please note they will be returned only once.",
-    "operationId":"deprecated-get-outbound-mms-message-delivery-reports",
-    "parameters":[
-     {
-      "name":"bulkId",
-      "in":"query",
-      "description":"ID of bulk for which a delivery report is requested.",
-      "required":false,
-      "style":"form",
-      "explode":true,
-      "schema":{
-       "type":"string"
-      },
-      "example":"BULK-ID-123-xyz"
-     },
-     {
-      "name":"messageId",
-      "in":"query",
-      "description":"ID of MMS for which a delivery report is requested.",
-      "required":false,
-      "style":"form",
-      "explode":true,
-      "schema":{
-       "type":"string"
-      },
-      "example":"MESSAGE-ID-123-xyz"
-     },
-     {
-      "name":"limit",
-      "in":"query",
-      "description":"Maximum number of delivery reports that will be returned.",
-      "required":false,
-      "style":"form",
-      "explode":true,
-      "schema":{
-       "type":"integer",
-       "format":"int32"
-      },
-      "example":2
-     },
-     {
-      "name":"applicationId",
-      "in":"query",
-      "description":"[Application](https://www.infobip.com/docs/cpaas-x/application-and-entity-management#application) identifier used for filtering.",
-      "required":false,
-      "style":"form",
-      "explode":true,
-      "schema":{
-       "type":"string"
-      },
-      "example":"ApplicationExample"
-     },
-     {
-      "name":"entityId",
-      "in":"query",
-      "description":"[Entity](https://www.infobip.com/docs/cpaas-x/application-and-entity-management#entity) identifier used for filtering.",
-      "required":false,
-      "style":"form",
-      "explode":true,
-      "schema":{
-       "type":"string"
-      },
-      "example":"EntityExample"
-     }
-    ],
-    "responses":{
-     "200":{
-      "description":"OK",
-      "content":{
-       "application/json":{
-        "schema":{
-         "$ref":"#/components/schemas/faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.MmsReportResponse"
-        }
-       }
-      }
-     },
-     "401":{
-      "$ref":"#/components/responses/ApiException401"
-     },
-     "403":{
-      "$ref":"#/components/responses/ApiException403"
-     },
-     "500":{
-      "$ref":"#/components/responses/ApiException500"
-     }
-    },
-    "deprecated":true,
-    "security":[
-     {
-      "IBSSOTokenHeader":[]
-     },
-     {
-      "APIKeyHeader":[]
-     },
-     {
-      "Basic":[]
-     },
-     {
-      "OAuth2":[]
-     }
-    ],
-    "x-scopes":[
-     "message:send",
-     "mms:message:send",
-     "mms:manage"
-    ],
-    "x-deprecationInformation":{
-     "deprecation":"2024-04-26T10:00:00.00+0000",
-     "sunset":"2026-06-01T00:00:00.00+0000",
-     "successorOperationId":"get-outbound-mms-message-delivery-reports"
-    }
    }
   },
   "/mms/2/logs":{
@@ -1672,8 +1569,8 @@
              "destination":"441134960001",
              "bulkId":"3746923784",
              "messageId":"43u2ih-6453jbh-897kfs90u2nj",
-             "sentAt":"2026-07-07T06:32:15.966+0000",
-             "doneAt":"2026-07-07T06:32:15.966+0000",
+             "sentAt":"2026-09-10T11:05:29.562+0000",
+             "doneAt":"2026-09-10T11:05:29.562+0000",
              "messageCount":3,
              "price":{
               "pricePerMessage":1,
@@ -1718,6 +1615,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -1725,9 +1625,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -1743,309 +1640,10 @@
      }
     ]
    }
-  },
-  "/mms/1/logs":{
-   "get":{
-    "tags":[
-     "channels",
-     "mms",
-     "logs-and-status-reports-mms"
-    ],
-    "summary":"Get outbound MMS message logs",
-    "description":"Use this method for displaying logs for example in the user interface. Available are the logs for the last 48 hours and you can only retrieve maximum of 1000 logs per call. See [message delivery reports](#channels/mms/get-outbound-mms-message-delivery-reports) if your use case is to verify message delivery.",
-    "externalDocs":{
-     "description":"Learn more about MMS channel and use cases",
-     "url":"https://www.infobip.com/docs/mms"
-    },
-    "operationId":"deprecated-get-outbound-mms-message-logs",
-    "parameters":[
-     {
-      "name":"from",
-      "in":"query",
-      "description":"The sender ID which can be alphanumeric or numeric.",
-      "required":false,
-      "style":"form",
-      "explode":true,
-      "schema":{
-       "type":"string"
-      },
-      "example":10950
-     },
-     {
-      "name":"to",
-      "in":"query",
-      "description":"Message destination address.",
-      "required":false,
-      "style":"form",
-      "explode":true,
-      "schema":{
-       "type":"string"
-      },
-      "example":41793026727
-     },
-     {
-      "name":"bulkId",
-      "in":"query",
-      "description":"Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request.",
-      "required":false,
-      "style":"form",
-      "explode":true,
-      "schema":{
-       "type":"string"
-      },
-      "example":3746923784
-     },
-     {
-      "name":"messageId",
-      "in":"query",
-      "description":"Unique message ID for which a log is requested.",
-      "required":false,
-      "style":"form",
-      "explode":true,
-      "schema":{
-       "type":"string"
-      },
-      "example":"43u2ih-6453jbh-897kfs90u2nj"
-     },
-     {
-      "name":"generalStatus",
-      "in":"query",
-      "description":"Sent [message status](https://www.infobip.com/docs/essentials/response-status-and-error-codes#api-status-codes).",
-      "required":false,
-      "style":"form",
-      "explode":true,
-      "schema":{
-       "$ref":"#/components/schemas/faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.GeneralStatus"
-      },
-      "example":"ACCEPTED"
-     },
-     {
-      "name":"sentSince",
-      "in":"query",
-      "description":"The logs will only include messages sent after this date. Use it together with sentUntil to return a time range or if you want to fetch more than 1000 logs allowed per call. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`.",
-      "required":false,
-      "style":"form",
-      "explode":true,
-      "schema":{
-       "type":"string"
-      },
-      "example":"2023-04-16T12:00:00.390Z"
-     },
-     {
-      "name":"sentUntil",
-      "in":"query",
-      "description":"The logs will only include messages sent before this date. Use it together with sentBefore to return a time range or if you want to fetch more than 1000 logs allowed per call. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`.",
-      "required":false,
-      "style":"form",
-      "explode":true,
-      "schema":{
-       "type":"string"
-      },
-      "example":"2023-04-17T12:00:00.390Z"
-     },
-     {
-      "name":"limit",
-      "in":"query",
-      "description":"Maximum number of messages to include in logs. If not set, the latest 50 records are returned. Maximum limit value is 1000 and you can only access logs for the last 48h. If you have more than 1000 logs in that period, you can retrieve remaining logs by using sentBefore and sentUntil.",
-      "required":false,
-      "style":"form",
-      "explode":true,
-      "schema":{
-       "type":"number"
-      },
-      "example":100
-     },
-     {
-      "name":"mcc",
-      "in":"query",
-      "description":"Mobile Country Code.",
-      "required":false,
-      "style":"form",
-      "explode":true,
-      "schema":{
-       "type":"string"
-      },
-      "example":22801
-     },
-     {
-      "name":"mnc",
-      "in":"query",
-      "description":"Mobile Network Code.",
-      "required":false,
-      "style":"form",
-      "explode":true,
-      "schema":{
-       "type":"string"
-      },
-      "example":22823
-     },
-     {
-      "name":"applicationId",
-      "in":"query",
-      "description":"The application used when sending the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
-      "required":false,
-      "style":"form",
-      "explode":true,
-      "schema":{
-       "type":"string"
-      },
-      "example":"test-application"
-     },
-     {
-      "name":"entityId",
-      "in":"query",
-      "description":"The entity used when sending the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management).",
-      "required":false,
-      "style":"form",
-      "explode":true,
-      "schema":{
-       "type":"string"
-      },
-      "example":"test-entity"
-     }
-    ],
-    "responses":{
-     "200":{
-      "description":"successful response",
-      "content":{
-       "application/json":{
-        "schema":{
-         "$ref":"#/components/schemas/faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.MMSMtLogsResponse"
-        },
-        "examples":{
-         "Response example":{
-          "summary":"Response example",
-          "value":{
-           "results":[
-            {
-             "bulkId":"3746923784",
-             "messageId":"43u2ih-6453jbh-897kfs90u2nj",
-             "to":"To name",
-             "from":"Company name",
-             "title":"Message title",
-             "messageSegments":[
-              {
-               "contentId":"contentId",
-               "text":"some text"
-              },
-              {
-               "contentId":"contentId",
-               "contentType":"image/png",
-               "contentUrl":"host.com/image.png"
-              },
-              {
-               "contentId":"contentId",
-               "text":"some other text"
-              }
-             ],
-             "sentAt":"2023-01-01T17:42:05.390+0100",
-             "doneAt":"2023-01-01T17:42:10.390+0100",
-             "mmsCount":3,
-             "mccMnc":"22801",
-             "price":{
-              "pricePerMessage":1,
-              "currency":"EUR"
-             },
-             "status":{
-              "groupId":3,
-              "groupName":"DELIVERED",
-              "id":5,
-              "name":"DELIVERED_TO_HANDSET",
-              "description":"Message delivered to handset"
-             }
-            }
-           ]
-          }
-         }
-        }
-       }
-      }
-     },
-     "400":{
-      "description":"Bad request.",
-      "content":{
-       "application/json":{
-        "schema":{
-         "$ref":"#/components/schemas/8c0d480c425c41d88986e9a339e209ff8333292c731a8b410c00a517bc3a95fb.ApiException"
-        },
-        "examples":{
-         "Bad request":{
-          "summary":"Bad request",
-          "value":{
-           "requestError":{
-            "serviceException":{
-             "messageId":"BAD_REQUEST",
-             "text":"Bad request"
-            }
-           }
-          }
-         }
-        }
-       }
-      }
-     },
-     "401":{
-      "$ref":"#/components/responses/ApiException401"
-     },
-     "403":{
-      "$ref":"#/components/responses/ApiException403"
-     },
-     "429":{
-      "$ref":"#/components/responses/ApiException429"
-     },
-     "500":{
-      "$ref":"#/components/responses/ApiException500"
-     }
-    },
-    "deprecated":true,
-    "security":[
-     {
-      "IBSSOTokenHeader":[]
-     },
-     {
-      "APIKeyHeader":[]
-     },
-     {
-      "Basic":[]
-     },
-     {
-      "OAuth2":[]
-     }
-    ],
-    "x-scopes":[
-     "mms:logs:read",
-     "mms:manage"
-    ],
-    "x-deprecationInformation":{
-     "deprecation":"2024-04-26T10:00:00.00+0000",
-     "sunset":"2026-06-01T00:00:00.00+0000",
-     "successorOperationId":"get-outbound-mms-message-logs"
-    },
-    "x-throttling-info":[
-     {
-      "type":"time",
-      "numberOfRequests":120,
-      "numberOfTimeUnits":0,
-      "timeUnit":"m"
-     }
-    ]
-   }
   }
  },
  "components":{
   "schemas":{
-   "243664b2993460e9e9a3aa6c63ab422a58e22db15efe4cb007ed315aff543dd9.MmsReportRequest":{
-    "type":"object",
-    "properties":{
-     "results":{
-      "type":"array",
-      "items":{
-       "$ref":"#/components/schemas/faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.MmsReportSingle"
-      }
-     }
-    },
-    "title":"MmsReportRequest"
-   },
    "62b589527d7474f21f086ddb07e8698e9fcfbbe16400c91718f1ab58d998c3f1.MMSMoReportResponse":{
     "type":"object",
     "properties":{
@@ -2095,15 +1693,18 @@
     "properties":{
      "errorCode":{
       "type":"string",
-      "description":"An error code uniquely identifying the error case."
+      "description":"An error code uniquely identifying the error case.",
+      "minLength":1
      },
      "description":{
       "type":"string",
-      "description":"A detailed description of an error."
+      "description":"A detailed description of an error.",
+      "minLength":1
      },
      "action":{
       "type":"string",
-      "description":"An action that should be taken to recover from the error."
+      "description":"An action that should be taken to recover from the error.",
+      "minLength":1
      },
      "violations":{
       "type":"array",
@@ -2214,7 +1815,8 @@
       "description":"An array of message objects of a single message or multiple messages sent under one bulk ID.",
       "items":{
        "$ref":"#/components/schemas/faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.MmsAdvancedMessage"
-      }
+      },
+      "minItems":1
      }
     },
     "required":[
@@ -2470,80 +2072,6 @@
     ],
     "title":"Destination as to"
    },
-   "faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.Error":{
-    "type":"object",
-    "description":"Indicates whether the error occurred during the query execution.",
-    "properties":{
-     "groupId":{
-      "type":"integer",
-      "format":"int32",
-      "description":"Error group ID."
-     },
-     "groupName":{
-      "type":"string",
-      "description":"Error group name."
-     },
-     "id":{
-      "type":"integer",
-      "format":"int32",
-      "description":"Error ID."
-     },
-     "name":{
-      "type":"string",
-      "description":"Error name."
-     },
-     "description":{
-      "type":"string",
-      "description":"Human-readable description of the error."
-     }
-    },
-    "title":"Error"
-   },
-   "faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.ErrorMmsReport":{
-    "type":"object",
-    "description":"Indicates whether the error occurred during the query execution.",
-    "properties":{
-     "groupId":{
-      "type":"integer",
-      "format":"int32",
-      "description":"Error group ID."
-     },
-     "groupName":{
-      "type":"string",
-      "description":"Error group name."
-     },
-     "id":{
-      "type":"integer",
-      "format":"int32",
-      "description":"Error ID."
-     },
-     "name":{
-      "type":"string",
-      "description":"Error name."
-     },
-     "description":{
-      "type":"string",
-      "description":"Human-readable description of the error."
-     },
-     "permanent":{
-      "type":"boolean",
-      "description":"Indicator of whether the error is permanent."
-     }
-    },
-    "title":"ErrorMmsReport"
-   },
-   "faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.GeneralStatus":{
-    "type":"string",
-    "enum":[
-     "ACCEPTED",
-     "PENDING",
-     "UNDELIVERABLE",
-     "DELIVERED",
-     "REJECTED",
-     "EXPIRED"
-    ],
-    "title":"GeneralStatus"
-   },
    "faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.GeoLocationInfoWrapper":{
     "type":"object",
     "description":"Geolocation data such as Country and City.",
@@ -2608,9 +2136,20 @@
       "type":"string",
       "description":"Sender ID that can be alphanumeric or numeric."
      },
-     "message":{
+     "subject":{
       "type":"string",
-      "description":"Full text of the received message."
+      "description":"Subject of the received message."
+     },
+     "userAgent":{
+      "type":"string",
+      "description":"Identifier of the device from which the message was sent."
+     },
+     "message":{
+      "type":"array",
+      "description":"Received message parts.",
+      "items":{
+       "$ref":"#/components/schemas/faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.MmsMoMessagePart"
+      }
      },
      "group":{
       "type":"array",
@@ -2705,89 +2244,6 @@
      }
     },
     "title":"MMSMoWebhookResult"
-   },
-   "faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.MMSMtLog":{
-    "type":"object",
-    "description":"Results.",
-    "properties":{
-     "from":{
-      "type":"string",
-      "description":"The sender ID which can be alphanumeric or numeric (e.g., `CompanyName`)."
-     },
-     "to":{
-      "type":"string",
-      "description":"Message destination address."
-     },
-     "bulkId":{
-      "type":"string",
-      "description":"Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request."
-     },
-     "messageId":{
-      "type":"string",
-      "description":"Unique message ID."
-     },
-     "title":{
-      "type":"string",
-      "description":"Message title."
-     },
-     "messageSegments":{
-      "type":"array",
-      "description":"Content of the message being sent.",
-      "items":{
-       "$ref":"#/components/schemas/faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.MmsLogsMessageSegment"
-      }
-     },
-     "sentAt":{
-      "type":"string",
-      "format":"date-time",
-      "description":"Date and time when the message was sent. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`."
-     },
-     "doneAt":{
-      "type":"string",
-      "format":"date-time",
-      "description":"Date and time when the Infobip services finished processing the message (i.e., delivered to the destination, delivered to the destination network, etc.). Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`."
-     },
-     "mmsCount":{
-      "type":"integer",
-      "format":"int32",
-      "description":"The number of parts the message content was split into."
-     },
-     "mccMnc":{
-      "type":"string",
-      "description":"Mobile country and network codes."
-     },
-     "price":{
-      "$ref":"#/components/schemas/faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.Price"
-     },
-     "status":{
-      "$ref":"#/components/schemas/faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.Status"
-     },
-     "error":{
-      "$ref":"#/components/schemas/faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.Error"
-     },
-     "applicationId":{
-      "type":"string",
-      "description":"The application used when sending the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
-     },
-     "entityId":{
-      "type":"string",
-      "description":"The entity used when sending the message. For more details, see our [documentation](https://www.infobip.com/docs/cpaas-x/application-and-entity-management)."
-     }
-    },
-    "title":"MMSMtLog"
-   },
-   "faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.MMSMtLogsResponse":{
-    "type":"object",
-    "properties":{
-     "results":{
-      "type":"array",
-      "description":"Results.",
-      "items":{
-       "$ref":"#/components/schemas/faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.MMSMtLog"
-      }
-     }
-    },
-    "title":"MMSMtLogsResponse"
    },
    "faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.MessageDeliveryReporting":{
     "type":"object",
@@ -3059,6 +2515,7 @@
       "items":{
        "$ref":"#/components/schemas/faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.Destination"
       },
+      "minItems":1,
       "writeOnly":true
      },
      "from":{
@@ -3164,6 +2621,7 @@
      "contentType":{
       "type":"string",
       "description":"Content type for media, for example `image/png`.",
+      "minLength":1,
       "writeOnly":true
      },
      "contentBase64":{
@@ -3193,6 +2651,7 @@
      "contentUrl":{
       "type":"string",
       "description":"URL of externally hosted content.",
+      "minLength":1,
       "writeOnly":true
      }
     },
@@ -3212,6 +2671,7 @@
      "contentType":{
       "type":"string",
       "description":"Content type for media, for example `application/smil`.",
+      "minLength":1,
       "writeOnly":true
      },
      "smil":{
@@ -3261,51 +2721,6 @@
     },
     "title":"Uploaded reference segment"
    },
-   "faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.MmsLogsMessageSegment":{
-    "type":"object",
-    "anyOf":[
-     {
-      "$ref":"#/components/schemas/faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.MmsLogsMessageSegmentText"
-     },
-     {
-      "$ref":"#/components/schemas/faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.MmsLogsMessageSegmentLink"
-     }
-    ],
-    "description":"Content of the message being sent.",
-    "title":"MmsLogsMessageSegment"
-   },
-   "faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.MmsLogsMessageSegmentLink":{
-    "type":"object",
-    "properties":{
-     "contentId":{
-      "type":"string",
-      "description":"Unique identifier within single message. `[a-zA-Z]` up to 20 characters."
-     },
-     "contentType":{
-      "type":"string",
-      "description":"Content type for media, for example 'image/png'."
-     },
-     "contentUrl":{
-      "type":"string",
-      "description":"URL of hosted content. URL will be available for 48 hours. If hosted externally (by client) make sure it is available for 48 hours"
-     }
-    },
-    "title":"Link segment"
-   },
-   "faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.MmsLogsMessageSegmentText":{
-    "type":"object",
-    "properties":{
-     "contentId":{
-      "type":"string",
-      "description":"Unique identifier within single message. `[a-zA-Z]` up to 20 characters."
-     },
-     "text":{
-      "type":"string",
-      "description":"Message text."
-     }
-    },
-    "title":"Text segment"
-   },
    "faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.MmsMoLinkSegment":{
     "type":"object",
     "properties":{
@@ -3319,6 +2734,25 @@
      }
     },
     "title":"Link segment"
+   },
+   "faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.MmsMoMessagePart":{
+    "type":"object",
+    "description":"Received message parts.",
+    "properties":{
+     "origin":{
+      "type":"string"
+     },
+     "contentType":{
+      "type":"string"
+     },
+     "contentId":{
+      "type":"string"
+     },
+     "value":{
+      "type":"string"
+     }
+    },
+    "title":"MmsMoMessagePart"
    },
    "faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.MmsMoMessageSegment":{
     "type":"object",
@@ -3362,7 +2796,8 @@
       "description":"Content of the message being sent.",
       "items":{
        "$ref":"#/components/schemas/faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.MmsOutboundSegment"
-      }
+      },
+      "minItems":1
      }
     },
     "required":[
@@ -3389,7 +2824,9 @@
        },
        "contentUrl":{
         "type":"string",
-        "description":"URL of externally hosted content."
+        "description":"URL of externally hosted content.",
+        "minLength":1,
+        "pattern":"(http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@!\\-/]))?"
        }
       }
      }
@@ -3447,11 +2884,13 @@
        },
        "contentType":{
         "type":"string",
-        "description":"Content type for media, for example `application/smil`."
+        "description":"Content type for media, for example `application/smil`.",
+        "minLength":1
        },
        "smil":{
         "type":"string",
-        "description":"Message segment as SMIL format. Be aware that some devices and/or operating systems ignore SMIL, so there is no guarantee that segments will be displayed as specified in SMIL format."
+        "description":"Message segment as SMIL format. Be aware that some devices and/or operating systems ignore SMIL, so there is no guarantee that segments will be displayed as specified in SMIL format.",
+        "minLength":1
        }
       }
      }
@@ -3510,7 +2949,8 @@
         "externalDocs":{
          "description":"Upload binary content.",
          "url":"https://www.infobip.com/docs/api/channels/mms/upload-binary"
-        }
+        },
+        "minLength":1
        }
       }
      }
@@ -3520,138 +2960,6 @@
      "uploadedContentId"
     ],
     "title":"MmsOutboundUploadedReferenceSegment"
-   },
-   "faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.MmsReport":{
-    "type":"object",
-    "properties":{
-     "bulkId":{
-      "type":"string",
-      "description":"Bulk ID."
-     },
-     "messageId":{
-      "type":"string",
-      "description":"Message ID."
-     },
-     "to":{
-      "type":"string",
-      "description":"Destination address."
-     },
-     "from":{
-      "type":"string",
-      "description":"Sender ID that can be alphanumeric or numeric."
-     },
-     "sentAt":{
-      "type":"string",
-      "format":"date-time",
-      "description":"Indicates whether the MMS was sent. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`."
-     },
-     "doneAt":{
-      "type":"string",
-      "format":"date-time",
-      "description":"Indicates whether the MMS was finished processing by Infobip (i.e., delivered to the destination, delivered to the destination network, etc.). Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`."
-     },
-     "mmsCount":{
-      "type":"integer",
-      "format":"int32",
-      "description":"The number of parts the sent MMS was split into."
-     },
-     "mccMnc":{
-      "type":"string",
-      "description":"Mobile country and network codes."
-     },
-     "callbackData":{
-      "type":"string",
-      "description":"Callback data sent through `callbackData` field in fully featured MMS message."
-     },
-     "price":{
-      "$ref":"#/components/schemas/faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.Price"
-     },
-     "status":{
-      "$ref":"#/components/schemas/faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.Status"
-     },
-     "error":{
-      "$ref":"#/components/schemas/faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.Error"
-     },
-     "entityId":{
-      "type":"string",
-      "description":"Entity used in MMS request."
-     },
-     "applicationId":{
-      "type":"string",
-      "description":"Application used in MMS request."
-     }
-    },
-    "title":"MmsReport"
-   },
-   "faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.MmsReportResponse":{
-    "type":"object",
-    "properties":{
-     "results":{
-      "type":"array",
-      "items":{
-       "$ref":"#/components/schemas/faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.MmsReport"
-      }
-     }
-    },
-    "title":"MMSReportResponse"
-   },
-   "faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.MmsReportSingle":{
-    "type":"object",
-    "properties":{
-     "bulkId":{
-      "type":"string",
-      "description":"Bulk ID."
-     },
-     "messageId":{
-      "type":"string",
-      "description":"Message ID."
-     },
-     "to":{
-      "type":"string",
-      "description":"Destination address."
-     },
-     "sentAt":{
-      "type":"string",
-      "format":"date-time",
-      "description":"Indicates whether the MMS was sent. Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`."
-     },
-     "doneAt":{
-      "type":"string",
-      "format":"date-time",
-      "description":"Indicates whether the MMS was finished processing by Infobip (i.e., delivered to the destination, delivered to the destination network, etc.). Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`."
-     },
-     "smsCount":{
-      "type":"integer",
-      "format":"int32",
-      "description":"The number of parts the sent MMS was split into."
-     },
-     "mccMnc":{
-      "type":"string",
-      "description":"Mobile country and network codes."
-     },
-     "callbackData":{
-      "type":"string",
-      "description":"Callback data sent through `callbackData` field in fully featured MMS message."
-     },
-     "price":{
-      "$ref":"#/components/schemas/faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.Price"
-     },
-     "status":{
-      "$ref":"#/components/schemas/faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.Status"
-     },
-     "error":{
-      "$ref":"#/components/schemas/faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.ErrorMmsReport"
-     },
-     "entityId":{
-      "type":"string",
-      "description":"Entity used in MMS request."
-     },
-     "applicationId":{
-      "type":"string",
-      "description":"Application used in MMS request."
-     }
-    },
-    "title":"MmsReportSingle"
    },
    "faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.MmsSouthKoreaOptions":{
     "type":"object",
@@ -3703,7 +3011,8 @@
     "properties":{
      "to":{
       "type":"string",
-      "description":"The destination address of the message."
+      "description":"The destination address of the message.",
+      "minLength":1
      },
      "messageId":{
       "type":"string",
@@ -3806,7 +3115,8 @@
       "description":"An array of destination objects for where messages are being sent. Each object in array can be one of available options. A valid destination is required.",
       "items":{
        "$ref":"#/components/schemas/faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.MmsUnificationDestination"
-      }
+      },
+      "minItems":1
      },
      "content":{
       "$ref":"#/components/schemas/faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.MmsOutboundContent"
@@ -3870,7 +3180,8 @@
       "description":"An array of message objects of a single message or multiple messages sent under one bulk ID.",
       "items":{
        "$ref":"#/components/schemas/faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.MmsUnificationMessage"
-      }
+      },
+      "minItems":1
      },
      "options":{
       "$ref":"#/components/schemas/faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.DefaultMessageRequestOptions"
@@ -4048,7 +3359,8 @@
       "description":"An array of message objects of a single message or multiple messages sent under one bulk ID.",
       "items":{
        "$ref":"#/components/schemas/faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.MessageResponseMessageResponseDetails"
-      }
+      },
+      "minItems":1
      }
     },
     "required":[
@@ -4223,7 +3535,9 @@
      "amount":{
       "type":"integer",
       "format":"int32",
-      "description":"Message validity period's value. If `timeUnit` is not set, it will default to `MINUTES`."
+      "description":"Message validity period's value. If `timeUnit` is not set, it will default to `MINUTES`.",
+      "exclusiveMinimum":0,
+      "minimum":0
      },
      "timeUnit":{
       "$ref":"#/components/schemas/faad2f34157fead7bc36bdf18ea6d8be6674c0ceb93de05135894a2bf0f2aa1b.ValidityPeriodTimeUnit"
@@ -4422,30 +3736,6 @@
      }
     }
    },
-   "ApiException429":{
-    "description":"Too Many Requests",
-    "content":{
-     "application/json":{
-      "schema":{
-       "$ref":"#/components/schemas/ApiException"
-      },
-      "example":{
-       "requestError":{
-        "serviceException":{
-         "messageId":"TOO_MANY_REQUESTS",
-         "text":"Too many requests"
-        }
-       }
-      }
-     },
-     "application/xml":{
-      "schema":{
-       "$ref":"#/components/schemas/ApiException"
-      },
-      "example":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiException>\n  <requestError>\n    <serviceException>\n      <messageId>TOO_MANY_REQUESTS</messageId>\n      <text>Too many requests</text>\n    </serviceException>\n  </requestError>\n</ApiException>\n"
-     }
-    }
-   },
    "ApiException500":{
     "description":"Internal Server Error",
     "content":{
@@ -4516,7 +3806,7 @@
      "receive-mms"
     ],
     "summary":"Receive inbound MMS messages",
-    "description":"If you want to receive MMS messages from your subscribers we can have them delivered to you in real time. [Set the inbound configuration](/docs/api/platform/numbers/my-numbers/resource-management/manage-inbound-configuration) for the number by specifying your endpoint and we will send inbound messages to you as soon as they are delivered to us by a mobile network operator.<br/>Name of the default format or renderer for the inbound MMS messages is `MO_MMS_2`, and is documented in this section.",
+    "description":"If you want to receive MMS messages from your subscribers we can have them delivered to you in real time. [Set the inbound configuration](/docs/api/platform/numbers/my-numbers/resource-management/manage-inbound-configuration) for the number by specifying your endpoint and we will send inbound messages to you as soon as they are delivered to us by a mobile network operator.<br/>The default format or renderer for the inbound MMS messages is documented in this section. It is referred to as `MO_MMS_2` when configuring inbound settings via HTTP forward actions, and as `inbound-message.mms.v1.json` when configuring via Subscriptions. Both names refer to the same payload.",
     "externalDocs":{
      "description":"Learn more about the MMS channel and its use cases",
      "url":"https://www.infobip.com/docs/mms"
@@ -4607,6 +3897,9 @@
      "200":{
       "description":"Your server returns this code if it accepts the callback."
      }
+    },
+    "x-additionalInfo":{
+     "markdown":"### Related\n- [Buy numbers for sending and receiving messages](#platform-connectivity/numbers)\n"
     }
    }
   },
@@ -4650,8 +3943,8 @@
             },
             "messageId":"43u2ih-6453jbh-897kfs90u2nj",
             "sender":"441134960000",
-            "sentAt":"2026-07-07T06:32:15.101+0000",
-            "doneAt":"2026-07-07T06:32:15.101+0000",
+            "sentAt":"2026-09-10T11:05:28.784+0000",
+            "doneAt":"2026-09-10T11:05:28.784+0000",
             "messageCount":3
            }
           ]
@@ -4666,7 +3959,7 @@
        "examples":{
         "Delivery reports":{
          "summary":"Delivery reports",
-         "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><DeliveryReports>\n  <results>\n    <result>\n      <bulkId>3746923784</bulkId>\n      <price>\n        <pricePerMessage>1</pricePerMessage>\n        <currency>EUR</currency>\n      </price>\n      <status>\n        <groupId>3</groupId>\n        <groupName>DELIVERED</groupName>\n        <id>5</id>\n        <name>DELIVERED_TO_HANDSET</name>\n        <description>Message delivered to handset</description>\n      </status>\n      <messageId>43u2ih-6453jbh-897kfs90u2nj</messageId>\n      <sender>441134960000</sender>\n      <sentAt>2026-07-07T06:32:15.101+0000</sentAt>\n      <doneAt>2026-07-07T06:32:15.101+0000</doneAt>\n      <messageCount>3</messageCount>\n    </result>\n  </results>\n</DeliveryReports>\n"
+         "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><DeliveryReports>\n  <results>\n    <result>\n      <bulkId>3746923784</bulkId>\n      <price>\n        <pricePerMessage>1</pricePerMessage>\n        <currency>EUR</currency>\n      </price>\n      <status>\n        <groupId>3</groupId>\n        <groupName>DELIVERED</groupName>\n        <id>5</id>\n        <name>DELIVERED_TO_HANDSET</name>\n        <description>Message delivered to handset</description>\n      </status>\n      <messageId>43u2ih-6453jbh-897kfs90u2nj</messageId>\n      <sender>441134960000</sender>\n      <sentAt>2026-09-10T11:05:28.784+0000</sentAt>\n      <doneAt>2026-09-10T11:05:28.784+0000</doneAt>\n      <messageCount>3</messageCount>\n    </result>\n  </results>\n</DeliveryReports>\n"
         }
        }
       }
@@ -4676,116 +3969,10 @@
      "200":{
       "description":"Your server returns this code if it accepts the callback."
      }
+    },
+    "x-additionalInfo":{
+     "markdown":"### Related\n- [Send MMS messages](#channels/mms/send-mms-message)\n- [Manually pull MMS delivery reports](#channels/mms/get-outbound-mms-message-delivery-reports)\n"
     }
-   }
-  },
-  "receive-outbound-mms-message-reports":{
-   "post":{
-    "tags":[
-     "channels",
-     "mms",
-     "logs-and-status-reports-mms"
-    ],
-    "summary":"Receive outbound MMS message report",
-    "description":"For each MMS that you send out, we can send you a message delivery report. All you need to do is specify your endpoint [when sending MMS](#programmable-communications/mms/send-sms-message) and we will deliver a [status](https://www.infobip.com/docs/essentials/response-status-and-error-codes) report to you in real time. You'll receive this type of payload for messages sent using [Send single MMS message](https://www.infobip.com/docs/api/channels/mms/send-mms-single-message) or [Send MMS message](https://www.infobip.com/docs/api/channels/mms/send-mms-message) endpoints.",
-    "externalDocs":{
-     "description":"Learn more about the MMS channel and its use cases",
-     "url":"https://www.infobip.com/docs/mms"
-    },
-    "operationId":"receive-outbound-mms-message-reports",
-    "requestBody":{
-     "content":{
-      "application/json":{
-       "schema":{
-        "$ref":"#/components/schemas/243664b2993460e9e9a3aa6c63ab422a58e22db15efe4cb007ed315aff543dd9.MmsReportRequest"
-       },
-       "examples":{
-        "Received report":{
-         "summary":"Received report",
-         "value":{
-          "results":[
-           {
-            "bulkId":"BULK-ID-123-xyz",
-            "messageId":"45db39c3-7822-4e72-a3ec-c87442c0ffz9",
-            "to":"41793026727",
-            "sentAt":"2019-11-09T16:00:00.000+0000",
-            "doneAt":"2019-11-09T16:00:00.000+0000",
-            "smsCount":1,
-            "price":{
-             "pricePerMessage":0.01,
-             "currency":"EUR"
-            },
-            "status":{
-             "groupId":3,
-             "groupName":"DELIVERED",
-             "id":5,
-             "name":"DELIVERED_TO_HANDSET",
-             "description":"Message delivered to handset"
-            },
-            "error":{
-             "groupId":0,
-             "groupName":"OK",
-             "id":0,
-             "name":"NO_ERROR",
-             "description":"No Error",
-             "permanent":false
-            },
-            "entityId":"my-entity-id",
-            "applicationId":"my-application-id"
-           },
-           {
-            "bulkId":"BULK-ID-123-xyz",
-            "messageId":"12db39c3-7822-4e72-a3ec-c87442c0ffc5",
-            "to":"41793026834",
-            "sentAt":"2019-11-09T17:00:00.000+0000",
-            "doneAt":"2019-11-09T17:00:00.000+0000",
-            "smsCount":1,
-            "price":{
-             "pricePerMessage":0.01,
-             "currency":"EUR"
-            },
-            "status":{
-             "groupId":3,
-             "groupName":"DELIVERED",
-             "id":5,
-             "name":"DELIVERED_TO_HANDSET",
-             "description":"Message delivered to handset"
-            },
-            "error":{
-             "groupId":0,
-             "groupName":"OK",
-             "id":0,
-             "name":"NO_ERROR",
-             "description":"No Error",
-             "permanent":false
-            },
-            "entityId":"my-entity-id",
-            "applicationId":"my-application-id"
-           }
-          ]
-         }
-        }
-       }
-      },
-      "application/xml":{
-       "schema":{
-        "$ref":"#/components/schemas/243664b2993460e9e9a3aa6c63ab422a58e22db15efe4cb007ed315aff543dd9.MmsReportRequest"
-       },
-       "examples":{
-        "Received report":{
-         "summary":"Received report",
-         "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MmsReportRequest>\n  <results>\n    <results>\n      <bulkId>BULK-ID-123-xyz</bulkId>\n      <messageId>45db39c3-7822-4e72-a3ec-c87442c0ffz9</messageId>\n      <to>41793026727</to>\n      <sentAt>2019-11-09T16:00:00.000+0000</sentAt>\n      <doneAt>2019-11-09T16:00:00.000+0000</doneAt>\n      <smsCount>1</smsCount>\n      <price>\n        <pricePerMessage>0.01000000000000000020816681711721685132943093776702880859375</pricePerMessage>\n        <currency>EUR</currency>\n      </price>\n      <status>\n        <groupId>3</groupId>\n        <groupName>DELIVERED</groupName>\n        <id>5</id>\n        <name>DELIVERED_TO_HANDSET</name>\n        <description>Message delivered to handset</description>\n      </status>\n      <error>\n        <groupId>0</groupId>\n        <groupName>OK</groupName>\n        <id>0</id>\n        <name>NO_ERROR</name>\n        <description>No Error</description>\n        <permanent>false</permanent>\n      </error>\n      <entityId>my-entity-id</entityId>\n      <applicationId>my-application-id</applicationId>\n    </results>\n    <results>\n      <bulkId>BULK-ID-123-xyz</bulkId>\n      <messageId>12db39c3-7822-4e72-a3ec-c87442c0ffc5</messageId>\n      <to>41793026834</to>\n      <sentAt>2019-11-09T17:00:00.000+0000</sentAt>\n      <doneAt>2019-11-09T17:00:00.000+0000</doneAt>\n      <smsCount>1</smsCount>\n      <price>\n        <pricePerMessage>0.01000000000000000020816681711721685132943093776702880859375</pricePerMessage>\n        <currency>EUR</currency>\n      </price>\n      <status>\n        <groupId>3</groupId>\n        <groupName>DELIVERED</groupName>\n        <id>5</id>\n        <name>DELIVERED_TO_HANDSET</name>\n        <description>Message delivered to handset</description>\n      </status>\n      <error>\n        <groupId>0</groupId>\n        <groupName>OK</groupName>\n        <id>0</id>\n        <name>NO_ERROR</name>\n        <description>No Error</description>\n        <permanent>false</permanent>\n      </error>\n      <entityId>my-entity-id</entityId>\n      <applicationId>my-application-id</applicationId>\n    </results>\n  </results>\n</MmsReportRequest>\n"
-        }
-       }
-      }
-     }
-    },
-    "responses":{
-     "200":{
-      "description":"Your server returns this code if it accepts the callback."
-     }
-    },
-    "deprecated":true
    }
   },
   "receive-mms-tracking-notification":{

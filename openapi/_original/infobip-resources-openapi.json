@@ -7,8 +7,8 @@
    "name":"Infobip support",
    "email":"support@infobip.com"
   },
-  "version":"3.210.0",
-  "x-generatedAt":"2026-07-23T15:23:59.220824166Z"
+  "version":"3.245.1",
+  "x-generatedAt":"2026-10-07T09:47:55.126897865Z"
  },
  "tags":[
   {
@@ -191,6 +191,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -198,9 +201,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -270,6 +270,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -277,9 +280,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -347,6 +347,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -354,9 +357,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -483,6 +483,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -490,9 +493,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -560,6 +560,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -567,9 +570,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -957,6 +957,21 @@
     "operationId":"get-resource-requests",
     "parameters":[
      {
+      "name":"id",
+      "in":"query",
+      "description":"Filters resources to those that exactly match the supplied resource request IDs.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"array",
+       "items":{
+        "type":"string"
+       }
+      },
+      "example":"3fa85f64-5717-4562-b3fc-2c963f66afa6,7c9e6679-7425-40de-944b-e07fc1f90ae7"
+     },
+     {
       "name":"countryCode",
       "in":"query",
       "description":"Filters resources to those that match the supplied country code.",
@@ -1005,6 +1020,48 @@
        }
       },
       "example":"ALPHANUMERIC_REGISTRATION,NUMBER_PURCHASE,RCS_SENDER_LAUNCH"
+     },
+     {
+      "name":"senderNameLike",
+      "in":"query",
+      "description":"Filters resources to those whose sender name contains the supplied value (case-insensitive, partial match).",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      },
+      "example":"SenderABC"
+     },
+     {
+      "name":"applicationId",
+      "in":"query",
+      "description":"Filters resources to those that match the supplied platform application ID.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"array",
+       "items":{
+        "type":"string"
+       }
+      },
+      "example":"default,my-app-id"
+     },
+     {
+      "name":"entityId",
+      "in":"query",
+      "description":"Filters resources to those that match the supplied platform entity ID.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"array",
+       "items":{
+        "type":"string"
+       }
+      },
+      "example":"entity-1,entity-2"
      },
      {
       "name":"page",
@@ -1102,7 +1159,6 @@
                "value":"stopMessageExample"
               }
              ],
-             "requirementsFeedback":[],
              "platform":{
               "applicationId":"application-id",
               "entityId":"entity-id"
@@ -1128,7 +1184,6 @@
                "status":"SUCCESS"
               }
              ],
-             "requirementsFeedback":[],
              "requirements":[
               {
                "key":"state",
@@ -1141,6 +1196,14 @@
               {
                "key":"nxx",
                "value":"909"
+              },
+              {
+               "key":"lata",
+               "value":"336"
+              },
+              {
+               "key":"rateCenter",
+               "value":"INDIANAPLS"
               }
              ],
              "platform":{
@@ -1174,7 +1237,6 @@
                "status":"SUCCESS"
               }
              ],
-             "requirementsFeedback":[],
              "requirements":[
               {
                "key":"companyName",
@@ -1205,16 +1267,26 @@
              "status":"UPDATE_REQUESTED_BY_INTERNAL_REVIEWER",
              "trafficOrigin":"INTERNATIONAL",
              "trafficType":"PROMOTIONAL",
-             "requirementsFeedback":[
+             "feedback":[
               {
-               "key":"contactPhoneNumber",
-               "code":"RES_REQ_FEED_REQUIRED",
-               "feedback":"This field is required and cannot be empty."
+               "requirementKey":"companyEmailAddresses",
+               "errors":[
+                {
+                 "key":"CONTACT_EMAIL_NOT_BUS_DOMAIN",
+                 "reason":"The contact email must use a business domain.",
+                 "details":"If the company has its own domain, use that address instead. If you must use a public domain such as Gmail, Outlook, or Yahoo, explain why in the comments."
+                }
+               ]
               },
               {
-               "key":"expectedMonthlyMessages",
-               "code":"RES_REQ_FEED_VALUE_OOR",
-               "feedback":"Value must be between 1 and 10000000."
+               "requirementKey":"useCase",
+               "errors":[
+                {
+                 "key":"DISALLOWED_ILLEGAL_SUBST",
+                 "reason":"Messaging related to illegal or controlled substances is not allowed.",
+                 "details":"If your program does not involve this, update the description and resubmit."
+                }
+               ]
               }
              ],
              "requirements":[
@@ -1251,8 +1323,18 @@
              "status":"REJECTED",
              "trafficOrigin":"LOCAL",
              "trafficType":"TRANSACTIONAL",
-             "note":"Your request has been rejected because it contains invalid information for the selected destination.",
-             "requirementsFeedback":[],
+             "feedback":[
+              {
+               "requirementKey":"companyEmailAddresses",
+               "errors":[
+                {
+                 "key":"CONTACT_EMAIL_NOT_BUS_DOMAIN",
+                 "reason":"The contact email must use a business domain.",
+                 "details":"If the company has its own domain, use that address instead. If you must use a public domain such as Gmail, Outlook, or Yahoo, explain why in the comments."
+                }
+               ]
+              }
+             ],
              "requirements":[
               {
                "key":"companyName",
@@ -1420,6 +1502,9 @@
           "platform":{
            "applicationId":"application-id",
            "entityId":"entity-id"
+          },
+          "featureOptIns":{
+           "structuredFeedback":true
           }
          },
          "x-label":{
@@ -1523,6 +1608,14 @@
            {
             "key":"nxx",
             "value":"909"
+           },
+           {
+            "key":"lata",
+            "value":"336"
+           },
+           {
+            "key":"rateCenter",
+            "value":"INDIANAPLS"
            }
           ],
           "platform":{
@@ -1674,6 +1767,10 @@
           "platform":{
            "applicationId":"application-id",
            "entityId":"entity-id"
+          },
+          "featureOptIns":{
+           "structuredFeedback":true,
+           "senderInfoUpdates":true
           }
          },
          "x-label":{
@@ -1849,6 +1946,21 @@
            ]
           }
          },
+         "Invalid rate center":{
+          "summary":"Invalid rate center",
+          "value":{
+           "errorCode":"RR-NUMBER-PURCHASE-INVALID-RATE-CENTER400",
+           "description":"Invalid rate center.",
+           "action":"Please provide a valid rate center.",
+           "violations":[],
+           "resources":[]
+          },
+          "x-label":{
+           "type":[
+            "Number Purchase"
+           ]
+          }
+         },
          "RCS sender already launched":{
           "summary":"RCS sender already launched",
           "value":{
@@ -1924,12 +2036,12 @@
            ]
           }
          },
-         "RCS sender phone number conflict":{
-          "summary":"RCS sender phone number conflict",
+         "RCS structured feedback required for sender info updates":{
+          "summary":"RCS structured feedback required for sender info updates",
           "value":{
-           "errorCode":"RR-RCS-SENDER-PHONE-NUMBER-CONFLICT400",
-           "description":"Company phone number cannot be the same as the brand contact's mobile number.",
-           "action":"Provide a different company phone number that is distinct from the brand contact's personal mobile number.",
+           "errorCode":"RR-STRUCTURED-FEEDBACK-REQUIRED400",
+           "description":"structuredFeedback cannot be disabled.",
+           "action":"Omit the field or set structuredFeedback to true.",
            "violations":[],
            "resources":[]
           },
@@ -2106,7 +2218,6 @@
            "status":"PENDING",
            "trafficOrigin":"LOCAL",
            "trafficType":"TRANSACTIONAL",
-           "requirementsFeedback":[],
            "requirements":[
             {
              "key":"companyName",
@@ -2181,7 +2292,6 @@
            "status":"AUTOMATIC_VALIDATION",
            "trafficOrigin":"LOCAL",
            "trafficType":"TRANSACTIONAL",
-           "requirementsFeedback":[],
            "requirements":[
             {
              "key":"companyName",
@@ -2241,8 +2351,8 @@
            ]
           }
          },
-         "Alphanumeric Registration - UPDATE_REQUESTED":{
-          "summary":"Alphanumeric Registration - UPDATE_REQUESTED",
+         "Alphanumeric Registration - UPDATE_REQUESTED - structuredFeedback Disabled":{
+          "summary":"Alphanumeric Registration - UPDATE_REQUESTED - structuredFeedback Disabled",
           "value":{
            "id":"a0c63335-f841-4d43-9ef8-e0765a233f29",
            "type":"ALPHANUMERIC_REGISTRATION",
@@ -2265,7 +2375,7 @@
             {
              "key":"companyName",
              "code":"RES_REQ_FEED_LENGTH_OOR",
-             "feedback":"Text length must be between 2 and 100."
+             "feedback":"Text length does not meet the required limits."
             }
            ],
            "requirements":[
@@ -2324,6 +2434,108 @@
            ],
            "status":[
             "UPDATE_REQUESTED"
+           ],
+           "structuredFeedback":[
+            "Disabled"
+           ]
+          }
+         },
+         "Alphanumeric Registration - UPDATE_REQUESTED - structuredFeedback Enabled":{
+          "summary":"Alphanumeric Registration - UPDATE_REQUESTED - structuredFeedback Enabled",
+          "value":{
+           "id":"a0c63335-f841-4d43-9ef8-e0765a233f29",
+           "type":"ALPHANUMERIC_REGISTRATION",
+           "countryCode":"HR",
+           "senderName":"InfobipHR",
+           "requestedByEmailAddress":"alphanumeric@infobip.com",
+           "additionalContactEmailAddresses":[
+            "contact@infobip.com"
+           ],
+           "requestedDate":"2025-03-11T09:22:47.000+0000",
+           "status":"UPDATE_REQUESTED",
+           "trafficOrigin":"LOCAL",
+           "trafficType":"TRANSACTIONAL",
+           "feedback":[
+            {
+             "requirementKey":"contactPhoneNumber",
+             "errors":[
+              {
+               "key":"REQ_FIELD_MISSING",
+               "reason":"This field is required.",
+               "details":"Enter the required value before resubmitting."
+              }
+             ]
+            },
+            {
+             "requirementKey":"companyName",
+             "errors":[
+              {
+               "key":"TEXT_TOO_SHORT_OR_LONG",
+               "reason":"The text does not meet the length requirement for this field.",
+               "details":"Check the minimum and maximum character limits and adjust. If unsure, check the field's help text for the allowed length."
+              }
+             ]
+            }
+           ],
+           "requirements":[
+            {
+             "key":"companyName",
+             "value":"Infobip"
+            },
+            {
+             "key":"vatNumber",
+             "value":"HR12345678901"
+            },
+            {
+             "key":"useCase",
+             "value":"Notifications"
+            },
+            {
+             "key":"expectedMonthlyMessages",
+             "value":50000
+            },
+            {
+             "key":"companyEmailAddresses",
+             "value":[
+              "contact@infobip.com",
+              "info@infobip.com"
+             ]
+            },
+            {
+             "key":"companyWebsite",
+             "value":"https://www.infobip.com"
+            },
+            {
+             "key":"contactPhoneNumber",
+             "value":"+385911234567"
+            },
+            {
+             "key":"companyRegistrationDocument",
+             "value":"A3F8C21D04E7B96F2150C8DA3E47B01FCA8D5E92F3B741082E6C50D9A1FB8327E4C09B6D2A75F83190EC621B4D5A7803F96E12C48B3D07A95F12E840BC369241"
+            },
+            {
+             "key":"registrationForm",
+             "value":"2B7E4A91F53D08CC461E9BAD3F80712EDB9C6E53A2F841076D5B40E8C2FA9318B5D07C6E3A84F92180EB531C4D6A8702F85E13C49B4D08A96F23E951BD470352"
+            },
+            {
+             "key":"registrationConsent",
+             "value":"I consent that Infobip will do registration in my name."
+            }
+           ],
+           "platform":{
+            "applicationId":"application-id",
+            "entityId":"entity-id"
+           }
+          },
+          "x-label":{
+           "type":[
+            "Alphanumeric Registration"
+           ],
+           "status":[
+            "UPDATE_REQUESTED"
+           ],
+           "structuredFeedback":[
+            "Enabled"
            ]
           }
          },
@@ -2342,7 +2554,6 @@
            "status":"PENDING_REVIEW",
            "trafficOrigin":"LOCAL",
            "trafficType":"TRANSACTIONAL",
-           "requirementsFeedback":[],
            "requirements":[
             {
              "key":"companyName",
@@ -2417,7 +2628,6 @@
            "status":"IN_REVIEW",
            "trafficOrigin":"LOCAL",
            "trafficType":"TRANSACTIONAL",
-           "requirementsFeedback":[],
            "requirements":[
             {
              "key":"companyName",
@@ -2477,8 +2687,8 @@
            ]
           }
          },
-         "Alphanumeric Registration - UPDATE_REQUESTED_BY_INTERNAL_REVIEWER":{
-          "summary":"Alphanumeric Registration - UPDATE_REQUESTED_BY_INTERNAL_REVIEWER",
+         "Alphanumeric Registration - UPDATE_REQUESTED_BY_INTERNAL_REVIEWER - structuredFeedback Disabled":{
+          "summary":"Alphanumeric Registration - UPDATE_REQUESTED_BY_INTERNAL_REVIEWER - structuredFeedback Disabled",
           "value":{
            "id":"a0c63335-f841-4d43-9ef8-e0765a233f29",
            "type":"ALPHANUMERIC_REGISTRATION",
@@ -2501,7 +2711,7 @@
             {
              "key":"companyName",
              "code":"RES_REQ_FEED_LENGTH_OOR",
-             "feedback":"Text length must be between 2 and 100."
+             "feedback":"Text length does not meet the required limits."
             }
            ],
            "requirements":[
@@ -2560,6 +2770,98 @@
            ],
            "status":[
             "UPDATE_REQUESTED_BY_INTERNAL_REVIEWER"
+           ],
+           "structuredFeedback":[
+            "Disabled"
+           ]
+          }
+         },
+         "Alphanumeric Registration - UPDATE_REQUESTED_BY_INTERNAL_REVIEWER - structuredFeedback Enabled":{
+          "summary":"Alphanumeric Registration - UPDATE_REQUESTED_BY_INTERNAL_REVIEWER - structuredFeedback Enabled",
+          "value":{
+           "id":"a0c63335-f841-4d43-9ef8-e0765a233f29",
+           "type":"ALPHANUMERIC_REGISTRATION",
+           "countryCode":"HR",
+           "senderName":"InfobipHR",
+           "requestedByEmailAddress":"alphanumeric@infobip.com",
+           "additionalContactEmailAddresses":[
+            "contact@infobip.com"
+           ],
+           "requestedDate":"2025-03-11T09:22:47.000+0000",
+           "status":"UPDATE_REQUESTED_BY_INTERNAL_REVIEWER",
+           "trafficOrigin":"LOCAL",
+           "trafficType":"TRANSACTIONAL",
+           "feedback":[
+            {
+             "requirementKey":"companyEmailAddresses",
+             "errors":[
+              {
+               "key":"CONTACT_EMAIL_NOT_BUS_DOMAIN",
+               "reason":"The contact email must use a business domain.",
+               "details":"If the company has its own domain, use that address instead. If you must use a public domain such as Gmail, Outlook, or Yahoo, explain why in the comments."
+              }
+             ]
+            }
+           ],
+           "requirements":[
+            {
+             "key":"companyName",
+             "value":"Infobip"
+            },
+            {
+             "key":"vatNumber",
+             "value":"HR12345678901"
+            },
+            {
+             "key":"useCase",
+             "value":"Notifications"
+            },
+            {
+             "key":"expectedMonthlyMessages",
+             "value":50000
+            },
+            {
+             "key":"companyEmailAddresses",
+             "value":[
+              "contact@infobip.com",
+              "info@infobip.com"
+             ]
+            },
+            {
+             "key":"companyWebsite",
+             "value":"https://www.infobip.com"
+            },
+            {
+             "key":"contactPhoneNumber",
+             "value":"+385911234567"
+            },
+            {
+             "key":"companyRegistrationDocument",
+             "value":"A3F8C21D04E7B96F2150C8DA3E47B01FCA8D5E92F3B741082E6C50D9A1FB8327E4C09B6D2A75F83190EC621B4D5A7803F96E12C48B3D07A95F12E840BC369241"
+            },
+            {
+             "key":"registrationForm",
+             "value":"2B7E4A91F53D08CC461E9BAD3F80712EDB9C6E53A2F841076D5B40E8C2FA9318B5D07C6E3A84F92180EB531C4D6A8702F85E13C49B4D08A96F23E951BD470352"
+            },
+            {
+             "key":"registrationConsent",
+             "value":"I consent that Infobip will do registration in my name."
+            }
+           ],
+           "platform":{
+            "applicationId":"application-id",
+            "entityId":"entity-id"
+           }
+          },
+          "x-label":{
+           "type":[
+            "Alphanumeric Registration"
+           ],
+           "status":[
+            "UPDATE_REQUESTED_BY_INTERNAL_REVIEWER"
+           ],
+           "structuredFeedback":[
+            "Enabled"
            ]
           }
          },
@@ -2578,7 +2880,6 @@
            "status":"IN_PROGRESS",
            "trafficOrigin":"LOCAL",
            "trafficType":"TRANSACTIONAL",
-           "requirementsFeedback":[],
            "requirements":[
             {
              "key":"companyName",
@@ -2653,7 +2954,6 @@
            "status":"COMPLETED",
            "trafficOrigin":"LOCAL",
            "trafficType":"TRANSACTIONAL",
-           "requirementsFeedback":[],
            "requirements":[
             {
              "key":"companyName",
@@ -2713,8 +3013,8 @@
            ]
           }
          },
-         "Alphanumeric Registration - REJECTED":{
-          "summary":"Alphanumeric Registration - REJECTED",
+         "Alphanumeric Registration - REJECTED - structuredFeedback Disabled":{
+          "summary":"Alphanumeric Registration - REJECTED - structuredFeedback Disabled",
           "value":{
            "id":"a0c63335-f841-4d43-9ef8-e0765a233f29",
            "type":"ALPHANUMERIC_REGISTRATION",
@@ -2729,7 +3029,6 @@
            "trafficOrigin":"LOCAL",
            "trafficType":"TRANSACTIONAL",
            "note":"Your request has been rejected because it contains invalid information for the selected destination.",
-           "requirementsFeedback":[],
            "requirements":[
             {
              "key":"companyName",
@@ -2786,6 +3085,98 @@
            ],
            "status":[
             "REJECTED"
+           ],
+           "structuredFeedback":[
+            "Disabled"
+           ]
+          }
+         },
+         "Alphanumeric Registration - REJECTED - structuredFeedback Enabled":{
+          "summary":"Alphanumeric Registration - REJECTED - structuredFeedback Enabled",
+          "value":{
+           "id":"a0c63335-f841-4d43-9ef8-e0765a233f29",
+           "type":"ALPHANUMERIC_REGISTRATION",
+           "countryCode":"HR",
+           "senderName":"InfobipHR",
+           "requestedByEmailAddress":"alphanumeric@infobip.com",
+           "additionalContactEmailAddresses":[
+            "contact@infobip.com"
+           ],
+           "requestedDate":"2025-03-11T09:22:47.000+0000",
+           "status":"REJECTED",
+           "trafficOrigin":"LOCAL",
+           "trafficType":"TRANSACTIONAL",
+           "feedback":[
+            {
+             "requirementKey":"companyEmailAddresses",
+             "errors":[
+              {
+               "key":"CONTACT_EMAIL_NOT_BUS_DOMAIN",
+               "reason":"The contact email must use a business domain.",
+               "details":"If the company has its own domain, use that address instead. If you must use a public domain such as Gmail, Outlook, or Yahoo, explain why in the comments."
+              }
+             ]
+            }
+           ],
+           "requirements":[
+            {
+             "key":"companyName",
+             "value":"Infobip"
+            },
+            {
+             "key":"vatNumber",
+             "value":"HR12345678901"
+            },
+            {
+             "key":"useCase",
+             "value":"Notifications"
+            },
+            {
+             "key":"expectedMonthlyMessages",
+             "value":50000
+            },
+            {
+             "key":"companyEmailAddresses",
+             "value":[
+              "contact@infobip.com",
+              "info@infobip.com"
+             ]
+            },
+            {
+             "key":"companyWebsite",
+             "value":"https://www.infobip.com"
+            },
+            {
+             "key":"contactPhoneNumber",
+             "value":"+385911234567"
+            },
+            {
+             "key":"companyRegistrationDocument",
+             "value":"A3F8C21D04E7B96F2150C8DA3E47B01FCA8D5E92F3B741082E6C50D9A1FB8327E4C09B6D2A75F83190EC621B4D5A7803F96E12C48B3D07A95F12E840BC369241"
+            },
+            {
+             "key":"registrationForm",
+             "value":"2B7E4A91F53D08CC461E9BAD3F80712EDB9C6E53A2F841076D5B40E8C2FA9318B5D07C6E3A84F92180EB531C4D6A8702F85E13C49B4D08A96F23E951BD470352"
+            },
+            {
+             "key":"registrationConsent",
+             "value":"I consent that Infobip will do registration in my name."
+            }
+           ],
+           "platform":{
+            "applicationId":"application-id",
+            "entityId":"entity-id"
+           }
+          },
+          "x-label":{
+           "type":[
+            "Alphanumeric Registration"
+           ],
+           "status":[
+            "REJECTED"
+           ],
+           "structuredFeedback":[
+            "Enabled"
            ]
           }
          },
@@ -2804,7 +3195,6 @@
            "status":"CANCELED",
            "trafficOrigin":"LOCAL",
            "trafficType":"TRANSACTIONAL",
-           "requirementsFeedback":[],
            "requirements":[
             {
              "key":"companyName",
@@ -2864,6 +3254,81 @@
            ]
           }
          },
+         "Alphanumeric Registration - EXPIRED":{
+          "summary":"Alphanumeric Registration - EXPIRED",
+          "value":{
+           "id":"a0c63335-f841-4d43-9ef8-e0765a233f29",
+           "type":"ALPHANUMERIC_REGISTRATION",
+           "countryCode":"HR",
+           "senderName":"InfobipHR",
+           "requestedByEmailAddress":"alphanumeric@infobip.com",
+           "additionalContactEmailAddresses":[
+            "contact@infobip.com"
+           ],
+           "requestedDate":"2025-03-11T09:22:47.000+0000",
+           "status":"EXPIRED",
+           "trafficOrigin":"LOCAL",
+           "trafficType":"TRANSACTIONAL",
+           "note":"No updates within the required 30-day period. A new request can be submitted at any time.",
+           "requirements":[
+            {
+             "key":"companyName",
+             "value":"Infobip"
+            },
+            {
+             "key":"vatNumber",
+             "value":"HR12345678901"
+            },
+            {
+             "key":"useCase",
+             "value":"Notifications"
+            },
+            {
+             "key":"expectedMonthlyMessages",
+             "value":50000
+            },
+            {
+             "key":"companyEmailAddresses",
+             "value":[
+              "contact@infobip.com",
+              "info@infobip.com"
+             ]
+            },
+            {
+             "key":"companyWebsite",
+             "value":"https://www.infobip.com"
+            },
+            {
+             "key":"contactPhoneNumber",
+             "value":"+385911234567"
+            },
+            {
+             "key":"companyRegistrationDocument",
+             "value":"A3F8C21D04E7B96F2150C8DA3E47B01FCA8D5E92F3B741082E6C50D9A1FB8327E4C09B6D2A75F83190EC621B4D5A7803F96E12C48B3D07A95F12E840BC369241"
+            },
+            {
+             "key":"registrationForm",
+             "value":"2B7E4A91F53D08CC461E9BAD3F80712EDB9C6E53A2F841076D5B40E8C2FA9318B5D07C6E3A84F92180EB531C4D6A8702F85E13C49B4D08A96F23E951BD470352"
+            },
+            {
+             "key":"registrationConsent",
+             "value":"I consent that Infobip will do registration in my name."
+            }
+           ],
+           "platform":{
+            "applicationId":"application-id",
+            "entityId":"entity-id"
+           }
+          },
+          "x-label":{
+           "type":[
+            "Alphanumeric Registration"
+           ],
+           "status":[
+            "EXPIRED"
+           ]
+          }
+         },
          "Number Purchase - PENDING":{
           "summary":"Number Purchase - PENDING",
           "value":{
@@ -2881,7 +3346,6 @@
            ],
            "quantity":5,
            "numbers":[],
-           "requirementsFeedback":[],
            "requirements":[
             {
              "key":"companyName",
@@ -2958,7 +3422,6 @@
            ],
            "quantity":5,
            "numbers":[],
-           "requirementsFeedback":[],
            "requirements":[
             {
              "key":"companyName",
@@ -3044,7 +3507,7 @@
             {
              "key":"companyName",
              "code":"RES_REQ_FEED_LENGTH_OOR",
-             "feedback":"Text length must be between 2 and 100."
+             "feedback":"Text length does not meet the required limits."
             }
            ],
            "requirements":[
@@ -3123,7 +3586,6 @@
            ],
            "quantity":5,
            "numbers":[],
-           "requirementsFeedback":[],
            "requirements":[
             {
              "key":"companyName",
@@ -3200,7 +3662,6 @@
            ],
            "quantity":5,
            "numbers":[],
-           "requirementsFeedback":[],
            "requirements":[
             {
              "key":"companyName",
@@ -3286,7 +3747,7 @@
             {
              "key":"companyName",
              "code":"RES_REQ_FEED_LENGTH_OOR",
-             "feedback":"Text length must be between 2 and 100."
+             "feedback":"Text length does not meet the required limits."
             }
            ],
            "requirements":[
@@ -3376,7 +3837,6 @@
              "status":"SUCCESS"
             }
            ],
-           "requirementsFeedback":[],
            "requirements":[
             {
              "key":"companyName",
@@ -3465,7 +3925,6 @@
              "status":"SUCCESS"
             }
            ],
-           "requirementsFeedback":[],
            "requirements":[
             {
              "key":"companyName",
@@ -3543,7 +4002,6 @@
            "quantity":5,
            "note":"Your request has been rejected because it contains invalid information for the selected destination.",
            "numbers":[],
-           "requirementsFeedback":[],
            "requirements":[
             {
              "key":"companyName",
@@ -3620,7 +4078,6 @@
            ],
            "quantity":5,
            "numbers":[],
-           "requirementsFeedback":[],
            "requirements":[
             {
              "key":"companyName",
@@ -3724,7 +4181,6 @@
              "value":"stopMessageExample"
             }
            ],
-           "requirementsFeedback":[],
            "platform":{
             "applicationId":"application-id",
             "entityId":"entity-id"
@@ -3783,7 +4239,6 @@
              "value":"stopMessageExample"
             }
            ],
-           "requirementsFeedback":[],
            "platform":{
             "applicationId":"application-id",
             "entityId":"entity-id"
@@ -3798,8 +4253,8 @@
            ]
           }
          },
-         "RCS Sender Launch - UPDATE_REQUESTED":{
-          "summary":"RCS Sender Launch - UPDATE_REQUESTED",
+         "RCS Sender Launch - UPDATE_REQUESTED - structuredFeedback Disabled":{
+          "summary":"RCS Sender Launch - UPDATE_REQUESTED - structuredFeedback Disabled",
           "value":{
            "id":"d3f96668-b174-4d76-8b21-b3098d566b52",
            "type":"RCS_SENDER_LAUNCH",
@@ -3844,14 +4299,14 @@
            ],
            "requirementsFeedback":[
             {
-             "key":"contactPhoneNumber",
+             "key":"contactPersonPhoneNumber",
              "code":"RES_REQ_FEED_REQUIRED",
              "feedback":"This field is required and cannot be empty."
             },
             {
-             "key":"companyName",
+             "key":"legalBrandCompanyName",
              "code":"RES_REQ_FEED_LENGTH_OOR",
-             "feedback":"Text length must be between 2 and 100."
+             "feedback":"Text length does not meet the required limits."
             }
            ],
            "platform":{
@@ -3865,6 +4320,92 @@
            ],
            "status":[
             "UPDATE_REQUESTED"
+           ],
+           "structuredFeedback":[
+            "Disabled"
+           ]
+          }
+         },
+         "RCS Sender Launch - UPDATE_REQUESTED - structuredFeedback Enabled":{
+          "summary":"RCS Sender Launch - UPDATE_REQUESTED - structuredFeedback Enabled",
+          "value":{
+           "id":"d3f96668-b174-4d76-8b21-b3098d566b52",
+           "type":"RCS_SENDER_LAUNCH",
+           "status":"UPDATE_REQUESTED",
+           "countryCode":"HR",
+           "excludedCarriers":[
+            "Carrier A",
+            "Carrier B"
+           ],
+           "senderName":"Example sender",
+           "requestedByEmailAddress":"examples@example.com",
+           "additionalContactEmails":[
+            "examples@example.com"
+           ],
+           "requestedDate":"2025-11-19T11:45:10.000+0000",
+           "trafficOrigin":"LOCAL",
+           "requirements":[
+            {
+             "key":"legalBrandCompanyName",
+             "value":"example"
+            },
+            {
+             "key":"stockExchange",
+             "value":"EXAMPLE"
+            },
+            {
+             "key":"contactPersonEmailAddresses",
+             "value":"example@example.com"
+            },
+            {
+             "key":"contactPersonPhoneNumber",
+             "value":"1234567891"
+            },
+            {
+             "key":"attestationLetter",
+             "value":"documentId"
+            },
+            {
+             "key":"stopMessage",
+             "value":"stopMessageExample"
+            }
+           ],
+           "feedback":[
+            {
+             "requirementKey":"contactPersonPhoneNumber",
+             "errors":[
+              {
+               "key":"REQ_FIELD_MISSING",
+               "reason":"This field is required.",
+               "details":"Enter the required value before resubmitting."
+              }
+             ]
+            },
+            {
+             "requirementKey":"legalBrandCompanyName",
+             "errors":[
+              {
+               "key":"TEXT_TOO_SHORT_OR_LONG",
+               "reason":"The text does not meet the length requirement for this field.",
+               "details":"Check the minimum and maximum character limits and adjust. If unsure, check the field's help text for the allowed length."
+              }
+             ]
+            }
+           ],
+           "platform":{
+            "applicationId":"application-id",
+            "entityId":"entity-id"
+           }
+          },
+          "x-label":{
+           "type":[
+            "RCS Sender Launch"
+           ],
+           "status":[
+            "UPDATE_REQUESTED"
+           ],
+           "structuredFeedback":[
+            "Enabled"
            ]
           }
          },
@@ -3912,7 +4453,6 @@
              "value":"stopMessageExample"
             }
            ],
-           "requirementsFeedback":[],
            "platform":{
             "applicationId":"application-id",
             "entityId":"entity-id"
@@ -3971,7 +4511,6 @@
              "value":"stopMessageExample"
             }
            ],
-           "requirementsFeedback":[],
            "platform":{
             "applicationId":"application-id",
             "entityId":"entity-id"
@@ -3986,8 +4525,8 @@
            ]
           }
          },
-         "RCS Sender Launch - UPDATE_REQUESTED_BY_INTERNAL_REVIEWER":{
-          "summary":"RCS Sender Launch - UPDATE_REQUESTED_BY_INTERNAL_REVIEWER",
+         "RCS Sender Launch - UPDATE_REQUESTED_BY_INTERNAL_REVIEWER - structuredFeedback Disabled":{
+          "summary":"RCS Sender Launch - UPDATE_REQUESTED_BY_INTERNAL_REVIEWER - structuredFeedback Disabled",
           "value":{
            "id":"d3f96668-b174-4d76-8b21-b3098d566b52",
            "type":"RCS_SENDER_LAUNCH",
@@ -4032,14 +4571,14 @@
            ],
            "requirementsFeedback":[
             {
-             "key":"contactPhoneNumber",
+             "key":"contactPersonPhoneNumber",
              "code":"RES_REQ_FEED_REQUIRED",
              "feedback":"This field is required and cannot be empty."
             },
             {
-             "key":"companyName",
+             "key":"legalBrandCompanyName",
              "code":"RES_REQ_FEED_LENGTH_OOR",
-             "feedback":"Text length must be between 2 and 100."
+             "feedback":"Text length does not meet the required limits."
             }
            ],
            "platform":{
@@ -4053,6 +4592,92 @@
            ],
            "status":[
             "UPDATE_REQUESTED_BY_INTERNAL_REVIEWER"
+           ],
+           "structuredFeedback":[
+            "Disabled"
+           ]
+          }
+         },
+         "RCS Sender Launch - UPDATE_REQUESTED_BY_INTERNAL_REVIEWER - structuredFeedback Enabled":{
+          "summary":"RCS Sender Launch - UPDATE_REQUESTED_BY_INTERNAL_REVIEWER - structuredFeedback Enabled",
+          "value":{
+           "id":"d3f96668-b174-4d76-8b21-b3098d566b52",
+           "type":"RCS_SENDER_LAUNCH",
+           "status":"UPDATE_REQUESTED_BY_INTERNAL_REVIEWER",
+           "countryCode":"HR",
+           "excludedCarriers":[
+            "Carrier A",
+            "Carrier B"
+           ],
+           "senderName":"Example sender",
+           "requestedByEmailAddress":"examples@example.com",
+           "additionalContactEmails":[
+            "examples@example.com"
+           ],
+           "requestedDate":"2025-11-19T11:45:10.000+0000",
+           "trafficOrigin":"LOCAL",
+           "requirements":[
+            {
+             "key":"legalBrandCompanyName",
+             "value":"example"
+            },
+            {
+             "key":"stockExchange",
+             "value":"EXAMPLE"
+            },
+            {
+             "key":"contactPersonEmailAddresses",
+             "value":"example@example.com"
+            },
+            {
+             "key":"contactPersonPhoneNumber",
+             "value":"1234567891"
+            },
+            {
+             "key":"attestationLetter",
+             "value":"documentId"
+            },
+            {
+             "key":"stopMessage",
+             "value":"stopMessageExample"
+            }
+           ],
+           "feedback":[
+            {
+             "requirementKey":"attestationLetter",
+             "errors":[
+              {
+               "key":"DOC_REQ_INFO_MISSING",
+               "reason":"The document is missing required fields or sections.",
+               "details":"Review the requirements and resubmit a complete document."
+              }
+             ]
+            },
+            {
+             "externalRequirementKey":"description",
+             "errors":[
+              {
+               "key":"OTHER",
+               "reason":"Custom error or rejection reason.",
+               "details":"Open-ended text feedback provided by the reviewer."
+              }
+             ]
+            }
+           ],
+           "platform":{
+            "applicationId":"application-id",
+            "entityId":"entity-id"
+           }
+          },
+          "x-label":{
+           "type":[
+            "RCS Sender Launch"
+           ],
+           "status":[
+            "UPDATE_REQUESTED_BY_INTERNAL_REVIEWER"
+           ],
+           "structuredFeedback":[
+            "Enabled"
            ]
           }
          },
@@ -4100,7 +4725,6 @@
              "value":"stopMessageExample"
             }
            ],
-           "requirementsFeedback":[],
            "platform":{
             "applicationId":"application-id",
             "entityId":"entity-id"
@@ -4159,7 +4783,6 @@
              "value":"stopMessageExample"
             }
            ],
-           "requirementsFeedback":[],
            "platform":{
             "applicationId":"application-id",
             "entityId":"entity-id"
@@ -4174,8 +4797,8 @@
            ]
           }
          },
-         "RCS Sender Launch - REJECTED":{
-          "summary":"RCS Sender Launch - REJECTED",
+         "RCS Sender Launch - REJECTED - structuredFeedback Disabled":{
+          "summary":"RCS Sender Launch - REJECTED - structuredFeedback Disabled",
           "value":{
            "id":"d3f96668-b174-4d76-8b21-b3098d566b52",
            "type":"RCS_SENDER_LAUNCH",
@@ -4219,7 +4842,6 @@
              "value":"stopMessageExample"
             }
            ],
-           "requirementsFeedback":[],
            "platform":{
             "applicationId":"application-id",
             "entityId":"entity-id"
@@ -4231,6 +4853,92 @@
            ],
            "status":[
             "REJECTED"
+           ],
+           "structuredFeedback":[
+            "Disabled"
+           ]
+          }
+         },
+         "RCS Sender Launch - REJECTED - structuredFeedback Enabled":{
+          "summary":"RCS Sender Launch - REJECTED - structuredFeedback Enabled",
+          "value":{
+           "id":"d3f96668-b174-4d76-8b21-b3098d566b52",
+           "type":"RCS_SENDER_LAUNCH",
+           "status":"REJECTED",
+           "countryCode":"HR",
+           "excludedCarriers":[
+            "Carrier A",
+            "Carrier B"
+           ],
+           "senderName":"Example sender",
+           "requestedByEmailAddress":"examples@example.com",
+           "additionalContactEmails":[
+            "examples@example.com"
+           ],
+           "requestedDate":"2025-11-19T11:45:10.000+0000",
+           "trafficOrigin":"LOCAL",
+           "requirements":[
+            {
+             "key":"legalBrandCompanyName",
+             "value":"example"
+            },
+            {
+             "key":"stockExchange",
+             "value":"EXAMPLE"
+            },
+            {
+             "key":"contactPersonEmailAddresses",
+             "value":"example@example.com"
+            },
+            {
+             "key":"contactPersonPhoneNumber",
+             "value":"1234567891"
+            },
+            {
+             "key":"attestationLetter",
+             "value":"documentId"
+            },
+            {
+             "key":"stopMessage",
+             "value":"stopMessageExample"
+            }
+           ],
+           "feedback":[
+            {
+             "requirementKey":"attestationLetter",
+             "errors":[
+              {
+               "key":"DOC_REQ_INFO_MISSING",
+               "reason":"The document is missing required fields or sections.",
+               "details":"Review the requirements and resubmit a complete document."
+              }
+             ]
+            },
+            {
+             "externalRequirementKey":"description",
+             "errors":[
+              {
+               "key":"OTHER",
+               "reason":"Custom error or rejection reason.",
+               "details":"Open-ended text feedback provided by the reviewer."
+              }
+             ]
+            }
+           ],
+           "platform":{
+            "applicationId":"application-id",
+            "entityId":"entity-id"
+           }
+          },
+          "x-label":{
+           "type":[
+            "RCS Sender Launch"
+           ],
+           "status":[
+            "REJECTED"
+           ],
+           "structuredFeedback":[
+            "Enabled"
            ]
           }
          },
@@ -4278,7 +4986,6 @@
              "value":"stopMessageExample"
             }
            ],
-           "requirementsFeedback":[],
            "platform":{
             "applicationId":"application-id",
             "entityId":"entity-id"
@@ -4290,6 +4997,65 @@
            ],
            "status":[
             "CANCELED"
+           ]
+          }
+         },
+         "RCS Sender Launch - EXPIRED":{
+          "summary":"RCS Sender Launch - EXPIRED",
+          "value":{
+           "id":"d3f96668-b174-4d76-8b21-b3098d566b52",
+           "type":"RCS_SENDER_LAUNCH",
+           "status":"EXPIRED",
+           "countryCode":"HR",
+           "excludedCarriers":[
+            "Carrier A",
+            "Carrier B"
+           ],
+           "senderName":"Example sender",
+           "requestedByEmailAddress":"examples@example.com",
+           "additionalContactEmails":[
+            "examples@example.com"
+           ],
+           "requestedDate":"2025-11-19T11:45:10.000+0000",
+           "trafficOrigin":"LOCAL",
+           "note":"No updates within the required 30-day period. A new request can be submitted at any time.",
+           "requirements":[
+            {
+             "key":"legalBrandCompanyName",
+             "value":"example"
+            },
+            {
+             "key":"stockExchange",
+             "value":"EXAMPLE"
+            },
+            {
+             "key":"contactPersonEmailAddresses",
+             "value":"example@example.com"
+            },
+            {
+             "key":"contactPersonPhoneNumber",
+             "value":"1234567891"
+            },
+            {
+             "key":"attestationLetter",
+             "value":"documentId"
+            },
+            {
+             "key":"stopMessage",
+             "value":"stopMessageExample"
+            }
+           ],
+           "platform":{
+            "applicationId":"application-id",
+            "entityId":"entity-id"
+           }
+          },
+          "x-label":{
+           "type":[
+            "RCS Sender Launch"
+           ],
+           "status":[
+            "EXPIRED"
            ]
           }
          }
@@ -4446,6 +5212,7 @@
            "trafficOrigin":"INTERNATIONAL",
            "trafficType":"PROMOTIONAL",
            "requirementsFeedback":[],
+           "feedback":[],
            "requirements":[
             {
              "key":"companyName",
@@ -4573,6 +5340,135 @@
      {
       "type":"time",
       "numberOfRequests":1,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/resources/1/requests/{id}/requirements":{
+   "get":{
+    "tags":[
+     "platform",
+     "resources",
+     "resource-request"
+    ],
+    "summary":"Get resource request requirements",
+    "description":"Get a list of requirements for a specific resource request. These requirements can differ from the ones returned by the requirements lookup.",
+    "operationId":"get-resource-request-requirements",
+    "parameters":[
+     {
+      "name":"id",
+      "in":"path",
+      "description":"The ID of the resource request.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string",
+       "format":"uuid",
+       "description":"The ID of the resource request."
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.RequirementSpecs"
+        },
+        "examples":{
+         "Requirements present":{
+          "summary":"Requirements present",
+          "value":{
+           "requirements":[
+            {
+             "key":"companyName",
+             "type":"TEXT",
+             "name":"Company Name",
+             "description":"The legal name of the company.",
+             "required":true,
+             "category":"BUSINESS_DETAILS",
+             "validation":{
+              "minLength":3,
+              "maxLength":100
+             }
+            },
+            {
+             "key":"companyWebsite",
+             "type":"URL",
+             "name":"Company Website",
+             "description":"The official website of the company.",
+             "required":true,
+             "category":"BUSINESS_DETAILS"
+            }
+           ]
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Resource request not found":{
+          "summary":"Resource request not found",
+          "value":{
+           "errorCode":"RR404",
+           "description":"Resource request not found.",
+           "action":"Please verify the resource request ID and adjust your request.",
+           "violations":[],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "resource-request-hub:manage",
+     "resource-request-hub:read"
+    ],
+    "x-is-early-access":true,
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":10,
       "numberOfTimeUnits":0,
       "timeUnit":"s"
      }
@@ -5131,6 +6027,123 @@
      }
     ]
    }
+  },
+  "/resources/1/feedback-errors":{
+   "get":{
+    "tags":[
+     "platform",
+     "resources",
+     "resource-request"
+    ],
+    "summary":"Get feedback errors",
+    "description":"Retrieves all available feedback errors.",
+    "operationId":"get-feedback-errors",
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.FeedbackErrors"
+        },
+        "examples":{
+         "Feedback errors":{
+          "summary":"Feedback errors",
+          "value":{
+           "errors":[
+            {
+             "key":"REQ_FIELD_MISSING",
+             "reason":"This field is required.",
+             "details":"Enter the required value before resubmitting."
+            },
+            {
+             "key":"INV_FISCAL_TAX_CODE",
+             "reason":"EIN is missing or not valid.",
+             "details":"Provide a valid Employer Identification Number (EIN).",
+             "countryCode":"US"
+            },
+            {
+             "key":"BRAND_ID_NOT_FOUND",
+             "reason":"The Brand ID could not be found in the short code registry.",
+             "details":"Verify the ID is correct and that the brand is registered in the US Sender Registration App.",
+             "countryCode":"US",
+             "resourceRequestType":"NUMBER_PURCHASE"
+            }
+           ]
+          }
+         }
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "errorCode":"E400",
+           "description":"Request cannot be processed.",
+           "action":"Check the syntax, violations and adjust the request.",
+           "violations":[
+            {
+             "property":"property.path",
+             "violation":"Violation message."
+            }
+           ],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     },
+     {
+      "OAuth2":[]
+     }
+    ],
+    "x-scopes":[
+     "resource-request-hub:manage",
+     "resource-request-hub:read"
+    ],
+    "x-is-early-access":true,
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":10,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
   }
  },
  "components":{
@@ -5414,7 +6427,8 @@
        "url":{
         "type":"string",
         "description":"Specifies URL where message will be pushed.",
-        "minLength":1
+        "minLength":1,
+        "pattern":""
        },
        "format":{
         "type":"string",
@@ -5826,7 +6840,8 @@
        "url":{
         "type":"string",
         "description":"Specifies URL where message will be pushed.",
-        "minLength":1
+        "minLength":1,
+        "pattern":""
        },
        "format":{
         "type":"string",
@@ -5892,7 +6907,8 @@
        "url":{
         "type":"string",
         "description":"Specifies URL where message will be pushed.",
-        "minLength":1
+        "minLength":1,
+        "pattern":""
        },
        "format":{
         "type":"string",
@@ -6089,7 +7105,8 @@
        "url":{
         "type":"string",
         "description":"Specifies URL where message will be pushed.",
-        "minLength":1
+        "minLength":1,
+        "pattern":""
        },
        "format":{
         "type":"string",
@@ -6212,7 +7229,8 @@
        "url":{
         "type":"string",
         "description":"Specifies URL where message will be pushed.",
-        "minLength":1
+        "minLength":1,
+        "pattern":""
        },
        "format":{
         "type":"string",
@@ -6351,7 +7369,8 @@
        "url":{
         "type":"string",
         "description":"Specifies URL where message will be pushed.",
-        "minLength":1
+        "minLength":1,
+        "pattern":""
        },
        "format":{
         "type":"string",
@@ -6464,7 +7483,8 @@
        "url":{
         "type":"string",
         "description":"Specifies URL where message will be pushed.",
-        "minLength":1
+        "minLength":1,
+        "pattern":""
        },
        "format":{
         "type":"string",
@@ -6492,7 +7512,8 @@
        "url":{
         "type":"string",
         "description":"Specifies URL where message will be pushed.",
-        "minLength":1
+        "minLength":1,
+        "pattern":""
        },
        "format":{
         "type":"string",
@@ -6962,6 +7983,7 @@
      "RCS",
      "TELEGRAM",
      "KAKAO_SANGDAM",
+     "ZALO_ZMS",
      "OPEN_CHANNEL"
     ],
     "title":"NumberType"
@@ -7044,7 +8066,8 @@
        "url":{
         "type":"string",
         "description":"Specifies URL where message will be pushed.",
-        "minLength":1
+        "minLength":1,
+        "pattern":""
        },
        "format":{
         "type":"string",
@@ -7319,7 +8342,8 @@
        "url":{
         "type":"string",
         "description":"Specifies URL where message will be pushed.",
-        "minLength":1
+        "minLength":1,
+        "pattern":""
        },
        "format":{
         "type":"string",
@@ -7647,7 +8671,8 @@
        "url":{
         "type":"string",
         "description":"Specifies URL where message will be pushed.",
-        "minLength":1
+        "minLength":1,
+        "pattern":""
        },
        "format":{
         "type":"string",
@@ -7728,7 +8753,8 @@
        "url":{
         "type":"string",
         "description":"Specifies URL where message will be pushed.",
-        "minLength":1
+        "minLength":1,
+        "pattern":""
        },
        "format":{
         "type":"string",
@@ -7816,7 +8842,8 @@
        "url":{
         "type":"string",
         "description":"Specifies URL where message will be pushed.",
-        "minLength":1
+        "minLength":1,
+        "pattern":""
        },
        "format":{
         "type":"string",
@@ -8053,7 +9080,8 @@
        "url":{
         "type":"string",
         "description":"Specifies URL where message will be pushed.",
-        "minLength":1
+        "minLength":1,
+        "pattern":""
        },
        "format":{
         "type":"string",
@@ -8198,7 +9226,8 @@
        "url":{
         "type":"string",
         "description":"Specifies URL where message will be pushed.",
-        "minLength":1
+        "minLength":1,
+        "pattern":""
        },
        "format":{
         "type":"string",
@@ -8283,7 +9312,8 @@
        "url":{
         "type":"string",
         "description":"Specifies URL where message will be pushed.",
-        "minLength":1
+        "minLength":1,
+        "pattern":""
        },
        "format":{
         "type":"string",
@@ -8411,6 +9441,17 @@
     },
     "title":"ApiRequestErrorDetails"
    },
+   "c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.AlphaFeatureOptInsApiDoc":{
+    "type":"object",
+    "description":"Opt-in flags for optional features.",
+    "properties":{
+     "structuredFeedback":{
+      "type":"boolean",
+      "description":"Opt-in to receive structured and standardized validation feedback. When enabled, for UPDATE_REQUESTED and UPDATE_REQUESTED_BY_INTERNAL_REVIEWER statuses feedback is returned in the structured `feedback` field instead of the open-ended-text `requirementsFeedback` field, and for the REJECTED status feedback is returned in the structured `feedback` field instead of the open-ended-text `note` field.\nWhen enabled, resource requests that are auto-rejected for inactivity are set to the EXPIRED status instead of REJECTED.\nDefaults to false."
+     }
+    },
+    "title":"AlphaFeatureOptInsApiDoc"
+   },
    "c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.AlphaRequirementSpecsRequestApiDoc":{
     "type":"object",
     "properties":{
@@ -8493,9 +9534,17 @@
      },
      "requirementsFeedback":{
       "type":"array",
-      "description":"List of feedback for requirements.",
+      "deprecated":true,
+      "description":"List of feedback for requirements. Deprecated only when the `structuredFeedback` feature opt-in is enabled.",
       "items":{
        "$ref":"#/components/schemas/c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.FilledRequirementFeedback"
+      }
+     },
+     "feedback":{
+      "type":"array",
+      "description":"List of standardized and structured feedback for the resource order. Provided only when the `structuredFeedback` feature opt-in is enabled.",
+      "items":{
+       "$ref":"#/components/schemas/c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.AlphaResourceOrderFeedbackApiDoc"
       }
      },
      "requirements":{
@@ -8510,6 +9559,24 @@
      }
     },
     "title":"ALPHANUMERIC_REGISTRATION"
+   },
+   "c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.AlphaResourceOrderFeedbackApiDoc":{
+    "type":"object",
+    "description":"List of standardized and structured feedback for the resource order. Provided only when the `structuredFeedback` feature opt-in is enabled.",
+    "properties":{
+     "requirementKey":{
+      "type":"string",
+      "description":"Key of the requirement the feedback refers to."
+     },
+     "errors":{
+      "type":"array",
+      "description":"List of validation errors for the requirement.",
+      "items":{
+       "$ref":"#/components/schemas/c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.ResourceOrderFeedbackError"
+      }
+     }
+    },
+    "title":"AlphaResourceOrderFeedbackApiDoc"
    },
    "c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.AlphaResourceOrderRequestApiDoc":{
     "type":"object",
@@ -8556,6 +9623,9 @@
      },
      "platform":{
       "$ref":"#/components/schemas/c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.Platform"
+     },
+     "featureOptIns":{
+      "$ref":"#/components/schemas/c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.AlphaFeatureOptInsApiDoc"
      }
     },
     "required":[
@@ -8565,6 +9635,24 @@
      "type"
     ],
     "title":"ALPHANUMERIC_REGISTRATION"
+   },
+   "c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.AlphaWebhookFeedbackApiDoc":{
+    "type":"object",
+    "description":"Structured feedback for the resource order. Present only for UPDATE_REQUESTED, UPDATE_REQUESTED_BY_INTERNAL_REVIEWER and REJECTED statuses. Provided only when the `structuredFeedback` feature opt-in is enabled.",
+    "properties":{
+     "requirementKey":{
+      "type":"string",
+      "description":"Key of the requirement the feedback refers to."
+     },
+     "errors":{
+      "type":"array",
+      "description":"List of validation errors for the requirement.",
+      "items":{
+       "$ref":"#/components/schemas/c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.ResourceOrderFeedbackError"
+      }
+     }
+    },
+    "title":"AlphaWebhookFeedbackApiDoc"
    },
    "c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.AlphaWebhookStatusNotifApiDoc":{
     "type":"object",
@@ -8580,7 +9668,8 @@
        "UPDATE_REQUESTED",
        "UPDATE_REQUESTED_BY_INTERNAL_REVIEWER",
        "REJECTED",
-       "COMPLETED"
+       "COMPLETED",
+       "EXPIRED"
       ]
      },
      "type":{
@@ -8592,9 +9681,17 @@
      },
      "requirementsFeedback":{
       "type":"array",
-      "description":"Feedback for requirements. Present only for UPDATE_REQUESTED and UPDATE_REQUESTED_BY_INTERNAL_REVIEWER statuses.",
+      "deprecated":true,
+      "description":"Feedback for requirements. Present only for UPDATE_REQUESTED and UPDATE_REQUESTED_BY_INTERNAL_REVIEWER statuses. Deprecated only when the `structuredFeedback` feature opt-in is enabled.",
       "items":{
        "$ref":"#/components/schemas/c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.FilledRequirementFeedbackApiDoc"
+      }
+     },
+     "feedback":{
+      "type":"array",
+      "description":"Structured feedback for the resource order. Present only for UPDATE_REQUESTED, UPDATE_REQUESTED_BY_INTERNAL_REVIEWER and REJECTED statuses. Provided only when the `structuredFeedback` feature opt-in is enabled.",
+      "items":{
+       "$ref":"#/components/schemas/c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.AlphaWebhookFeedbackApiDoc"
       }
      },
      "note":{
@@ -8741,10 +9838,48 @@
      "RES_REQ_FEED_FORMAT",
      "RES_REQ_FEED_LENGTH_OOR",
      "RES_REQ_FEED_VALUE_OOR",
-     "RES_REQ_FEED_OTHER",
-     "RES_REQ_FEED_USER_ACTION_REQUIRED"
+     "RES_REQ_FEED_OTHER"
     ],
     "title":"FeedbackCode"
+   },
+   "c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.FeedbackError":{
+    "type":"object",
+    "description":"List of available feedback errors.",
+    "properties":{
+     "key":{
+      "type":"string",
+      "description":"Code identifying the type of error."
+     },
+     "reason":{
+      "type":"string",
+      "description":"Reason for the error."
+     },
+     "details":{
+      "type":"string",
+      "description":"Additional details and recommended actions for the error."
+     },
+     "countryCode":{
+      "type":"string",
+      "description":"Country code in two-letter ISO standard the error applies to, or null if it applies to all countries."
+     },
+     "resourceRequestType":{
+      "$ref":"#/components/schemas/c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.ResourceOrderType"
+     }
+    },
+    "title":"FeedbackError"
+   },
+   "c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.FeedbackErrors":{
+    "type":"object",
+    "properties":{
+     "errors":{
+      "type":"array",
+      "description":"List of available feedback errors.",
+      "items":{
+       "$ref":"#/components/schemas/c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.FeedbackError"
+      }
+     }
+    },
+    "title":"FeedbackErrors"
    },
    "c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.FieldType":{
     "type":"string",
@@ -9009,7 +10144,20 @@
       "description":"Date and time the resource was requested."
      },
      "status":{
-      "$ref":"#/components/schemas/c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.ResourceOrderStatus"
+      "type":"string",
+      "description":"Current status of the resource request.",
+      "enum":[
+       "PENDING",
+       "AUTOMATIC_VALIDATION",
+       "UPDATE_REQUESTED",
+       "PENDING_REVIEW",
+       "IN_REVIEW",
+       "UPDATE_REQUESTED_BY_INTERNAL_REVIEWER",
+       "IN_PROGRESS",
+       "COMPLETED",
+       "REJECTED",
+       "CANCELED"
+      ]
      },
      "numberType":{
       "$ref":"#/components/schemas/c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.ResourceNumberType"
@@ -9326,6 +10474,21 @@
     ],
     "title":"RCS_SENDER_LAUNCH"
    },
+   "c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.RcsSenderFeatureOptInsApiDoc":{
+    "type":"object",
+    "description":"Opt-in flags for optional features.",
+    "properties":{
+     "structuredFeedback":{
+      "type":"boolean",
+      "description":"Opt-in to receive structured and standardized validation feedback. When enabled, for UPDATE_REQUESTED and UPDATE_REQUESTED_BY_INTERNAL_REVIEWER statuses feedback is returned in the structured `feedback` field instead of the open-ended-text `requirementsFeedback` field, and for the REJECTED status feedback is returned in the structured `feedback` field instead of the open-ended-text `note` field.\nWhen enabled, resource requests that are auto-rejected for inactivity are set to the EXPIRED status instead of REJECTED.\nDefaults to false."
+     },
+     "senderInfoUpdates":{
+      "type":"boolean",
+      "description":"Opt-in to receive sender information updates on the RCS sender launch flow. When enabled, correct sender info directly through [Update an RCS sender](/docs/api/channels/rcs/rcs-service-management/rcs-sender-management/update-rcs-sender), then update the resource request, instead of submitting a new resource request.\nWhen enabled, this opt-in also enables `structuredFeedback`, because the update loop for this feature needs the structured feedback model. If you set `structuredFeedback` to false and enable this opt-in, the request is rejected.\nDefaults to false."
+     }
+    },
+    "title":"RcsSenderFeatureOptInsApiDoc"
+   },
    "c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.RcsSenderResourceOrderApiDoc":{
     "type":"object",
     "properties":{
@@ -9393,9 +10556,17 @@
      },
      "requirementsFeedback":{
       "type":"array",
-      "description":"List of feedback for requirements.",
+      "deprecated":true,
+      "description":"List of feedback for requirements. Deprecated only when the `structuredFeedback` feature opt-in is enabled.",
       "items":{
        "$ref":"#/components/schemas/c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.FilledRequirementFeedback"
+      }
+     },
+     "feedback":{
+      "type":"array",
+      "description":"List of standardized and structured feedback for the resource order. Provided only when the `structuredFeedback` feature opt-in is enabled.",
+      "items":{
+       "$ref":"#/components/schemas/c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.RcsSenderResourceOrderFeedbackApiDoc"
       }
      },
      "platform":{
@@ -9403,6 +10574,28 @@
      }
     },
     "title":"RCS_SENDER_LAUNCH"
+   },
+   "c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.RcsSenderResourceOrderFeedbackApiDoc":{
+    "type":"object",
+    "description":"List of standardized and structured feedback for the resource order. Provided only when the `structuredFeedback` feature opt-in is enabled.",
+    "properties":{
+     "requirementKey":{
+      "type":"string",
+      "description":"Key of the requirement the feedback refers to."
+     },
+     "externalRequirementKey":{
+      "type":"string",
+      "description":"External key of the requirement the feedback refers to, referring to an RCS sender launch request property. See [Receive an RCS sender launch update event](/docs/api/channels/rcs/rcs-service-management/rcs-sender-management/receive-rcs-sender-launch-update-events)."
+     },
+     "errors":{
+      "type":"array",
+      "description":"List of validation errors for the requirement.",
+      "items":{
+       "$ref":"#/components/schemas/c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.ResourceOrderFeedbackError"
+      }
+     }
+    },
+    "title":"RcsSenderResourceOrderFeedbackApiDoc"
    },
    "c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.RcsSenderResourceOrderRequestApiDoc":{
     "type":"object",
@@ -9454,6 +10647,9 @@
      },
      "platform":{
       "$ref":"#/components/schemas/c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.Platform"
+     },
+     "featureOptIns":{
+      "$ref":"#/components/schemas/c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.RcsSenderFeatureOptInsApiDoc"
      }
     },
     "required":[
@@ -9464,6 +10660,28 @@
      "type"
     ],
     "title":"RCS_SENDER_LAUNCH"
+   },
+   "c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.RcsWebhookFeedbackApiDoc":{
+    "type":"object",
+    "description":"Structured feedback for the resource order. Present only for UPDATE_REQUESTED, UPDATE_REQUESTED_BY_INTERNAL_REVIEWER and REJECTED statuses. Provided only when the `structuredFeedback` feature opt-in is enabled.",
+    "properties":{
+     "requirementKey":{
+      "type":"string",
+      "description":"Key of the requirement the feedback refers to."
+     },
+     "externalRequirementKey":{
+      "type":"string",
+      "description":"External key of the requirement the feedback refers to, referring to an RCS sender launch request property. See [Receive an RCS sender launch update event](/docs/api/channels/rcs/rcs-service-management/rcs-sender-management/receive-rcs-sender-launch-update-events)."
+     },
+     "errors":{
+      "type":"array",
+      "description":"List of validation errors for the requirement.",
+      "items":{
+       "$ref":"#/components/schemas/c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.ResourceOrderFeedbackError"
+      }
+     }
+    },
+    "title":"RcsWebhookFeedbackApiDoc"
    },
    "c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.RcsWebhookStatusNotifApiDoc":{
     "type":"object",
@@ -9479,7 +10697,8 @@
        "UPDATE_REQUESTED",
        "UPDATE_REQUESTED_BY_INTERNAL_REVIEWER",
        "REJECTED",
-       "COMPLETED"
+       "COMPLETED",
+       "EXPIRED"
       ]
      },
      "type":{
@@ -9491,9 +10710,17 @@
      },
      "requirementsFeedback":{
       "type":"array",
-      "description":"Feedback for requirements. Present only for UPDATE_REQUESTED and UPDATE_REQUESTED_BY_INTERNAL_REVIEWER statuses.",
+      "deprecated":true,
+      "description":"Feedback for requirements. Present only for UPDATE_REQUESTED and UPDATE_REQUESTED_BY_INTERNAL_REVIEWER statuses. Deprecated only when the `structuredFeedback` feature opt-in is enabled.",
       "items":{
        "$ref":"#/components/schemas/c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.FilledRequirementFeedbackApiDoc"
+      }
+     },
+     "feedback":{
+      "type":"array",
+      "description":"Structured feedback for the resource order. Present only for UPDATE_REQUESTED, UPDATE_REQUESTED_BY_INTERNAL_REVIEWER and REJECTED statuses. Provided only when the `structuredFeedback` feature opt-in is enabled.",
+      "items":{
+       "$ref":"#/components/schemas/c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.RcsWebhookFeedbackApiDoc"
       }
      },
      "note":{
@@ -9598,6 +10825,25 @@
     ],
     "title":"ResourceOrderApiDoc"
    },
+   "c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.ResourceOrderFeedbackError":{
+    "type":"object",
+    "description":"List of validation errors for the requirement.",
+    "properties":{
+     "key":{
+      "type":"string",
+      "description":"Code identifying the type of error."
+     },
+     "reason":{
+      "type":"string",
+      "description":"Reason for the error."
+     },
+     "details":{
+      "type":"string",
+      "description":"Additional details and recommended actions for the error."
+     }
+    },
+    "title":"ResourceOrderFeedbackError"
+   },
    "c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.ResourceOrderIdentifier":{
     "type":"object",
     "properties":{
@@ -9629,7 +10875,7 @@
    },
    "c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.ResourceOrderStatus":{
     "type":"string",
-    "description":"Current status of the resource request.",
+    "description":"Live resource request status at query time.",
     "enum":[
      "PENDING",
      "UPDATE_REQUESTED_BY_INTERNAL_REVIEWER",
@@ -9641,9 +10887,19 @@
      "PENDING_REVIEW",
      "IN_REVIEW",
      "IN_PROGRESS",
-     "CANCEL_REQUESTED"
+     "EXPIRED"
     ],
     "title":"ResourceOrderStatus"
+   },
+   "c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.ResourceOrderType":{
+    "type":"string",
+    "description":"Resource request type the error applies to, or null if it applies to all types.",
+    "enum":[
+     "ALPHANUMERIC_REGISTRATION",
+     "NUMBER_PURCHASE",
+     "RCS_SENDER_LAUNCH"
+    ],
+    "title":"ResourceOrderType"
    },
    "c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.TextRequirementSpec":{
     "type":"object",
@@ -10215,8 +11471,8 @@
         "$ref":"#/components/schemas/c8df889022018062dfcb44e930a391e7e1c8e669bd11a10a717da508b9ae3dcf.WebhookStatusNotifApiDocRequestBody"
        },
        "examples":{
-        "Alphanumeric Registration - UPDATE_REQUESTED":{
-         "summary":"Alphanumeric Registration - UPDATE_REQUESTED",
+        "Alphanumeric Registration - UPDATE_REQUESTED - structuredFeedback Disabled":{
+         "summary":"Alphanumeric Registration - UPDATE_REQUESTED - structuredFeedback Disabled",
          "value":{
           "results":[
            {
@@ -10235,7 +11491,7 @@
               {
                "key":"companyName",
                "code":"RES_REQ_FEED_LENGTH_OOR",
-               "feedback":"Text length must be between 2 and 100."
+               "feedback":"Text length does not meet the required limits."
               }
              ]
             },
@@ -10252,11 +11508,67 @@
           ],
           "status":[
            "UPDATE_REQUESTED"
+          ],
+          "structuredFeedback":[
+           "Disabled"
           ]
          }
         },
-        "Alphanumeric Registration - UPDATE_REQUESTED_BY_INTERNAL_REVIEWER":{
-         "summary":"Alphanumeric Registration - UPDATE_REQUESTED_BY_INTERNAL_REVIEWER",
+        "Alphanumeric Registration - UPDATE_REQUESTED - structuredFeedback Enabled":{
+         "summary":"Alphanumeric Registration - UPDATE_REQUESTED - structuredFeedback Enabled",
+         "value":{
+          "results":[
+           {
+            "event":"RESOURCE_REQUEST_STATUS_UPDATE",
+            "receivedAt":"2025-03-11T09:22:47.000+0000",
+            "content":{
+             "id":"a0c63335-f841-4d43-9ef8-e0765a233f29",
+             "status":"UPDATE_REQUESTED",
+             "type":"ALPHANUMERIC_REGISTRATION",
+             "feedback":[
+              {
+               "requirementKey":"contactPhoneNumber",
+               "errors":[
+                {
+                 "key":"REQ_FIELD_MISSING",
+                 "reason":"This field is required.",
+                 "details":"Enter the required value before resubmitting."
+                }
+               ]
+              },
+              {
+               "requirementKey":"companyName",
+               "errors":[
+                {
+                 "key":"TEXT_TOO_SHORT_OR_LONG",
+                 "reason":"The text does not meet the length requirement for this field.",
+                 "details":"Check the minimum and maximum character limits and adjust. If unsure, check the field's help text for the allowed length."
+                }
+               ]
+              }
+             ]
+            },
+            "platform":{
+             "applicationId":"application-id",
+             "entityId":"entity-id"
+            }
+           }
+          ]
+         },
+         "x-label":{
+          "type":[
+           "Alphanumeric Registration"
+          ],
+          "status":[
+           "UPDATE_REQUESTED"
+          ],
+          "structuredFeedback":[
+           "Enabled"
+          ]
+         }
+        },
+        "Alphanumeric Registration - UPDATE_REQUESTED_BY_INTERNAL_REVIEWER - structuredFeedback Disabled":{
+         "summary":"Alphanumeric Registration - UPDATE_REQUESTED_BY_INTERNAL_REVIEWER - structuredFeedback Disabled",
          "value":{
           "results":[
            {
@@ -10275,7 +11587,7 @@
               {
                "key":"companyName",
                "code":"RES_REQ_FEED_LENGTH_OOR",
-               "feedback":"Text length must be between 2 and 100."
+               "feedback":"Text length does not meet the required limits."
               }
              ]
             },
@@ -10292,6 +11604,52 @@
           ],
           "status":[
            "UPDATE_REQUESTED_BY_INTERNAL_REVIEWER"
+          ],
+          "structuredFeedback":[
+           "Disabled"
+          ]
+         }
+        },
+        "Alphanumeric Registration - UPDATE_REQUESTED_BY_INTERNAL_REVIEWER - structuredFeedback Enabled":{
+         "summary":"Alphanumeric Registration - UPDATE_REQUESTED_BY_INTERNAL_REVIEWER - structuredFeedback Enabled",
+         "value":{
+          "results":[
+           {
+            "event":"RESOURCE_REQUEST_STATUS_UPDATE",
+            "receivedAt":"2025-03-11T09:22:47.000+0000",
+            "content":{
+             "id":"a0c63335-f841-4d43-9ef8-e0765a233f29",
+             "status":"UPDATE_REQUESTED_BY_INTERNAL_REVIEWER",
+             "type":"ALPHANUMERIC_REGISTRATION",
+             "feedback":[
+              {
+               "requirementKey":"companyEmailAddresses",
+               "errors":[
+                {
+                 "key":"CONTACT_EMAIL_NOT_BUS_DOMAIN",
+                 "reason":"The contact email must use a business domain.",
+                 "details":"If the company has its own domain, use that address instead. If you must use a public domain such as Gmail, Outlook, or Yahoo, explain why in the comments."
+                }
+               ]
+              }
+             ]
+            },
+            "platform":{
+             "applicationId":"application-id",
+             "entityId":"entity-id"
+            }
+           }
+          ]
+         },
+         "x-label":{
+          "type":[
+           "Alphanumeric Registration"
+          ],
+          "status":[
+           "UPDATE_REQUESTED_BY_INTERNAL_REVIEWER"
+          ],
+          "structuredFeedback":[
+           "Enabled"
           ]
          }
         },
@@ -10305,8 +11663,7 @@
             "content":{
              "id":"a0c63335-f841-4d43-9ef8-e0765a233f29",
              "status":"COMPLETED",
-             "type":"ALPHANUMERIC_REGISTRATION",
-             "requirementsFeedback":[]
+             "type":"ALPHANUMERIC_REGISTRATION"
             },
             "platform":{
              "applicationId":"application-id",
@@ -10324,8 +11681,8 @@
           ]
          }
         },
-        "Alphanumeric Registration - REJECTED":{
-         "summary":"Alphanumeric Registration - REJECTED",
+        "Alphanumeric Registration - REJECTED - structuredFeedback Disabled":{
+         "summary":"Alphanumeric Registration - REJECTED - structuredFeedback Disabled",
          "value":{
           "results":[
            {
@@ -10335,7 +11692,6 @@
              "id":"a0c63335-f841-4d43-9ef8-e0765a233f29",
              "status":"REJECTED",
              "type":"ALPHANUMERIC_REGISTRATION",
-             "requirementsFeedback":[],
              "note":"Your request has been rejected because it contains invalid information for the selected destination."
             },
             "platform":{
@@ -10351,6 +11707,81 @@
           ],
           "status":[
            "REJECTED"
+          ],
+          "structuredFeedback":[
+           "Disabled"
+          ]
+         }
+        },
+        "Alphanumeric Registration - REJECTED - structuredFeedback Enabled":{
+         "summary":"Alphanumeric Registration - REJECTED - structuredFeedback Enabled",
+         "value":{
+          "results":[
+           {
+            "event":"RESOURCE_REQUEST_STATUS_UPDATE",
+            "receivedAt":"2025-03-11T09:22:47.000+0000",
+            "content":{
+             "id":"a0c63335-f841-4d43-9ef8-e0765a233f29",
+             "status":"REJECTED",
+             "type":"ALPHANUMERIC_REGISTRATION",
+             "feedback":[
+              {
+               "requirementKey":"companyEmailAddresses",
+               "errors":[
+                {
+                 "key":"CONTACT_EMAIL_NOT_BUS_DOMAIN",
+                 "reason":"The contact email must use a business domain.",
+                 "details":"If the company has its own domain, use that address instead. If you must use a public domain such as Gmail, Outlook, or Yahoo, explain why in the comments."
+                }
+               ]
+              }
+             ]
+            },
+            "platform":{
+             "applicationId":"application-id",
+             "entityId":"entity-id"
+            }
+           }
+          ]
+         },
+         "x-label":{
+          "type":[
+           "Alphanumeric Registration"
+          ],
+          "status":[
+           "REJECTED"
+          ],
+          "structuredFeedback":[
+           "Enabled"
+          ]
+         }
+        },
+        "Alphanumeric Registration - EXPIRED":{
+         "summary":"Alphanumeric Registration - EXPIRED",
+         "value":{
+          "results":[
+           {
+            "event":"RESOURCE_REQUEST_STATUS_UPDATE",
+            "receivedAt":"2025-03-11T09:22:47.000+0000",
+            "content":{
+             "id":"a0c63335-f841-4d43-9ef8-e0765a233f29",
+             "status":"EXPIRED",
+             "type":"ALPHANUMERIC_REGISTRATION",
+             "note":"No updates within the required 30-day period. A new request can be submitted at any time."
+            },
+            "platform":{
+             "applicationId":"application-id",
+             "entityId":"entity-id"
+            }
+           }
+          ]
+         },
+         "x-label":{
+          "type":[
+           "Alphanumeric Registration"
+          ],
+          "status":[
+           "EXPIRED"
           ]
          }
         },
@@ -10375,7 +11806,7 @@
               {
                "key":"companyName",
                "code":"RES_REQ_FEED_LENGTH_OOR",
-               "feedback":"Text length must be between 2 and 100."
+               "feedback":"Text length does not meet the required limits."
               }
              ]
             },
@@ -10416,7 +11847,7 @@
               {
                "key":"companyName",
                "code":"RES_REQ_FEED_LENGTH_OOR",
-               "feedback":"Text length must be between 2 and 100."
+               "feedback":"Text length does not meet the required limits."
               }
              ]
             },
@@ -10459,7 +11890,6 @@
                "status":"SUCCESS"
               }
              ],
-             "requirementsFeedback":[],
              "note":"Only 2 out of 5 requested numbers could be procured."
             },
             "platform":{
@@ -10490,7 +11920,6 @@
              "status":"REJECTED",
              "type":"NUMBER_PURCHASE",
              "numbers":[],
-             "requirementsFeedback":[],
              "note":"Your request has been rejected because it contains invalid information for the selected destination."
             },
             "platform":{
@@ -10509,8 +11938,8 @@
           ]
          }
         },
-        "RCS Sender Launch - UPDATE_REQUESTED":{
-         "summary":"RCS Sender Launch - UPDATE_REQUESTED",
+        "RCS Sender Launch - UPDATE_REQUESTED - structuredFeedback Disabled":{
+         "summary":"RCS Sender Launch - UPDATE_REQUESTED - structuredFeedback Disabled",
          "value":{
           "results":[
            {
@@ -10522,14 +11951,14 @@
              "type":"RCS_SENDER_LAUNCH",
              "requirementsFeedback":[
               {
-               "key":"contactPhoneNumber",
+               "key":"contactPersonPhoneNumber",
                "code":"RES_REQ_FEED_REQUIRED",
                "feedback":"This field is required and cannot be empty."
               },
               {
-               "key":"companyName",
+               "key":"legalBrandCompanyName",
                "code":"RES_REQ_FEED_LENGTH_OOR",
-               "feedback":"Text length must be between 2 and 100."
+               "feedback":"Text length does not meet the required limits."
               }
              ]
             },
@@ -10546,11 +11975,67 @@
           ],
           "status":[
            "UPDATE_REQUESTED"
+          ],
+          "structuredFeedback":[
+           "Disabled"
           ]
          }
         },
-        "RCS Sender Launch - UPDATE_REQUESTED_BY_INTERNAL_REVIEWER":{
-         "summary":"RCS Sender Launch - UPDATE_REQUESTED_BY_INTERNAL_REVIEWER",
+        "RCS Sender Launch - UPDATE_REQUESTED - structuredFeedback Enabled":{
+         "summary":"RCS Sender Launch - UPDATE_REQUESTED - structuredFeedback Enabled",
+         "value":{
+          "results":[
+           {
+            "event":"RESOURCE_REQUEST_STATUS_UPDATE",
+            "receivedAt":"2025-11-19T11:45:10.000+0000",
+            "content":{
+             "id":"d3f96668-b174-4d76-8b21-b3098d566b52",
+             "status":"UPDATE_REQUESTED",
+             "type":"RCS_SENDER_LAUNCH",
+             "feedback":[
+              {
+               "requirementKey":"contactPersonPhoneNumber",
+               "errors":[
+                {
+                 "key":"REQ_FIELD_MISSING",
+                 "reason":"This field is required.",
+                 "details":"Enter the required value before resubmitting."
+                }
+               ]
+              },
+              {
+               "requirementKey":"legalBrandCompanyName",
+               "errors":[
+                {
+                 "key":"TEXT_TOO_SHORT_OR_LONG",
+                 "reason":"The text does not meet the length requirement for this field.",
+                 "details":"Check the minimum and maximum character limits and adjust. If unsure, check the field's help text for the allowed length."
+                }
+               ]
+              }
+             ]
+            },
+            "platform":{
+             "applicationId":"application-id",
+             "entityId":"entity-id"
+            }
+           }
+          ]
+         },
+         "x-label":{
+          "type":[
+           "RCS Sender Launch"
+          ],
+          "status":[
+           "UPDATE_REQUESTED"
+          ],
+          "structuredFeedback":[
+           "Enabled"
+          ]
+         }
+        },
+        "RCS Sender Launch - UPDATE_REQUESTED_BY_INTERNAL_REVIEWER - structuredFeedback Disabled":{
+         "summary":"RCS Sender Launch - UPDATE_REQUESTED_BY_INTERNAL_REVIEWER - structuredFeedback Disabled",
          "value":{
           "results":[
            {
@@ -10562,14 +12047,14 @@
              "type":"RCS_SENDER_LAUNCH",
              "requirementsFeedback":[
               {
-               "key":"contactPhoneNumber",
+               "key":"contactPersonPhoneNumber",
                "code":"RES_REQ_FEED_REQUIRED",
                "feedback":"This field is required and cannot be empty."
               },
               {
-               "key":"companyName",
+               "key":"legalBrandCompanyName",
                "code":"RES_REQ_FEED_LENGTH_OOR",
-               "feedback":"Text length must be between 2 and 100."
+               "feedback":"Text length does not meet the required limits."
               }
              ]
             },
@@ -10586,6 +12071,62 @@
           ],
           "status":[
            "UPDATE_REQUESTED_BY_INTERNAL_REVIEWER"
+          ],
+          "structuredFeedback":[
+           "Disabled"
+          ]
+         }
+        },
+        "RCS Sender Launch - UPDATE_REQUESTED_BY_INTERNAL_REVIEWER - structuredFeedback Enabled":{
+         "summary":"RCS Sender Launch - UPDATE_REQUESTED_BY_INTERNAL_REVIEWER - structuredFeedback Enabled",
+         "value":{
+          "results":[
+           {
+            "event":"RESOURCE_REQUEST_STATUS_UPDATE",
+            "receivedAt":"2025-11-19T11:45:10.000+0000",
+            "content":{
+             "id":"d3f96668-b174-4d76-8b21-b3098d566b52",
+             "status":"UPDATE_REQUESTED_BY_INTERNAL_REVIEWER",
+             "type":"RCS_SENDER_LAUNCH",
+             "feedback":[
+              {
+               "requirementKey":"attestationLetter",
+               "errors":[
+                {
+                 "key":"DOC_REQ_INFO_MISSING",
+                 "reason":"The document is missing required fields or sections.",
+                 "details":"Review the requirements and resubmit a complete document."
+                }
+               ]
+              },
+              {
+               "externalRequirementKey":"description",
+               "errors":[
+                {
+                 "key":"OTHER",
+                 "reason":"Custom error or rejection reason.",
+                 "details":"Open-ended text feedback provided by the reviewer."
+                }
+               ]
+              }
+             ]
+            },
+            "platform":{
+             "applicationId":"application-id",
+             "entityId":"entity-id"
+            }
+           }
+          ]
+         },
+         "x-label":{
+          "type":[
+           "RCS Sender Launch"
+          ],
+          "status":[
+           "UPDATE_REQUESTED_BY_INTERNAL_REVIEWER"
+          ],
+          "structuredFeedback":[
+           "Enabled"
           ]
          }
         },
@@ -10599,8 +12140,7 @@
             "content":{
              "id":"d3f96668-b174-4d76-8b21-b3098d566b52",
              "status":"COMPLETED",
-             "type":"RCS_SENDER_LAUNCH",
-             "requirementsFeedback":[]
+             "type":"RCS_SENDER_LAUNCH"
             },
             "platform":{
              "applicationId":"application-id",
@@ -10618,8 +12158,8 @@
           ]
          }
         },
-        "RCS Sender Launch - REJECTED":{
-         "summary":"RCS Sender Launch - REJECTED",
+        "RCS Sender Launch - REJECTED - structuredFeedback Disabled":{
+         "summary":"RCS Sender Launch - REJECTED - structuredFeedback Disabled",
          "value":{
           "results":[
            {
@@ -10629,7 +12169,6 @@
              "id":"d3f96668-b174-4d76-8b21-b3098d566b52",
              "status":"REJECTED",
              "type":"RCS_SENDER_LAUNCH",
-             "requirementsFeedback":[],
              "note":"Your request has been rejected because it contains invalid information for the selected destination."
             },
             "platform":{
@@ -10645,6 +12184,91 @@
           ],
           "status":[
            "REJECTED"
+          ],
+          "structuredFeedback":[
+           "Disabled"
+          ]
+         }
+        },
+        "RCS Sender Launch - REJECTED - structuredFeedback Enabled":{
+         "summary":"RCS Sender Launch - REJECTED - structuredFeedback Enabled",
+         "value":{
+          "results":[
+           {
+            "event":"RESOURCE_REQUEST_STATUS_UPDATE",
+            "receivedAt":"2025-11-19T11:45:10.000+0000",
+            "content":{
+             "id":"d3f96668-b174-4d76-8b21-b3098d566b52",
+             "status":"REJECTED",
+             "type":"RCS_SENDER_LAUNCH",
+             "feedback":[
+              {
+               "requirementKey":"attestationLetter",
+               "errors":[
+                {
+                 "key":"DOC_REQ_INFO_MISSING",
+                 "reason":"The document is missing required fields or sections.",
+                 "details":"Review the requirements and resubmit a complete document."
+                }
+               ]
+              },
+              {
+               "externalRequirementKey":"description",
+               "errors":[
+                {
+                 "key":"OTHER",
+                 "reason":"Custom error or rejection reason.",
+                 "details":"Open-ended text feedback provided by the reviewer."
+                }
+               ]
+              }
+             ]
+            },
+            "platform":{
+             "applicationId":"application-id",
+             "entityId":"entity-id"
+            }
+           }
+          ]
+         },
+         "x-label":{
+          "type":[
+           "RCS Sender Launch"
+          ],
+          "status":[
+           "REJECTED"
+          ],
+          "structuredFeedback":[
+           "Enabled"
+          ]
+         }
+        },
+        "RCS Sender Launch - EXPIRED":{
+         "summary":"RCS Sender Launch - EXPIRED",
+         "value":{
+          "results":[
+           {
+            "event":"RESOURCE_REQUEST_STATUS_UPDATE",
+            "receivedAt":"2025-11-19T11:45:10.000+0000",
+            "content":{
+             "id":"d3f96668-b174-4d76-8b21-b3098d566b52",
+             "status":"EXPIRED",
+             "type":"RCS_SENDER_LAUNCH",
+             "note":"No updates within the required 30-day period. A new request can be submitted at any time."
+            },
+            "platform":{
+             "applicationId":"application-id",
+             "entityId":"entity-id"
+            }
+           }
+          ]
+         },
+         "x-label":{
+          "type":[
+           "RCS Sender Launch"
+          ],
+          "status":[
+           "EXPIRED"
           ]
          }
         }

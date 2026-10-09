@@ -7,8 +7,8 @@
    "name":"Infobip support",
    "email":"support@infobip.com"
   },
-  "version":"3.210.0",
-  "x-generatedAt":"2026-07-23T15:24:04.003346249Z"
+  "version":"3.245.1",
+  "x-generatedAt":"2026-10-07T09:47:59.132054283Z"
  },
  "tags":[
   {
@@ -691,7 +691,7 @@
      "marketing-subscriptions-messenger"
     ],
     "summary":"Get marketing subscriptions",
-    "description":"Get all messenger marketing subscriptions for single page. <br/> Collecting subscription tokens still works on the Messenger platform. However, marketing messages on Messenger are no longer available for new users. For existing users, this feature will be deprecated on January 12, 2026. After this date, marketing messages will no longer be supported.",
+    "description":"Get all messenger marketing subscriptions for single page. For pages with many subscriptions, set `useCursor=true` and follow `nextCursor` to fetch them page by page. <br/> Collecting subscription tokens still works on the Messenger platform. However, marketing messages on Messenger are no longer available for new users. For existing users, this feature will be deprecated on January 12, 2026. After this date, marketing messages will no longer be supported.",
     "externalDocs":{
      "description":"Learn more about Messenger channel and use cases",
      "url":"https://www.infobip.com/docs/facebook-messenger"
@@ -709,15 +709,134 @@
        "type":"string"
       },
       "example":263213833541399
+     },
+     {
+      "name":"customAudienceIds",
+      "in":"query",
+      "description":"Meta Custom Audience IDs used to filter subscription tokens. Repeat the query parameter for multiple IDs.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"array",
+       "items":{
+        "type":"string"
+       }
+      }
+     },
+     {
+      "name":"useCursor",
+      "in":"query",
+      "description":"Flag used to enable cursor-based pagination. When set to true, the response contains one page of subscriptions and the `nextCursor` for the next page.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"boolean",
+       "default":false
+      }
+     },
+     {
+      "name":"limit",
+      "in":"query",
+      "description":"Number of subscriptions per page. Can only be used with `useCursor=true`.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "format":"int32",
+       "default":50,
+       "maximum":1000,
+       "minimum":1
+      }
+     },
+     {
+      "name":"cursor",
+      "in":"query",
+      "description":"Value which represents the current position in the data set. For the first request, this field shouldn't be defined. In subsequent requests, use the `nextCursor` value returned from the previous response to continue fetching data. A cursor can become invalid over time, so use `nextCursor` right away. Can only be used with `useCursor=true`.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      }
      }
     ],
     "responses":{
      "200":{
-      "description":"List Of Marketing Subscriptions For Page",
+      "description":"List Of Marketing Subscriptions For Page. With `useCursor=true`, one page of subscriptions and the cursor for the next page.",
       "content":{
        "application/json":{
         "schema":{
-         "$ref":"#/components/schemas/cc99cb7b0e48638be90df2dee94fb1aaadb95bcd09a6944a79bd00ca6a59df77.PageMarketingSubscriptionResponse"
+         "oneOf":[
+          {
+           "type":"array",
+           "items":{
+            "$ref":"#/components/schemas/cc99cb7b0e48638be90df2dee94fb1aaadb95bcd09a6944a79bd00ca6a59df77.PageMarketingSubscriptionResponse"
+           }
+          },
+          {
+           "$ref":"#/components/schemas/cc99cb7b0e48638be90df2dee94fb1aaadb95bcd09a6944a79bd00ca6a59df77.PagedMarketingSubscriptionsResponse"
+          }
+         ]
+        },
+        "examples":{
+         "Regular marketing subscription":{
+          "summary":"Regular marketing subscription",
+          "description":"Regular marketing subscription",
+          "value":[
+           {
+            "notificationMessagesToken":"7264910385729406158",
+            "recipientId":"2486137598016427",
+            "notificationMessagesReoptin":"ENABLED",
+            "creationDatetime":"2024-03-04T12:47:58.093+0000",
+            "tokenExpiry":"2038-01-01T00:00:00.000+0000",
+            "userTokenStatus":"NOT_REFRESHED",
+            "title":"Weekly product updates",
+            "notificationMessagesTimezone":"Europe/Warsaw",
+            "nextEligibleDatetime":"2024-03-14T13:14:47.000+0000"
+           }
+          ]
+         },
+         "Custom Audience marketing subscription":{
+          "summary":"Custom Audience marketing subscription",
+          "description":"Custom Audience marketing subscription",
+          "value":[
+           {
+            "notificationMessagesToken":"8401736259047183265",
+            "notificationMessagesReoptin":"ENABLED",
+            "title":"Summer sale announcements",
+            "customAudienceIds":[
+             "120211754839710",
+             "120214608517230"
+            ]
+           }
+          ]
+         },
+         "Page of marketing subscriptions (useCursor=true)":{
+          "summary":"Page of marketing subscriptions (useCursor=true)",
+          "description":"Page of marketing subscriptions (useCursor=true)",
+          "value":{
+           "results":[
+            {
+             "notificationMessagesToken":"7264910385729406158",
+             "recipientId":"2486137598016427",
+             "notificationMessagesReoptin":"ENABLED",
+             "creationDatetime":"2024-03-04T12:47:58.093+0000",
+             "tokenExpiry":"2038-01-01T00:00:00.000+0000",
+             "userTokenStatus":"NOT_REFRESHED",
+             "title":"Weekly product updates",
+             "notificationMessagesTimezone":"Europe/Warsaw",
+             "nextEligibleDatetime":"2024-03-14T13:14:47.000+0000"
+            }
+           ],
+           "cursor":{
+            "limit":50,
+            "nextCursor":"QVFIUjB6N0Z4dGx6X1pSN2t4QWlJZAjd1"
+           }
+          }
+         }
         }
        }
       }
@@ -767,6 +886,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -774,9 +896,140 @@
      },
      {
       "Basic":[]
+     }
+    ],
+    "x-scopes":[
+     "messenger:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":5,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   }
+  },
+  "/messenger/1/pages/{pageId}/subscriptions/{notificationMessagesToken}":{
+   "delete":{
+    "tags":[
+     "channels",
+     "messenger",
+     "marketing-subscriptions-messenger"
+    ],
+    "summary":"Delete marketing subscription",
+    "description":"Unsubscribe a single notification messages token from the Page marketing messages audience.",
+    "externalDocs":{
+     "description":"Learn more about Messenger channel and use cases",
+     "url":"https://www.infobip.com/docs/facebook-messenger"
+    },
+    "operationId":"delete-messenger-marketing-subscription",
+    "parameters":[
+     {
+      "name":"pageId",
+      "in":"path",
+      "description":"Page ID.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":263213833541399
      },
      {
+      "name":"notificationMessagesToken",
+      "in":"path",
+      "description":"Token that represents the person. It is used to send Marketing Messages.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      },
+      "example":7264910385729406158
+     }
+    ],
+    "responses":{
+     "204":{
+      "description":"Subscription deleted. Also returned when the notification messages token is already unsubscribed."
+     },
+     "400":{
+      "description":"Bad Request",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "errorCode":"E400",
+           "description":"Request cannot be processed.",
+           "action":"Check the syntax, violations and adjust the request.",
+           "violations":[
+            {
+             "property":"property.path",
+             "violation":"Violation message."
+            }
+           ],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "404":{
+      "description":"Page does not exist, or the notification messages token is not valid.",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Subscription not found":{
+          "summary":"Subscription not found",
+          "description":"Subscription not found",
+          "value":{
+           "errorCode":"E404",
+           "description":"Subscription not found.",
+           "action":"Check the notification messages token.",
+           "violations":[],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
       "OAuth2":[]
+     },
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
      }
     ],
     "x-scopes":[
@@ -878,6 +1131,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -885,9 +1141,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -990,6 +1243,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -997,9 +1253,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -1112,6 +1365,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -1119,9 +1375,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -1226,6 +1479,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -1233,9 +1489,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -1332,6 +1585,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -1339,9 +1595,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -1433,6 +1686,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -1440,9 +1696,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -1554,6 +1807,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -1561,9 +1817,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -1588,7 +1841,7 @@
      "audiences-messenger"
     ],
     "summary":"Upload users to audience",
-    "description":"Upload hashed user data (SHA-256) to a custom audience. Meta matches this data against its user database to grow your marketing messages subscriber base. Maximum 10,000 users per request.",
+    "description":"Upload hashed user data (SHA-256) to a custom audience. Meta matches this data against its user database to grow your marketing messages subscriber base. Each user can be identified by a hashed phone number, a hashed email address, or both. Maximum 10,000 users per request.",
     "externalDocs":{
      "description":"Learn more about Messenger channel and use cases",
      "url":"https://www.infobip.com/docs/facebook-messenger"
@@ -1620,6 +1873,153 @@
     "responses":{
      "200":{
       "description":"Users uploaded successfully.",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/cc99cb7b0e48638be90df2dee94fb1aaadb95bcd09a6944a79bd00ca6a59df77.AudienceUsersResponse"
+        }
+       }
+      }
+     },
+     "400":{
+      "description":"Bad Request.",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Restricted Page region":{
+          "summary":"Restricted Page region",
+          "description":"Restricted Page region",
+          "value":{
+           "errorCode":"E400",
+           "description":"The Facebook Page is in a region where Messenger Marketing Messages are not supported.",
+           "action":"Use a Facebook Page from a supported region.",
+           "violations":[],
+           "resources":[]
+          }
+         },
+         "Bad request":{
+          "summary":"Bad request",
+          "value":{
+           "errorCode":"E400",
+           "description":"Request cannot be processed.",
+           "action":"Check the syntax, violations and adjust the request.",
+           "violations":[
+            {
+             "property":"property.path",
+             "violation":"Violation message."
+            }
+           ],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiError401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiError403"
+     },
+     "404":{
+      "description":"Audience not found.",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "errorCode":"E404",
+           "description":"Audience not found.",
+           "action":"Please contact support",
+           "violations":[],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiError429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiError500"
+     }
+    },
+    "security":[
+     {
+      "OAuth2":[]
+     },
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     }
+    ],
+    "x-scopes":[
+     "messenger:manage"
+    ],
+    "x-is-early-access":true,
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":5,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
+    ]
+   },
+   "delete":{
+    "tags":[
+     "channels",
+     "messenger",
+     "audiences-messenger"
+    ],
+    "summary":"Remove users from audience",
+    "description":"Remove users from a custom audience. Accepts the same hashed user data as the upload endpoint. Maximum 10,000 users per request.",
+    "externalDocs":{
+     "description":"Learn more about Messenger channel and use cases",
+     "url":"https://www.infobip.com/docs/facebook-messenger"
+    },
+    "operationId":"remove-messenger-audience-users",
+    "parameters":[
+     {
+      "name":"audienceId",
+      "in":"path",
+      "description":"Meta custom audience ID.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      }
+     }
+    ],
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/cc99cb7b0e48638be90df2dee94fb1aaadb95bcd09a6944a79bd00ca6a59df77.AudienceUsersRequest"
+       }
+      }
+     },
+     "required":true
+    },
+    "responses":{
+     "200":{
+      "description":"Users removed successfully.",
       "content":{
        "application/json":{
         "schema":{
@@ -1692,137 +2092,8 @@
     },
     "security":[
      {
-      "IBSSOTokenHeader":[]
-     },
-     {
-      "APIKeyHeader":[]
-     },
-     {
-      "Basic":[]
-     },
-     {
       "OAuth2":[]
-     }
-    ],
-    "x-scopes":[
-     "messenger:manage"
-    ],
-    "x-is-early-access":true,
-    "x-throttling-info":[
-     {
-      "type":"time",
-      "numberOfRequests":5,
-      "numberOfTimeUnits":0,
-      "timeUnit":"s"
-     }
-    ]
-   }
-  },
-  "/messenger/1/audiences/{audienceId}/users/{hashedPhoneNumber}":{
-   "delete":{
-    "tags":[
-     "channels",
-     "messenger",
-     "audiences-messenger"
-    ],
-    "summary":"Remove user from audience",
-    "description":"Remove a single hashed phone number from a custom audience.",
-    "externalDocs":{
-     "description":"Learn more about Messenger channel and use cases",
-     "url":"https://www.infobip.com/docs/facebook-messenger"
-    },
-    "operationId":"remove-messenger-audience-user",
-    "parameters":[
-     {
-      "name":"audienceId",
-      "in":"path",
-      "description":"Meta custom audience ID.",
-      "required":true,
-      "style":"simple",
-      "explode":false,
-      "schema":{
-       "type":"string"
-      }
      },
-     {
-      "name":"hashedPhoneNumber",
-      "in":"path",
-      "description":"SHA-256 hashed phone number to remove.",
-      "required":true,
-      "style":"simple",
-      "explode":false,
-      "schema":{
-       "type":"string"
-      }
-     }
-    ],
-    "responses":{
-     "204":{
-      "description":"User removed successfully."
-     },
-     "400":{
-      "description":"Bad Request.",
-      "content":{
-       "application/json":{
-        "schema":{
-         "$ref":"#/components/schemas/ApiError"
-        },
-        "examples":{
-         "Bad request":{
-          "summary":"Bad request",
-          "value":{
-           "errorCode":"E400",
-           "description":"Request cannot be processed.",
-           "action":"Check the syntax, violations and adjust the request.",
-           "violations":[
-            {
-             "property":"property.path",
-             "violation":"Violation message."
-            }
-           ],
-           "resources":[]
-          }
-         }
-        }
-       }
-      }
-     },
-     "401":{
-      "$ref":"#/components/responses/ApiError401"
-     },
-     "403":{
-      "$ref":"#/components/responses/ApiError403"
-     },
-     "404":{
-      "description":"Audience not found.",
-      "content":{
-       "application/json":{
-        "schema":{
-         "$ref":"#/components/schemas/ApiError"
-        },
-        "examples":{
-         "Response example":{
-          "summary":"Response example",
-          "value":{
-           "errorCode":"E404",
-           "description":"Audience not found.",
-           "action":"Please contact support",
-           "violations":[],
-           "resources":[]
-          }
-         }
-        }
-       }
-      }
-     },
-     "429":{
-      "$ref":"#/components/responses/ApiError429"
-     },
-     "500":{
-      "$ref":"#/components/responses/ApiError500"
-     }
-    },
-    "security":[
      {
       "IBSSOTokenHeader":[]
      },
@@ -1831,9 +2102,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -4267,19 +4535,96 @@
     "example":"ACTIVE",
     "title":"AdAccountStatus"
    },
+   "cc99cb7b0e48638be90df2dee94fb1aaadb95bcd09a6944a79bd00ca6a59df77.AudienceUploadStatus":{
+    "type":"object",
+    "properties":{
+     "notificationType":{
+      "$ref":"#/components/schemas/cc99cb7b0e48638be90df2dee94fb1aaadb95bcd09a6944a79bd00ca6a59df77.NotificationType"
+     },
+     "pageId":{
+      "type":"string",
+      "description":"Page ID for which the custom audience upload was processed."
+     },
+     "customAudienceId":{
+      "type":"string",
+      "description":"Custom Audience ID that was updated."
+     },
+     "adAccountId":{
+      "type":"string",
+      "description":"Ad Account ID owning the custom audience."
+     },
+     "businessId":{
+      "type":"string",
+      "description":"Business ID associated with the page."
+     },
+     "appId":{
+      "type":"string",
+      "description":"Meta Application ID that received the webhook."
+     },
+     "numRows":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Number of uploaded customer rows processed in this batch."
+     },
+     "approximateCountLowerBound":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Lower bound of the approximate number of people in this Custom Audience."
+     },
+     "approximateCountUpperBound":{
+      "type":"integer",
+      "format":"int64",
+      "description":"Upper bound of the approximate number of people in this Custom Audience."
+     },
+     "batchUploadingStatus":{
+      "type":"string",
+      "description":"Status of the upload for this batch of uploaded customers (e.g. SUCCESS)."
+     },
+     "reportedAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Date and time when the upload status was reported. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z'."
+     }
+    },
+    "required":[
+     "adAccountId",
+     "batchUploadingStatus",
+     "customAudienceId",
+     "notificationType",
+     "pageId",
+     "reportedAt"
+    ],
+    "title":"AudienceUploadStatus"
+   },
+   "cc99cb7b0e48638be90df2dee94fb1aaadb95bcd09a6944a79bd00ca6a59df77.AudienceUser":{
+    "type":"object",
+    "description":"A user identified by a hashed phone number, a hashed email address, or both.",
+    "properties":{
+     "phone":{
+      "type":"string",
+      "description":"SHA-256 hashed phone number. Normalize the value before hashing: remove symbols, letters, and any leading zeroes, keeping only the country code and digits (e.g. \"(+84) 091-2345678\" becomes \"84912345678\" before hashing). The hashed value must be a 64-character lowercase hexadecimal string.",
+      "example":"d6736136ea896c1bfdc553e0e86e702c70d060d805696ca3e4e9e0961353860a",
+      "maxLength":64,
+      "minLength":64
+     },
+     "email":{
+      "type":"string",
+      "description":"SHA-256 hashed email address. Normalize the value before hashing: trim surrounding whitespace and lowercase it (e.g. \" User@Example.com \" becomes \"user@example.com\" before hashing). The hashed value must be a 64-character lowercase hexadecimal string.",
+      "example":"b4c9a289323b21a01c3e940f150eb9b8c542587f1abfd8f0e1cc1ffc5e475514",
+      "maxLength":64,
+      "minLength":64
+     }
+    },
+    "title":"AudienceUser"
+   },
    "cc99cb7b0e48638be90df2dee94fb1aaadb95bcd09a6944a79bd00ca6a59df77.AudienceUsersRequest":{
     "type":"object",
     "properties":{
      "data":{
       "type":"array",
-      "description":"Array of SHA-256 hashed phone numbers. Phone values must be normalized before hashing: remove symbols, letters, and any leading zeroes, keeping only the country code and digits (e.g. \"(+84) 091-2345678\" becomes \"84912345678\" before hashing). Each hashed value must be a 64-character lowercase hexadecimal string.",
-      "example":[
-       "d6736136ea896c1bfdc553e0e86e702c70d060d805696ca3e4e9e0961353860a"
-      ],
+      "description":"Users to match against Meta's user database. Each entry must contain a hashed phone number, a hashed email address, or both. Providing both identifiers for the same person increases the chance of a match.",
       "items":{
-       "type":"string",
-       "description":"Array of SHA-256 hashed phone numbers. Phone values must be normalized before hashing: remove symbols, letters, and any leading zeroes, keeping only the country code and digits (e.g. \"(+84) 091-2345678\" becomes \"84912345678\" before hashing). Each hashed value must be a 64-character lowercase hexadecimal string.",
-       "example":"[\"d6736136ea896c1bfdc553e0e86e702c70d060d805696ca3e4e9e0961353860a\"]"
+       "$ref":"#/components/schemas/cc99cb7b0e48638be90df2dee94fb1aaadb95bcd09a6944a79bd00ca6a59df77.AudienceUser"
       },
       "maxItems":10000,
       "minItems":1
@@ -4322,7 +4667,8 @@
      "name":{
       "type":"string",
       "description":"Campaign name.",
-      "example":"Summer Sale Campaign"
+      "example":"Summer Sale Campaign",
+      "minLength":1
      },
      "dailyBudget":{
       "type":"integer",
@@ -4463,6 +4809,22 @@
     },
     "title":"CreateAudienceResponse"
    },
+   "cc99cb7b0e48638be90df2dee94fb1aaadb95bcd09a6944a79bd00ca6a59df77.CursorPageInfo":{
+    "type":"object",
+    "description":"Cursor information.",
+    "properties":{
+     "limit":{
+      "type":"integer",
+      "format":"int32",
+      "description":"Requested limit."
+     },
+     "nextCursor":{
+      "type":"string",
+      "description":"The `cursor` value you will use in your next request to fetch the subsequent set of results."
+     }
+    },
+    "title":"CursorPageInfo"
+   },
    "cc99cb7b0e48638be90df2dee94fb1aaadb95bcd09a6944a79bd00ca6a59df77.GetAdAccountsResponse":{
     "type":"object",
     "properties":{
@@ -4587,8 +4949,7 @@
     "type":"object",
     "properties":{
      "notificationType":{
-      "type":"string",
-      "description":"Tells the type of user event that took place. Possible events: MARKETING_CLICK."
+      "$ref":"#/components/schemas/cc99cb7b0e48638be90df2dee94fb1aaadb95bcd09a6944a79bd00ca6a59df77.NotificationType"
      },
      "from":{
       "type":"string",
@@ -4609,7 +4970,7 @@
      "clickedAt":{
       "type":"string",
       "format":"date-time",
-      "description":"Date and time when the marketing message was clicked. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSSZ."
+      "description":"Date and time when the marketing message was clicked. Has the following format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z'."
      }
     },
     "required":[
@@ -4728,6 +5089,15 @@
     "example":"ENABLED",
     "title":"NotificationMessageReoptin"
    },
+   "cc99cb7b0e48638be90df2dee94fb1aaadb95bcd09a6944a79bd00ca6a59df77.NotificationType":{
+    "type":"string",
+    "description":"Tells the type of user event that took place.",
+    "enum":[
+     "MARKETING_CLICK",
+     "AUDIENCE_UPLOAD_STATUS"
+    ],
+    "title":"NotificationType"
+   },
    "cc99cb7b0e48638be90df2dee94fb1aaadb95bcd09a6944a79bd00ca6a59df77.PageMarketingSubscriptionResponse":{
     "type":"object",
     "properties":{
@@ -4738,7 +5108,7 @@
      },
      "recipientId":{
       "type":"string",
-      "description":"Page ID.",
+      "description":"Page-scoped user/recipient ID.",
       "example":"1111111111111111"
      },
      "notificationMessagesReoptin":{
@@ -4752,7 +5122,7 @@
      "tokenExpiry":{
       "type":"string",
       "format":"date-time",
-      "description":"Date when the the notification message token expires."
+      "description":"Date when the notification message token expires."
      },
      "userTokenStatus":{
       "$ref":"#/components/schemas/cc99cb7b0e48638be90df2dee94fb1aaadb95bcd09a6944a79bd00ca6a59df77.UserTokenRefreshStatus"
@@ -4771,20 +5141,40 @@
       "type":"string",
       "format":"date-time",
       "description":"The date on which it will be possible to send the next message."
+     },
+     "customAudienceIds":{
+      "type":"array",
+      "description":"Meta Custom Audience IDs associated with the subscription token.",
+      "items":{
+       "type":"string",
+       "description":"Meta Custom Audience IDs associated with the subscription token."
+      }
      }
     },
     "required":[
-     "creationDatetime",
-     "nextEligibleDatetime",
-     "notificationMessagesReoptin",
-     "notificationMessagesTimezone",
-     "notificationMessagesToken",
-     "recipientId",
-     "title",
-     "tokenExpiry",
-     "userTokenStatus"
+     "notificationMessagesToken"
     ],
     "title":"PageMarketingSubscriptionResponse"
+   },
+   "cc99cb7b0e48638be90df2dee94fb1aaadb95bcd09a6944a79bd00ca6a59df77.PagedMarketingSubscriptionsResponse":{
+    "type":"object",
+    "properties":{
+     "results":{
+      "type":"array",
+      "description":"The list of the results for this page.",
+      "items":{
+       "$ref":"#/components/schemas/cc99cb7b0e48638be90df2dee94fb1aaadb95bcd09a6944a79bd00ca6a59df77.PageMarketingSubscriptionResponse"
+      }
+     },
+     "cursor":{
+      "$ref":"#/components/schemas/cc99cb7b0e48638be90df2dee94fb1aaadb95bcd09a6944a79bd00ca6a59df77.CursorPageInfo"
+     }
+    },
+    "required":[
+     "cursor",
+     "results"
+    ],
+    "title":"PagedMarketingSubscriptionsResponse"
    },
    "cc99cb7b0e48638be90df2dee94fb1aaadb95bcd09a6944a79bd00ca6a59df77.SubscriptionInfo":{
     "type":"object",
@@ -5112,10 +5502,10 @@
      "logs-and-status-reports-messenger"
     ],
     "summary":"Receive Messenger Marketing Click event",
-    "description":"Event is sent when a person clicks a Marketing Message. For this to work you need to configure subscriptions. Refer to [Subscriptions Management](https://www.infobip.com/docs/cpaas-x/subscriptions-management) for additional info.",
+    "description":"Event is sent when a person clicks a Marketing Message. For this to work you need to configure subscriptions. Refer to [Subscriptions Management](https://www.infobip.com/docs/subscriptions/manage) for additional info.",
     "externalDocs":{
      "description":"Learn more about Messenger channel and use cases",
-     "url":"https://www.infobip.com/docs/messenger"
+     "url":"https://www.infobip.com/docs/facebook-messenger"
     },
     "operationId":"receive-messenger-marketing-click",
     "requestBody":{
@@ -5134,6 +5524,55 @@
           "messageId":"222222222222",
           "campaignId":"123456789",
           "clickedAt":"2026-07-18T00:00:00.000+0000"
+         }
+        }
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"Your server returns this code if it accepts the callback."
+     }
+    },
+    "x-is-early-access":true
+   }
+  },
+  "receive-messenger-audience-upload-status":{
+   "post":{
+    "tags":[
+     "channels",
+     "messenger",
+     "logs-and-status-reports-messenger"
+    ],
+    "summary":"Receive Messenger Audience Upload Status event",
+    "description":"Event is sent when Meta finishes processing a batch of uploaded customer rows for a Custom Audience used with Marketing Messages. For this to work you need to configure subscriptions. Refer to [Subscriptions Management](https://www.infobip.com/docs/subscriptions/manage) for additional info.",
+    "externalDocs":{
+     "description":"Learn more about Messenger channel and use cases",
+     "url":"https://www.infobip.com/docs/facebook-messenger"
+    },
+    "operationId":"receive-messenger-audience-upload-status",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/cc99cb7b0e48638be90df2dee94fb1aaadb95bcd09a6944a79bd00ca6a59df77.AudienceUploadStatus"
+       },
+       "examples":{
+        "Upload status event":{
+         "summary":"Upload status event",
+         "value":{
+          "notificationType":"AUDIENCE_UPLOAD_STATUS",
+          "pageId":"134141414124123",
+          "customAudienceId":"140984918491243",
+          "adAccountId":"12348141984909088",
+          "businessId":"12313123123123",
+          "appId":"12313123123123",
+          "numRows":1000,
+          "approximateCountLowerBound":105,
+          "approximateCountUpperBound":120,
+          "batchUploadingStatus":"SUCCESS",
+          "reportedAt":"2026-08-07T12:00:00.000+0000"
          }
         }
        }
@@ -5208,10 +5647,10 @@
      "incoming-messenger-event"
     ],
     "summary":"Receive Messenger consent update event",
-    "description":"Event is sent when the person opts in or opts out of Marketing Messages. The `event` field indicates the type: `SUBSCRIBE` for opt-in, `UNSUBSCRIBE` for opt-out. For this to work you need to configure subscriptions. Refer to [Subscriptions Management](https://www.infobip.com/docs/cpaas-x/subscriptions-management) for additional info. <br/> Collecting subscription tokens still works on the Messenger platform. However, marketing messages on Messenger are no longer available for new users. For existing users, this feature will be deprecated on January 12, 2026. After this date, marketing messages will no longer be supported.",
+    "description":"Event is sent when the person opts in or opts out of Marketing Messages. The `event` field indicates the type: `SUBSCRIBE` for opt-in, `UNSUBSCRIBE` for opt-out. For this to work you need to configure subscriptions. Refer to [Subscriptions Management](https://www.infobip.com/docs/subscriptions/manage) for additional info. <br/> Collecting subscription tokens still works on the Messenger platform. However, marketing messages on Messenger are no longer available for new users. For existing users, this feature will be deprecated on January 12, 2026. After this date, marketing messages will no longer be supported.",
     "externalDocs":{
      "description":"Learn more about Messenger channel and use cases",
-     "url":"https://www.infobip.com/docs/messenger"
+     "url":"https://www.infobip.com/docs/facebook-messenger"
     },
     "operationId":"receive-messenger-consent-update",
     "requestBody":{

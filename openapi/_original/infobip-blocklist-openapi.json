@@ -7,8 +7,8 @@
    "name":"Infobip support",
    "email":"support@infobip.com"
   },
-  "version":"3.210.0",
-  "x-generatedAt":"2026-07-23T15:23:57.067489985Z"
+  "version":"3.245.1",
+  "x-generatedAt":"2026-10-07T09:47:52.869168006Z"
  },
  "tags":[
   {
@@ -44,7 +44,7 @@
       "explode":true,
       "schema":{
        "type":"string",
-       "example":"10950",
+       "example":"\"10950\"",
        "maxLength":255,
        "minLength":1
       }
@@ -58,7 +58,7 @@
       "explode":true,
       "schema":{
        "type":"string",
-       "example":"41793026727",
+       "example":"\"41793026727\"",
        "maxLength":255,
        "minLength":1
       }
@@ -302,6 +302,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -309,9 +312,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -451,6 +451,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -458,9 +461,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -605,6 +605,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -612,9 +615,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -642,7 +642,8 @@
       "description":"Destination addresses that need to be blocklisted.",
       "items":{
        "$ref":"#/components/schemas/2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.ToCreate"
-      }
+      },
+      "minItems":1
      },
      "sender":{
       "type":"string",
@@ -672,7 +673,8 @@
       "description":"Blocklist elements that need to be blocklisted. Number of destinations cannot exceed 50 000.",
       "items":{
        "$ref":"#/components/schemas/2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.BlocklistCreate"
-      }
+      },
+      "minItems":1
      }
     },
     "required":[
@@ -689,7 +691,8 @@
       "description":"Destination addresses that need to be removed from blocklist.",
       "items":{
        "$ref":"#/components/schemas/2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.ToDelete"
-      }
+      },
+      "minItems":1
      },
      "sender":{
       "type":"string",
@@ -722,7 +725,8 @@
       "description":"Blocklist elements that need to be removed from blocklist. Number of destinations cannot exceed 50 000.",
       "items":{
        "$ref":"#/components/schemas/2c1d05f3dc2f46851efe83e0fa7d26e3f8a2e8ee522f9adaaba58b0a33a2be33.BlocklistDelete"
-      }
+      },
+      "minItems":1
      }
     },
     "required":[

@@ -7,8 +7,8 @@
    "name":"Infobip support",
    "email":"support@infobip.com"
   },
-  "version":"3.210.0",
-  "x-generatedAt":"2026-07-23T15:23:48.61792705Z"
+  "version":"3.245.1",
+  "x-generatedAt":"2026-10-07T09:47:44.525334517Z"
  },
  "tags":[
   {
@@ -217,6 +217,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -224,9 +227,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -597,6 +597,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -604,9 +607,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -874,6 +874,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -881,9 +884,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -1289,6 +1289,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -1296,9 +1299,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -2384,6 +2384,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -2391,9 +2394,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -2668,6 +2668,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -2675,9 +2678,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -3026,6 +3026,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -3033,9 +3036,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -3091,9 +3091,6 @@
       "description":"Indicates if created scenario should be set as a default."
      }
     },
-    "required":[
-     "flow"
-    ],
     "title":"Scenario"
    },
    "04790a6ae08cb63186016b6e4b8eb1c003a31d6a3227220686470a5721dc2d02.OmniAdvancedRequest":{
@@ -4724,6 +4721,7 @@
    },
    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Alignment":{
     "type":"string",
+    "description":"Alignment style in the horizontal direction.",
     "enum":[
      "START",
      "END",
@@ -4733,6 +4731,7 @@
    },
    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.AspectMode":{
     "type":"string",
+    "description":"Display style used when the aspect ratio of an image differs from the requested aspect ratio.",
     "enum":[
      "COVER",
      "FIT"
@@ -4752,7 +4751,8 @@
         "type":"array",
         "items":{
          "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.BaselineComponent"
-        }
+        },
+        "minItems":1
        }
       }
      }
@@ -4785,7 +4785,8 @@
     "type":"object",
     "properties":{
      "backgroundColor":{
-      "type":"string"
+      "type":"string",
+      "pattern":"^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
      },
      "separator":{
       "type":"boolean"
@@ -4832,7 +4833,8 @@
       "type":"array",
       "items":{
        "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Component"
-      }
+      },
+      "minItems":1
      }
     },
     "required":[
@@ -4843,6 +4845,7 @@
    },
    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.BoxLayout":{
     "type":"string",
+    "description":"Layout style of the components inside a box.",
     "enum":[
      "HORIZONTAL",
      "VERTICAL",
@@ -4850,31 +4853,45 @@
     ],
     "title":"BoxLayout"
    },
+   "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.BubbleDirection":{
+    "type":"string",
+    "description":"Text directionality and the direction in which components are placed in horizontal boxes.",
+    "enum":[
+     "LEFT_TO_RIGHT",
+     "RIGHT_TO_LEFT"
+    ],
+    "title":"BubbleDirection"
+   },
    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.BubbleFlexContainer":{
     "type":"object",
-    "properties":{
-     "direction":{
-      "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Direction"
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.FlexContainer"
      },
-     "header":{
-      "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.BoxComponent"
-     },
-     "hero":{
-      "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.ImageComponent"
-     },
-     "body":{
-      "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.BoxComponent"
-     },
-     "footer":{
-      "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.BoxComponent"
-     },
-     "styles":{
-      "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.ComponentStyle"
-     },
-     "type":{
-      "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.ContainerType"
+     {
+      "type":"object",
+      "properties":{
+       "direction":{
+        "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.BubbleDirection"
+       },
+       "header":{
+        "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.BoxComponent"
+       },
+       "hero":{
+        "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.ImageComponent"
+       },
+       "body":{
+        "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.BoxComponent"
+       },
+       "footer":{
+        "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.BoxComponent"
+       },
+       "styles":{
+        "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.ComponentStyle"
+       }
+      }
      }
-    },
+    ],
     "required":[
      "direction"
     ],
@@ -4928,7 +4945,8 @@
         "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Style"
        },
        "color":{
-        "type":"string"
+        "type":"string",
+        "pattern":"^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
        },
        "gravity":{
         "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Gravity"
@@ -5016,6 +5034,7 @@
      "birthday":{
       "type":"string",
       "description":"Birthday information, YYYY-MM-DD formatted string.",
+      "pattern":"([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))",
       "writeOnly":true
      },
      "emails":{
@@ -5133,14 +5152,6 @@
     "title":"Destination",
     "writeOnly":true
    },
-   "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Direction":{
-    "type":"string",
-    "enum":[
-     "LEFT_TO_RIGHT",
-     "RIGHT_TO_LEFT"
-    ],
-    "title":"Direction"
-   },
    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Email":{
     "type":"object",
     "description":"Email information.",
@@ -5166,8 +5177,6 @@
      "text":{
       "type":"string",
       "description":"Text of the message that will be sent.",
-      "maxLength":2147483647,
-      "minLength":1,
       "writeOnly":true
      },
      "validityPeriod":{
@@ -5225,9 +5234,6 @@
     "type":"object",
     "allOf":[
      {
-      "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.HorizontalVerticalComponent"
-     },
-     {
       "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.BaselineComponent"
      }
     ],
@@ -5251,6 +5257,7 @@
    },
    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Gravity":{
     "type":"string",
+    "description":"Alignment style in the vertical direction.",
     "enum":[
      "TOP",
      "BOTTOM",
@@ -5279,7 +5286,8 @@
         "type":"array",
         "items":{
          "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.HorizontalVerticalComponent"
-        }
+        },
+        "minItems":1
        }
       }
      }
@@ -5321,7 +5329,8 @@
       "type":"object",
       "properties":{
        "url":{
-        "type":"string"
+        "type":"string",
+        "minLength":1
        },
        "margin":{
         "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Spacing"
@@ -5344,7 +5353,9 @@
     "type":"object",
     "properties":{
      "url":{
-      "type":"string"
+      "type":"string",
+      "minLength":1,
+      "pattern":"https://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@!\\-/]))?(jpg|png)$"
      },
      "flex":{
       "type":"integer",
@@ -5422,7 +5433,8 @@
      },
      "principalEntityId":{
       "type":"string",
-      "description":"Your assigned DTL principal entity id."
+      "description":"Your assigned DTL principal entity id.",
+      "minLength":1
      },
      "telemarketerId":{
       "type":"string",
@@ -5601,8 +5613,6 @@
      "text":{
       "type":"string",
       "description":"Text of the message.",
-      "maxLength":1000,
-      "minLength":1,
       "writeOnly":true
      },
      "validityPeriod":{
@@ -5617,8 +5627,6 @@
      "templateCode":{
       "type":"string",
       "description":"Code of the template. Max 30 characters.",
-      "maxLength":30,
-      "minLength":1,
       "writeOnly":true
      },
      "buttons":{
@@ -5627,15 +5635,11 @@
       "items":{
        "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.KakaoAlimButton"
       },
-      "maxItems":5,
-      "minItems":1,
       "writeOnly":true
      },
      "title":{
       "type":"string",
       "description":"Title of the message.",
-      "maxLength":50,
-      "minLength":0,
       "writeOnly":true
      },
      "groupKey":{
@@ -5828,22 +5832,16 @@
       "items":{
        "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.KakaoChinguButton"
       },
-      "maxItems":5,
-      "minItems":1,
       "writeOnly":true
      },
      "imageUrl":{
       "type":"string",
       "description":"URL of the image sent in the message. Optional value. Max 250 characters.",
-      "maxLength":250,
-      "minLength":1,
       "writeOnly":true
      },
      "imageLink":{
       "type":"string",
       "description":"Link of the image sent in the message. Optional value. Max 250 characters.",
-      "maxLength":250,
-      "minLength":1,
       "writeOnly":true
      },
      "isPromotional":{
@@ -5852,10 +5850,6 @@
       "writeOnly":true
      }
     },
-    "required":[
-     "imageUrl",
-     "text"
-    ],
     "title":"KakaoChinguData",
     "writeOnly":true
    },
@@ -5957,15 +5951,11 @@
      "url":{
       "type":"string",
       "description":"Url of the image sent in the Line message. Max 1000 characters.",
-      "maxLength":1000,
-      "minLength":0,
       "writeOnly":true
      },
      "thumbnailUrl":{
       "type":"string",
       "description":"Thumbnail of the image sent in the Line message. Max 1000 characters.",
-      "maxLength":1000,
-      "minLength":0,
       "writeOnly":true
      },
      "duration":{
@@ -5985,23 +5975,12 @@
       "writeOnly":true
      },
      "altText":{
-      "type":"string",
-      "maxLength":400,
-      "minLength":0
+      "type":"string"
      },
      "contents":{
       "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.FlexContainer"
      }
     },
-    "required":[
-     "altText",
-     "contents",
-     "duration",
-     "packageId",
-     "stickerId",
-     "thumbnailUrl",
-     "url"
-    ],
     "title":"LineData",
     "writeOnly":true
    },
@@ -6032,9 +6011,6 @@
       "writeOnly":true
      }
     },
-    "required":[
-     "placeholders"
-    ],
     "title":"MediaTemplateBodyContent",
     "writeOnly":true
    },
@@ -6045,15 +6021,11 @@
      "urlPlaceholder":{
       "type":"string",
       "description":"URL placeholder. Required for URL buttons that have a parameterized URL.",
-      "maxLength":1500,
-      "minLength":0,
       "writeOnly":true
      },
      "quickReplyPayload":{
       "type":"string",
       "description":"QuickReply payload. Required for quick reply buttons.",
-      "maxLength":128,
-      "minLength":0,
       "writeOnly":true
      }
     },
@@ -6079,9 +6051,6 @@
       "writeOnly":true
      }
     },
-    "required":[
-     "body"
-    ],
     "title":"MediaTemplateData",
     "writeOnly":true
    },
@@ -6097,6 +6066,7 @@
      "documentUrl":{
       "type":"string",
       "description":"Document URL. Required for templates that contain a document header.Supported document types are PDF, DOC(X), PPT(X), XLS(X). Maximum document size is 100MB.",
+      "pattern":"(http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@!\\-/]))?",
       "writeOnly":true
      },
      "documentFilename":{
@@ -6107,39 +6077,28 @@
      "imageUrl":{
       "type":"string",
       "description":"Image URL. Required for templates that contain an image header. Supported image types: JPG, JPEG, PNG. Maximum image size is 5MB.",
+      "pattern":"(http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@!\\-/]))?",
       "writeOnly":true
      },
      "videoUrl":{
       "type":"string",
       "description":"Video URL. Required for templates that contain a video header. Supported video types are MP4, 3GPP. Maximum video size is 16MB.",
+      "pattern":"(http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@!\\-/]))?",
       "writeOnly":true
      },
      "latitude":{
       "type":"number",
       "format":"double",
       "description":"Location latitude. The value must be between -90 and 90. Required for templates that contain a location header.",
-      "maximum":90,
-      "minimum":-90,
       "writeOnly":true
      },
      "longitude":{
       "type":"number",
       "format":"double",
       "description":"Location longitude. The value must be between -180 and 180. Required for templates that contain a location header.",
-      "maximum":180,
-      "minimum":-180,
       "writeOnly":true
      }
     },
-    "required":[
-     "documentFilename",
-     "documentUrl",
-     "imageUrl",
-     "latitude",
-     "longitude",
-     "textPlaceholder",
-     "videoUrl"
-    ],
     "title":"MediaTemplateHeaderContent",
     "writeOnly":true
    },
@@ -6477,8 +6436,6 @@
      "text":{
       "type":"string",
       "description":"Text of the message that will be sent.",
-      "maxLength":2000,
-      "minLength":1,
       "writeOnly":true
      },
      "validityPeriod":{
@@ -6596,7 +6553,8 @@
         "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Spacing"
        },
        "color":{
-        "type":"string"
+        "type":"string",
+        "pattern":"^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
        }
       }
      }
@@ -6626,8 +6584,6 @@
      "text":{
       "type":"string",
       "description":"Text of the message that will be sent.",
-      "maxLength":2147483647,
-      "minLength":1,
       "writeOnly":true
      },
      "validityPeriod":{
@@ -6656,7 +6612,7 @@
     "type":"object",
     "allOf":[
      {
-      "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.HorizontalVerticalComponent"
+      "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.BaselineComponent"
      },
      {
       "type":"object",
@@ -6665,9 +6621,6 @@
         "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Spacing"
        }
       }
-     },
-     {
-      "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.BaselineComponent"
      }
     ],
     "title":"SpacerComponent"
@@ -6730,13 +6683,11 @@
       "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.OmniChannel"
      }
     },
-    "required":[
-     "channel"
-    ],
     "title":"Step"
    },
    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Style":{
     "type":"string",
+    "description":"Style of the button, one of primary for dark buttons, secondary for light buttons or link for an HTML link style.",
     "enum":[
      "LINK",
      "PRIMARY",
@@ -6748,13 +6699,14 @@
     "type":"object",
     "allOf":[
      {
-      "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.HorizontalVerticalComponent"
+      "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.BaselineComponent"
      },
      {
       "type":"object",
       "properties":{
        "text":{
-        "type":"string"
+        "type":"string",
+        "minLength":1
        },
        "flex":{
         "type":"integer",
@@ -6783,7 +6735,8 @@
         "minimum":0
        },
        "color":{
-        "type":"string"
+        "type":"string",
+        "pattern":"^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
        },
        "weight":{
         "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Weight"
@@ -6792,9 +6745,6 @@
         "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.ButtonAction"
        }
       }
-     },
-     {
-      "$ref":"#/components/schemas/e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.BaselineComponent"
      }
     ],
     "required":[
@@ -7028,8 +6978,6 @@
      "text":{
       "type":"string",
       "description":"Text of the message that will be sent.",
-      "maxLength":2147483647,
-      "minLength":1,
       "writeOnly":true
      },
      "validityPeriod":{
@@ -7052,6 +7000,7 @@
    },
    "e204fb2d0d1568cbfe90b245006e95aab18e580484154f085b8348d2e991bc11.Weight":{
     "type":"string",
+    "description":"Font weight of the text.",
     "enum":[
      "BOLD",
      "REGULAR"
@@ -7084,6 +7033,7 @@
      "templateName":{
       "type":"string",
       "description":"Template name",
+      "pattern":"^[a-z0-9_]{1,512}$",
       "writeOnly":true
      },
      "templateData":{
@@ -7107,43 +7057,31 @@
      "fileUrl":{
       "type":"string",
       "description":"URL of the file sent in the WhatsApp message. Max 2048 characters. Supported file types are PDF, DOC(X), PPT(X), XLS(X). Maximum file size is 100MB.",
-      "maxLength":2048,
-      "minLength":0,
       "writeOnly":true
      },
      "imageUrl":{
       "type":"string",
       "description":"URL of the image sent in the WhatsApp message. Max 2048 characters. Supported image types: JPG, JPEG, PNG. Maximum image size is 5MB.",
-      "maxLength":2048,
-      "minLength":0,
       "writeOnly":true
      },
      "audioUrl":{
       "type":"string",
       "description":"URL of the audio file sent in the WhatsApp message. Max 2048 characters. Supported audio types are AAC, AMR, MP3, OPUS. Maximum audio size is 16MB.",
-      "maxLength":2048,
-      "minLength":0,
       "writeOnly":true
      },
      "videoUrl":{
       "type":"string",
       "description":"URL of the video sent in the WhatsApp message. Max 2048 characters. Supported video types are MP4, 3GPP. Maximum video size is 16MB.",
-      "maxLength":2048,
-      "minLength":0,
       "writeOnly":true
      },
      "locationName":{
       "type":"string",
       "description":"Name of the location. Optional value. ",
-      "maxLength":1000,
-      "minLength":0,
       "writeOnly":true
      },
      "address":{
       "type":"string",
       "description":"Address location. Optional value.",
-      "maxLength":1000,
-      "minLength":0,
       "writeOnly":true
      },
      "longitude":{
@@ -7174,10 +7112,6 @@
       }
      }
     },
-    "required":[
-     "mediaTemplateData",
-     "text"
-    ],
     "title":"WhatsAppData"
    }
   },

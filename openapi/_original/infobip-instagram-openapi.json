@@ -7,8 +7,8 @@
    "name":"Infobip support",
    "email":"support@infobip.com"
   },
-  "version":"3.210.0",
-  "x-generatedAt":"2026-07-23T15:23:51.536620927Z"
+  "version":"3.245.1",
+  "x-generatedAt":"2026-10-07T09:47:47.335656905Z"
  },
  "tags":[
   {
@@ -993,6 +993,8 @@
       "SHARE":"#/components/schemas/8bb20f43a591755a249613f66cc72e7e0fcc9b313d81a59f9ca0e0ff261ac181.InstagramDmInboundShareContent",
       "STORY_MENTION":"#/components/schemas/8bb20f43a591755a249613f66cc72e7e0fcc9b313d81a59f9ca0e0ff261ac181.MentionInstagramDmInboundStoryContent",
       "PRODUCT":"#/components/schemas/8bb20f43a591755a249613f66cc72e7e0fcc9b313d81a59f9ca0e0ff261ac181.InstagramDmInboundProductContent",
+      "IG_REEL":"#/components/schemas/8bb20f43a591755a249613f66cc72e7e0fcc9b313d81a59f9ca0e0ff261ac181.InstagramDmInboundIgReelContent",
+      "IG_POST":"#/components/schemas/8bb20f43a591755a249613f66cc72e7e0fcc9b313d81a59f9ca0e0ff261ac181.InstagramDmInboundIgPostContent",
       "UNKNOWN":"#/components/schemas/8bb20f43a591755a249613f66cc72e7e0fcc9b313d81a59f9ca0e0ff261ac181.InstagramDmInboundUnknownContent"
      }
     },
@@ -1018,6 +1020,8 @@
      "SHARE",
      "STORY_MENTION",
      "PRODUCT",
+     "IG_REEL",
+     "IG_POST",
      "UNKNOWN"
     ],
     "title":"InstagramDmInboundContentType"
@@ -1038,6 +1042,52 @@
      }
     ],
     "title":"InstagramDmInboundFileContent"
+   },
+   "8bb20f43a591755a249613f66cc72e7e0fcc9b313d81a59f9ca0e0ff261ac181.InstagramDmInboundIgPostContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/8bb20f43a591755a249613f66cc72e7e0fcc9b313d81a59f9ca0e0ff261ac181.InstagramDmInboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "mediaId":{
+        "type":"string"
+       },
+       "title":{
+        "type":"string"
+       },
+       "url":{
+        "type":"string"
+       }
+      }
+     }
+    ],
+    "title":"InstagramDmInboundIgPostContent"
+   },
+   "8bb20f43a591755a249613f66cc72e7e0fcc9b313d81a59f9ca0e0ff261ac181.InstagramDmInboundIgReelContent":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/8bb20f43a591755a249613f66cc72e7e0fcc9b313d81a59f9ca0e0ff261ac181.InstagramDmInboundContent"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "mediaId":{
+        "type":"string"
+       },
+       "title":{
+        "type":"string"
+       },
+       "url":{
+        "type":"string"
+       }
+      }
+     }
+    ],
+    "title":"InstagramDmInboundIgReelContent"
    },
    "8bb20f43a591755a249613f66cc72e7e0fcc9b313d81a59f9ca0e0ff261ac181.InstagramDmInboundImageContent":{
     "type":"object",

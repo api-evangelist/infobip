@@ -1,11 +1,9 @@
-generated: '2026-07-25'
+generated: '2026-10-08'
 method: searched
-source: https://www.infobip.com/docs/essentials/api-essentials/integration-best-practices, https://www.infobip.com/docs/essentials/api-essentials/response-status-and-error-codes,
-  https://www.infobip.com/docs/essentials/api-essentials/api-authorization, openapi/infobip-platform-full-openapi.json
+source: https://www.infobip.com/docs/essentials/api-essentials/integration-best-practices, https://www.infobip.com/docs/essentials/api-essentials/response-status-and-error-codes, https://www.infobip.com/docs/essentials/api-essentials/api-authorization, openapi/infobip-platform-full-openapi.json
 base_url:
   shared: https://api.infobip.com
-  personalized: Accounts are issued a personalized base URL (e.g. https://{subdomain}.api.infobip.com) shown in
-    the web portal and in the API docs once signed in; the shared api.infobip.com host also works.
+  personalized: Accounts are issued a personalized base URL (e.g. https://{subdomain}.api.infobip.com) shown in the web portal and in the API docs once signed in; the shared api.infobip.com host also works.
   protocol: HTTPS only (HSTS max-age 31536000 on api.infobip.com)
 authentication:
   primary: API key in the Authorization header, formatted "App {apiKey}"
@@ -13,22 +11,17 @@ authentication:
   - Basic (base64 username:password) — required for the API-key-generation endpoints
   - IBSSOTokenHeader (portal session token)
   - OAuth 2.0 / 2.1 via https://auth.infobip.com/realms/infobip (used by the MCP fleet)
-  authorization: Every authenticated endpoint additionally requires at least one API scope; scopes are declared
-    per operation as x-scopes in the OpenAPI (936 operations) and captured in scopes/infobip-scopes.yml
+  authorization: Every authenticated endpoint additionally requires at least one API scope; scopes are declared per operation as x-scopes in the OpenAPI (936 operations) and captured in scopes/infobip-scopes.yml
   artifact: authentication/infobip-authentication.yml
 idempotency:
   coverage: none
   supported: false
   idempotency_key_header: null
-  evidence: No Idempotency-Key header, parameter, or documented request-replay contract exists in the 1,886-operation
-    corpus or in the API essentials docs.
+  evidence: No Idempotency-Key header, parameter, or documented request-replay contract exists in the 1,886-operation corpus or in the API essentials docs.
   closest_equivalents:
-  - bulkId / messageId are returned by send operations and can be supplied on some send operations so a caller can
-    correlate and query status rather than re-send.
-  - Webhook consumers are expected to dedupe on the eventId field, which Infobip documents as usable for deduplication,
-    because webhook delivery is retried.
-  guidance: Retries of write operations are NOT safe to assume idempotent; on a 429 or 5xx, prefer querying the
-    reports/logs endpoint for the returned bulkId or messageId before re-sending.
+  - bulkId / messageId are returned by send operations and can be supplied on some send operations so a caller can correlate and query status rather than re-send.
+  - Webhook consumers are expected to dedupe on the eventId field, which Infobip documents as usable for deduplication, because webhook delivery is retried.
+  guidance: Retries of write operations are NOT safe to assume idempotent; on a 429 or 5xx, prefer querying the reports/logs endpoint for the returned bulkId or messageId before re-sending.
 pagination:
   styles:
   - page/size offset pagination
@@ -86,10 +79,8 @@ filtering:
   - entityId — CPaaS X application/entity scoping available on send, report and log operations
 versioning:
   scheme: uri-path major version, e.g. /sms/3/messages, /people/2/persons, /email/4/mime
-  superseded_versions: stay callable and are flagged deprecated:true with x-deprecationInformation {deprecation,
-    sunset, successorOperationId}
-  operation_version_map: x-versions on 15 operations lists every version of the same capability with latest:true
-    on the current one
+  superseded_versions: stay callable and are flagged deprecated:true with x-deprecationInformation {deprecation, sunset, successorOperationId}
+  operation_version_map: x-versions on 15 operations lists every version of the same capability with latest:true on the current one
   artifact: lifecycle/infobip-lifecycle.yml
 stability:
   early_access_marker: x-is-early-access (96 operations)
@@ -97,26 +88,27 @@ stability:
 error_envelope:
   legacy: '{"requestError":{"serviceException":{"messageId","text","validationErrors"}}}'
   platform: ApiError / PlatformErrorResponse objects with errorCode + description
-  delivery_outcomes: Message-level outcomes are NOT HTTP errors — they are returned as status {groupId, groupName,
-    id, name, description} and error {groupId, groupName, id, name, description, permanent} objects on send responses,
-    delivery reports and logs.
+  delivery_outcomes: Message-level outcomes are NOT HTTP errors — they are returned as status {groupId, groupName, id, name, description} and error {groupId, groupName, id, name, description, permanent} objects on send responses, delivery reports and logs.
   problem_json: false
   artifacts:
   - errors/infobip-problem-types.yml
   - errors/infobip-error-codes.yml
 rate_limiting:
   mechanisms:
-  - time window (N requests per time unit)
-  - token bucket (burst capacity + replenish rate)
+  - time-window
+  - token-bucket
   published_in_spec: x-throttling-info on 652 operations
   exceeded_status: 429
   retry_after_header: Retry-After
-  guidance: Exponential backoff with a retry cap; honour Retry-After when present.
+  guidance: exponential backoff; check the Retry-After header in the 429 response, if present, to know when to retry
   artifact: rate-limits/infobip-rate-limits.yml
+  status_on_exhaustion: 429
+  headers:
+    Retry-After: documented on 429 responses, "if present"
+  docs: https://www.infobip.com/docs/essentials/api-essentials/integration-best-practices#throttling-handling-errors
 tracing:
   request_id_header: null
-  correlation: CAMARA network APIs accept and return x-correlator for request correlation; the rest of the platform
-    correlates on messageId / bulkId / requestId in the payload rather than a transport header.
+  correlation: CAMARA network APIs accept and return x-correlator for request correlation; the rest of the platform correlates on messageId / bulkId / requestId in the payload rather than a transport header.
 content_types:
   request:
   - application/json
@@ -142,3 +134,73 @@ cross_links:
   lifecycle: lifecycle/infobip-lifecycle.yml
   rate_limits: rate-limits/infobip-rate-limits.yml
   sandbox: sandbox/infobip-sandbox.yml
+reversibility:
+  coverage: partial
+  grade: documented
+  summary: 'Reversal exists only for not-yet-executed work: scheduled SMS, email and voice/TTS bulks can be paused, cancelled or rescheduled before they are sent, scheduled call bulks can be cancelled while unfinished, live calls can be hung up, and purchased numbers, resource requests and event exports can be cancelled. A delivered message, a completed call or a consumed PIN cannot be taken back, and the docs state no reversal window for any of these in days or hours.'
+  surfaces:
+  - write: send-sms-messages (POST /sms/3/messages with sendAt)
+    reversal: update-scheduled-sms-messages-status
+    method: PUT /sms/1/bulks/status
+    window: while the bulk is still scheduled (not stated as a duration)
+    reschedule: reschedule-sms-messages
+    docs: https://www.infobip.com/docs/api/channels/sms
+    evidence: 'spec description: "Change the status or completely cancel sending of scheduled messages."'
+  - write: send-email (scheduled bulks)
+    reversal: update-scheduled-email-statuses
+    method: PUT /email/1/bulks/status
+    window: while scheduled; the spec says to set the bulk to PAUSED before rescheduling and PENDING to resume
+    reschedule: reschedule-emails
+    docs: https://www.infobip.com/docs/api/channels/email
+    evidence: 'spec description: "Change status or completely cancel sending of scheduled messages."'
+  - write: TTS / voice bulks
+    reversal: manage-sent-bulks-status
+    method: PUT /tts/3/bulks/status
+    window: while scheduled (sendAt or sending-speed bulks can be paused, resumed or canceled)
+    reschedule: reschedule-sent-bulk
+    docs: https://www.infobip.com/docs/api/channels/voice
+  - write: create call bulk (calls)
+    reversal: cancel-bulk
+    method: POST /calls/1/bulks/{bulkId}/cancel
+    window: '"Bulk can be cancelled if it was created with scheduling options and has not finished yet."'
+    reschedule: reschedule-bulk
+    docs: https://www.infobip.com/docs/api/channels/voice
+  - write: create call / conference / dialog
+    reversal: hangup-call, hangup-conference, hangup-dialog
+    method: POST /calls/1/{calls|conferences|dialogs}/{id}/hangup
+    window: while the call is active
+    docs: https://www.infobip.com/docs/api/channels/voice
+  - write: purchase number
+    reversal: cancel-number
+    method: DELETE /numbers/1/numbers/{numberKey}
+    window: not stated; the number returns to the public pool on cancellation
+    docs: https://www.infobip.com/docs/api/platform/numbers
+  - write: create resource (sender) request
+    reversal: cancel-resource-request
+    method: POST /resources/1/requests/{id}/cancel
+    window: not stated
+    docs: https://www.infobip.com/docs/api/platform/resources
+  - write: create events export
+    reversal: cancel-events-export-request
+    method: DELETE /peopleevents/1/export/{requestId}
+    window: not stated (asynchronous cancellation)
+    docs: https://www.infobip.com/docs/api/customer-engagement/people
+  irreversible:
+  - a message once sent to the carrier/channel (no recall operation)
+  - a completed voice call
+  - a verified 2FA PIN
+  - a sent WhatsApp/RCS/Viber message
+  source: openapi/_original/infobip-platform-full-openapi.json (version 3.245.1) operation descriptions; no docs page states a reversal window as a duration, so no window is asserted beyond the verbatim "has not finished yet"
+dry_run_mode:
+  coverage: partial
+  operations:
+  - preview-sms-message
+  - validate-email-addresses
+  - get-validations
+  - request-validations
+  - generate-email-template-preview
+  - get-whatsapp-flow-preview
+  - validate-emergency-service
+  - validate-messages-api-message
+  summary: No global dry-run flag; 8 preview/validate operations exist for specific channels (operationIds listed), which an agent can call before the real send.
+  source: openapi/_original/infobip-platform-full-openapi.json (version 3.245.1)

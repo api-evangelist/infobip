@@ -1,7 +1,7 @@
-generated: '2026-07-25'
+generated: '2026-10-08'
 method: searched
 status: published
-source: https://www.infobip.com/docs/mcp, https://github.com/infobip/mcp, live probes of https://mcp.infobip.com
+source: 'https://www.infobip.com/docs/mcp, https://www.infobip.com/docs/mcp/using-mcp, https://github.com/infobip/mcp (README, 2026-09-28), live probes of https://mcp.infobip.com (2026-10-08: observe + provision tools/list 401, protected-resource metadata 200)'
 summary: 'Infobip runs a FLEET of remote MCP servers rather than a single endpoint: one server
 
   per API product, all on https://mcp.infobip.com/{product}. Streamable HTTP is the
@@ -47,8 +47,7 @@ servers:
   - sms:manage
   - profile
   - offline_access
-  features: Send and preview messages, schedule and reschedule, bulk sending, transliteration and character
-    sets, delivery reports, message logs, URL tracking
+  features: Send and preview messages, schedule and reschedule, bulk sending, transliteration and character sets, delivery reports, message logs, URL tracking
   tools_list_probe:
     status: 401
     note: auth-gated; input schemas require an authenticated introspection
@@ -61,8 +60,7 @@ servers:
   - whatsapp:manage
   - profile
   - offline_access
-  features: Template messages, text/media/location/contact messages, template management, delivery reports,
-    message logs, SMS failover
+  features: Template messages, text/media/location/contact messages, template management, delivery reports, message logs, SMS failover
   tools_list_probe:
     status: 401
 - name: whatsapp-flow
@@ -74,8 +72,7 @@ servers:
   - whatsapp:manage
   - profile
   - offline_access
-  features: Create and manage static/dynamic flows, generate flow structure, manage flow JSON, send and
-    preview interactive flows
+  features: Create and manage static/dynamic flows, generate flow structure, manage flow JSON, send and preview interactive flows
   tools_list_probe:
     status: 401
 - name: viber
@@ -99,8 +96,7 @@ servers:
   - rcs:manage
   - profile
   - offline_access
-  features: Rich messages (multimedia, suggested replies, carousels, barcodes), delivery reports, message
-    logs, capability check, SMS/MMS failover
+  features: Rich messages (multimedia, suggested replies, carousels, barcodes), delivery reports, message logs, capability check, SMS/MMS failover
   tools_list_probe:
     status: 401
 - name: email
@@ -124,8 +120,7 @@ servers:
   - message:send
   - profile
   - offline_access
-  features: Single and multi-recipient voice calls, text-to-speech, pre-recorded audio, call management,
-    conference calls, voice list management, delivery reports, call logs
+  features: Single and multi-recipient voice calls, text-to-speech, pre-recorded audio, call management, conference calls, voice list management, delivery reports, call logs
   tools_list_probe:
     status: 401
 - name: mobile-app-messaging
@@ -137,8 +132,7 @@ servers:
   - mobile-app-messaging:manage
   - profile
   - offline_access
-  features: Push notifications, delivery reports, message logs, push statistics, push application management,
-    inbox message management
+  features: Push notifications, delivery reports, message logs, push statistics, push application management, inbox message management
   tools_list_probe:
     status: 401
 - name: message
@@ -151,8 +145,7 @@ servers:
   - messages-api:manage
   - profile
   - offline_access
-  features: Send text, image, or file-URL messages across SMS, RCS, MMS, and Viber in a single tool call;
-    lowest token footprint of the messaging servers
+  features: Send text, image, or file-URL messages across SMS, RCS, MMS, and Viber in a single tool call; lowest token footprint of the messaging servers
   tools_list_probe:
     status: 401
 - name: provision
@@ -168,6 +161,33 @@ servers:
   docs: https://www.infobip.com/docs/mcp/provisioning-mcp
   tools_list_probe:
     status: 401
+- name: observe
+  url: https://mcp.infobip.com/observe
+  resource_name: Infobip Observe MCP server
+  category: observability
+  status: early-access
+  tool_count: null
+  scopes:
+  - profile
+  - metrics:manage
+  - messages-api:manage
+  - error-codes:read
+  - offline_access
+  - billing:usage:view
+  features: Look up delivery metrics, billing usage, error codes, and message logs. Closes the loop so agents can reason about traffic they already sent. (README of https://github.com/infobip/mcp)
+  tools_list_probe:
+    status: 401
+    checked: '2026-10-08'
+    body: errorCode MCP401 "The request lacks valid authentication credentials for the requested resource."
+    note: auth-gated; tool names are not published for this server, so none are recorded
+  protected_resource_metadata:
+    url: https://mcp.infobip.com/.well-known/oauth-protected-resource/observe
+    status: 200
+    checked: '2026-10-08'
+    authorization_servers:
+    - https://auth.infobip.com/realms/infobip
+    bearer_methods_supported:
+    - access_token
 - name: 2fa
   url: https://mcp.infobip.com/2fa
   resource_name: Infobip 2FA MCP server
@@ -177,8 +197,7 @@ servers:
   - 2fa:pin:manage
   - profile
   - offline_access
-  features: Application management, SMS/Email message templates, send PIN over SMS/Voice/ Email, resend
-    and verify PIN, PIN verification status
+  features: Application management, SMS/Email message templates, send PIN over SMS/Voice/ Email, resend and verify PIN, PIN verification status
   tools_list_probe:
     status: 401
 - name: camara
@@ -189,8 +208,7 @@ servers:
   - mobile-identity:manage
   - profile
   - offline_access
-  features: Number verification authorization, verify number, device location verification, SIM swap check,
-    SIM swap date retrieval, KYC match
+  features: Number verification authorization, verify number, device location verification, SIM swap check, SIM swap date retrieval, KYC match
   tools_list_probe:
     status: 401
 - name: people
@@ -201,8 +219,7 @@ servers:
   - people:manage
   - profile
   - offline_access
-  features: Manage person and company profiles, tags, custom attributes and lists, track and export events,
-    audience segmentation
+  features: Manage person and company profiles, tags, custom attributes and lists, track and export events, audience segmentation
   tools_list_probe:
     status: 401
 - name: account-management
@@ -213,8 +230,7 @@ servers:
   - account-management:manage
   - profile
   - offline_access
-  features: Account balance, free-message count, total balance, manage and update account details, audit
-    logs
+  features: Account balance, free-message count, total balance, manage and update account details, audit logs
   tools_list_probe:
     status: 401
 - name: application-entity
@@ -270,16 +286,20 @@ servers:
       id: string (document URL)
 clients_documented:
 - Claude Code
+- Claude Desktop
 - Claude Desktop (via mcp-remote)
+- Codex CLI
 - Cursor
-- Windsurf
-- VS Code / GitHub Copilot
+- 'Cursor (plugin: https://github.com/infobip/infobip-mcp-cursor-plugin)'
 - JetBrains IDEs
-- OpenAI Codex CLI
+- LangChain
 - LangChain / LangGraph
 - OpenAI Agents SDK
+- OpenAI Codex CLI
 - Semantic Kernel
 - Spring AI
+- VS Code / GitHub Copilot
+- Windsurf
 related_repositories:
 - https://github.com/infobip/mcp
 - https://github.com/infobip/infobip-openapi-mcp
@@ -291,3 +311,26 @@ deployment:
   probe: gated
   checked: '2026-08-12'
   source: catalog MCP census
+rfc9728:
+  endpoint: https://mcp.infobip.com/sms
+  metadata_url: https://mcp.infobip.com/sms/.well-known/oauth-protected-resource
+  discovered_via: WWW-Authenticate resource_metadata on an anonymous POST initialize
+  fetched: '2026-09-25'
+  http_status: 200
+  content_type: application/json
+  document:
+    resource: https://mcp.infobip.com/sms
+    authorization_servers:
+    - https://auth.infobip.com/realms/infobip
+    scopes_supported:
+    - offline_access
+    - sms:manage
+    - profile
+    bearer_methods_supported:
+    - access_token
+    resource_name: Infobip SMS MCP server
+server_count: 18
+framework:
+  name: Infobip OpenAPI MCP
+  repository: https://github.com/infobip/infobip-openapi-mcp
+  note: 'open-source Spring AI framework the provider says powers its production MCP servers (README: "already running in production, powering Infobip MCP servers")'

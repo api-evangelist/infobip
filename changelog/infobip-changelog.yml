@@ -1,16 +1,34 @@
-generated: '2026-07-25'
+generated: '2026-10-08'
 method: searched
 source: https://www.infobip.com/docs/release-notes
-scheme: monthly named releases, alphabetical by first letter (Aurora, Bismuth, Coral, Driftwood, Electric, Fuchsia,
-  Glacier ...)
+scheme: monthly named releases, alphabetical by first letter (Aurora, Bismuth, Coral, Driftwood, Electric, Fuchsia, Glacier ...)
 index: https://www.infobip.com/docs/release-notes
-current_spec_version: 3.210.0
+current_spec_version: 3.245.1
 spec_endpoint: https://api.infobip.com/platform/1/openapi
 product_updates: https://www.infobip.com/resources/product-updates
-notes: Release notes are product-wide (platform + portal + APIs) rather than API-only, published on a monthly cadence
-  with a colour/mineral codename. Breaking API changes are not announced here; per-operation deprecations with sunset
-  dates are published in the OpenAPI itself (see lifecycle/infobip-lifecycle.yml).
+notes: Release notes are product-wide (platform + portal + APIs) rather than API-only, published on a monthly cadence with a colour/mineral codename. Breaking API changes are not announced here; per-operation deprecations with sunset dates are published in the OpenAPI itself (see lifecycle/infobip-lifecycle.yml).
 entries:
+- name: Ink
+  date: '2026-09-09'
+  url: https://www.infobip.com/docs/release-notes/ink
+  breaking: false
+  highlights:
+  - 'Conversations and Inbox: call monitoring for supervisors, "Assignment changed" workflow trigger, capacity models for automatic assignment, unified template creation flow'
+  - 'RCS: launch to additional providers, sender status transition improvements, expanded CONVERSATION_STARTED webhook'
+  - 'Reporting: Kakao costs in Financial reports and the Billing Usage API, interaction-type dimension, Clicks by URL report'
+  - Viber GIF support; Voice number reputation scoring; Voice AI agents silence/re-engagement handling; WhatsApp template validity period
+  source: 'https://www.infobip.com/docs/release-notes/ink.md (Last update: September 9, 2026)'
+- name: Harvest
+  date: '2026-08-12'
+  url: https://www.infobip.com/docs/release-notes/harvest
+  breaking: true
+  breaking_note: 'Apple Messages for Business: starting with iOS 27 only PNG images are accepted in rich interactive content (rich links, list pickers, time pickers, forms, quick replies) - "This is a breaking change enforced by Apple"; regular attachments are not affected.'
+  highlights:
+  - Answers / Automation Studio chatbot versioning; WhatsApp user ID and username attributes in chatbots
+  - 'Conversations and Inbox: Zalo channel support, WhatsApp request-contact-info button'
+  - 'Journeys: WhatsApp recipients, A/B test, transfer Journey calls to SIP trunks'
+  - 'Broadcast: WhatsApp BSUID recipients in uploads; LINE, Messenger, Moments, Reporting, Viber Business Messages, Voice and Video updates'
+  source: https://www.infobip.com/docs/release-notes/harvest.md (Last update August 12, 2026)
 - name: Glacier
   date: '2026-07-08'
   url: https://www.infobip.com/docs/release-notes/glacier
@@ -24,11 +42,9 @@ entries:
   - 'Billing Usage API: on-demand invoice-aligned cost data with 23 aggregation dimensions and multi-tenant support'
   - 'Conversations: TikTok Business Messaging channel (text, images, post shares; 15-reply / 48-hour limits)'
   - 'Conversations: WhatsApp rich templates and PDF transcript export'
-  - 'Email: SMTP response field in delivery reports; active-active disaster recovery in Europe; automated domain
-    vetting'
+  - 'Email: SMTP response field in delivery reports; active-active disaster recovery in Europe; automated domain vetting'
   - 'RCS: US Interactive Session billing model; custom-domain URL shortening'
-  - 'Voice and Video: authenticated SIP trunks (DIGEST + header auth) for AI platforms; 560 generative TTS voices
-    (Google Chirp 3 HD, Deepgram) and Deepgram Flux STT'
+  - 'Voice and Video: authenticated SIP trunks (DIGEST + header auth) for AI platforms; 560 generative TTS voices (Google Chirp 3 HD, Deepgram) and Deepgram Flux STT'
   - 'Apps and Integrations: Salesforce Service Cloud Bring Your Own Channel messaging'
 - name: Electric
   date: '2026-05-13'
@@ -64,3 +80,29 @@ entries:
   - 'RCS: dedicated SUGGESTION event for button clicks and TYPING_INDICATOR subscription'
   - 'Numbers and Compliance: Resource Request Service (Early Access)'
   - 'Email: sender-level detail in the suppression list'
+spec_version_checked: '2026-10-08'
+spec_delta_since_last_pass:
+  from: 3.210.0
+  to: 3.245.1
+  operations:
+    before: 942
+    after: 968
+    added: 34
+    removed: 8
+  deprecated_operations:
+    before: 48
+    after: 49
+  webhooks:
+    before: 102
+    after: 106
+  new_products:
+  - line-oa
+  - number-risk-score
+  added_examples:
+  - number-reputation/1/* (business + phone-number reputation)
+  - whatsapp/1/senders/{sender}/calls/* (WhatsApp calling enable/disable/status)
+  - calls/1/sip-trunks/{sipTrunkId}/txt-records
+  - camara/number-verification/v2/dcql/* (split into device-phone-number and verify)
+  - line-oa/1/messages, logs, reports
+  - number-risk-score/1/query
+  source: diff of https://api.infobip.com/platform/1/openapi fetched 2026-10-08 against openapi/_original from 2026-07-25

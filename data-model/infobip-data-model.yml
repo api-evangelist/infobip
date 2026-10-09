@@ -1,11 +1,7 @@
 generated: '2026-07-25'
 method: derived
 source: openapi/infobip-platform-full-openapi.json (652 paths / 943 operations)
-notes: 'Entity graph derived from the URI structure of the Infobip platform OpenAPI: the first path segment
-  is the product domain, subsequent non-version, non-parameter segments are resources, and a {param} directly
-  after a resource is that resource identifier. Nesting yields has_many / belongs_to edges. Infobip does
-  not use typed id prefixes; identifiers are opaque UUIDs, numeric ids, or channel-native ids (messageId,
-  bulkId, personId, conversationId, applicationId, entityId).'
+notes: 'Entity graph derived from the URI structure of the Infobip platform OpenAPI: the first path segment is the product domain, subsequent non-version, non-parameter segments are resources, and a {param} directly after a resource is that resource identifier. Nesting yields has_many / belongs_to edges. Infobip does not use typed id prefixes; identifiers are opaque UUIDs, numeric ids, or channel-native ids (messageId, bulkId, personId, conversationId, applicationId, entityId).'
 cross_cutting_identifiers:
 - id: messageId
   meaning: Identifier of a single outbound or inbound message; echoed on delivery reports and logs.
@@ -30,6 +26,7 @@ entities:
   identifiers: []
   path_count: 73
   example_path: /ccaas/1/account/configuration
+  name: ccaas
 - entity: calls
   domain: calls
   operations: 109
@@ -37,12 +34,14 @@ entities:
   - callId
   path_count: 84
   example_path: /calls/1/bulks
+  name: calls
 - entity: people
   domain: people
   operations: 64
   identifiers: []
   path_count: 30
   example_path: /people/2/companies
+  name: people
 - entity: whatsapp
   domain: whatsapp
   operations: 64
@@ -50,18 +49,21 @@ entities:
   - sender
   path_count: 52
   example_path: /whatsapp/1/conversions
+  name: whatsapp
 - entity: email
   domain: email
   operations: 52
   identifiers: []
   path_count: 35
   example_path: /email/1/bulks
+  name: email
 - entity: number-registration
   domain: number-registration
   operations: 42
   identifiers: []
   path_count: 34
   example_path: /number-registration/1/automatic-review
+  name: number-registration
 - entity: voice
   domain: ccaas
   operations: 40
@@ -69,6 +71,7 @@ entities:
   - conversationId
   path_count: 24
   example_path: /ccaas/voice/2/account-recording-config
+  name: voice
 - entity: senders
   domain: whatsapp
   operations: 34
@@ -76,6 +79,7 @@ entities:
   - sender
   path_count: 24
   example_path: /whatsapp/1/embedded-signup/registrations/business-account/{businessAccountId}/senders
+  name: senders
 - entity: numbers
   domain: numbers
   operations: 31
@@ -83,6 +87,7 @@ entities:
   - numberKey
   path_count: 13
   example_path: /numbers/1/numbers
+  name: numbers
 - entity: conversations
   domain: ccaas
   operations: 29
@@ -90,6 +95,7 @@ entities:
   - conversationId
   path_count: 19
   example_path: /ccaas/1/agents/{agentId}/conversations
+  name: conversations
 - entity: persons
   domain: people
   operations: 29
@@ -97,18 +103,21 @@ entities:
   - personId
   path_count: 13
   example_path: /people/2/companies/persons
+  name: persons
 - entity: knowledge-base
   domain: knowledge-base
   operations: 28
   identifiers: []
   path_count: 18
   example_path: /knowledge-base/1/articles
+  name: knowledge-base
 - entity: rcs
   domain: rcs
   operations: 27
   identifiers: []
   path_count: 19
   example_path: /rcs/1/events
+  name: rcs
 - entity: message
   domain: whatsapp
   operations: 24
@@ -116,6 +125,7 @@ entities:
   - messageId
   path_count: 24
   example_path: /whatsapp/1/message/audio
+  name: message
 - entity: conferences
   domain: calls
   operations: 22
@@ -123,24 +133,28 @@ entities:
   - conferenceId
   path_count: 17
   example_path: /calls/1/conferences
+  name: conferences
 - entity: subscriptions
   domain: subscriptions
   operations: 22
   identifiers: []
   path_count: 11
   example_path: /subscriptions/1/certificates
+  name: subscriptions
 - entity: voice
   domain: voice
   operations: 22
   identifiers: []
   path_count: 12
   example_path: /voice/1/reports
+  name: voice
 - entity: call-link
   domain: call-link
   operations: 20
   identifiers: []
   path_count: 12
   example_path: /call-link/1/configs
+  name: call-link
 - entity: dialogs
   domain: calls
   operations: 20
@@ -148,6 +162,7 @@ entities:
   - dialogId
   path_count: 18
   example_path: /calls/1/dialogs
+  name: dialogs
 - entity: senders
   domain: rcs
   operations: 20
@@ -156,18 +171,21 @@ entities:
   - senderName
   path_count: 12
   example_path: /rcs/1/senders
+  name: senders
 - entity: push
   domain: push
   operations: 19
   identifiers: []
   path_count: 16
   example_path: /push/1/applications
+  name: push
 - entity: 2fa
   domain: 2fa
   operations: 18
   identifiers: []
   path_count: 14
   example_path: /2fa/2/applications
+  name: 2fa
 - entity: catalogs
   domain: catalogs
   operations: 18
@@ -176,6 +194,7 @@ entities:
   - id
   path_count: 7
   example_path: /catalogs/1/catalogs
+  name: catalogs
 - entity: campaigns
   domain: number-registration
   operations: 18
@@ -184,6 +203,7 @@ entities:
   - campaignUuid
   path_count: 15
   example_path: /number-registration/1/automatic-review/campaigns/{campaignUuid}
+  name: campaigns
 - entity: lists
   domain: people
   operations: 18
@@ -191,12 +211,14 @@ entities:
   - listName
   path_count: 8
   example_path: /people/2/persons/{personId}/lists
+  name: lists
 - entity: ip-management
   domain: email
   operations: 17
   identifiers: []
   path_count: 12
   example_path: /email/1/ip-management/domains/{domainId}
+  name: ip-management
 - entity: brands
   domain: number-registration
   operations: 17
@@ -204,18 +226,21 @@ entities:
   - brandId
   path_count: 12
   example_path: /number-registration/1/brands
+  name: brands
 - entity: provisioning
   domain: provisioning
   operations: 17
   identifiers: []
   path_count: 8
   example_path: /provisioning/1/applications
+  name: provisioning
 - entity: conversation-forms
   domain: ccaas
   operations: 16
   identifiers: []
   path_count: 6
   example_path: /ccaas/2/conversation-forms/fields
+  name: conversation-forms
 - entity: sip-trunks
   domain: calls
   operations: 15
@@ -223,54 +248,63 @@ entities:
   - sipTrunkId
   path_count: 8
   example_path: /calls/1/sip-trunks
+  name: sip-trunks
 - entity: voice
   domain: numbers
   operations: 15
   identifiers: []
   path_count: 6
   example_path: /numbers/2/numbers/{numberKey}/voice
+  name: voice
 - entity: sms
   domain: sms
   operations: 15
   identifiers: []
   path_count: 13
   example_path: /sms/1/bulks
+  name: sms
 - entity: webrtc
   domain: webrtc
   operations: 15
   identifiers: []
   path_count: 10
   example_path: /webrtc/1/files
+  name: webrtc
 - entity: interactive
   domain: whatsapp
   operations: 14
   identifiers: []
   path_count: 14
   example_path: /whatsapp/1/message/interactive/buttons
+  name: interactive
 - entity: biometrics
   domain: biometrics
   operations: 13
   identifiers: []
   path_count: 5
   example_path: /biometrics/1/enrollment/sessions
+  name: biometrics
 - entity: recordings
   domain: calls
   operations: 13
   identifiers: []
   path_count: 9
   example_path: /calls/1/recordings/calls
+  name: recordings
 - entity: messenger
   domain: messenger
   operations: 13
   identifiers: []
   path_count: 11
   example_path: /messenger/1/ad-accounts
+  name: messenger
 - entity: sessions
   domain: biometrics
   operations: 12
   identifiers: []
   path_count: 4
   example_path: /biometrics/1/enrollment/sessions
+  name: sessions
 - entity: applications
   domain: 2fa
   operations: 11
@@ -278,12 +312,14 @@ entities:
   - appId
   path_count: 7
   example_path: /2fa/2/applications
+  name: applications
 - entity: callrouting
   domain: callrouting
   operations: 11
   identifiers: []
   path_count: 6
   example_path: /callrouting/1/recordings
+  name: callrouting
 - entity: domains
   domain: email
   operations: 11
@@ -292,6 +328,7 @@ entities:
   - domainName
   path_count: 8
   example_path: /email/1/domains
+  name: domains
 - entity: pools
   domain: email
   operations: 11
@@ -299,6 +336,7 @@ entities:
   - poolId
   path_count: 7
   example_path: /email/1/ip-management/domains/{domainId}/pools
+  name: pools
 - entity: articles
   domain: knowledge-base
   operations: 11
@@ -306,18 +344,21 @@ entities:
   - articleId
   path_count: 6
   example_path: /knowledge-base/1/articles
+  name: articles
 - entity: resources
   domain: resources
   operations: 11
   identifiers: []
   path_count: 8
   example_path: /resources/1/coverage-lookup
+  name: resources
 - entity: viber
   domain: viber
   operations: 11
   identifiers: []
   path_count: 9
   example_path: /viber/1/message/file
+  name: viber
 - entity: templates
   domain: email
   operations: 10
@@ -325,6 +366,7 @@ entities:
   - templateId
   path_count: 5
   example_path: /email/1/templates
+  name: templates
 - entity: items
   domain: people
   operations: 10
@@ -332,36 +374,42 @@ entities:
   - itemId
   path_count: 4
   example_path: /people/2/persons/{personId}/lists/{listName}/items
+  name: items
 - entity: settings
   domain: settings
   operations: 10
   identifiers: []
   path_count: 6
   example_path: /settings/1/accounts
+  name: settings
 - entity: tts
   domain: tts
   operations: 10
   identifiers: []
   path_count: 8
   example_path: /tts/3/advanced
+  name: tts
 - entity: vocalize
   domain: vocalize
   operations: 10
   identifiers: []
   path_count: 9
   example_path: /vocalize/2/campaigns
+  name: vocalize
 - entity: ivr
   domain: voice
   operations: 10
   identifiers: []
   path_count: 6
   example_path: /voice/ivr/1/files
+  name: ivr
 - entity: masking
   domain: voice
   operations: 10
   identifiers: []
   path_count: 4
   example_path: /voice/masking/1/upload
+  name: masking
 - entity: flows
   domain: whatsapp
   operations: 10
@@ -369,18 +417,21 @@ entities:
   - flowId
   path_count: 7
   example_path: /whatsapp/1/senders/{sender}/flows
+  name: flows
 - entity: zalo
   domain: zalo
   operations: 10
   identifiers: []
   path_count: 8
   example_path: /zalo/1/logs
+  name: zalo
 - entity: camara
   domain: camara
   operations: 9
   identifiers: []
   path_count: 9
   example_path: /camara/kyc-match/v0.3/match
+  name: camara
 - entity: agents
   domain: ccaas
   operations: 9
@@ -388,6 +439,7 @@ entities:
   - agentId
   path_count: 7
   example_path: /ccaas/1/agents
+  name: agents
 - entity: working-hours
   domain: ccaas
   operations: 9
@@ -396,18 +448,21 @@ entities:
   - workingHoursId
   path_count: 5
   example_path: /ccaas/1/working-hours
+  name: working-hours
 - entity: companies
   domain: people
   operations: 9
   identifiers: []
   path_count: 3
   example_path: /people/2/companies
+  name: companies
 - entity: peopleevents
   domain: peopleevents
   operations: 9
   identifiers: []
   path_count: 7
   example_path: /peopleevents/1/export
+  name: peopleevents
 - entity: applications
   domain: push
   operations: 9
@@ -415,6 +470,7 @@ entities:
   - applicationCode
   path_count: 6
   example_path: /push/1/applications
+  name: applications
 - entity: templates
   domain: rcs
   operations: 9
@@ -422,6 +478,7 @@ entities:
   - templateName
   path_count: 5
   example_path: /rcs/1/senders/{sender}/templates
+  name: templates
 - entity: routes
   domain: callrouting
   operations: 8
@@ -429,6 +486,7 @@ entities:
   - routeId
   path_count: 4
   example_path: /callrouting/1/routes
+  name: routes
 - entity: items
   domain: catalogs
   operations: 8
@@ -436,18 +494,21 @@ entities:
   - itemId
   path_count: 3
   example_path: /catalogs/1/catalogs/{catalogId}/items
+  name: items
 - entity: mi
   domain: mi
   operations: 8
   identifiers: []
   path_count: 8
   example_path: /mi/national-identity-number/1/check
+  name: mi
 - entity: mms
   domain: mms
   operations: 8
   identifiers: []
   path_count: 8
   example_path: /mms/1/advanced
+  name: mms
 - entity: api-keys
   domain: settings
   operations: 8
@@ -456,6 +517,7 @@ entities:
   - key
   path_count: 4
   example_path: /settings/1/accounts/{accountKey}/api-keys
+  name: api-keys
 - entity: campaigns
   domain: vocalize
   operations: 8
@@ -463,6 +525,7 @@ entities:
   - campaignId
   path_count: 7
   example_path: /vocalize/2/campaigns
+  name: campaigns
 - entity: templates
   domain: whatsapp
   operations: 8
@@ -471,6 +534,7 @@ entities:
   - templateName
   path_count: 5
   example_path: /whatsapp/1/senders/{sender}/templates
+  name: templates
 - entity: sender
   domain: zalo
   operations: 8
@@ -478,6 +542,7 @@ entities:
   - sender
   path_count: 6
   example_path: /zalo/1/sender/{sender}/media
+  name: sender
 - entity: pin
   domain: 2fa
   operations: 7
@@ -485,6 +550,7 @@ entities:
   - pinId
   path_count: 7
   example_path: /2fa/2/pin
+  name: pin
 - entity: service-addresses
   domain: calls
   operations: 7
@@ -492,6 +558,7 @@ entities:
   - sipTrunkServiceAddressId
   path_count: 4
   example_path: /calls/1/sip-trunks/service-addresses
+  name: service-addresses
 - entity: queues
   domain: ccaas
   operations: 7
@@ -499,6 +566,7 @@ entities:
   - queueId
   path_count: 5
   example_path: /ccaas/1/agents/{agentId}/queues
+  name: queues
 - entity: ips
   domain: email
   operations: 7
@@ -506,18 +574,21 @@ entities:
   - ipId
   path_count: 6
   example_path: /email/1/ip-management/ips
+  name: ips
 - entity: omni
   domain: omni
   operations: 7
   identifiers: []
   path_count: 5
   example_path: /omni/1/advanced
+  name: omni
 - entity: contactInformation
   domain: people
   operations: 7
   identifiers: []
   path_count: 4
   example_path: /people/2/contactInformation/push/{pushRegId}
+  name: contactInformation
 - entity: configurations
   domain: push
   operations: 7
@@ -525,6 +596,7 @@ entities:
   - configurationKey
   path_count: 4
   example_path: /push/1/applications/{applicationCode}/configurations
+  name: configurations
 - entity: certificates
   domain: subscriptions
   operations: 7
@@ -532,6 +604,7 @@ entities:
   - certificateId
   path_count: 5
   example_path: /subscriptions/1/certificates
+  name: certificates
 - entity: messages
   domain: 2fa
   operations: 6
@@ -539,6 +612,7 @@ entities:
   - msgId
   path_count: 4
   example_path: /2fa/2/applications/{appId}/email/messages
+  name: messages
 - entity: configs
   domain: call-link
   operations: 6
@@ -546,6 +620,7 @@ entities:
   - id
   path_count: 2
   example_path: /call-link/1/configs
+  name: configs
 - entity: bulks
   domain: calls
   operations: 6
@@ -553,6 +628,7 @@ entities:
   - bulkId
   path_count: 6
   example_path: /calls/1/bulks
+  name: bulks
 - entity: files
   domain: calls
   operations: 6
@@ -560,12 +636,14 @@ entities:
   - fileId
   path_count: 3
   example_path: /calls/1/files
+  name: files
 - entity: history
   domain: calls
   operations: 6
   identifiers: []
   path_count: 6
   example_path: /calls/1/calls/history
+  name: history
 - entity: triggers
   domain: ccaas
   operations: 6
@@ -573,6 +651,7 @@ entities:
   - id
   path_count: 2
   example_path: /ccaas/2/conversation-forms/triggers
+  name: triggers
 - entity: web-forms
   domain: ccaas
   operations: 6
@@ -580,12 +659,14 @@ entities:
   - id
   path_count: 3
   example_path: /ccaas/1/web-forms
+  name: web-forms
 - entity: content-tree
   domain: knowledge-base
   operations: 6
   identifiers: []
   path_count: 4
   example_path: /knowledge-base/1/content-tree/nodes
+  name: content-tree
 - entity: nodes
   domain: knowledge-base
   operations: 6
@@ -593,12 +674,14 @@ entities:
   - nodeId
   path_count: 4
   example_path: /knowledge-base/1/content-tree/nodes
+  name: nodes
 - entity: markuplanguage
   domain: markuplanguage
   operations: 6
   identifiers: []
   path_count: 3
   example_path: /markuplanguage/1/config
+  name: markuplanguage
 - entity: vets
   domain: number-registration
   operations: 6
@@ -606,18 +689,21 @@ entities:
   - vetId
   path_count: 4
   example_path: /number-registration/1/brands/{brandId}/vets
+  name: vets
 - entity: emergency-service
   domain: numbers
   operations: 6
   identifiers: []
   path_count: 3
   example_path: /numbers/2/numbers/{numberKey}/voice/emergency-service
+  name: emergency-service
 - entity: batch
   domain: people
   operations: 6
   identifiers: []
   path_count: 2
   example_path: /people/2/companies/batch
+  name: batch
 - entity: segments
   domain: people
   operations: 6
@@ -625,6 +711,7 @@ entities:
   - segmentId
   path_count: 3
   example_path: /people/3/segments
+  name: segments
 - entity: tags
   domain: people
   operations: 6
@@ -632,6 +719,7 @@ entities:
   - name
   path_count: 3
   example_path: /people/2/tags
+  name: tags
 - entity: definitions
   domain: peopleevents
   operations: 6
@@ -639,12 +727,14 @@ entities:
   - definitionId
   path_count: 4
   example_path: /peopleevents/1/export/definitions
+  name: definitions
 - entity: platform
   domain: platform
   operations: 6
   identifiers: []
   path_count: 4
   example_path: /platform/1/blocklists
+  name: platform
 - entity: accounts
   domain: settings
   operations: 6
@@ -652,6 +742,7 @@ entities:
   - accountKey
   path_count: 4
   example_path: /settings/1/accounts
+  name: accounts
 - entity: webrtc-push-config
   domain: webrtc
   operations: 6
@@ -659,6 +750,7 @@ entities:
   - id
   path_count: 2
   example_path: /webrtc/1/webrtc-push-config
+  name: webrtc-push-config
 - entity: configurations
   domain: calls
   operations: 5
@@ -666,6 +758,7 @@ entities:
   - callsConfigurationId
   path_count: 2
   example_path: /calls/1/configurations
+  name: configurations
 - entity: media-stream-configs
   domain: calls
   operations: 5
@@ -673,12 +766,14 @@ entities:
   - mediaStreamConfigId
   path_count: 2
   example_path: /calls/1/media-stream-configs
+  name: media-stream-configs
 - entity: number-verification
   domain: camara
   operations: 5
   identifiers: []
   path_count: 5
   example_path: /camara/number-verification/v0/authorize
+  name: number-verification
 - entity: fields
   domain: catalogs
   operations: 5
@@ -686,6 +781,7 @@ entities:
   - fieldId
   path_count: 2
   example_path: /catalogs/1/catalogs/{catalogId}/fields
+  name: fields
 - entity: bots
   domain: ccaas
   operations: 5
@@ -693,6 +789,7 @@ entities:
   - botId
   path_count: 2
   example_path: /ccaas/1/bots
+  name: bots
 - entity: fields
   domain: ccaas
   operations: 5
@@ -700,6 +797,7 @@ entities:
   - id
   path_count: 2
   example_path: /ccaas/2/conversation-forms/fields
+  name: fields
 - entity: form
   domain: ccaas
   operations: 5
@@ -707,6 +805,7 @@ entities:
   - id
   path_count: 4
   example_path: /ccaas/2/conversations/{conversationId}/form
+  name: form
 - entity: forms
   domain: ccaas
   operations: 5
@@ -714,6 +813,7 @@ entities:
   - id
   path_count: 2
   example_path: /ccaas/2/conversation-forms/forms
+  name: forms
 - entity: hold-configs-per-queue
   domain: ccaas
   operations: 5
@@ -721,12 +821,14 @@ entities:
   - id
   path_count: 2
   example_path: /ccaas/voice/2/hold-configs-per-queue
+  name: hold-configs-per-queue
 - entity: metadata
   domain: ccaas
   operations: 5
   identifiers: []
   path_count: 2
   example_path: /ccaas/1/conversations/{conversationId}/metadata
+  name: metadata
 - entity: tags
   domain: ccaas
   operations: 5
@@ -734,6 +836,7 @@ entities:
   - tagName
   path_count: 4
   example_path: /ccaas/1/conversations/{conversationId}/tags
+  name: tags
 - entity: waiting-strategies
   domain: ccaas
   operations: 5
@@ -741,6 +844,7 @@ entities:
   - id
   path_count: 2
   example_path: /ccaas/voice/2/waiting-strategies
+  name: waiting-strategies
 - entity: config
   domain: markuplanguage
   operations: 5
@@ -748,12 +852,14 @@ entities:
   - configId
   path_count: 2
   example_path: /markuplanguage/1/config
+  name: config
 - entity: messages-api
   domain: messages-api
   operations: 5
   identifiers: []
   path_count: 5
   example_path: /messages-api/1/events
+  name: messages-api
 - entity: audiences
   domain: messenger
   operations: 5
@@ -761,18 +867,21 @@ entities:
   - audienceId
   path_count: 4
   example_path: /messenger/1/audiences
+  name: audiences
 - entity: verification
   domain: mi
   operations: 5
   identifiers: []
   path_count: 5
   example_path: /mi/verification/1/verify
+  name: verification
 - entity: cnam
   domain: numbers
   operations: 5
   identifiers: []
   path_count: 2
   example_path: /numbers/2/numbers/{numberKey}/voice/cnam
+  name: cnam
 - entity: mms
   domain: numbers
   operations: 5
@@ -780,6 +889,7 @@ entities:
   - configurationKey
   path_count: 2
   example_path: /numbers/2/numbers/{numberKey}/mms
+  name: mms
 - entity: sms
   domain: numbers
   operations: 5
@@ -787,6 +897,7 @@ entities:
   - configurationKey
   path_count: 2
   example_path: /numbers/2/numbers/{numberKey}/sms
+  name: sms
 - entity: customAttributes
   domain: people
   operations: 5
@@ -794,6 +905,7 @@ entities:
   - name
   path_count: 3
   example_path: /people/2/customAttributes
+  name: customAttributes
 - entity: applications
   domain: provisioning
   operations: 5
@@ -801,6 +913,7 @@ entities:
   - applicationId
   path_count: 2
   example_path: /provisioning/1/applications
+  name: applications
 - entity: entities
   domain: provisioning
   operations: 5
@@ -808,6 +921,7 @@ entities:
   - entityId
   path_count: 2
   example_path: /provisioning/1/entities
+  name: entities
 - entity: test-numbers
   domain: rcs
   operations: 5
@@ -815,6 +929,7 @@ entities:
   - testNumber
   path_count: 3
   example_path: /rcs/1/senders/{senderName}/test-numbers
+  name: test-numbers
 - entity: requests
   domain: resources
   operations: 5
@@ -822,6 +937,7 @@ entities:
   - id
   path_count: 3
   example_path: /resources/1/requests
+  name: requests
 - entity: profiles
   domain: subscriptions
   operations: 5
@@ -829,6 +945,7 @@ entities:
   - profileId
   path_count: 2
   example_path: /subscriptions/1/profiles
+  name: profiles
 - entity: security
   domain: subscriptions
   operations: 5
@@ -836,6 +953,7 @@ entities:
   - authId
   path_count: 2
   example_path: /subscriptions/1/security
+  name: security
 - entity: subscription
   domain: subscriptions
   operations: 5
@@ -844,6 +962,7 @@ entities:
   - subscriptionId
   path_count: 2
   example_path: /subscriptions/1/subscription/{channel}
+  name: subscription
 - entity: config
   domain: voice
   operations: 5
@@ -851,6 +970,7 @@ entities:
   - key
   path_count: 2
   example_path: /voice/masking/2/config
+  name: config
 - entity: scenarios
   domain: voice
   operations: 5
@@ -858,18 +978,21 @@ entities:
   - id
   path_count: 2
   example_path: /voice/ivr/1/scenarios
+  name: scenarios
 - entity: email
   domain: 2fa
   operations: 4
   identifiers: []
   path_count: 4
   example_path: /2fa/2/applications/{appId}/email/messages
+  name: email
 - entity: apple-mfb
   domain: apple-mfb
   operations: 4
   identifiers: []
   path_count: 4
   example_path: /apple-mfb/1/events
+  name: apple-mfb
 - entity: images
   domain: call-link
   operations: 4
@@ -877,6 +1000,7 @@ entities:
   - id
   path_count: 3
   example_path: /call-link/1/images
+  name: images
 - entity: links
   domain: call-link
   operations: 4
@@ -884,6 +1008,7 @@ entities:
   - id
   path_count: 2
   example_path: /call-link/1/links
+  name: links
 - entity: call
   domain: calls
   operations: 4
@@ -891,6 +1016,7 @@ entities:
   - callId
   path_count: 2
   example_path: /calls/1/conferences/{conferenceId}/call
+  name: call
 - entity: agent-recording-configs
   domain: ccaas
   operations: 4
@@ -898,30 +1024,35 @@ entities:
   - agentId
   path_count: 2
   example_path: /ccaas/voice/2/agent-recording-configs
+  name: agent-recording-configs
 - entity: transfer
   domain: ccaas
   operations: 4
   identifiers: []
   path_count: 4
   example_path: /ccaas/voice/2/conversation/{conversationId}/transfer/agent
+  name: transfer
 - entity: transfer-configs
   domain: ccaas
   operations: 4
   identifiers: []
   path_count: 2
   example_path: /ccaas/voice/2/transfer-configs/external-number
+  name: transfer-configs
 - entity: bulks
   domain: email
   operations: 4
   identifiers: []
   path_count: 2
   example_path: /email/1/bulks
+  name: bulks
 - entity: suppressions
   domain: email
   operations: 4
   identifiers: []
   path_count: 2
   example_path: /email/1/suppressions
+  name: suppressions
 - entity: forms
   domain: forms
   operations: 4
@@ -929,12 +1060,14 @@ entities:
   - id
   path_count: 4
   example_path: /forms/1/forms
+  name: forms
 - entity: kakao-brand-messages
   domain: kakao-brand-messages
   operations: 4
   identifiers: []
   path_count: 3
   example_path: /kakao-brand-messages/1/templates
+  name: kakao-brand-messages
 - entity: templates
   domain: kakao-brand-messages
   operations: 4
@@ -942,6 +1075,7 @@ entities:
   - templateCode
   path_count: 3
   example_path: /kakao-brand-messages/1/templates
+  name: templates
 - entity: attachments
   domain: knowledge-base
   operations: 4
@@ -949,6 +1083,7 @@ entities:
   - attachmentId
   path_count: 3
   example_path: /knowledge-base/1/attachments
+  name: attachments
 - entity: comments
   domain: knowledge-base
   operations: 4
@@ -956,6 +1091,7 @@ entities:
   - commentId
   path_count: 2
   example_path: /knowledge-base/1/articles/{articleId}/comments
+  name: comments
 - entity: tags
   domain: knowledge-base
   operations: 4
@@ -963,12 +1099,14 @@ entities:
   - tagId
   path_count: 2
   example_path: /knowledge-base/1/tags
+  name: tags
 - entity: verify
   domain: mi
   operations: 4
   identifiers: []
   path_count: 4
   example_path: /mi/verification/1/verify
+  name: verify
 - entity: scenarios
   domain: omni
   operations: 4
@@ -976,24 +1114,28 @@ entities:
   - scenarioKey
   path_count: 2
   example_path: /omni/1/scenarios
+  name: scenarios
 - entity: message
   domain: ott
   operations: 4
   identifiers: []
   path_count: 4
   example_path: /ott/rcs/1/message
+  name: message
 - entity: ott
   domain: ott
   operations: 4
   identifiers: []
   path_count: 4
   example_path: /ott/rcs/1/message
+  name: ott
 - entity: rcs
   domain: ott
   operations: 4
   identifiers: []
   path_count: 4
   example_path: /ott/rcs/1/message
+  name: rcs
 - entity: push
   domain: people
   operations: 4
@@ -1001,6 +1143,7 @@ entities:
   - pushRegId
   path_count: 3
   example_path: /people/2/contactInformation/push/{pushRegId}
+  name: push
 - entity: export
   domain: peopleevents
   operations: 4
@@ -1008,12 +1151,14 @@ entities:
   - requestId
   path_count: 4
   example_path: /peopleevents/1/export
+  name: export
 - entity: associations
   domain: provisioning
   operations: 4
   identifiers: []
   path_count: 2
   example_path: /provisioning/1/associations
+  name: associations
 - entity: saas
   domain: saas
   operations: 4
@@ -1022,30 +1167,35 @@ entities:
   - resourceType
   path_count: 4
   example_path: /saas/1/request/{requestId}/status
+  name: saas
 - entity: bulks
   domain: sms
   operations: 4
   identifiers: []
   path_count: 2
   example_path: /sms/1/bulks
+  name: bulks
 - entity: tiktok
   domain: tiktok
   operations: 4
   identifiers: []
   path_count: 4
   example_path: /tiktok/1/events
+  name: tiktok
 - entity: bulks
   domain: tts
   operations: 4
   identifiers: []
   path_count: 2
   example_path: /tts/3/bulks
+  name: bulks
 - entity: message
   domain: viber
   operations: 4
   identifiers: []
   path_count: 4
   example_path: /viber/1/message/file
+  name: message
 - entity: senders
   domain: viber
   operations: 4
@@ -1053,6 +1203,7 @@ entities:
   - sender
   path_count: 2
   example_path: /viber/1/senders/{sender}/templates
+  name: senders
 - entity: templates
   domain: viber
   operations: 4
@@ -1060,12 +1211,14 @@ entities:
   - templateId
   path_count: 2
   example_path: /viber/1/senders/{sender}/templates
+  name: templates
 - entity: credentials
   domain: voice
   operations: 4
   identifiers: []
   path_count: 1
   example_path: /voice/masking/2/credentials
+  name: credentials
 - entity: files
   domain: webrtc
   operations: 4
@@ -1073,6 +1226,7 @@ entities:
   - id
   path_count: 3
   example_path: /webrtc/1/files
+  name: files
 - entity: templates
   domain: zalo
   operations: 4
@@ -1080,54 +1234,63 @@ entities:
   - templateName
   path_count: 3
   example_path: /zalo/1/sender/{sender}/templates
+  name: templates
 - entity: resend
   domain: 2fa
   operations: 3
   identifiers: []
   path_count: 3
   example_path: /2fa/2/pin/{pinId}/resend
+  name: resend
 - entity: account
   domain: account
   operations: 3
   identifiers: []
   path_count: 3
   example_path: /account/1/balance
+  name: account
 - entity: auth
   domain: auth
   operations: 3
   identifiers: []
   path_count: 2
   example_path: /auth/1/oauth2/token
+  name: auth
 - entity: enrollment
   domain: biometrics
   operations: 3
   identifiers: []
   path_count: 1
   example_path: /biometrics/1/enrollment/sessions
+  name: enrollment
 - entity: extraction
   domain: biometrics
   operations: 3
   identifiers: []
   path_count: 1
   example_path: /biometrics/1/extraction/sessions
+  name: extraction
 - entity: kyc
   domain: biometrics
   operations: 3
   identifiers: []
   path_count: 1
   example_path: /biometrics/1/kyc/sessions
+  name: kyc
 - entity: verification
   domain: biometrics
   operations: 3
   identifiers: []
   path_count: 1
   example_path: /biometrics/1/verification/sessions
+  name: verification
 - entity: bots
   domain: bots
   operations: 3
   identifiers: []
   path_count: 3
   example_path: /bots/1/testing/start
+  name: bots
 - entity: testing
   domain: bots
   operations: 3
@@ -1135,6 +1298,7 @@ entities:
   - testId
   path_count: 3
   example_path: /bots/1/testing/start
+  name: testing
 - entity: recordings
   domain: call-link
   operations: 3
@@ -1142,6 +1306,7 @@ entities:
   - id
   path_count: 3
   example_path: /call-link/1/recordings
+  name: recordings
 - entity: subdomains
   domain: call-link
   operations: 3
@@ -1149,12 +1314,14 @@ entities:
   - id
   path_count: 2
   example_path: /call-link/1/subdomains
+  name: subdomains
 - entity: recordings
   domain: callrouting
   operations: 3
   identifiers: []
   path_count: 2
   example_path: /callrouting/1/recordings
+  name: recordings
 - entity: application-transfer
   domain: calls
   operations: 3
@@ -1162,60 +1329,70 @@ entities:
   - transferId
   path_count: 3
   example_path: /calls/1/calls/{callId}/application-transfer
+  name: application-transfer
 - entity: hangup
   domain: calls
   operations: 3
   identifiers: []
   path_count: 3
   example_path: /calls/1/calls/{callId}/hangup
+  name: hangup
 - entity: play
   domain: calls
   operations: 3
   identifiers: []
   path_count: 3
   example_path: /calls/1/calls/{callId}/play
+  name: play
 - entity: say
   domain: calls
   operations: 3
   identifiers: []
   path_count: 3
   example_path: /calls/1/calls/{callId}/say
+  name: say
 - entity: send-message
   domain: calls
   operations: 3
   identifiers: []
   path_count: 3
   example_path: /calls/1/calls/{callId}/send-message
+  name: send-message
 - entity: start-recording
   domain: calls
   operations: 3
   identifiers: []
   path_count: 3
   example_path: /calls/1/calls/{callId}/start-recording
+  name: start-recording
 - entity: stop-play
   domain: calls
   operations: 3
   identifiers: []
   path_count: 3
   example_path: /calls/1/calls/{callId}/stop-play
+  name: stop-play
 - entity: stop-recording
   domain: calls
   operations: 3
   identifiers: []
   path_count: 3
   example_path: /calls/1/calls/{callId}/stop-recording
+  name: stop-recording
 - entity: verify
   domain: camara
   operations: 3
   identifiers: []
   path_count: 3
   example_path: /camara/location/v0/verify
+  name: verify
 - entity: account-recording-config
   domain: ccaas
   operations: 3
   identifiers: []
   path_count: 1
   example_path: /ccaas/voice/2/account-recording-config
+  name: account-recording-config
 - entity: agent
   domain: ccaas
   operations: 3
@@ -1223,12 +1400,14 @@ entities:
   - agentId
   path_count: 3
   example_path: /ccaas/voice/2/agent/{agentId}/wrap-up-time/add/{seconds}
+  name: agent
 - entity: call-timeouts
   domain: ccaas
   operations: 3
   identifiers: []
   path_count: 1
   example_path: /ccaas/voice/2/call-timeouts
+  name: call-timeouts
 - entity: conversation
   domain: ccaas
   operations: 3
@@ -1236,12 +1415,14 @@ entities:
   - conversationId
   path_count: 3
   example_path: /ccaas/voice/2/conversation/{conversationId}/transfer/agent
+  name: conversation
 - entity: external-number
   domain: ccaas
   operations: 3
   identifiers: []
   path_count: 2
   example_path: /ccaas/voice/2/conversation/{conversationId}/transfer/external-number
+  name: external-number
 - entity: notes
   domain: ccaas
   operations: 3
@@ -1249,12 +1430,14 @@ entities:
   - noteId
   path_count: 2
   example_path: /ccaas/1/conversations/{conversationId}/notes
+  name: notes
 - entity: routing
   domain: ccaas
   operations: 3
   identifiers: []
   path_count: 1
   example_path: /ccaas/1/routing
+  name: routing
 - entity: attachments
   domain: email
   operations: 3
@@ -1262,30 +1445,35 @@ entities:
   - attachmentId
   path_count: 2
   example_path: /email/1/templates/{templateId}/attachments
+  name: attachments
 - entity: instagram
   domain: instagram
   operations: 3
   identifiers: []
   path_count: 3
   example_path: /instagram/1/logs
+  name: instagram
 - entity: kakao-alim
   domain: kakao-alim
   operations: 3
   identifiers: []
   path_count: 3
   example_path: /kakao-alim/1/logs
+  name: kakao-alim
 - entity: kakao-chingu
   domain: kakao-chingu
   operations: 3
   identifiers: []
   path_count: 3
   example_path: /kakao-chingu/1/logs
+  name: kakao-chingu
 - entity: kakao-sangdam
   domain: kakao-sangdam
   operations: 3
   identifiers: []
   path_count: 3
   example_path: /kakao-sangdam/1/logs
+  name: kakao-sangdam
 - entity: campaigns
   domain: messenger
   operations: 3
@@ -1293,18 +1481,21 @@ entities:
   - campaignId
   path_count: 2
   example_path: /messenger/1/campaigns
+  name: campaigns
 - entity: reports
   domain: mms
   operations: 3
   identifiers: []
   path_count: 3
   example_path: /mms/1/inbox/reports
+  name: reports
 - entity: number
   domain: number
   operations: 3
   identifiers: []
   path_count: 3
   example_path: /number/1/logs
+  name: number
 - entity: automatic-review
   domain: number-registration
   operations: 3
@@ -1312,12 +1503,14 @@ entities:
   - requestUuid
   path_count: 3
   example_path: /number-registration/1/automatic-review
+  name: automatic-review
 - entity: blocklists
   domain: platform
   operations: 3
   identifiers: []
   path_count: 1
   example_path: /platform/1/blocklists
+  name: blocklists
 - entity: openapi
   domain: platform
   operations: 3
@@ -1325,6 +1518,7 @@ entities:
   - product
   path_count: 3
   example_path: /platform/1/openapi
+  name: openapi
 - entity: sending-strategies
   domain: provisioning
   operations: 3
@@ -1332,6 +1526,7 @@ entities:
   - sendingStrategyId
   path_count: 2
   example_path: /provisioning/2/sending-strategies
+  name: sending-strategies
 - entity: actions
   domain: push
   operations: 3
@@ -1339,6 +1534,7 @@ entities:
   - actionKey
   path_count: 2
   example_path: /push/1/applications/{applicationCode}/configurations/{configurationKey}/actions
+  name: actions
 relationships:
 - from: recordings
   to: calls

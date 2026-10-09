@@ -7,8 +7,8 @@
    "name":"Infobip support",
    "email":"support@infobip.com"
   },
-  "version":"3.210.0",
-  "x-generatedAt":"2026-07-23T15:24:04.713988125Z"
+  "version":"3.245.1",
+  "x-generatedAt":"2026-10-07T09:47:59.803110957Z"
  },
  "tags":[
   {
@@ -195,6 +195,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -202,9 +205,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -295,6 +295,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -302,9 +305,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -429,10 +429,19 @@
      },
      "trafficTypes":{
       "type":"array",
-      "description":"\nSpecifies the types of traffic. For a full list of values, refer to\n[traffic types](https://www.infobip.com/docs/metrics-api/metrics-and-filters#traffictypes).\n        ",
+      "description":"\nSpecifies the types of traffic. For a full list of values, refer to\n[traffic types](https://www.infobip.com/docs/reporting/metrics-reference/messaging-metrics-reference#traffic-types).\n        ",
       "items":{
        "type":"string",
-       "description":"\nSpecifies the types of traffic. For a full list of values, refer to\n[traffic types](https://www.infobip.com/docs/metrics-api/metrics-and-filters#traffictypes).\n        "
+       "description":"\nSpecifies the types of traffic. For a full list of values, refer to\n[traffic types](https://www.infobip.com/docs/reporting/metrics-reference/messaging-metrics-reference#traffic-types).\n        "
+      },
+      "uniqueItems":true
+     },
+     "interactionTypes":{
+      "type":"array",
+      "description":"\nSpecifies the interaction types of traffic. For a full list of values, refer to\n[interaction types](https://www.infobip.com/docs/reporting/metrics-reference/messaging-metrics-reference#interaction-types).\n        ",
+      "items":{
+       "type":"string",
+       "description":"\nSpecifies the interaction types of traffic. For a full list of values, refer to\n[interaction types](https://www.infobip.com/docs/reporting/metrics-reference/messaging-metrics-reference#interaction-types).\n        "
       },
       "uniqueItems":true
      },
@@ -561,7 +570,7 @@
      },
      "aggregateBy":{
       "type":"array",
-      "description":"\nAn array of strings that defines the properties used for data aggregation. Each item in the array represents an aggregation parameter, with a corresponding column in the response showing values for the chosen aggregate.\n`CHANNEL_CODE` is always included in results for metric accuracy, even if not specified in aggregateBy. For further details,\nrefer to our [documentation](https://www.infobip.com/docs/metrics-api/metrics-and-filters#aggregationdimensions).\n\nAvailable aggregates:\n* `ACCOUNT_KEY` - groups the results by account key, displaying account-specific values.\n* `HOUR` - groups the results by hour, showing corresponding hourly timestamp values.\n* `DAY` - groups the results by day, showing corresponding day values.\n* `WEEK_SATURDAY_START` - groups the results by week, starting on Saturday, with corresponding timestamp values.\n* `WEEK_SUNDAY_START` - groups the results by week, starting on Sunday, with corresponding timestamp values.\n* `WEEK_MONDAY_START` - groups the results by week, starting on Monday, with corresponding timestamp values.\n* `MONTH` - groups the results by month, showing monthly values.\n* `QUARTER` - groups the results by quarter, showing quarterly values.\n* `YEAR` - groups the results by year, displaying annual values.\n* `TIME_TO_DELIVER` - groups the results by message delivery time, showing time-to-deliver period descriptions.\n* `TIME_TO_ANSWER` - groups the results by call answer time, showing time-to-answer period descriptions.\n* `TIME_TO_CLICK_FROM_SEEN` - groups the results by the time (in seconds) between a message being seen and a URL being clicked, showing calculated values.\n* `TIME_TO_CLICK_FROM_DELIVERED` - groups the results by the time (in seconds) between message delivery and a URL being clicked, showing calculated values.\n* `TIME_TO_SEEN_FROM_DELIVERED` - groups the results by the time (in seconds) between message delivery and the message being seen, showing calculated values.\n* `TIME_TO_OPEN_FROM_DELIVERED` - groups the results by the time (in seconds) between message delivery and the message being opened, showing calculated values.\n* `CHANNEL_CODE` - groups the results by channel, showing corresponding channel code values.\n* `CHANNEL_NAME` - groups the results by channel name, showing corresponding channel name values.\n* `CAPABILITY` - groups the results by capability, showing corresponding capability code values.\n* `DIRECTION` - groups the results by traffic direction, showing whether it was OUTBOUND (sent to a client) or INBOUND (received from a client).\n* `TRAFFIC_TYPE` - groups the results by traffic type, showing specific traffic type values.\n* `SENDER` - groups the results by sender, showing sender-specific values.\n* `SENDER_TYPE` - groups the results by type of sender, showing sender type values.\n* `SENDER_DOMAIN` - groups the results by sender domain, showing domain-specific values.\n* `RECIPIENT_DOMAIN` - groups the results by recipient domain, showing domain-specific values.\n* `URL` - groups the results by initial URL in a message, showing URL-specific values.\n* `COMMUNICATION` - groups the results by communication ID, showing the unique ID associated with each message.\n* `CAMPAIGN_REFERENCE` - groups the results by campaign reference ID, showing associated campaign reference values.\n* `NETWORK_ID` - groups the results by network, showing network ID values.\n* `NETWORK_NAME` - groups the results by network name, showing the name associated with each network ID.\n* `COUNTRY_ID` - groups the results by country, showing country ID values.\n* `COUNTRY_NAME` - groups the results by country name, showing the name associated with each country.\n* `APPLICATION_ID` - groups the results by application, showing corresponding application ID values.\n* `ENTITY_ID` - groups the results by entity, showing corresponding entity ID values.\n* `STATUS_GROUP` - groups response results by status group, showing corresponding status group values.\n* `STATUS` - groups response results by status name, showing corresponding status values.\n* `ERROR_GROUP` - groups response results by error group, showing corresponding error group values.\n* `ERROR_CODE` - groups response results by error code, showing corresponding error code values.\n            ",
+      "description":"\nAn array of strings that defines the properties used for data aggregation. Each item in the array represents an aggregation parameter, with a corresponding column in the response showing values for the chosen aggregate.\n`CHANNEL_CODE` is always included in results for metric accuracy, even if not specified in aggregateBy. For further details,\nrefer to our [documentation](https://www.infobip.com/docs/metrics-api/metrics-and-filters#aggregationdimensions).\n\nAvailable aggregates:\n* `ACCOUNT_KEY` - groups the results by account key, displaying account-specific values.\n* `HOUR` - groups the results by hour, showing corresponding hourly timestamp values.\n* `DAY` - groups the results by day, showing corresponding day values.\n* `WEEK_SATURDAY_START` - groups the results by week, starting on Saturday, with corresponding timestamp values.\n* `WEEK_SUNDAY_START` - groups the results by week, starting on Sunday, with corresponding timestamp values.\n* `WEEK_MONDAY_START` - groups the results by week, starting on Monday, with corresponding timestamp values.\n* `MONTH` - groups the results by month, showing monthly values.\n* `QUARTER` - groups the results by quarter, showing quarterly values.\n* `YEAR` - groups the results by year, displaying annual values.\n* `TIME_TO_DELIVER` - groups the results by message delivery time, showing time-to-deliver period descriptions.\n* `TIME_TO_ANSWER` - groups the results by call answer time, showing time-to-answer period descriptions.\n* `TIME_TO_CLICK_FROM_SEEN` - groups the results by the time (in seconds) between a message being seen and a URL being clicked, showing calculated values.\n* `TIME_TO_CLICK_FROM_DELIVERED` - groups the results by the time (in seconds) between message delivery and a URL being clicked, showing calculated values.\n* `TIME_TO_SEEN_FROM_DELIVERED` - groups the results by the time (in seconds) between message delivery and the message being seen, showing calculated values.\n* `TIME_TO_OPEN_FROM_DELIVERED` - groups the results by the time (in seconds) between message delivery and the message being opened, showing calculated values.\n* `CHANNEL_CODE` - groups the results by channel, showing corresponding channel code values.\n* `CHANNEL_NAME` - groups the results by channel name, showing corresponding channel name values.\n* `CAPABILITY` - groups the results by capability, showing corresponding capability code values.\n* `DIRECTION` - groups the results by traffic direction, showing whether it was OUTBOUND (sent to a client) or INBOUND (received from a client).\n* `TRAFFIC_TYPE` - groups the results by traffic type, showing specific traffic type values.\n* `INTERACTION_TYPE` - groups the results by interaction type, showing corresponding interaction type values.\n* `SENDER` - groups the results by sender, showing sender-specific values.\n* `SENDER_TYPE` - groups the results by type of sender, showing sender type values.\n* `SENDER_DOMAIN` - groups the results by sender domain, showing domain-specific values.\n* `RECIPIENT_DOMAIN` - groups the results by recipient domain, showing domain-specific values.\n* `URL` - groups the results by initial URL in a message, showing URL-specific values.\n* `COMMUNICATION` - groups the results by communication ID, showing the unique ID associated with each message.\n* `CAMPAIGN_REFERENCE` - groups the results by campaign reference ID, showing associated campaign reference values.\n* `NETWORK_ID` - groups the results by network, showing network ID values.\n* `NETWORK_NAME` - groups the results by network name, showing the name associated with each network ID.\n* `COUNTRY_ID` - groups the results by country, showing country ID values.\n* `COUNTRY_NAME` - groups the results by country name, showing the name associated with each country.\n* `APPLICATION_ID` - groups the results by application, showing corresponding application ID values.\n* `ENTITY_ID` - groups the results by entity, showing corresponding entity ID values.\n* `STATUS_GROUP` - groups response results by status group, showing corresponding status group values.\n* `STATUS` - groups response results by status name, showing corresponding status values.\n* `ERROR_GROUP` - groups response results by error group, showing corresponding error group values.\n* `ERROR_CODE` - groups response results by error code, showing corresponding error code values.\n            ",
       "items":{
        "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.TrafficAggregate"
       },
@@ -993,6 +1002,7 @@
      "CHANNEL_NAME",
      "CAPABILITY",
      "TRAFFIC_TYPE",
+     "INTERACTION_TYPE",
      "URL"
     ],
     "title":"TrafficAggregate"
@@ -1002,15 +1012,18 @@
     "properties":{
      "errorCode":{
       "type":"string",
-      "description":"An error code uniquely identifying the error case."
+      "description":"An error code uniquely identifying the error case.",
+      "minLength":1
      },
      "description":{
       "type":"string",
-      "description":"A detailed description of an error."
+      "description":"A detailed description of an error.",
+      "minLength":1
      },
      "action":{
       "type":"string",
-      "description":"An action that should be taken to recover from the error."
+      "description":"An action that should be taken to recover from the error.",
+      "minLength":1
      },
      "violations":{
       "type":"array",
@@ -1301,7 +1314,10 @@
       "description":"Your server returns this code if it accepts the callback."
      }
     },
-    "x-is-early-access":true
+    "x-is-early-access":true,
+    "x-additionalInfo":{
+     "markdown":"### Related\n- [Query aggregated traffic data](\"#platform/metrics-api/query-aggregate-data\")"
+    }
    }
   }
  }

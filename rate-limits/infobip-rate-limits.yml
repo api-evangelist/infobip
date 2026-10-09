@@ -1,43 +1,93 @@
-generated: '2026-07-25'
+generated: '2026-10-08'
 method: derived
-source: openapi/infobip-platform-full-openapi.json (x-throttling-info on 652 operations)
-  + https://www.infobip.com/docs/essentials/api-essentials/integration-best-practices
-name: Infobip API Rate Limits
-docs: https://www.infobip.com/docs/essentials/api-essentials/integration-best-practices
-summary:
-  mechanisms:
-  - time-window
-  - token-bucket
-  operations_with_published_limits: 652
-  distinct_limit_profiles: 44
-  exceeded_status: 429
-  exceeded_status_name: TOO_MANY_REQUESTS
-  retry_guidance: Exponential backoff with a retry cap; honor the Retry-After header
-    on 429 when present.
-  retry_after_header: Retry-After
-  notes: Infobip publishes per-operation throttling in the OpenAPI as x-throttling-info.
-    Time limits are "N requests per time unit"; token limits are a token bucket with
-    burst capacity and replenish rate. Custom/enterprise throttling is negotiated
-    per account for high-volume send endpoints (email/3/send, email/4/mime).
+name: Infobip API rate limits
+source: openapi/_original/infobip-platform-full-openapi.json
+docs: https://www.infobip.com/docs/essentials/api-essentials/integration-best-practices#throttling-handling-errors
+summary: 'Infobip publishes no account-wide numeric rate limit in prose: the API reference states message-sending APIs have no upper limit and non-sending APIs are throttled with HTTP 429 when usage exceeds expected levels. The per-operation limits below are declared by the provider inside the OpenAPI document (x-throttling-info on 676 of 968 operations, spec version 3.245.1); the two mechanisms (time-based window, token bucket) and the Retry-After header are documented on the integration best-practices page.'
+documented_statements:
+- text: Our message sending APIs have no upper limit, and we can handle traffic peaks from the world's largest enterprises.
+  source: https://www.infobip.com/docs/api#rate-limits
+- text: For non-message sending APIs, requests are throttled if usage exceeds expected levels. If this happens, you'll receive an HTTP status code 429 - Too Many Requests.
+  source: https://www.infobip.com/docs/api#rate-limits
+- text: Infobip API uses token-based rate limiting to control request rates. Different endpoints may have different throttling configurations, and you should consult the specific API documentation for each endpoint to understand the applicable limits.
+  source: https://www.infobip.com/docs/essentials/api-essentials/integration-best-practices#throttling-handling-errors
+- text: 'Time-based rate limit: Limits the number of requests within a fixed time window. Example: 100 requests per 10 seconds'
+  source: https://www.infobip.com/docs/essentials/api-essentials/integration-best-practices#rate-limit-types
+- text: 'Token-based rate limit: Uses a token bucket algorithm that allows bursts while maintaining a steady refill rate. Example: Burst capacity of 5 requests with a refill rate of 1 request per second'
+  source: https://www.infobip.com/docs/essentials/api-essentials/integration-best-practices#rate-limit-types
+- text: Check the Retry-After header in the 429 response, if present, to know when to retry
+  source: https://www.infobip.com/docs/essentials/api-essentials/integration-best-practices#handling-throttled-requests
+headers:
+  Retry-After: documented on 429 responses ("if present"); no X-RateLimit-* or RateLimit-* headers are documented
+  status_on_exhaustion: 429
+  error_code: TOO_MANY_REQUESTS
+retry_guidance: exponential backoff with increasing wait per throttled response; monitor the overall number of throttled requests (integration best practices)
+mechanisms:
+- time-window
+- token-bucket
+limit_count: 37
+operations_with_declared_limits: 676
+operations_total: 968
+note: 'Rows carry no limit_text: they are structured x-throttling-info declarations from the OpenAPI document (provider-published data inside the contract), not sentences on a docs page. The verbatim page quotes live under documented_statements.'
 limits:
-- type: time-window
-  limit_count: 10
-  window: 1s
-  description: 10 requests per 1 s
-  operation_count: 111
+- name: 100 requests per 1 s
+  kind: time-window
+  type: time-window
+  max: 100
+  limit: 100
+  window: 1 second
+  scope: per-account per-operation (x-throttling-info declared on the operation)
+  operation_count: 130
   areas:
-  - account-management
+  - ai
+  - calls
   - email
+  - number-reputation
+  - number-risk-score
+  - rcs
+  - signals
+  - vocalize
+  - voice
+  - webrtc
+  example_operations:
+  - vocalize-get-my-campaigns
+  - vocalize-create-campaign
+  - vocalize-get-campaign
+  - vocalize-delete-campaign
+  - vocalize-update-campaign-settings
+  - vocalize-get-campaign-leaderboard
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 100
+    window: 1 second
+- name: 10 requests per 1 s
+  kind: time-window
+  type: time-window
+  max: 10
+  limit: 10
+  window: 1 second
+  scope: per-account per-operation (x-throttling-info declared on the operation)
+  operation_count: 119
+  areas:
+  - auth
+  - communication
+  - email
+  - forms
   - knowledge-base
   - messages-api
-  - mobile-app-messaging
   - moments
+  - number-registration
+  - number-reputation
   - numbers
   - people
+  - push
   - rcs
   - resources
+  - settings
   - viber
   - whatsapp
+  - zalo
   example_operations:
   - create-a-new-person
   - get-list-items
@@ -45,37 +95,24 @@ limits:
   - deprecated-get-list-items
   - deprecated-get-lists
   - get-segment
-  name: Unnamed
-- type: time-window
-  limit_count: 100
-  window: 1s
-  description: 100 requests per 1 s
-  operation_count: 110
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 10
+    window: 1 second
+- name: 5 requests per 1 s
+  kind: time-window
+  type: time-window
+  max: 5
+  limit: 5
+  window: 1 second
+  scope: per-account per-operation (x-throttling-info declared on the operation)
+  operation_count: 85
   areas:
-  - ai-assistants
-  - email
-  - rcs
-  - signals
-  - voice
-  - webrtc-calls
-  example_operations:
-  - query-ai-assistant
-  - retrieve-ai-assistant-context
-  - get-calls-configurations
-  - get-calls-configuration
-  - update-calls-configuration
-  - delete-calls-configuration
-  name: Unnamed
-- type: time-window
-  limit_count: 5
-  window: 1s
-  description: 5 requests per 1 s
-  operation_count: 84
-  areas:
-  - catalogs-api
+  - catalogs
   - knowledge-base
   - messenger
-  - numbers
+  - number-registration
   - people
   example_operations:
   - get-a-single-person-or-a-list-of-people
@@ -84,21 +121,29 @@ limits:
   - partial-person-update
   - set-person-contact-information
   - delete-person-contact-information
-  name: Unnamed
-- type: time-window
-  limit_count: 1
-  window: 1s
-  description: 1 requests per 1 s
-  operation_count: 80
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 5
+    window: 1 second
+- name: 1 requests per 1 s
+  kind: time-window
+  type: time-window
+  max: 1
+  limit: 1
+  window: 1 second
+  scope: per-account per-operation (x-throttling-info declared on the operation)
+  operation_count: 74
   areas:
-  - application-entity
-  - blocklist
   - email
   - number-activation-state
+  - number-registration
   - numbers
+  - platform
+  - provisioning
   - rcs
+  - resource-management
   - resources
-  - sending-strategy
   example_operations:
   - get-validations
   - request-validations
@@ -106,34 +151,76 @@ limits:
   - decommission-ip
   - create-email-template
   - update-email-template
-  name: Unnamed
-- type: token-bucket
-  limit_count: 10
-  burst_capacity: 20
-  replenish_rate_per_second: 10
-  requested_tokens: 1
-  description: 'token bucket: burst 20, refill 10/s'
-  operation_count: 30
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 1
+    window: 1 second
+- name: token bucket (burst) with no declared request count
+  kind: burst
+  type: token-bucket
+  window: 1 second
+  scope: per-account per-operation (x-throttling-info declared on the operation)
+  operation_count: 51
   areas:
-  - conversations
+  - ccaas
+  - ccca
+  - email
+  - numbers
+  - peopleevents
+  - resource-management
   example_operations:
+  - create-events-export-request
+  - get-events-export-request-status
+  - cancel-events-export-request
+  - get-events-definitions-for-export
   - get-conversations-agent-config
   - get-conversations-waiting-strategies
-  - create-conversations-waiting-strategy
-  - get-conversations-waiting-strategy
-  - update-conversations-waiting-strategy
-  - get-conversations-account-recording-config
-  name: Unnamed
-- type: time-window
-  limit_count: 100
-  window: 1m
-  description: 100 requests per 1 m
-  operation_count: 26
+  note: the x-throttling-info declaration carries no numberOfRequests for these operations
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: token
+    numberOfRequests: null
+    window: 1 second
+- name: 50 requests per 1 s
+  kind: time-window
+  type: time-window
+  max: 50
+  limit: 50
+  window: 1 second
+  scope: per-account per-operation (x-throttling-info declared on the operation)
+  operation_count: 30
   areas:
+  - call-link
+  - knowledge-base
+  - people
+  - provisioning
+  example_operations:
+  - get-push-device-registration
+  - update-push-device-registration
+  - depersonalize-push-instance
+  - personalize-push-instance
+  - get-attachment-details
+  - get-call-links
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 50
+    window: 1 second
+- name: 100 requests per 1 m
+  kind: time-window
+  type: time-window
+  max: 100
+  limit: 100
+  window: 1 minute
+  scope: per-account per-operation (x-throttling-info declared on the operation)
+  operation_count: 30
+  areas:
+  - calls
   - email
-  - subscriptions-api
+  - subscriptions
   - voice
-  - webrtc-calls
+  - webrtc
   example_operations:
   - create-calls-configuration
   - create-sip-trunk
@@ -141,11 +228,18 @@ limits:
   - get-sip-trunk-status
   - set-sip-trunk-status
   - create-sip-trunk-service-address
-  name: Unnamed
-- type: time-window
-  limit_count: 4000
-  window: 1s
-  description: 4000 requests per 1 s
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 100
+    window: 1 minute
+- name: 4000 requests per 1 s
+  kind: time-window
+  type: time-window
+  max: 4000
+  limit: 4000
+  window: 1 second
+  scope: per-account per-operation (x-throttling-info declared on the operation)
   operation_count: 26
   areas:
   - email
@@ -157,54 +251,56 @@ limits:
   - send-whatsapp-template-message
   - send-whatsapp-text-message
   - send-whatsapp-document-message
-  name: Unnamed
-- type: time-window
-  limit_count: 50
-  window: 1s
-  description: 50 requests per 1 s
-  operation_count: 24
-  areas:
-  - knowledge-base
-  - people
-  - webrtc-calls
-  example_operations:
-  - get-push-device-registration
-  - update-push-device-registration
-  - depersonalize-push-instance
-  - personalize-push-instance
-  - get-attachment-details
-  - get-call-links
-  name: Unnamed
-- type: time-window
-  limit_count: 120
-  window: 1m
-  description: 120 requests per 1 m
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 4000
+    window: 1 second
+- name: 120 requests per 1 m
+  kind: time-window
+  type: time-window
+  max: 120
+  limit: 120
+  window: 1 minute
+  scope: per-account per-operation (x-throttling-info declared on the operation)
   operation_count: 19
   areas:
   - apple-mfb
   - email
   - instagram
-  - kakao
+  - kakao-alim
+  - kakao-chingu
+  - kakao-sangdam
+  - line-oa
   - messenger
   - mms
-  - mobile-app-messaging
-  - omni-failover
+  - omni
+  - push
   - rcs
   - sms
   - tiktok
+  - tts
   - viber
+  - viber-bot
   example_operations:
   - get-outbound-sms-message-logs-v3
   - get-outbound-sms-message-logs
   - get-outbound-mms-message-logs
-  - deprecated-get-outbound-mms-message-logs
   - get-sent-voice-logs
   - get-email-message-logs
-  name: Unnamed
-- type: time-window
-  limit_count: 3
-  window: 1s
-  description: 3 requests per 1 s
+  - get-outbound-email-message-delivery-reports
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 120
+    window: 1 minute
+- name: 3 requests per 1 s
+  kind: time-window
+  type: time-window
+  max: 3
+  limit: 3
+  window: 1 second
+  scope: per-account per-operation (x-throttling-info declared on the operation)
   operation_count: 14
   areas:
   - people
@@ -215,14 +311,22 @@ limits:
   - update-list-item
   - delete-lists
   - replace-list
-  name: Unnamed
-- type: time-window
-  limit_count: 50
-  window: 1m
-  description: 50 requests per 1 m
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 3
+    window: 1 second
+- name: 50 requests per 1 m
+  kind: time-window
+  type: time-window
+  max: 50
+  limit: 50
+  window: 1 minute
+  scope: per-account per-operation (x-throttling-info declared on the operation)
   operation_count: 13
   areas:
-  - voice
+  - callrouting
+  - markuplanguage
   example_operations:
   - create-markup-language-call
   - get-markup-language-config-list
@@ -230,32 +334,24 @@ limits:
   - get-markup-language-config
   - update-markup-language-config
   - delete-markup-language-config
-  name: Unnamed
-- type: time-window
-  limit_count: 100
-  window: 1s
-  description: 100 requests per 1 s
-  operation_count: 10
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 50
+    window: 1 minute
+- name: 10 requests per 1 m
+  kind: time-window
+  type: time-window
+  max: 10
+  limit: 10
+  window: 1 minute
+  scope: per-account per-operation (x-throttling-info declared on the operation)
+  operation_count: 11
   areas:
-  - vocalize
-  example_operations:
-  - vocalize-get-my-campaigns
-  - vocalize-create-campaign
-  - vocalize-get-campaign
-  - vocalize-delete-campaign
-  - vocalize-update-campaign-settings
-  - vocalize-get-campaign-leaderboard
-  name: Unnamed
-- type: time-window
-  limit_count: 10
-  window: 1m
-  description: 10 requests per 1 m
-  operation_count: 10
-  areas:
-  - kakao
+  - callrouting
+  - kakao-brand-messages
   - viber
-  - voice
-  - webrtc-calls
+  - webrtc
   - zalo
   example_operations:
   - search-call-routing-recording
@@ -264,32 +360,21 @@ limits:
   - get-webrtc-recordings
   - delete-webrtc-recording-by-id
   - download-webrtc-recording-by-id
-  name: Unnamed
-- type: token-bucket
-  limit_count: 1
-  burst_capacity: 5
-  replenish_rate_per_second: 1
-  requested_tokens: 1
-  description: 'token bucket: burst 5, refill 1/s'
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 10
+    window: 1 minute
+- name: 2500 requests per 1 s
+  kind: time-window
+  type: time-window
+  max: 2500
+  limit: 2500
+  window: 1 second
+  scope: per-account per-operation (x-throttling-info declared on the operation)
   operation_count: 9
   areas:
-  - email
-  - people
-  example_operations:
-  - create-events-export-request
-  - get-events-export-request-status
-  - get-events-definitions-for-export
-  - get-all-domains
-  - add-domain
-  - get-domain-details
-  name: Unnamed
-- type: time-window
-  limit_count: 2500
-  window: 1s
-  description: 2500 requests per 1 s
-  operation_count: 9
-  areas:
-  - mobile-app-messaging
+  - push
   - viber
   - whatsapp
   example_operations:
@@ -299,11 +384,18 @@ limits:
   - send-viber-text-message
   - send-viber-image-message
   - send-viber-file-message
-  name: Unnamed
-- type: time-window
-  limit_count: 100
-  window: 1h
-  description: 100 requests per 1 h
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 2500
+    window: 1 second
+- name: 100 requests per 1 h
+  kind: time-window
+  type: time-window
+  max: 100
+  limit: 100
+  window: 1 hour
+  scope: per-account per-operation (x-throttling-info declared on the operation)
   operation_count: 9
   areas:
   - whatsapp
@@ -314,32 +406,46 @@ limits:
   - update-whatsapp-flow
   - publish-whatsapp-flow
   - add-whatsapp-flow-json
-  name: Unnamed
-- type: time-window
-  limit_count: 15
-  window: 1s
-  description: 15 requests per 1 s
-  operation_count: 8
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 100
+    window: 1 hour
+- name: 15 requests per 1 s
+  kind: time-window
+  type: time-window
+  max: 15
+  limit: 15
+  window: 1 second
+  scope: per-account per-operation (x-throttling-info declared on the operation)
+  operation_count: 7
   areas:
   - people
   - whatsapp
   example_operations:
   - match-people-ids
   - download-whatsapp-inbound-media
-  - get-whatsapp-media-metadata
   - deprecated-get-whatsapp-templates
   - get-account-whatsapp-templates
   - add-whatsapp-sender
-  name: Unnamed
-- type: time-window
-  limit_count: 20
-  window: 1s
-  description: 20 requests per 1 s
+  - retry-whatsapp-sender-verification
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 15
+    window: 1 second
+- name: 20 requests per 1 s
+  kind: time-window
+  type: time-window
+  max: 20
+  limit: 20
+  window: 1 second
+  scope: per-account per-operation (x-throttling-info declared on the operation)
   operation_count: 7
   areas:
-  - openapi
+  - calls
+  - platform
   - resources
-  - voice
   example_operations:
   - create-conference
   - create-dialog
@@ -347,31 +453,22 @@ limits:
   - delete-document
   - get-openapi
   - get-product-level-openapi
-  name: Unnamed
-- type: token-bucket
-  limit_count: 2
-  burst_capacity: 10
-  replenish_rate_per_second: 2
-  requested_tokens: 1
-  description: 'token bucket: burst 10, refill 2/s'
-  operation_count: 6
-  areas:
-  - numbers
-  - resources
-  example_operations:
-  - modify-sms-configurations
-  - create-new-configuration
-  - create-mms-configuration
-  - update-mms-configuration
-  - delete-mms-configuration
-  - manage-inbound-configuration
-  name: Unnamed
-- type: time-window
-  limit_count: 2000
-  window: 1s
-  description: 2000 requests per 1 s
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 20
+    window: 1 second
+- name: 2000 requests per 1 s
+  kind: time-window
+  type: time-window
+  max: 2000
+  limit: 2000
+  window: 1 second
+  scope: per-account per-operation (x-throttling-info declared on the operation)
   operation_count: 5
   areas:
+  - calls
+  - tts
   - voice
   example_operations:
   - create-bulk
@@ -379,37 +476,58 @@ limits:
   - send-multiple-voice-tts
   - send-advanced-voice-tts
   - send-click-to-call-message
-  name: Unnamed
-- type: time-window
-  limit_count: 6
-  window: 1s
-  description: 6 requests per 1 s
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 2000
+    window: 1 second
+- name: 6 requests per 1 s
+  kind: time-window
+  type: time-window
+  max: 6
+  limit: 6
+  window: 1 second
+  scope: per-account per-operation (x-throttling-info declared on the operation)
   operation_count: 4
   areas:
-  - voice
+  - calls
   example_operations:
   - create-call
   - connect-with-new-call
   - add-new-conference-call
   - dialog-transfer-accept
-  name: Unnamed
-- type: time-window
-  limit_count: 60
-  window: 1m
-  description: 60 requests per 1 m
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 6
+    window: 1 second
+- name: 60 requests per 1 m
+  kind: time-window
+  type: time-window
+  max: 60
+  limit: 60
+  window: 1 minute
+  scope: per-account per-operation (x-throttling-info declared on the operation)
   operation_count: 3
   areas:
   - email
-  - number-lookup
+  - number
   example_operations:
   - get-email-logs
   - get-email-delivery-reports
   - get-number-context-logs
-  name: Unnamed
-- type: time-window
-  limit_count: 1000
-  window: 1h
-  description: 1000 requests per 1 h
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 60
+    window: 1 minute
+- name: 1000 requests per 1 h
+  kind: time-window
+  type: time-window
+  max: 1000
+  limit: 1000
+  window: 1 hour
+  scope: per-account per-operation (x-throttling-info declared on the operation)
   operation_count: 3
   areas:
   - whatsapp
@@ -417,236 +535,315 @@ limits:
   - create-whatsapp-template
   - get-whatsapp-flows
   - get-whatsapp-flow-json
-  name: Unnamed
-- type: time-window
-  limit_count: 20
-  window: 10m
-  description: 20 requests per 10 m
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 1000
+    window: 1 hour
+- name: 20 requests per 10 m
+  kind: time-window
+  type: time-window
+  max: 20
+  limit: 20
+  window: 10 minute
+  scope: per-account per-operation (x-throttling-info declared on the operation)
   operation_count: 3
   areas:
   - 2fa
-  - omni-failover
+  - omni
   example_operations:
   - create-omni-failover-scenario
   - create-2fa-application
   - create-2fa-email-message-template
-  name: Unnamed
-- type: time-window
-  limit_count: 40
-  window: 10m
-  description: 40 requests per 10 m
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 20
+    window: 10 minute
+- name: 40 requests per 10 m
+  kind: time-window
+  type: time-window
+  max: 40
+  limit: 40
+  window: 10 minute
+  scope: per-account per-operation (x-throttling-info declared on the operation)
   operation_count: 3
   areas:
   - 2fa
-  - omni-failover
+  - omni
   example_operations:
   - update-omni-failover-scenario
   - update-2fa-application
   - update-2fa-email-message-template
-  name: Unnamed
-- type: time-window
-  limit_count: 40
-  window: 1d
-  description: 40 requests per 1 d
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 40
+    window: 10 minute
+- name: 40 requests per 1 d
+  kind: time-window
+  type: time-window
+  max: 40
+  limit: 40
+  window: 1 day
+  scope: per-account per-operation (x-throttling-info declared on the operation)
   operation_count: 3
   areas:
-  - account-management
+  - settings
   example_operations:
   - create-api-key-deprecated
   - create-api-key
   - update-api-key
-  name: Unnamed
-- type: time-window
-  limit_count: 60
-  window: 1s
-  description: 60 requests per 1 s
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 40
+    window: 1 day
+- name: 60 requests per 1 s
+  kind: time-window
+  type: time-window
+  max: 60
+  limit: 60
+  window: 1 second
+  scope: per-account per-operation (x-throttling-info declared on the operation)
   operation_count: 3
   areas:
-  - billing-usage-api
-  - metrics-api
+  - billing
+  - metrics
   example_operations:
   - query-aggregate-data
   - get-aggregate-request-status
   - query-billing-usage
-  name: Unnamed
-- type: token-bucket
-  limit_count: 10
-  burst_capacity: 100
-  replenish_rate_per_second: 10
-  requested_tokens: 1
-  description: 'token bucket: burst 100, refill 10/s'
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 60
+    window: 1 second
+- name: 150 requests per 1 s
+  kind: time-window
+  type: time-window
+  max: 150
+  limit: 150
+  window: 1 second
+  scope: per-account per-operation (x-throttling-info declared on the operation)
   operation_count: 2
   areas:
-  - conversations
+  - email
+  - webrtc
   example_operations:
-  - delete-conversations-waiting-strategy
-  - get-transfer-queues
-  name: Unnamed
-- type: time-window
-  limit_count: 200
-  window: 1h
-  description: 200 requests per 1 h
+  - generate-webrtc-token
+  - validate-email-addresses
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 150
+    window: 1 second
+- name: 200 requests per 1 h
+  kind: time-window
+  type: time-window
+  max: 200
+  limit: 200
+  window: 1 hour
+  scope: per-account per-operation (x-throttling-info declared on the operation)
   operation_count: 2
   areas:
   - whatsapp
   example_operations:
   - delete-whatsapp-template
   - deprecated-create-whatsapp-template
-  name: Unnamed
-- type: token-bucket
-  limit_count: 1
-  burst_capacity: 2
-  replenish_rate_per_second: 1
-  requested_tokens: 1
-  description: 'token bucket: burst 2, refill 1/s'
-  operation_count: 2
-  areas:
-  - numbers
-  example_operations:
-  - get-available-numbers
-  - list-owned-numbers
-  name: Unnamed
-- type: time-window
-  limit_count: 250
-  window: 1s
-  description: 250 requests per 1 s
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 200
+    window: 1 hour
+- name: 250 requests per 1 s
+  kind: time-window
+  type: time-window
+  max: 250
+  limit: 250
+  window: 1 second
+  scope: per-account per-operation (x-throttling-info declared on the operation)
   operation_count: 1
   areas:
-  - people
+  - peopleevents
   example_operations:
   - send-custom-event
-  name: Unnamed
-- type: token-bucket
-  limit_count: 1
-  burst_capacity: 1
-  replenish_rate_per_second: 1
-  requested_tokens: 1
-  description: 'token bucket: burst 1, refill 1/s'
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 250
+    window: 1 second
+- name: 500 requests per 1 m
+  kind: time-window
+  type: time-window
+  max: 500
+  limit: 500
+  window: 1 minute
+  scope: per-account per-operation (x-throttling-info declared on the operation)
   operation_count: 1
   areas:
-  - people
-  example_operations:
-  - cancel-events-export-request
-  name: Unnamed
-- type: time-window
-  limit_count: 500
-  window: 1m
-  description: 500 requests per 1 m
-  operation_count: 1
-  areas:
-  - conversations
+  - ccaas
   example_operations:
   - get-messages
-  name: Unnamed
-- type: token-bucket
-  limit_count: 100
-  burst_capacity: 100
-  replenish_rate_per_second: 100
-  requested_tokens: 1
-  description: 'token bucket: burst 100, refill 100/s'
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 500
+    window: 1 minute
+- name: 5 requests per 1 m
+  kind: time-window
+  type: time-window
+  max: 5
+  limit: 5
+  window: 1 minute
+  scope: per-account per-operation (x-throttling-info declared on the operation)
   operation_count: 1
   areas:
-  - conversations
-  example_operations:
-  - download-call-recording
-  name: Unnamed
-- type: time-window
-  limit_count: 5
-  window: 1m
-  description: 5 requests per 1 m
-  operation_count: 1
-  areas:
-  - voice
+  - callrouting
   example_operations:
   - simulate-route-selection
-  name: Unnamed
-- type: time-window
-  limit_count: 200
-  window: 1s
-  description: 200 requests per 1 s
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 5
+    window: 1 minute
+- name: 200 requests per 1 s
+  kind: time-window
+  type: time-window
+  max: 200
+  limit: 200
+  window: 1 second
+  scope: per-account per-operation (x-throttling-info declared on the operation)
   operation_count: 1
   areas:
-  - webrtc-calls
+  - call-link
   example_operations:
   - create-call-link
-  name: Unnamed
-- type: time-window
-  limit_count: 500
-  window: 1s
-  description: 500 requests per 1 s
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 200
+    window: 1 second
+- name: 500 requests per 1 s
+  kind: time-window
+  type: time-window
+  max: 500
+  limit: 500
+  window: 1 second
+  scope: per-account per-operation (x-throttling-info declared on the operation)
   operation_count: 1
   areas:
   - email
   example_operations:
   - upload-binary-content
-  name: Unnamed
-- type: time-window
-  limit_count: 150
-  window: 1s
-  description: 150 requests per 1 s
-  operation_count: 1
-  areas:
-  - email
-  example_operations:
-  - validate-email-addresses
-  name: Unnamed
-- type: time-window
-  limit_count: 30
-  window: 1m
-  description: 30 requests per 1 m
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 500
+    window: 1 second
+- name: 30 requests per 1 m
+  kind: time-window
+  type: time-window
+  max: 30
+  limit: 30
+  window: 1 minute
+  scope: per-account per-operation (x-throttling-info declared on the operation)
   operation_count: 1
   areas:
   - whatsapp
   example_operations:
   - delete-whatsapp-media
-  name: Unnamed
-- type: time-window
-  limit_count: 25
-  window: 1s
-  description: 25 requests per 1 s
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 30
+    window: 1 minute
+- name: 25 requests per 1 s
+  kind: time-window
+  type: time-window
+  max: 25
+  limit: 25
+  window: 1 second
+  scope: per-account per-operation (x-throttling-info declared on the operation)
   operation_count: 1
   areas:
   - viber
   example_operations:
   - create-viber-template
-  name: Unnamed
-- type: time-window
-  limit_count: 2
-  window: 1m
-  description: 2 requests per 1 m
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 25
+    window: 1 second
+- name: 2 requests per 1 m
+  kind: time-window
+  type: time-window
+  max: 2
+  limit: 2
+  window: 1 minute
+  scope: per-account per-operation (x-throttling-info declared on the operation)
   operation_count: 1
   areas:
-  - mobile-app-messaging
+  - push
   example_operations:
   - delete-push-inbox-messages
-  name: Unnamed
-- type: time-window
-  limit_count: 50
-  window: 10m
-  description: 50 requests per 10 m
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 2
+    window: 1 minute
+- name: 50 requests per 10 m
+  kind: time-window
+  type: time-window
+  max: 50
+  limit: 50
+  window: 10 minute
+  scope: per-account per-operation (x-throttling-info declared on the operation)
   operation_count: 1
   areas:
   - 2fa
   example_operations:
   - get-2fa-applications
-  name: Unnamed
-- type: time-window
-  limit_count: 100
-  window: 10m
-  description: 100 requests per 10 m
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 50
+    window: 10 minute
+- name: 100 requests per 10 m
+  kind: time-window
+  type: time-window
+  max: 100
+  limit: 100
+  window: 10 minute
+  scope: per-account per-operation (x-throttling-info declared on the operation)
   operation_count: 1
   areas:
   - 2fa
   example_operations:
   - get-2fa-application
-  name: Unnamed
-- type: time-window
-  limit_count: 2
-  window: 1s
-  description: 2 requests per 1 s
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 100
+    window: 10 minute
+- name: 2 requests per 1 s
+  kind: time-window
+  type: time-window
+  max: 2
+  limit: 2
+  window: 1 second
+  scope: per-account per-operation (x-throttling-info declared on the operation)
   operation_count: 1
   areas:
-  - resources
+  - resource-management
   example_operations:
   - get-inbound-configurations
-  name: Unnamed
+  declaration:
+    from: OpenAPI x-throttling-info on the operation
+    type: time
+    numberOfRequests: 2
+    window: 1 second
+docs_sources:
+- https://www.infobip.com/docs/essentials/api-essentials/integration-best-practices
+- https://www.infobip.com/docs/api
+provenance: limits[] derived from x-throttling-info in the provider OpenAPI (version 3.245.1, fetched 2026-10-08); headers, mechanisms, retry_guidance and documented_statements searched on the docs pages listed in docs_sources and quoted verbatim.

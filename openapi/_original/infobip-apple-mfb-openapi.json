@@ -7,8 +7,8 @@
    "name":"Infobip support",
    "email":"support@infobip.com"
   },
-  "version":"3.210.0",
-  "x-generatedAt":"2026-07-23T15:24:00.141761715Z"
+  "version":"3.245.1",
+  "x-generatedAt":"2026-10-07T09:47:55.830666452Z"
  },
  "tags":[
   {
@@ -388,7 +388,7 @@
                "identifier":"imgIdScreen"
               }
              ],
-             "requestIdentifier":"requestId",
+             "requestIdentifier":"550e8400-e29b-41d4-a716-446655440003",
              "receivedMessage":{
               "style":"ICON",
               "title":"Please fill out this form",
@@ -548,6 +548,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -555,9 +558,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -683,6 +683,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -690,9 +693,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -856,6 +856,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -863,9 +866,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -1123,6 +1123,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -1130,9 +1133,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -1168,7 +1168,8 @@
      },
      "unit":{
       "type":"string",
-      "description":"Unit of altitude values."
+      "description":"Unit of altitude values.",
+      "minLength":1
      }
     },
     "required":[
@@ -1190,14 +1191,16 @@
      },
      "sender":{
       "type":"string",
-      "description":"The sender ID. It can be alphanumeric or numeric (e.g., `CompanyName`). Make sure you don't exceed [character limit](https://www.infobip.com/docs/sms/get-started#sender-names)."
+      "description":"The sender ID. It can be alphanumeric or numeric (e.g., `CompanyName`). Make sure you don't exceed [character limit](https://www.infobip.com/docs/sms/get-started#sender-names).",
+      "minLength":1
      },
      "destinations":{
       "type":"array",
       "description":"An array of destination objects for where the event is being sent. A valid destination is required.",
       "items":{
        "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.ToDestination"
-      }
+      },
+      "minItems":1
      }
     },
     "required":[
@@ -1227,7 +1230,8 @@
       "description":"An array of event objects of the events to be sent.",
       "items":{
        "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbEvent"
-      }
+      },
+      "minItems":1
      },
      "options":{
       "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.DefaultEventRequestOptions"
@@ -1252,7 +1256,8 @@
        },
        "requestIdentifier":{
         "type":"string",
-        "description":"Request Identifier."
+        "description":"Request Identifier.",
+        "minLength":1
        },
        "authenticated":{
         "type":"boolean",
@@ -1266,6 +1271,9 @@
         "type":"integer",
         "format":"int32",
         "description":"Error code returned in case of a failed authentication."
+       },
+       "type":{
+        "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundMessageContentType"
        }
       }
      }
@@ -1289,6 +1297,9 @@
       "properties":{
        "context":{
         "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.Context"
+       },
+       "type":{
+        "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundMessageContentType"
        }
       }
      }
@@ -1305,47 +1316,42 @@
     "discriminator":{
      "propertyName":"type",
      "mapping":{
-      "TEXT":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundTextContent",
       "TYPING_INDICATOR":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundTypingIndicatorContent",
-      "LIST_PICKER_RESPONSE":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundListPickerContent",
-      "TIME_PICKER_RESPONSE":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundTimePickerContent",
-      "AUTHENTICATION_RESPONSE":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundAuthContent",
       "APPLE_PAY_RESPONSE":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundPayResponseContent",
+      "ROADSIDE_ASSISTANCE":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundRoadsideAssistanceContent",
+      "AUTHENTICATION_RESPONSE":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundAuthContent",
+      "TEXT":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundTextContent",
+      "INVITATION_RESPONSE":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundInvitationContent",
       "CUSTOM_INTERACTIVE_RESPONSE":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundCustomInteractiveContent",
       "CLOSE_CONVERSATION":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundCloseConversationContent",
-      "QUICK_REPLY":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundQuickReplyContent",
       "FORM_RESPONSE":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundFormContent",
-      "INVITATION_RESPONSE":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundInvitationContent",
-      "ROADSIDE_ASSISTANCE":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundRoadsideAssistanceContent"
+      "TIME_PICKER_RESPONSE":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundTimePickerContent",
+      "QUICK_REPLY":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundQuickReplyContent",
+      "LIST_PICKER_RESPONSE":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundListPickerContent"
      }
     },
     "properties":{
      "type":{
-      "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundContentType"
+      "type":"string",
+      "enum":[
+       "TYPING_INDICATOR",
+       "APPLE_PAY_RESPONSE",
+       "ROADSIDE_ASSISTANCE",
+       "AUTHENTICATION_RESPONSE",
+       "TEXT",
+       "CLOSE_CONVERSATION",
+       "TIME_PICKER_RESPONSE",
+       "BUSINESS_UPDATE_BINARY_CHOICE_RESPONSE",
+       "LIST_PICKER_RESPONSE",
+       "TAPBACK",
+       "INVITATION_RESPONSE",
+       "CUSTOM_INTERACTIVE_RESPONSE",
+       "FORM_RESPONSE",
+       "QUICK_REPLY"
+      ]
      }
     },
-    "required":[
-     "type"
-    ],
     "title":"AppleMfbInboundContent"
-   },
-   "91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundContentType":{
-    "type":"string",
-    "enum":[
-     "TEXT",
-     "TYPING_INDICATOR",
-     "LIST_PICKER_RESPONSE",
-     "TIME_PICKER_RESPONSE",
-     "AUTHENTICATION_RESPONSE",
-     "APPLE_PAY_RESPONSE",
-     "CUSTOM_INTERACTIVE_RESPONSE",
-     "CLOSE_CONVERSATION",
-     "QUICK_REPLY",
-     "FORM_RESPONSE",
-     "INVITATION_RESPONSE",
-     "ROADSIDE_ASSISTANCE"
-    ],
-    "title":"AppleMfbInboundContentType"
    },
    "91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundCustomInteractiveContent":{
     "type":"object",
@@ -1376,6 +1382,9 @@
         "items":{
          "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.Attachment"
         }
+       },
+       "type":{
+        "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundMessageContentType"
        }
       }
      }
@@ -1388,6 +1397,13 @@
      "urlData"
     ],
     "title":"AppleMfbInboundCustomInteractiveContent"
+   },
+   "91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundEventContentType":{
+    "type":"string",
+    "enum":[
+     "TYPING_INDICATOR"
+    ],
+    "title":"AppleMfbInboundEventContentType"
    },
    "91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundFormContent":{
     "type":"object",
@@ -1403,7 +1419,8 @@
        },
        "requestIdentifier":{
         "type":"string",
-        "description":"Request identifier."
+        "description":"Request identifier.",
+        "minLength":1
        },
        "privateForm":{
         "type":"boolean",
@@ -1417,6 +1434,9 @@
         },
         "maxItems":2147483647,
         "minItems":1
+       },
+       "type":{
+        "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundMessageContentType"
        }
       }
      }
@@ -1443,10 +1463,14 @@
        },
        "requestIdentifier":{
         "type":"string",
-        "description":"Request identifier."
+        "description":"Request identifier.",
+        "minLength":1
        },
        "choice":{
         "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.Choice"
+       },
+       "type":{
+        "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundMessageContentType"
        }
       }
      }
@@ -1473,7 +1497,8 @@
        },
        "requestIdentifier":{
         "type":"string",
-        "description":"Request identifier."
+        "description":"Request identifier.",
+        "minLength":1
        },
        "listPickerSelectedItems":{
         "type":"array",
@@ -1481,6 +1506,9 @@
         "items":{
          "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.ListPickerSelectedItem"
         }
+       },
+       "type":{
+        "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundMessageContentType"
        }
       }
      }
@@ -1492,6 +1520,23 @@
      "type"
     ],
     "title":"AppleMfbInboundListPickerContent"
+   },
+   "91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundMessageContentType":{
+    "type":"string",
+    "enum":[
+     "TEXT",
+     "LIST_PICKER_RESPONSE",
+     "TIME_PICKER_RESPONSE",
+     "AUTHENTICATION_RESPONSE",
+     "APPLE_PAY_RESPONSE",
+     "CUSTOM_INTERACTIVE_RESPONSE",
+     "CLOSE_CONVERSATION",
+     "QUICK_REPLY",
+     "FORM_RESPONSE",
+     "INVITATION_RESPONSE",
+     "ROADSIDE_ASSISTANCE"
+    ],
+    "title":"AppleMfbInboundMessageContentType"
    },
    "91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundPayResponseContent":{
     "type":"object",
@@ -1507,7 +1552,8 @@
        },
        "requestIdentifier":{
         "type":"string",
-        "description":"Request Identifier."
+        "description":"Request Identifier.",
+        "minLength":1
        },
        "paid":{
         "type":"boolean",
@@ -1522,6 +1568,9 @@
        },
        "total":{
         "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.LineItem"
+       },
+       "type":{
+        "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundMessageContentType"
        }
       }
      }
@@ -1550,10 +1599,14 @@
        },
        "requestIdentifier":{
         "type":"string",
-        "description":"Request Identifier."
+        "description":"Request Identifier.",
+        "minLength":1
        },
        "quickReplySelectedItem":{
         "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.QuickReplySelectedItem"
+       },
+       "type":{
+        "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundMessageContentType"
        }
       }
      }
@@ -1603,6 +1656,9 @@
        },
        "rsaContent":{
         "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.RoadsideAssistanceInboundContent"
+       },
+       "type":{
+        "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundMessageContentType"
        }
       }
      }
@@ -1636,6 +1692,9 @@
         "items":{
          "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.Attachment"
         }
+       },
+       "type":{
+        "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundMessageContentType"
        }
       }
      }
@@ -1661,7 +1720,8 @@
        },
        "requestIdentifier":{
         "type":"string",
-        "description":"Request Identifier."
+        "description":"Request Identifier.",
+        "minLength":1
        },
        "selectedTime":{
         "type":"string",
@@ -1681,6 +1741,9 @@
        "selectedTimeslotIdentifier":{
         "type":"string",
         "description":"Selected TimeItem Identifier."
+       },
+       "type":{
+        "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundMessageContentType"
        }
       }
      }
@@ -1709,6 +1772,9 @@
        },
        "typingIndicatorType":{
         "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.TypingIndicatorType"
+       },
+       "type":{
+        "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbInboundEventContentType"
        }
       }
      }
@@ -1726,14 +1792,16 @@
     "properties":{
      "sender":{
       "type":"string",
-      "description":"The sender ID. It can be alphanumeric or numeric (e.g., `CompanyName`). Make sure you don't exceed [character limit](https://www.infobip.com/docs/sms/get-started#sender-names)."
+      "description":"The sender ID. It can be alphanumeric or numeric (e.g., `CompanyName`). Make sure you don't exceed [character limit](https://www.infobip.com/docs/sms/get-started#sender-names).",
+      "minLength":1
      },
      "destinations":{
       "type":"array",
       "description":"An array of destination objects for where messages are being sent. A valid destination is required.",
       "items":{
        "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.ToDestination"
-      }
+      },
+      "minItems":1
      },
      "content":{
       "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbOutboundMessageContent"
@@ -1763,13 +1831,14 @@
       "properties":{
        "url":{
         "type":"string",
-        "description":"URL used by Apple Messages for Business to identify the App Clip"
+        "description":"URL used by Apple Messages for Business to identify the App Clip",
+        "minLength":1,
+        "pattern":""
        },
        "storeRegion":{
         "type":"string",
         "description":"ISO 3166 alpha-2 country code of the App Store region. By default it is 'US'. Set this value in case the App Clip is not in the US App Store.",
-        "maxLength":2,
-        "minLength":2
+        "pattern":"^[A-Z]{2}$"
        },
        "type":{
         "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbOutboundMessageContentType"
@@ -1794,14 +1863,15 @@
       "properties":{
        "images":{
         "type":"array",
-        "description":"An array of images.",
+        "description":"An array of images. Make sure sum of sizes of all images does not exceed 5 MB.",
         "items":{
          "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.Image"
         }
        },
        "requestIdentifier":{
         "type":"string",
-        "description":"Identifier of the request. Generated automatically if empty."
+        "description":"Identifier of the request. Must strictly follow the UUID standard (RFC 4122). Generated automatically if empty.",
+        "pattern":"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
        },
        "receivedMessage":{
         "allOf":[
@@ -1821,7 +1891,8 @@
        },
        "redirectUri":{
         "type":"string",
-        "description":"URL that OAuth provider sends auth code and state to."
+        "description":"URL that OAuth provider sends auth code and state to. Must use HTTPS protocol.",
+        "pattern":""
        },
        "state":{
         "type":"string",
@@ -1880,7 +1951,6 @@
        "TEXT",
        "AUDIO",
        "LIST_PICKER",
-       "APPLE_TEXT_WITH_QUICK_REPLY_CONTENT",
        "APPLE_FORM_CONTENT",
        "IMAGE",
        "APPLE_TIME_PICKER_CONTENT",
@@ -1897,7 +1967,6 @@
        "APPLE_QUICK_REPLY_CONTENT",
        "PAY_REQUEST",
        "AUTHENTICATION_REQUEST",
-       "TEXT_WITH_QUICK_REPLY",
        "BUSINESS_UPDATE",
        "INVITATION",
        "APP_CLIP",
@@ -1921,7 +1990,9 @@
       "properties":{
        "url":{
         "type":"string",
-        "description":"URL of the document being sent."
+        "description":"URL of the document being sent.",
+        "minLength":1,
+        "pattern":""
        },
        "header":{
         "type":"string",
@@ -1987,14 +2058,15 @@
        },
        "images":{
         "type":"array",
-        "description":"An array of images.",
+        "description":"An array of images. Make sure sum of sizes of all images does not exceed 5 MB.",
         "items":{
          "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.Image"
         }
        },
        "requestIdentifier":{
         "type":"string",
-        "description":"Identifier of the request. Generated automatically if empty."
+        "description":"Identifier of the request. Must strictly follow the UUID standard (RFC 4122). Generated automatically if empty.",
+        "pattern":"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
        },
        "receivedMessage":{
         "allOf":[
@@ -2039,7 +2111,8 @@
         "type":"string",
         "description":"URL of the image being sent.",
         "maxLength":1000,
-        "minLength":0
+        "minLength":0,
+        "pattern":""
        },
        "header":{
         "type":"string",
@@ -2076,7 +2149,8 @@
       "properties":{
        "requestIdentifier":{
         "type":"string",
-        "description":"Identifier of the request. Generated automatically if empty."
+        "description":"Identifier of the request. Must strictly follow the UUID standard (RFC 4122). Generated automatically if empty.",
+        "pattern":"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
        },
        "templateId":{
         "type":"string",
@@ -2090,7 +2164,8 @@
         "type":"string",
         "description":"Reference field to provide context of what the Invitation message is for (eg. order number, case identifier, etc). Should not contain quotation marks or apostrophe characters.",
         "maxLength":1000,
-        "minLength":0
+        "minLength":0,
+        "pattern":"^[^\"']*$"
        },
        "placeholders":{
         "type":"object",
@@ -2124,7 +2199,7 @@
       "properties":{
        "images":{
         "type":"array",
-        "description":"An array of images.",
+        "description":"An array of images. Make sure sum of sizes of all images does not exceed 5 MB.",
         "items":{
          "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.Image"
         }
@@ -2134,7 +2209,8 @@
        },
        "requestIdentifier":{
         "type":"string",
-        "description":"Identifier of the request. Generated automatically if empty."
+        "description":"Identifier of the request. Must strictly follow the UUID standard (RFC 4122). Generated automatically if empty.",
+        "pattern":"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
        },
        "receivedMessage":{
         "allOf":[
@@ -2182,8 +2258,10 @@
          "type":"string",
          "description":"URLs of the media being sent. Only images and videos can be presented as a gallery (stacked on top of each other).",
          "maxLength":1000,
-         "minLength":0
-        }
+         "minLength":0,
+         "pattern":""
+        },
+        "minItems":1
        },
        "type":{
         "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbOutboundMessageContentType"
@@ -2260,7 +2338,7 @@
       "properties":{
        "images":{
         "type":"array",
-        "description":"An array of images.",
+        "description":"An array of images. Make sure sum of sizes of all images does not exceed 5 MB.",
         "items":{
          "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.Image"
         }
@@ -2278,7 +2356,9 @@
         "description":"Set of line items that explain recurring payments and additional charges and discounts.",
         "items":{
          "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.ApplePayLineItem"
-        }
+        },
+        "maxItems":20,
+        "minItems":1
        },
        "total":{
         "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.ApplePayLineItem"
@@ -2292,7 +2372,8 @@
        },
        "requestIdentifier":{
         "type":"string",
-        "description":"Identifier of the request. Generated automatically if empty."
+        "description":"Identifier of the request. Must strictly follow the UUID standard (RFC 4122). Generated automatically if empty.",
+        "pattern":"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
        },
        "configuration":{
         "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.PaymentConfiguration"
@@ -2321,7 +2402,9 @@
       "properties":{
        "summaryText":{
         "type":"string",
-        "description":"A summary text that will be used for device notification but also shown in the transcript after user makes a choice."
+        "description":"A summary text that will be used for device notification but also shown in the transcript after user makes a choice.",
+        "maxLength":200,
+        "minLength":0
        },
        "items":{
         "type":"array",
@@ -2334,7 +2417,8 @@
        },
        "requestIdentifier":{
         "type":"string",
-        "description":"Identifier of the request. Generated automatically if empty."
+        "description":"Identifier of the request. Must strictly follow the UUID standard (RFC 4122). Generated automatically if empty.",
+        "pattern":"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
        },
        "type":{
         "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbOutboundMessageContentType"
@@ -2360,19 +2444,25 @@
       "properties":{
        "linkUrl":{
         "type":"string",
-        "description":"URL of the rich link message.\nIf `linkTitle` and `imageUrl` are not provided, it will resolve them from page metadata.\nWorks best if provided page support Open Graph protocol."
+        "description":"URL of the rich link message. If `linkTitle` and `imageUrl` are not provided, it will resolve them from page metadata. Works best if provided page support Open Graph protocol. Must use HTTPS protocol.",
+        "minLength":1,
+        "pattern":""
        },
        "linkTitle":{
         "type":"string",
-        "description":"Title of the rich link message. Not applicable to Apple Maps or Apple Music linkUrls."
+        "description":"Title of the rich link message. Not applicable to Apple Maps or Apple Music linkUrls.",
+        "maxLength":200,
+        "minLength":0
        },
        "imageUrl":{
         "type":"string",
-        "description":"URL of the image.\nApple supports images of size up to 200kB. Not applicable to Apple Maps or Apple Music linkUrls."
+        "description":"URL of the image. Allowed format is PNG and size must not exceed 200 KB URL. Not applicable to Apple Maps or Apple Music linkUrls.",
+        "pattern":""
        },
        "videoUrl":{
         "type":"string",
-        "description":"URL of the video. Not applicable to Apple Maps or Apple Music linkUrls."
+        "description":"URL of the video. Not applicable to Apple Maps or Apple Music linkUrls. Must use HTTPS protocol.",
+        "pattern":""
        },
        "type":{
         "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbOutboundMessageContentType"
@@ -2424,7 +2514,7 @@
       "properties":{
        "images":{
         "type":"array",
-        "description":"An array of images.",
+        "description":"An array of images. Make sure sum of sizes of all images does not exceed 5 MB.",
         "items":{
          "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.Image"
         }
@@ -2434,7 +2524,8 @@
        },
        "requestIdentifier":{
         "type":"string",
-        "description":"Identifier of the request. Generated automatically if empty."
+        "description":"Identifier of the request. Must strictly follow the UUID standard (RFC 4122). Generated automatically if empty.",
+        "pattern":"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
        },
        "receivedMessage":{
         "allOf":[
@@ -2501,7 +2592,9 @@
       "properties":{
        "url":{
         "type":"string",
-        "description":"URL of the video being sent."
+        "description":"URL of the video being sent.",
+        "minLength":1,
+        "pattern":""
        },
        "header":{
         "type":"string",
@@ -2535,7 +2628,8 @@
       "description":"An array of message objects of a single message or multiple messages sent under one bulk ID.",
       "items":{
        "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.AppleMfbMessage"
-      }
+      },
+      "minItems":1
      },
      "options":{
       "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.DefaultMessageRequestOptions"
@@ -2552,21 +2646,29 @@
     "properties":{
      "label":{
       "type":"string",
-      "description":"Short, localized description of the line item."
+      "description":"Short, localized description of the line item.",
+      "maxLength":200,
+      "minLength":0
      },
      "amount":{
       "type":"string",
-      "description":"The monetary amount of the line item."
+      "description":"The monetary amount of the line item. Must be a number with optional decimal part (exactly 2 digits after decimal point). Examples: '100', '99.99', '-10.50'",
+      "minLength":1,
+      "pattern":"^-?[0-9]+(\\.[0-9][0-9])?$"
      },
      "type":{
       "type":"string",
-      "description":"Value that indicates whether the line item is final or pending."
+      "description":"Value that indicates whether the line item is final or pending.",
+      "enum":[
+       "final",
+       "pending"
+      ],
+      "pattern":"^(final|pending)$"
      }
     },
     "required":[
      "amount",
-     "label",
-     "type"
+     "label"
     ],
     "title":"ApplePayLineItem"
    },
@@ -2576,19 +2678,26 @@
     "properties":{
      "amount":{
       "type":"string",
-      "description":"The nonnegative cost associated with this shipping method."
+      "description":"The nonnegative cost associated with this shipping method. Must be a number with optional decimal part (exactly 2 digits after decimal point). Examples: '100', '99.99'",
+      "minLength":1,
+      "pattern":"^[0-9]+(\\.[0-9][0-9])?$"
      },
      "detail":{
       "type":"string",
-      "description":"Additional description of the shipping method."
+      "description":"Additional description of the shipping method.",
+      "maxLength":200,
+      "minLength":0
      },
      "identifier":{
       "type":"string",
-      "description":"Client-defined value used to identify this shipping method."
+      "description":"Client-defined value used to identify this shipping method.",
+      "minLength":1
      },
      "label":{
       "type":"string",
-      "description":"Short description of the shipping method."
+      "description":"Short description of the shipping method.",
+      "maxLength":200,
+      "minLength":0
      }
     },
     "required":[
@@ -2605,15 +2714,18 @@
     "properties":{
      "fileName":{
       "type":"string",
-      "description":"Name of the attachment."
+      "description":"Name of the attachment.",
+      "minLength":1
      },
      "downloadId":{
       "type":"string",
-      "description":"Download identifier of the attachment."
+      "description":"Download identifier of the attachment.",
+      "minLength":1
      },
      "url":{
       "type":"string",
-      "description":"URL of the attachment."
+      "description":"URL of the attachment.",
+      "minLength":1
      }
     },
     "required":[
@@ -2724,7 +2836,9 @@
        },
        "subtitle":{
         "type":"string",
-        "description":"Question of the page."
+        "description":"Question of the page.",
+        "maxLength":200,
+        "minLength":0
        },
        "nextPageIdentifier":{
         "type":"string",
@@ -2734,7 +2848,9 @@
        },
        "title":{
         "type":"string",
-        "description":"Title of the page."
+        "description":"Title of the page.",
+        "maxLength":200,
+        "minLength":0
        },
        "submitForm":{
         "type":"boolean",
@@ -2747,7 +2863,6 @@
      }
     ],
     "required":[
-     "nextPageIdentifier",
      "pageIdentifier",
      "subtitle",
      "type"
@@ -2779,7 +2894,9 @@
      },
      "labelText":{
       "type":"string",
-      "description":"Text to be shown next to the date field."
+      "description":"Text to be shown next to the date field.",
+      "maxLength":200,
+      "minLength":0
      }
     },
     "title":"DatePickerPageOptions"
@@ -2801,7 +2918,8 @@
        },
        "subtitle":{
         "type":"string",
-        "description":"Subtitle."
+        "description":"Subtitle.",
+        "minLength":1
        },
        "item":{
         "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.DatePickerSelectionItemInboundContent"
@@ -2823,7 +2941,8 @@
     "properties":{
      "title":{
       "type":"string",
-      "description":"Title of the item."
+      "description":"Title of the item.",
+      "minLength":1
      },
      "value":{
       "type":"string",
@@ -2983,7 +3102,8 @@
       "description":"Days of the week which are included in the delivery time window. At least one day must be provided. Separate multiple days with a comma.",
       "items":{
        "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.DeliveryDay"
-      }
+      },
+      "minItems":1
      },
      "from":{
       "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.DeliveryTime"
@@ -3003,18 +3123,22 @@
     "properties":{
      "identifier":{
       "type":"string",
-      "description":"Identifier of the event."
+      "description":"Identifier of the event.",
+      "minLength":1
      },
      "title":{
       "type":"string",
-      "description":"Title of the event."
+      "description":"Title of the event.",
+      "maxLength":200,
+      "minLength":0
      },
      "timeslots":{
       "type":"array",
       "description":"An array of event's time slots.",
       "items":{
        "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.EventTimeslot"
-      }
+      },
+      "minItems":1
      },
      "locationItem":{
       "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.LocationItem"
@@ -3028,7 +3152,7 @@
       "format":"int32",
       "description":"Time zone offset from GMT in minutes. If not set, times are shown according to the customer’s current time zone.",
       "maximum":840,
-      "minimum":-840
+      "minimum":-720
      }
     },
     "required":[
@@ -3055,7 +3179,8 @@
      },
      "identifier":{
       "type":"string",
-      "description":"Identifier of the time slot."
+      "description":"Identifier of the time slot.",
+      "minLength":1
      }
     },
     "required":[
@@ -3093,7 +3218,8 @@
       "description":"An array of different pages to be shown in the form.",
       "items":{
        "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.FormPage"
-      }
+      },
+      "minItems":1
      },
      "startPageIdentifier":{
       "type":"string",
@@ -3193,11 +3319,13 @@
     "properties":{
      "title":{
       "type":"string",
-      "description":"Title of the item."
+      "description":"Title of the item.",
+      "minLength":1
      },
      "value":{
       "type":"string",
-      "description":"Value of the item."
+      "description":"Value of the item.",
+      "minLength":1
      }
     },
     "required":[
@@ -3212,40 +3340,43 @@
     "properties":{
      "buttonTitle":{
       "type":"string",
-      "description":"Text on the button shown on the page. If missing then this view doesn't display and continues onto the first module."
+      "description":"Text on the button shown on the page. If missing then this view doesn't display and continues onto the first module.",
+      "maxLength":200,
+      "minLength":0
      },
      "splashText":{
       "type":"string",
-      "description":"If set, displays the body copy for the page."
+      "description":"If set, displays the body copy for the page.",
+      "maxLength":200,
+      "minLength":0
      },
      "header":{
       "type":"string",
-      "description":"If set, it displays in bold the title on the page underneath the image."
+      "description":"If set, it displays in bold the title on the page underneath the image.",
+      "maxLength":200,
+      "minLength":0
      },
      "imageIdentifier":{
       "type":"string",
       "description":"Identifier of the image to be shown at the top of the view."
      }
     },
-    "required":[
-     "buttonTitle",
-     "header",
-     "imageIdentifier",
-     "splashText"
-    ],
     "title":"FormSplash"
    },
    "91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.Image":{
     "type":"object",
-    "description":"An array of images.",
+    "description":"An array of images. Make sure sum of sizes of all images does not exceed 5 MB.",
     "properties":{
      "imageUrl":{
       "type":"string",
-      "description":"URL of the image."
+      "description":"URL of the image. Allowed format is PNG and size must not exceed 200 KB.",
+      "minLength":1,
+      "pattern":"(http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@!\\-/]))?"
      },
      "identifier":{
       "type":"string",
-      "description":"Identifier of the image. Each one should be unique per message."
+      "description":"Identifier of the image. Each one should be unique per message.",
+      "minLength":1
      }
     },
     "required":[
@@ -3331,7 +3462,8 @@
      },
      "principalEntityId":{
       "type":"string",
-      "description":"Your assigned DLT principal entity ID."
+      "description":"Your assigned DLT principal entity ID.",
+      "minLength":1
      },
      "telemarketerId":{
       "type":"string",
@@ -3360,7 +3492,9 @@
        },
        "subtitle":{
         "type":"string",
-        "description":"Question of the page."
+        "description":"Question of the page.",
+        "maxLength":200,
+        "minLength":0
        },
        "nextPageIdentifier":{
         "type":"string",
@@ -3370,7 +3504,9 @@
        },
        "title":{
         "type":"string",
-        "description":"Title of the page."
+        "description":"Title of the page.",
+        "maxLength":200,
+        "minLength":0
        },
        "submitForm":{
         "type":"boolean",
@@ -3378,7 +3514,9 @@
        },
        "hintText":{
         "type":"string",
-        "description":"Text to give the user more input context that displays below the Input field."
+        "description":"Text to give the user more input context that displays below the Input field.",
+        "maxLength":200,
+        "minLength":0
        },
        "options":{
         "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.InputPageOptions"
@@ -3387,7 +3525,6 @@
      }
     ],
     "required":[
-     "nextPageIdentifier",
      "pageIdentifier",
      "subtitle",
      "type"
@@ -3404,7 +3541,9 @@
      },
      "placeholder":{
       "type":"string",
-      "description":"Text string used when there is no other text in the input text field."
+      "description":"Text string used when there is no other text in the input text field.",
+      "maxLength":200,
+      "minLength":0
      },
      "required":{
       "type":"boolean",
@@ -3416,11 +3555,15 @@
      },
      "labelText":{
       "type":"string",
-      "description":"Text label shown to identify the input field. Only applies to inputType: SINGLELINE."
+      "description":"Text label shown to identify the input field. Only applies to inputType: SINGLELINE.",
+      "maxLength":200,
+      "minLength":0
      },
      "prefixText":{
       "type":"string",
-      "description":"String value representing optional text shown next to the text field. Only applies to inputType: SINGLELINE."
+      "description":"String value representing optional text shown next to the text field. Only applies to inputType: SINGLELINE.",
+      "maxLength":200,
+      "minLength":0
      },
      "maximumCharacterCount":{
       "type":"integer",
@@ -3454,7 +3597,8 @@
        },
        "subtitle":{
         "type":"string",
-        "description":"Subtitle."
+        "description":"Subtitle.",
+        "minLength":1
        },
        "item":{
         "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.FormSelectionItemInboundContent"
@@ -3487,13 +3631,13 @@
      "title":{
       "type":"string",
       "description":"Title of the message.",
-      "maxLength":512,
+      "maxLength":200,
       "minLength":0
      },
      "subtitle":{
       "type":"string",
       "description":"Subtitle of the message.",
-      "maxLength":512,
+      "maxLength":200,
       "minLength":0
      },
      "imageIdentifier":{
@@ -3516,13 +3660,13 @@
      "title":{
       "type":"string",
       "description":"Title of the message.",
-      "maxLength":512,
+      "maxLength":200,
       "minLength":0
      },
      "subtitle":{
       "type":"string",
       "description":"Subtitle of the message.",
-      "maxLength":512,
+      "maxLength":200,
       "minLength":0
      },
      "imageIdentifier":{
@@ -3559,7 +3703,6 @@
      "NAME_PHONE_PAD",
      "EMAIL_ADDRESS",
      "DECIMAL_PAD",
-     "TWITTER_KEYBOARD",
      "WEB_SEARCH"
     ],
     "title":"KeyboardType"
@@ -3592,7 +3735,8 @@
       "description":"An array of list picker sections.",
       "items":{
        "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.ListPickerSection"
-      }
+      },
+      "minItems":1
      }
     },
     "required":[
@@ -3606,7 +3750,8 @@
     "properties":{
      "identifier":{
       "type":"string",
-      "description":"Identifier of the item."
+      "description":"Identifier of the item.",
+      "minLength":1
      },
      "imageIdentifier":{
       "type":"string",
@@ -3615,15 +3760,20 @@
      "order":{
       "type":"integer",
       "format":"int32",
-      "description":"An integer representing the ordinal position for the item. If this field is missing, the item isn't sorted within the items array."
+      "description":"An integer representing the ordinal position for the item. If this field is missing, the item isn't sorted within the items array.",
+      "minimum":0
      },
      "subtitle":{
       "type":"string",
-      "description":"Subtitle of the item."
+      "description":"Subtitle of the item.",
+      "maxLength":200,
+      "minLength":0
      },
      "title":{
       "type":"string",
-      "description":"Title of the item."
+      "description":"Title of the item.",
+      "maxLength":200,
+      "minLength":0
      }
     },
     "required":[
@@ -3641,16 +3791,20 @@
       "description":"An array of list picker items.",
       "items":{
        "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.ListPickerItem"
-      }
+      },
+      "minItems":1
      },
      "order":{
       "type":"integer",
       "format":"int32",
-      "description":"An integer containing the ordinal in the sections array."
+      "description":"An integer containing the ordinal in the sections array.",
+      "minimum":0
      },
      "title":{
       "type":"string",
-      "description":"Title of the section."
+      "description":"Title of the section.",
+      "maxLength":200,
+      "minLength":0
      },
      "multipleSelection":{
       "type":"boolean",
@@ -3670,11 +3824,13 @@
     "properties":{
      "title":{
       "type":"string",
-      "description":"A string field of the section title."
+      "description":"A string field of the section title.",
+      "minLength":1
      },
      "identifier":{
       "type":"string",
-      "description":" A string field identifying the item."
+      "description":" A string field identifying the item.",
+      "minLength":1
      }
     },
     "required":[
@@ -3706,26 +3862,30 @@
      "latitude":{
       "type":"number",
       "format":"double",
-      "description":"Latitude of the location."
+      "description":"Latitude of the location.",
+      "maximum":90.0,
+      "minimum":-90.0
      },
      "longitude":{
       "type":"number",
       "format":"double",
-      "description":"Longitude of the location."
+      "description":"Longitude of the location.",
+      "maximum":180.0,
+      "minimum":-180.0
      },
      "radius":{
       "type":"number",
       "format":"double",
-      "description":"Radius of the location."
+      "description":"Radius of the location in meters.",
+      "minimum":0
      },
      "title":{
       "type":"string",
-      "description":"Title of the location."
+      "description":"Title of the location.",
+      "minLength":1
      }
     },
     "required":[
-     "latitude",
-     "longitude",
      "title"
     ],
     "title":"LocationItem"
@@ -3980,7 +4140,8 @@
        },
        "subtitle":{
         "type":"string",
-        "description":"Subtitle."
+        "description":"Subtitle.",
+        "minLength":1
        },
        "items":{
         "type":"array",
@@ -4080,7 +4241,8 @@
     "properties":{
      "name":{
       "type":"string",
-      "description":"Name of the parameter."
+      "description":"Name of the parameter.",
+      "minLength":1
      },
      "value":{
       "type":"string",
@@ -4106,7 +4268,8 @@
      },
      "merchantPaymentGatewayUrl":{
       "type":"string",
-      "description":"The URL of the merchant's payment gateway. This is the URL that Apple Pay uses to process payments."
+      "description":"The URL of the merchant's payment gateway. This is the URL that Apple Pay uses to process payments. Must use HTTPS protocol.",
+      "pattern":""
      },
      "merchantCountryCode":{
       "type":"string",
@@ -4148,23 +4311,28 @@
      },
      "paymentMethodUpdateUrl":{
       "type":"string",
-      "description":"Called by Apple Pay when the user changes the payment method."
+      "description":"Called by Apple Pay when the user changes the payment method. Must use HTTPS protocol.",
+      "pattern":""
      },
      "shippingContactUpdateUrl":{
       "type":"string",
-      "description":"Called by Apple Pay when the user changes their shipping address information."
+      "description":"Called by Apple Pay when the user changes their shipping address information. Must use HTTPS protocol.",
+      "pattern":""
      },
      "shippingMethodUpdateUrl":{
       "type":"string",
-      "description":"Called by Apple Pay when the user changes the shipping method."
+      "description":"Called by Apple Pay when the user changes the shipping method. Must use HTTPS protocol.",
+      "pattern":""
      },
      "orderTrackingUrl":{
       "type":"string",
-      "description":"Called by Apple Pay after completing the order provides you with an opportunity to update the order information in your system."
+      "description":"Called by Apple Pay after completing the order provides you with an opportunity to update the order information in your system. Must use HTTPS protocol.",
+      "pattern":""
      },
      "fallbackUrl":{
       "type":"string",
-      "description":"A URL that opens in a web browser so the user can complete the purchase if their device is unable to make payments using Apple Pay."
+      "description":"A URL that opens in a web browser so the user can complete the purchase if their device is unable to make payments using Apple Pay. Must use HTTPS protocol.",
+      "pattern":""
      }
     },
     "title":"PaymentConfiguration"
@@ -4183,7 +4351,8 @@
         "description":"An array of objects defining the user experience.",
         "items":{
          "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.PickerPageItem"
-        }
+        },
+        "minItems":1
        },
        "pageIdentifier":{
         "type":"string",
@@ -4193,7 +4362,9 @@
        },
        "subtitle":{
         "type":"string",
-        "description":"Question of the page."
+        "description":"Question of the page.",
+        "maxLength":200,
+        "minLength":0
        },
        "nextPageIdentifier":{
         "type":"string",
@@ -4203,7 +4374,9 @@
        },
        "title":{
         "type":"string",
-        "description":"Title of the page."
+        "description":"Title of the page.",
+        "maxLength":200,
+        "minLength":0
        },
        "submitForm":{
         "type":"boolean",
@@ -4211,7 +4384,9 @@
        },
        "pickerTitle":{
         "type":"string",
-        "description":"Text shown next to the picker text field."
+        "description":"Text shown next to the picker text field.",
+        "maxLength":200,
+        "minLength":0
        },
        "selectedItemIndex":{
         "type":"integer",
@@ -4225,7 +4400,6 @@
     ],
     "required":[
      "items",
-     "nextPageIdentifier",
      "pageIdentifier",
      "subtitle",
      "type"
@@ -4238,15 +4412,20 @@
     "properties":{
      "title":{
       "type":"string",
-      "description":"Title of the item."
+      "description":"Title of the item.",
+      "maxLength":200,
+      "minLength":0
      },
      "value":{
       "type":"string",
-      "description":"Value of the item itself."
+      "description":"Value of the item itself.",
+      "maxLength":200,
+      "minLength":0
      },
      "identifier":{
       "type":"string",
-      "description":"Unique identifier of the item."
+      "description":"Unique identifier of the item.",
+      "minLength":1
      }
     },
     "required":[
@@ -4273,7 +4452,8 @@
        },
        "subtitle":{
         "type":"string",
-        "description":"Subtitle."
+        "description":"Subtitle.",
+        "minLength":1
        },
        "item":{
         "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.FormSelectionItemInboundContent"
@@ -4339,11 +4519,14 @@
     "properties":{
      "identifier":{
       "type":"string",
-      "description":"Unique item identifier."
+      "description":"Unique item identifier.",
+      "minLength":1
      },
      "title":{
       "type":"string",
-      "description":"Title of the quick reply item. Max 1 line of text."
+      "description":"Title of the quick reply item. Max 1 line of text.",
+      "maxLength":200,
+      "minLength":0
      }
     },
     "required":[
@@ -4382,7 +4565,8 @@
      },
      "unit":{
       "type":"string",
-      "description":"Unit of radius value."
+      "description":"Unit of radius value.",
+      "minLength":1
      }
     },
     "required":[
@@ -4449,7 +4633,8 @@
       "description":"An array of message objects of a single message or multiple messages sent under one bulk ID.",
       "items":{
        "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.MessageResponseMessageResponseDetails"
-      }
+      },
+      "minItems":1
      }
     },
     "required":[
@@ -4584,7 +4769,8 @@
        },
        "text":{
         "type":"string",
-        "description":"Received message text."
+        "description":"Received message text.",
+        "minLength":1
        }
       }
      }
@@ -4617,7 +4803,8 @@
         "description":"An array of objects defining the user experience.",
         "items":{
          "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.SelectPageItem"
-        }
+        },
+        "minItems":1
        },
        "pageIdentifier":{
         "type":"string",
@@ -4627,7 +4814,9 @@
        },
        "subtitle":{
         "type":"string",
-        "description":"Question of the page."
+        "description":"Question of the page.",
+        "maxLength":200,
+        "minLength":0
        },
        "nextPageIdentifier":{
         "type":"string",
@@ -4637,7 +4826,9 @@
        },
        "title":{
         "type":"string",
-        "description":"Title of the page."
+        "description":"Title of the page.",
+        "maxLength":200,
+        "minLength":0
        },
        "submitForm":{
         "type":"boolean",
@@ -4653,7 +4844,6 @@
     ],
     "required":[
      "items",
-     "nextPageIdentifier",
      "pageIdentifier",
      "subtitle",
      "type"
@@ -4666,15 +4856,20 @@
     "properties":{
      "identifier":{
       "type":"string",
-      "description":"Unique identifier of the item."
+      "description":"Unique identifier of the item.",
+      "minLength":1
      },
      "title":{
       "type":"string",
-      "description":"Title of the item."
+      "description":"Title of the item.",
+      "maxLength":200,
+      "minLength":0
      },
      "value":{
       "type":"string",
-      "description":"Value of the item itself."
+      "description":"Value of the item itself.",
+      "maxLength":200,
+      "minLength":0
      },
      "nextPageIdentifier":{
       "type":"string",
@@ -4711,7 +4906,8 @@
        },
        "subtitle":{
         "type":"string",
-        "description":"Subtitle."
+        "description":"Subtitle.",
+        "minLength":1
        },
        "item":{
         "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.FormSelectionItemInboundContent"
@@ -4813,7 +5009,8 @@
     "properties":{
      "to":{
       "type":"string",
-      "description":"The destination address of the message."
+      "description":"The destination address of the message.",
+      "minLength":1
      },
      "messageId":{
       "type":"string",
@@ -4891,7 +5088,9 @@
      "amount":{
       "type":"integer",
       "format":"int32",
-      "description":"Message validity period's value. If `timeUnit` is not set, it will default to `MINUTES`."
+      "description":"Message validity period's value. If `timeUnit` is not set, it will default to `MINUTES`.",
+      "exclusiveMinimum":0,
+      "minimum":0
      },
      "timeUnit":{
       "$ref":"#/components/schemas/91c858d6e55640d2b6750e23f7ec3df534ca8bee928e5f9b25341eaf73842f14.ValidityPeriodTimeUnit"
@@ -4938,15 +5137,18 @@
     "properties":{
      "errorCode":{
       "type":"string",
-      "description":"An error code uniquely identifying the error case."
+      "description":"An error code uniquely identifying the error case.",
+      "minLength":1
      },
      "description":{
       "type":"string",
-      "description":"A detailed description of an error."
+      "description":"A detailed description of an error.",
+      "minLength":1
      },
      "action":{
       "type":"string",
-      "description":"An action that should be taken to recover from the error."
+      "description":"An action that should be taken to recover from the error.",
+      "minLength":1
      },
      "violations":{
       "type":"array",
@@ -5705,6 +5907,7 @@
               "intent":"Intent",
               "group":"group",
               "locale":"en_UK",
+              "userPhoneNumber":"48123456789",
               "capabilityList":[
                "AUTHENTICATION_REQUEST",
                "FORM",

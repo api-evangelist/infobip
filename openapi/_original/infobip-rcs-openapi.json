@@ -7,8 +7,8 @@
    "name":"Infobip support",
    "email":"support@infobip.com"
   },
-  "version":"3.210.0",
-  "x-generatedAt":"2026-07-23T15:23:57.376121732Z"
+  "version":"3.245.1",
+  "x-generatedAt":"2026-10-07T09:47:53.206155317Z"
  },
  "tags":[
   {
@@ -803,6 +803,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -810,9 +813,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -1147,6 +1147,9 @@
     "deprecated":true,
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -1154,9 +1157,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -1704,6 +1704,9 @@
     "deprecated":true,
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -1711,9 +1714,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -1813,6 +1813,9 @@
     "deprecated":true,
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -1820,9 +1823,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -1926,6 +1926,9 @@
     "deprecated":true,
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -1933,9 +1936,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -2150,6 +2150,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -2157,9 +2160,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -2369,6 +2369,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -2376,9 +2379,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -2591,6 +2591,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -2598,9 +2601,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -2731,6 +2731,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -2738,9 +2741,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -2868,6 +2868,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -2875,9 +2878,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -3038,6 +3038,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -3045,9 +3048,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -3221,6 +3221,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -3228,9 +3231,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -3380,6 +3380,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -3387,9 +3390,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -3575,6 +3575,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -3582,9 +3585,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -3610,7 +3610,7 @@
      "rcs-sender-management"
     ],
     "summary":"Update RCS sender platform parameters",
-    "description":"Update platform parameters associated with RCS sender. These parameters can be edited at any point of time.",
+    "description":"Update platform parameters associated with RCS sender. These parameters can be edited at any time, except when the sender is in PENDING status, in which case they cannot be edited.",
     "operationId":"update-rcs-sender-platform-parameters",
     "parameters":[
      {
@@ -3703,6 +3703,33 @@
      "404":{
       "$ref":"#/components/responses/ApiError404"
      },
+     "409":{
+      "description":"Conflict",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/ApiError"
+        },
+        "examples":{
+         "Conflict":{
+          "summary":"Conflict",
+          "value":{
+           "errorCode":"E409",
+           "description":"Request cannot be processed due to conflicts with existing resources",
+           "action":"Check violations and adjust the request.",
+           "violations":[
+            {
+             "property":"request",
+             "violation":"not allowed to execute action for given senderName, operation is already in progress or failed"
+            }
+           ],
+           "resources":[]
+          }
+         }
+        }
+       }
+      }
+     },
      "429":{
       "$ref":"#/components/responses/ApiError429"
      },
@@ -3712,6 +3739,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -3719,9 +3749,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -3806,7 +3833,55 @@
              ]
             }
            ],
-           "updatedAt":"2026-07-22T11:45:08.923+0000"
+           "updatedAt":"2026-10-07T09:00:54.351+0000"
+          }
+         },
+         "RCS Sender Launch Status with structured feedback":{
+          "summary":"RCS Sender Launch Status with structured feedback",
+          "value":{
+           "event":"RCS_SENDER_LAUNCH_STATUS_UPDATE",
+           "senderName":"DemoSender",
+           "senderStatus":"LAUNCHED_IN_PROGRESS",
+           "coverage":[
+            {
+             "countryCode":"US",
+             "providers":[
+              {
+               "name":"AEGIS_BRAND_VERIFICATION",
+               "status":"COMPLETED",
+               "updatedAt":"2025-02-15T16:38:24.000+0000"
+              },
+              {
+               "name":"VERIZON",
+               "status":"IN_PROGRESS",
+               "updatedAt":"2025-02-15T16:38:24.000+0000"
+              },
+              {
+               "name":"T_MOBILE",
+               "status":"COMPLETED",
+               "updatedAt":"2025-02-15T16:38:24.000+0000"
+              },
+              {
+               "name":"ATT",
+               "status":"REJECTED",
+               "feedback":[
+                {
+                 "requirementKey":"privacy",
+                 "errors":[
+                  {
+                   "key":"TC_BRAND_NAME_MISSING",
+                   "reason":"The Terms and Conditions does not include the registered or Doing Business As (DBA) brand name.",
+                   "details":"Add it so users know which brand's terms they are accepting."
+                  }
+                 ]
+                }
+               ],
+               "updatedAt":"2025-02-15T16:38:24.000+0000"
+              }
+             ]
+            }
+           ],
+           "updatedAt":"2026-10-07T09:00:54.351+0000"
           }
          }
         }
@@ -3882,6 +3957,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -3889,9 +3967,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -4103,6 +4178,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -4110,9 +4188,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -4275,6 +4350,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -4282,9 +4360,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -4436,6 +4511,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -4443,9 +4521,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -4566,6 +4641,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -4573,9 +4651,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -4693,6 +4768,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -4700,9 +4778,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -4849,6 +4924,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -4856,9 +4934,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -4990,6 +5065,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -4997,9 +5075,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -5052,20 +5127,20 @@
           "templateName":"special_offer",
           "providers":[],
           "content":{
-           "text":"Hello {{username}}! We've got a special offer for you!",
            "suggestions":[
             {
-             "text":"Thanks, I'm good",
              "postbackData":"decline",
+             "text":"Thanks, I'm good",
              "type":"REPLY"
             },
             {
-             "text":"Shop online",
              "postbackData":"web",
-             "url":"https://google.com",
-             "type":"OPEN_URL"
+             "text":"Shop online",
+             "type":"OPEN_URL",
+             "url":"https://google.com"
             }
            ],
+           "text":"Hello {{username}}! We've got a special offer for you!",
            "type":"TEXT"
           }
          }
@@ -5076,10 +5151,8 @@
           "templateName":"special_offer_card",
           "providers":[],
           "content":{
-           "orientation":"VERTICAL",
            "alignment":"RIGHT",
            "content":{
-            "title":"We wish you a happy holiday!",
             "description":"We've got a special offer for you!",
             "media":{
              "file":{
@@ -5089,13 +5162,15 @@
             },
             "suggestions":[
              {
-              "text":"Shop online",
               "postbackData":"web",
-              "url":"https://google.com",
-              "type":"OPEN_URL"
+              "text":"Shop online",
+              "type":"OPEN_URL",
+              "url":"https://google.com"
              }
-            ]
+            ],
+            "title":"We wish you a happy holiday!"
            },
+           "orientation":"VERTICAL",
            "type":"CARD"
           }
          }
@@ -5106,10 +5181,8 @@
           "templateName":"special_offer_card",
           "providers":[],
           "content":{
-           "orientation":"VERTICAL",
            "alignment":"RIGHT",
            "content":{
-            "title":"We wish you a happy holiday!",
             "description":"We've got a special offer for you!",
             "media":{
              "file":{
@@ -5119,22 +5192,24 @@
             },
             "suggestions":[
              {
-              "text":"Shop now!",
-              "postbackData":"shop_click",
-              "url":"https://google.com",
               "application":"BROWSER",
-              "type":"OPEN_URL"
+              "postbackData":"shop_click",
+              "text":"Shop now!",
+              "type":"OPEN_URL",
+              "url":"https://google.com"
              },
              {
-              "text":"Get your personal discount for shopping later",
-              "postbackData":"discount_click",
-              "url":"https://google.com",
               "application":"WEBVIEW",
-              "webviewViewMode":"HALF",
-              "type":"OPEN_URL"
+              "postbackData":"discount_click",
+              "text":"Get your personal discount for shopping later",
+              "type":"OPEN_URL",
+              "url":"https://google.com",
+              "webviewViewMode":"HALF"
              }
-            ]
+            ],
+            "title":"We wish you a happy holiday!"
            },
+           "orientation":"VERTICAL",
            "type":"CARD"
           }
          }
@@ -5145,22 +5220,22 @@
           "templateName":"user_agreement_pdf",
           "providers":[],
           "content":{
-           "text":"Please read and confirm the User Agreement",
-           "url":"https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
            "messageOrder":"TEXT_MESSAGE_AT_TOP",
            "suggestions":[
             {
-             "text":"I confirm",
              "postbackData":"confirm",
+             "text":"I confirm",
              "type":"REPLY"
             },
             {
-             "text":"I decline",
              "postbackData":"decline",
+             "text":"I decline",
              "type":"REPLY"
             }
            ],
-           "type":"TEXT_WITH_PDF"
+           "text":"Please read and confirm the User Agreement",
+           "type":"TEXT_WITH_PDF",
+           "url":"https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
           }
          }
         },
@@ -5173,7 +5248,6 @@
            "cardWidth":"MEDIUM",
            "contents":[
             {
-             "title":"Small cabin in the woods",
              "description":"the perfect place to start your Shinrin-yoku",
              "media":{
               "file":{
@@ -5183,20 +5257,20 @@
              },
              "suggestions":[
               {
-               "text":"Pay online",
                "postbackData":"pay_online_option_1",
-               "url":"https://google.com/?option=1",
-               "type":"OPEN_URL"
+               "text":"Pay online",
+               "type":"OPEN_URL",
+               "url":"https://google.com/?option=1"
               },
               {
-               "text":"Pay on-site",
                "postbackData":"pay_onsite_option_1",
+               "text":"Pay on-site",
                "type":"REPLY"
               }
-             ]
+             ],
+             "title":"Small cabin in the woods"
             },
             {
-             "title":"A big house for a big company",
              "description":"When the whole family is gathered!",
              "media":{
               "file":{
@@ -5206,17 +5280,18 @@
              },
              "suggestions":[
               {
-               "text":"Pay online",
                "postbackData":"pay_online_option_2",
-               "url":"https://google.com/?option=1",
-               "type":"OPEN_URL"
+               "text":"Pay online",
+               "type":"OPEN_URL",
+               "url":"https://google.com/?option=1"
               },
               {
-               "text":"Pay on-site",
                "postbackData":"pay_onsite_option_2",
+               "text":"Pay on-site",
                "type":"REPLY"
               }
-             ]
+             ],
+             "title":"A big house for a big company"
             }
            ],
            "type":"CAROUSEL"
@@ -5229,10 +5304,8 @@
           "templateName":"template_params",
           "providers":[],
           "content":{
-           "orientation":"HORIZONTAL",
            "alignment":"LEFT",
            "content":{
-            "title":"Hello {{username}}! ",
             "description":"We've got a special discount of {{discount_percent}}% for you!",
             "media":{
              "file":{
@@ -5242,40 +5315,42 @@
             },
             "suggestions":[
              {
-              "text":"Sounds interesting: send me an email to:{{user_email}}",
               "postbackData":"{{userId}}_email",
+              "text":"Sounds interesting: send me an email to:{{user_email}}",
               "type":"REPLY"
              },
              {
-              "text":"Call {{shop_name}}",
-              "postbackData":"{{userId}}_call",
               "phoneNumber":"{{shop_number}}",
+              "postbackData":"{{userId}}_call",
+              "text":"Call {{shop_name}}",
               "type":"DIAL_PHONE"
              },
              {
-              "text":"For offline shopping find {{shop_name}} here!",
-              "postbackData":"{{usedId}}_offline",
-              "latitude":72.83359188518756,
-              "longitude":19.18467193599901,
               "label":"We're right here!",
+              "latitude":"72.83359188518756",
+              "longitude":"19.18467193599901",
+              "postbackData":"{{usedId}}_offline",
+              "text":"For offline shopping find {{shop_name}} here!",
               "type":"SHOW_LOCATION"
              },
              {
-              "text":"Check if delivery from {{shop_name}} is possible ",
               "postbackData":"{{usedId}}_delivery",
+              "text":"Check if delivery from {{shop_name}} is possible ",
               "type":"REQUEST_LOCATION"
              },
              {
-              "text":"Don't forget our next sale on {{next_date}}",
+              "description":"It's never too late, {{user_title}}. {{user_lastname}}!",
+              "endTime":"2030-03-05T15:00Z",
               "postbackData":"{{usedId}}_next_opt_in",
               "startTime":"2030-03-03T15:00Z",
-              "endTime":"2030-03-05T15:00Z",
+              "text":"Don't forget our next sale on {{next_date}}",
               "title":"Best prices from {{shop_name}}!",
-              "description":"It's never too late, {{user_title}}. {{user_lastname}}!",
               "type":"CREATE_CALENDAR_EVENT"
              }
-            ]
+            ],
+            "title":"Hello {{username}}! "
            },
+           "orientation":"HORIZONTAL",
            "type":"CARD"
           }
          }
@@ -5589,6 +5664,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -5596,9 +5674,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -5962,6 +6037,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -5969,9 +6047,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -6551,6 +6626,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -6558,9 +6636,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -7141,6 +7216,9 @@
     "deprecated":true,
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -7148,9 +7226,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -7257,6 +7332,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -7264,9 +7342,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -7398,6 +7473,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -7405,9 +7483,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -7529,6 +7604,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -7536,9 +7614,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -7656,6 +7731,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -7663,9 +7741,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -7726,15 +7801,18 @@
     "properties":{
      "errorCode":{
       "type":"string",
-      "description":"An error code uniquely identifying the error case."
+      "description":"An error code uniquely identifying the error case.",
+      "minLength":1
      },
      "description":{
       "type":"string",
-      "description":"A detailed description of an error."
+      "description":"A detailed description of an error.",
+      "minLength":1
      },
      "action":{
       "type":"string",
-      "description":"An action that should be taken to recover from the error."
+      "description":"An action that should be taken to recover from the error.",
+      "minLength":1
      },
      "violations":{
       "type":"array",
@@ -7844,7 +7922,8 @@
      "to":{
       "type":"string",
       "description":"Message destination.",
-      "example":"385977666618"
+      "example":"385977666618",
+      "minLength":1
      },
      "validityPeriod":{
       "type":"integer",
@@ -7903,7 +7982,8 @@
      "to":{
       "type":"string",
       "description":"Message destination.",
-      "example":"385977666618"
+      "example":"385977666618",
+      "minLength":1
      },
      "validityPeriod":{
       "type":"integer",
@@ -8011,7 +8091,8 @@
     "properties":{
      "sender":{
       "type":"string",
-      "description":"Identifier of an RCS sender that will be used to send message."
+      "description":"Identifier of an RCS sender that will be used to send message.",
+      "minLength":1
      },
      "phoneNumbers":{
       "type":"array",
@@ -8031,7 +8112,12 @@
      },
      "notifyContentType":{
       "type":"string",
-      "description":"The preferred content type for the RCS capability check report. Options are: `application/json` or `application/xml`."
+      "default":"application/json",
+      "description":"The preferred content type for the RCS capability check report.",
+      "enum":[
+       "application/json",
+       "application/xml"
+      ]
      },
      "options":{
       "$ref":"#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.CapabilityCheckOptions"
@@ -8176,7 +8262,8 @@
     "properties":{
      "sender":{
       "type":"string",
-      "description":"Identifier of an RCS sender that will be used to send message."
+      "description":"Identifier of an RCS sender that will be used to send message.",
+      "minLength":1
      },
      "phoneNumbers":{
       "type":"array",
@@ -8350,7 +8437,8 @@
       "type":"string",
       "description":"Specifies the URL of the media resource. For supported file formats and aspect ratios, see documentation:\n\n- [Rich Card](https://www.infobip.com/docs/rcs/rcs-message-types-and-templates#message-types-using-rcs-rich-card)\n- [Carousel](https://www.infobip.com/docs/rcs/rcs-message-types-and-templates#message-types-using-rcs-carousel)\n\nNote that support for specific content types may vary depending on the mobile network operator.\n",
       "maxLength":2048,
-      "minLength":1
+      "minLength":1,
+      "pattern":"(http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@!\\-/]))?"
      }
     },
     "required":[
@@ -8621,7 +8709,8 @@
       "description":"Days of the week which are included in the delivery time window. At least one day must be provided. Separate multiple days with a comma.",
       "items":{
        "$ref":"#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.DeliveryDay"
-      }
+      },
+      "minItems":1
      },
      "from":{
       "$ref":"#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.DeliveryTime"
@@ -8755,7 +8844,8 @@
      },
      "principalEntityId":{
       "type":"string",
-      "description":"Your assigned DLT principal entity ID."
+      "description":"Your assigned DLT principal entity ID.",
+      "minLength":1
      }
     },
     "required":[
@@ -8773,7 +8863,8 @@
      },
      "principalEntityId":{
       "type":"string",
-      "description":"Your assigned DLT principal entity ID."
+      "description":"Your assigned DLT principal entity ID.",
+      "minLength":1
      },
      "telemarketerId":{
       "type":"string",
@@ -9003,7 +9094,8 @@
       "description":"Content of the message being sent.",
       "items":{
        "$ref":"#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.MmsOutboundSegment"
-      }
+      },
+      "minItems":1
      }
     },
     "required":[
@@ -9030,7 +9122,9 @@
        },
        "contentUrl":{
         "type":"string",
-        "description":"URL of externally hosted content."
+        "description":"URL of externally hosted content.",
+        "minLength":1,
+        "pattern":"(http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@!\\-/]))?"
        }
       }
      }
@@ -9088,11 +9182,13 @@
        },
        "contentType":{
         "type":"string",
-        "description":"Content type for media, for example `application/smil`."
+        "description":"Content type for media, for example `application/smil`.",
+        "minLength":1
        },
        "smil":{
         "type":"string",
-        "description":"Message segment as SMIL format. Be aware that some devices and/or operating systems ignore SMIL, so there is no guarantee that segments will be displayed as specified in SMIL format."
+        "description":"Message segment as SMIL format. Be aware that some devices and/or operating systems ignore SMIL, so there is no guarantee that segments will be displayed as specified in SMIL format.",
+        "minLength":1
        }
       }
      }
@@ -9151,7 +9247,8 @@
         "externalDocs":{
          "description":"Upload binary content.",
          "url":"https://www.infobip.com/docs/api/channels/mms/upload-binary"
-        }
+        },
+        "minLength":1
        }
       }
      }
@@ -9199,7 +9296,8 @@
         "description":"URL that will be opened on a mobile phone when the suggestion is selected. Must be a valid URI using the http or https scheme as defined in RFC 3986. Other URI schemes are not supported.",
         "example":"https://www.infobip.com",
         "maxLength":2048,
-        "minLength":1
+        "minLength":1,
+        "pattern":"(http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@!\\-/]))?"
        },
        "application":{
         "$ref":"#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.OpenUrlApplicationType"
@@ -9234,7 +9332,8 @@
     "properties":{
      "name":{
       "type":"string",
-      "description":"Parameter name."
+      "description":"Parameter name.",
+      "minLength":1
      },
      "value":{
       "type":"string",
@@ -9273,7 +9372,8 @@
       "type":"array",
       "items":{
        "$ref":"#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.SingleMessageInfo"
-      }
+      },
+      "minItems":1
      }
     },
     "required":[
@@ -9286,9 +9386,19 @@
     "description":"Traffic type applied to the inbound or outbound RCS message. Null for non chargeable RCS messages.",
     "enum":[
      "A2P_CONVERSATION",
-     "INTERACTIVE_SESSION"
+     "A2P_INTERACTIVE_SESSION",
+     "P2A_INTERACTIVE_SESSION"
     ],
     "title":"RcsConvStartedTrafficType"
+   },
+   "b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.RcsConversationDirection":{
+    "type":"string",
+    "description":"Identifier of the message that is being updated. Possible values are: `OUTBOUND` for the RCS outbound/MT message, `INBOUND` for RCS inbound/MO message.",
+    "enum":[
+     "INBOUND",
+     "OUTBOUND"
+    ],
+    "title":"RcsConversationDirection"
    },
    "b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.RcsConversationInfo":{
     "type":"object",
@@ -9319,6 +9429,17 @@
      "trafficType":{
       "$ref":"#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.RcsConvStartedTrafficType"
      },
+     "sender":{
+      "type":"string",
+      "description":"RCS Sender for Outbound messages or MSISDN for Inbound messages."
+     },
+     "to":{
+      "type":"string",
+      "description":"MSISDN for Outbound messages or RCS Sender for Inbound messages."
+     },
+     "direction":{
+      "$ref":"#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.RcsConversationDirection"
+     },
      "event":{
       "$ref":"#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.RcsConversationStartedEventContent"
      },
@@ -9331,9 +9452,12 @@
     },
     "required":[
      "conversation",
+     "direction",
      "event",
      "messageId",
-     "platform"
+     "platform",
+     "sender",
+     "to"
     ],
     "title":"RcsConversationStartedEvent"
    },
@@ -9423,7 +9547,8 @@
     "enum":[
      "A2P",
      "P2A",
-     "INTERACTIVE_SESSION"
+     "INTERACTIVE_SESSION_A2P",
+     "INTERACTIVE_SESSION_P2A"
     ],
     "title":"RcsConversationType"
    },
@@ -9454,7 +9579,7 @@
      "RICH",
      "RICH_MEDIA",
      "P2A_CONVERSATION",
-     "INTERACTIVE_SESSION"
+     "P2A_INTERACTIVE_SESSION"
     ],
     "title":"RcsDlrTrafficType"
    },
@@ -9464,14 +9589,16 @@
     "properties":{
      "sender":{
       "type":"string",
-      "description":"Identifier of an RCS sender that will be used to send event."
+      "description":"Identifier of an RCS sender that will be used to send event.",
+      "minLength":1
      },
      "destinations":{
       "type":"array",
       "description":"An array of destination objects for where the event is being sent. A valid destination is required.",
       "items":{
        "$ref":"#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.ToDestination"
-      }
+      },
+      "minItems":1
      },
      "content":{
       "$ref":"#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.RcsOutboundEventContent"
@@ -9516,7 +9643,8 @@
       "description":"An array of event objects of the events to be sent.",
       "items":{
        "$ref":"#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.RcsEvent"
-      }
+      },
+      "minItems":1
      }
     },
     "required":[
@@ -9692,15 +9820,18 @@
     "properties":{
      "url":{
       "type":"string",
-      "description":"URL of the file which is sent in an incoming message."
+      "description":"URL of the file which is sent in an incoming message.",
+      "minLength":1
      },
      "name":{
       "type":"string",
-      "description":"Name of a file which is sent in an incoming message."
+      "description":"Name of a file which is sent in an incoming message.",
+      "minLength":1
      },
      "contentType":{
       "type":"string",
-      "description":"Content type of a file which is sent in an incoming message."
+      "description":"Content type of a file which is sent in an incoming message.",
+      "minLength":1
      },
      "size":{
       "type":"integer",
@@ -9891,11 +10022,13 @@
     "properties":{
      "text":{
       "type":"string",
-      "description":"Incoming suggestion text."
+      "description":"Incoming suggestion text.",
+      "minLength":1
      },
      "postbackData":{
       "type":"string",
-      "description":"postbackData of incoming suggestion."
+      "description":"postbackData of incoming suggestion.",
+      "minLength":1
      },
      "type":{
       "$ref":"#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.RcsInboundContentType"
@@ -9913,7 +10046,8 @@
     "properties":{
      "text":{
       "type":"string",
-      "description":"The text which is sent in an incoming message."
+      "description":"The text which is sent in an incoming message.",
+      "minLength":1
      },
      "type":{
       "$ref":"#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.RcsInboundContentType"
@@ -10033,7 +10167,8 @@
       "description":"An array of destination objects for where messages are being sent. A valid destination is required.",
       "items":{
        "$ref":"#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.ToDestination"
-      }
+      },
+      "minItems":1
      },
      "content":{
       "$ref":"#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.RcsOutboundMessageContent"
@@ -10088,7 +10223,8 @@
       "description":"An array of message objects of a single message or multiple messages sent under one bulk ID.",
       "items":{
        "$ref":"#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.RcsMessage"
-      }
+      },
+      "minItems":1
      },
      "options":{
       "$ref":"#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.RcsMessageRequestOptions"
@@ -10283,7 +10419,8 @@
     "properties":{
      "messageId":{
       "type":"string",
-      "description":"ID of the message that should be marked as seen."
+      "description":"ID of the message that should be marked as seen.",
+      "minLength":1
      },
      "type":{
       "$ref":"#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.RcsOutboundEventContentType"
@@ -10374,7 +10511,8 @@
     "properties":{
      "templateId":{
       "type":"string",
-      "description":"Unique Template code. Must match Template name as registered when creating template. Mismatch will result in EC7018."
+      "description":"Unique Template code. Must match Template name as registered when creating template. Mismatch will result in EC7018.",
+      "minLength":1
      },
      "parameters":{
       "type":"array",
@@ -10439,6 +10577,73 @@
      }
     },
     "title":"RcsPlatformInfo"
+   },
+   "b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.RcsSeenReport":{
+    "type":"object",
+    "description":"Collection of reports, one per every message.",
+    "properties":{
+     "messageId":{
+      "type":"string",
+      "description":"The ID of the sent message."
+     },
+     "from":{
+      "type":"string",
+      "description":"Number which sent the message."
+     },
+     "to":{
+      "type":"string",
+      "description":"Sender provided during the activation process."
+     },
+     "sentAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Tells when the message was sent.",
+      "example":"2024-06-14T09:12:00Z"
+     },
+     "seenAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Tells when the message was seen.",
+      "example":"2024-06-14T09:12:00Z"
+     },
+     "applicationId":{
+      "type":"string",
+      "description":"Application id that the message is linked to."
+     },
+     "entityId":{
+      "type":"string",
+      "description":"Entity id that the message is linked to."
+     },
+     "campaignReferenceId":{
+      "type":"string",
+      "description":"ID of a campaign that was sent in the message."
+     },
+     "callbackData":{
+      "type":"string",
+      "description":"Callback data of a campaign that was sent in the message."
+     }
+    },
+    "required":[
+     "from",
+     "messageId",
+     "seenAt",
+     "sentAt",
+     "to"
+    ],
+    "title":"RcsSeenReport"
+   },
+   "b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.RcsSeenReports":{
+    "type":"object",
+    "properties":{
+     "results":{
+      "type":"array",
+      "description":"Collection of reports, one per every message.",
+      "items":{
+       "$ref":"#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.RcsSeenReport"
+      }
+     }
+    },
+    "title":"RcsSeenReports"
    },
    "b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.RcsWebhookDeliveryReport":{
     "type":"object",
@@ -10662,7 +10867,8 @@
       "type":"string",
       "description":"URL of the given resource.",
       "maxLength":2048,
-      "minLength":1
+      "minLength":1,
+      "pattern":"(http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@!\\-/]))?"
      }
     },
     "required":[
@@ -10678,7 +10884,8 @@
       "type":"string",
       "description":"URL of the given resource. The following content types are supported: `image/jpeg`, `image/jpg`, `image/gif`, `image/png`, `audio/aac`, `audio/mp3`, `audio/mpeg`, `audio/mpg`, `audio/mp4`, `audio/mp4-latm`, `audio/3gpp`, `application/ogg`, `audio/ogg`, `video/h263`, `video/m4v`, `video/mp4`, `video/mpeg`, `video/mpeg4`, `video/webm`, `application/pdf`. Should start with `http://` or `https://`. Up to 100 MB.",
       "maxLength":2048,
-      "minLength":1
+      "minLength":1,
+      "pattern":"(http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@!\\-/]))?"
      }
     },
     "required":[
@@ -10698,67 +10905,14 @@
       "description":"An array of message objects of a single message or multiple messages sent under one bulk ID.",
       "items":{
        "$ref":"#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.MessageResponseMessageResponseDetails"
-      }
+      },
+      "minItems":1
      }
     },
     "required":[
      "messages"
     ],
     "title":"ResponseEnvelopeMessageResponseMessageResponseDetails"
-   },
-   "b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.SeenReport":{
-    "type":"object",
-    "description":"Collection of reports, one per every message.",
-    "properties":{
-     "messageId":{
-      "type":"string",
-      "description":"The ID of the sent message."
-     },
-     "from":{
-      "type":"string",
-      "description":"Number which sent the message."
-     },
-     "to":{
-      "type":"string",
-      "description":"Sender provided during the activation process."
-     },
-     "sentAt":{
-      "type":"string",
-      "format":"date-time",
-      "description":"Tells when the message was sent."
-     },
-     "seenAt":{
-      "type":"string",
-      "format":"date-time",
-      "description":"Tells when the message was seen."
-     },
-     "applicationId":{
-      "type":"string",
-      "description":"Application id that the message is linked to."
-     },
-     "entityId":{
-      "type":"string",
-      "description":"Entity id that the message is linked to."
-     },
-     "campaignReferenceId":{
-      "type":"string",
-      "description":"ID of a campaign that was sent in the message."
-     }
-    },
-    "title":"SeenReport"
-   },
-   "b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.SeenReports":{
-    "type":"object",
-    "properties":{
-     "results":{
-      "type":"array",
-      "description":"Collection of reports, one per every message.",
-      "items":{
-       "$ref":"#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.SeenReport"
-      }
-     }
-    },
-    "title":"SeenReports"
    },
    "b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.SeenStatusReporting":{
     "type":"object",
@@ -10918,12 +11072,14 @@
      "from":{
       "type":"string",
       "description":"Message failover sender.",
-      "example":"myFailoverRcsSender"
+      "example":"myFailoverRcsSender",
+      "minLength":1
      },
      "text":{
       "type":"string",
       "description":"Message failover text.",
-      "example":"This message was sent over SMS."
+      "example":"This message was sent over SMS.",
+      "minLength":1
      },
      "validityPeriod":{
       "type":"integer",
@@ -11075,7 +11231,8 @@
     "properties":{
      "templateName":{
       "type":"string",
-      "description":"Unique template code as visible in the Vi RBM Portal"
+      "description":"Unique template code as visible in the Vi RBM Portal",
+      "minLength":1
      },
      "templateData":{
       "type":"object",
@@ -11146,7 +11303,8 @@
     "properties":{
      "to":{
       "type":"string",
-      "description":"The destination address of the message."
+      "description":"The destination address of the message.",
+      "minLength":1
      },
      "messageId":{
       "type":"string",
@@ -11215,7 +11373,9 @@
      "amount":{
       "type":"integer",
       "format":"int32",
-      "description":"Message validity period's value. If `timeUnit` is not set, it will default to `MINUTES`."
+      "description":"Message validity period's value. If `timeUnit` is not set, it will default to `MINUTES`.",
+      "exclusiveMinimum":0,
+      "minimum":0
      },
      "timeUnit":{
       "$ref":"#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.ValidityPeriodTimeUnit"
@@ -11293,7 +11453,8 @@
       "type":"string",
       "description":"Specifies the URL of the media resource. For supported file formats and aspect ratios, see documentation:\n\n- [Rich Card](https://www.infobip.com/docs/rcs/rcs-message-types-and-templates#message-types-using-rcs-rich-card)\n- [Carousel](https://www.infobip.com/docs/rcs/rcs-message-types-and-templates#message-types-using-rcs-carousel)\n\nNote that support for specific content types may vary depending on the mobile network operator.\n",
       "maxLength":2048,
-      "minLength":1
+      "minLength":1,
+      "pattern":"(http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@!\\-/]))?"
      }
     },
     "required":[
@@ -11325,6 +11486,7 @@
    },
    "c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.CountryProviders":{
     "type":"object",
+    "description":"The list of the results for this page.",
     "properties":{
      "countryCode":{
       "type":"string",
@@ -11410,13 +11572,15 @@
       "type":"string",
       "description":"URL of the banner image associated with the sender and displayed to the user on mobile device. It must be in JPG / JPEG or PNG format and it must be in 1440 x 448 resolution (width x height). Maximum 204,800 bytes. Maximum URL length is 2048 characters.",
       "maxLength":2048,
-      "minLength":1
+      "minLength":1,
+      "pattern":"(http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@!\\-/]))?"
      },
      "logoUrl":{
       "type":"string",
       "description":"URL of the logo image associated with the sender and displayed to the user on mobile device. It must be in JPG / JPEG or PNG format and it must be in 224 x 224 resolution (width x height). Maximum 51,200 bytes. Maximum URL length is 2048 characters.",
       "maxLength":2048,
-      "minLength":1
+      "minLength":1,
+      "pattern":"(http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@!\\-/]))?"
      },
      "privacy":{
       "$ref":"#/components/schemas/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.PrivacyWebAddress"
@@ -11465,7 +11629,8 @@
        "type":"string",
        "default":"[]",
        "description":"List of providers with which the template should be registered. For list of available providers please check [Get RCS template providers](#channels/rcs/rcs-service-management/rcs-template-management/rcs-template-providers) endpoint. Please note that default value is empty array and in that case the template will be registered with all providers available for given sender.",
-       "example":"[\"INDIA_VI\"]"
+       "example":"[\"INDIA_VI\"]",
+       "minLength":1
       },
       "uniqueItems":true
      },
@@ -11562,13 +11727,15 @@
       "type":"string",
       "description":"URL of the banner image associated with the sender and displayed to the user on mobile device. It must be in JPG / JPEG or PNG format and it must be in 1440 x 448 resolution (width x height). Maximum 204,800 bytes. Maximum URL length is 2048 characters.",
       "maxLength":2048,
-      "minLength":1
+      "minLength":1,
+      "pattern":"(http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@!\\-/]))?"
      },
      "logoUrl":{
       "type":"string",
       "description":"URL of the logo image associated with the sender and displayed to the user on mobile device. It must be in JPG / JPEG or PNG format and it must be in 224 x 224 resolution (width x height). Maximum 51,200 bytes. Maximum URL length is 2048 characters.",
       "maxLength":2048,
-      "minLength":1
+      "minLength":1,
+      "pattern":"(http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@!\\-/]))?"
      },
      "privacy":{
       "$ref":"#/components/schemas/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.PrivacyWebAddress"
@@ -11599,6 +11766,7 @@
     "properties":{
      "address":{
       "type":"string",
+      "format":"email",
       "description":"Email address. Must be in valid email format.",
       "maxLength":100,
       "minLength":1
@@ -11666,6 +11834,7 @@
    },
    "c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.PageInfo":{
     "type":"object",
+    "description":"Contains information about the page.",
     "properties":{
      "page":{
       "type":"integer",
@@ -11749,7 +11918,8 @@
       "type":"string",
       "description":"A publicly accessible URI associated with the sender. Must use the HTTP or HTTPS protocol. Maximum URL length is 2048 characters.",
       "maxLength":2048,
-      "minLength":1
+      "minLength":1,
+      "pattern":"(http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@!\\-/]))?"
      },
      "label":{
       "type":"string",
@@ -11763,6 +11933,31 @@
     ],
     "title":"PrivacyWebAddress"
    },
+   "c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.Provider":{
+    "type":"object",
+    "description":"Provider that became available in the country. Once available, this provider can be included in future launch requests for RCS senders targeting this country.",
+    "properties":{
+     "name":{
+      "type":"string",
+      "description":"Name of the provider that became available."
+     },
+     "status":{
+      "type":"string",
+      "description":"Availability status of the provider. Currently, only `AVAILABLE` is emitted, indicating that the provider became available in the country."
+     },
+     "updatedAt":{
+      "type":"string",
+      "format":"date-time",
+      "description":"Timestamp when the provider became available in the country. (ISO 8601-style timestamp)"
+     }
+    },
+    "required":[
+     "name",
+     "status",
+     "updatedAt"
+    ],
+    "title":"Provider"
+   },
    "c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.ProviderLaunchStatus":{
     "type":"string",
     "description":"Launch status for this specific provider. Possible values:\n* `PENDING`: Status returned when the launch request has not yet been submitted to the provider.\n* `IN_PROGRESS`: Status returned when the launch process with the provider has started.\n* `COMPLETED`: Status returned when the launch process with the provider has successfully finished.\n* `REJECTED`: Status returned when the launch process with the provider has finished unsuccessfully.\n* `NOT_REQUESTED`: Status returned when the provider has been excluded from the launch process.\n",
@@ -11774,6 +11969,57 @@
      "NOT_REQUESTED"
     ],
     "title":"ProviderLaunchStatus"
+   },
+   "c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.ProviderSenderLaunchFeedback":{
+    "type":"object",
+    "description":"Detailed feedback for rejection if the sender launch has been rejected by the provider. Present only if launch request has been created with `structuredFeedback` opt-in feature. Please check [Submit resource request](#platform/resources/resource-request/submit-resource-request) for more details.",
+    "properties":{
+     "requirementKey":{
+      "type":"string",
+      "description":"Property of a sender for which the provider reported an issue. Present only if error refers to sender property."
+     },
+     "externalRequirementKey":{
+      "type":"string",
+      "description":"Property of a sender launch request for which the provider reported an issue. Present only if error refers to sender launch request property."
+     },
+     "errors":{
+      "type":"array",
+      "description":"List of errors related to given `requirementKey` / `externalRequirementKey`. For list of possible errors, please check [Get feedback errors](#platform/resources/resource-request/get-feedback-errors).",
+      "items":{
+       "$ref":"#/components/schemas/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.ProviderSenderLaunchRejectionError"
+      },
+      "maxItems":20,
+      "minItems":1
+     }
+    },
+    "required":[
+     "errors"
+    ],
+    "title":"ProviderSenderLaunchFeedback"
+   },
+   "c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.ProviderSenderLaunchRejectionError":{
+    "type":"object",
+    "description":"List of errors related to given `requirementKey` / `externalRequirementKey`. For list of possible errors, please check [Get feedback errors](#platform/resources/resource-request/get-feedback-errors).",
+    "properties":{
+     "key":{
+      "type":"string",
+      "description":"Code identifying the type of error."
+     },
+     "reason":{
+      "type":"string",
+      "description":"Reason for the error."
+     },
+     "details":{
+      "type":"string",
+      "description":"Additional details and recommended actions for the error."
+     }
+    },
+    "required":[
+     "details",
+     "key",
+     "reason"
+    ],
+    "title":"ProviderSenderLaunchRejectionError"
    },
    "c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.ProviderSenderLaunchStatus":{
     "type":"object",
@@ -11788,7 +12034,14 @@
      },
      "rejectionReason":{
       "type":"string",
-      "description":"Reason for rejection if the sender launch has been rejected by the provider."
+      "description":"Reason for rejection if the sender launch has been rejected by the provider. Present only if launch request has been created without `structuredFeedback` opt-in feature. Please check [Submit resource request](#platform/resources/resource-request/submit-resource-request) for more details."
+     },
+     "feedback":{
+      "type":"array",
+      "description":"Detailed feedback for rejection if the sender launch has been rejected by the provider. Present only if launch request has been created with `structuredFeedback` opt-in feature. Please check [Submit resource request](#platform/resources/resource-request/submit-resource-request) for more details.",
+      "items":{
+       "$ref":"#/components/schemas/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.ProviderSenderLaunchFeedback"
+      }
      },
      "updatedAt":{
       "type":"string",
@@ -11802,6 +12055,46 @@
      "updatedAt"
     ],
     "title":"ProviderSenderLaunchStatus"
+   },
+   "c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.ProviderUpdateEvent":{
+    "type":"object",
+    "description":"Collection of RCS provider update events.",
+    "properties":{
+     "event":{
+      "type":"string",
+      "description":"Event type identifier for webhook notifications. Indicates the type of status change that occurred."
+     },
+     "countryCode":{
+      "type":"string",
+      "description":"Country code (two-letter ISO 3166-1 alpha-2 standard) where the provider became available."
+     },
+     "provider":{
+      "$ref":"#/components/schemas/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.Provider"
+     }
+    },
+    "required":[
+     "countryCode",
+     "event",
+     "provider"
+    ],
+    "title":"ProviderUpdateEvent"
+   },
+   "c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.ProviderUpdateWebhookResponse":{
+    "type":"object",
+    "description":"Webhook response containing RCS provider update events",
+    "properties":{
+     "results":{
+      "type":"array",
+      "description":"Collection of RCS provider update events.",
+      "items":{
+       "$ref":"#/components/schemas/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.ProviderUpdateEvent"
+      }
+     }
+    },
+    "required":[
+     "results"
+    ],
+    "title":"ProviderUpdateWebhookResponse"
    },
    "c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.RcsBrand":{
     "type":"object",
@@ -11824,6 +12117,7 @@
     "properties":{
      "results":{
       "type":"array",
+      "description":"The list of the results for this page.",
       "items":{
        "$ref":"#/components/schemas/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.CountryProviders"
       }
@@ -11861,8 +12155,10 @@
       "items":{
        "type":"string",
        "description":"List of providers with which the template should be registered. For list of available providers please check [Get RCS template providers](#channels/rcs/rcs-service-management/rcs-template-management/rcs-template-providers) endpoint. Please note that only supported providers with which template has not been registered yet should be used.",
-       "example":"[\"INDIA_VI\"]"
+       "example":"[\"INDIA_VI\"]",
+       "minLength":1
       },
+      "minItems":1,
       "uniqueItems":true
      }
     },
@@ -11952,7 +12248,7 @@
      "updatedAt":{
       "type":"string",
       "format":"date-time",
-      "description":"Timestamp when sender has been updated last time."
+      "description":"Timestamp when sender has been updated last time. (ISO 8601-style timestamp)"
      }
     },
     "required":[
@@ -11975,6 +12271,7 @@
    },
    "c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.RcsSenderBaseData":{
     "type":"object",
+    "description":"The list of the results for this page.",
     "properties":{
      "senderName":{
       "type":"string",
@@ -12024,7 +12321,7 @@
      "updatedAt":{
       "type":"string",
       "format":"date-time",
-      "description":"Timestamp when sender has been updated last time."
+      "description":"Timestamp when sender has been updated last time. (ISO 8601-style timestamp)"
      }
     },
     "required":[
@@ -12077,7 +12374,7 @@
      "updatedAt":{
       "type":"string",
       "format":"date-time",
-      "description":"Timestamp when launch status has been updated last time."
+      "description":"Timestamp when launch status has been updated last time. (ISO 8601-style timestamp)"
      },
      "platform":{
       "$ref":"#/components/schemas/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.PlatformParameters"
@@ -12098,7 +12395,7 @@
     "properties":{
      "results":{
       "type":"array",
-      "description":"Collection of RCS sender launch status update events",
+      "description":"Collection of RCS sender launch status update events.",
       "items":{
        "$ref":"#/components/schemas/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.RcsSenderLaunchStatusEvent"
       }
@@ -12114,6 +12411,7 @@
     "properties":{
      "results":{
       "type":"array",
+      "description":"The list of the results for this page.",
       "items":{
        "$ref":"#/components/schemas/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.RcsSenderBaseData"
       }
@@ -12160,6 +12458,19 @@
     ],
     "title":"RcsSenderStatus"
    },
+   "c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.RcsSenderStatusReason":{
+    "type":"string",
+    "description":"Reason describing why the sender status was updated. Following reasons are available:\n* `SENDER_SUBMITTED`: Sender creation or update request has been submitted and is being processed.\n* `SENDER_CREATED_OR_EDITED`: Sender has been successfully created or edited and is available for further actions (e.g. testing).\n* `LAUNCH_REQUEST_SUBMITTED`: Launch request has been submitted for the sender and the launch process has started.\n* `LAUNCH_REQUEST_RESULT`: Sender status has been updated as a result of the launch request completing with providers (successfully, partially, or unsuccessfully).\n* `NEW_PROVIDER_AVAILABLE`: A new provider has become available for an already launched Sender. The sender status has transitioned to LAUNCHED_PARTIAL_SUCCESS to indicate that launch with the new provider is available.\n* `UNKNOWN`: Reason for the sender status update cannot be determined.",
+    "enum":[
+     "SENDER_SUBMITTED",
+     "SENDER_CREATED_OR_EDITED",
+     "LAUNCH_REQUEST_SUBMITTED",
+     "LAUNCH_REQUEST_RESULT",
+     "NEW_PROVIDER_AVAILABLE",
+     "UNKNOWN"
+    ],
+    "title":"RcsSenderStatusReason"
+   },
    "c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.RcsSenderUpdateEvent":{
     "type":"object",
     "description":"Collection of RCS sender update events",
@@ -12172,6 +12483,9 @@
       "type":"string",
       "description":"Unique identifier of Sender entity for RCS channel within Infobip platform."
      },
+     "reason":{
+      "$ref":"#/components/schemas/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.RcsSenderStatusReason"
+     },
      "senderStatus":{
       "$ref":"#/components/schemas/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.RcsSenderStatus"
      },
@@ -12182,7 +12496,7 @@
      "updatedAt":{
       "type":"string",
       "format":"date-time",
-      "description":"Timestamp when sender has been updated last time."
+      "description":"Timestamp when sender has been updated last time. (ISO 8601-style timestamp)"
      },
      "platform":{
       "$ref":"#/components/schemas/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.PlatformParameters"
@@ -12190,6 +12504,7 @@
     },
     "required":[
      "event",
+     "reason",
      "senderName",
      "senderStatus",
      "updatedAt"
@@ -12594,7 +12909,8 @@
         "description":"URL that will be opened on a mobile phone when the suggestion is selected. Must be a valid URI using the http or https scheme as defined in RFC 3986.",
         "example":"https://www.infobip.com",
         "maxLength":2048,
-        "minLength":1
+        "minLength":1,
+        "pattern":"(http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@!\\-/]))?"
        },
        "application":{
         "$ref":"#/components/schemas/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.OpenUrlApplicationType"
@@ -12883,7 +13199,8 @@
         "description":"URL of the given document. The following content types are supported: `application/pdf`. Should start with `http://` or `https://`. Up to 100 MB.",
         "example":"https://infobip.com/document.pdf",
         "maxLength":1000,
-        "minLength":1
+        "minLength":1,
+        "pattern":"(http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@!\\-/]))?"
        },
        "messageOrder":{
         "$ref":"#/components/schemas/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.MessageOrder"
@@ -12954,6 +13271,7 @@
     "properties":{
      "results":{
       "type":"array",
+      "description":"The list of the results for this page.",
       "items":{
        "$ref":"#/components/schemas/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.RcsTestNumber"
       }
@@ -12992,7 +13310,7 @@
    },
    "c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.RcsTestNumberUpdateEvent":{
     "type":"object",
-    "description":"Collection of RCS test number update events",
+    "description":"Collection of RCS test number update events.",
     "properties":{
      "event":{
       "type":"string",
@@ -13042,7 +13360,7 @@
     "properties":{
      "results":{
       "type":"array",
-      "description":"Collection of RCS test number update events",
+      "description":"Collection of RCS test number update events.",
       "items":{
        "$ref":"#/components/schemas/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.RcsTestNumberUpdateEvent"
       }
@@ -13072,7 +13390,8 @@
       "type":"string",
       "description":"URL of the given resource.",
       "maxLength":2048,
-      "minLength":1
+      "minLength":1,
+      "pattern":"(http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@!\\-/]))?"
      }
     },
     "required":[
@@ -13129,7 +13448,8 @@
       "type":"string",
       "description":"A publicly accessible URI associated with the sender. Must use the HTTP or HTTPS protocol. Maximum URL length is 2048 characters.",
       "maxLength":2048,
-      "minLength":1
+      "minLength":1,
+      "pattern":"(http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@!\\-/]))?"
      },
      "label":{
       "type":"string",
@@ -13165,7 +13485,8 @@
       "type":"string",
       "description":"A publicly accessible URI associated with the sender. Must use the HTTP or HTTPS protocol. Maximum URL length is 2048 characters.",
       "maxLength":2048,
-      "minLength":1
+      "minLength":1,
+      "pattern":"(http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@!\\-/]))?"
      },
      "label":{
       "type":"string",
@@ -14137,7 +14458,7 @@
      "content":{
       "application/json":{
        "schema":{
-        "$ref":"#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.SeenReports"
+        "$ref":"#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.RcsSeenReports"
        }
       }
      }
@@ -14170,18 +14491,50 @@
         "$ref":"#/components/schemas/b839d8c276f6f1ef62ce2dce758ba402953b31f455d6d08549a7147d79f50d62.RcsConversationStartedEvents"
        },
        "examples":{
-        "CONVERSATION_STARTED event response":{
-         "summary":"CONVERSATION_STARTED event response",
+        "CONVERSATION_STARTED event response for Outbound-initiated conversation":{
+         "summary":"CONVERSATION_STARTED event response for Outbound-initiated conversation",
          "value":{
           "results":[
            {
             "messageId":"msg-abc123",
             "trafficType":"A2P_CONVERSATION",
+            "sender":"DemoSender",
+            "to":"385911234567",
+            "direction":"OUTBOUND",
             "event":{
              "type":"CONVERSATION_STARTED"
             },
             "conversation":{
              "type":"A2P",
+             "id":"conv-xyz789",
+             "startTime":"2026-06-14T09:12:00.000+0000",
+             "endTime":"2026-06-15T09:12:00.000+0000"
+            },
+            "platform":{
+             "entityId":"ext-entity-001",
+             "applicationId":"ext-app-001"
+            }
+           }
+          ],
+          "eventCount":1,
+          "pendingEventCount":0
+         }
+        },
+        "CONVERSATION_STARTED event response for Inbound-initiated conversation":{
+         "summary":"CONVERSATION_STARTED event response for Inbound-initiated conversation",
+         "value":{
+          "results":[
+           {
+            "messageId":"msg-abc123",
+            "trafficType":"A2P_CONVERSATION",
+            "sender":"385911234567",
+            "to":"DemoSender",
+            "direction":"INBOUND",
+            "event":{
+             "type":"CONVERSATION_STARTED"
+            },
+            "conversation":{
+             "type":"P2A",
              "id":"conv-xyz789",
              "startTime":"2026-06-14T09:12:00.000+0000",
              "endTime":"2026-06-15T09:12:00.000+0000"
@@ -14264,6 +14617,9 @@
      "200":{
       "description":"Your server returns this code if it accepts the callback."
      }
+    },
+    "x-additionalInfo":{
+     "markdown":"### Related\n- [Check RCS capability (async)](\"#channels/rcs/capability-check-rcs-destinations-notify\")\n"
     }
    }
   },
@@ -14296,7 +14652,8 @@
            {
             "event":"RCS_SENDER_STATUS_UPDATE",
             "senderName":"DemoSender",
-            "senderStatus":"READY_FOR_TESTING",
+            "reason":"LAUNCH_REQUEST_RESULT",
+            "senderStatus":"PENDING_LAUNCH",
             "googleAgentId":"demosender_axdawe0_agent",
             "updatedAt":"2025-02-15T16:38:24.000+0000",
             "platform":{
@@ -14394,6 +14751,96 @@
             "platform":{
              "applicationId":"application-id",
              "entityId":"entity-id"
+            }
+           }
+          ]
+         }
+        },
+        "RCS provider Rejected with structured feedback":{
+         "summary":"RCS provider Rejected with structured feedback",
+         "value":{
+          "results":[
+           {
+            "event":"RCS_SENDER_LAUNCH_STATUS_UPDATE",
+            "senderName":"DemoSender",
+            "senderStatus":"PENDING_LAUNCH",
+            "coverage":[
+             {
+              "countryCode":"US",
+              "providers":[
+               {
+                "name":"ATT",
+                "status":"REJECTED",
+                "feedback":[
+                 {
+                  "requirementKey":"privacy",
+                  "errors":[
+                   {
+                    "key":"TC_BRAND_NAME_MISSING",
+                    "reason":"The Terms and Conditions does not include the registered or Doing Business As (DBA) brand name.",
+                    "details":"Add it so users know which brand's terms they are accepting."
+                   }
+                  ]
+                 }
+                ],
+                "updatedAt":"2026-01-15T16:38:24.000+0000"
+               }
+              ]
+             }
+            ],
+            "updatedAt":"2026-01-15T16:38:24.000+0000",
+            "platform":{
+             "applicationId":"application-id",
+             "entityId":"entity-id"
+            }
+           }
+          ]
+         }
+        }
+       }
+      }
+     }
+    },
+    "responses":{
+     "200":{
+      "description":"Your server returns this code if it accepts the callback."
+     }
+    }
+   }
+  },
+  "receive-rcs-provider-update-events":{
+   "post":{
+    "tags":[
+     "channels",
+     "rcs",
+     "rcs-service-management",
+     "rcs-sender-management"
+    ],
+    "summary":"Receive an RCS provider update event",
+    "description":"Whenever a new provider becomes available in a country, this webhook delivers a real-time\n                notification so integrators can extend their RCS sender launches to the newly available provider.\n                The payload identifies the country and the provider that became available. To receive these events,\n                you need to subscribe to this event over the 'RCS' channel and specify the 'PROVIDER_UPDATE' event.\n                For more details on managing subscriptions, please refer to the\n                [Subscriptions Management](https://www.infobip.com/docs/cpaas-x/subscriptions-management) documentation.",
+    "externalDocs":{
+     "description":"Learn more about the RCS channel and use cases",
+     "url":"https://www.infobip.com/docs/rcs"
+    },
+    "operationId":"receive-rcs-provider-update-events",
+    "requestBody":{
+     "content":{
+      "application/json":{
+       "schema":{
+        "$ref":"#/components/schemas/c4d4776b979fea48176211c392051aca0dae21d75b7a9ca349c8f2eb95a84913.ProviderUpdateWebhookResponse"
+       },
+       "examples":{
+        "RCS provider update event":{
+         "summary":"RCS provider update event",
+         "value":{
+          "results":[
+           {
+            "event":"PROVIDER_UPDATE",
+            "countryCode":"US",
+            "provider":{
+             "name":"ATT",
+             "status":"AVAILABLE",
+             "updatedAt":"2026-01-15T16:38:24.000+0000"
             }
            }
           ]

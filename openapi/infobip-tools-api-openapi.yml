@@ -1,13 +1,12 @@
 openapi: 3.2.0
 info:
-  title: Infobip Tools API
+  title: Infobip OpenAPI Specification Tools API
+  description: OpenAPI Specification that contains all public endpoints and webhooks.
   contact:
     name: Infobip support
     email: support@infobip.com
-  x-refined-note:
-  - x-generatedAt differs across the merged source definitions and was not carried
-  version: '1.0'
-  description: 'Operations tagged tools across 2 of this provider''s published API definitions: infobip-platform-full-openapi.json, infobip-platform-openapi.json. Each path carries the servers of the definition it was published in.'
+  version: 3.245.1
+  x-generatedAt: '2026-10-07T09:47:35.212445381Z'
 tags:
 - name: Tools
   description: Developer utilities to help you integrate and work with Infobip APIs more efficiently.
@@ -140,23 +139,6 @@ paths:
         timeUnit: s
 components:
   schemas:
-    d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.OpenAPI:
-      type: object
-      additionalProperties:
-        type: object
-        description: OpenAPI schema.
-      description: Infobip OpenAPI Specification
-      title: OpenAPI
-    d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.AvailableProducts:
-      type: object
-      description: Available products.
-      properties:
-        products:
-          type: array
-          description: List of available products.
-          items:
-            $ref: '#/components/schemas/d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.AvailableProduct'
-      title: AvailableProducts
     ApiErrorResource:
       type: object
       description: List of available resources to recover from the error.
@@ -168,6 +150,21 @@ components:
           type: string
           description: Resource URL.
       title: ApiErrorResource
+    d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.AvailableProduct:
+      type: object
+      description: List of available products.
+      properties:
+        id:
+          type: string
+          description: Product identifier.
+      title: AvailableProduct
+    d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.OpenAPI:
+      type: object
+      additionalProperties:
+        type: object
+        description: OpenAPI schema.
+      description: Infobip OpenAPI Specification
+      title: OpenAPI
     ApiErrorViolation:
       type: object
       description: List of violations that caused the error.
@@ -185,12 +182,15 @@ components:
         errorCode:
           type: string
           description: An error code uniquely identifying the error case.
+          minLength: 1
         description:
           type: string
           description: A detailed description of an error.
+          minLength: 1
         action:
           type: string
           description: An action that should be taken to recover from the error.
+          minLength: 1
         violations:
           type: array
           description: List of violations that caused the error.
@@ -208,31 +208,17 @@ components:
       - resources
       - violations
       title: ApiError
-    d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.AvailableProduct:
+    d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.AvailableProducts:
       type: object
-      description: List of available products.
+      description: Available products.
       properties:
-        id:
-          type: string
-          description: Product identifier.
-      title: AvailableProduct
+        products:
+          type: array
+          description: List of available products.
+          items:
+            $ref: '#/components/schemas/d2eeca5070e19d116b5e48cb8dbc21132490d09f32a707af8c36324fa50d906d.AvailableProduct'
+      title: AvailableProducts
   responses:
-    ApiError500:
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-          example:
-            errorCode: E500
-            description: Something went wrong.
-            action: Contact the support.
-            violations: []
-            resources: []
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-          example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E500</errorCode>\n  <description>Something went wrong.</description>\n  <action>Contact the support.</action>\n  <violations/>\n  <resources/>\n</ApiError>\n"
     ApiError429:
       description: Too Many Requests
       content:
@@ -251,6 +237,22 @@ components:
           schema:
             $ref: '#/components/schemas/ApiError'
           example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E429</errorCode>\n  <description>Too many requests sent.</description>\n  <action>Check request rate limit specified in the API endpoint documentation resource.</action>\n  <violations/>\n  <resources>\n    <resource>\n      <name>Throttling handling errors</name>\n      <url>https://www.infobip.com/docs/essentials/integration-best-practices#throttling-handling-errors</url>\n    </resource>\n  </resources>\n</ApiError>\n"
+    ApiError500:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          example:
+            errorCode: E500
+            description: Something went wrong.
+            action: Contact the support.
+            violations: []
+            resources: []
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          example: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ApiError>\n  <errorCode>E500</errorCode>\n  <description>Something went wrong.</description>\n  <action>Contact the support.</action>\n  <violations/>\n  <resources/>\n</ApiError>\n"
   securitySchemes:
     APIKeyHeader:
       type: apiKey
@@ -378,6 +380,3 @@ components:
         clientCredentials:
           tokenUrl: https://api.infobip.com/auth/1/oauth2/token
           scopes: {}
-x-refined-from:
-- infobip-platform-full-openapi.json
-- infobip-platform-openapi.json

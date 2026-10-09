@@ -7,8 +7,8 @@
    "name":"Infobip support",
    "email":"support@infobip.com"
   },
-  "version":"3.210.0",
-  "x-generatedAt":"2026-07-23T15:23:49.992118108Z"
+  "version":"3.245.1",
+  "x-generatedAt":"2026-10-07T09:47:46.05477479Z"
  },
  "tags":[
   {
@@ -119,6 +119,32 @@
     "operationId":"get-available-numbers",
     "parameters":[
      {
+      "name":"limit",
+      "in":"query",
+      "description":"Number of records returned per page.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"integer",
+       "format":"int32",
+       "description":"Number of records returned per page.",
+       "minimum":1
+      }
+     },
+     {
+      "name":"number",
+      "in":"query",
+      "description":"Number to search.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "description":"Number to search."
+      }
+     },
+     {
       "name":"capabilities",
       "in":"query",
       "description":"An array of communication channels the number is able to support.",
@@ -127,6 +153,7 @@
       "explode":true,
       "schema":{
        "type":"array",
+       "description":"An array of communication channels the number is able to support.",
        "items":{
         "$ref":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.NumberCapabilityType"
        }
@@ -135,13 +162,17 @@
      {
       "name":"country",
       "in":"query",
-      "description":"The number's country code.",
+      "description":"The number's country code (ISO 3166-1 alpha-2).",
       "required":false,
       "style":"form",
       "explode":true,
       "schema":{
-       "type":"string"
-      }
+       "type":"string",
+       "description":"The number's country code (ISO 3166-1 alpha-2).",
+       "example":"US",
+       "pattern":"^[A-Z]{2}$"
+      },
+      "example":"US"
      },
      {
       "name":"state",
@@ -151,8 +182,13 @@
       "style":"form",
       "explode":true,
       "schema":{
-       "type":"string"
-      }
+       "type":"string",
+       "description":"US Numbers only: US state",
+       "example":"NY",
+       "maxLength":2,
+       "minLength":2
+      },
+      "example":"NY"
      },
      {
       "name":"npa",
@@ -163,8 +199,13 @@
       "explode":true,
       "schema":{
        "type":"integer",
-       "format":"int32"
-      }
+       "format":"int32",
+       "description":"US numbers only: area code.",
+       "example":212,
+       "maximum":999,
+       "minimum":200
+      },
+      "example":212
      },
      {
       "name":"nxx",
@@ -175,45 +216,44 @@
       "explode":true,
       "schema":{
        "type":"integer",
-       "format":"int32"
+       "format":"int32",
+       "description":"US numbers only: the 3 digits following the area code.",
+       "maximum":999,
+       "minimum":200
       }
      },
      {
-      "name":"limit",
+      "name":"lata",
       "in":"query",
-      "description":"Number of records returned per page.",
+      "description":"US numbers only: local access and transport area.",
       "required":false,
       "style":"form",
       "explode":true,
       "schema":{
        "type":"integer",
        "format":"int32",
-       "default":10
-      }
+       "description":"US numbers only: local access and transport area.",
+       "example":132,
+       "maximum":99999,
+       "minimum":100
+      },
+      "example":132
      },
      {
-      "name":"number",
+      "name":"rateCenter",
       "in":"query",
-      "description":"Searched number.",
+      "description":"US numbers only: rate center in its standardized abbreviated form.",
       "required":false,
       "style":"form",
       "explode":true,
       "schema":{
-       "type":"string"
-      }
-     },
-     {
-      "name":"page",
-      "in":"query",
-      "description":"Page number. Use it with `limit` for paging purposes.",
-      "required":false,
-      "style":"form",
-      "explode":true,
-      "schema":{
-       "type":"integer",
-       "format":"int32",
-       "default":0
-      }
+       "type":"string",
+       "description":"US numbers only: rate center in its standardized abbreviated form.",
+       "example":"NWYRCYZN01",
+       "maxLength":10,
+       "minLength":3
+      },
+      "example":"NWYRCYZN01"
      }
     ],
     "responses":{
@@ -287,6 +327,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -294,9 +337,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -430,6 +470,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -437,9 +480,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -572,6 +612,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -579,9 +622,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -672,6 +712,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -679,9 +722,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -814,6 +854,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -821,9 +864,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -886,6 +926,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -893,9 +936,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -1037,6 +1077,9 @@
     "deprecated":true,
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -1044,9 +1087,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -1248,6 +1288,9 @@
     "deprecated":true,
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -1255,9 +1298,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -1463,6 +1503,9 @@
     "deprecated":true,
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -1470,9 +1513,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -1574,6 +1614,9 @@
     "deprecated":true,
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -1581,9 +1624,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -1648,6 +1688,9 @@
     "deprecated":true,
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -1655,9 +1698,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -1794,6 +1834,9 @@
     "deprecated":true,
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -1801,9 +1844,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -1983,6 +2023,9 @@
     "deprecated":true,
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -1990,9 +2033,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -2095,6 +2135,9 @@
     "deprecated":true,
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -2102,9 +2145,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -2295,6 +2335,9 @@
     "deprecated":true,
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -2302,9 +2345,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -2380,6 +2420,9 @@
     "deprecated":true,
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -2387,9 +2430,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -2418,7 +2458,7 @@
      "voice-configuration"
     ],
     "summary":"Get voice setup on number",
-    "description":"This method fetches the voice setup on a number.",
+    "description":"This method fetches the voice setup on a number. Use the `channel` parameter to fetch the setup for a specific channel.",
     "operationId":"get-voice-setup-on-number",
     "parameters":[
      {
@@ -2430,6 +2470,22 @@
       "explode":false,
       "schema":{
        "type":"string"
+      }
+     },
+     {
+      "name":"channel",
+      "in":"query",
+      "description":"Channel the voice setup belongs to.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "default":"VOICE",
+       "enum":[
+        "VOICE",
+        "WHATSAPP"
+       ]
       }
      }
     ],
@@ -2446,6 +2502,7 @@
           "summary":"Return Voice Number Masking configuration",
           "description":"VOICE_NUMBER_MASKING",
           "value":{
+           "channel":"VOICE",
            "action":{
             "voiceNumberMaskingConfigKey":"C6A5995CBF4D2DF2ADE29963B3BB00E6",
             "type":"VOICE_NUMBER_MASKING"
@@ -2456,6 +2513,7 @@
           "summary":"Forward To IVR configuration",
           "description":"FORWARD_TO_IVR",
           "value":{
+           "channel":"VOICE",
            "action":{
             "scenarioKey":"56FE9214E7A98F2D4CB44E647E3D3CED",
             "type":"FORWARD_TO_IVR"
@@ -2466,6 +2524,7 @@
           "summary":"Forward To Call Routing configuration",
           "description":"FORWARD_TO_CALL_ROUTING",
           "value":{
+           "channel":"VOICE",
            "action":{
             "routeId":"71c1cd2e-fa30-450f-a6f7-56f2ae0adc6b",
             "type":"FORWARD_TO_CALL_ROUTING"
@@ -2476,6 +2535,7 @@
           "summary":"Forward to PSTN configuration",
           "description":"FORWARD_TO_PSTN",
           "value":{
+           "channel":"VOICE",
            "action":{
             "pstnNumber":"41793026731",
             "type":"FORWARD_TO_PSTN"
@@ -2486,6 +2546,7 @@
           "summary":"Forward To Subscription configuration",
           "description":"FORWARD_TO_SUBSCRIPTION",
           "value":{
+           "channel":"VOICE",
            "action":{
             "callsConfigurationId":"6b99b1ac-fe35-4be7-bb0e-93c00dbd2206",
             "type":"FORWARD_TO_SUBSCRIPTION"
@@ -2496,9 +2557,21 @@
           "summary":"Forward To Markup Language configuration",
           "description":"FORWARD_TO_MARKUP_LANGUAGE",
           "value":{
+           "channel":"VOICE",
            "action":{
             "type":"FORWARD_TO_MARKUP_LANGUAGE",
             "markupLanguageConfigId":123456789
+           }
+          }
+         },
+         "WHATSAPP_FORWARD_TO_IVR":{
+          "summary":"Forward To IVR configuration on the WhatsApp Voice channel",
+          "description":"WHATSAPP_FORWARD_TO_IVR",
+          "value":{
+           "channel":"WHATSAPP",
+           "action":{
+            "scenarioKey":"56FE9214E7A98F2D4CB44E647E3D3CED",
+            "type":"FORWARD_TO_IVR"
            }
           }
          }
@@ -2521,6 +2594,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -2528,9 +2604,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -2545,7 +2618,7 @@
      "voice-configuration"
     ],
     "summary":"Update voice setup on number",
-    "description":"This method updates voice setup previously created on a number.",
+    "description":"This method updates voice setup previously created on a number. The available action types depend on `channel`. Check the schema and examples for more details.",
     "operationId":"update-voice-setup-on-number",
     "parameters":[
      {
@@ -2565,7 +2638,7 @@
      "content":{
       "application/json":{
        "schema":{
-        "$ref":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceSetup"
+        "$ref":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.ChannelVoiceSetup"
        },
        "examples":{
         "VOICE_NUMBER_MASKING":{
@@ -2627,6 +2700,50 @@
            "markupLanguageConfigId":123456789
           }
          }
+        },
+        "WHATSAPP_FORWARD_TO_IVR":{
+         "summary":"Update the WhatsApp Voice setup to Forward To IVR configuration",
+         "description":"WHATSAPP_FORWARD_TO_IVR",
+         "value":{
+          "channel":"WHATSAPP",
+          "action":{
+           "type":"FORWARD_TO_IVR",
+           "scenarioKey":"56FE9214E7A98F2D4CB44E647E3D3CED"
+          }
+         }
+        },
+        "WHATSAPP_FORWARD_TO_CALL_ROUTING":{
+         "summary":"Update the WhatsApp Voice setup to Forward To Call Routing configuration",
+         "description":"WHATSAPP_FORWARD_TO_CALL_ROUTING",
+         "value":{
+          "channel":"WHATSAPP",
+          "action":{
+           "type":"FORWARD_TO_CALL_ROUTING",
+           "routeId":"71c1cd2e-fa30-450f-a6f7-56f2ae0adc6b"
+          }
+         }
+        },
+        "WHATSAPP_FORWARD_TO_SUBSCRIPTION":{
+         "summary":"Update the WhatsApp Voice setup to Forward To Subscription configuration",
+         "description":"WHATSAPP_FORWARD_TO_SUBSCRIPTION",
+         "value":{
+          "channel":"WHATSAPP",
+          "action":{
+           "type":"FORWARD_TO_SUBSCRIPTION",
+           "callsConfigurationId":"6b99b1ac-fe35-4be7-bb0e-93c00dbd2206"
+          }
+         }
+        },
+        "WHATSAPP_FORWARD_TO_MARKUP_LANGUAGE":{
+         "summary":"Update the WhatsApp Voice setup to Forward To Markup Language configuration",
+         "description":"WHATSAPP_FORWARD_TO_MARKUP_LANGUAGE",
+         "value":{
+          "channel":"WHATSAPP",
+          "action":{
+           "type":"FORWARD_TO_MARKUP_LANGUAGE",
+           "markupLanguageConfigId":123456789
+          }
+         }
         }
        }
       }
@@ -2646,6 +2763,7 @@
           "summary":"Response for VOICE_NUMBER_MASKING type",
           "description":"VOICE_NUMBER_MASKING",
           "value":{
+           "channel":"VOICE",
            "action":{
             "voiceNumberMaskingConfigKey":"C6A5995CBF4D2DF2ADE29963B3BB00E6",
             "type":"VOICE_NUMBER_MASKING"
@@ -2656,6 +2774,7 @@
           "summary":"Response for FORWARD_TO_IVR forwarding type",
           "description":"FORWARD_TO_IVR",
           "value":{
+           "channel":"VOICE",
            "action":{
             "scenarioKey":"56FE9214E7A98F2D4CB44E647E3D3CED",
             "type":"FORWARD_TO_IVR"
@@ -2666,6 +2785,7 @@
           "summary":"Response for FORWARD_TO_CALL_ROUTING forwarding type",
           "description":"FORWARD_TO_CALL_ROUTING",
           "value":{
+           "channel":"VOICE",
            "action":{
             "routeId":"71c1cd2e-fa30-450f-a6f7-56f2ae0adc6b",
             "type":"FORWARD_TO_CALL_ROUTING"
@@ -2676,6 +2796,7 @@
           "summary":"Response for FORWARD_TO_PSTN forwarding type",
           "description":"FORWARD_TO_PSTN",
           "value":{
+           "channel":"VOICE",
            "action":{
             "pstnNumber":"41793026731",
             "type":"FORWARD_TO_PSTN"
@@ -2686,6 +2807,7 @@
           "summary":"Response for FORWARD_TO_SUBSCRIPTION forwarding type",
           "description":"FORWARD_TO_SUBSCRIPTION",
           "value":{
+           "channel":"VOICE",
            "action":{
             "callsConfigurationId":"6b99b1ac-fe35-4be7-bb0e-93c00dbd2206",
             "type":"FORWARD_TO_SUBSCRIPTION"
@@ -2696,9 +2818,21 @@
           "summary":"Response for FORWARD_TO_MARKUP_LANGUAGE forwarding type",
           "description":"FORWARD_TO_MARKUP_LANGUAGE",
           "value":{
+           "channel":"VOICE",
            "action":{
             "type":"FORWARD_TO_MARKUP_LANGUAGE",
             "markupLanguageConfigId":123456789
+           }
+          }
+         },
+         "WHATSAPP_FORWARD_TO_IVR":{
+          "summary":"Response for FORWARD_TO_IVR forwarding type on the WhatsApp Voice channel",
+          "description":"WHATSAPP_FORWARD_TO_IVR",
+          "value":{
+           "channel":"WHATSAPP",
+           "action":{
+            "scenarioKey":"56FE9214E7A98F2D4CB44E647E3D3CED",
+            "type":"FORWARD_TO_IVR"
            }
           }
          }
@@ -2727,6 +2861,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -2734,9 +2871,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -2759,7 +2893,7 @@
      "voice-configuration"
     ],
     "summary":"Create voice setup on number",
-    "description":"This method will create a new voice setup on a number. There can be only one voice action set for the number.",
+    "description":"This method will create a new voice setup on a number. There can be only one voice action set per channel. The available action types depend on `channel`. Check the schema and examples for more details.",
     "operationId":"create-voice-setup-on-number",
     "parameters":[
      {
@@ -2779,7 +2913,7 @@
      "content":{
       "application/json":{
        "schema":{
-        "$ref":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceSetup"
+        "$ref":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.ChannelVoiceSetup"
        },
        "examples":{
         "VOICE_NUMBER_MASKING":{
@@ -2841,6 +2975,50 @@
            "markupLanguageConfigId":123456789
           }
          }
+        },
+        "WHATSAPP_FORWARD_TO_IVR":{
+         "summary":"Setup new Forward To IVR configuration on the WhatsApp Voice channel",
+         "description":"WHATSAPP_FORWARD_TO_IVR",
+         "value":{
+          "channel":"WHATSAPP",
+          "action":{
+           "type":"FORWARD_TO_IVR",
+           "scenarioKey":"56FE9214E7A98F2D4CB44E647E3D3CED"
+          }
+         }
+        },
+        "WHATSAPP_FORWARD_TO_CALL_ROUTING":{
+         "summary":"Setup new Forward To Call Routing configuration on the WhatsApp Voice channel",
+         "description":"WHATSAPP_FORWARD_TO_CALL_ROUTING",
+         "value":{
+          "channel":"WHATSAPP",
+          "action":{
+           "type":"FORWARD_TO_CALL_ROUTING",
+           "routeId":"71c1cd2e-fa30-450f-a6f7-56f2ae0adc6b"
+          }
+         }
+        },
+        "WHATSAPP_FORWARD_TO_SUBSCRIPTION":{
+         "summary":"Setup new Forward To Subscription configuration on the WhatsApp Voice channel",
+         "description":"WHATSAPP_FORWARD_TO_SUBSCRIPTION",
+         "value":{
+          "channel":"WHATSAPP",
+          "action":{
+           "type":"FORWARD_TO_SUBSCRIPTION",
+           "callsConfigurationId":"6b99b1ac-fe35-4be7-bb0e-93c00dbd2206"
+          }
+         }
+        },
+        "WHATSAPP_FORWARD_TO_MARKUP_LANGUAGE":{
+         "summary":"Setup new Forward To Markup Language configuration on the WhatsApp Voice channel",
+         "description":"WHATSAPP_FORWARD_TO_MARKUP_LANGUAGE",
+         "value":{
+          "channel":"WHATSAPP",
+          "action":{
+           "type":"FORWARD_TO_MARKUP_LANGUAGE",
+           "markupLanguageConfigId":123456789
+          }
+         }
         }
        }
       }
@@ -2860,6 +3038,7 @@
           "summary":"Response for VOICE_NUMBER_MASKING type",
           "description":"VOICE_NUMBER_MASKING",
           "value":{
+           "channel":"VOICE",
            "action":{
             "voiceNumberMaskingConfigKey":"C6A5995CBF4D2DF2ADE29963B3BB00E6",
             "type":"VOICE_NUMBER_MASKING"
@@ -2870,6 +3049,7 @@
           "summary":"Response for FORWARD_TO_IVR forwarding type",
           "description":"FORWARD_TO_IVR",
           "value":{
+           "channel":"VOICE",
            "action":{
             "scenarioKey":"56FE9214E7A98F2D4CB44E647E3D3CED",
             "type":"FORWARD_TO_IVR"
@@ -2880,6 +3060,7 @@
           "summary":"Response for FORWARD_TO_CALL_ROUTING forwarding type",
           "description":"FORWARD_TO_CALL_ROUTING",
           "value":{
+           "channel":"VOICE",
            "action":{
             "routeId":"71c1cd2e-fa30-450f-a6f7-56f2ae0adc6b",
             "type":"FORWARD_TO_CALL_ROUTING"
@@ -2890,6 +3071,7 @@
           "summary":"Response for FORWARD_TO_PSTN forwarding type",
           "description":"FORWARD_TO_PSTN",
           "value":{
+           "channel":"VOICE",
            "action":{
             "pstnNumber":"41793026731",
             "type":"FORWARD_TO_PSTN"
@@ -2900,6 +3082,7 @@
           "summary":"Response for FORWARD_TO_SUBSCRIPTION forwarding type",
           "description":"FORWARD_TO_SUBSCRIPTION",
           "value":{
+           "channel":"VOICE",
            "action":{
             "callsConfigurationId":"6b99b1ac-fe35-4be7-bb0e-93c00dbd2206",
             "type":"FORWARD_TO_SUBSCRIPTION"
@@ -2910,9 +3093,21 @@
           "summary":"Response for FORWARD_TO_MARKUP_LANGUAGE forwarding type",
           "description":"FORWARD_TO_MARKUP_LANGUAGE",
           "value":{
+           "channel":"VOICE",
            "action":{
             "type":"FORWARD_TO_MARKUP_LANGUAGE",
             "markupLanguageConfigId":123456789
+           }
+          }
+         },
+         "WHATSAPP_FORWARD_TO_IVR":{
+          "summary":"Response for FORWARD_TO_IVR forwarding type on the WhatsApp Voice channel",
+          "description":"WHATSAPP_FORWARD_TO_IVR",
+          "value":{
+           "channel":"WHATSAPP",
+           "action":{
+            "scenarioKey":"56FE9214E7A98F2D4CB44E647E3D3CED",
+            "type":"FORWARD_TO_IVR"
            }
           }
          }
@@ -2944,6 +3139,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -2951,9 +3149,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -2976,7 +3171,7 @@
      "voice-configuration"
     ],
     "summary":"Delete voice setup on number",
-    "description":"This method removes voice setup from a number.",
+    "description":"This method removes voice setup from a number. Use the `channel` parameter to remove the setup on a specific channel.",
     "operationId":"delete-voice-setup-on-number",
     "parameters":[
      {
@@ -2988,6 +3183,22 @@
       "explode":false,
       "schema":{
        "type":"string"
+      }
+     },
+     {
+      "name":"channel",
+      "in":"query",
+      "description":"Channel the voice setup belongs to.",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string",
+       "default":"VOICE",
+       "enum":[
+        "VOICE",
+        "WHATSAPP"
+       ]
       }
      }
     ],
@@ -3010,6 +3221,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -3017,9 +3231,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -4652,6 +4863,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -4659,9 +4873,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -4687,6 +4898,18 @@
     "summary":"Create Brand",
     "description":"Creates a brand within the Infobip platform. This operation does not register the brand with any registrars. Registration can be done using created brand's ID with the 'Register Brand' endpoint.",
     "operationId":"create-brand",
+    "parameters":[
+     {
+      "name":"X-Resource-Request-Id",
+      "in":"header",
+      "required":false,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      }
+     }
+    ],
     "requestBody":{
      "content":{
       "application/json":{
@@ -5075,6 +5298,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -5082,9 +5308,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -5369,6 +5592,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -5376,9 +5602,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -5416,6 +5639,16 @@
        "type":"string",
        "format":"uuid",
        "description":"The ID of the desired brand."
+      }
+     },
+     {
+      "name":"X-Resource-Request-Id",
+      "in":"header",
+      "required":false,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
       }
      }
     ],
@@ -5830,6 +6063,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -5837,9 +6073,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -5945,6 +6178,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -5952,9 +6188,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -6062,6 +6295,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -6069,9 +6305,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -6189,6 +6422,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -6196,9 +6432,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -6306,6 +6539,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -6313,9 +6549,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -6423,6 +6656,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -6430,9 +6666,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -6557,6 +6790,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -6564,9 +6800,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -6658,6 +6891,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -6665,9 +6901,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -6821,6 +7054,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -6828,9 +7064,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -6953,6 +7186,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -6960,9 +7196,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -7090,6 +7323,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -7097,9 +7333,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -7235,6 +7468,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -7242,9 +7478,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -7369,6 +7602,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -7376,9 +7612,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -7525,6 +7758,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -7532,9 +7768,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -7966,6 +8199,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -7973,9 +8209,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -8000,6 +8233,18 @@
     "summary":"Create Campaign",
     "description":"Creates a campaign within the Infobip platform. This operation does not register the campaign with any networks. Registration can be done using created campaign's ID with the 'Register Campaign' endpoint.",
     "operationId":"create-campaign",
+    "parameters":[
+     {
+      "name":"X-Resource-Request-Id",
+      "in":"header",
+      "required":false,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string"
+      }
+     }
+    ],
     "requestBody":{
      "content":{
       "application/json":{
@@ -8385,6 +8630,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -8392,9 +8640,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -8614,6 +8859,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -8621,9 +8869,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -8954,6 +9199,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -8961,9 +9209,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -9408,6 +9653,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -9415,9 +9663,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -9440,7 +9685,7 @@
      "campaigns"
     ],
     "summary":"Delete Campaign",
-    "description":"Removes a previously created campaign by its ID.\nThis operation is only supported for campaigns that are in DRAFT, DEREGISTERED or REJECTED stage.\n",
+    "description":"Removes a previously created campaign by its ID.\nThis operation is only supported for campaigns that are in DRAFT, DEREGISTERED, REJECTED or REJECTED_EXTERNALLY stage.\n",
     "operationId":"delete-campaign",
     "parameters":[
      {
@@ -9519,6 +9764,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -9526,9 +9774,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -9653,6 +9898,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -9660,9 +9908,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -9797,6 +10042,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -9804,9 +10052,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -9913,6 +10158,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -9920,9 +10168,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -10047,6 +10292,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -10054,9 +10302,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -10198,6 +10443,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -10205,9 +10453,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -10349,6 +10594,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -10356,9 +10604,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -10488,6 +10733,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -10495,9 +10743,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -10619,6 +10864,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -10626,9 +10874,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -10704,6 +10949,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -10711,9 +10959,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -10839,6 +11084,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -10846,9 +11094,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -10955,6 +11200,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -10962,9 +11210,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -11112,6 +11357,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -11119,9 +11367,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -11148,6 +11393,28 @@
     "summary":"Upload Document",
     "description":"Uploads a document file to the system and returns the document metadata. The uploaded document can be used for 10DLC campaign registration purposes. Documents not attached to a campaign within 7 days will be automatically deleted. Supported file types: .bmp, .dib, .docx, .gif, .htm, .html, .jpeg, .jpg, .m2a, .m4a, .m4b, .m4p, .m4r, .m4v, .mp1, .mp2, .mp3, .mp4, .mpa, .oga, .ogg, .ogm, .ogv, .ogx, .odt, .pdf, .png, .raw, .rtf, .spx, .tif, .tiff, .txt, .wav, .webm, .xml, Maximum file size: 10MB.",
     "operationId":"upload-document-metadata",
+    "parameters":[
+     {
+      "name":"applicationId",
+      "in":"query",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      }
+     },
+     {
+      "name":"entityId",
+      "in":"query",
+      "required":false,
+      "style":"form",
+      "explode":true,
+      "schema":{
+       "type":"string"
+      }
+     }
+    ],
     "requestBody":{
      "content":{
       "multipart/form-data":{
@@ -11163,7 +11430,7 @@
       "content":{
        "application/json":{
         "schema":{
-         "$ref":"#/components/schemas/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.DocumentMetadata"
+         "$ref":"#/components/schemas/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.DocumentUploadMetadata"
         },
         "examples":{
          "Document metadata":{
@@ -11173,7 +11440,9 @@
            "documentId":"9904751a-9436-4bda-b98a-37b1f7179483",
            "documentName":"Example document.pdf",
            "contentType":"application/pdf",
-           "contentLength":14956
+           "contentLength":14956,
+           "applicationId":"my-application",
+           "entityId":"my-entity"
           }
          }
         }
@@ -11215,6 +11484,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -11222,9 +11494,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -11328,6 +11597,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -11335,13 +11607,121 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
      "numbers:manage"
+    ]
+   }
+  },
+  "/number-registration/1/documents/{documentId}/metadata":{
+   "get":{
+    "tags":[
+     "platform",
+     "numbers",
+     "number-registration",
+     "documents"
+    ],
+    "summary":"Get Document Metadata",
+    "description":"Retrieves metadata for a document by its unique identifier, without downloading its content. Access to the document is restricted based on account ownership.",
+    "operationId":"get-document-metadata",
+    "parameters":[
+     {
+      "name":"documentId",
+      "in":"path",
+      "description":"Unique identifier for the document.",
+      "required":true,
+      "style":"simple",
+      "explode":false,
+      "schema":{
+       "type":"string",
+       "format":"uuid",
+       "description":"Unique identifier for the document."
+      }
+     }
+    ],
+    "responses":{
+     "200":{
+      "description":"OK",
+      "content":{
+       "application/json":{
+        "schema":{
+         "$ref":"#/components/schemas/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.DocumentUploadMetadata"
+        },
+        "examples":{
+         "Document metadata":{
+          "summary":"Document metadata",
+          "description":"Document metadata",
+          "value":{
+           "documentId":"9904751a-9436-4bda-b98a-37b1f7179483",
+           "documentName":"Example document.pdf",
+           "contentType":"application/pdf",
+           "contentLength":14956,
+           "applicationId":"my-application",
+           "entityId":"my-entity"
+          }
+         }
+        }
+       }
+      }
+     },
+     "401":{
+      "$ref":"#/components/responses/ApiException401"
+     },
+     "403":{
+      "$ref":"#/components/responses/ApiException403"
+     },
+     "404":{
+      "description":"Not Found",
+      "content":{
+       "application/json":{
+        "examples":{
+         "Response example":{
+          "summary":"Response example",
+          "value":{
+           "requestError":{
+            "serviceException":{
+             "messageId":"NOT_FOUND",
+             "text":"Not found"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     },
+     "429":{
+      "$ref":"#/components/responses/ApiException429"
+     },
+     "500":{
+      "$ref":"#/components/responses/ApiException500"
+     }
+    },
+    "security":[
+     {
+      "OAuth2":[]
+     },
+     {
+      "IBSSOTokenHeader":[]
+     },
+     {
+      "APIKeyHeader":[]
+     },
+     {
+      "Basic":[]
+     }
+    ],
+    "x-scopes":[
+     "numbers:manage"
+    ],
+    "x-throttling-info":[
+     {
+      "type":"time",
+      "numberOfRequests":10,
+      "numberOfTimeUnits":0,
+      "timeUnit":"s"
+     }
     ]
    }
   },
@@ -11410,6 +11790,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -11417,14 +11800,12 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
      "numbers:manage"
     ],
+    "x-is-early-access":true,
     "x-throttling-info":[
      {
       "type":"time",
@@ -11526,6 +11907,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -11533,14 +11917,12 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
      "numbers:manage"
     ],
+    "x-is-early-access":true,
     "x-throttling-info":[
      {
       "type":"time",
@@ -11639,6 +12021,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -11646,14 +12031,12 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
      "numbers:manage"
     ],
+    "x-is-early-access":true,
     "x-throttling-info":[
      {
       "type":"time",
@@ -11759,6 +12142,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -11766,9 +12152,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -11982,6 +12365,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -11989,9 +12375,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -12040,11 +12423,6 @@
       "minLength":1
      }
     },
-    "required":[
-     "city",
-     "street",
-     "zipCode"
-    ],
     "title":"Address"
    },
    "2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.AegisVetImportRequest":{
@@ -12058,11 +12436,13 @@
       "properties":{
        "externalVetId":{
         "type":"string",
-        "description":"Aegis external vetting ID"
+        "description":"Aegis external vetting ID",
+        "minLength":1
        },
        "vettingToken":{
         "type":"string",
-        "description":"Aegis vetting token"
+        "description":"Aegis vetting token",
+        "minLength":1
        }
       }
      }
@@ -12185,7 +12565,8 @@
       "type":"string",
       "description":"The website for the brand.",
       "maxLength":100,
-      "minLength":11
+      "minLength":11,
+      "pattern":""
      },
      "createdDate":{
       "type":"string",
@@ -12310,7 +12691,13 @@
       "description":"The new brand auth 2FA update.",
       "enum":[
        "BRAND_EMAIL_2FA_SEND",
-       "BRAND_EMAIL_2FA_COMPLETE"
+       "BRAND_EMAIL_2FA_OPEN",
+       "BRAND_EMAIL_2FA_CLICK",
+       "BRAND_EMAIL_2FA_INCORRECT_CODE",
+       "BRAND_EMAIL_2FA_EXPIRED",
+       "BRAND_EMAIL_2FA_REISSUED",
+       "BRAND_EMAIL_2FA_HARD_BOUNCED",
+       "BRAND_EMAIL_2FA_UNDELIVERABLE"
       ],
       "example":"BRAND_EMAIL_2FA_SEND"
      }
@@ -12957,12 +13344,14 @@
      },
      "campaignIntent":{
       "type":"string",
-      "description":"Description of the campaign's purpose and messaging use case. This is the primary input that drives the generated campaign configuration, so it should be specific enough to convey the type of messages being sent and target audience, but concise (1-2 sentences)."
+      "description":"Description of the campaign's purpose and messaging use case. This is the primary input that drives the generated campaign configuration, so it should be specific enough to convey the type of messages being sent and target audience, but concise (1-2 sentences).",
+      "minLength":1
      },
      "contactEmail":{
       "type":"string",
       "format":"email",
-      "description":"Campaign contact email."
+      "description":"Campaign contact email.",
+      "minLength":1
      },
      "optInMethods":{
       "type":"array",
@@ -12970,6 +13359,7 @@
       "items":{
        "$ref":"#/components/schemas/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.CampaignBuilderOptInMethod"
       },
+      "minItems":1,
       "uniqueItems":true
      }
     },
@@ -13165,19 +13555,23 @@
      },
      "brandName":{
       "type":"string",
-      "description":"Brand name"
+      "description":"Brand name",
+      "minLength":1
      },
      "brandWebsite":{
       "type":"string",
-      "description":"Brand website URL"
+      "description":"Brand website URL",
+      "minLength":1
      },
      "brandSupportEmail":{
       "type":"string",
-      "description":"Brand support email"
+      "description":"Brand support email",
+      "minLength":1
      },
      "programDescription":{
       "type":"string",
-      "description":"A brief description of the purpose of the campaign."
+      "description":"A brief description of the purpose of the campaign.",
+      "minLength":1
      },
      "messageExamples":{
       "type":"array",
@@ -13185,11 +13579,13 @@
       "items":{
        "type":"string",
        "description":"The example message(s) a user may receive from this campaign. Each example message must be at least 20 characters long."
-      }
+      },
+      "minItems":1
      },
      "customerCareEmail":{
       "type":"string",
-      "description":"The email address the user may contact to get customer care."
+      "description":"The email address the user may contact to get customer care.",
+      "minLength":1
      },
      "termsAndConditionsUrl":{
       "type":"string",
@@ -13284,11 +13680,12 @@
      "US_CELLULAR_MMS",
      "ZIPWHIP",
      "LIBERTY",
-     "DISH",
-     "CHARTER_SPECTRUM",
+     "DISH_NETWORK",
+     "SPECTRUM",
      "C_SPIRE",
      "GOOGLE_FI",
-     "TRACFONE"
+     "TRACFONE",
+     "XFINITY"
     ],
     "example":"VERIZON",
     "title":"CampaignRegistrar"
@@ -13475,9 +13872,8 @@
     ],
     "title":"DataUniversalNumberingSystemNumber"
    },
-   "2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.DocumentMetadata":{
+   "2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.DocumentUploadMetadata":{
     "type":"object",
-    "description":"Preview of the screenshot document. This property is read-only and ignored in POST/PUT calls.",
     "properties":{
      "documentId":{
       "type":"string",
@@ -13496,9 +13892,22 @@
       "type":"integer",
       "format":"int32",
       "description":"Size of the document content in bytes."
+     },
+     "applicationId":{
+      "type":"string",
+      "description":"CPaaS X property identifying an application, a use case or an environment on your system. It should only be set if you are using CPaaS X Applications with your traffic."
+     },
+     "entityId":{
+      "type":"string",
+      "description":"CPaaS X property identifying an unique actor on your system. Should only be set if you are using CPaaS X Applications with your traffic."
      }
     },
-    "title":"DocumentMetadata"
+    "required":[
+     "contentType",
+     "documentId",
+     "documentName"
+    ],
+    "title":"DocumentUploadMetadata"
    },
    "2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.ExternalAutomaticReviewError":{
     "type":"object",
@@ -13570,6 +13979,7 @@
         "items":{
          "type":"string",
          "description":"US 10DLC Numbers to be used with the campaign.",
+         "minLength":1,
          "pattern":"1\\d{10}"
         },
         "maxItems":49,
@@ -13587,7 +13997,8 @@
          "url":"#platform-&-connectivity/numbers"
         },
         "items":{
-         "type":"string"
+         "type":"string",
+         "minLength":1
         },
         "maxItems":49,
         "minItems":0,
@@ -13719,15 +14130,9 @@
      }
     ],
     "required":[
-     "address",
-     "countryCode",
-     "legalName",
      "name",
-     "supportEmail",
-     "supportPhone",
      "taxId",
      "type",
-     "vertical",
      "website"
     ],
     "title":"GovernmentBrand"
@@ -13743,9 +14148,6 @@
       "minLength":20
      }
     },
-    "required":[
-     "callToAction"
-    ],
     "title":"InteractiveVoiceResponseOptIn"
    },
    "2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.KeywordOptIn":{
@@ -13763,15 +14165,10 @@
       "description":"The keyword(s) the user will text to subscribe. Keyword(s) must include only uppercase letters and numbers.",
       "items":{
        "type":"string",
-       "description":"The keyword(s) the user will text to subscribe. Keyword(s) must include only uppercase letters and numbers.",
-       "pattern":"[A-Z0-9]+"
+       "description":"The keyword(s) the user will text to subscribe. Keyword(s) must include only uppercase letters and numbers."
       }
      }
     },
-    "required":[
-     "callToAction",
-     "keywords"
-    ],
     "title":"KeywordOptIn"
    },
    "2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.LegalEntityIdentifier":{
@@ -13819,11 +14216,12 @@
      "CLEARSKY",
      "GOOGLE_VOICE",
      "LIBERTY",
-     "DISH",
-     "CHARTER_SPECTRUM",
+     "DISH_NETWORK",
+     "SPECTRUM",
      "C_SPIRE",
      "GOOGLE_FI",
-     "TRACFONE"
+     "TRACFONE",
+     "XFINITY"
     ],
     "title":"Network"
    },
@@ -13949,15 +14347,9 @@
      }
     ],
     "required":[
-     "address",
-     "countryCode",
-     "legalName",
      "name",
-     "supportEmail",
-     "supportPhone",
      "taxId",
      "type",
-     "vertical",
      "website"
     ],
     "title":"NonProfitBrand"
@@ -14344,15 +14736,9 @@
      }
     ],
     "required":[
-     "address",
-     "countryCode",
-     "legalName",
      "name",
-     "supportEmail",
-     "supportPhone",
      "taxId",
      "type",
-     "vertical",
      "website"
     ],
     "title":"PrivateCompanyBrand"
@@ -14458,6 +14844,7 @@
        },
        "businessContactEmail":{
         "type":"string",
+        "format":"email",
         "description":"The email address of the individual responsible for processing the 2FA request via email.\nThis must be a personal email address associated with the brand and not a distribution list or support email.",
         "maxLength":100,
         "minLength":5
@@ -14466,18 +14853,9 @@
      }
     ],
     "required":[
-     "address",
-     "businessContactEmail",
-     "countryCode",
-     "legalName",
      "name",
-     "stockExchange",
-     "stockSymbol",
-     "supportEmail",
-     "supportPhone",
      "taxId",
      "type",
-     "vertical",
      "website"
     ],
     "title":"PublicCompanyBrand"
@@ -14564,6 +14942,7 @@
         "items":{
          "$ref":"#/components/schemas/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.PromotionMethodType"
         },
+        "minItems":1,
         "uniqueItems":true
        },
        "campaignAttributes":{
@@ -14716,19 +15095,23 @@
       "properties":{
        "optInMessage":{
         "type":"string",
-        "description":"The message sent to the user after they have subscribed."
+        "description":"The message sent to the user after they have subscribed.",
+        "minLength":1
        },
        "helpMessage":{
         "type":"string",
-        "description":"The message sent to a user after they have asked for help."
+        "description":"The message sent to a user after they have asked for help.",
+        "minLength":1
        },
        "optOutMessage":{
         "type":"string",
-        "description":"The message sent to a user after they have asked to stop receiving messages."
+        "description":"The message sent to a user after they have asked to stop receiving messages.",
+        "minLength":1
        },
        "ctaWebsite":{
         "type":"string",
-        "description":"CTA website URL"
+        "description":"CTA website URL",
+        "minLength":1
        },
        "ctas":{
         "type":"array",
@@ -14736,14 +15119,16 @@
         "items":{
          "type":"string",
          "description":"List of call-to-action texts"
-        }
+        },
+        "minItems":1
        },
        "useCases":{
         "type":"array",
         "description":"The use cases for this campaign.",
         "items":{
          "$ref":"#/components/schemas/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.TenDlcUseCase"
-        }
+        },
+        "minItems":1
        },
        "ageGated":{
         "type":"boolean",
@@ -14755,7 +15140,8 @@
        },
        "messageFlow":{
         "type":"string",
-        "description":"Message flow description"
+        "description":"Message flow description",
+        "minLength":1
        }
       }
      }
@@ -14847,13 +15233,15 @@
         "items":{
          "$ref":"#/components/schemas/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.MessageType"
         },
+        "minItems":1,
         "uniqueItems":true
        },
        "termsAndConditionsUrl":{
         "type":"string",
         "description":"URL where the terms and conditions of the campaign are located.",
         "maxLength":255,
-        "minLength":11
+        "minLength":11,
+        "pattern":""
        },
        "optIns":{
         "$ref":"#/components/schemas/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.OptIns"
@@ -14881,8 +15269,6 @@
         "items":{
          "$ref":"#/components/schemas/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.TenDlcUseCase"
         },
-        "maxItems":5,
-        "minItems":1,
         "uniqueItems":true
        },
        "directLending":{
@@ -14911,7 +15297,8 @@
         "description":"List of MMS sample files for the campaign. Each entry can be either a URL to an external file or a UUID of a previously uploaded document. Maximum 5 files allowed. Supported file types: .bmp, .dib, .gif, .jpeg, .jpg, .m2a, .m4a, .m4b, .m4p, .m4r, .m4v, .mp1, .mp2, .mp3, .mp4, .mpa, .oga, .ogg, .ogm, .ogv, .ogx, .png, .spx, .txt, .wav, .webm.",
         "items":{
          "type":"string",
-         "description":"List of MMS sample files for the campaign. Each entry can be either a URL to an external file or a UUID of a previously uploaded document. Maximum 5 files allowed. Supported file types: .bmp, .dib, .gif, .jpeg, .jpg, .m2a, .m4a, .m4b, .m4p, .m4r, .m4v, .mp1, .mp2, .mp3, .mp4, .mpa, .oga, .ogg, .ogm, .ogv, .ogx, .png, .spx, .txt, .wav, .webm."
+         "description":"List of MMS sample files for the campaign. Each entry can be either a URL to an external file or a UUID of a previously uploaded document. Maximum 5 files allowed. Supported file types: .bmp, .dib, .gif, .jpeg, .jpg, .m2a, .m4a, .m4b, .m4p, .m4r, .m4v, .mp1, .mp2, .mp3, .mp4, .mpa, .oga, .ogg, .ogm, .ogv, .ogx, .png, .spx, .txt, .wav, .webm.",
+         "minLength":1
         },
         "maxItems":5,
         "minItems":0
@@ -14921,7 +15308,8 @@
         "description":"List of supporting documents for the campaign. Each entry can be either a URL to an external document or a UUID of a previously uploaded document. Maximum 5 documents allowed. Supported file types: .bmp, .dib, .docx, .htm, .html, .jpeg, .jpg, .odt, .pdf, .png, .raw, .rtf, .tif, .tiff, .txt, .xml.",
         "items":{
          "type":"string",
-         "description":"List of supporting documents for the campaign. Each entry can be either a URL to an external document or a UUID of a previously uploaded document. Maximum 5 documents allowed. Supported file types: .bmp, .dib, .docx, .htm, .html, .jpeg, .jpg, .odt, .pdf, .png, .raw, .rtf, .tif, .tiff, .txt, .xml."
+         "description":"List of supporting documents for the campaign. Each entry can be either a URL to an external document or a UUID of a previously uploaded document. Maximum 5 documents allowed. Supported file types: .bmp, .dib, .docx, .htm, .html, .jpeg, .jpg, .odt, .pdf, .png, .raw, .rtf, .tif, .tiff, .txt, .xml.",
+         "minLength":1
         },
         "maxItems":5,
         "minItems":0
@@ -14942,7 +15330,8 @@
          "url":"#platform-&-connectivity/numbers"
         },
         "items":{
-         "type":"string"
+         "type":"string",
+         "minLength":1
         },
         "maxItems":49,
         "minItems":0,
@@ -14985,19 +15374,9 @@
      }
     ],
     "required":[
-     "brandId",
-     "confirmationMessage",
-     "customerCareEmail",
-     "customerCarePhone",
-     "exampleMessages",
-     "helpMessage",
      "lowVolume",
      "messageTypes",
      "name",
-     "optIns",
-     "programSummary",
-     "stopMessage",
-     "termsAndConditionsUrl",
      "useCases"
     ],
     "title":"TenDlcCampaign"
@@ -15196,16 +15575,8 @@
      }
     ],
     "required":[
-     "address",
-     "businessContactFirstName",
-     "businessContactLastName",
      "businessRegistrationType",
-     "countryCode",
-     "legalEntityType",
-     "legalName",
      "name",
-     "supportEmail",
-     "supportPhone",
      "taxId",
      "type",
      "website"
@@ -15238,11 +15609,13 @@
        },
        "privacyPolicyUrl":{
         "type":"string",
-        "description":"Public URL to the privacy policy that outlines how user data is collected, stored, and used."
+        "description":"Public URL to the privacy policy that outlines how user data is collected, stored, and used.",
+        "pattern":""
        },
        "termsAndConditionsUrl":{
         "type":"string",
-        "description":"URL where the terms and conditions of the campaign are located."
+        "description":"URL where the terms and conditions of the campaign are located.",
+        "pattern":""
        },
        "messageVolume":{
         "$ref":"#/components/schemas/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.TollFreeMessageVolume"
@@ -15261,7 +15634,8 @@
         "type":"array",
         "description":"The numberKey(s) of the numbers to use with the campaign. Campaign must have at least one TFN number associated before it can be submitted for review. Alternatively, you can use the 'numbers' property to specify the numbers directly, but note that 'numberKeys' property takes precedence if both are specified.",
         "items":{
-         "type":"string"
+         "type":"string",
+         "minLength":1
         },
         "maxItems":25,
         "minItems":1,
@@ -15300,6 +15674,7 @@
         "items":{
          "type":"string",
          "description":"List of URLs linking to screenshots that show how end-users opt in to receive messages.",
+         "minLength":1,
          "pattern":"(?i)https?:\\/\\/\\S+"
         },
         "uniqueItems":true
@@ -15324,14 +15699,7 @@
      }
     ],
     "required":[
-     "brandId",
-     "customerCareEmail",
-     "exampleMessage",
-     "messageVolume",
      "name",
-     "optInImageURLs",
-     "optIns",
-     "programSummary",
      "useCase"
     ],
     "title":"TollFreeCampaign"
@@ -15473,11 +15841,13 @@
      },
      "privacyPolicyUrl":{
       "type":"string",
-      "description":"Public URL to the privacy policy that outlines how user data is collected, stored, and used."
+      "description":"Public URL to the privacy policy that outlines how user data is collected, stored, and used.",
+      "pattern":""
      },
      "termsAndConditionsUrl":{
       "type":"string",
-      "description":"URL where the terms and conditions of the campaign are located."
+      "description":"URL where the terms and conditions of the campaign are located.",
+      "pattern":""
      },
      "messageVolume":{
       "$ref":"#/components/schemas/2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.TollFreeMessageVolume"
@@ -15536,8 +15906,10 @@
       "items":{
        "type":"string",
        "description":"List of URLs linking to screenshots that show how end-users opt in to receive messages.",
+       "minLength":1,
        "pattern":"(?i)https?:\\/\\/\\S+"
       },
+      "minItems":1,
       "uniqueItems":true
      },
      "additionalInformation":{
@@ -15564,7 +15936,8 @@
      },
      "supportEmail":{
       "type":"string",
-      "description":"The business email address to contact about brand compliance issues. Must be a well formed email address that does not include a '=' character."
+      "description":"The business email address to contact about brand compliance issues. Must be a well formed email address that does not include a '=' character.",
+      "minLength":1
      },
      "businessContactFirstName":{
       "type":"string",
@@ -15604,6 +15977,7 @@
      },
      "customerCareEmail":{
       "type":"string",
+      "format":"email",
       "description":"The email address the user may contact to get customer care.  Must be a well formed email address that does not include a '=' character.",
       "maxLength":255,
       "minLength":1
@@ -15649,13 +16023,11 @@
      "businessContactFirstName",
      "businessContactLastName",
      "businessWebsite",
-     "customerCareEmail",
      "exampleMessage",
      "legalEntityType",
      "legalName",
      "messageVolume",
      "name",
-     "numberKeys",
      "optInImageURLs",
      "optIns",
      "programSummary",
@@ -15733,7 +16105,8 @@
        "externalDocs":{
         "description":"Find out more about numbers.",
         "url":"#platform-&-connectivity/numbers"
-       }
+       },
+       "minLength":1
       },
       "maxItems":5000,
       "minItems":0,
@@ -15769,6 +16142,14 @@
       "type":"string",
       "format":"binary",
       "description":"The document file to be uploaded."
+     },
+     "applicationId":{
+      "type":"string",
+      "description":"CPaaS X property identifying an application, a use case or an environment on your system. It should only be set if you are using CPaaS X Applications with your traffic."
+     },
+     "entityId":{
+      "type":"string",
+      "description":"CPaaS X property identifying an unique actor on your system. Should only be set if you are using CPaaS X Applications with your traffic."
      }
     },
     "required":[
@@ -15787,9 +16168,6 @@
       "minLength":20
      }
     },
-    "required":[
-     "callToAction"
-    ],
     "title":"VerbalOptIn"
    },
    "2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.Vertical":{
@@ -15875,12 +16253,10 @@
      "url":{
       "type":"string",
       "maxLength":255,
-      "minLength":11
+      "minLength":11,
+      "pattern":""
      }
     },
-    "required":[
-     "callToAction"
-    ],
     "title":"WebOptIn"
    },
    "2700ea5ecfd0574f21019319e90eb63416ede8263eab67e466c718c51cd1a77a.WebhookBrandRegistrationStatus":{
@@ -15948,7 +16324,8 @@
       "properties":{
        "transactionId":{
         "type":"string",
-        "description":"WMC Global transaction ID"
+        "description":"WMC Global transaction ID",
+        "minLength":1
        }
       }
      }
@@ -16181,7 +16558,6 @@
        },
        "sender":{
         "type":"string",
-        "default":"null",
         "description":"If set, response message will be sent from this sender, not from MO receiver."
        },
        "deliveryTimeWindow":{
@@ -16227,6 +16603,48 @@
      "FROM_SENDER"
     ],
     "title":"BlockActionType"
+   },
+   "7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.ChannelVoiceSetup":{
+    "type":"object",
+    "description":"Voice setup on a number. `channel` selects which channel the setup applies to and which action types are available.",
+    "discriminator":{
+     "propertyName":"channel",
+     "mapping":{
+      "VOICE":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceChannelSetup",
+      "WHATSAPP":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.WhatsappChannelSetup"
+     }
+    },
+    "oneOf":[
+     {
+      "$ref":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceChannelSetup"
+     },
+     {
+      "$ref":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.WhatsappChannelSetup"
+     }
+    ],
+    "properties":{
+     "channel":{
+      "type":"string",
+      "default":"VOICE",
+      "description":"Channel the voice setup belongs to.",
+      "enum":[
+       "VOICE",
+       "WHATSAPP"
+      ]
+     },
+     "action":{
+      "$ref":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceActionDetails"
+     },
+     "entityId":{
+      "type":"string",
+      "description":"ID of the Entity that would be associated with the voice setup."
+     },
+     "applicationId":{
+      "type":"string",
+      "description":"ID of the Application that would be associated with the voice setup."
+     }
+    },
+    "title":"ChannelVoiceSetup"
    },
    "7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.ContentType":{
     "type":"string",
@@ -16313,9 +16731,28 @@
    "7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.ExternalIntegrationType":{
     "type":"string",
     "enum":[
-     "MICROSOFT_ACS"
+     "MICROSOFT_ACS",
+     "SALESFORCE_BYOA"
     ],
     "title":"ExternalIntegrationType"
+   },
+   "7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.ForwardToAiAgentActionDetails":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceActionDetails"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "voiceAgentConfigurationId":{
+        "type":"integer",
+        "format":"int64"
+       }
+      }
+     }
+    ],
+    "title":"ForwardToAiAgentActionDetails"
    },
    "7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.ForwardToCallRoutingDetails":{
     "type":"object",
@@ -16398,6 +16835,15 @@
     ],
     "title":"ForwardToMarkupLanguageDetails"
    },
+   "7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.ForwardToOperatorConnectDetails":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceActionDetails"
+     }
+    ],
+    "title":"ForwardToOperatorConnectDetails"
+   },
    "7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.ForwardToPstnActionDetails":{
     "type":"object",
     "allOf":[
@@ -16409,7 +16855,10 @@
       "properties":{
        "pstnNumber":{
         "type":"string",
-        "minLength":1
+        "description":"Must be written in E.164 standard format.",
+        "example":"41793026727",
+        "minLength":1,
+        "pattern":"^[1-9]\\d{1,14}$"
        }
       }
      }
@@ -16437,6 +16886,27 @@
     ],
     "title":"ForwardToSubscriptionDetails"
    },
+   "7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.ForwardToWebRTCActionDetails":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceActionDetails"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "applicationId":{
+        "type":"string",
+        "minLength":1
+       }
+      }
+     }
+    ],
+    "required":[
+     "applicationId"
+    ],
+    "title":"ForwardToWebRTCActionDetails"
+   },
    "7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.HttpForwardAction":{
     "type":"object",
     "allOf":[
@@ -16449,7 +16919,8 @@
        "url":{
         "type":"string",
         "description":"Specifies URL where message will be pushed.",
-        "minLength":1
+        "minLength":1,
+        "pattern":""
        },
        "httpMethod":{
         "$ref":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.HttpMethod"
@@ -16601,7 +17072,8 @@
        "url":{
         "type":"string",
         "description":"Specifies URL where message will be pushed.",
-        "minLength":1
+        "minLength":1,
+        "pattern":""
        },
        "contentFormat":{
         "type":"string",
@@ -16951,6 +17423,7 @@
      "RCS",
      "TELEGRAM",
      "KAKAO_SANGDAM",
+     "ZALO_ZMS",
      "OPEN_CHANNEL"
     ],
     "title":"NumberType"
@@ -16970,6 +17443,41 @@
      }
     },
     "title":"NumbersResponse"
+   },
+   "7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.PlainVoiceActionDetails":{
+    "type":"object",
+    "description":"Voice action configuration valid on the `VOICE` channel.",
+    "discriminator":{
+     "propertyName":"type",
+     "mapping":{
+      "FORWARD_TO_IVR":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.ForwardToIvrActionDetails",
+      "FORWARD_TO_PSTN":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.ForwardToPstnActionDetails",
+      "FORWARD_TO_CALL_ROUTING":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.ForwardToCallRoutingDetails",
+      "FORWARD_TO_SUBSCRIPTION":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.ForwardToSubscriptionDetails",
+      "FORWARD_TO_MARKUP_LANGUAGE":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.ForwardToMarkupLanguageDetails",
+      "FORWARD_TO_WEBRTC":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.ForwardToWebRTCActionDetails",
+      "CALL_FORWARD_TO_APPLICATION":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceCallForwardToApplicationDetails",
+      "FORWARD_TO_OPERATOR_CONNECT":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.ForwardToOperatorConnectDetails",
+      "VOICE_NUMBER_MASKING":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceNumberMaskingActionDetails",
+      "VOICE_CALL_DROP":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceCallDropActionDetails",
+      "VOICE_FORWARD_TO_CONVERSATIONS":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceForwardToConversationsDetails",
+      "VOICE_FORWARD_TO_CONVERSATIONS_WITH_FLOW":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceForwardToConversationsWithFlowDetails",
+      "VOICE_FORWARD_TO_FLOW":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceForwardToFlowDetails",
+      "VOICE_FORWARD_TO_FLOW_WITH_CONVERSATIONS":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceForwardToFlowWithConversationsDetails",
+      "VOICE_FORWARD_TO_ANSWERS":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceForwardToAnswersDetails",
+      "FORWARD_TO_AI_AGENT":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.ForwardToAiAgentActionDetails"
+     }
+    },
+    "properties":{
+     "type":{
+      "$ref":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.MoActionType"
+     },
+     "description":{
+      "type":"string",
+      "description":"Additional action description."
+     }
+    },
+    "title":"PlainVoiceActionDetails"
    },
    "7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.PullAction":{
     "type":"object",
@@ -17163,6 +17671,78 @@
     },
     "title":"VoiceActionDetails"
    },
+   "7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceCallDropActionDetails":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceActionDetails"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "clientUrl":{
+        "type":"string",
+        "minLength":1
+       }
+      }
+     }
+    ],
+    "required":[
+     "clientUrl",
+     "description"
+    ],
+    "title":"VoiceCallDropActionDetails"
+   },
+   "7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceCallForwardToApplicationDetails":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceActionDetails"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "applicationId":{
+        "type":"string",
+        "description":"Unique ID of voice application.",
+        "minLength":1
+       }
+      }
+     }
+    ],
+    "required":[
+     "applicationId"
+    ],
+    "title":"VoiceCallForwardToApplicationDetails"
+   },
+   "7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceChannel":{
+    "type":"string",
+    "default":"VOICE",
+    "description":"Channel the voice action is configured on.",
+    "enum":[
+     "VOICE",
+     "WHATSAPP"
+    ],
+    "title":"VoiceChannel"
+   },
+   "7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceChannelSetup":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.ChannelVoiceSetup"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "action":{
+        "$ref":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.PlainVoiceActionDetails"
+       }
+      }
+     }
+    ],
+    "description":"Voice setup on the `VOICE` channel.",
+    "title":"VoiceChannelSetup"
+   },
    "7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceForwardToAnswersDetails":{
     "type":"object",
     "allOf":[
@@ -17180,6 +17760,78 @@
      }
     ],
     "title":"VoiceForwardToConversationsDetails"
+   },
+   "7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceForwardToConversationsWithFlowDetails":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceActionDetails"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "scenarioKey":{
+        "type":"string"
+       }
+      }
+     }
+    ],
+    "required":[
+     "scenarioKey"
+    ],
+    "title":"VoiceForwardToConversationsWithFlowDetails"
+   },
+   "7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceForwardToFlowDetails":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceActionDetails"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "flowId":{
+        "type":"string"
+       },
+       "flowVersionId":{
+        "type":"string"
+       },
+       "flowCampaignId":{
+        "type":"string"
+       },
+       "flowStateId":{
+        "type":"string"
+       }
+      }
+     }
+    ],
+    "title":"VoiceForwardToFlowDetails"
+   },
+   "7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceForwardToFlowWithConversationsDetails":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceActionDetails"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "flowId":{
+        "type":"string"
+       },
+       "flowVersionId":{
+        "type":"string"
+       },
+       "flowCampaignId":{
+        "type":"string"
+       },
+       "flowStateId":{
+        "type":"string"
+       }
+      }
+     }
+    ],
+    "title":"VoiceForwardToFlowWithConversationsDetails"
    },
    "7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceNumberMaskingActionDetails":{
     "type":"object",
@@ -17228,12 +17880,62 @@
      },
      "action":{
       "$ref":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceActionDetails"
+     },
+     "channel":{
+      "$ref":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceChannel"
      }
     },
     "required":[
      "action"
     ],
     "title":"VoiceSetup"
+   },
+   "7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.WhatsappChannelSetup":{
+    "type":"object",
+    "allOf":[
+     {
+      "$ref":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.ChannelVoiceSetup"
+     },
+     {
+      "type":"object",
+      "properties":{
+       "action":{
+        "$ref":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.WhatsappVoiceActionDetails"
+       }
+      }
+     }
+    ],
+    "description":"Voice setup on the `WHATSAPP` channel, addressing the inbound action on the number's WhatsApp Voice capability.",
+    "title":"WhatsappChannelSetup"
+   },
+   "7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.WhatsappVoiceActionDetails":{
+    "type":"object",
+    "description":"Voice action configuration valid on the `WHATSAPP` channel.",
+    "discriminator":{
+     "propertyName":"type",
+     "mapping":{
+      "FORWARD_TO_IVR":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.ForwardToIvrActionDetails",
+      "FORWARD_TO_CALL_ROUTING":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.ForwardToCallRoutingDetails",
+      "FORWARD_TO_SUBSCRIPTION":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.ForwardToSubscriptionDetails",
+      "VOICE_FORWARD_TO_CONVERSATIONS":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceForwardToConversationsDetails",
+      "VOICE_FORWARD_TO_CONVERSATIONS_WITH_FLOW":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceForwardToConversationsWithFlowDetails",
+      "VOICE_FORWARD_TO_FLOW":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceForwardToFlowDetails",
+      "VOICE_FORWARD_TO_FLOW_WITH_CONVERSATIONS":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceForwardToFlowWithConversationsDetails",
+      "VOICE_FORWARD_TO_ANSWERS":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.VoiceForwardToAnswersDetails",
+      "FORWARD_TO_AI_AGENT":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.ForwardToAiAgentActionDetails",
+      "FORWARD_TO_MARKUP_LANGUAGE":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.ForwardToMarkupLanguageDetails"
+     }
+    },
+    "properties":{
+     "type":{
+      "$ref":"#/components/schemas/7c77a2c703ce12a601f120565936de62cf48d1baf9232d5411f82fc339353553.MoActionType"
+     },
+     "description":{
+      "type":"string",
+      "description":"Additional action description."
+     }
+    },
+    "title":"WhatsappVoiceActionDetails"
    },
    "8b2121dcd8344af6f8ffd883d0b652fbff554e4dff3cace0de1953d2985a5758.ApiException":{
     "type":"object",
@@ -17777,7 +18479,7 @@
      "brand-management"
     ],
     "summary":"Receive Brand Auth 2FA Update",
-    "description":"Any time brand 2FA email is sent or authentication is completed, an event is sent.\nYou need to subscribe to this event over 'REGISTRATION' channel, and specify the 'BRAND_AUTH_UPDATE' event.",
+    "description":"Any time a brand 2FA email changes state (sent, opened, confirmed, reissued, expired, undeliverable, hard bounced or an incorrect code was entered) or 2FA verification is completed, an event is sent.\nYou need to subscribe to this event over 'REGISTRATION' channel, and specify the 'BRAND_AUTH_UPDATE' event.",
     "externalDocs":{
      "description":"Learn more about subscription.",
      "url":"https://www.infobip.com/docs/api/platform/subscriptions-api/create-subscription"
@@ -17901,7 +18603,7 @@
      "number-registration",
      "ai-assistant"
     ],
-    "summary":"Receive AI Campaign Feedback",
+    "summary":"Receive AI Campaign Feedback Notification",
     "description":"Any time a campaign AI review is finished and ready for the results to be fetched, an event is sent.\nYou need to subscribe to this event over 'REGISTRATION' channel, and specify the 'AI_CAMPAIGN_FEEDBACK' event.",
     "externalDocs":{
      "description":"Learn more about subscription.",
@@ -17921,7 +18623,8 @@
      "200":{
       "description":"Your server returns this code if it accepts the callback."
      }
-    }
+    },
+    "x-is-early-access":true
    }
   },
   "campaign-ai-builder-notification":{

@@ -1,175 +1,137 @@
-generated: '2026-07-25'
+generated: '2026-10-08'
 method: searched
-source: https://www.infobip.com/docs/sdk, https://github.com/infobip, npm, PyPI, Maven Central, NuGet, Packagist, Go module proxy
-notes: 'Infobip publishes first-party API client libraries for six server languages plus
-
-  mobile/web SDK families (Mobile Messaging push SDKs, RTC/WebRTC SDKs, People Web SDK).
-
-  All packages below were confirmed live in their registry on 2026-07-25.
-
-  '
+source:
+- https://www.infobip.com/docs/sdk
+- https://github.com/infobip
+- https://github.com/infobip-community
+- registry metadata endpoints (registry.npmjs.org, pypi.org/pypi/*/json, search.maven.org, api.nuget.org registration, repo.packagist.org/p2,
+  proxy.golang.org, crates.io/api/v1)
+summary: Official auto-generated API clients (Java, C#, PHP, Go, Python) plus RTC/WebRTC and Mobile Messaging SDKs published by the infobip GitHub
+  org; a second set of community SDKs lives in the infobip-community org (Node, Python, C#, Rust, PHP, Go). Versions and dates are registry metadata
+  read on 2026-10-08. Mobile SDKs for iOS/Android/Huawei/Flutter/Cordova are documented at https://www.infobip.com/docs/sdk but distributed through
+  CocoaPods/Maven/pub.dev under names not verified here.
+docs: https://www.infobip.com/docs/sdk
+versioning_policy: Semantic Versioning 2.0.0 (https://www.infobip.com/docs/api#sdks)
+removed:
+- name: omnia-sdk (pypi)
+  reason: the PyPI project belongs to omniasec.ai, not Infobip; replaced by the GitHub-only entry
 packages:
-- language: javascript
+- name: '@infobip-api/sdk'
   registry: npm
-  name: '@infobip-api/sdk'
-  version: 0.3.2
   url: https://www.npmjs.com/package/@infobip-api/sdk
-  install: npm install @infobip-api/sdk
-  source: https://github.com/infobip/infobip-api-nodejs-client
-  official: true
-  description: Node.js client SDK for Infobip APIs
-  ownership_audit: metadata names infobip.com
-- language: python
+  language: TypeScript
+  official: false
+  version: 0.3.2
+  published: '2023-11-23'
+  repository: https://github.com/infobip-community/infobip-api-node-sdk
+  note: community org (infobip-community), not listed on the docs SDK page; registry metadata read 2026-10-08
+- name: infobip-api-python-client
   registry: pypi
-  name: infobip-api-python-client
-  version: 6.0.0
   url: https://pypi.org/project/infobip-api-python-client/
-  install: pip install infobip-api-python-client
-  source: https://github.com/infobip/infobip-api-python-client
+  language: Python
   official: true
-  description: Generated Python client for the Infobip API
+  version: 6.0.0
+  published: '2026-01-22'
+  repository: https://github.com/infobip/infobip-api-python-client
+  note: auto-generated from the OpenAPI; listed on https://www.infobip.com/docs/sdk
   ownership_audit: metadata names infobip.com
-- language: python
+- name: infobip-api-python-sdk
   registry: pypi
-  name: infobip-api-python-sdk
-  version: 5.0.1
   url: https://pypi.org/project/infobip-api-python-sdk/
-  install: pip install infobip-api-python-sdk
-  source: https://github.com/infobip-community/infobip-api-python-sdk
-  official: true
-  description: Community-maintained Infobip Python SDK (infobip-community org)
-  ownership_audit: metadata names infobip.com
-- language: java
+  language: Python
+  official: false
+  version: 5.0.1
+  published: '2023-05-26'
+  repository: https://github.com/infobip-community/infobip-api-python-sdk
+  note: community org
+- name: com.infobip:infobip-api-java-client
   registry: maven-central
-  name: com.infobip:infobip-api-java-client
-  url: https://repo1.maven.org/maven2/com/infobip/infobip-api-java-client/
-  install: implementation "com.infobip:infobip-api-java-client"
-  source: https://github.com/infobip/infobip-api-java-client
+  url: https://central.sonatype.com/artifact/com.infobip/infobip-api-java-client
+  language: Java
   official: true
-  description: Infobip API client library in Java
-- language: csharp
+  version: 6.1.1
+  published: '2025-06-20'
+  repository: https://github.com/infobip/infobip-api-java-client
+  note: search.maven.org latestVersion/timestamp read 2026-10-08; the GitHub repo was pushed 2026-09-03
+- name: Infobip.Api.Client
   registry: nuget
-  name: Infobip.Api.Client
-  version: 4.0.2
   url: https://www.nuget.org/packages/Infobip.Api.Client
-  install: dotnet add package Infobip.Api.Client
-  source: https://github.com/infobip/infobip-api-csharp-client
+  language: C#
   official: false
-  description: C# library for consuming Infobip's API
+  version: 4.0.2
+  published: '2025-12-09'
+  repository: https://github.com/infobip/infobip-api-csharp-client
+  note: latest LISTED version; a 5.0.0 catalog entry exists but is unlisted (published 1900-01-01 sentinel)
   ownership_audit: 'registry metadata names neither the provider''s domain nor its GitHub org: official downgraded (harvest-packages.py --audit)'
-- language: csharp
+- name: Infobip.Api.SDK
   registry: nuget
-  name: Infobip.Api.SDK
-  version: 1.0.3
   url: https://www.nuget.org/packages/Infobip.Api.SDK
-  install: dotnet add package Infobip.Api.SDK
+  language: C#
   official: false
-  description: C# SDK for the Infobip API
-  ownership_audit: 'registry metadata names neither the provider''s domain nor its GitHub org: official downgraded (harvest-packages.py --audit)'
-- language: php
+  version: 1.0.3
+  published: '2022-04-11'
+  repository: https://github.com/infobip-community/infobip-api-csharp-sdk
+  note: community org
+- name: infobip/infobip-api-php-client
   registry: packagist
-  name: infobip/infobip-api-php-client
   url: https://packagist.org/packages/infobip/infobip-api-php-client
-  install: composer require infobip/infobip-api-php-client
-  source: https://github.com/infobip/infobip-api-php-client
+  language: PHP
   official: true
-  description: PHP library for consuming Infobip's API
+  version: 6.2.1
+  published: '2025-01-24'
+  repository: https://github.com/infobip/infobip-api-php-client
   ownership_audit: metadata names infobip.com
-- language: go
+- name: github.com/infobip/infobip-api-go-client/v3
   registry: go-modules
-  name: github.com/infobip/infobip-api-go-client/v3
-  version: v3.1.2
   url: https://pkg.go.dev/github.com/infobip/infobip-api-go-client/v3
-  install: go get github.com/infobip/infobip-api-go-client/v3
-  source: https://github.com/infobip/infobip-api-go-client
+  language: Go
   official: true
-  description: Infobip API client for Go
-- language: python
-  registry: pypi
-  name: infobip-cpaasx-python-client
+  version: v3.2.0
+  published: '2026-02-18'
+  repository: https://github.com/infobip/infobip-api-go-client
+- name: infobip_sdk
+  registry: crates.io
+  url: https://crates.io/crates/infobip_sdk
+  language: Rust
+  official: false
+  version: 0.6.1
+  published: '2024-04-19'
+  repository: https://github.com/infobip-community/infobip-api-rust-sdk
+  note: community org
+- name: infobip-rtc
+  registry: npm
+  url: https://www.npmjs.com/package/infobip-rtc
+  language: JavaScript
+  official: true
+  version: 2.7.40
+  published: '2026-09-10'
+  repository: https://github.com/infobip/infobip-rtc-js
+  note: Infobip RTC JavaScript SDK (WebRTC), listed on the docs SDK page
+  ownership_audit: metadata names infobip.com
+- name: infobip-mobile-messaging-react-native-plugin
+  registry: npm
+  url: https://www.npmjs.com/package/infobip-mobile-messaging-react-native-plugin
+  language: JavaScript
+  official: true
+  version: 15.0.0
+  published: '2026-09-17'
+  repository: https://github.com/infobip/mobile-messaging-react-native-plugin
+  note: Mobile Messaging SDK plugin for React Native, listed on the docs SDK page
+  ownership_audit: metadata names infobip.com
+- name: infobip-cpaasx-python-client
+  registry: github
   url: https://github.com/infobip/infobip-cpaasx-python-client
-  install: see repository
-  source: https://github.com/infobip/infobip-cpaasx-python-client
-  official: false
-  description: Infobip CPaaS X Python client library
-  ownership_audit: 'registry has no such package: official downgraded (harvest-packages.py --audit)'
-- language: python
-  registry: pypi
-  name: omnia-sdk
-  version: 0.1.1
-  url: https://pypi.org/project/omnia-sdk/
-  install: pip install omnia-sdk
-  source: https://github.com/infobip/omnia-sdk
-  official: false
-  description: Python SDK for building automated AI workflow applications on Infobip
-  ownership_audit: 'registry metadata names neither the provider''s domain nor its GitHub org: official downgraded (harvest-packages.py --audit)'
-sdk_families:
-- family: Mobile Messaging (push / in-app)
+  language: Python
   official: true
-  packages:
-  - platform: android
-    registry: maven-central
-    name: com.infobip:infobip-mobile-messaging-android-sdk
-    source: https://github.com/infobip/mobile-messaging-sdk-android
-  - platform: huawei
-    registry: maven-central
-    name: com.infobip:infobip-mobile-messaging-huawei-sdk
-    source: https://github.com/infobip/mobile-messaging-sdk-huawei
-  - platform: ios
-    registry: cocoapods-spm
-    name: MobileMessaging
-    source: https://github.com/infobip/mobile-messaging-sdk-ios
-  - platform: react-native
-    registry: npm
-    name: infobip-mobile-messaging-react-native-plugin
-    version: 14.10.1
-    url: https://www.npmjs.com/package/infobip-mobile-messaging-react-native-plugin
-  - platform: cordova
-    registry: npm
-    name: com-infobip-plugins-mobilemessaging
-    source: https://github.com/infobip/mobile-messaging-cordova-plugin
-  - platform: flutter
-    registry: pub.dev
-    name: infobip_mobilemessaging
-    source: https://github.com/infobip/mobile-messaging-flutter-plugin
-  - platform: expo
-    registry: npm
-    name: mobile-messaging-expo-plugin
-    source: https://github.com/infobip/mobile-messaging-expo-plugin
-- family: RTC / WebRTC (Calls and Video)
+  version: null
+  published: null
+  note: 'GitHub-only: pypi.org/pypi/infobip-cpaasx-python-client/json returned 404 on 2026-10-08; repo last pushed 2024-11-19'
+- name: omnia-sdk
+  registry: github
+  url: https://github.com/infobip/omnia-sdk
+  language: Python
   official: true
-  packages:
-  - platform: javascript
-    registry: npm
-    name: infobip-rtc
-    version: 2.7.36
-    url: https://www.npmjs.com/package/infobip-rtc
-    source: https://github.com/infobip/infobip-rtc-js
-  - platform: android
-    registry: maven
-    name: infobip-rtc (Android)
-    source: https://github.com/infobip/infobip-rtc-android
-  - platform: ios
-    registry: cocoapods-spm
-    name: InfobipRTC
-    source: https://github.com/infobip/infobip-rtc-ios
-- family: Web / embeddable
-  official: true
-  packages:
-  - platform: javascript
-    name: People Web SDK
-    source: https://github.com/infobip/people-web-sdk
-  - platform: javascript
-    name: Infobip Inbox (embeddable Conversations - SDK
-    iframe: null
-    web component): null
-    source: https://github.com/infobip/infobip-inbox
-registries_probed:
-- npm
-- pypi
-- maven-central
-- nuget
-- packagist
-- go-modules
-- pub.dev
-- cocoapods
+  version: null
+  published: null
+  note: pyproject.toml declares name omnia-sdk 0.1.0 but the PyPI package of that name (0.1.1, 2026-04-15) belongs to omniasec.ai, a different
+    publisher; Infobip's build is not on a registry, so no version is recorded

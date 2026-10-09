@@ -7,8 +7,8 @@
    "name":"Infobip support",
    "email":"support@infobip.com"
   },
-  "version":"3.210.0",
-  "x-generatedAt":"2026-07-23T15:24:01.295139008Z"
+  "version":"3.245.1",
+  "x-generatedAt":"2026-10-07T09:47:56.937840442Z"
  },
  "tags":[
   {
@@ -3891,7 +3891,11 @@
       "writeOnly":false
      },
      "pinError":{
-      "type":"string",
+      "allOf":[
+       {
+        "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.PinError"
+       }
+      ],
       "description":"Indicates whether an error has occurred during PIN verification.",
       "readOnly":true,
       "writeOnly":false
@@ -3962,12 +3966,8 @@
     "type":"object",
     "properties":{
      "language":{
-      "allOf":[
-       {
-        "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.Language"
-       }
-      ],
-      "description":"The language code which message is written in used when sending text-to-speech messages. If not defined, it will default to English (`en`).",
+      "type":"string",
+      "description":"Language code which message is written in. This is used when sending text-to-speech messages. More about Text-to-speech functionality and supported TTS languages can be found [here](https://www.infobip.com/docs/voice-and-video/outbound-calls#text-to-speech-voice-over-broadcast). If not set, default language is `English [en]`. If voice is not set, then default voice for that specific language is used. In the case of English language, the voice is `[Joanna]`.",
       "readOnly":false,
       "writeOnly":true
      },
@@ -4118,38 +4118,7 @@
       "writeOnly":false
      }
     },
-    "required":[
-     "principalEntityId"
-    ],
     "title":"IndiaDltOptions"
-   },
-   "c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.Language":{
-    "type":"string",
-    "enum":[
-     "en",
-     "es",
-     "ca",
-     "da",
-     "nl",
-     "fr",
-     "de",
-     "it",
-     "ja",
-     "ko",
-     "no",
-     "pl",
-     "ru",
-     "sv",
-     "fi",
-     "hr",
-     "sl",
-     "ro",
-     "pt_pt",
-     "pt_br",
-     "zh_cn",
-     "zh_tw"
-    ],
-    "title":"Language"
    },
    "c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.Message":{
     "type":"object",
@@ -4180,14 +4149,10 @@
       "writeOnly":false
      },
      "language":{
-      "allOf":[
-       {
-        "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.Language"
-       }
-      ],
-      "description":"The language code which message is written in used when sending text-to-speech messages. If not defined, it will default to English (`en`).",
+      "type":"string",
+      "description":"Language code which message is written in. This is used when sending text-to-speech messages. More about Text-to-speech functionality and supported TTS languages can be found [here](https://www.infobip.com/docs/voice-and-video/outbound-calls#text-to-speech-voice-over-broadcast). If not set, default language is `English [en]`. If voice is not set, then default voice for that specific language is used. In the case of English language, the voice is `[Joanna]`.",
       "readOnly":false,
-      "writeOnly":false
+      "writeOnly":true
      },
      "messageId":{
       "type":"string",
@@ -4262,6 +4227,15 @@
     },
     "title":"Message"
    },
+   "c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.PinError":{
+    "type":"string",
+    "enum":[
+     "TTL_EXPIRED",
+     "WRONG_PIN",
+     "NO_MORE_PIN_ATTEMPTS"
+    ],
+    "title":"PinError"
+   },
    "c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.PinType":{
     "type":"string",
     "enum":[
@@ -4298,14 +4272,10 @@
       "writeOnly":false
      },
      "language":{
-      "allOf":[
-       {
-        "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.Language"
-       }
-      ],
-      "description":"The language code which message is written in used when sending text-to-speech messages. If not defined, it will default to English (`en`).",
+      "type":"string",
+      "description":"Language code which message is written in. This is used when sending text-to-speech messages. More about Text-to-speech functionality and supported TTS languages can be found [here](https://www.infobip.com/docs/voice-and-video/outbound-calls#text-to-speech-voice-over-broadcast). If not set, default language is `English [en]`. If voice is not set, then default voice for that specific language is used. In the case of English language, the voice is `[Joanna]`.",
       "readOnly":false,
-      "writeOnly":false
+      "writeOnly":true
      },
      "messageId":{
       "type":"string",
@@ -4426,12 +4396,8 @@
     "type":"object",
     "properties":{
      "language":{
-      "allOf":[
-       {
-        "$ref":"#/components/schemas/c3b21d2ffef2552e10577daa67c904ac80618665b001ef386a4faefc515e78f3.Language"
-       }
-      ],
-      "description":"Language code which message is written in. This is used when sending text-to-speech messages. If not defined, it will default to English (`en`).",
+      "type":"string",
+      "description":"Language code which message is written in. This is used when sending text-to-speech messages. More about Text-to-speech functionality and supported TTS languages can be found [here](https://www.infobip.com/docs/voice-and-video/outbound-calls#text-to-speech-voice-over-broadcast). If not set, default language is `English [en]`. If voice is not set, then default voice for that specific language is used. In the case of English language, the voice is `[Joanna]`.",
       "readOnly":false,
       "writeOnly":true
      },

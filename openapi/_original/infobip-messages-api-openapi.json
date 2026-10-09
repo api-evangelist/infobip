@@ -7,8 +7,8 @@
    "name":"Infobip support",
    "email":"support@infobip.com"
   },
-  "version":"3.210.0",
-  "x-generatedAt":"2026-07-23T15:23:50.401626069Z"
+  "version":"3.245.1",
+  "x-generatedAt":"2026-10-07T09:47:46.388101611Z"
  },
  "tags":[
   {
@@ -2683,13 +2683,16 @@
              "body":{
               "items":[
                {
-                "url":"https://example.com/example1.jpg"
+                "url":"https://example.com/example1.jpg",
+                "contentId":"example-content-id"
                },
                {
-                "text":"Some text"
+                "text":"Some text",
+                "contentId":"example-text-content-id"
                },
                {
-                "url":"https://example.com/example3.jpg"
+                "url":"https://example.com/example3.jpg",
+                "contentId":"example-content-id"
                }
               ],
               "type":"MIXED"
@@ -3877,6 +3880,38 @@
             "content":{
              "body":{
               "url":"https://example.com/image.jpg",
+              "type":"IMAGE"
+             }
+            }
+           }
+          ]
+         },
+         "x-label":{
+          "channel":[
+           "VIBER_BM"
+          ],
+          "message type":[
+           "message"
+          ]
+         }
+        },
+        "Animated GIF image message VIBER_BM":{
+         "summary":"Animated GIF image message",
+         "description":"Image message with `imageFormat` set to `GIF` to enable animated GIF rendering.",
+         "value":{
+          "messages":[
+           {
+            "channel":"VIBER_BM",
+            "sender":"InfobipDemo",
+            "destinations":[
+             {
+              "to":"123456789"
+             }
+            ],
+            "content":{
+             "body":{
+              "url":"https://example.com/image.gif",
+              "imageFormat":"GIF",
               "type":"IMAGE"
              }
             }
@@ -5730,6 +5765,41 @@
           ]
          }
         },
+        "Template message with named parameters WHATSAPP":{
+         "summary":"Template message with named parameters",
+         "value":{
+          "messages":[
+           {
+            "channel":"WHATSAPP",
+            "sender":"447491163862",
+            "destinations":[
+             {
+              "to":"123456789"
+             }
+            ],
+            "template":{
+             "templateName":"templateName",
+             "language":"en"
+            },
+            "content":{
+             "body":{
+              "type":"TEXT",
+              "first_name":"John",
+              "appointment_time":"5:30 AM"
+             }
+            }
+           }
+          ]
+         },
+         "x-label":{
+          "channel":[
+           "WHATSAPP"
+          ],
+          "message type":[
+           "template"
+          ]
+         }
+        },
         "Template message with parameters and dynamic URL buttons WHATSAPP":{
          "summary":"Template message with parameters and dynamic URL buttons",
          "description":"If template has defined static URL buttons they should be omitted in request.",
@@ -6188,6 +6258,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -6195,9 +6268,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -6320,6 +6390,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -6327,9 +6400,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -6555,6 +6625,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -6562,9 +6635,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -6718,7 +6788,10 @@
              },
              "deviceDetails":"deviceDetails",
              "networkId":1,
-             "campaignReferenceId":"campaignRef"
+             "campaignReferenceId":"campaignRef",
+             "contact":{
+              "name":"name"
+             }
             }
            ]
           }
@@ -6739,6 +6812,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -6746,9 +6822,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -6923,6 +6996,9 @@
              "platform":{
               "entityId":"my-entity-id",
               "applicationId":"my-application-id"
+             },
+             "contact":{
+              "name":"name"
              },
              "event":"MO"
             }
@@ -7607,6 +7683,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -7614,9 +7693,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -7692,7 +7768,8 @@
       "description":"Days of the week which are included in the delivery time window. At least one day must be provided. Separate multiple days with a comma.",
       "items":{
        "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.DeliveryDay"
-      }
+      },
+      "minItems":1
      },
      "from":{
       "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.DeliveryTime"
@@ -7793,7 +7870,8 @@
      },
      "principalEntityId":{
       "type":"string",
-      "description":"Your assigned DLT principal entity ID."
+      "description":"Your assigned DLT principal entity ID.",
+      "minLength":1
      },
      "telemarketerId":{
       "type":"string",
@@ -7973,7 +8051,8 @@
       "properties":{
        "suffix":{
         "type":"string",
-        "description":"Extension of a URL defined in the registered template."
+        "description":"Extension of a URL defined in the registered template.",
+        "minLength":1
        }
       }
      }
@@ -8007,7 +8086,8 @@
       "properties":{
        "postbackData":{
         "type":"string",
-        "description":"Custom client data that will be included in a user's response."
+        "description":"Custom client data that will be included in a user's response.",
+        "minLength":1
        }
       }
      }
@@ -8027,7 +8107,8 @@
      },
      "to":{
       "type":"string",
-      "description":"The destination address of the message associated with given channel. It can be alphanumeric or numeric."
+      "description":"The destination address of the message associated with given channel. It can be alphanumeric or numeric.",
+      "minLength":1
      },
      "messageId":{
       "type":"string",
@@ -8058,13 +8139,41 @@
       "description":"An array of substitute destinations, each associated with a specific `channel`. Only one substitute destination is allowed per `channel`. A substitute destination must be provided for the main `channel` defined in the `message`.",
       "items":{
        "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiChannelDestination"
-      }
+      },
+      "minItems":1
      }
     },
     "required":[
      "byChannel"
     ],
     "title":"Channels Destination"
+   },
+   "899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiContact":{
+    "type":"object",
+    "description":"Contact information of the end user.",
+    "properties":{
+     "name":{
+      "type":"string",
+      "description":"Contact's display name."
+     },
+     "phoneNumber":{
+      "type":"string",
+      "description":"Contact's phone number. For WhatsApp, it may be omitted after username launch if the user has adopted a username."
+     },
+     "userId":{
+      "type":"string",
+      "description":"User ID. For WhatsApp, this value is Business-Scoped User ID (BSUID) and is always present once available."
+     },
+     "parentUserId":{
+      "type":"string",
+      "description":"Parent user ID. For WhatsApp, this field is present for linked business portfolios."
+     },
+     "username":{
+      "type":"string",
+      "description":"Username. For WhatsApp, this field is present if the end user has adopted a Meta username."
+     }
+    },
+    "title":"MessagesApiContact"
    },
    "899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiDelivery":{
     "type":"object",
@@ -8208,6 +8317,9 @@
      "campaignReferenceId":{
       "type":"string",
       "description":"ID of a campaign that was sent in the message."
+     },
+     "contact":{
+      "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiContact"
      }
     },
     "required":[
@@ -8267,7 +8379,8 @@
     "properties":{
      "value":{
       "type":"number",
-      "description":"Value of the amount (up to 2 decimal places). For WhatsApp it has to be multiplied by offset (100 for `INR` and `BRL`)"
+      "description":"Value of the amount (up to 2 decimal places). For WhatsApp it has to be multiplied by offset (100 for `INR` and `BRL`)",
+      "minimum":0
      },
      "description":{
       "type":"string",
@@ -8300,7 +8413,8 @@
       "description":"Array of event objects of a single event or multiple events sent",
       "items":{
        "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiOutboundEvent"
-      }
+      },
+      "minItems":1
      }
     },
     "required":[
@@ -8526,7 +8640,8 @@
       "description":"Array of destination objects for where messages are being sent. A valid destination is required. **`Channels Destination` is required when sending messages with defined failover.**",
       "items":{
        "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessageDestination"
-      }
+      },
+      "minItems":1
      },
      "content":{
       "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiMessageContent"
@@ -8563,7 +8678,8 @@
       "properties":{
        "text":{
         "type":"string",
-        "description":"Text to be displayed on the button."
+        "description":"Text to be displayed on the button.",
+        "minLength":1
        },
        "postbackData":{
         "type":"string",
@@ -8581,7 +8697,8 @@
        },
        "title":{
         "type":"string",
-        "description":"Event title."
+        "description":"Event title.",
+        "minLength":1
        },
        "description":{
         "type":"string",
@@ -8618,7 +8735,8 @@
        },
        "merchantPaymentGatewayUrl":{
         "type":"string",
-        "description":"The URL of the merchant's payment gateway. This is the URL that Apple Pay uses to process payments."
+        "description":"The URL of the merchant's payment gateway. This is the URL that Apple Pay uses to process payments.",
+        "pattern":""
        },
        "merchantCountryCode":{
         "type":"string",
@@ -8660,23 +8778,28 @@
        },
        "paymentMethodUpdateUrl":{
         "type":"string",
-        "description":"Called by Apple Pay when the user changes the payment method."
+        "description":"Called by Apple Pay when the user changes the payment method.",
+        "pattern":""
        },
        "shippingContactUpdateUrl":{
         "type":"string",
-        "description":"Called by Apple Pay when the user changes their shipping address information."
+        "description":"Called by Apple Pay when the user changes their shipping address information.",
+        "pattern":""
        },
        "shippingMethodUpdateUrl":{
         "type":"string",
-        "description":"Called by Apple Pay when the user changes the shipping method."
+        "description":"Called by Apple Pay when the user changes the shipping method.",
+        "pattern":""
        },
        "orderTrackingUrl":{
         "type":"string",
-        "description":"Called by Apple Pay after completing the order provides you with an opportunity to update the order information in your system."
+        "description":"Called by Apple Pay after completing the order provides you with an opportunity to update the order information in your system.",
+        "pattern":""
        },
        "fallbackUrl":{
         "type":"string",
-        "description":"A URL that opens in a web browser so the user can complete the purchase if their device is unable to make payments using Apple Pay."
+        "description":"A URL that opens in a web browser so the user can complete the purchase if their device is unable to make payments using Apple Pay.",
+        "pattern":""
        }
       }
      }
@@ -8736,7 +8859,8 @@
       "properties":{
        "text":{
         "type":"string",
-        "description":"Text to be sent."
+        "description":"Text to be sent.",
+        "minLength":1
        },
        "scopes":{
         "type":"array",
@@ -8748,7 +8872,8 @@
        },
        "imageUrl":{
         "type":"string",
-        "description":"URL of the image."
+        "description":"URL of the image.",
+        "pattern":""
        }
       }
      }
@@ -8859,7 +8984,8 @@
        },
        "paymentLink":{
         "type":"string",
-        "description":"Payment link."
+        "description":"Payment link.",
+        "pattern":""
        }
       }
      }
@@ -9047,7 +9173,8 @@
         "description":"Carousel cards.",
         "items":{
          "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiMessageCarouselCard"
-        }
+        },
+        "minItems":1
        }
       }
      }
@@ -9092,7 +9219,8 @@
      },
      "url":{
       "type":"string",
-      "description":"URL of the card's media. It can be image or video. When you provide it with `isVideo=true` then it will be mapped as a video, otherwise - as an image."
+      "description":"URL of the card's media. It can be image or video. When you provide it with `isVideo=true` then it will be mapped as a video, otherwise - as an image.",
+      "pattern":""
      },
      "isVideo":{
       "type":"boolean",
@@ -9101,7 +9229,8 @@
      },
      "thumbnailUrl":{
       "type":"string",
-      "description":"URL of the thumbnail image. If you add this, then we use as thumbnail image for video you provided in `url`. Applicable only when `isVideo=true`."
+      "description":"URL of the thumbnail image. If you add this, then we use as thumbnail image for video you provided in `url`. Applicable only when `isVideo=true`.",
+      "pattern":""
      },
      "cardOptions":{
       "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiMessageCardOptions"
@@ -9115,7 +9244,8 @@
     "properties":{
      "text":{
       "type":"string",
-      "description":"Text to be sent."
+      "description":"Text to be sent.",
+      "minLength":1
      },
      "description":{
       "type":"string",
@@ -9123,7 +9253,8 @@
      },
      "imageUrl":{
       "type":"string",
-      "description":"URL of the image."
+      "description":"URL of the image.",
+      "pattern":""
      }
     },
     "required":[
@@ -9142,11 +9273,13 @@
       "properties":{
        "name":{
         "type":"string",
-        "description":"Name of the contact."
+        "description":"Name of the contact.",
+        "minLength":1
        },
        "phoneNumber":{
         "type":"string",
-        "description":"Phone number of the contact."
+        "description":"Phone number of the contact.",
+        "minLength":1
        }
       }
      }
@@ -9205,7 +9338,8 @@
        },
        "text":{
         "type":"string",
-        "description":"Text of the page."
+        "description":"Text of the page.",
+        "minLength":1
        },
        "pageIdentifier":{
         "type":"string",
@@ -9272,7 +9406,8 @@
     "properties":{
      "value":{
       "type":"number",
-      "description":"Value of the amount (up to 2 decimal places). For WhatsApp it has to be multiplied by offset (100 for `INR` and `BRL`)"
+      "description":"Value of the amount (up to 2 decimal places). For WhatsApp it has to be multiplied by offset (100 for `INR` and `BRL`)",
+      "minimum":0
      },
      "description":{
       "type":"string",
@@ -9287,7 +9422,8 @@
     "properties":{
      "value":{
       "type":"number",
-      "description":"Value of the amount (up to 2 decimal places). For WhatsApp it has to be multiplied by offset (100 for `INR` and `BRL`)"
+      "description":"Value of the amount (up to 2 decimal places). For WhatsApp it has to be multiplied by offset (100 for `INR` and `BRL`)",
+      "minimum":0
      },
      "description":{
       "type":"string",
@@ -9307,11 +9443,13 @@
       "properties":{
        "text":{
         "type":"string",
-        "description":"Text to be displayed on the button."
+        "description":"Text to be displayed on the button.",
+        "minLength":1
        },
        "phoneNumber":{
         "type":"string",
         "description":"Valid phone number.",
+        "minLength":1,
         "pattern":"^\\+?[0-9]\\d{1,14}$"
        },
        "postbackData":{
@@ -9339,7 +9477,9 @@
       "properties":{
        "url":{
         "type":"string",
-        "description":"URL of the document."
+        "description":"URL of the document.",
+        "minLength":1,
+        "pattern":""
        },
        "text":{
         "type":"string",
@@ -9384,7 +9524,8 @@
     "properties":{
      "screen":{
       "type":"string",
-      "description":"ID of the first screen of the flow."
+      "description":"ID of the first screen of the flow.",
+      "minLength":1
      },
      "data":{
       "type":"object",
@@ -9418,19 +9559,23 @@
       "properties":{
        "text":{
         "type":"string",
-        "description":"Text to be sent."
+        "description":"Text to be sent.",
+        "minLength":1
        },
        "id":{
         "type":"string",
-        "description":"ID of the flow."
+        "description":"ID of the flow.",
+        "minLength":1
        },
        "token":{
         "type":"string",
-        "description":"Token of the flow."
+        "description":"Token of the flow.",
+        "minLength":1
        },
        "buttonText":{
         "type":"string",
-        "description":"Button label text."
+        "description":"Button label text.",
+        "minLength":1
        },
        "mode":{
         "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiMessageFlowMode"
@@ -9500,7 +9645,8 @@
     "properties":{
      "text":{
       "type":"string",
-      "description":"Text of the footer."
+      "description":"Text of the footer.",
+      "minLength":1
      }
     },
     "required":[
@@ -9519,7 +9665,8 @@
       "properties":{
        "text":{
         "type":"string",
-        "description":"Text of the received message."
+        "description":"Text of the received message.",
+        "minLength":1
        },
        "imageUrl":{
         "type":"string",
@@ -9530,7 +9677,8 @@
         "description":"An array of different pages to be shown in the form. If INTRO page is included it will always appear first.",
         "items":{
          "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiMessageFormPage"
-        }
+        },
+        "minItems":1
        },
        "startPageIdentifier":{
         "type":"string",
@@ -9599,15 +9747,18 @@
     "properties":{
      "identifier":{
       "type":"string",
-      "description":"Unique identifier of the item."
+      "description":"Unique identifier of the item.",
+      "minLength":1
      },
      "title":{
       "type":"string",
-      "description":"Title of the item."
+      "description":"Title of the item.",
+      "minLength":1
      },
      "value":{
       "type":"string",
-      "description":"Value of the item."
+      "description":"Value of the item.",
+      "minLength":1
      }
     },
     "required":[
@@ -9623,15 +9774,18 @@
     "properties":{
      "identifier":{
       "type":"string",
-      "description":"Unique identifier of the item."
+      "description":"Unique identifier of the item.",
+      "minLength":1
      },
      "title":{
       "type":"string",
-      "description":"Title of the item."
+      "description":"Title of the item.",
+      "minLength":1
      },
      "value":{
       "type":"string",
-      "description":"Value of the item."
+      "description":"Value of the item.",
+      "minLength":1
      },
      "nextPageIdentifier":{
       "type":"string",
@@ -9688,11 +9842,16 @@
       "properties":{
        "url":{
         "type":"string",
-        "description":"URL of the image."
+        "description":"URL of the image.",
+        "minLength":1,
+        "pattern":""
        },
        "text":{
         "type":"string",
         "description":"Image caption."
+       },
+       "imageFormat":{
+        "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiMessageImageFormat"
        }
       }
      }
@@ -9702,6 +9861,16 @@
      "url"
     ],
     "title":"MessagesApiMessageImageBody"
+   },
+   "899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiMessageImageFormat":{
+    "type":"string",
+    "default":"IMG",
+    "description":"Image format. Use `GIF` to enable animated GIF rendering. Supported only by `VIBER_BM`.",
+    "enum":[
+     "GIF",
+     "IMG"
+    ],
+    "title":"MessagesApiMessageImageFormat"
    },
    "899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiMessageInputFormInputType":{
     "type":"string",
@@ -9728,7 +9897,8 @@
        },
        "text":{
         "type":"string",
-        "description":"Text of the page."
+        "description":"Text of the page.",
+        "minLength":1
        },
        "pageIdentifier":{
         "type":"string",
@@ -9901,7 +10071,8 @@
       "properties":{
        "text":{
         "type":"string",
-        "description":"Text to be sent."
+        "description":"Text to be sent.",
+        "minLength":1
        },
        "subtext":{
         "type":"string",
@@ -9909,14 +10080,16 @@
        },
        "imageUrl":{
         "type":"string",
-        "description":"URL of the image."
+        "description":"URL of the image.",
+        "pattern":""
        },
        "sections":{
         "type":"array",
         "description":"Section's list.",
         "items":{
          "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiMessageListSection"
-        }
+        },
+        "minItems":1
        }
       }
      }
@@ -9938,7 +10111,8 @@
      },
      "text":{
       "type":"string",
-      "description":"Item Text."
+      "description":"Item Text.",
+      "minLength":1
      },
      "description":{
       "type":"string",
@@ -9946,7 +10120,8 @@
      },
      "imageUrl":{
       "type":"string",
-      "description":"Item's Image URL."
+      "description":"Item's Image URL.",
+      "pattern":""
      }
     },
     "required":[
@@ -9960,7 +10135,8 @@
     "properties":{
      "sectionTitle":{
       "type":"string",
-      "description":"Section's title"
+      "description":"Section's title",
+      "minLength":1
      },
      "multipleSelection":{
       "type":"boolean",
@@ -9971,7 +10147,8 @@
       "description":"List Items.",
       "items":{
        "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiMessageListItem"
-      }
+      },
+      "minItems":1
      }
     },
     "required":[
@@ -10039,7 +10216,8 @@
         "description":"Mixed items.",
         "items":{
          "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiMessageMixedItem"
-        }
+        },
+        "minItems":1
        }
       }
      }
@@ -10069,7 +10247,13 @@
     "properties":{
      "url":{
       "type":"string",
-      "description":"URL of the media's item."
+      "description":"URL of the media's item.",
+      "minLength":1,
+      "pattern":""
+     },
+     "contentId":{
+      "type":"string",
+      "description":"Custom content identifier for the media item. Supported by MMS only (Apple ignores)."
      }
     },
     "required":[
@@ -10083,7 +10267,12 @@
     "properties":{
      "text":{
       "type":"string",
-      "description":"Text to be sent."
+      "description":"Text to be sent.",
+      "minLength":1
+     },
+     "contentId":{
+      "type":"string",
+      "description":"Custom content identifier for the text item. Supported by MMS only (Apple ignores)."
      }
     },
     "required":[
@@ -10102,11 +10291,14 @@
       "properties":{
        "text":{
         "type":"string",
-        "description":"Text to be displayed on the button."
+        "description":"Text to be displayed on the button.",
+        "minLength":1
        },
        "url":{
         "type":"string",
-        "description":"URL to be opened when clicked on the button."
+        "description":"URL to be opened when clicked on the button.",
+        "minLength":1,
+        "pattern":"(http|https|viber)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@!\\-/]))?"
        },
        "postbackData":{
         "type":"string",
@@ -10293,7 +10485,8 @@
     "properties":{
      "name":{
       "type":"string",
-      "description":"Name of the item."
+      "description":"Name of the item.",
+      "minLength":1
      },
      "retailerId":{
       "type":"string",
@@ -10302,15 +10495,19 @@
      "quantity":{
       "type":"integer",
       "format":"int32",
-      "description":"(WhatsApp specific) Item quantity."
+      "description":"(WhatsApp specific) Item quantity.",
+      "exclusiveMinimum":0,
+      "minimum":0
      },
      "amount":{
       "type":"number",
-      "description":"Price of the item (up to 2 decimal places). For WhatsApp it has to be multiplied by offset (100 for `INR` and `BRL`)"
+      "description":"Price of the item (up to 2 decimal places). For WhatsApp it has to be multiplied by offset (100 for `INR` and `BRL`)",
+      "minimum":0
      },
      "saleAmount":{
       "type":"number",
-      "description":"(WhatsApp specific) Item discount (up to 2 decimal places). For WhatsApp it has to be multiplied by offset (100 for `INR` and `BRL`)"
+      "description":"(WhatsApp specific) Item discount (up to 2 decimal places). For WhatsApp it has to be multiplied by offset (100 for `INR` and `BRL`)",
+      "minimum":0
      },
      "importer":{
       "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiMessageOrderImporter"
@@ -10381,7 +10578,8 @@
        },
        "id":{
         "type":"string",
-        "description":"Unique identifier of the payment."
+        "description":"Unique identifier of the payment.",
+        "minLength":1
        },
        "orderType":{
         "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiMessageOrderStatusOrderType"
@@ -10453,7 +10651,8 @@
      },
      "subtotal":{
       "type":"number",
-      "description":"(WhatsApp specific, required) Sub-total amount of the order (up to 2 decimal places). For WhatsApp it has to be multiplied by offset (100 for `INR` and `BRL`)"
+      "description":"(WhatsApp specific, required) Sub-total amount of the order (up to 2 decimal places). For WhatsApp it has to be multiplied by offset (100 for `INR` and `BRL`)",
+      "minimum":0
      },
      "tax":{
       "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiMessageDescriptiveTaxAmount"
@@ -10612,7 +10811,8 @@
        },
        "text":{
         "type":"string",
-        "description":"Text of the page."
+        "description":"Text of the page.",
+        "minLength":1
        },
        "pageIdentifier":{
         "type":"string",
@@ -10631,7 +10831,8 @@
         "description":"An array of objects defining the user experience.",
         "items":{
          "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiMessageFormPickerPageItem"
-        }
+        },
+        "minItems":1
        },
        "submitForm":{
         "type":"boolean",
@@ -10674,14 +10875,16 @@
        },
        "catalogId":{
         "type":"string",
-        "description":"The ID that uniquely identifies the catalog"
+        "description":"The ID that uniquely identifies the catalog",
+        "minLength":1
        },
        "sections":{
         "type":"array",
         "description":"An array of product sections. Header and title fields are required in case of multiple products.",
         "items":{
          "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiMessageProductSection"
-        }
+        },
+        "minItems":1
        }
       }
      }
@@ -10706,8 +10909,10 @@
       "description":"Unique product identifier, as defined in catalog.",
       "items":{
        "type":"string",
-       "description":"Unique product identifier, as defined in catalog."
-      }
+       "description":"Unique product identifier, as defined in catalog.",
+       "minLength":1
+      },
+      "minItems":1
      }
     },
     "required":[
@@ -10726,7 +10931,8 @@
       "properties":{
        "text":{
         "type":"string",
-        "description":"Text to be displayed on the button."
+        "description":"Text to be displayed on the button.",
+        "minLength":1
        },
        "postbackData":{
         "type":"string",
@@ -10777,15 +10983,20 @@
       "properties":{
        "redirectUrl":{
         "type":"string",
-        "description":"URL to be redirected to."
+        "description":"URL to be redirected to.",
+        "minLength":1,
+        "pattern":""
        },
        "text":{
         "type":"string",
-        "description":"Text to be sent."
+        "description":"Text to be sent.",
+        "minLength":1
        },
        "url":{
         "type":"string",
-        "description":"URL of the rich link. It can be image or video. When you provide it with `isVideo=true` then it will be mapped as a video, otherwise - as an image."
+        "description":"URL of the rich link. It can be image or video. When you provide it with `isVideo=true` then it will be mapped as a video, otherwise - as an image.",
+        "minLength":1,
+        "pattern":""
        },
        "isVideo":{
         "type":"boolean",
@@ -10794,7 +11005,8 @@
        },
        "thumbnailUrl":{
         "type":"string",
-        "description":"URL of the thumbnail image. If you add this, then we use as thumbnail image for video you provided in `url`. Applicable only when `isVideo=true`."
+        "description":"URL of the thumbnail image. If you add this, then we use as thumbnail image for video you provided in `url`. Applicable only when `isVideo=true`.",
+        "pattern":""
        },
        "buttonText":{
         "type":"string",
@@ -10829,7 +11041,8 @@
        },
        "text":{
         "type":"string",
-        "description":"Text of the page."
+        "description":"Text of the page.",
+        "minLength":1
        },
        "pageIdentifier":{
         "type":"string",
@@ -10848,7 +11061,8 @@
         "description":"An array of objects defining the user experience.",
         "items":{
          "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiMessageFormSelectPageItem"
-        }
+        },
+        "minItems":1
        },
        "submitForm":{
         "type":"boolean",
@@ -10882,7 +11096,8 @@
      },
      "avatarUrl":{
       "type":"string",
-      "description":"The sender's avatar URL."
+      "description":"The sender's avatar URL.",
+      "pattern":""
      }
     },
     "title":"MessagesApiMessageSenderDisplayInfo"
@@ -10893,7 +11108,8 @@
     "properties":{
      "amount":{
       "type":"number",
-      "description":"Amount of shipping cost (up to 2 decimal places). For WhatsApp it has to be multiplied by offset (100 for `INR` and `BRL`)"
+      "description":"Amount of shipping cost (up to 2 decimal places). For WhatsApp it has to be multiplied by offset (100 for `INR` and `BRL`)",
+      "minimum":0
      },
      "description":{
       "type":"string",
@@ -10924,7 +11140,8 @@
       "properties":{
        "text":{
         "type":"string",
-        "description":"Text to be displayed on the button."
+        "description":"Text to be displayed on the button.",
+        "minLength":1
        },
        "latitude":{
         "type":"number",
@@ -10972,7 +11189,8 @@
       "properties":{
        "reference":{
         "type":"string",
-        "description":"Unique reference to the sticker. It can be URL or identifier. If it is URL, resource should be of WebP type."
+        "description":"Unique reference to the sticker. It can be URL or identifier. If it is URL, resource should be of WebP type.",
+        "minLength":1
        }
       }
      }
@@ -10994,7 +11212,8 @@
       "properties":{
        "text":{
         "type":"string",
-        "description":"Text to be sent."
+        "description":"Text to be sent.",
+        "minLength":1
        }
       }
      }
@@ -11016,7 +11235,8 @@
       "properties":{
        "text":{
         "type":"string",
-        "description":"Text of the header."
+        "description":"Text of the header.",
+        "minLength":1
        }
       }
      }
@@ -11038,7 +11258,8 @@
       "properties":{
        "text":{
         "type":"string",
-        "description":"Text to be sent."
+        "description":"Text to be sent.",
+        "minLength":1
        },
        "subtext":{
         "type":"string",
@@ -11046,7 +11267,8 @@
        },
        "imageUrl":{
         "type":"string",
-        "description":"URL of the image."
+        "description":"URL of the image.",
+        "pattern":""
        },
        "event":{
         "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiMessageTimePickerEvent"
@@ -11067,21 +11289,24 @@
     "properties":{
      "title":{
       "type":"string",
-      "description":"Title of event."
+      "description":"Title of event.",
+      "minLength":1
      },
      "timeslots":{
       "type":"array",
       "description":"Possible timeslots for event.",
       "items":{
        "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiMessageTimePickerTimeslot"
-      }
+      },
+      "minItems":1
      },
      "location":{
       "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiMessageTimePickerLocation"
      },
      "imageUrl":{
       "type":"string",
-      "description":"URL of the event's image."
+      "description":"URL of the event's image.",
+      "pattern":""
      }
     },
     "required":[
@@ -11117,7 +11342,8 @@
      },
      "name":{
       "type":"string",
-      "description":"Name of the location."
+      "description":"Name of the location.",
+      "minLength":1
      }
     },
     "required":[
@@ -11221,6 +11447,7 @@
        },
        "customerEmail":{
         "type":"string",
+        "format":"email",
         "description":"Customer's email.",
         "maxLength":50,
         "minLength":1
@@ -11293,7 +11520,9 @@
       "properties":{
        "url":{
         "type":"string",
-        "description":"URL of the video."
+        "description":"URL of the video.",
+        "minLength":1,
+        "pattern":""
        },
        "text":{
         "type":"string",
@@ -11301,7 +11530,8 @@
        },
        "thumbnailUrl":{
         "type":"string",
-        "description":"URL of the thumbnail of the video (required and used only for Viber messages)."
+        "description":"URL of the thumbnail of the video (required and used only for Viber messages).",
+        "pattern":""
        }
       }
      }
@@ -11370,6 +11600,9 @@
        },
        "metadata":{
         "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiMoEventMetadata"
+       },
+       "contact":{
+        "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiContact"
        }
       }
      }
@@ -12094,7 +12327,8 @@
        },
        "sender":{
         "type":"string",
-        "description":"The sender ID. It can be alphanumeric or numeric (e.g., `CompanyName`). Make sure you don't exceed [character limit](https://www.infobip.com/docs/sms/get-started#sender-names)."
+        "description":"The sender ID. It can be alphanumeric or numeric (e.g., `CompanyName`). Make sure you don't exceed [character limit](https://www.infobip.com/docs/sms/get-started#sender-names).",
+        "minLength":1
        },
        "destinations":{
         "type":"array",
@@ -12107,7 +12341,8 @@
        },
        "messageId":{
         "type":"string",
-        "description":"ID of the message that should be marked as seen."
+        "description":"ID of the message that should be marked as seen.",
+        "minLength":1
        },
        "options":{
         "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiEventOptions"
@@ -12138,14 +12373,16 @@
        },
        "sender":{
         "type":"string",
-        "description":"The sender ID. It can be alphanumeric or numeric (e.g., `CompanyName`). Make sure you don't exceed [character limit](https://www.infobip.com/docs/sms/get-started#sender-names)."
+        "description":"The sender ID. It can be alphanumeric or numeric (e.g., `CompanyName`). Make sure you don't exceed [character limit](https://www.infobip.com/docs/sms/get-started#sender-names).",
+        "minLength":1
        },
        "destinations":{
         "type":"array",
         "description":"Array of destination objects for where events are being sent. A valid destination is required.",
         "items":{
          "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiToDestination"
-        }
+        },
+        "minItems":1
        },
        "options":{
         "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiEventOptions"
@@ -12175,14 +12412,16 @@
        },
        "sender":{
         "type":"string",
-        "description":"The sender ID. It can be alphanumeric or numeric (e.g., `CompanyName`). Make sure you don't exceed [character limit](https://www.infobip.com/docs/sms/get-started#sender-names)."
+        "description":"The sender ID. It can be alphanumeric or numeric (e.g., `CompanyName`). Make sure you don't exceed [character limit](https://www.infobip.com/docs/sms/get-started#sender-names).",
+        "minLength":1
        },
        "destinations":{
         "type":"array",
         "description":"Array of destination objects for where events are being sent. A valid destination is required.",
         "items":{
          "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiToDestination"
-        }
+        },
+        "minItems":1
        },
        "options":{
         "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiEventOptions"
@@ -12206,7 +12445,8 @@
       "description":"Array of message objects of a single message or multiple messages sent under one bulk ID.",
       "items":{
        "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiBaseMessage"
-      }
+      },
+      "minItems":1
      },
      "options":{
       "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiRequestOptions"
@@ -12295,6 +12535,9 @@
      "campaignReferenceId":{
       "type":"string",
       "description":"ID of a campaign that was sent in the message."
+     },
+     "contact":{
+      "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiContact"
      }
     },
     "required":[
@@ -12315,7 +12558,8 @@
     "properties":{
      "templateName":{
       "type":"string",
-      "description":"Name of the template."
+      "description":"Template name or identifier which given channel uses to send a template message.",
+      "minLength":1
      },
      "language":{
       "type":"string",
@@ -12411,7 +12655,8 @@
         "description":"Carousel cards.",
         "items":{
          "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiTemplateCarouselCard"
-        }
+        },
+        "minItems":1
        }
       }
      }
@@ -12433,7 +12678,7 @@
       "type":"object",
       "additionalProperties":{
        "type":"string",
-       "description":"Key value pairs that will be replaced during message sending. Valid example `{\"1\": \"John\", \"2\": \"Smith\"}`."
+       "description":"Key value pairs that will be replaced during message sending. For channel WHATSAPP, all keys must be either only numerical or only lowercase letters and underscores. Valid examples `{\"1\": \"John\", \"2\": \"Smith\"}` and `{\"first_name\": \"John\"}`."
       },
       "description":"Body of a card."
      },
@@ -12489,7 +12734,9 @@
       "properties":{
        "url":{
         "type":"string",
-        "description":"URL of an image."
+        "description":"URL of an image.",
+        "minLength":1,
+        "pattern":""
        }
       }
      }
@@ -12511,7 +12758,9 @@
       "properties":{
        "url":{
         "type":"string",
-        "description":"URL of a video."
+        "description":"URL of a video.",
+        "minLength":1,
+        "pattern":""
        }
       }
      }
@@ -12580,11 +12829,14 @@
       "properties":{
        "url":{
         "type":"string",
-        "description":"URL of a document."
+        "description":"URL of a document.",
+        "minLength":1,
+        "pattern":""
        },
        "filename":{
         "type":"string",
-        "description":"Name of the file which will be used to display in message."
+        "description":"Name of the file which will be used to display in message.",
+        "minLength":1
        }
       }
      }
@@ -12698,7 +12950,9 @@
       "properties":{
        "url":{
         "type":"string",
-        "description":"URL of an image."
+        "description":"URL of an image.",
+        "minLength":1,
+        "pattern":""
        }
       }
      }
@@ -12758,7 +13012,8 @@
       "description":"Array of destination objects for where messages are being sent. A valid destination is required. **`Channels Destination` is required when sending messages with defined failover.**",
       "items":{
        "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessageDestination"
-      }
+      },
+      "minItems":1
      },
      "template":{
       "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiTemplate"
@@ -12859,8 +13114,10 @@
       "description":"An array of product-unique identifiers as defined in the catalog. If product retailer ID doesn't exist in your catalog, the product won't be displayed.",
       "items":{
        "type":"string",
-       "description":"An array of product-unique identifiers as defined in the catalog. If product retailer ID doesn't exist in your catalog, the product won't be displayed."
-      }
+       "description":"An array of product-unique identifiers as defined in the catalog. If product retailer ID doesn't exist in your catalog, the product won't be displayed.",
+       "minLength":1
+      },
+      "minItems":1
      }
     },
     "required":[
@@ -12880,7 +13137,8 @@
       "properties":{
        "suffix":{
         "type":"string",
-        "description":"Extension of a URL defined in the registered template."
+        "description":"Extension of a URL defined in the registered template.",
+        "minLength":1
        }
       }
      }
@@ -12914,7 +13172,8 @@
       "properties":{
        "postbackData":{
         "type":"string",
-        "description":"Custom client data that will be included in a user's response."
+        "description":"Custom client data that will be included in a user's response.",
+        "minLength":1
        }
       }
      }
@@ -12929,14 +13188,14 @@
     "type":"object",
     "additionalProperties":{
      "type":"string",
-     "description":"Key value pairs that will be replaced during message sending. Valid example `{\"1\": \"John\", \"2\": \"Smith\", \"type\": \"TEXT\"}`."
+     "description":"Key value pairs that will be replaced during message sending. For channel WHATSAPP, all keys must be either only numerical or only lowercase letters and underscores. Valid examples `{\"1\": \"John\", \"2\": \"Smith\", \"type\": \"TEXT\"}` and `{\"first_name\": \"John\", \"type\": \"TEXT\"}`."
     },
     "allOf":[
      {
       "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiTemplateBody"
      }
     ],
-    "description":"Key value pairs that will be replaced during message sending. Valid example `{\"1\": \"John\", \"2\": \"Smith\", \"type\": \"TEXT\"}`.",
+    "description":"Key value pairs that will be replaced during message sending. For channel WHATSAPP, all keys must be either only numerical or only lowercase letters and underscores. Valid examples `{\"1\": \"John\", \"2\": \"Smith\", \"type\": \"TEXT\"}` and `{\"first_name\": \"John\", \"type\": \"TEXT\"}`.",
     "required":[
      "type"
     ],
@@ -12946,14 +13205,14 @@
     "type":"object",
     "additionalProperties":{
      "type":"string",
-     "description":"Key value pairs that will be replaced during message sending in a header. Valid example `{\"1\": \"John\", \"2\": \"Smith\", \"type\": \"TEXT\"}`"
+     "description":"Key value pairs that will be replaced during message sending in a header. For channel WHATSAPP, all keys must be either only numerical or only lowercase letters and underscores. Valid examples `{\"1\": \"John\", \"type\": \"TEXT\"}` and `{\"first_name\": \"John\", \"type\": \"TEXT\"}`."
     },
     "allOf":[
      {
       "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessagesApiTemplateHeader"
      }
     ],
-    "description":"Key value pairs that will be replaced during message sending in a header. Valid example `{\"1\": \"John\", \"2\": \"Smith\", \"type\": \"TEXT\"}`",
+    "description":"Key value pairs that will be replaced during message sending in a header. For channel WHATSAPP, all keys must be either only numerical or only lowercase letters and underscores. Valid examples `{\"1\": \"John\", \"type\": \"TEXT\"}` and `{\"first_name\": \"John\", \"type\": \"TEXT\"}`.",
     "required":[
      "type"
     ],
@@ -12970,7 +13229,9 @@
       "properties":{
        "url":{
         "type":"string",
-        "description":"URL of a video."
+        "description":"URL of a video.",
+        "minLength":1,
+        "pattern":""
        }
       }
      }
@@ -12987,7 +13248,8 @@
     "properties":{
      "to":{
       "type":"string",
-      "description":"The destination address of the message. It can be alphanumeric or numeric."
+      "description":"The destination address of the message. It can be alphanumeric or numeric.",
+      "minLength":1
      },
      "messageId":{
       "type":"string",
@@ -13220,7 +13482,8 @@
       "description":"An array of message objects of a single message or multiple messages sent under one bulk ID.",
       "items":{
        "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.MessageResponseMessageResponseDetails"
-      }
+      },
+      "minItems":1
      }
     },
     "required":[
@@ -13418,7 +13681,9 @@
      "amount":{
       "type":"integer",
       "format":"int32",
-      "description":"Message validity period's value. If `timeUnit` is not set, it will default to `MINUTES`."
+      "description":"Message validity period's value. If `timeUnit` is not set, it will default to `MINUTES`.",
+      "exclusiveMinimum":0,
+      "minimum":0
      },
      "timeUnit":{
       "$ref":"#/components/schemas/899caf445aab842b03fe1d74e4afd7097f0161dae66538ffa05bba2f153d708f.ValidityPeriodTimeUnit"
@@ -13445,15 +13710,18 @@
     "properties":{
      "errorCode":{
       "type":"string",
-      "description":"An error code uniquely identifying the error case."
+      "description":"An error code uniquely identifying the error case.",
+      "minLength":1
      },
      "description":{
       "type":"string",
-      "description":"A detailed description of an error."
+      "description":"A detailed description of an error.",
+      "minLength":1
      },
      "action":{
       "type":"string",
-      "description":"An action that should be taken to recover from the error."
+      "description":"An action that should be taken to recover from the error.",
+      "minLength":1
      },
      "violations":{
       "type":"array",
@@ -13712,7 +13980,10 @@
             },
             "deviceDetails":"deviceDetails",
             "networkId":1,
-            "campaignReferenceId":"campaignRef"
+            "campaignReferenceId":"campaignRef",
+            "contact":{
+             "name":"name"
+            }
            }
           ]
          }
@@ -13726,7 +13997,7 @@
        "examples":{
         "Delivery report":{
          "summary":"Delivery report",
-         "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MessagesApiDeliveryReportResponse>\n  <results>\n    <results>\n      <event>DELIVERY</event>\n      <channel>WHATSAPP</channel>\n      <sender>senderNumber</sender>\n      <destination>41793026727</destination>\n      <sentAt>2024-02-06T14:18:29.797+0000</sentAt>\n      <doneAt>2024-02-06T17:18:29.797+0000</doneAt>\n      <bulkId>1688025180464000013</bulkId>\n      <messageId>ABEGVUGWh3gEAgo-sLTvmQCS5kwjhsy</messageId>\n      <messageCount>1</messageCount>\n      <status>\n        <groupId>3</groupId>\n        <groupName>DELIVERED</groupName>\n        <id>5</id>\n        <name>DELIVERED_TO_HANDSET</name>\n        <description>Message delivered to handset</description>\n      </status>\n      <error>\n        <groupId>0</groupId>\n        <groupName>OK</groupName>\n        <id>0</id>\n        <name>NO_ERROR</name>\n        <description>No Error</description>\n        <permanent>false</permanent>\n      </error>\n      <platform>\n        <entityId>my-entity-id</entityId>\n        <applicationId>my-application-id</applicationId>\n      </platform>\n      <deviceDetails>deviceDetails</deviceDetails>\n      <networkId>1</networkId>\n      <campaignReferenceId>campaignRef</campaignReferenceId>\n    </results>\n  </results>\n</MessagesApiDeliveryReportResponse>\n"
+         "value":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MessagesApiDeliveryReportResponse>\n  <results>\n    <results>\n      <event>DELIVERY</event>\n      <channel>WHATSAPP</channel>\n      <sender>senderNumber</sender>\n      <destination>41793026727</destination>\n      <sentAt>2024-02-06T14:18:29.797+0000</sentAt>\n      <doneAt>2024-02-06T17:18:29.797+0000</doneAt>\n      <bulkId>1688025180464000013</bulkId>\n      <messageId>ABEGVUGWh3gEAgo-sLTvmQCS5kwjhsy</messageId>\n      <messageCount>1</messageCount>\n      <status>\n        <groupId>3</groupId>\n        <groupName>DELIVERED</groupName>\n        <id>5</id>\n        <name>DELIVERED_TO_HANDSET</name>\n        <description>Message delivered to handset</description>\n      </status>\n      <error>\n        <groupId>0</groupId>\n        <groupName>OK</groupName>\n        <id>0</id>\n        <name>NO_ERROR</name>\n        <description>No Error</description>\n        <permanent>false</permanent>\n      </error>\n      <platform>\n        <entityId>my-entity-id</entityId>\n        <applicationId>my-application-id</applicationId>\n      </platform>\n      <deviceDetails>deviceDetails</deviceDetails>\n      <networkId>1</networkId>\n      <campaignReferenceId>campaignRef</campaignReferenceId>\n      <contact>\n        <name>name</name>\n      </contact>\n    </results>\n  </results>\n</MessagesApiDeliveryReportResponse>\n"
         }
        }
       }
@@ -13778,7 +14049,10 @@
              "entityId":"my-entity-id",
              "applicationId":"my-application-id"
             },
-            "campaignReferenceId":"campaignRef"
+            "campaignReferenceId":"campaignRef",
+            "contact":{
+             "name":"name"
+            }
            }
           ]
          }
@@ -13891,6 +14165,9 @@
             "platform":{
              "entityId":"my-entity-id",
              "applicationId":"my-application-id"
+            },
+            "contact":{
+             "name":"name"
             },
             "event":"MO"
            }

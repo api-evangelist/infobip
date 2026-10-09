@@ -7,8 +7,8 @@
    "name":"Infobip support",
    "email":"support@infobip.com"
   },
-  "version":"3.210.0",
-  "x-generatedAt":"2026-07-23T15:23:54.084527897Z"
+  "version":"3.245.1",
+  "x-generatedAt":"2026-10-07T09:47:49.831875615Z"
  },
  "tags":[
   {
@@ -75,7 +75,8 @@
             "categories":[
              "SMS",
              "WHATSAPP",
-             "RCS"
+             "RCS",
+             "VOICE_VIDEO"
             ],
             "platforms":[
              {
@@ -181,6 +182,9 @@
     },
     "security":[
      {
+      "OAuth2":[]
+     },
+     {
       "IBSSOTokenHeader":[]
      },
      {
@@ -188,9 +192,6 @@
      },
      {
       "Basic":[]
-     },
-     {
-      "OAuth2":[]
      }
     ],
     "x-scopes":[
@@ -315,13 +316,16 @@
        "MMS_OPERATOR_FEE",
        "EMAIL",
        "RCS",
+       "RCS_OPERATOR_FEE",
        "WHATSAPP",
        "VIBER",
        "APPLE_MB",
+       "KAKAO",
        "MOBILE_PUSH",
        "NUMBER_LOOKUP",
        "CARRIER_LOOKUP",
        "EMAIL_VALIDATION",
+       "VOICE_VIDEO",
        "AGENTOS",
        "AI"
       ],
@@ -335,13 +339,16 @@
         "MMS_OPERATOR_FEE",
         "EMAIL",
         "RCS",
+        "RCS_OPERATOR_FEE",
         "WHATSAPP",
         "VIBER",
         "APPLE_MB",
+        "KAKAO",
         "MOBILE_PUSH",
         "NUMBER_LOOKUP",
         "CARRIER_LOOKUP",
         "EMAIL_VALIDATION",
+        "VOICE_VIDEO",
         "AGENTOS",
         "AI"
        ]
@@ -350,17 +357,53 @@
      },
      "subCategories":{
       "type":"array",
-      "description":"\nSubcategories of categories (service variants). Currently applicable to Viber only.\n        ",
+      "description":"\nSubcategories of categories (service variants). Applicable to Viber, Voice and Video and Kakao.\n        ",
       "enum":[
        "VIBER_BM",
-       "VIBER_BOTS"
+       "VIBER_BOTS",
+       "PHONE",
+       "WEBRTC",
+       "WHATSAPP_BC",
+       "VIBER_BC",
+       "FLASH",
+       "SPEECH_CAPTURE",
+       "SPEECH_TRANSCRIPTION",
+       "NEURAL_TEXT_TO_SPEECH",
+       "CONFERENCING",
+       "AUDIO_STREAMING",
+       "VOICE_RECORDING",
+       "RECORDING_STORAGE",
+       "MISSED_CALL",
+       "VOICE_AMD",
+       "VIDEO_COMPOSITION",
+       "KAKAO_A",
+       "KAKAO_B",
+       "KAKAO_S"
       ],
       "items":{
        "type":"string",
-       "description":"\nSubcategories of categories (service variants). Currently applicable to Viber only.\n        ",
+       "description":"\nSubcategories of categories (service variants). Applicable to Viber, Voice and Video and Kakao.\n        ",
        "enum":[
         "VIBER_BM",
-        "VIBER_BOTS"
+        "VIBER_BOTS",
+        "PHONE",
+        "WEBRTC",
+        "WHATSAPP_BC",
+        "VIBER_BC",
+        "FLASH",
+        "SPEECH_CAPTURE",
+        "SPEECH_TRANSCRIPTION",
+        "NEURAL_TEXT_TO_SPEECH",
+        "CONFERENCING",
+        "AUDIO_STREAMING",
+        "VOICE_RECORDING",
+        "RECORDING_STORAGE",
+        "MISSED_CALL",
+        "VOICE_AMD",
+        "VIDEO_COMPOSITION",
+        "KAKAO_A",
+        "KAKAO_B",
+        "KAKAO_S"
        ]
       },
       "uniqueItems":true
@@ -401,12 +444,12 @@
       "description":"\nSpecifies the types of traffic. For a full list of values, refer to\n[traffic types](https://www.infobip.com/docs/metrics-api/metrics-and-filters#traffictypes).\n        ",
       "example":[
        "UTILITY",
-       "FREE_FORM"
+       "MARKETING"
       ],
       "items":{
        "type":"string",
        "description":"\nSpecifies the types of traffic. For a full list of values, refer to\n[traffic types](https://www.infobip.com/docs/metrics-api/metrics-and-filters#traffictypes).\n        ",
-       "example":"[\"UTILITY\",\"FREE_FORM\"]"
+       "example":"[\"UTILITY\",\"MARKETING\"]"
       },
       "uniqueItems":true
      },
@@ -498,7 +541,7 @@
      "clientRequestedPeriod":{
       "allOf":[
        {
-        "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.clientRequestedPeriod"
+        "$ref":"#/components/schemas/99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.DateTimeInterval"
        }
       ],
       "description":"Originally requested time period referenced in the response."
@@ -539,7 +582,7 @@
    },
    "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.BillingUsageQueryOptions":{
     "type":"object",
-    "description":"\nOptional settings that control data completeness, such as whether to include billing data where volumes have\nnot yet been finalized.\n        ",
+    "description":"Settings controlling data completeness, including whether unfinalized billing data is included.",
     "properties":{
      "includeUnfinalizedData":{
       "type":"boolean",
@@ -608,7 +651,7 @@
    },
    "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.DateInterval":{
     "type":"object",
-    "description":"\nTime period for billing data in UTC.\n\n`sentSince` is inclusive and `sentUntil` is exclusive. Billing usage data is available for the current month and the\nprevious two calendar months.\n        ",
+    "description":"Time period for billing data in UTC. sentSince is inclusive and sentUntil is exclusive.",
     "properties":{
      "sentSince":{
       "type":"string",
@@ -719,7 +762,6 @@
      }
     },
     "required":[
-     "aggregateBy",
      "filterBy"
     ],
     "title":"QueryBillingUsageApiRequest"
@@ -741,43 +783,23 @@
     ],
     "title":"QueryBillingUsageRequest"
    },
-   "99c561addf74bb07fd67942658f68818323ce564cc5eef645d487517ca1425f2.clientRequestedPeriod":{
-    "type":"object",
-    "description":"Originally requested time period referenced in the response.",
-    "properties":{
-     "sentSince":{
-      "type":"string",
-      "format":"date-time",
-      "description":"Start of the sent traffic date-time period (inclusive).",
-      "example":"2023-04-01T00:00:00Z"
-     },
-     "sentUntil":{
-      "type":"string",
-      "format":"date-time",
-      "description":"End of the sent traffic date-time period (exclusive).",
-      "example":"2023-04-01T00:00:00Z"
-     }
-    },
-    "required":[
-     "sentSince",
-     "sentUntil"
-    ],
-    "title":"clientRequestedPeriod"
-   },
    "ApiError":{
     "type":"object",
     "properties":{
      "errorCode":{
       "type":"string",
-      "description":"An error code uniquely identifying the error case."
+      "description":"An error code uniquely identifying the error case.",
+      "minLength":1
      },
      "description":{
       "type":"string",
-      "description":"A detailed description of an error."
+      "description":"A detailed description of an error.",
+      "minLength":1
      },
      "action":{
       "type":"string",
-      "description":"An action that should be taken to recover from the error."
+      "description":"An action that should be taken to recover from the error.",
+      "minLength":1
      },
      "violations":{
       "type":"array",
@@ -1088,7 +1110,7 @@
             "sentSince":"2026-03-01T00:00:00.000+0000",
             "sentUntil":"2026-04-01T00:00:00.000+0000"
            },
-           "totalRows":3,
+           "totalRows":4,
            "columns":[
             {
              "columnName":"APPLICATION_ID",
@@ -1116,6 +1138,10 @@
             },
             {
              "columnName":"ACCOUNT_KEY",
+             "columnDataType":"STRING"
+            },
+            {
+             "columnName":"BILLING_TIME_UNIT",
              "columnDataType":"STRING"
             },
             {
@@ -1148,6 +1174,7 @@
              "A2P",
              "ALPHANUMERIC",
              "565C2852060F94BC771F692C04C055E1",
+             null,
              "message part",
              0.0075,
              1500,
@@ -1162,6 +1189,7 @@
              "MARKETING",
              "DOMAIN",
              "565C2852060F94BC771F692C04C055E1",
+             null,
              "message",
              0.0089,
              450,
@@ -1176,11 +1204,27 @@
              "RICH",
              "ALPHANUMERIC",
              "565C2852060F94BC771F692C04C055E1",
+             null,
              "message",
              0.0244,
              200,
              4.88,
              "EUR"
+            ],
+            [
+             "app_c",
+             "entity_c",
+             "VOICE_VIDEO",
+             "United States",
+             "VOICE",
+             "PHONE_NUMBER",
+             "565C2852060F94BC771F692C04C055E1",
+             "60/60",
+             "second",
+             0.01,
+             300,
+             3.0,
+             "USD"
             ]
            ]
           },
@@ -1215,7 +1259,10 @@
       "description":"Your server returns this code if it accepts the callback."
      }
     },
-    "x-is-early-access":true
+    "x-is-early-access":true,
+    "x-additionalInfo":{
+     "markdown":"### Related\n- [Query billing usage data](\"#platform/billing-usage-api/query-billing-usage\")\n"
+    }
    }
   }
  }

@@ -1,0 +1,128 @@
+# DERIVED by derive-integration-map.py (roadmap#949): each integration workflow, step by step,
+# resolved to spec file -> tag -> business capability (Turbo EA, CC BY 4.0) and the operation's
+# phrasing intent. Read from our own files; an unmapped link says why.
+slug: infobip
+workflows:
+- file: infobip-google-sheets-row-sms.yml
+  title: Infobip Google Sheets Row SMS
+  partner: google-sheets
+  template: https://zapier.com/apps/google-sheets/integrations/infobip/15576/send-sms-messages-from-infobip-for-new-spreadsheet-rows-in-google-sheets
+  repos:
+  - google-sheets
+  - infobip
+  steps:
+  - step: get-row
+    repo: google-sheets
+    spec_file: google-sheets-values-api-openapi.yml
+    operationId: getValues
+    tag: Values
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  - step: send-sms
+    repo: infobip
+    spec_file: infobip-channels-api-openapi.yml
+    operationId: send-sms-messages
+    tag: Channels
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Send SMS messages
+    effect: write
+    unmapped: no capability edge for this spec file
+  connects:
+    google-sheets:
+      capabilities: []
+      tags:
+      - Values
+    infobip:
+      capabilities: []
+      tags:
+      - Channels
+  intents:
+  - Send SMS messages
+- file: infobip-woocommerce-new-order-sms.yml
+  title: Infobip WooCommerce New Order SMS
+  partner: woocommerce
+  template: https://zapier.com/apps/infobip/integrations/woocommerce/14992/get-or-send-sms-messages-through-infobip-for-new-woocommerce-orders
+  repos:
+  - woocommerce
+  - infobip
+  steps:
+  - step: list-orders
+    repo: woocommerce
+    spec_file: woocommerce-orders-api-openapi.yml
+    operationId: listOrders
+    tag: Orders
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  - step: send-sms
+    repo: infobip
+    spec_file: infobip-channels-api-openapi.yml
+    operationId: send-sms-messages
+    tag: Channels
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Send SMS messages
+    effect: write
+    unmapped: no capability edge for this spec file
+  connects:
+    woocommerce:
+      capabilities: []
+      tags:
+      - Orders
+    infobip:
+      capabilities: []
+      tags:
+      - Channels
+  intents:
+  - Send SMS messages
+- file: infobip-wordpress-new-comment-sms.yml
+  title: Infobip WordPress New Comment SMS
+  partner: wordpress
+  template: https://zapier.com/apps/infobip/integrations/wordpress/14989/receive-sms-messages-from-infobip-with-new-comments-on-wordpress
+  repos:
+  - wordpress
+  - infobip
+  steps:
+  - step: list-comments
+    repo: wordpress
+    spec_file: wordpress-comments-api-openapi.yml
+    operationId: listComments
+    tag: Comments
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  - step: send-sms
+    repo: infobip
+    spec_file: infobip-channels-api-openapi.yml
+    operationId: send-sms-messages
+    tag: Channels
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Send SMS messages
+    effect: write
+    unmapped: no capability edge for this spec file
+  connects:
+    wordpress:
+      capabilities: []
+      tags:
+      - Comments
+    infobip:
+      capabilities: []
+      tags:
+      - Channels
+  intents:
+  - Send SMS messages

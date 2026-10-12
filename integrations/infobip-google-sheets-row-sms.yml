@@ -1,0 +1,77 @@
+arazzo: 1.0.1
+info:
+  title: Infobip Google Sheets Row SMS
+  summary: Send an Infobip SMS for spreadsheet rows in Google Sheets.
+  description: Reads a range of a Google Sheet and sends the first row as an SMS through Infobip. Rebuilt from the Zapier template "Send SMS messages from Infobip for new spreadsheet rows in Google Sheets".
+  version: 1.0.0
+sourceDescriptions:
+- name: infobipChannels
+  url: https://raw.githubusercontent.com/api-evangelist/infobip/refs/heads/main/openapi/infobip-channels-api-openapi.yml
+  type: openapi
+- name: googleSheetsValues
+  url: https://raw.githubusercontent.com/api-evangelist/google-sheets/refs/heads/main/openapi/google-sheets-values-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: google-sheets-row-sms
+  summary: Send an Infobip SMS for spreadsheet rows in Google Sheets.
+  inputs:
+    type: object
+    properties:
+      sender:
+        type: string
+      to:
+        type: string
+        description: Destination phone number in international format.
+      spreadsheetId:
+        type: string
+      range:
+        type: string
+        description: A1 range, e.g. Sheet1!A2:B2 (phone, text).
+  steps:
+  - stepId: get-row
+    description: Read the row values.
+    operationId: $sourceDescriptions.googleSheetsValues.getValues
+    parameters:
+    - name: spreadsheetId
+      in: path
+      value: $inputs.spreadsheetId
+    - name: range
+      in: path
+      value: $inputs.range
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      phone: $response.body#/values/0/0
+      text: $response.body#/values/0/1
+  - stepId: send-sms
+    description: Send the notification as an SMS through Infobip SMS API v3.
+    operationId: $sourceDescriptions.infobipChannels.send-sms-messages
+    requestBody:
+      contentType: application/json
+      payload:
+        messages:
+        - sender: $inputs.sender
+          destinations:
+          - to: $steps.get-row.outputs.phone
+          content:
+            text: $steps.get-row.outputs.text
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      bulkId: $response.body#/bulkId
+      messageId: $response.body#/messages/0/messageId
+  outputs:
+    bulkId: $steps.send-sms.outputs.bulkId
+    messageId: $steps.send-sms.outputs.messageId
+x-integration:
+  partner: google-sheets
+  template: https://zapier.com/apps/google-sheets/integrations/infobip/15576/send-sms-messages-from-infobip-for-new-spreadsheet-rows-in-google-sheets
+  edge_evidence: https://zapier.com/apps/infobip/integrations/google-sheets
+  edge_type: marketplace
+  method: generated
+  generated: '2026-10-12'
+  generator: claude-opus-5-5 (pipeline-enrich local-v5)
+  guessed_steps:
+  - step: get-row
+    cause: partner-contract
+    why: Sheets has no new-row trigger in REST; the column layout (phone in A, text in B) is an assumption the caller sets via range.

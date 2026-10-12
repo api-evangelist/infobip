@@ -2,10 +2,6 @@ generated: '2026-09-19'
 method: searched
 source: live probes of /.well-known/* on the Infobip website, API, MCP, and identity hosts
 hosts:
-- https://www.infobip.com
-- https://api.infobip.com
-- https://mcp.infobip.com
-- https://auth.infobip.com/realms/infobip
 - host: https://mcp.infobip.com
   documents:
   - path: /.well-known/oauth-protected-resource
@@ -20,6 +16,12 @@ hosts:
     file: infobip-auth-oauth-authorization-server.json
     bytes: 14213
   path_echo_control: passed
+- host: https://www.infobip.com
+  documents: []
+- host: https://api.infobip.com
+  documents: []
+- host: https://auth.infobip.com/realms/infobip
+  documents: []
 documents:
 - host: https://www.infobip.com
   path: /.well-known/security.txt
@@ -88,7 +90,5 @@ x-mcp-probe:
     file: infobip-auth-oauth-authorization-server.json
   validated_on: resource (RFC 9728) / issuer (RFC 8414, OIDC)
   negative_control: one per host; a 2xx JSON object at an impossible path discards the host
-note: 'MCP-host OAuth discovery added 2026-09-19 (roadmap#321/#337): the harvest visits a provider''s
-  primary hosts, and RFC 9728 protected-resource metadata lives on the MCP host, so these documents existed
-  and were invisible to the scorer. Fetched live and validated on `resource`/`issuer`; one negative control
-  per host.'
+note: 'MCP-host OAuth discovery added 2026-09-19 (roadmap#321/#337): the harvest visits a provider''s primary hosts, and RFC 9728 protected-resource metadata lives on the MCP host, so these documents existed
+  and were invisible to the scorer. Fetched live and validated on `resource`/`issuer`; one negative control per host.'

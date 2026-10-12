@@ -1,0 +1,70 @@
+arazzo: 1.0.1
+info:
+  title: Infobip WordPress New Comment SMS
+  summary: Receive an Infobip SMS for new WordPress comments.
+  description: Lists the most recent comments on a WordPress site and sends an SMS through Infobip about the newest one. Rebuilt from the Zapier template "Receive SMS messages from Infobip with new comments
+    on WordPress".
+  version: 1.0.0
+sourceDescriptions:
+- name: infobipChannels
+  url: https://raw.githubusercontent.com/api-evangelist/infobip/refs/heads/main/openapi/infobip-channels-api-openapi.yml
+  type: openapi
+- name: wordpressComments
+  url: https://raw.githubusercontent.com/api-evangelist/wordpress/refs/heads/main/openapi/wordpress-comments-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: wordpress-new-comment-sms
+  summary: Receive an Infobip SMS for new WordPress comments.
+  inputs:
+    type: object
+    properties:
+      sender:
+        type: string
+      to:
+        type: string
+        description: Destination phone number in international format.
+  steps:
+  - stepId: list-comments
+    description: List the newest comment.
+    operationId: $sourceDescriptions.wordpressComments.listComments
+    parameters:
+    - name: per_page
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      commentId: $response.body#/0/id
+      author: $response.body#/0/author_name
+  - stepId: send-sms
+    description: Send the notification as an SMS through Infobip SMS API v3.
+    operationId: $sourceDescriptions.infobipChannels.send-sms-messages
+    requestBody:
+      contentType: application/json
+      payload:
+        messages:
+        - sender: $inputs.sender
+          destinations:
+          - to: $inputs.to
+          content:
+            text: New WordPress comment $steps.list-comments.outputs.commentId by $steps.list-comments.outputs.author
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      bulkId: $response.body#/bulkId
+      messageId: $response.body#/messages/0/messageId
+  outputs:
+    bulkId: $steps.send-sms.outputs.bulkId
+    messageId: $steps.send-sms.outputs.messageId
+x-integration:
+  partner: wordpress
+  template: https://zapier.com/apps/infobip/integrations/wordpress/14989/receive-sms-messages-from-infobip-with-new-comments-on-wordpress
+  edge_evidence: https://zapier.com/apps/infobip/integrations/wordpress
+  edge_type: marketplace
+  method: generated
+  generated: '2026-10-12'
+  generator: claude-opus-5-5 (pipeline-enrich local-v5)
+  guessed_steps:
+  - step: list-comments
+    cause: partner-contract
+    why: listComments default ordering is assumed newest-first; author_name path follows the WP REST comment object.

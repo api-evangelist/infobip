@@ -1,0 +1,73 @@
+arazzo: 1.0.1
+info:
+  title: Infobip WooCommerce New Order SMS
+  summary: Send an Infobip SMS for new WooCommerce orders.
+  description: Lists recent processing orders from a WooCommerce store and sends an SMS through Infobip for the newest one. Rebuilt from the Zapier template "Get or send SMS messages through Infobip for
+    new WooCommerce orders".
+  version: 1.0.0
+sourceDescriptions:
+- name: infobipChannels
+  url: https://raw.githubusercontent.com/api-evangelist/infobip/refs/heads/main/openapi/infobip-channels-api-openapi.yml
+  type: openapi
+- name: woocommerceOrders
+  url: https://raw.githubusercontent.com/api-evangelist/woocommerce/refs/heads/main/openapi/woocommerce-orders-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: woocommerce-new-order-sms
+  summary: Send an Infobip SMS for new WooCommerce orders.
+  inputs:
+    type: object
+    properties:
+      sender:
+        type: string
+      to:
+        type: string
+        description: Destination phone number in international format.
+  steps:
+  - stepId: list-orders
+    description: List orders in processing status.
+    operationId: $sourceDescriptions.woocommerceOrders.listOrders
+    parameters:
+    - name: status
+      in: query
+      value: processing
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      orderId: $response.body#/0/id
+      orderTotal: $response.body#/0/total
+  - stepId: send-sms
+    description: Send the notification as an SMS through Infobip SMS API v3.
+    operationId: $sourceDescriptions.infobipChannels.send-sms-messages
+    requestBody:
+      contentType: application/json
+      payload:
+        messages:
+        - sender: $inputs.sender
+          destinations:
+          - to: $inputs.to
+          content:
+            text: New WooCommerce order $steps.list-orders.outputs.orderId, total $steps.list-orders.outputs.orderTotal
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      bulkId: $response.body#/bulkId
+      messageId: $response.body#/messages/0/messageId
+  outputs:
+    bulkId: $steps.send-sms.outputs.bulkId
+    messageId: $steps.send-sms.outputs.messageId
+x-integration:
+  partner: woocommerce
+  template: https://zapier.com/apps/infobip/integrations/woocommerce/14992/get-or-send-sms-messages-through-infobip-for-new-woocommerce-orders
+  edge_evidence: https://zapier.com/apps/infobip/integrations/woocommerce
+  edge_type: marketplace
+  method: generated
+  generated: '2026-10-12'
+  generator: claude-opus-5-5 (pipeline-enrich local-v5)
+  guessed_steps:
+  - step: list-orders
+    cause: partner-contract
+    why: 'listOrders has no "since" filter for new orders, so newest-first ordering is assumed; output paths #/0/id and #/0/total assume the documented order array.'
+  - step: send-sms
+    cause: provider-contract
+    why: SmsRequestEnvelope does not template text from upstream fields; the text interpolation is ours, the body shape is from the spec example.

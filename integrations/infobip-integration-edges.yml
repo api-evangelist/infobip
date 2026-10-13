@@ -384,6 +384,25 @@ edges:
     api_families_basis: null
     detected_by: sweep-telco-network-apis.py
     detected: '2026-10-12'
+- partner_name: Microsoft Azure Marketplace
+  partner: microsoft-azure
+  partner_match: aggregator
+  type: marketplace
+  marketplace: azure-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=Infobip%20d.o.o.
+  listing_count: 6
+  apps:
+  - AgentOS
+  - Infobip Fraud Protection and Identity Validation Solutions
+  - 'Infobip Communication Services: Omnichannel Messaging for Azure'
+  - Infobip Cloud Contact Center Solution | Conversations
+  - Infobip GenAI Chatbot Building Platform | Answers
+  seller_name: Infobip d.o.o.
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
 - partner_name: APNs
   partner: apple
   partner_match: domain
@@ -560,6 +579,22 @@ edges:
     matched_domain: whatsapp.com
     detected_by: sweep-cpaas.py
     detected: '2026-10-13'
+- partner_name: Zalo
+  partner: zalo
+  partner_match: domain
+  type: contract
+  channel: contract-enum
+  relationship: messaging-channel
+  direction: provider-built
+  evidence: https://github.com/api-evangelist/infobip/blob/main/openapi/infobip-customer-engagement-api-openapi.yml
+  contract_reference:
+    repo: infobip
+    spec_file: infobip-customer-engagement-api-openapi.yml
+    value: ZALO
+    property: components.schemas.59fee77911b10cc32daa4aa3591d8ca0b6f5fe540a80b499aee90c38ff11a187.MessageChannel
+    matched_domain: zalo.me
+    detected_by: sweep-cpaas.py
+    detected: '2026-10-13'
 - partner_name: novu
   partner: novu
   partner_match: domain
@@ -576,25 +611,6 @@ edges:
     matched_domain: infobip.com
     detected_by: sweep-cpaas.py
     detected: '2026-10-13'
-- partner_name: Microsoft Azure Marketplace
-  partner: microsoft-azure
-  partner_match: aggregator
-  type: marketplace
-  marketplace: azure-marketplace
-  channel: distribution
-  relationship: platform-app
-  direction: provider-built
-  evidence: https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=Infobip%20d.o.o.
-  listing_count: 6
-  apps:
-  - AgentOS
-  - Infobip Fraud Protection and Identity Validation Solutions
-  - 'Infobip Communication Services: Omnichannel Messaging for Azure'
-  - Infobip Cloud Contact Center Solution | Conversations
-  - Infobip GenAI Chatbot Building Platform | Answers
-  seller_name: Infobip d.o.o.
-  detected_by: sweep-cloud-marketplaces.py
-  detected: '2026-10-13'
 templates:
 - title: Send sms messages in Infobip for new submissions in Jotform
   url: https://zapier.com/apps/infobip/integrations/jotform/1699898/send-sms-messages-in-infobip-for-new-submissions-in-jotform

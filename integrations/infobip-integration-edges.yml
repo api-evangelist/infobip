@@ -8,6 +8,7 @@ checked:
 - https://monid.ai/tools/infobip
 - https://n8n.io/integrations/infobip/
 - https://raw.githubusercontent.com/camaraproject/camara-landscape/main/landscape.yml
+- https://registry.modelcontextprotocol.io/v0/servers
 - https://zapier.com/apps/infobip/integrations
 summary: null
 marketplace_apps:
@@ -611,6 +612,38 @@ edges:
   seller_name: Infobip d.o.o.
   detected_by: sweep-cloud-marketplaces.py
   detected: '2026-10-13'
+- partner_name: MCP Registry
+  partner: mcp
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://registry.modelcontextprotocol.io/v0/servers?search=com.infobip
+  contract_reference:
+    register: registry.modelcontextprotocol.io
+    spec_file: null
+    role: mcp-server-listing
+    registered_name: com.infobip/mcp
+    register_id: com.infobip/mcp
+    detected_by: sweep-agent-tools.py
+    detected: '2026-10-14'
+  mcp_registry:
+    servers:
+    - com.infobip/mcp
+    hosted_remote: 1
+    local_package: 0
+    transports:
+      sse: 9
+      streamable-http: 9
+    auth_declared: 1
+    catalog_declared: true
+    namespace_domains:
+    - infobip.com
+  matched_by:
+  - namespace-domain
+  detected_by: sweep-agent-tools.py
+  first_seen: '2026-10-14'
 templates:
 - title: Send sms messages in Infobip for new submissions in Jotform
   url: https://zapier.com/apps/infobip/integrations/jotform/1699898/send-sms-messages-in-infobip-for-new-submissions-in-jotform

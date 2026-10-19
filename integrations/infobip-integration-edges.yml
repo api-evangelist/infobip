@@ -3,16 +3,23 @@ method: searched
 source:
 - https://zapier.com/apps/infobip/integrations
 checked:
+- https://api.nuget.org/v3
 - https://azuremarketplace.microsoft.com/
 - https://composio.dev/toolkits/infobip
+- https://crates.io/api/v1
 - https://fivetran.com/docs-sitemap.xml
 - https://fivetran.com/docs/connectors/partner-built-program
 - https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
 - https://monid.ai/tools/infobip
 - https://n8n.io/integrations/infobip/
+- https://proxy.golang.org
+- https://pypi.org/pypi
 - https://raw.githubusercontent.com/camaraproject/camara-landscape/main/landscape.yml
 - https://registry.modelcontextprotocol.io/v0/servers
+- https://registry.npmjs.org
 - https://registry.npmjs.org/-/v1/search?text=keywords:n8n-community-node-package
+- https://repo1.maven.org/maven2
+- https://rubygems.org/api/v1
 - https://zapier.com/api/v4/apps/
 - https://zapier.com/apps/infobip/integrations
 summary: null
@@ -752,6 +759,144 @@ edges:
     vendor_link: https://www.infobip.com/
     builder: Fivetran
   detected_by: sweep-data-integration.py
+  first_seen: '2026-10-18'
+- partner_name: Go module proxy
+  partner: null
+  partner_match: null
+  type: register
+  direction: provider-built
+  category: official SDK (Go)
+  evidence: https://pkg.go.dev/github.com/infobip/infobip-api-go-client/v3
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: Go module proxy (public registry JSON)
+    spec_file: null
+    language: Go
+    packages:
+    - name: github.com/infobip/infobip-api-go-client/v3
+      version: v3.2.0
+      released: '2026-02-18'
+      released_field: Time
+      lapsed: false
+      page: https://pkg.go.dev/github.com/infobip/infobip-api-go-client/v3
+      repo_leg: github-org:infobip
+      publisher_leg: org:infobip
+      matched_by: github-org
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: Maven Central
+  partner: maven-central
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Java/JVM)
+  evidence: https://central.sonatype.com/artifact/com.infobip/infobip-api-java-client
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: Maven Central (public registry JSON)
+    spec_file: null
+    language: Java/JVM
+    packages:
+    - name: com.infobip:infobip-api-java-client
+      version: 7.0.1
+      released: '2026-09-03'
+      released_field: lastUpdated
+      lapsed: false
+      page: https://central.sonatype.com/artifact/com.infobip/infobip-api-java-client
+      repo_leg: github-org:infobip
+      publisher_leg: groupId:infobip.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: npm registry
+  partner: npm
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (JavaScript/TypeScript)
+  evidence: https://www.npmjs.com/package/@infobip-api/sdk
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: '@infobip-api/sdk'
+      version: 0.3.2
+      released: '2023-11-23'
+      released_field: modified
+      lapsed: true
+      page: https://www.npmjs.com/package/@infobip-api/sdk
+      repo_leg: github-org:infobip-community
+      publisher_leg: email:infobip.com
+      matched_by: domain
+    - name: infobip-mobile-messaging-react-native-plugin
+      version: 15.0.0
+      released: '2026-09-17'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/infobip-mobile-messaging-react-native-plugin
+      repo_leg: github-org:infobip
+      publisher_leg: email:infobip.com
+      matched_by: domain
+    - name: infobip-rtc
+      version: 2.7.42
+      released: '2026-10-16'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/infobip-rtc
+      repo_leg: github-org:infobip
+      publisher_leg: email:infobip.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: PyPI
+  partner: pypi
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Python)
+  evidence: https://pypi.org/project/infobip-api-python-sdk/
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: PyPI (public registry JSON)
+    spec_file: null
+    language: Python
+    packages:
+    - name: infobip-api-python-sdk
+      version: 5.0.1
+      released: '2023-05-26'
+      released_field: upload_time
+      lapsed: true
+      page: https://pypi.org/project/infobip-api-python-sdk/
+      repo_leg: github-org:infobip-community
+      publisher_leg: email:infobip.com
+      matched_by: domain
+    current: false
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
   first_seen: '2026-10-18'
 templates:
 - title: Send sms messages in Infobip for new submissions in Jotform
